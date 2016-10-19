@@ -1,0 +1,34 @@
+#####################################################
+#
+# 		  EVG EVENT RECORD
+#
+#####################################################
+
+record(stringout, "$(device):EVDESC$(num)"){
+	field(VAL, "$(desc)")
+	field(DESC, "Description of the Event $(num)")
+}
+record(longout, "$(device):EVCODE$(num)"){
+	field(DESC, "Event $(num) code")
+	field(DRVH, "255")
+	field(DRVL, "0")
+	field(VAL, "$(code)")
+}
+record(longout, "$(device):EVTIME$(num)"){
+	field(DESC, "Event $(num) timestamp")
+	field(DRVL, "100")
+	field(VAL, "$(time)")
+}
+record(bo, "$(device):EVDLYMODE$(num)"){
+	field(DESC, "Delay mode (FIX | INCR)")
+	field(ZNAM, "FIX")
+	field(ONAM, "INCR")
+	field(VAL, "$(mode)")
+}
+record(bo, "$(device):EVTRANSM$(num)"){
+	field(DESC, "Transmission mode (ALWAYS | INJECTION)")
+	field(ZNAM, "ALWAYS")
+	field(ONAM, "INJECTION")
+	field(VAL, "$(transm)")
+}
+#####################################################

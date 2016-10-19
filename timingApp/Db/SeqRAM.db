@@ -1,0 +1,136 @@
+#####################################################
+#
+# 	     SEQRAM CONTROL RECORDS 
+#
+# The following records work as triggers or monitors
+# for the sequencer responsible for SeqRAM control.
+#
+#####################################################
+
+
+#####################################################
+# State Machine Status (read only)
+record(mbbo, "$(device):STATEMACHINE"){
+	field(SCAN, "Passive")	
+	field(ZRST, "Initializing")
+	field(ZRVL, "0")
+	field(ONST, "Stopped")
+	field(ONVL, "1")
+	field(TWST, "Running")
+	field(TWVL, "2")
+	field(THST, "Injecting")
+	field(THVL, "3")
+	field(FRST, "Restarting")
+	field(FRVL, "4")
+	field(FVST, "Updating")
+	field(FVVL, "5")
+	field(SXST, "Preparing to Run")
+	field(SXVL, "6")
+	field(SVST, "Preparing to Inject")	
+	field(SVVL, "7")
+	field(VAL, "0")	
+	field(DESC, "Injection State Machine Status")
+}
+#####################################################
+# Stop Trigger: Return SeqRAM to STOPPED state
+record(bo, "$(device):STOPSEQ"){
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(OUT, "$(device):STOP_TG.PROC")
+	field(DESC, "Set Sequencer Stop Trigger")
+}
+
+record(bo, "$(device):STOP_TG")
+{
+	field(DESC, "Sequencer Stop Trigger")
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+#####################################################
+# Stop Injection Trigger: Return from SeqRAM 2 to SeqRAM 1
+record(bo, "$(device):STOPINJSEQ"){
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(OUT, "$(device):STOPINJ_TG.PROC")
+	field(DESC, "Set Sequencer Stop Injection Trigger")
+}
+
+record(bo, "$(device):STOPINJ_TG")
+{
+	field(DESC, "Sequencer Stop Injection Trigger")
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+#####################################################
+# Run Trigger: Run SeqRAM 1
+record(bo, "$(device):RUNSEQ"){
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(OUT, "$(device):RUN_TG.PROC")
+	field(DESC, "Set Sequencer Run Trigger")
+}
+
+record(bo, "$(device):RUN_TG")
+{
+	field(DESC, "Sequencer Run Trigger")
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+#####################################################
+# Injection Trigger: Run SeqRAM 2
+record(bo, "$(device):INJSEQ"){
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(OUT, "$(device):INJ_TG.PROC")
+	field(DESC, "Set Sequencer Injection Trigger")
+}
+
+record(bo, "$(device):INJ_TG")
+{
+	field(DESC, "Sequencer Injection Trigger")
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+#####################################################
+# Restart Trigger: Reload events and restart SeqRAM 1
+record(bo, "$(device):RESTSEQ"){
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(OUT, "$(device):RESTART_TG.PROC")
+	field(DESC, "Set Sequencer Restart Trigger")
+}
+
+record(bo, "$(device):RESTART_TG")
+{
+	field(DESC, "Sequencer Restart Trigger")
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+#####################################################
+# Update Trigger: Update events from Stopped state
+record(bo, "$(device):UPDATEEV"){
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(OUT, "$(device):UPDATE_TG.PROC")
+	field(DESC, "Set Sequencer Update Events Trigger")
+}
+
+record(bo, "$(device):UPDATE_TG")
+{
+	field(DESC, "Sequencer Update Events Trigger")
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+}
+
