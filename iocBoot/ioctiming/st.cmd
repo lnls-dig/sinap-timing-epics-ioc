@@ -48,7 +48,7 @@ dbLoadRecords "${TOP}/db/Eventos.db", "device=EVG, num=6, desc='Egun Trigger', c
 dbLoadRecords "${TOP}/db/Eventos.db", "device=EVG, num=7, desc='Kicker LTB', code=0x09, time=190, mode=1, transm=0"
 
 # Pulse Train Event
-dbLoadRecords "${TOP}/db/PulseTrain.db", "device=EVG, enable=1, code=0x0A, time=150, count=20, size=120"
+dbLoadRecords "${TOP}/db/PulseTrain.db", "device=EVG, enable=1, code=0x0A, start_time=1408, pulse_count=2048, total_length=500000000"
 
 # EVR
 #dbLoadRecords("${TOP}/db/evr.db", "device=EVR1, PORT=EVR1, ADDR=0, TIMEOUT=2")

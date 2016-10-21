@@ -14,19 +14,19 @@ record(longout, "$(device):PTCODE"){
 	field(DESC, "Pulse Train Code")
 	field(VAL, "$(code)")
 }
-record(longout, "$(device):PTTIME"){
-	field(DESC, "Pulse Train start timestamp")
-	field(DRVL, "100")
-	field(VAL, "$(time)")
+record(ao, "$(device):PTSTART"){
+	field(DESC, "Pulse Train start timestamp in ns")
+	field(DRVL, "200")
+	field(VAL, "$(start_time)")
 }
 record(longout, "$(device):PTCNT"){
 	field(DESC, "Pulse Train pulse count")
 	field(DRVL, "0")
-	field(VAL, "$(count)")
+	field(VAL, "$(pulse_count)")
 }
-record(longout, "$(device):PTSIZE"){
-	field(DESC, "Pulse Train duration")
+record(ao, "$(device):PTLENGTH"){
+	field(DESC, "Pulse Train duration in ns")
 	field(DRVL, "0")
-	field(VAL, "$(size)")
+	field(VAL, "$(total_length)")
 }
 #####################################################

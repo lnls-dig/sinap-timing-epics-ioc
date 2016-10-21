@@ -150,12 +150,12 @@ int train_pulse_cnt;
 assign train_pulse_cnt to "{device}:PTCNT";
 monitor train_pulse_cnt;
 
-int train_pulse_size;
-assign train_pulse_size to "{device}:PTSIZE";
-monitor train_pulse_size;
+float train_duration;
+assign train_duration to "{device}:PTLENGTH";
+monitor train_duration;
 
-int train_start_time;
-assign train_start_time to "{device}:PTTIME";
+float train_start_time;
+assign train_start_time to "{device}:PTSTART";
 monitor train_start_time;
 
 int train_pulse_code;
@@ -219,9 +219,9 @@ monitor train_pulse_code;
     int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
 						VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id);
 
-    int expandArray(int evnum, int trainEnable, int pulseCnt, int trainDuration, int trainStart, int trainCode);
-    int trainStartCorrection(int trainEnable, int trainStart, int trainDuration, int pulseCnt, int evnum);
-    int updateExpandedArray(int trainEnable, int trainStart, int trainDuration, int pulseCnt, int trainCode, int evnum);
+    int expandArray(int trainEnable, float trainStart_ns, float trainDuration_ns, int pulseCnt, int trainCode, int evnum);
+    float trainStartCorrection(int trainEnable, float trainStart_ns, float trainDuration_ns, int pulseCnt, int evnum);
+    int updateExpandedArray(int trainEnable, float trainStart_ns, float trainDuration_ns, int pulseCnt, int trainCode, int evnum);
 }%
 
 %%//----------------------------------------
@@ -284,7 +284,7 @@ ss seq {
 	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
 	  %%// Update expanded array
-	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_pulse_size,
+	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_duration,
 							train_pulse_cnt, train_pulse_code, eventNum);
 
 	   printf("Initialization Entry\n");
@@ -346,7 +346,7 @@ ss seq {
 	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
 	   %%// Update expanded array
-	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_pulse_size,
+	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_duration,
 							train_pulse_cnt, train_pulse_code, eventNum);
 
 	   %%// Code below is causing evg enable to be set, when device is disabled while running RAM 2
@@ -391,7 +391,7 @@ ss seq {
 	   	updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
 		%%// Update expanded array
-		expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_pulse_size,
+		expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_duration,
 							train_pulse_cnt, train_pulse_code, eventNum);
 
 		%%// Status update (stopped)
@@ -695,7 +695,7 @@ ss seq {
 	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
 	   %%// Update expanded array
-	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_pulse_size,
+	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_duration,
 							train_pulse_cnt, train_pulse_code, eventNum);
 
 	   %%// Clear number of writes
@@ -998,7 +998,7 @@ ss reset_tg_pv{
 
 			////////////// D E B U G G I N G //////////////////////////////////////////
 
-			printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+			//printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 			///////////////////////////////////////////////////////////////////////////
 
@@ -1022,7 +1022,7 @@ ss reset_tg_pv{
 
 		////////////// D E B U G G I N G //////////////////////////////////////////
 
-		printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+		//printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 		///////////////////////////////////////////////////////////////////////////
 
@@ -1083,7 +1083,7 @@ ss reset_tg_pv{
 
 			////////////// D E B U G G I N G //////////////////////////////////////////
 
-			printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+			//printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 			///////////////////////////////////////////////////////////////////////////
 
@@ -1121,7 +1121,7 @@ ss reset_tg_pv{
 
 				////////////// D E B U G G I N G //////////////////////////////////////////
 
-				printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+				//printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 				///////////////////////////////////////////////////////////////////////////
 
@@ -1149,7 +1149,7 @@ ss reset_tg_pv{
 
 				////////////// D E B U G G I N G //////////////////////////////////////////
 
-				printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+				//printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 				///////////////////////////////////////////////////////////////////////////
 
@@ -1175,7 +1175,7 @@ ss reset_tg_pv{
 
 		////////////// D E B U G G I N G //////////////////////////////////////////
 
-		printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+		//printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 		///////////////////////////////////////////////////////////////////////////
 
@@ -1192,21 +1192,29 @@ ss reset_tg_pv{
 	   Description: Fill the ExpandedEventArray with an expansion of the event pointer array.
 			This function is used as means to include a pulse train to the events to be written.
 
-	   Arguments: First argument is the number of common events.
-		      The next five arguments are enable, count, size, initial timestamp, and code properties of the pulse train.
+	   Arguments: First argument is the pulse train enable parameter.
+		      Second argument is the pulse train start timestamp.
+		      Third argument is the pulse train duration.
+		      Fourth argument is the pulse train number of pulses.
+		      Fifth argument is the pulse train code.
+		      Last argument is the number of common events.
 
 	   Return: Total number of events after expansion.	   
 	*/
-	int expandArray(int evnum, int trainEnable, int pulseCnt, int trainDuration, int trainStart, int trainCode){
+	int expandArray(int trainEnable, float trainStart_ns, float trainDuration_ns, int pulseCnt, int trainCode, int evnum){
 
 		int i, j;
 
 		// Expanded array index
 		int expIndex = 0;
 
+		// Convert time units from ns to steps of 8ns
+		float trainDuration = trainDuration_ns / 8;
+		float trainStart = trainStart_ns / 8;
+
 		// Pulse train variables
-		int pulseInterval = trainDuration / pulseCnt;
-		int pulseTime = trainStart;
+		float pulseInterval = trainDuration / pulseCnt;
+		float pulseTime = trainStart;
 		int pulsesLeft = 0;
 
 		// If pulse train is disabled
@@ -1254,7 +1262,7 @@ ss reset_tg_pv{
 
 					ExpandedEventArray[expIndex].code = trainCode;
 
-					ExpandedEventArray[expIndex].timestamp = pulseTime;
+					ExpandedEventArray[expIndex].timestamp = (int)pulseTime;
 					pulseTime += pulseInterval;
 
 					ExpandedEventArray[expIndex].mode = INCR;
@@ -1286,7 +1294,7 @@ ss reset_tg_pv{
 		for(i = 0; i < pulsesLeft; i++){
 
 			ExpandedEventArray[expIndex].code = trainCode;
-			ExpandedEventArray[expIndex].timestamp = pulseTime;
+			ExpandedEventArray[expIndex].timestamp = (int)pulseTime;
 			pulseTime += pulseInterval;
 			ExpandedEventArray[expIndex].mode = INCR;
 			ExpandedEventArray[expIndex].ctrl = ALWAYS;
@@ -1302,36 +1310,48 @@ ss reset_tg_pv{
 	/*
 	   Name: trainStartCorrection
 
-	   Description: Redefine the pulse train starting timestamp so there are no conflicts with other events.
+	   Description: Redefine the pulse train start timestamp so there are no conflicts with other events.
 
-	   Arguments: First argument is the pulse train starting timestamp.
-		      Second argument is the pulse train duration. 
-		      Third argument is the pulse count of pulse train.
-		      Fourth argument is the number of events.
+	   Arguments: First argument is the pulse train enable propertie
+		      Second argument is the pulse train start timestamp in ns.
+		      Third argument is the pulse train duration.
+		      Fourth argument is the number of pulses in the pulse train.
+		      Fifth argument is the number of common events.
 
-	   Return: The corrected pulse train starting timestamp.	   
+	   Return: The corrected pulse train start timestamp.	   
 	*/
-	int trainStartCorrection(int trainEnable, int trainStart, int trainDuration, int pulseCnt, int evnum) {
+	float trainStartCorrection(int trainEnable, float trainStart_ns, float trainDuration_ns, int pulseCnt, int evnum) {
 
-		if(!trainEnable) return trainStart;
+		if(!trainEnable) return trainStart_ns;
 
 		int i;
 
-		int interval = trainDuration/pulseCnt;
+		// find interval in ns
+		float interval = trainDuration_ns/pulseCnt;
+
+		// convert it to units of 8ns
+		interval = interval / 8;
 
     		for(i = evnum-1; i >= 0; i--){
 
-			int diff = EventPointerArray[i]->timestamp - trainStart;
+			int diff = EventPointerArray[i]->timestamp - trainStart_ns/8;
+		
+			// start of pulse train conflicts
+			if((diff <= 0 && diff > -1)
 
-			if(diff >= 0 && !(diff % interval))
-				trainStart--;
+			// OR conflicts after truncation
+			    || (interval - fmod(diff, interval) < 1) 	
+			
+			// OR conflits without truncation
+			    || ((floor(diff) == diff && floor(interval) == interval) && fmod(diff, interval) == 0))
+				trainStart_ns -= 8;
 		}
 
 		// guarantee the timestamp is not negative
-		if(trainStart < 0) trainStart = 0;
+		if(trainStart_ns < 0) trainStart_ns = 0;
 
 		// return new starting timestamp
-		return trainStart;
+		return trainStart_ns;
 	}
 
 	/*
@@ -1339,22 +1359,22 @@ ss reset_tg_pv{
 
 	   Description: Update expanded array.
 
-	   Arguments: First argument is the enable parameter of pulse train event.
-		      Second argument is the pulse train start timestamp.
-		      Third argument is the pulse train duration.
-		      Fourth argument is the pulse train count of pulses.
+	   Arguments: First argument is the pulse train enable parameter.
+		      Second argument is the pulse train start timestamp in ns.
+		      Third argument is the pulse train duration in ns.
+		      Fourth argument is the pulse train number of pulses.
 		      Fifth argument is the pulse train code.
-		      Sixth argument is the number of common events.		      
+		      Sixth argument is the number of common events.	      
 
-	   Return: The corrected pulse train starting timestamp.	   
+	   Return: The number of events in expanded array.
 	*/
-	int updateExpandedArray(int trainEnable, int trainStart, int trainDuration, int pulseCnt, int trainCode, int evnum){
+	int updateExpandedArray(int trainEnable, float trainStart_ns, float trainDuration_ns, int pulseCnt, int trainCode, int evnum){
 
 		// adjust timestamp for pulse train
-		trainStart = trainStartCorrection(trainEnable, trainStart, trainDuration, pulseCnt, evnum);
+		trainStart_ns = trainStartCorrection(trainEnable, trainStart_ns, trainDuration_ns, pulseCnt, evnum);
 
 		// expand array of events and put it into expEvArray
-		int newNumEvents = expandArray(evnum, trainEnable, pulseCnt, trainDuration, trainStart, trainCode);
+		int newNumEvents = expandArray(trainEnable, trainStart_ns, trainDuration_ns, pulseCnt, trainCode, evnum);
 
 		return newNumEvents;		
 	}
