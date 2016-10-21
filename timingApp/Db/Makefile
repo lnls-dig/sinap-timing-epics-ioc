@@ -15,6 +15,7 @@ DB += evg.db
 DB += evr.db
 DB += Eventos.db
 DB += SeqRAM.db
+DB += PulseTrain.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

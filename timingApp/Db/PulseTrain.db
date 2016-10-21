@@ -1,0 +1,32 @@
+#####################################################
+#
+# 	       PULSE TRAIN EVENT RECORD
+#
+#####################################################
+
+record(bo, "$(device):PTEN"){
+	field(DESC, "Pulse Train Enable")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(VAL, "$(enable)")
+}
+record(longout, "$(device):PTCODE"){
+	field(DESC, "Pulse Train Code")
+	field(VAL, "$(code)")
+}
+record(longout, "$(device):PTTIME"){
+	field(DESC, "Pulse Train start timestamp")
+	field(DRVL, "100")
+	field(VAL, "$(time)")
+}
+record(longout, "$(device):PTCNT"){
+	field(DESC, "Pulse Train pulse count")
+	field(DRVL, "0")
+	field(VAL, "$(count)")
+}
+record(longout, "$(device):PTSIZE"){
+	field(DESC, "Pulse Train duration")
+	field(DRVL, "0")
+	field(VAL, "$(size)")
+}
+#####################################################

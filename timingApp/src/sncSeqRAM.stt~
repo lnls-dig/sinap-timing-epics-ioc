@@ -8,7 +8,6 @@ foreign ssId;
 %%//----------------------------------------
 
 int eventNum;
-int expandedEventNum;
 char * device;
 char * evCodeName = "EVCODE";
 char * evTimeName = "EVTIME";
@@ -16,7 +15,7 @@ char * evModeName = "EVDLYMODE";
 char * evCtrlName = "EVTRANSM";
 char str[40];
 int i;
-int numberOfWrites;
+int seqRAMWriteError;
 
 %%//----------------------------------------
 %%//	    State Machine Status PVs
@@ -29,10 +28,6 @@ assign StateMachineStatus to "{device}:STATEMACHINE";
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
-int network;
-assign network to "{device}:network";
-monitor network;
-
 int tbl[2000];
 assign tbl to "{device}:ITBL";
 
@@ -42,10 +37,6 @@ assign tbl_length to "{device}:ITBL.NORD";
 int seqs;
 assign seqs to "{device}:seqstat";
 monitor seqs;
-
-int seqen_rbv;
-assign seqen_rbv to "{device}:seqenRBV";
-monitor seqen_rbv;
 
 int seqen;
 assign seqen to "{device}:seqen";
@@ -57,10 +48,8 @@ int seqcode;
 assign seqcode to "{device}:seqcode";
 int seqtime;
 assign seqtime to "{device}:seqtime";
-
 int seqcount;
 assign seqcount to "{device}:seqcountRBV";
-monitor seqcount;
 
 int event_codes[20];
 assign event_codes to {};
@@ -139,35 +128,11 @@ evflag updateFlag;
 sync update_tg updateFlag;
 
 %%//----------------------------------------
-%%// 	      Pulse Train PVs
-%%//----------------------------------------
-
-int train_enable;
-assign train_enable to "{device}:PTEN";
-monitor train_enable;
-
-int train_pulse_cnt;
-assign train_pulse_cnt to "{device}:PTCNT";
-monitor train_pulse_cnt;
-
-int train_pulse_size;
-assign train_pulse_size to "{device}:PTSIZE";
-monitor train_pulse_size;
-
-int train_start_time;
-assign train_start_time to "{device}:PTTIME";
-monitor train_start_time;
-
-int train_pulse_code;
-assign train_pulse_code to "{device}:PTCODE";
-monitor train_pulse_code;
-
-%%//----------------------------------------
 %%// 	  Escaped C Code Declaration
 %%//----------------------------------------
 
 %%#include <stdlib.h>
-%%#include <math.h>
+%%#include <time.h>
 
 %{
     /* Type definitions */
@@ -200,10 +165,6 @@ monitor train_pulse_code;
     Event EventArray[20];
     // size of both event related arrays
     const int sizeOfArrays = 20;
-    // Expanded Event Array
-    Event ExpandedEventArray[2090];
-    // size of expanded event array
-    const int sizeOfExpArray = 2090;
 
     /* Functions */
     int str2int(char * str);
@@ -215,13 +176,9 @@ monitor train_pulse_code;
 				 int * time_arr, int * mode_arr, int * control_arr);
     int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
 					VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id);
-										
+											
     int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
 						VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id);
-
-    int expandArray(int evnum, int trainEnable, int pulseCnt, int trainDuration, int trainStart, int trainCode);
-    int trainStartCorrection(int trainEnable, int trainStart, int trainDuration, int pulseCnt, int evnum);
-    int updateExpandedArray(int trainEnable, int trainStart, int trainDuration, int pulseCnt, int trainCode, int evnum);
 }%
 
 %%//----------------------------------------
@@ -242,8 +199,6 @@ ss seq {
 	   
 	  %%/* Variable Initialization */
 	   StateMachineStatus = 0;
-	   numberOfWrites = 0;
-	   expandedEventNum = 0;
 
 	  %%// Get macros
 	   eventNum = str2int(macValueGet("ev_num"));
@@ -271,40 +226,24 @@ ss seq {
 	  %%// Initialize Event Pointer Array
 	   init_EventPointerArray(eventNum);
 
-	  %%// Update event record arrays
-	   for(i = 0; i < eventNum; i++){
-
-		pvGet(event_codes[i], SYNC);
-		pvGet(event_timestamps[i], SYNC);
-		pvGet(event_modes[i], SYNC);
-		pvGet(event_ctrl[i], SYNC);
-	   }
-
-	  %%// Update and order EventPointerArray
-	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
-
-	  %%// Update expanded array
-	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_pulse_size,
-							train_pulse_cnt, train_pulse_code, eventNum);
-
 	   printf("Initialization Entry\n");
 	}
 
-	when(seqs == 0 && network == 1)
+	when(seqs == 0)
 	{
 		%{/* SeqRAM Stopped */}%
 
 		printf("Moving to Stopped State\n");
 	} state Stopped
 
-	when(seqs == 1 && network == 1)
+	when(seqs == 1)
 	{
 		%{/* SeqRAM Running (SeqRAM 1)*/}%
 
 		printf("Moving to Running State\n");
 	} state Running
 
-	when(seqs == 2 && network == 1)
+	when(seqs == 2)
 	{
 		%{/* SeqRAM Injecting (SeqRAM 2)*/}%
 
@@ -320,12 +259,9 @@ ss seq {
 		-Status update
 		-Clear Trigger Flags
 		-Update Event Pointer Array
-		-Make sure SeqRAM is disabled
-		-Reset SequenceRAM Count
-		-Clear numberOfWrites
 	   */}%
 
-	   %%// Status update (stopped)
+	   %%// Status update
 	   StateMachineStatus = 1;
 	   pvPut(StateMachineStatus, SYNC);
 
@@ -345,38 +281,18 @@ ss seq {
 	   %%// Update and order EventPointerArray
 	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
-	   %%// Update expanded array
-	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_pulse_size,
-							train_pulse_cnt, train_pulse_code, eventNum);
-
-	   %%// Code below is causing evg enable to be set, when device is disabled while running RAM 2
-
-	   %%// Make sure SeqRAM is disabled
-	   seqen = 0;
-	   pvPut(seqen, SYNC);
-
-	   %%// Clear number of writes
-	   numberOfWrites = 0;
+	   %%// Reset seqcount
+	   if(seqen == 0){
+		seqsw = 1;
+		pvPut(seqsw, SYNC);
+	   }
 
 	   printf("Stopped Entry\n");
 	}
 
-	when(seqen_rbv == 0 && seqcount != 0){
-
-		%{/* Reset seqcount */}%
-
-		seqsw = 1;
-		pvPut(seqsw, SYNC);
-
-	}state Stopped
-
 	when(efTestAndClear(updateFlag) && update_tg){
 
 		%{/* Re-update and re-order EventPointerArray*/}%
-
-		%%// Status update (updating)
-	   	StateMachineStatus = 5;
-		pvPut(StateMachineStatus, SYNC);
 
 		%%// Update event record arrays
 	   	for(i = 0; i < eventNum; i++){
@@ -390,88 +306,49 @@ ss seq {
 		%%// Update and order EventPointerArray
 	   	updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
-		%%// Update expanded array
-		expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_pulse_size,
-							train_pulse_cnt, train_pulse_code, eventNum);
-
-		%%// Status update (stopped)
-	   	StateMachineStatus = 1;
-		pvPut(StateMachineStatus, SYNC);
-
-		printf("Update Finished\n");
+		printf("Update Triggered\n");
 	} state Stopped
 
-	when(efTestAndClear(runFlag) && run_tg && (seqcount == 0)){
+	when(efTestAndClear(runFlag) && run_tg){
 		
-		%{/* Write to SeqRAM 1 */}%
+		%{/* Write to SeqRAM 1 and switch to SeqRAM 1 */}%
 
-		%%// Status update (preparing to run)
-	   	StateMachineStatus = 6;
-		pvPut(StateMachineStatus, SYNC);
+		%%// Write to SeqRAM 1
+		if( 
+			seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
+					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount))
+		 ){
+			%%// Write Successful
 
-		numberOfWrites = seqOneWrite(expandedEventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+			%%// Enable SeqRAM
+			seqen = 1;
+			pvPut(seqen, SYNC);
+
+			%%// Switch to seqRAM 1
+			seqsw = 1;
+			pvPut(seqsw, SYNC);
+		}
+		else{
+			%%// Write Unsuccessful
+
+			%%// Reset seqcount
+			//if(seqen == 0){
+			//	seqsw = 1;
+			//	pvPut(seqsw, SYNC);
+			//}
+
+			printf("Error: Write to SeqRAM 1 Failed.\n");
+		}
 
 		printf("Run Triggered\n");
-	} state CheckSeq1Write
-
-	when(seqs == 1){
-
-		%{/* Just go to Running state */}%
-
-		printf("Moving to Running State\n");
-	} state Running
-    }
-
-    state CheckSeq1Write{
-
-	entry{
-
-	    %{/*
-		  -Status Update 
-	    */}%
-
-	    printf("CheckSeq1Write Entry\n");
-
-	    printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
-	}
-
-	when(seqcount == numberOfWrites && seqen_rbv == 0){
-
-		%{/* Successful Write */}%
-
-		%%// Enable SeqRAM
-		seqen = 1;
-		pvPut(seqen, SYNC);
-
-		%%// Switch to SeqRAM 1
-		seqsw = 1;
-		pvPut(seqsw, SYNC);
-
-		printf("Write succeded: seqen=%d, seqs=%d\n", seqen, seqs);
-
-	} state CheckSeq1Write
-
-	when(seqs == 1){
-
-		printf("Going from CheckSeq1Write to Running State\n");
-
-		%{/* Just go to Running state */}%
-
-		printf("Moving to Running State\n");
-	} state Running
-
-	when(delay(5.0) && seqen_rbv == 0){
-
-		%{/* Unsuccessful Write */}%
-
-		printf("CheckSeq1Write: Unseccessful Write to Seq1, going to Stopped State\n");
-
-		%%// seqcountRBV will be cleared by seqsw in Stopped Entry
-
-		printf("Error: Write to SeqRAM 1 Failed.\n");
-
 	} state Stopped
+
+	when(seqs == 1){
+
+		%{/* Just go to Running state */}%
+
+		printf("Moving to Running State\n");
+	} state Running
     }
 
     state Running {
@@ -482,11 +359,10 @@ ss seq {
 
 		-Status update
 		-Clear Trigger Flags
-		-Clear numberOfWrites
 
 	    */}%
 
-	   %%// Status update (running)
+	   %%// Status update
 	   StateMachineStatus = 2;
 	   pvPut(StateMachineStatus, SYNC);
 
@@ -494,9 +370,6 @@ ss seq {
 	   efClear(stopFlag);
 	   efClear(injFlag);
 	   efClear(restFlag);
-
-	   %%// Clear number of writes
-	   numberOfWrites = 0;
 
 	   printf("Running Entry\n");
 	}
@@ -525,11 +398,8 @@ ss seq {
 		      -Update Bucket list
 		      -Update Bucket list length
 		      -Write to seqRAM 2
+		      -Switch to SeqRAM 2 
 		*/}%
-
-		%%// Status update (preparing to inject)
-	   	StateMachineStatus = 7;
-		pvPut(StateMachineStatus, SYNC);
 
 		%%// Update bucket list
 		pvGet(tbl, SYNC);
@@ -538,11 +408,23 @@ ss seq {
 		pvGet(tbl_length, SYNC);
 
 		%%// Write to seqRAM 2
-		numberOfWrites = seqTwoWrite(expandedEventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-						pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+		if(
+			seqTwoWrite(eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
+				pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount))
+		){
+			%%// Write Successful
+
+			%%// Switch to seqRAM 2
+			seqsw = 1;
+			pvPut(seqsw, SYNC);
+
+		}else{
+			%%// Write Unsuccessful
+			printf("Error: Write to SeRAM 2 Failed.\n");
+		}
 
 	    	printf("Injection Triggered\n");
-	} state CheckSeq2Write
+	} state Running
 	
 	when(seqs == 2){
 
@@ -559,49 +441,6 @@ ss seq {
 	} state Restarting
     }
 
-    state CheckSeq2Write{
-
-	entry{
-
-	    %{/*
-		  -Status Update 
-	    */}%
-
-	    printf("CheckSeq2Write Entry\n");
-	}
-
-	when(seqcount == numberOfWrites){
-
-		%{/* Successful Write */}%
-
-		%%// Avoid when condition being entered again
-		numberOfWrites = -1;
-
-		%%// Switch to SeqRAM 2
-		seqsw = 1;
-		pvPut(seqsw, SYNC);
-
-	} state CheckSeq2Write
-
-	when(seqs == 2){
-
-		%{/* Just go to Injecting state */}%
-
-		printf("Moving to Injecting State\n");
-	} state Injecting
-
-	when(delay(5.0) && seqs != 2){
-
-		%{/* Unsuccessful Write */}%
-
-		%%// seqcountRBV will not be cleared
-		%%// System will keep failing if not restarted
-
-		printf("Error: Write to SeqRAM 2 Failed.\n");
-
-	} state Running
-    }
-
     state Injecting {
 	entry{
 
@@ -612,7 +451,7 @@ ss seq {
 
 	    */}%
 
-	   %%// Status update (injecting)
+	   %%// Status update
 	   StateMachineStatus = 3;
 	   pvPut(StateMachineStatus, SYNC);
 
@@ -670,11 +509,10 @@ ss seq {
 		-Status update
 		-Stop SequenceRAM
 		-Update EventPointerArray
-		-Clear numberOfWrites
 
 	    */}%	 
 
-	   %%// Status update (restarting)
+	   %%// Status update
 	   StateMachineStatus = 4;
 	   pvPut(StateMachineStatus, SYNC);
 
@@ -694,25 +532,51 @@ ss seq {
 	   %%// Update and order EventPointerArray
 	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
-	   %%// Update expanded array
-	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_pulse_size,
-							train_pulse_cnt, train_pulse_code, eventNum);
-
-	   %%// Clear number of writes
-	   numberOfWrites = 0;
+	   %%// Clear error
+	   seqRAMWriteError = 0;
 
 	   printf("Restarting Entry\n");
 	}
 
-	when(seqs == 0 && seqen_rbv == 0){
+	when(seqs == 0 && seqen == 0 && !seqRAMWriteError){
+		%{/* Write to SeqRAM 1 and switch to SeqRAM 1*/}%
 
-		%{/* Write to SeqRAM 1 */}%
+		%%// Write to SeqRAM 1
+		if( 
+			seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
+					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount))
+		 ){
+			%%// Write Successful
 
-		numberOfWrites = seqOneWrite(expandedEventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+			%%// Enable SeqRAM
+			seqen = 1;
+			pvPut(seqen, SYNC);
 
-	} state CheckSeq1Write
+			%%// Switch to seqRAM 1
+			seqsw = 1;
+			pvPut(seqsw, SYNC);
+		}
+		else{
+			%%// Write Unsuccessful
 
+			%%// Reset seqcount
+	   		seqsw = 1;
+	   		pvPut(seqsw, SYNC);
+
+			printf("Error: Write to SeRAM 1 Failed.\n");
+
+			seqRAMWriteError = 1;
+		}		
+
+	} state Restarting
+
+	when(seqs == 0 && seqRAMWriteError){
+		%{/*Clear Error and go to Stopped State */}%
+
+		seqRAMWriteError = 0;
+
+		printf("seqRAM Write Error: Moving to stopped state\n");
+	} state Stopped
 
 	when(seqs == 1 && seqen != 0){
 	
@@ -726,37 +590,37 @@ ss seq {
 ss reset_tg_pv{
     state checking{
 	
-	when(stop_pv && delay(1.5)){
+	when(stop_pv){
 	     %{/* Clear stop PV */}%	
 		stop_pv = 0;
 		pvPut(stop_pv, SYNC);
 	} state checking
 
-	when(run_pv && delay(1.5)){
+	when(run_pv){
 	     %{/* Clear run PV */}%
 		run_pv = 0;
 		pvPut(run_pv, SYNC);
 	} state checking
 
-	when(stopinj_pv && delay(1.5)){
+	when(stopinj_pv){
 	    %{/* Clear stopinj PV */}%
 		stopinj_pv = 0;
 		pvPut(stopinj_pv, SYNC);
 	} state checking
 
-	when(inj_pv && delay(1.5)){
+	when(inj_pv){
 	    %{/* Clear injection PV */}%
 		inj_pv = 0;
 		pvPut(inj_pv, SYNC);
 	} state checking
 
-	when(restart_pv && delay(1.5)){
+	when(restart_pv){
 	    %{/* Clear restart PV */}%
 		restart_pv = 0;
 		pvPut(restart_pv, SYNC);
 	} state checking
 
-	when(update_pv && delay(1.5)){
+	when(update_pv){
 	    %{/* Clear update PV */}%
 		update_pv = 0;
 		pvPut(update_pv, SYNC);
@@ -963,12 +827,12 @@ ss reset_tg_pv{
 			Checks if seqRAM pointer is pointing to the address it was supposed to at the end.
 			The seqtime record is responsible for triggering the hardware write when processed.
 
-	   Arguments: First argument is the total number of events after expansion.
+	   Arguments: First argument is the total number of events (ALWAYS and INJECTION).
 		      Second argument is the calling state set.
 		      Next four arguments are pointers to variables seqaddr, seqcode, seqtime, and seqcount.
 		      Following four arguments are the VAR_IDs of the variables seqaddr, seqcode, seqtime, and seqcount.
 
-	   Return: Number of write operations performed.	   
+	   Return: 0-> Fail, 1-> Success.	   
 	*/
 	int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
 				VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id){
@@ -981,20 +845,37 @@ ss reset_tg_pv{
 		for(i = 0; i < evnum; i++){
 
 			// jump non-always events
-			if(ExpandedEventArray[i].ctrl != ALWAYS)
+			if(EventPointerArray[i]->ctrl != ALWAYS)
 				continue;
 
 			// define address, get code and timestamp
 			*pseqaddr = address;
-			*pseqcode = ExpandedEventArray[i].code;
-			*pseqtime = maxdelay = ExpandedEventArray[i].timestamp;
+			*pseqcode = EventPointerArray[i]->code;
+			*pseqtime = maxdelay = EventPointerArray[i]->timestamp;
+
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("----- Event %d Write -----\n", i);
+			//////////////////////////////////////////////////////////////////////////
 
 			// write event info to seqRAM records
 			seq_pvPut(ssId, seqaddr_id, SYNC);
+
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("ADDR: %d\n", seq_pvGet(ssId, seqaddr_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
+			
 			seq_pvPut(ssId, seqcode_id, SYNC);
+
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("CODE: %d\n", seq_pvGet(ssId, seqcode_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
 
 			// write timestamp (wich also triggers write to seqRAM)
 			seq_pvPut(ssId, seqtime_id, SYNC);
+
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("TIME: %d\n", seq_pvGet(ssId, seqtime_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
 
 			////////////// D E B U G G I N G //////////////////////////////////////////
 
@@ -1013,12 +894,29 @@ ss reset_tg_pv{
 		*pseqcode = 0x7F;
 		*pseqtime = maxdelay + offSetEndCode;
 
+		////////////// D E B U G G I N G ///////////////////////////////////////////
+		printf("----- 0x7F Code Write -----\n");
+		//////////////////////////////////////////////////////////////////////////
+
 		// write event info to seqRAM records
 		seq_pvPut(ssId, seqaddr_id, SYNC);
+
+		////////////// D E B U G G I N G ///////////////////////////////////////////
+		printf("ADDR: %d\n", seq_pvGet(ssId, seqaddr_id, SYNC));
+		//////////////////////////////////////////////////////////////////////////
+
 		seq_pvPut(ssId, seqcode_id, SYNC);
+
+		////////////// D E B U G G I N G ///////////////////////////////////////////
+		printf("CODE: %d\n", seq_pvGet(ssId, seqcode_id, SYNC));
+		//////////////////////////////////////////////////////////////////////////
 
 		// write timestamp (wich also triggers write to seqRAM)
 		seq_pvPut(ssId, seqtime_id, SYNC);
+
+		////////////// D E B U G G I N G ///////////////////////////////////////////
+		printf("TIME: %d\n", seq_pvGet(ssId, seqtime_id, SYNC));
+		//////////////////////////////////////////////////////////////////////////
 
 		////////////// D E B U G G I N G //////////////////////////////////////////
 
@@ -1030,8 +928,23 @@ ss reset_tg_pv{
 		// point to next address
 		address++;
 
-		// return number of writes to SeqRAM
-	     	return address;
+	     // Check if seqRAM is pointing to supposed location
+
+	    //   	unsigned int timeout = time(0) + 20;
+	    //    seq_pvGet(ssId, seqcount_id, SYNC);
+		//while(*pseqcount != address && time(0) < timeout){
+
+            // Wait for value
+		//}
+
+        //////////////////// D E B U G G I N G ////////////////////////////////
+        //printf("Finished waiting for seqcount read: seqcount = %d, address = %d\n", *pseqcount, address);
+        ///////////////////////////////////////////////////////////////////////
+
+	    //   if(*pseqcount == address)
+	     	  return 1;
+	    //   else
+	     	  return 0;
 	}
 
 	/*
@@ -1048,10 +961,10 @@ ss reset_tg_pv{
 		      Next four arguments are pointers to variables seqaddr, seqcode, seqtime, and seqcount.
 		      Following four arguments are the VAR_IDs of the variables seqaddr, seqcode, seqtime, and seqcount.
 
-	   Return: Number of write operations performed.	   
+	   Return: 0-> Fail, 1-> Success.	   
 	*/
-	int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode,
- 		int *pseqtime, int *pseqcount, VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id){
+	int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
+				VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id){
 									
 		int i, j, seqdly, rfdly, maxdelay = 0, address = 0;
 
@@ -1074,12 +987,29 @@ ss reset_tg_pv{
 			*pseqcode = 0x40 + rfdly * 5;
 			*pseqtime = RFDlyTimestamp;
 
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("----- RF Delay Write -----\n");
+			//////////////////////////////////////////////////////////////////////////
+
 			// write event info to seqRAM records
 			seq_pvPut(ssId, seqaddr_id, SYNC);
+
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("ADDR: %d\n", seq_pvGet(ssId, seqaddr_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
+
 			seq_pvPut(ssId, seqcode_id, SYNC);
+
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("CODE: %d\n", seq_pvGet(ssId, seqcode_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
 
 			// write timestamp (wich also triggers write to seqRAM)
 			seq_pvPut(ssId, seqtime_id, SYNC);
+
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("TIME: %d\n", seq_pvGet(ssId, seqtime_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
 
 			////////////// D E B U G G I N G //////////////////////////////////////////
 
@@ -1095,29 +1025,46 @@ ss reset_tg_pv{
 			for(j = 0; j < evnum; j++){
 
 				// INJECTION
-				if(ExpandedEventArray[j].mode == INCR){			
+				if(EventPointerArray[j]->mode == INCR){			
 
 					// Set timestamp WITH seqdly
-					*pseqtime = maxdelay = ExpandedEventArray[j].timestamp + seqdly;
+					*pseqtime = maxdelay = EventPointerArray[j]->timestamp + seqdly;
 				}
 				else{
 
 					// Set timestamp WITHOUT seqdly
-					*pseqtime = maxdelay = ExpandedEventArray[j].timestamp;
+					*pseqtime = maxdelay = EventPointerArray[j]->timestamp;
 				}
 				
 
 			      // Write Specified Code 
 				// specify address and code (timestamp was specified above)
 				*pseqaddr = address;
-				*pseqcode = ExpandedEventArray[j].code;
+				*pseqcode = EventPointerArray[j]->code;
+
+				////////////// D E B U G G I N G ///////////////////////////////////////////
+				printf("----- Event %d Write -----\n", j);
+				//////////////////////////////////////////////////////////////////////////
 
 				// write event info to seqRAM records
-				seq_pvPut(ssId, seqaddr_id, SYNC);	
+				seq_pvPut(ssId, seqaddr_id, SYNC);
+
+				////////////// D E B U G G I N G ///////////////////////////////////////////
+				printf("ADDR: %d\n", seq_pvGet(ssId, seqaddr_id, SYNC));
+				//////////////////////////////////////////////////////////////////////////
+			
 				seq_pvPut(ssId, seqcode_id, SYNC);
+
+				////////////// D E B U G G I N G ///////////////////////////////////////////
+				printf("CODE: %d\n", seq_pvGet(ssId, seqcode_id, SYNC));
+				//////////////////////////////////////////////////////////////////////////
 	
 				// write timestamp (wich also triggers write to seqRAM)
 				seq_pvPut(ssId, seqtime_id, SYNC);
+
+				////////////// D E B U G G I N G ///////////////////////////////////////////
+				printf("TIME: %d\n", seq_pvGet(ssId, seqtime_id, SYNC));
+				//////////////////////////////////////////////////////////////////////////
 
 				////////////// D E B U G G I N G //////////////////////////////////////////
 
@@ -1132,230 +1079,68 @@ ss reset_tg_pv{
 			}
 
 		        // SequenceRAM Wait code 
-			if(i < length - 1){
-
+			if(i < length - 1)
 				*pseqcode = 0x70; // Send 0x70 code
-				
-				// define address and timestamp
-				*pseqaddr = address;
-				*pseqtime = maxdelay + offSetEndCode;
-	
-				// write event info to seqRAM records
-				seq_pvPut(ssId, seqaddr_id, SYNC);
-				seq_pvPut(ssId, seqcode_id, SYNC);
+			else
+				*pseqcode = 0x7E; // Send 0x7E code
 
-				// write timestamp (wich also triggers write to seqRAM)
-				seq_pvPut(ssId, seqtime_id, SYNC);
+			// define address and timestamp
+			*pseqaddr = address;
+			*pseqtime = maxdelay + offSetEndCode;
 
-				////////////// D E B U G G I N G //////////////////////////////////////////
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("----- Wait Code Write -----\n");
+			//////////////////////////////////////////////////////////////////////////
 
-				printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+			// write event info to seqRAM records
+			seq_pvPut(ssId, seqaddr_id, SYNC);
 
-				///////////////////////////////////////////////////////////////////////////
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("ADDR: %d\n", seq_pvGet(ssId, seqaddr_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
+
+			seq_pvPut(ssId, seqcode_id, SYNC);
+			
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("CODE: %d\n", seq_pvGet(ssId, seqcode_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
+
+			// write timestamp (wich also triggers write to seqRAM)
+			seq_pvPut(ssId, seqtime_id, SYNC);
+
+			////////////// D E B U G G I N G ///////////////////////////////////////////
+			printf("TIME: %d\n", seq_pvGet(ssId, seqtime_id, SYNC));
+			//////////////////////////////////////////////////////////////////////////
 
 
-				// point to next address
-				address++;		
-			}	
+			////////////// D E B U G G I N G //////////////////////////////////////////
+
+			printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+
+			///////////////////////////////////////////////////////////////////////////
+
+
+			// point to next address
+			address++;
+			
 		}    
 
-		// SequenceRAM Switch RAM code 
-		*pseqcode = 0x7E; // Send 0x7E code
-		
-		// define address and timestamp
-		*pseqaddr = address;
-		*pseqtime = maxdelay + offSetEndCode;
-	
-		// write event info to seqRAM records
-		seq_pvPut(ssId, seqaddr_id, SYNC);
-		seq_pvPut(ssId, seqcode_id, SYNC);
 
-		// write timestamp (wich also triggers write to seqRAM)
-		seq_pvPut(ssId, seqtime_id, SYNC);
+	      // Check if seqRAM is pointing to supposed location
+	     
+		unsigned int timeout = time(0) + 10;
+	    seq_pvGet(ssId, seqcount_id, SYNC);
+		while(*pseqcount != address && time(0) < timeout){
+    
+        //////////////////// D E B U G G I N G ////////////////////////////////
+        printf("Waiting for seqcount read: seqcount = %d, address = %d\n", *pseqcount, address);
+        ///////////////////////////////////////////////////////////////////////
 
-		////////////// D E B U G G I N G //////////////////////////////////////////
-
-		printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
-
-		///////////////////////////////////////////////////////////////////////////
-
-		// point to next address
-		address++;
-
-		// return number of writes to SeqRAM
-	        return address;
-	}
-
-	/*
-	   Name: expandArray
-
-	   Description: Fill the ExpandedEventArray with an expansion of the event pointer array.
-			This function is used as means to include a pulse train to the events to be written.
-
-	   Arguments: First argument is the number of common events.
-		      The next five arguments are enable, count, size, initial timestamp, and code properties of the pulse train.
-
-	   Return: Total number of events after expansion.	   
-	*/
-	int expandArray(int evnum, int trainEnable, int pulseCnt, int trainDuration, int trainStart, int trainCode){
-
-		int i, j;
-
-		// Expanded array index
-		int expIndex = 0;
-
-		// Pulse train variables
-		int pulseInterval = trainDuration / pulseCnt;
-		int pulseTime = trainStart;
-		int pulsesLeft = 0;
-
-		// If pulse train is disabled
-		if(trainEnable == 0 || pulseCnt == 0){
-
-			// Copy common events to expanded array
-			for(i = 0; i < evnum; i++){
-
-				ExpandedEventArray[expIndex].code = EventPointerArray[i]->code;
-				ExpandedEventArray[expIndex].timestamp = EventPointerArray[i]->timestamp;
-				ExpandedEventArray[expIndex].mode = EventPointerArray[i]->mode;
-				ExpandedEventArray[expIndex].ctrl = EventPointerArray[i]->ctrl;
-
-				expIndex++;
-			}
-
-			// return number of events after expansion
-			return expIndex;
 		}
 
-		
-		// Copy events to expanded array
-		for(i = 0; i < evnum; i++){
-
-			// Detect beginning of pulse train
-			if(trainStart == pulseTime && EventPointerArray[i]->timestamp > trainStart){
-
-				pulsesLeft = pulseCnt;
-			}
-
-			// Insert pulses if necessary
-			if(pulsesLeft > 0){
-
-				// calculate num of pulses to insert
-
-				int n = 0;
-
-				if(pulseTime < EventPointerArray[i]->timestamp)
-					n = floor((EventPointerArray[i]->timestamp - pulseTime) / pulseInterval) + 1;
-
-				if(n > pulsesLeft) n = pulsesLeft;
-
-				// insert pulses
-				for(j = 0; j < n; j++){
-
-					ExpandedEventArray[expIndex].code = trainCode;
-
-					ExpandedEventArray[expIndex].timestamp = pulseTime;
-					pulseTime += pulseInterval;
-
-					ExpandedEventArray[expIndex].mode = INCR;
-					ExpandedEventArray[expIndex].ctrl = ALWAYS;
-
-					// next array index
-					expIndex++;
-				}
-
-				// update pulses left
-				pulsesLeft -= n;
-			}
-
-			// Insert common event
-			ExpandedEventArray[expIndex].code = EventPointerArray[i]->code;
-			ExpandedEventArray[expIndex].timestamp = EventPointerArray[i]->timestamp;
-			ExpandedEventArray[expIndex].mode = EventPointerArray[i]->mode;
-			ExpandedEventArray[expIndex].ctrl = EventPointerArray[i]->ctrl;
-
-			// next array index
-			expIndex++;
-		}
-
-		// Detect if the pulse train didn't start
-		if(trainStart == pulseTime)
-			pulsesLeft = pulseCnt;
-
-		// Insert remaining pulses
-		for(i = 0; i < pulsesLeft; i++){
-
-			ExpandedEventArray[expIndex].code = trainCode;
-			ExpandedEventArray[expIndex].timestamp = pulseTime;
-			pulseTime += pulseInterval;
-			ExpandedEventArray[expIndex].mode = INCR;
-			ExpandedEventArray[expIndex].ctrl = ALWAYS;
-
-			// next array index
-			expIndex++;
-		}
-		
-		// return number of events after expansion
-		return expIndex;
-	}
-
-	/*
-	   Name: trainStartCorrection
-
-	   Description: Redefine the pulse train starting timestamp so there are no conflicts with other events.
-
-	   Arguments: First argument is the pulse train starting timestamp.
-		      Second argument is the pulse train duration. 
-		      Third argument is the pulse count of pulse train.
-		      Fourth argument is the number of events.
-
-	   Return: The corrected pulse train starting timestamp.	   
-	*/
-	int trainStartCorrection(int trainEnable, int trainStart, int trainDuration, int pulseCnt, int evnum) {
-
-		if(!trainEnable) return trainStart;
-
-		int i;
-
-		int interval = trainDuration/pulseCnt;
-
-    		for(i = evnum-1; i >= 0; i--){
-
-			int diff = EventPointerArray[i]->timestamp - trainStart;
-
-			if(diff >= 0 && !(diff % interval))
-				trainStart--;
-		}
-
-		// guarantee the timestamp is not negative
-		if(trainStart < 0) trainStart = 0;
-
-		// return new starting timestamp
-		return trainStart;
-	}
-
-	/*
-	   Name: updateExpandedArray
-
-	   Description: Update expanded array.
-
-	   Arguments: First argument is the enable parameter of pulse train event.
-		      Second argument is the pulse train start timestamp.
-		      Third argument is the pulse train duration.
-		      Fourth argument is the pulse train count of pulses.
-		      Fifth argument is the pulse train code.
-		      Sixth argument is the number of common events.		      
-
-	   Return: The corrected pulse train starting timestamp.	   
-	*/
-	int updateExpandedArray(int trainEnable, int trainStart, int trainDuration, int pulseCnt, int trainCode, int evnum){
-
-		// adjust timestamp for pulse train
-		trainStart = trainStartCorrection(trainEnable, trainStart, trainDuration, pulseCnt, evnum);
-
-		// expand array of events and put it into expEvArray
-		int newNumEvents = expandArray(evnum, trainEnable, pulseCnt, trainDuration, trainStart, trainCode);
-
-		return newNumEvents;		
+		if(*pseqcount == address)
+	          return 1;
+		else
+	     	  return 0;
 	}
 }%
