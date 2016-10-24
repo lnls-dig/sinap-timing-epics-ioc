@@ -347,26 +347,28 @@ ss seq {
 
 	   %%// Update expanded array
 	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_duration,
-							train_pulse_cnt, train_pulse_code, eventNum);
-
-	   %%// Code below is causing evg enable to be set, when device is disabled while running RAM 2
-
-	   %%// Make sure SeqRAM is disabled
-	   seqen = 0;
-	   pvPut(seqen, SYNC);
-
-	   %%// Clear number of writes
-	   numberOfWrites = 0;
+							train_pulse_cnt, train_pulse_code, eventNum); 
 
 	   printf("Stopped Entry\n");
 	}
 
+	when(seqen_rbv != 0){
+
+		%{/* Make sure SeqRAM is disabled */}%
+		
+		seqen = 0;
+	   	pvPut(seqen, SYNC);
+
+	} state Stopped
+
 	when(seqen_rbv == 0 && seqcount != 0){
 
-		%{/* Reset seqcount */}%
+		%{/* Reset seqcount and clear number of writes */}%
 
 		seqsw = 1;
 		pvPut(seqsw, SYNC);
+
+	        numberOfWrites = 0;
 
 	}state Stopped
 
@@ -538,8 +540,9 @@ ss seq {
 		pvGet(tbl_length, SYNC);
 
 		%%// Write to seqRAM 2
-		numberOfWrites = seqTwoWrite(expandedEventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-						pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+		if(tbl_length > 0)
+			numberOfWrites = seqTwoWrite(expandedEventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode,
+				 &seqtime, &seqcount, pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
 
 	    	printf("Injection Triggered\n");
 	} state CheckSeq2Write
@@ -569,6 +572,12 @@ ss seq {
 
 	    printf("CheckSeq2Write Entry\n");
 	}
+
+	when(tbl_length == 0){
+
+		%{/* Just go to Running state */}%
+
+	} state Running
 
 	when(seqcount == numberOfWrites){
 
@@ -678,10 +687,6 @@ ss seq {
 	   StateMachineStatus = 4;
 	   pvPut(StateMachineStatus, SYNC);
 
-	   %%// Stop SequenceRAM
-	   seqen = 0;
-	   pvPut(seqen, SYNC);
-
 	   %%// Update event record arrays
 	   for(i = 0; i < eventNum; i++){
 
@@ -698,13 +703,30 @@ ss seq {
 	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_duration,
 							train_pulse_cnt, train_pulse_code, eventNum);
 
-	   %%// Clear number of writes
-	   numberOfWrites = 0;
-
 	   printf("Restarting Entry\n");
 	}
 
-	when(seqs == 0 && seqen_rbv == 0){
+	when(seqen_rbv != 0){
+
+		%{/* Make sure SeqRAM is disabled */}%
+		
+		seqen = 0;
+	   	pvPut(seqen, SYNC);
+
+	} state Restarting
+
+	when(seqen_rbv == 0 && seqcount != 0){
+
+		%{/* Reset seqcount and clear number of writes */}%
+
+		seqsw = 1;
+		pvPut(seqsw, SYNC);
+
+	        numberOfWrites = 0;
+
+	}state Restarting
+
+	when(seqs == 0 && seqen_rbv == 0 && seqcount == 0){
 
 		%{/* Write to SeqRAM 1 */}%
 
@@ -712,14 +734,6 @@ ss seq {
 					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
 
 	} state CheckSeq1Write
-
-
-	when(seqs == 1 && seqen != 0){
-	
-		%{/* Just go to Running State */}%
-
-		printf("Moving to Running State\n");
-	} state Running
     }
 }
 
