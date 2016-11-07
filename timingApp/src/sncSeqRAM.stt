@@ -62,6 +62,9 @@ int seqcount;
 assign seqcount to "{device}:seqcountRBV";
 monitor seqcount;
 
+int proc_seqcount;
+assign proc_seqcount to "{device}:seqcountRBV.PROC";
+
 int event_codes[20];
 assign event_codes to {};
 
@@ -163,6 +166,122 @@ assign train_pulse_code to "{device}:PTCODE";
 monitor train_pulse_code;
 
 %%//----------------------------------------
+%%// 	    Block Based SeqRAM Write
+%%//----------------------------------------
+
+int seqaddr0;
+assign seqaddr0 to "{device}:seqaddr0";
+int seqcode0;
+assign seqcode0 to "{device}:seqcode0";
+int seqtime0;
+assign seqtime0 to "{device}:seqtime0";
+
+int seqaddr1;
+assign seqaddr1 to "{device}:seqaddr1";
+int seqcode1;
+assign seqcode1 to "{device}:seqcode1";
+int seqtime1;
+assign seqtime1 to "{device}:seqtime1";
+
+int seqaddr2;
+assign seqaddr2 to "{device}:seqaddr2";
+int seqcode2;
+assign seqcode2 to "{device}:seqcode2";
+int seqtime2;
+assign seqtime2 to "{device}:seqtime2";
+
+int seqaddr3;
+assign seqaddr3 to "{device}:seqaddr3";
+int seqcode3;
+assign seqcode3 to "{device}:seqcode3";
+int seqtime3;
+assign seqtime3 to "{device}:seqtime3";
+
+int seqaddr4;
+assign seqaddr4 to "{device}:seqaddr4";
+int seqcode4;
+assign seqcode4 to "{device}:seqcode4";
+int seqtime4;
+assign seqtime4 to "{device}:seqtime4";
+
+int seqaddr5;
+assign seqaddr5 to "{device}:seqaddr5";
+int seqcode5;
+assign seqcode5 to "{device}:seqcode5";
+int seqtime5;
+assign seqtime5 to "{device}:seqtime5";
+
+int seqaddr6;
+assign seqaddr6 to "{device}:seqaddr6";
+int seqcode6;
+assign seqcode6 to "{device}:seqcode6";
+int seqtime6;
+assign seqtime6 to "{device}:seqtime6";
+
+int seqaddr7;
+assign seqaddr7 to "{device}:seqaddr7";
+int seqcode7;
+assign seqcode7 to "{device}:seqcode7";
+int seqtime7;
+assign seqtime7 to "{device}:seqtime7";
+
+int seqaddr8;
+assign seqaddr8 to "{device}:seqaddr8";
+int seqcode8;
+assign seqcode8 to "{device}:seqcode8";
+int seqtime8;
+assign seqtime8 to "{device}:seqtime8";
+
+int seqaddr9;
+assign seqaddr9 to "{device}:seqaddr9";
+int seqcode9;
+assign seqcode9 to "{device}:seqcode9";
+int seqtime9;
+assign seqtime9 to "{device}:seqtime9";
+
+int seqaddrA;
+assign seqaddrA to "{device}:seqaddrA";
+int seqcodeA;
+assign seqcodeA to "{device}:seqcodeA";
+int seqtimeA;
+assign seqtimeA to "{device}:seqtimeA";
+
+int seqaddrB;
+assign seqaddrB to "{device}:seqaddrB";
+int seqcodeB;
+assign seqcodeB to "{device}:seqcodeB";
+int seqtimeB;
+assign seqtimeB to "{device}:seqtimeB";
+
+int seqaddrC;
+assign seqaddrC to "{device}:seqaddrC";
+int seqcodeC;
+assign seqcodeC to "{device}:seqcodeC";
+int seqtimeC;
+assign seqtimeC to "{device}:seqtimeC";
+
+int seqaddrD;
+assign seqaddrD to "{device}:seqaddrD";
+int seqcodeD;
+assign seqcodeD to "{device}:seqcodeD";
+int seqtimeD;
+assign seqtimeD to "{device}:seqtimeD";
+
+int seqaddrE;
+assign seqaddrE to "{device}:seqaddrE";
+int seqcodeE;
+assign seqcodeE to "{device}:seqcodeE";
+int seqtimeE;
+assign seqtimeE to "{device}:seqtimeE";
+
+int seqaddrF;
+assign seqaddrF to "{device}:seqaddrF";
+int seqcodeF;
+assign seqcodeF to "{device}:seqcodeF";
+int seqtimeF;
+assign seqtimeF to "{device}:seqtimeF";
+
+%%//----------------------------------------
 %%// 	  Escaped C Code Declaration
 %%//----------------------------------------
 
@@ -201,9 +320,14 @@ monitor train_pulse_code;
     // size of both event related arrays
     const int sizeOfArrays = 20;
     // Expanded Event Array
-    Event ExpandedEventArray[2090];
+    Event ExpandedEventArray[17000];
     // size of expanded event array
-    const int sizeOfExpArray = 2090;
+    const int sizeOfExpArray = 17000;
+
+    // Block based write PV arrays
+    int * blockWritePVs[16][3];
+    VAR_ID blockWriteIDs[16][3];
+    int numOfBlockEvents = 16;
 
     /* Functions */
     int str2int(char * str);
@@ -213,11 +337,11 @@ monitor train_pulse_code;
     void swap(Event* *a, Event* *b);
     void updateEventPointerArray(int evNumber, int * code_arr,
 				 int * time_arr, int * mode_arr, int * control_arr);
-    int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
-					VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id);
+    int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
+			VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, int * block_pv_array[][3], VAR_ID block_id_array[][3]);
 										
-    int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
-						VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id);
+    int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
+			VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, int * block_pv_array[][3], VAR_ID block_id_array[][3]);
 
     int expandArray(int trainEnable, float trainStart_ns, float trainDuration_ns, int pulseCnt, int trainCode, int evnum);
     float trainStartCorrection(int trainEnable, float trainStart_ns, float trainDuration_ns, int pulseCnt, int evnum);
@@ -286,6 +410,106 @@ ss seq {
 	  %%// Update expanded array
 	   expandedEventNum = updateExpandedArray(train_enable, train_start_time, train_duration,
 							train_pulse_cnt, train_pulse_code, eventNum);
+
+	  %%// Initialize array of block-based-write PVs
+	   blockWritePVs[0][0] = &seqaddr0;
+	   blockWritePVs[0][1] = &seqcode0;
+	   blockWritePVs[0][2] = &seqtime0;
+	   blockWritePVs[1][0] = &seqaddr1;
+	   blockWritePVs[1][1] = &seqcode1;
+	   blockWritePVs[1][2] = &seqtime1;
+	   blockWritePVs[2][0] = &seqaddr2;
+	   blockWritePVs[2][1] = &seqcode2;
+	   blockWritePVs[2][2] = &seqtime2;
+	   blockWritePVs[3][0] = &seqaddr3;
+	   blockWritePVs[3][1] = &seqcode3;
+	   blockWritePVs[3][2] = &seqtime3;
+	   blockWritePVs[4][0] = &seqaddr4;
+	   blockWritePVs[4][1] = &seqcode4;
+	   blockWritePVs[4][2] = &seqtime4;
+	   blockWritePVs[5][0] = &seqaddr5;
+	   blockWritePVs[5][1] = &seqcode5;
+	   blockWritePVs[5][2] = &seqtime5;
+	   blockWritePVs[6][0] = &seqaddr6;
+	   blockWritePVs[6][1] = &seqcode6;
+	   blockWritePVs[6][2] = &seqtime6;
+	   blockWritePVs[7][0] = &seqaddr7;
+	   blockWritePVs[7][1] = &seqcode7;
+	   blockWritePVs[7][2] = &seqtime7;
+	   blockWritePVs[8][0] = &seqaddr8;
+	   blockWritePVs[8][1] = &seqcode8;
+	   blockWritePVs[8][2] = &seqtime8;
+	   blockWritePVs[9][0] = &seqaddr9;
+	   blockWritePVs[9][1] = &seqcode9;
+	   blockWritePVs[9][2] = &seqtime9;
+	   blockWritePVs[10][0] = &seqaddrA;
+	   blockWritePVs[10][1] = &seqcodeA;
+	   blockWritePVs[10][2] = &seqtimeA;
+	   blockWritePVs[11][0] = &seqaddrB;
+	   blockWritePVs[11][1] = &seqcodeB;
+	   blockWritePVs[11][2] = &seqtimeB;
+	   blockWritePVs[12][0] = &seqaddrC;
+	   blockWritePVs[12][1] = &seqcodeC;
+	   blockWritePVs[12][2] = &seqtimeC;
+	   blockWritePVs[13][0] = &seqaddrD;
+	   blockWritePVs[13][1] = &seqcodeD;
+	   blockWritePVs[13][2] = &seqtimeD;
+	   blockWritePVs[14][0] = &seqaddrE;
+	   blockWritePVs[14][1] = &seqcodeE;
+	   blockWritePVs[14][2] = &seqtimeE;
+	   blockWritePVs[15][0] = &seqaddrF;
+	   blockWritePVs[15][1] = &seqcodeF;
+	   blockWritePVs[15][2] = &seqtimeF;
+
+	  %%// Initialize array of block-based-write PV IDs
+	   blockWriteIDs[0][0] = pvIndex(seqaddr0);
+	   blockWriteIDs[0][1] = pvIndex(seqcode0);
+	   blockWriteIDs[0][2] = pvIndex(seqtime0);
+	   blockWriteIDs[1][0] = pvIndex(seqaddr1);
+	   blockWriteIDs[1][1] = pvIndex(seqcode1);
+	   blockWriteIDs[1][2] = pvIndex(seqtime1);
+	   blockWriteIDs[2][0] = pvIndex(seqaddr2);
+	   blockWriteIDs[2][1] = pvIndex(seqcode2);
+	   blockWriteIDs[2][2] = pvIndex(seqtime2);
+	   blockWriteIDs[3][0] = pvIndex(seqaddr3);
+	   blockWriteIDs[3][1] = pvIndex(seqcode3);
+	   blockWriteIDs[3][2] = pvIndex(seqtime3);
+	   blockWriteIDs[4][0] = pvIndex(seqaddr4);
+	   blockWriteIDs[4][1] = pvIndex(seqcode4);
+	   blockWriteIDs[4][2] = pvIndex(seqtime4);
+	   blockWriteIDs[5][0] = pvIndex(seqaddr5);
+	   blockWriteIDs[5][1] = pvIndex(seqcode5);
+	   blockWriteIDs[5][2] = pvIndex(seqtime5);
+	   blockWriteIDs[6][0] = pvIndex(seqaddr6);
+	   blockWriteIDs[6][1] = pvIndex(seqcode6);
+	   blockWriteIDs[6][2] = pvIndex(seqtime6);
+	   blockWriteIDs[7][0] = pvIndex(seqaddr7);
+	   blockWriteIDs[7][1] = pvIndex(seqcode7);
+	   blockWriteIDs[7][2] = pvIndex(seqtime7);
+	   blockWriteIDs[8][0] = pvIndex(seqaddr8);
+	   blockWriteIDs[8][1] = pvIndex(seqcode8);
+	   blockWriteIDs[8][2] = pvIndex(seqtime8);
+	   blockWriteIDs[9][0] = pvIndex(seqaddr9);
+	   blockWriteIDs[9][1] = pvIndex(seqcode9);
+	   blockWriteIDs[9][2] = pvIndex(seqtime9);
+	   blockWriteIDs[10][0] = pvIndex(seqaddrA);
+	   blockWriteIDs[10][1] = pvIndex(seqcodeA);
+	   blockWriteIDs[10][2] = pvIndex(seqtimeA);
+	   blockWriteIDs[11][0] = pvIndex(seqaddrB);
+	   blockWriteIDs[11][1] = pvIndex(seqcodeB);
+	   blockWriteIDs[11][2] = pvIndex(seqtimeB);
+	   blockWriteIDs[12][0] = pvIndex(seqaddrC);
+	   blockWriteIDs[12][1] = pvIndex(seqcodeC);
+	   blockWriteIDs[12][2] = pvIndex(seqtimeC);
+	   blockWriteIDs[13][0] = pvIndex(seqaddrD);
+	   blockWriteIDs[13][1] = pvIndex(seqcodeD);
+	   blockWriteIDs[13][2] = pvIndex(seqtimeD);
+	   blockWriteIDs[14][0] = pvIndex(seqaddrE);
+	   blockWriteIDs[14][1] = pvIndex(seqcodeE);
+	   blockWriteIDs[14][2] = pvIndex(seqtimeE);
+	   blockWriteIDs[15][0] = pvIndex(seqaddrF);
+	   blockWriteIDs[15][1] = pvIndex(seqcodeF);
+	   blockWriteIDs[15][2] = pvIndex(seqtimeF);
 
 	   printf("Initialization Entry\n");
 	}
@@ -411,8 +635,11 @@ ss seq {
 	   	StateMachineStatus = 6;
 		pvPut(StateMachineStatus, SYNC);
 
-		numberOfWrites = seqOneWrite(expandedEventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+		numberOfWrites = seqOneWrite(expandedEventNum, ssId, &seqaddr, &seqcode, &seqtime, pvIndex(seqaddr),
+							 pvIndex(seqcode), pvIndex(seqtime), blockWritePVs, blockWriteIDs);
+
+		%%// Cause seqcount PV to update
+		pvPut(proc_seqcount, SYNC);
 
 		printf("Run Triggered\n");
 	} state CheckSeq1Write
@@ -540,9 +767,13 @@ ss seq {
 		pvGet(tbl_length, SYNC);
 
 		%%// Write to seqRAM 2
-		if(tbl_length > 0)
+		if(tbl_length > 0){
 			numberOfWrites = seqTwoWrite(expandedEventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode,
-				 &seqtime, &seqcount, pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+				 &seqtime, pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), blockWritePVs, blockWriteIDs);
+
+			%%// Cause seqcount PV to update
+			pvPut(proc_seqcount, SYNC);
+		}
 
 	    	printf("Injection Triggered\n");
 	} state CheckSeq2Write
@@ -730,8 +961,11 @@ ss seq {
 
 		%{/* Write to SeqRAM 1 */}%
 
-		numberOfWrites = seqOneWrite(expandedEventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+		numberOfWrites = seqOneWrite(expandedEventNum, ssId, &seqaddr, &seqcode, &seqtime, pvIndex(seqaddr),
+							pvIndex(seqcode), pvIndex(seqtime), blockWritePVs, blockWriteIDs);
+
+		%%// Cause seqcount PV to update
+		pvPut(proc_seqcount, SYNC);
 
 	} state CheckSeq1Write
     }
@@ -970,79 +1204,155 @@ ss reset_tg_pv{
 	}
 
 	/*
+	   Name: blockWrite
+
+	   Description: Writes to a set of records that trigger a write to 16 lines of the Sequence RAM
+			in the same protocol.
+			This strategy increases writing speed.
+
+	   Arguments: First argument is the Sequence RAM write starting address.
+		      Second argument is an array containing the event data to be written.
+		      Third argument is the event data array length.
+		      Fourth argument is the calling state set.
+		      Fifth argument is the array containing the set of PVs related to block-based-write.
+		      Sixth argument is the array containing the set of IDs related to block-based-write PVs.
+
+	   Return: Next Sequence RAM address available.		
+	*/
+	int blockWrite(int address, Event writeArray[], int array_length, SS_ID ssId,
+					 int * block_pv_array[][3], VAR_ID block_id_array[][3]){
+
+		int i;
+
+		// change variables
+		for(i = 0; i < array_length; i++){
+			*block_pv_array[i][0] = address++;
+			*block_pv_array[i][1] = writeArray[i].code;
+			*block_pv_array[i][2] = writeArray[i].timestamp;
+		}
+
+		// update PVs (last timestamp updated triggers write)
+		for(i = 0; i < array_length; i++){
+			seq_pvPut(ssId, block_id_array[i][0], SYNC); // address
+			seq_pvPut(ssId, block_id_array[i][1], SYNC); // code
+			seq_pvPut(ssId, block_id_array[i][2], SYNC); // timestamp
+		}
+
+	       // return next available address
+		return address;
+	}
+
+	/*
+	   Name: simpleWrite
+
+	   Description: Writes to a set of records that trigger individual writes to the Sequence RAM
+			using one call to the protocol for each line written in the RAM.
+			This strategy is used when there are less than 16 lines still to be written.
+
+	   Arguments: First argument is the Sequence RAM write starting address.
+		      Second argument is an array containing the event data to be written.
+		      Third argument is the event data array length.
+		      Fourth argument is the calling state set.
+		      Following three arguments are pointers to the related seqRAM PVs.
+		      Next three arguments are the respective IDs of the seqRAM PVs.
+
+	   Return: Next Sequence RAM address available.		
+	*/
+	int simpleWrite(int address, Event writeArray[], int array_length, SS_ID ssId,	int* pseqaddr, int* pseqcode,
+						 int* pseqtime, VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id){
+
+		int i;
+
+		for(i = 0; i < array_length; i++){
+
+			// change variables
+			*pseqaddr = address++;
+			*pseqcode = writeArray[i].code;
+			*pseqtime = writeArray[i].timestamp;
+
+			// update PVs (timestamp processing triggers write)
+			seq_pvPut(ssId, seqaddr_id, SYNC); // address
+			seq_pvPut(ssId, seqcode_id, SYNC); // code
+			seq_pvPut(ssId, seqtime_id, SYNC); // timestamp
+		}
+
+	       // return next available address
+		return address;
+	}
+
+
+	/*
 	   Name: seqOneWrite
 
 	   Description: Writes to SequenceRAM 1 the events configured as ALWAYS.
-			The event information is acquired from EventPointerArray.
+			The event information is acquired from ExpandedEventArray.
 			Checks if seqRAM pointer is pointing to the address it was supposed to at the end.
 			The seqtime record is responsible for triggering the hardware write when processed.
 
 	   Arguments: First argument is the total number of events after expansion.
 		      Second argument is the calling state set.
-		      Next four arguments are pointers to variables seqaddr, seqcode, seqtime, and seqcount.
-		      Following four arguments are the VAR_IDs of the variables seqaddr, seqcode, seqtime, and seqcount.
+		      Next three arguments are pointers to variables seqaddr, seqcode and seqtime.
+		      Following three arguments are the VAR_IDs of the variables seqaddr, seqcode and seqtime.
+		      Last two arguments are the arrays that store the PVs and the respective indexes for block based write.
 
 	   Return: Number of write operations performed.	   
 	*/
-	int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
-				VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id){
-											
-		int i, maxdelay = 0, address = 0;
+	int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, VAR_ID seqaddr_id,
+				VAR_ID seqcode_id, VAR_ID seqtime_id, int * block_pv_array[][3], VAR_ID block_id_array[][3]){
+							
+		int i, address = 0;
 
 		// timestamp offset for code 0x7F from previous timestamp
 		int offSetEndCode = 10;
 
+		// Array to store event data for fast write (also used for slow procedure)
+		const int full_size = 16;
+		Event writeArray[full_size];
+		int writeArrayIndex = 0;
+
+		// Add 0x7F code as last event
+		ExpandedEventArray[evnum].code = 0x7F;
+		ExpandedEventArray[evnum].timestamp = ExpandedEventArray[evnum-1].timestamp + offSetEndCode;
+		ExpandedEventArray[evnum].ctrl = ALWAYS;
+		evnum++;
+
 		for(i = 0; i < evnum; i++){
 
-			// jump non-always events
-			if(ExpandedEventArray[i].ctrl != ALWAYS)
-				continue;
+			// Check if write array is full
+			if(writeArrayIndex >= full_size){
 
-			// define address, get code and timestamp
-			*pseqaddr = address;
-			*pseqcode = ExpandedEventArray[i].code;
-			*pseqtime = maxdelay = ExpandedEventArray[i].timestamp;
+				// write block
+				address = blockWrite(address, writeArray, full_size, ssId, block_pv_array, block_id_array);
 
-			// write event info to seqRAM records
-			seq_pvPut(ssId, seqaddr_id, SYNC);
-			seq_pvPut(ssId, seqcode_id, SYNC);
+				// clear array
+				writeArrayIndex = 0;	
+			}
 
-			// write timestamp (wich also triggers write to seqRAM)
-			seq_pvPut(ssId, seqtime_id, SYNC);
+			// Add current event to array
+			if(ExpandedEventArray[i].ctrl == ALWAYS){
+				writeArray[writeArrayIndex].code = ExpandedEventArray[i].code;
+				writeArray[writeArrayIndex].timestamp = ExpandedEventArray[i].timestamp;
+				writeArrayIndex++;
+			}
 
-			////////////// D E B U G G I N G //////////////////////////////////////////
+			// Check if this is the last event
+			if(i >= evnum -1){
 
-			//printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+				// write to hardware using fast procedure if array is full
+				if(writeArrayIndex >= full_size){
 
-			///////////////////////////////////////////////////////////////////////////
+					// write block
+					address = blockWrite(address, writeArray, full_size, ssId, 
+									block_pv_array, block_id_array);	
+				}else{
+				// write using slow procedure
 
-			// point to next address
-			address++;
+					// write each single event data separately
+					address = simpleWrite(address, writeArray, writeArrayIndex, ssId,
+						pseqaddr, pseqcode, pseqtime, seqaddr_id, seqcode_id, seqtime_id);
+				}
+			}
 		}
-
-	      // Send 0x7F code
-
-		// define address, get code and timestamp
-		*pseqaddr = address;
-		*pseqcode = 0x7F;
-		*pseqtime = maxdelay + offSetEndCode;
-
-		// write event info to seqRAM records
-		seq_pvPut(ssId, seqaddr_id, SYNC);
-		seq_pvPut(ssId, seqcode_id, SYNC);
-
-		// write timestamp (wich also triggers write to seqRAM)
-		seq_pvPut(ssId, seqtime_id, SYNC);
-
-		////////////// D E B U G G I N G //////////////////////////////////////////
-
-		//printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
-
-		///////////////////////////////////////////////////////////////////////////
-
-
-		// point to next address
-		address++;
 
 		// return number of writes to SeqRAM
 	     	return address;
@@ -1052,20 +1362,21 @@ ss reset_tg_pv{
 	   Name: seqTwoWrite
 
 	   Description: Writes to SequenceRAM 2 the events configured as INJECTION.
-			The event information is acquired from EventPointerArray.
+			The event information is acquired from ExpandedEventArray.
 			Checks if seqRAM pointer is pointing to the address it was supposed to at the end.
 			The seqtime record is responsible for triggering the hardware write when processed.
 
 	   Arguments: First argument is total number of events (ALWAYS and INJECTION).
 		      Second argument is the bucket array.
 		      Third argument is the length of the bucket array.
-		      Next four arguments are pointers to variables seqaddr, seqcode, seqtime, and seqcount.
-		      Following four arguments are the VAR_IDs of the variables seqaddr, seqcode, seqtime, and seqcount.
+		      Next three arguments are pointers to variables seqaddr, seqcode and seqtime.
+		      Following three arguments are the VAR_IDs of the variables seqaddr, seqcode and seqtime.
+		      Last two arguments are the arrays that store the PVs and the respective indexes for block based write.
 
 	   Return: Number of write operations performed.	   
 	*/
 	int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode,
- 		int *pseqtime, int *pseqcount, VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id){
+ 		int *pseqtime, VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, int * block_pv_array[][3], VAR_ID block_id_array[][3]){
 									
 		int i, j, seqdly, rfdly, maxdelay = 0, address = 0;
 
@@ -1097,7 +1408,7 @@ ss reset_tg_pv{
 
 			////////////// D E B U G G I N G //////////////////////////////////////////
 
-			//printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+			printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 			///////////////////////////////////////////////////////////////////////////
 
@@ -1135,7 +1446,7 @@ ss reset_tg_pv{
 
 				////////////// D E B U G G I N G //////////////////////////////////////////
 
-				//printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+				printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 				///////////////////////////////////////////////////////////////////////////
 
@@ -1163,7 +1474,7 @@ ss reset_tg_pv{
 
 				////////////// D E B U G G I N G //////////////////////////////////////////
 
-				//printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+				printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 				///////////////////////////////////////////////////////////////////////////
 
@@ -1189,7 +1500,7 @@ ss reset_tg_pv{
 
 		////////////// D E B U G G I N G //////////////////////////////////////////
 
-		//printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+		printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
 		///////////////////////////////////////////////////////////////////////////
 

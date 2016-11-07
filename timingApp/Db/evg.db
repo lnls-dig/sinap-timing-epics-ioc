@@ -8,7 +8,7 @@ record(mbbiDirect, "$(device):seqen_enable") {
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evg_ctrl_get($(device)) $(PORT) PP")
 #  field(SCAN, "1 second")
-  field(PRIO, "HIGH")
+#  field(PRIO, "HIGH")
   field(FLNK, "$(device):enableRBV")
 }
 
@@ -32,7 +32,7 @@ record(mbbiDirect, "$(device):seqstat_rfstat") {
   field(DTYP, "stream")
   field(NOBT, "6")
   field(SHFT, "3")
-  field(SCAN, ".1 second")
+  field(SCAN, "1 second")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evg_ctrl_get($(device)) $(PORT) PP")
   field(FLNK, "$(device):rfstat")
@@ -647,21 +647,239 @@ record(longout, "$(device):cmd_evg_seqramset_get") {
 
 record(longout, "$(device):seqaddr"){
   field(DESC, "The address of SEQRAM")
+  field(PRIO, "HIGH")
 }
 
 record(longout, "$(device):seqcode"){
   field(DESC, "Event code in the SEQRAM")
+  field(PRIO, "HIGH")
 }
 
 record(longout, "$(device):seqtime"){
   field(DESC, "Timestamp in the SEQRAM")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_seqramset_set($(device)) $(PORT)")
+  field(PRIO, "HIGH")
 }
+
+#############################
+# Fast Writing Protocol Group
+
+record(longout, "$(device):seqaddr0"){
+  field(DESC, "Address 0 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode0"){
+  field(DESC, "Event code 0 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime0"){
+  field(DESC, "Timestamp 0 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr1"){
+  field(DESC, "Address 1 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode1"){
+  field(DESC, "Event code 1 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime1"){
+  field(DESC, "Timestamp 1 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr2"){
+  field(DESC, "Address 2 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode2"){
+  field(DESC, "Event code 2 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime2"){
+  field(DESC, "Timestamp 2 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr3"){
+  field(DESC, "Address 3 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode3"){
+  field(DESC, "Event code 3 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime3"){
+  field(DESC, "Timestamp 3 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr4"){
+  field(DESC, "Address 4 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode4"){
+  field(DESC, "Event code 4 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime4"){
+  field(DESC, "Timestamp 4 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr5"){
+  field(DESC, "Address 5 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode5"){
+  field(DESC, "Event code 5 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime5"){
+  field(DESC, "Timestamp 5 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr6"){
+  field(DESC, "Address 6 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode6"){
+  field(DESC, "Event code 6 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime6"){
+  field(DESC, "Timestamp 6 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr7"){
+  field(DESC, "Address 7 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode7"){
+  field(DESC, "Event code 7 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime7"){
+  field(DESC, "Timestamp 7 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr8"){
+  field(DESC, "Address 8 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode8"){
+  field(DESC, "Event code 8 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime8"){
+  field(DESC, "Timestamp 8 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddr9"){
+  field(DESC, "Address 9 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcode9"){
+  field(DESC, "Event code 9 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtime9"){
+  field(DESC, "Timestamp 9 of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddrA"){
+  field(DESC, "Address A of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcodeA"){
+  field(DESC, "Event code A of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtimeA"){
+  field(DESC, "Timestamp A of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddrB"){
+  field(DESC, "Address B of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcodeB"){
+  field(DESC, "Event code B of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtimeB"){
+  field(DESC, "Timestamp B of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddrC"){
+  field(DESC, "Address C of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcodeC"){
+  field(DESC, "Event code C of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtimeC"){
+  field(DESC, "Timestamp C of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddrD"){
+  field(DESC, "Address D of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcodeD"){
+  field(DESC, "Event code D of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtimeD"){
+  field(DESC, "Timestamp D of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddrE"){
+  field(DESC, "Address E of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcodeE"){
+  field(DESC, "Event code E of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtimeE"){
+  field(DESC, "Timestamp E of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+
+record(longout, "$(device):seqaddrF"){
+  field(DESC, "Address F of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqcodeF"){
+  field(DESC, "Event code F of SEQRAM for fast writing")
+  field(PRIO, "HIGH")
+}
+record(longout, "$(device):seqtimeF"){
+  field(DESC, "Timestamp F of SEQRAM for fast writing")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_seqramset_set_block($(device)) $(PORT)")
+  field(PRIO, "HIGH")
+}
+#############################
 
 record(longout, "$(device):cmd_evg_seqramset_set") {
   field(DESC, "cmd")
   field(VAL, "0x71")
+  field(PRIO, "HIGH")
 }
 
 ########################################################################

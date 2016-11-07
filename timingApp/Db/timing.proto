@@ -1,6 +1,9 @@
 Terminator = "";
 MaxInput = 13;
 ExtraInput = Ignore;
+WriteTimeout = 10;
+OutTerminator = "";
+InTerminator = "";
 ################################################################################
 # Control and Status Register EVE & EVR [0]
 evre_ctrl_get {
@@ -158,11 +161,30 @@ evg_seqramset_get {
 }
 
 evg_seqramset_set{
-    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr).2r\x00\x00\x00%(\$1:seqcode).1r%(\$1:seqtime).4r";
-    
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr).2r\x00\x00\x00%(\$1:seqcode).1r%(\$1:seqtime).4r";   
+
     #evg_seqramsw_get
-    out "%(\$1:cmd_evg_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF2%*04r%*04r%*02r%(\$1:seqcountRBV.RVAL)02r";
+    #out "%(\$1:cmd_evg_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    #in "\xF2%*04r%*04r%*02r%(\$1:seqcountRBV.RVAL)02r";
+}
+
+evg_seqramset_set_block{
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr0).2r\x00\x00\x00%(\$1:seqcode0).1r%(\$1:seqtime0).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr1).2r\x00\x00\x00%(\$1:seqcode1).1r%(\$1:seqtime1).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr2).2r\x00\x00\x00%(\$1:seqcode2).1r%(\$1:seqtime2).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr3).2r\x00\x00\x00%(\$1:seqcode3).1r%(\$1:seqtime3).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr4).2r\x00\x00\x00%(\$1:seqcode4).1r%(\$1:seqtime4).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr5).2r\x00\x00\x00%(\$1:seqcode5).1r%(\$1:seqtime5).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr6).2r\x00\x00\x00%(\$1:seqcode6).1r%(\$1:seqtime6).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr7).2r\x00\x00\x00%(\$1:seqcode7).1r%(\$1:seqtime7).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr8).2r\x00\x00\x00%(\$1:seqcode8).1r%(\$1:seqtime8).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr9).2r\x00\x00\x00%(\$1:seqcode9).1r%(\$1:seqtime9).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddrA).2r\x00\x00\x00%(\$1:seqcodeA).1r%(\$1:seqtimeA).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddrB).2r\x00\x00\x00%(\$1:seqcodeB).1r%(\$1:seqtimeB).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddrC).2r\x00\x00\x00%(\$1:seqcodeC).1r%(\$1:seqtimeC).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddrD).2r\x00\x00\x00%(\$1:seqcodeD).1r%(\$1:seqtimeD).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddrE).2r\x00\x00\x00%(\$1:seqcodeE).1r%(\$1:seqtimeE).4r";
+    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddrF).2r\x00\x00\x00%(\$1:seqcodeF).1r%(\$1:seqtimeF).4r";
 }
 
 ################################################################################

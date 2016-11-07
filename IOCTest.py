@@ -4,7 +4,8 @@ from epics import caget, caput
 from time import sleep
 from os import system
 
-updatetime = 1.0
+
+updatetime = 0.0
 
 ########################## EVG Test ####################################
 print 'Testing EVG parameters'
