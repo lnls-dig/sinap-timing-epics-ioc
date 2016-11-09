@@ -61,6 +61,9 @@ int seqcount;
 assign seqcount to "{device}:seqcountRBV";
 monitor seqcount;
 
+int seqcount_proc;
+assign seqcount_proc to "{device}:seqcountRBV.PROC";
+
 int event_codes[20];
 assign event_codes to {};
 
@@ -367,6 +370,9 @@ ss seq {
 		numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
 					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
 
+		%%// Force seqcountRBV to update
+		pvPut(seqcount_proc, SYNC);
+
 		printf("Run Triggered\n");
 	} state CheckSeq1Write
 
@@ -493,9 +499,13 @@ ss seq {
 		pvGet(tbl_length, SYNC);
 
 		%%// Write to seqRAM 2
-		if(tbl_length > 0)
+		if(tbl_length > 0){
 			numberOfWrites = seqTwoWrite(eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
 						pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+
+			%%// Force seqcountRBV to update
+			pvPut(seqcount_proc, SYNC);
+		}
 
 	    	printf("Injection Triggered\n");
 	} state CheckSeq2Write
@@ -681,6 +691,9 @@ ss seq {
 
 		numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
 					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+
+		%%// Force seqcountRBV to update
+		pvPut(seqcount_proc, SYNC);
 
 	} state CheckSeq1Write
     }

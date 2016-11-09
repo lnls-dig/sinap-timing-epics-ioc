@@ -166,8 +166,8 @@ evg_seqramset_set{
     out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr).2r\x00\x00\x00%(\$1:seqcode).1r%(\$1:seqtime).4r";
     
     #evg_seqramsw_get
-    out "%(\$1:cmd_evg_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF2%*04r%*04r%*02r%(\$1:seqcountRBV.RVAL)02r";
+    #out "%(\$1:cmd_evg_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    #in "\xF2%*04r%*04r%*02r%(\$1:seqcountRBV.RVAL)02r";
 }
 
 ################################################################################
