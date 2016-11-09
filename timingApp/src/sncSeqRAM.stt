@@ -371,6 +371,7 @@ ss seq {
 					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
 
 		%%// Force seqcountRBV to update
+		seqcount_proc = 1;
 		pvPut(seqcount_proc, SYNC);
 
 		printf("Run Triggered\n");
@@ -504,6 +505,7 @@ ss seq {
 						pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
 
 			%%// Force seqcountRBV to update
+			seqcount_proc = 1;
 			pvPut(seqcount_proc, SYNC);
 		}
 
@@ -693,6 +695,7 @@ ss seq {
 					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
 
 		%%// Force seqcountRBV to update
+		seqcount_proc = 1;
 		pvPut(seqcount_proc, SYNC);
 
 	} state CheckSeq1Write
