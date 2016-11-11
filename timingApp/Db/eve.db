@@ -3124,6 +3124,28 @@ record(longin, "$(device):cmselRBV") {
 }
 
 ########################################################################
+# Timestamp register [51]
+
+record(longin, "$(device):UTCRBV"){
+  field(DESC, "Timestamp UTC field RBV")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT) PP")
+}
+
+record(longin, "$(device):subsecondRBV"){
+  field(DESC, "Timestamp subsecond field RBV")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT) PP")
+}
+
+record(longout, "$(device):cmd_evre_tmstmp_get"){
+  field(DESC, "cmd")
+  field(DTYP, "stream")
+  field(VAL, "0xB3")
+  field(OUT, "@timing.proto evre_tmstmp_get($(device)) $(PORT)")
+}
+
+########################################################################
 # Configuration Register [63]
 
 record(longin, "$(device):alive") {

@@ -183,6 +183,25 @@ evg_seqramsw_set{
 }
 
 ################################################################################
+# Timestamp register EVG [51]
+evg_tmstmp_get{
+    out "%(\$1:cmd_evg_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r\x00\x00\x00\x00";
+}
+
+evg_tmstmp_set{
+    out "%(\$1:cmd_evg_tmstmp_set)r%(\$1:UTC)04r\x00\x00\x00\x00\x00\x00\x00\x00";
+}
+
+################################################################################
+# Timestamp register EVE & EVR [51]
+
+evre_tmstmp_get{
+    out "%(\$1:cmd_evre_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r\x00\x00\x00\x00";
+}
+
+################################################################################
 # Configutarion register [63]
 eve_conf_get {
     out "\xBF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";

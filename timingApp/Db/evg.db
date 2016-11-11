@@ -696,6 +696,44 @@ record(longout, "$(device):cmd_evg_seqramsw_set") {
 }
 
 ########################################################################
+# Timestamp register [51]
+
+# Note: Setting $(device):UTC.VAL to 0 causes EVG to broadcast
+# 	the timestamp to the EVEs and EVRs.
+
+record(longout, "$(device):UTC"){
+  field(DESC, "Timestamp UTC field")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_tmstmp_set($(device)) $(PORT)")
+}
+
+record(longin, "$(device):UTCRBV"){
+  field(DESC, "Timestamp UTC field RBV")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT) PP")
+}
+
+record(longin, "$(device):subsecondRBV"){
+  field(DESC, "Timestamp subsecond field RBV")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT) PP")
+}
+
+record(longout, "$(device):cmd_evg_tmstmp_get"){
+  field(DESC, "cmd")
+  field(DTYP, "stream")
+  field(VAL, "0xB3")
+  field(OUT, "@timing.proto evg_tmstmp_get($(device)) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evg_tmstmp_set"){
+  field(DESC, "cmd")
+  field(DTYP, "stream")
+  field(VAL, "0x73")
+  field(OUT, "@timing.proto evg_tmstmp_set($(device)) $(PORT)")
+}
+
+########################################################################
 # Configuration Register [63]
 
 record(longin, "$(device):alive") {
