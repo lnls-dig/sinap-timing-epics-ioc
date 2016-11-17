@@ -194,8 +194,9 @@ evg_tmstmp_utc_set{
     evg_tmstmp_get;
 }
 
+# utc receives 0 causing it to be broadcast
 evg_tmstmp_timesrc_set{
-    out "%(\$1:cmd_evg_tmstmp_set)r%(\$1:UTCRBV).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
+    out "%(\$1:cmd_evg_tmstmp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
     evg_tmstmp_get;
 }
 
@@ -206,15 +207,14 @@ evg_tmstmp_set{
 
 ################################################################################
 # Timestamp register EVE & EVR [51]
+evre_tmstmp_get{
+    out "%(\$1:cmd_evre_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r\x00\x00\x00%(\$1:TIMESRCRBV)r";
+}
 
 evre_tmstmp_set{
     out "%(\$1:cmd_evre_tmstmp_set)r%(\$1:UTCRBV).4r%(\$1:subsecondRBV).4r\x00\x00\x00%(\$1:TIMESRC)r";
     evre_tmstmp_get;
-}
-
-evre_tmstmp_get{
-    out "%(\$1:cmd_evre_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r\x00\x00\x00%(\$1:TIMESRCRBV)r";
 }
 
 ################################################################################

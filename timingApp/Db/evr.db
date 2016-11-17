@@ -3080,12 +3080,14 @@ record(longout, "$(device):cmd_evre_out_set7") {
 
 record(mbbo, "$(device):TIMESRC"){
   field(DESC, "Timestamp increment signal source")	
-  field(ZRST, "DBus")
+  field(ZRST, "IDLE")
   field(ZRVL, "0")
-  field(ONST, "Event")
+  field(ONST, "DBUS")
   field(ONVL, "1")
-  field(TWST, "Internal")
+  field(TWST, "EVENT")
   field(TWVL, "2")
+  field(THST, "INTERNAL")
+  field(THVL, "3")
   field(VAL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_tmstmp_set($(device)) $(PORT)")
@@ -3105,14 +3107,16 @@ record(longin, "$(device):subsecondRBV"){
 
 record(mbbi, "$(device):TIMESRCRBV"){
   field(DESC, "Timestamp increment signal source")	
-  field(ZRST, "DBus")
+  field(ZRST, "IDLE")
   field(ZRVL, "0")
-  field(ONST, "Event")
+  field(ONST, "DBUS")
   field(ONVL, "1")
-  field(TWST, "Internal")
+  field(TWST, "EVENT")
   field(TWVL, "2")
+  field(THST, "INTERNAL")
+  field(THVL, "3")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT)")
+  field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT) PP")
 }
 
 record(longout, "$(device):cmd_evre_tmstmp_set"){

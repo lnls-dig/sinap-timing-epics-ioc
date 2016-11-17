@@ -709,13 +709,13 @@ record(longout, "$(device):UTC"){
 
 record(mbbo, "$(device):TIMESRC"){
   field(DESC, "Timestamp signal source")	
-  field(ZRST, "Idle")
+  field(ZRST, "IDLE")
   field(ZRVL, "0")
-  field(ONST, "DBus")
+  field(ONST, "DBUS")
   field(ONVL, "1")
-  field(TWST, "External")
+  field(TWST, "EXTERNAL")
   field(TWVL, "2")
-  field(THST, "Internal")
+  field(THST, "INTERNAL")
   field(THVL, "3")
   field(VAL, "0")
   field(DTYP, "stream")
@@ -736,16 +736,16 @@ record(longin, "$(device):subsecondRBV"){
 
 record(mbbi, "$(device):TIMESRCRBV"){
   field(DESC, "Timestamp signal source RBV")	
-  field(ZRST, "Idle")
+  field(ZRST, "IDLE")
   field(ZRVL, "0")
-  field(ONST, "DBus")
+  field(ONST, "DBUS")
   field(ONVL, "1")
-  field(TWST, "External")
+  field(TWST, "EXTERNAL")
   field(TWVL, "2")
-  field(THST, "Internal")
+  field(THST, "INTERNAL")
   field(THVL, "3")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT)")
+  field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT) PP")
 }
 
 record(longout, "$(device):cmd_evg_tmstmp_get"){
