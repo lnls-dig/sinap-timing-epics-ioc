@@ -3078,6 +3078,19 @@ record(longout, "$(device):cmd_evre_out_set7") {
 ########################################################################
 # Timestamp register [51]
 
+record(mbbo, "$(device):TIMESRC"){
+  field(DESC, "Timestamp increment signal source")	
+  field(ZRST, "DBus")
+  field(ZRVL, "0")
+  field(ONST, "Event")
+  field(ONVL, "1")
+  field(TWST, "Internal")
+  field(TWVL, "2")
+  field(VAL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_tmstmp_set($(device)) $(PORT)")
+}
+
 record(longin, "$(device):UTCRBV"){
   field(DESC, "Timestamp UTC field RBV")
   field(DTYP, "stream")
@@ -3088,6 +3101,25 @@ record(longin, "$(device):subsecondRBV"){
   field(DESC, "Timestamp subsecond field RBV")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT) PP")
+}
+
+record(mbbi, "$(device):TIMESRCRBV"){
+  field(DESC, "Timestamp increment signal source")	
+  field(ZRST, "DBus")
+  field(ZRVL, "0")
+  field(ONST, "Event")
+  field(ONVL, "1")
+  field(TWST, "Internal")
+  field(TWVL, "2")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_tmstmp_set"){
+  field(DESC, "cmd")
+  field(DTYP, "stream")
+  field(VAL, "0x73")
+  field(OUT, "@timing.proto evre_tmstmp_set($(device)) $(PORT)")
 }
 
 record(longout, "$(device):cmd_evre_tmstmp_get"){

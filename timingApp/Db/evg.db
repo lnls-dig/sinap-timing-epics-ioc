@@ -704,7 +704,22 @@ record(longout, "$(device):cmd_evg_seqramsw_set") {
 record(longout, "$(device):UTC"){
   field(DESC, "Timestamp UTC field")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_tmstmp_set($(device)) $(PORT)")
+  field(OUT, "@timing.proto evg_tmstmp_utc_set($(device)) $(PORT)")
+}
+
+record(mbbo, "$(device):TIMESRC"){
+  field(DESC, "Timestamp signal source")	
+  field(ZRST, "Idle")
+  field(ZRVL, "0")
+  field(ONST, "DBus")
+  field(ONVL, "1")
+  field(TWST, "External")
+  field(TWVL, "2")
+  field(THST, "Internal")
+  field(THVL, "3")
+  field(VAL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_tmstmp_timesrc_set($(device)) $(PORT)")
 }
 
 record(longin, "$(device):UTCRBV"){
@@ -717,6 +732,20 @@ record(longin, "$(device):subsecondRBV"){
   field(DESC, "Timestamp subsecond field RBV")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT) PP")
+}
+
+record(mbbi, "$(device):TIMESRCRBV"){
+  field(DESC, "Timestamp signal source RBV")	
+  field(ZRST, "Idle")
+  field(ZRVL, "0")
+  field(ONST, "DBus")
+  field(ONVL, "1")
+  field(TWST, "External")
+  field(TWVL, "2")
+  field(THST, "Internal")
+  field(THVL, "3")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT)")
 }
 
 record(longout, "$(device):cmd_evg_tmstmp_get"){
