@@ -73,8 +73,6 @@ record(longout, "$(device):cmd_evre_ctrl_set") {
 record(longout, "$(device):event0") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),0) $(PORT)")
 }
 
@@ -102,71 +100,86 @@ record(bo, "$(device):enable0") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol0.A")
+  field(OUT, "$(device):enpoltime0.A")
   field(FLNK, "$(device):ENABLE0")
 }
 
 record(bo, "$(device):pol0") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol0.B")
+  field(OUT, "$(device):enpoltime0.B")
   field(FLNK, "$(device):POL0")
 }
 
+record(bo, "$(device):time0") {
+  field(DESC, "OTP0 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime0.C")
+  field(FLNK, "$(device):TIME0")
+}
+
 record(calcout, "$(device):ENABLE0") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable0.VAL")
   field(INPB, "$(device):pol0RBV.VAL")
+  field(INPC, "$(device):time0RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),0,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol0")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),0,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime0")
 }
 
 record(calcout, "$(device):POL0") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable0RBV.VAL")
   field(INPB, "$(device):pol0.VAL")
+  field(INPC, "$(device):time0RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),0,POL) $(PORT)")
-  field(FLNK, "$(device):enpol0")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),0,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime0")
 }
 
-record(calcout, "$(device):enpol0") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME0") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable0RBV.VAL")
+  field(INPB, "$(device):pol0RBV.VAL")
+  field(INPC, "$(device):time0.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),0,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime0")
+}
+
+record(calcout, "$(device):enpoltime0") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable0.VAL")
   field(INPB, "$(device):pol0.VAL")
+  field(INPC, "$(device):time0.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set0") {
-  field(DESC, "Command code to write OTP0")
-  field(DTYP, "stream")
-  field(VAL, "0x41") # (0x40 | reg number=1)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),0) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get0") {
-  field(DESC, "Command code to read OTP0")
-  field(DTYP, "stream")
-  field(VAL, "0x81") # (0x80 | reg number=1)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),0) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol0RBV") {
-  field(DESC, "EVE enable and polarity OTP0 status")
+record(mbbiDirect, "$(device):enpoltime0RBV") {
+  field(DESC, "OTP0 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),0) $(PORT) PP")
+  field(FLNK, "$(device):time0RBV")
+}
+
+record(bi, "$(device):time0RBV") {
+  field(DESC, "EVE OTP0 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime0RBV.B0")
   field(FLNK, "$(device):pol0RBV")
 }
 
@@ -174,7 +187,7 @@ record(bi, "$(device):pol0RBV") {
   field(DESC, "EVE polarity OTP0 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol0RBV.B0")
+  field(INP, "$(device):enpoltime0RBV.B1")
   field(FLNK, "$(device):enable0RBV")
 }
 
@@ -182,7 +195,7 @@ record(bi, "$(device):enable0RBV") {
   field(DESC, "EVE enable OTP0 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol0RBV.B1")
+  field(INP, "$(device):enpoltime0RBV.B2")
 }
 
 record(longin, "$(device):pulses0RBV"){
@@ -209,14 +222,28 @@ record(longin, "$(device):delay0RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),0) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set0") {
+  field(DESC, "Command code to write to OTP0")
+  field(DTYP, "stream")
+  field(VAL, "0x41") # (0x40 | reg number=1)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),0) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get0") {
+  field(DESC, "Command code to read OTP0")
+  field(DTYP, "stream")
+  field(VAL, "0x81") # (0x80 | reg number=1)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),0) $(PORT)")
+}
+
 ########################################################################
 # OTP1 Register [2]
 
 record(longout, "$(device):event1") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),1) $(PORT)")
 }
 
@@ -244,71 +271,86 @@ record(bo, "$(device):enable1") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol1.A")
+  field(OUT, "$(device):enpoltime1.A")
   field(FLNK, "$(device):ENABLE1")
 }
 
 record(bo, "$(device):pol1") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol1.B")
+  field(OUT, "$(device):enpoltime1.B")
   field(FLNK, "$(device):POL1")
 }
 
+record(bo, "$(device):time1") {
+  field(DESC, "OTP1 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime1.C")
+  field(FLNK, "$(device):TIME1")
+}
+
 record(calcout, "$(device):ENABLE1") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable1.VAL")
   field(INPB, "$(device):pol1RBV.VAL")
+  field(INPC, "$(device):time1RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),1,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol1")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),1,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime1")
 }
 
 record(calcout, "$(device):POL1") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable1RBV.VAL")
   field(INPB, "$(device):pol1.VAL")
+  field(INPC, "$(device):time1RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),1,POL) $(PORT)")
-  field(FLNK, "$(device):enpol1")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),1,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime1")
 }
 
-record(calcout, "$(device):enpol1") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME1") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable1RBV.VAL")
+  field(INPB, "$(device):pol1RBV.VAL")
+  field(INPC, "$(device):time1.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),1,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime1")
+}
+
+record(calcout, "$(device):enpoltime1") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable1.VAL")
   field(INPB, "$(device):pol1.VAL")
+  field(INPC, "$(device):time1.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set1") {
-  field(DESC, "Command code to write OTP1")
-  field(DTYP, "stream")
-  field(VAL, "0x42") # (0x40 | reg number=2)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),1) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get1") {
-  field(DESC, "Command code to read OTP1")
-  field(DTYP, "stream")
-  field(VAL, "0x82") # (0x80 | reg number=2)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),1) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol1RBV") {
-  field(DESC, "EVE enable and polarity OTP1 status")
+record(mbbiDirect, "$(device):enpoltime1RBV") {
+  field(DESC, "OTP1 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),1) $(PORT) PP")
+  field(FLNK, "$(device):time1RBV")
+}
+
+record(bi, "$(device):time1RBV") {
+  field(DESC, "EVE OTP1 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime1RBV.B0")
   field(FLNK, "$(device):pol1RBV")
 }
 
@@ -316,7 +358,7 @@ record(bi, "$(device):pol1RBV") {
   field(DESC, "EVE polarity OTP1 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol1RBV.B0")
+  field(INP, "$(device):enpoltime1RBV.B1")
   field(FLNK, "$(device):enable1RBV")
 }
 
@@ -324,7 +366,7 @@ record(bi, "$(device):enable1RBV") {
   field(DESC, "EVE enable OTP1 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol1RBV.B1")
+  field(INP, "$(device):enpoltime1RBV.B2")
 }
 
 record(longin, "$(device):pulses1RBV"){
@@ -351,14 +393,28 @@ record(longin, "$(device):delay1RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),1) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set1") {
+  field(DESC, "Command code to write OTP1")
+  field(DTYP, "stream")
+  field(VAL, "0x42") # (0x40 | reg number=2)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),1) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get1") {
+  field(DESC, "Command code to read OTP1")
+  field(DTYP, "stream")
+  field(VAL, "0x82") # (0x80 | reg number=2)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),1) $(PORT)")
+}
+
 ########################################################################
 # OTP2 Register [3]
 
 record(longout, "$(device):event2") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),2) $(PORT)")
 }
 
@@ -386,71 +442,86 @@ record(bo, "$(device):enable2") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol2.A")
+  field(OUT, "$(device):enpoltime2.A")
   field(FLNK, "$(device):ENABLE2")
 }
 
 record(bo, "$(device):pol2") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol2.B")
+  field(OUT, "$(device):enpoltime2.B")
   field(FLNK, "$(device):POL2")
 }
 
+record(bo, "$(device):time2") {
+  field(DESC, "OTP2 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime2.C")
+  field(FLNK, "$(device):TIME2")
+}
+
 record(calcout, "$(device):ENABLE2") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable2.VAL")
   field(INPB, "$(device):pol2RBV.VAL")
+  field(INPC, "$(device):time2RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),2,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol2")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),2,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime2")
 }
 
 record(calcout, "$(device):POL2") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable2RBV.VAL")
   field(INPB, "$(device):pol2.VAL")
+  field(INPC, "$(device):time2RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),2,POL) $(PORT)")
-  field(FLNK, "$(device):enpol2")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),2,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime2")
 }
 
-record(calcout, "$(device):enpol2") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME2") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable2RBV.VAL")
+  field(INPB, "$(device):pol2RBV.VAL")
+  field(INPC, "$(device):time2.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),2,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime2")
+}
+
+record(calcout, "$(device):enpoltime2") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable2.VAL")
   field(INPB, "$(device):pol2.VAL")
+  field(INPC, "$(device):time2.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set2") {
-  field(DESC, "Command code to write OTP2")
-  field(DTYP, "stream")
-  field(VAL, "0x43") # (0x40 | reg number=3)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),2) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get2") {
-  field(DESC, "Command code to read OTP2")
-  field(DTYP, "stream")
-  field(VAL, "0x83") # (0x80 | reg number=3)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),2) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol2RBV") {
-  field(DESC, "EVE enable and polarity OTP2 status")
+record(mbbiDirect, "$(device):enpoltime2RBV") {
+  field(DESC, "OTP2 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),2) $(PORT) PP")
+  field(FLNK, "$(device):time2RBV")
+}
+
+record(bi, "$(device):time2RBV") {
+  field(DESC, "EVE OTP2 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime2RBV.B0")
   field(FLNK, "$(device):pol2RBV")
 }
 
@@ -458,7 +529,7 @@ record(bi, "$(device):pol2RBV") {
   field(DESC, "EVE polarity OTP2 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol2RBV.B0")
+  field(INP, "$(device):enpoltime2RBV.B1")
   field(FLNK, "$(device):enable2RBV")
 }
 
@@ -466,7 +537,7 @@ record(bi, "$(device):enable2RBV") {
   field(DESC, "EVE enable OTP2 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol2RBV.B1")
+  field(INP, "$(device):enpoltime2RBV.B2")
 }
 
 record(longin, "$(device):pulses2RBV"){
@@ -493,14 +564,28 @@ record(longin, "$(device):delay2RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),2) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set2") {
+  field(DESC, "Command code to write OTP2")
+  field(DTYP, "stream")
+  field(VAL, "0x43") # (0x40 | reg number=3)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),2) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get2") {
+  field(DESC, "Command code to read OTP2")
+  field(DTYP, "stream")
+  field(VAL, "0x83") # (0x80 | reg number=3)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),2) $(PORT)")
+}
+
 ########################################################################
 # OTP3 Register [4]
 
 record(longout, "$(device):event3") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),3) $(PORT)")
 }
 
@@ -528,71 +613,86 @@ record(bo, "$(device):enable3") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol3.A")
+  field(OUT, "$(device):enpoltime3.A")
   field(FLNK, "$(device):ENABLE3")
 }
 
 record(bo, "$(device):pol3") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol3.B")
+  field(OUT, "$(device):enpoltime3.B")
   field(FLNK, "$(device):POL3")
 }
 
+record(bo, "$(device):time3") {
+  field(DESC, "OTP3 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime3.C")
+  field(FLNK, "$(device):TIME3")
+}
+
 record(calcout, "$(device):ENABLE3") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable3.VAL")
   field(INPB, "$(device):pol3RBV.VAL")
+  field(INPC, "$(device):time3RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),3,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol3")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),3,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime3")
 }
 
 record(calcout, "$(device):POL3") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable3RBV.VAL")
   field(INPB, "$(device):pol3.VAL")
+  field(INPC, "$(device):time3RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),3,POL) $(PORT)")
-  field(FLNK, "$(device):enpol3")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),3,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime3")
 }
 
-record(calcout, "$(device):enpol3") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME3") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable3RBV.VAL")
+  field(INPB, "$(device):pol3RBV.VAL")
+  field(INPC, "$(device):time3.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),3,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime3")
+}
+
+record(calcout, "$(device):enpoltime3") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable3.VAL")
   field(INPB, "$(device):pol3.VAL")
+  field(INPC, "$(device):time3.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set3") {
-  field(DESC, "Command code to write OTP3")
-  field(DTYP, "stream")
-  field(VAL, "0x44") # (0x40 | reg number=4)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),3) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get3") {
-  field(DESC, "Command code to read OTP3")
-  field(DTYP, "stream")
-  field(VAL, "0x84") # (0x80 | reg number=4)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),3) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol3RBV") {
-  field(DESC, "EVE enable and polarity OTP3 status")
+record(mbbiDirect, "$(device):enpoltime3RBV") {
+  field(DESC, "OTP3 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),3) $(PORT) PP")
+  field(FLNK, "$(device):time3RBV")
+}
+
+record(bi, "$(device):time3RBV") {
+  field(DESC, "EVE OTP3 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime3RBV.B0")
   field(FLNK, "$(device):pol3RBV")
 }
 
@@ -600,7 +700,7 @@ record(bi, "$(device):pol3RBV") {
   field(DESC, "EVE polarity OTP3 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol3RBV.B0")
+  field(INP, "$(device):enpoltime3RBV.B1")
   field(FLNK, "$(device):enable3RBV")
 }
 
@@ -608,7 +708,7 @@ record(bi, "$(device):enable3RBV") {
   field(DESC, "EVE enable OTP3 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol3RBV.B1")
+  field(INP, "$(device):enpoltime3RBV.B2")
 }
 
 record(longin, "$(device):pulses3RBV"){
@@ -635,14 +735,28 @@ record(longin, "$(device):delay3RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),3) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set3") {
+  field(DESC, "Command code to write OTP3")
+  field(DTYP, "stream")
+  field(VAL, "0x44") # (0x40 | reg number=4)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),3) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get3") {
+  field(DESC, "Command code to read OTP3")
+  field(DTYP, "stream")
+  field(VAL, "0x84") # (0x80 | reg number=4)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),3) $(PORT)")
+}
+
 ########################################################################
 # OTP4 Register [5]
 
 record(longout, "$(device):event4") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),4) $(PORT)")
 }
 
@@ -670,71 +784,86 @@ record(bo, "$(device):enable4") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol4.A")
+  field(OUT, "$(device):enpoltime4.A")
   field(FLNK, "$(device):ENABLE4")
 }
 
 record(bo, "$(device):pol4") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol4.B")
+  field(OUT, "$(device):enpoltime4.B")
   field(FLNK, "$(device):POL4")
 }
 
+record(bo, "$(device):time4") {
+  field(DESC, "OTP4 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime4.C")
+  field(FLNK, "$(device):TIME4")
+}
+
 record(calcout, "$(device):ENABLE4") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable4.VAL")
   field(INPB, "$(device):pol4RBV.VAL")
+  field(INPC, "$(device):time4RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),4,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol4")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),4,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime4")
 }
 
 record(calcout, "$(device):POL4") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable4RBV.VAL")
   field(INPB, "$(device):pol4.VAL")
+  field(INPC, "$(device):time4RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),4,POL) $(PORT)")
-  field(FLNK, "$(device):enpol4")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),4,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime4")
 }
 
-record(calcout, "$(device):enpol4") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME4") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable4RBV.VAL")
+  field(INPB, "$(device):pol4RBV.VAL")
+  field(INPC, "$(device):time4.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),4,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime4")
+}
+
+record(calcout, "$(device):enpoltime4") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable4.VAL")
   field(INPB, "$(device):pol4.VAL")
+  field(INPC, "$(device):time4.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set4") {
-  field(DESC, "Command code to write OTP4")
-  field(DTYP, "stream")
-  field(VAL, "0x45") # (0x40 | reg number=5)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),4) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get4") {
-  field(DESC, "Command code to read OTP4")
-  field(DTYP, "stream")
-  field(VAL, "0x85") # (0x80 | reg number=5)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),4) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol4RBV") {
-  field(DESC, "EVE enable and polarity OTP4 status")
+record(mbbiDirect, "$(device):enpoltime4RBV") {
+  field(DESC, "OTP4 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),4) $(PORT) PP")
+  field(FLNK, "$(device):time4RBV")
+}
+
+record(bi, "$(device):time4RBV") {
+  field(DESC, "EVE OTP4 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime4RBV.B0")
   field(FLNK, "$(device):pol4RBV")
 }
 
@@ -742,7 +871,7 @@ record(bi, "$(device):pol4RBV") {
   field(DESC, "EVE polarity OTP4 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol4RBV.B0")
+  field(INP, "$(device):enpoltime4RBV.B1")
   field(FLNK, "$(device):enable4RBV")
 }
 
@@ -750,7 +879,7 @@ record(bi, "$(device):enable4RBV") {
   field(DESC, "EVE enable OTP4 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol4RBV.B1")
+  field(INP, "$(device):enpoltime4RBV.B2")
 }
 
 record(longin, "$(device):pulses4RBV"){
@@ -777,14 +906,28 @@ record(longin, "$(device):delay4RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),4) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set4") {
+  field(DESC, "Command code to write OTP4")
+  field(DTYP, "stream")
+  field(VAL, "0x45") # (0x40 | reg number=5)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),4) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get4") {
+  field(DESC, "Command code to read OTP4")
+  field(DTYP, "stream")
+  field(VAL, "0x85") # (0x80 | reg number=5)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),4) $(PORT)")
+}
+
 ########################################################################
 # OTP5 Register [6]
 
 record(longout, "$(device):event5") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),5) $(PORT)")
 }
 
@@ -812,71 +955,86 @@ record(bo, "$(device):enable5") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol5.A")
+  field(OUT, "$(device):enpoltime5.A")
   field(FLNK, "$(device):ENABLE5")
 }
 
 record(bo, "$(device):pol5") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol5.B")
+  field(OUT, "$(device):enpoltime5.B")
   field(FLNK, "$(device):POL5")
 }
 
+record(bo, "$(device):time5") {
+  field(DESC, "OTP5 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime5.C")
+  field(FLNK, "$(device):TIME5")
+}
+
 record(calcout, "$(device):ENABLE5") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable5.VAL")
   field(INPB, "$(device):pol5RBV.VAL")
+  field(INPC, "$(device):time5RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),5,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol5")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),5,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime5")
 }
 
 record(calcout, "$(device):POL5") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable5RBV.VAL")
   field(INPB, "$(device):pol5.VAL")
+  field(INPC, "$(device):time5RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),5,POL) $(PORT)")
-  field(FLNK, "$(device):enpol5")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),5,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime5")
 }
 
-record(calcout, "$(device):enpol5") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME5") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable5RBV.VAL")
+  field(INPB, "$(device):pol5RBV.VAL")
+  field(INPC, "$(device):time5.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),5,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime5")
+}
+
+record(calcout, "$(device):enpoltime5") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable5.VAL")
   field(INPB, "$(device):pol5.VAL")
+  field(INPC, "$(device):time5.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set5") {
-  field(DESC, "Command code to write OTP5")
-  field(DTYP, "stream")
-  field(VAL, "0x46") # (0x40 | reg number=6)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),5) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get5") {
-  field(DESC, "Command code to read OTP5")
-  field(DTYP, "stream")
-  field(VAL, "0x86") # (0x80 | reg number=6)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),5) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol5RBV") {
-  field(DESC, "EVE enable and polarity OTP5 status")
+record(mbbiDirect, "$(device):enpoltime5RBV") {
+  field(DESC, "OTP5 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),5) $(PORT) PP")
+  field(FLNK, "$(device):time5RBV")
+}
+
+record(bi, "$(device):time5RBV") {
+  field(DESC, "EVE OTP5 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime5RBV.B0")
   field(FLNK, "$(device):pol5RBV")
 }
 
@@ -884,7 +1042,7 @@ record(bi, "$(device):pol5RBV") {
   field(DESC, "EVE polarity OTP5 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol5RBV.B0")
+  field(INP, "$(device):enpoltime5RBV.B1")
   field(FLNK, "$(device):enable5RBV")
 }
 
@@ -892,7 +1050,7 @@ record(bi, "$(device):enable5RBV") {
   field(DESC, "EVE enable OTP5 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol5RBV.B1")
+  field(INP, "$(device):enpoltime5RBV.B2")
 }
 
 record(longin, "$(device):pulses5RBV"){
@@ -919,14 +1077,28 @@ record(longin, "$(device):delay5RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),5) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set5") {
+  field(DESC, "Command code to write OTP5")
+  field(DTYP, "stream")
+  field(VAL, "0x46") # (0x40 | reg number=6)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),5) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get5") {
+  field(DESC, "Command code to read OTP5")
+  field(DTYP, "stream")
+  field(VAL, "0x86") # (0x80 | reg number=6)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),5) $(PORT)")
+}
+
 ########################################################################
 # OTP6 Register [7]
 
 record(longout, "$(device):event6") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),6) $(PORT)")
 }
 
@@ -954,71 +1126,86 @@ record(bo, "$(device):enable6") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol6.A")
+  field(OUT, "$(device):enpoltime6.A")
   field(FLNK, "$(device):ENABLE6")
 }
 
 record(bo, "$(device):pol6") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol6.B")
+  field(OUT, "$(device):enpoltime6.B")
   field(FLNK, "$(device):POL6")
 }
 
+record(bo, "$(device):time6") {
+  field(DESC, "OTP6 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime6.C")
+  field(FLNK, "$(device):TIME6")
+}
+
 record(calcout, "$(device):ENABLE6") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable6.VAL")
   field(INPB, "$(device):pol6RBV.VAL")
+  field(INPC, "$(device):time6RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),6,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol6")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),6,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime6")
 }
 
 record(calcout, "$(device):POL6") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable6RBV.VAL")
   field(INPB, "$(device):pol6.VAL")
+  field(INPC, "$(device):time6RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),6,POL) $(PORT)")
-  field(FLNK, "$(device):enpol6")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),6,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime6")
 }
 
-record(calcout, "$(device):enpol6") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME6") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable6RBV.VAL")
+  field(INPB, "$(device):pol6RBV.VAL")
+  field(INPC, "$(device):time6.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),6,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime6")
+}
+
+record(calcout, "$(device):enpoltime6") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable6.VAL")
   field(INPB, "$(device):pol6.VAL")
+  field(INPC, "$(device):time6.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set6") {
-  field(DESC, "Command code to write OTP6")
-  field(DTYP, "stream")
-  field(VAL, "0x47") # (0x40 | reg number=7)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),6) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get6") {
-  field(DESC, "Command code to read OTP6")
-  field(DTYP, "stream")
-  field(VAL, "0x87") # (0x80 | reg number=7)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),6) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol6RBV") {
-  field(DESC, "EVE enable and polarity OTP6 status")
+record(mbbiDirect, "$(device):enpoltime6RBV") {
+  field(DESC, "OTP6 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),6) $(PORT) PP")
+  field(FLNK, "$(device):time6RBV")
+}
+
+record(bi, "$(device):time6RBV") {
+  field(DESC, "EVE OTP6 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime6RBV.B0")
   field(FLNK, "$(device):pol6RBV")
 }
 
@@ -1026,7 +1213,7 @@ record(bi, "$(device):pol6RBV") {
   field(DESC, "EVE polarity OTP6 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol6RBV.B0")
+  field(INP, "$(device):enpoltime6RBV.B1")
   field(FLNK, "$(device):enable6RBV")
 }
 
@@ -1034,7 +1221,7 @@ record(bi, "$(device):enable6RBV") {
   field(DESC, "EVE enable OTP6 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol6RBV.B1")
+  field(INP, "$(device):enpoltime6RBV.B2")
 }
 
 record(longin, "$(device):pulses6RBV"){
@@ -1061,14 +1248,28 @@ record(longin, "$(device):delay6RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),6) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set6") {
+  field(DESC, "Command code to write OTP6")
+  field(DTYP, "stream")
+  field(VAL, "0x47") # (0x40 | reg number=7)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),6) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get6") {
+  field(DESC, "Command code to read OTP6")
+  field(DTYP, "stream")
+  field(VAL, "0x87") # (0x80 | reg number=7)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),6) $(PORT)")
+}
+
 ########################################################################
 # OTP7 Register [8]
 
 record(longout, "$(device):event7") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),7) $(PORT)")
 }
 
@@ -1096,71 +1297,86 @@ record(bo, "$(device):enable7") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol7.A")
+  field(OUT, "$(device):enpoltime7.A")
   field(FLNK, "$(device):ENABLE7")
 }
 
 record(bo, "$(device):pol7") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol7.B")
+  field(OUT, "$(device):enpoltime7.B")
   field(FLNK, "$(device):POL7")
 }
 
+record(bo, "$(device):time7") {
+  field(DESC, "OTP7 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime7.C")
+  field(FLNK, "$(device):TIME7")
+}
+
 record(calcout, "$(device):ENABLE7") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable7.VAL")
   field(INPB, "$(device):pol7RBV.VAL")
+  field(INPC, "$(device):time7RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),7,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol7")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),7,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime7")
 }
 
 record(calcout, "$(device):POL7") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable7RBV.VAL")
   field(INPB, "$(device):pol7.VAL")
+  field(INPC, "$(device):time7RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),7,POL) $(PORT)")
-  field(FLNK, "$(device):enpol7")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),7,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime7")
 }
 
-record(calcout, "$(device):enpol7") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME7") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable7RBV.VAL")
+  field(INPB, "$(device):pol7RBV.VAL")
+  field(INPC, "$(device):time7.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),7,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime7")
+}
+
+record(calcout, "$(device):enpoltime7") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable7.VAL")
   field(INPB, "$(device):pol7.VAL")
+  field(INPC, "$(device):time7.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set7") {
-  field(DESC, "Command code to write OTP7")
-  field(DTYP, "stream")
-  field(VAL, "0x48") # (0x40 | reg number=8)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),7) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get7") {
-  field(DESC, "Command code to read OTP7")
-  field(DTYP, "stream")
-  field(VAL, "0x88") # (0x80 | reg number=8)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),7) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol7RBV") {
-  field(DESC, "EVE enable and polarity OTP7 status")
+record(mbbiDirect, "$(device):enpoltime7RBV") {
+  field(DESC, "OTP7 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),7) $(PORT) PP")
+  field(FLNK, "$(device):time7RBV")
+}
+
+record(bi, "$(device):time7RBV") {
+  field(DESC, "EVE OTP7 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime7RBV.B0")
   field(FLNK, "$(device):pol7RBV")
 }
 
@@ -1168,7 +1384,7 @@ record(bi, "$(device):pol7RBV") {
   field(DESC, "EVE polarity OTP7 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol7RBV.B0")
+  field(INP, "$(device):enpoltime7RBV.B1")
   field(FLNK, "$(device):enable7RBV")
 }
 
@@ -1176,7 +1392,7 @@ record(bi, "$(device):enable7RBV") {
   field(DESC, "EVE enable OTP7 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol7RBV.B1")
+  field(INP, "$(device):enpoltime7RBV.B2")
 }
 
 record(longin, "$(device):pulses7RBV"){
@@ -1203,14 +1419,28 @@ record(longin, "$(device):delay7RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),7) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set7") {
+  field(DESC, "Command code to write OTP7")
+  field(DTYP, "stream")
+  field(VAL, "0x48") # (0x40 | reg number=8)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),7) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get7") {
+  field(DESC, "Command code to read OTP7")
+  field(DTYP, "stream")
+  field(VAL, "0x88") # (0x80 | reg number=8)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),7) $(PORT)")
+}
+
 ########################################################################
 # OTP8 Register [9]
 
 record(longout, "$(device):event8") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),8) $(PORT)")
 }
 
@@ -1238,71 +1468,86 @@ record(bo, "$(device):enable8") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol8.A")
+  field(OUT, "$(device):enpoltime8.A")
   field(FLNK, "$(device):ENABLE8")
 }
 
 record(bo, "$(device):pol8") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol8.B")
+  field(OUT, "$(device):enpoltime8.B")
   field(FLNK, "$(device):POL8")
 }
 
+record(bo, "$(device):time8") {
+  field(DESC, "OTP8 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime8.C")
+  field(FLNK, "$(device):TIME8")
+}
+
 record(calcout, "$(device):ENABLE8") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable8.VAL")
   field(INPB, "$(device):pol8RBV.VAL")
+  field(INPC, "$(device):time8RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),8,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol8")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),8,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime8")
 }
 
 record(calcout, "$(device):POL8") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable8RBV.VAL")
   field(INPB, "$(device):pol8.VAL")
+  field(INPC, "$(device):time8RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),8,POL) $(PORT)")
-  field(FLNK, "$(device):enpol8")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),8,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime8")
 }
 
-record(calcout, "$(device):enpol8") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME8") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable8RBV.VAL")
+  field(INPB, "$(device):pol8RBV.VAL")
+  field(INPC, "$(device):time8.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),8,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime8")
+}
+
+record(calcout, "$(device):enpoltime8") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable8.VAL")
   field(INPB, "$(device):pol8.VAL")
+  field(INPC, "$(device):time8.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set8") {
-  field(DESC, "Command code to write OTP8")
-  field(DTYP, "stream")
-  field(VAL, "0x49") # (0x40 | reg number=9)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),8) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get8") {
-  field(DESC, "Command code to read OTP8")
-  field(DTYP, "stream")
-  field(VAL, "0x89") # (0x80 | reg number=9)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),8) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol8RBV") {
-  field(DESC, "EVE enable and polarity OTP8 status")
+record(mbbiDirect, "$(device):enpoltime8RBV") {
+  field(DESC, "OTP8 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),8) $(PORT) PP")
+  field(FLNK, "$(device):time8RBV")
+}
+
+record(bi, "$(device):time8RBV") {
+  field(DESC, "EVE OTP8 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime8RBV.B0")
   field(FLNK, "$(device):pol8RBV")
 }
 
@@ -1310,7 +1555,7 @@ record(bi, "$(device):pol8RBV") {
   field(DESC, "EVE polarity OTP8 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol8RBV.B0")
+  field(INP, "$(device):enpoltime8RBV.B1")
   field(FLNK, "$(device):enable8RBV")
 }
 
@@ -1318,7 +1563,7 @@ record(bi, "$(device):enable8RBV") {
   field(DESC, "EVE enable OTP8 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol8RBV.B1")
+  field(INP, "$(device):enpoltime8RBV.B2")
 }
 
 record(longin, "$(device):pulses8RBV"){
@@ -1345,14 +1590,28 @@ record(longin, "$(device):delay8RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),8) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set8") {
+  field(DESC, "Command code to write OTP8")
+  field(DTYP, "stream")
+  field(VAL, "0x49") # (0x40 | reg number=9)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),8) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get8") {
+  field(DESC, "Command code to read OTP8")
+  field(DTYP, "stream")
+  field(VAL, "0x89") # (0x80 | reg number=9)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),8) $(PORT)")
+}
+
 ########################################################################
 # OTP9 Register [10]
 
 record(longout, "$(device):event9") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),9) $(PORT)")
 }
 
@@ -1380,71 +1639,86 @@ record(bo, "$(device):enable9") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpol9.A")
+  field(OUT, "$(device):enpoltime9.A")
   field(FLNK, "$(device):ENABLE9")
 }
 
 record(bo, "$(device):pol9") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpol9.B")
+  field(OUT, "$(device):enpoltime9.B")
   field(FLNK, "$(device):POL9")
 }
 
+record(bo, "$(device):time9") {
+  field(DESC, "OTP9 mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltime9.C")
+  field(FLNK, "$(device):TIME9")
+}
+
 record(calcout, "$(device):ENABLE9") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable9.VAL")
   field(INPB, "$(device):pol9RBV.VAL")
+  field(INPC, "$(device):time9RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),9,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpol9")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),9,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltime9")
 }
 
 record(calcout, "$(device):POL9") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enable9RBV.VAL")
   field(INPB, "$(device):pol9.VAL")
+  field(INPC, "$(device):time9RBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),9,POL) $(PORT)")
-  field(FLNK, "$(device):enpol9")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),9,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltime9")
 }
 
-record(calcout, "$(device):enpol9") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIME9") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enable9RBV.VAL")
+  field(INPB, "$(device):pol9RBV.VAL")
+  field(INPC, "$(device):time9.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),9,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltime9")
+}
+
+record(calcout, "$(device):enpoltime9") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enable9.VAL")
   field(INPB, "$(device):pol9.VAL")
+  field(INPC, "$(device):time9.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_set9") {
-  field(DESC, "Command code to write OTP9")
-  field(DTYP, "stream")
-  field(VAL, "0x4A") # (0x40 | reg number=10)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),9) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_get9") {
-  field(DESC, "Command code to read OTP9")
-  field(DTYP, "stream")
-  field(VAL, "0x8A") # (0x80 | reg number=10)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),9) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpol9RBV") {
-  field(DESC, "EVE enable and polarity OTP9 status")
+record(mbbiDirect, "$(device):enpoltime9RBV") {
+  field(DESC, "OTP9 enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),9) $(PORT) PP")
+  field(FLNK, "$(device):time9RBV")
+}
+
+record(bi, "$(device):time9RBV") {
+  field(DESC, "EVE OTP9 timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltime9RBV.B0")
   field(FLNK, "$(device):pol9RBV")
 }
 
@@ -1452,7 +1726,7 @@ record(bi, "$(device):pol9RBV") {
   field(DESC, "EVE polarity OTP9 status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpol9RBV.B0")
+  field(INP, "$(device):enpoltime9RBV.B1")
   field(FLNK, "$(device):enable9RBV")
 }
 
@@ -1460,7 +1734,7 @@ record(bi, "$(device):enable9RBV") {
   field(DESC, "EVE enable OTP9 status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpol9RBV.B1")
+  field(INP, "$(device):enpoltime9RBV.B2")
 }
 
 record(longin, "$(device):pulses9RBV"){
@@ -1487,14 +1761,28 @@ record(longin, "$(device):delay9RBV") {
   field(INP, "@timing.proto evre_otp_get($(device),9) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_set9") {
+  field(DESC, "Command code to write OTP9")
+  field(DTYP, "stream")
+  field(VAL, "0x4A") # (0x40 | reg number=10)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),9) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_get9") {
+  field(DESC, "Command code to read OTP9")
+  field(DTYP, "stream")
+  field(VAL, "0x8A") # (0x80 | reg number=10)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),9) $(PORT)")
+}
+
 ########################################################################
 # OTPA Register [11]
 
 record(longout, "$(device):eventA") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),A) $(PORT)")
 }
 
@@ -1522,71 +1810,86 @@ record(bo, "$(device):enableA") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpolA.A")
+  field(OUT, "$(device):enpoltimeA.A")
   field(FLNK, "$(device):ENABLEA")
 }
 
 record(bo, "$(device):polA") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpolA.B")
+  field(OUT, "$(device):enpoltimeA.B")
   field(FLNK, "$(device):POLA")
 }
 
+record(bo, "$(device):timeA") {
+  field(DESC, "OTPA mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltimeA.C")
+  field(FLNK, "$(device):TIMEA")
+}
+
 record(calcout, "$(device):ENABLEA") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableA.VAL")
   field(INPB, "$(device):polARBV.VAL")
+  field(INPC, "$(device):timeARBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),A,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpolA")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),A,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltimeA")
 }
 
 record(calcout, "$(device):POLA") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableARBV.VAL")
   field(INPB, "$(device):polA.VAL")
+  field(INPC, "$(device):timeARBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),A,POL) $(PORT)")
-  field(FLNK, "$(device):enpolA")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),A,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltimeA")
 }
 
-record(calcout, "$(device):enpolA") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIMEA") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enableARBV.VAL")
+  field(INPB, "$(device):polARBV.VAL")
+  field(INPC, "$(device):timeA.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),A,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltimeA")
+}
+
+record(calcout, "$(device):enpoltimeA") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enableA.VAL")
   field(INPB, "$(device):polA.VAL")
+  field(INPC, "$(device):timeA.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_setA") {
-  field(DESC, "Command code to write OTPA")
-  field(DTYP, "stream")
-  field(VAL, "0x4B") # (0x40 | reg number=11)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),A) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_getA") {
-  field(DESC, "Command code to read OTPA")
-  field(DTYP, "stream")
-  field(VAL, "0x8B") # (0x80 | reg number=11)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),A) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpolARBV") {
-  field(DESC, "EVE enable and polarity OTPA status")
+record(mbbiDirect, "$(device):enpoltimeARBV") {
+  field(DESC, "OTPA enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),A) $(PORT) PP")
+  field(FLNK, "$(device):timeARBV")
+}
+
+record(bi, "$(device):timeARBV") {
+  field(DESC, "EVE OTPA timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltimeARBV.B0")
   field(FLNK, "$(device):polARBV")
 }
 
@@ -1594,7 +1897,7 @@ record(bi, "$(device):polARBV") {
   field(DESC, "EVE polarity OTPA status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpolARBV.B0")
+  field(INP, "$(device):enpoltimeARBV.B1")
   field(FLNK, "$(device):enableARBV")
 }
 
@@ -1602,7 +1905,7 @@ record(bi, "$(device):enableARBV") {
   field(DESC, "EVE enable OTPA status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpolARBV.B1")
+  field(INP, "$(device):enpoltimeARBV.B2")
 }
 
 record(longin, "$(device):pulsesARBV"){
@@ -1629,14 +1932,28 @@ record(longin, "$(device):delayARBV") {
   field(INP, "@timing.proto evre_otp_get($(device),A) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_setA") {
+  field(DESC, "Command code to write OTPA")
+  field(DTYP, "stream")
+  field(VAL, "0x4B") # (0x40 | reg number=11)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),A) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_getA") {
+  field(DESC, "Command code to read OTPA")
+  field(DTYP, "stream")
+  field(VAL, "0x8B") # (0x80 | reg number=11)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),A) $(PORT)")
+}
+
 ########################################################################
 # OTPB Register [12]
 
 record(longout, "$(device):eventB") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),B) $(PORT)")
 }
 
@@ -1664,71 +1981,86 @@ record(bo, "$(device):enableB") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpolB.A")
+  field(OUT, "$(device):enpoltimeB.A")
   field(FLNK, "$(device):ENABLEB")
 }
 
 record(bo, "$(device):polB") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpolB.B")
+  field(OUT, "$(device):enpoltimeB.B")
   field(FLNK, "$(device):POLB")
 }
 
+record(bo, "$(device):timeB") {
+  field(DESC, "OTPB mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltimeB.C")
+  field(FLNK, "$(device):TIMEB")
+}
+
 record(calcout, "$(device):ENABLEB") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableB.VAL")
   field(INPB, "$(device):polBRBV.VAL")
+  field(INPC, "$(device):timeBRBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),B,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpolB")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),B,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltimeB")
 }
 
 record(calcout, "$(device):POLB") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableBRBV.VAL")
   field(INPB, "$(device):polB.VAL")
+  field(INPC, "$(device):timeBRBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),B,POL) $(PORT)")
-  field(FLNK, "$(device):enpolB")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),B,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltimeB")
 }
 
-record(calcout, "$(device):enpolB") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIMEB") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enableBRBV.VAL")
+  field(INPB, "$(device):polBRBV.VAL")
+  field(INPC, "$(device):timeB.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),B,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltimeB")
+}
+
+record(calcout, "$(device):enpoltimeB") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enableB.VAL")
   field(INPB, "$(device):polB.VAL")
+  field(INPC, "$(device):timeB.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_setB") {
-  field(DESC, "Command code to write OTPB")
-  field(DTYP, "stream")
-  field(VAL, "0x4C") # (0x40 | reg number=12)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),B) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_getB") {
-  field(DESC, "Command code to read OTPB")
-  field(DTYP, "stream")
-  field(VAL, "0x8C") # (0x80 | reg number=12)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),B) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpolBRBV") {
-  field(DESC, "EVE enable and polarity OTPB status")
+record(mbbiDirect, "$(device):enpoltimeBRBV") {
+  field(DESC, "OTPB enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),B) $(PORT) PP")
+  field(FLNK, "$(device):timeBRBV")
+}
+
+record(bi, "$(device):timeBRBV") {
+  field(DESC, "EVE OTPB timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltimeBRBV.B0")
   field(FLNK, "$(device):polBRBV")
 }
 
@@ -1736,7 +2068,7 @@ record(bi, "$(device):polBRBV") {
   field(DESC, "EVE polarity OTPB status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpolBRBV.B0")
+  field(INP, "$(device):enpoltimeBRBV.B1")
   field(FLNK, "$(device):enableBRBV")
 }
 
@@ -1744,7 +2076,7 @@ record(bi, "$(device):enableBRBV") {
   field(DESC, "EVE enable OTPB status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpolBRBV.B1")
+  field(INP, "$(device):enpoltimeBRBV.B2")
 }
 
 record(longin, "$(device):pulsesBRBV"){
@@ -1771,14 +2103,28 @@ record(longin, "$(device):delayBRBV") {
   field(INP, "@timing.proto evre_otp_get($(device),B) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_setB") {
+  field(DESC, "Command code to write OTPB")
+  field(DTYP, "stream")
+  field(VAL, "0x4C") # (0x40 | reg number=12)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),B) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_getB") {
+  field(DESC, "Command code to read OTPB")
+  field(DTYP, "stream")
+  field(VAL, "0x8C") # (0x80 | reg number=12)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),B) $(PORT)")
+}
+
 ########################################################################
 # OTPC Register [13]
 
 record(longout, "$(device):eventC") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),C) $(PORT)")
 }
 
@@ -1806,71 +2152,86 @@ record(bo, "$(device):enableC") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpolC.A")
+  field(OUT, "$(device):enpoltimeC.A")
   field(FLNK, "$(device):ENABLEC")
 }
 
 record(bo, "$(device):polC") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpolC.B")
+  field(OUT, "$(device):enpoltimeC.B")
   field(FLNK, "$(device):POLC")
 }
 
+record(bo, "$(device):timeC") {
+  field(DESC, "OTPC mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltimeC.C")
+  field(FLNK, "$(device):TIMEC")
+}
+
 record(calcout, "$(device):ENABLEC") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableC.VAL")
   field(INPB, "$(device):polCRBV.VAL")
+  field(INPC, "$(device):timeCRBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),C,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpolC")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),C,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltimeC")
 }
 
 record(calcout, "$(device):POLC") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableCRBV.VAL")
   field(INPB, "$(device):polC.VAL")
+  field(INPC, "$(device):timeCRBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),C,POL) $(PORT)")
-  field(FLNK, "$(device):enpolC")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),C,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltimeC")
 }
 
-record(calcout, "$(device):enpolC") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIMEC") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enableCRBV.VAL")
+  field(INPB, "$(device):polCRBV.VAL")
+  field(INPC, "$(device):timeC.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),C,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltimeC")
+}
+
+record(calcout, "$(device):enpoltimeC") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enableC.VAL")
   field(INPB, "$(device):polC.VAL")
+  field(INPC, "$(device):timeC.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_setC") {
-  field(DESC, "Command code to write OTPC")
-  field(DTYP, "stream")
-  field(VAL, "0x4D") # (0x40 | reg number=13)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),C) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_getC") {
-  field(DESC, "Command code to read OTPC")
-  field(DTYP, "stream")
-  field(VAL, "0x8D") # (0x80 | reg number=13)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),C) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpolCRBV") {
-  field(DESC, "EVE enable and polarity OTPC status")
+record(mbbiDirect, "$(device):enpoltimeCRBV") {
+  field(DESC, "OTPC enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),C) $(PORT) PP")
+  field(FLNK, "$(device):timeCRBV")
+}
+
+record(bi, "$(device):timeCRBV") {
+  field(DESC, "EVE OTPC timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltimeCRBV.B0")
   field(FLNK, "$(device):polCRBV")
 }
 
@@ -1878,7 +2239,7 @@ record(bi, "$(device):polCRBV") {
   field(DESC, "EVE polarity OTPC status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpolCRBV.B0")
+  field(INP, "$(device):enpoltimeCRBV.B1")
   field(FLNK, "$(device):enableCRBV")
 }
 
@@ -1886,7 +2247,7 @@ record(bi, "$(device):enableCRBV") {
   field(DESC, "EVE enable OTPC status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpolCRBV.B1")
+  field(INP, "$(device):enpoltimeCRBV.B2")
 }
 
 record(longin, "$(device):pulsesCRBV"){
@@ -1913,14 +2274,28 @@ record(longin, "$(device):delayCRBV") {
   field(INP, "@timing.proto evre_otp_get($(device),C) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_setC") {
+  field(DESC, "Command code to write OTPC")
+  field(DTYP, "stream")
+  field(VAL, "0x4D") # (0x40 | reg number=13)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),C) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_getC") {
+  field(DESC, "Command code to read OTPC")
+  field(DTYP, "stream")
+  field(VAL, "0x8D") # (0x80 | reg number=13)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),C) $(PORT)")
+}
+
 ########################################################################
 # OTPD Register [14]
 
 record(longout, "$(device):eventD") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),D) $(PORT)")
 }
 
@@ -1948,71 +2323,86 @@ record(bo, "$(device):enableD") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpolD.A")
+  field(OUT, "$(device):enpoltimeD.A")
   field(FLNK, "$(device):ENABLED")
 }
 
 record(bo, "$(device):polD") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpolD.B")
+  field(OUT, "$(device):enpoltimeD.B")
   field(FLNK, "$(device):POLD")
 }
 
+record(bo, "$(device):timeD") {
+  field(DESC, "OTPD mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltimeD.C")
+  field(FLNK, "$(device):TIMED")
+}
+
 record(calcout, "$(device):ENABLED") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableD.VAL")
   field(INPB, "$(device):polDRBV.VAL")
+  field(INPC, "$(device):timeDRBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),D,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpolD")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),D,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltimeD")
 }
 
 record(calcout, "$(device):POLD") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableDRBV.VAL")
   field(INPB, "$(device):polD.VAL")
+  field(INPC, "$(device):timeDRBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),D,POL) $(PORT)")
-  field(FLNK, "$(device):enpolD")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),D,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltimeD")
 }
 
-record(calcout, "$(device):enpolD") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIMED") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enableDRBV.VAL")
+  field(INPB, "$(device):polDRBV.VAL")
+  field(INPC, "$(device):timeD.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),D,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltimeD")
+}
+
+record(calcout, "$(device):enpoltimeD") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enableD.VAL")
   field(INPB, "$(device):polD.VAL")
+  field(INPC, "$(device):timeD.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_setD") {
-  field(DESC, "Command code to write OTPD")
-  field(DTYP, "stream")
-  field(VAL, "0x4E") # (0x40 | reg number=14)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),D) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_getD") {
-  field(DESC, "Command code to read OTPD")
-  field(DTYP, "stream")
-  field(VAL, "0x8E") # (0x80 | reg number=14)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),D) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpolDRBV") {
-  field(DESC, "EVE enable and polarity OTPD status")
+record(mbbiDirect, "$(device):enpoltimeDRBV") {
+  field(DESC, "OTPD enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),D) $(PORT) PP")
+  field(FLNK, "$(device):timeDRBV")
+}
+
+record(bi, "$(device):timeDRBV") {
+  field(DESC, "EVE OTPD timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltimeDRBV.B0")
   field(FLNK, "$(device):polDRBV")
 }
 
@@ -2020,7 +2410,7 @@ record(bi, "$(device):polDRBV") {
   field(DESC, "EVE polarity OTPD status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpolDRBV.B0")
+  field(INP, "$(device):enpoltimeDRBV.B1")
   field(FLNK, "$(device):enableDRBV")
 }
 
@@ -2028,7 +2418,7 @@ record(bi, "$(device):enableDRBV") {
   field(DESC, "EVE enable OTPD status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpolDRBV.B1")
+  field(INP, "$(device):enpoltimeDRBV.B2")
 }
 
 record(longin, "$(device):pulsesDRBV"){
@@ -2055,14 +2445,28 @@ record(longin, "$(device):delayDRBV") {
   field(INP, "@timing.proto evre_otp_get($(device),D) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_setD") {
+  field(DESC, "Command code to write OTPD")
+  field(DTYP, "stream")
+  field(VAL, "0x4E") # (0x40 | reg number=14)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),D) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_getD") {
+  field(DESC, "Command code to read OTPD")
+  field(DTYP, "stream")
+  field(VAL, "0x8E") # (0x80 | reg number=14)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),D) $(PORT)")
+}
+
 ########################################################################
 # OTPE Register [15]
 
 record(longout, "$(device):eventE") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),E) $(PORT)")
 }
 
@@ -2090,71 +2494,86 @@ record(bo, "$(device):enableE") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpolE.A")
+  field(OUT, "$(device):enpoltimeE.A")
   field(FLNK, "$(device):ENABLEE")
 }
 
 record(bo, "$(device):polE") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpolE.B")
+  field(OUT, "$(device):enpoltimeE.B")
   field(FLNK, "$(device):POLE")
 }
 
+record(bo, "$(device):timeE") {
+  field(DESC, "OTPE mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltimeE.C")
+  field(FLNK, "$(device):TIMEE")
+}
+
 record(calcout, "$(device):ENABLEE") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableE.VAL")
   field(INPB, "$(device):polERBV.VAL")
+  field(INPC, "$(device):timeERBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),E,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpolE")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),E,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltimeE")
 }
 
 record(calcout, "$(device):POLE") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableERBV.VAL")
-  field(INPB, "$(device):polD.VAL")
+  field(INPB, "$(device):polE.VAL")
+  field(INPC, "$(device):timeERBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),E,POL) $(PORT)")
-  field(FLNK, "$(device):enpolE")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),E,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltimeE")
 }
 
-record(calcout, "$(device):enpolE") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIMEE") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enableERBV.VAL")
+  field(INPB, "$(device):polERBV.VAL")
+  field(INPC, "$(device):timeE.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),E,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltimeE")
+}
+
+record(calcout, "$(device):enpoltimeE") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enableE.VAL")
   field(INPB, "$(device):polE.VAL")
+  field(INPC, "$(device):timeE.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_setE") {
-  field(DESC, "Command code to write OTPE")
-  field(DTYP, "stream")
-  field(VAL, "0x4F") # (0x40 | reg number=15)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),E) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_getE") {
-  field(DESC, "Command code to read OTPE")
-  field(DTYP, "stream")
-  field(VAL, "0x8F") # (0x80 | reg number=15)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),E) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpolERBV") {
-  field(DESC, "EVE enable and polarity OTPE status")
+record(mbbiDirect, "$(device):enpoltimeERBV") {
+  field(DESC, "OTPE enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),E) $(PORT) PP")
+  field(FLNK, "$(device):timeERBV")
+}
+
+record(bi, "$(device):timeERBV") {
+  field(DESC, "EVE OTPE timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltimeERBV.B0")
   field(FLNK, "$(device):polERBV")
 }
 
@@ -2162,7 +2581,7 @@ record(bi, "$(device):polERBV") {
   field(DESC, "EVE polarity OTPE status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpolERBV.B0")
+  field(INP, "$(device):enpoltimeERBV.B1")
   field(FLNK, "$(device):enableERBV")
 }
 
@@ -2170,7 +2589,7 @@ record(bi, "$(device):enableERBV") {
   field(DESC, "EVE enable OTPE status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpolERBV.B1")
+  field(INP, "$(device):enpoltimeERBV.B2")
 }
 
 record(longin, "$(device):pulsesERBV"){
@@ -2197,14 +2616,28 @@ record(longin, "$(device):delayERBV") {
   field(INP, "@timing.proto evre_otp_get($(device),E) $(PORT) PP")
 }
 
+record(longout, "$(device):cmd_evre_otp_setE") {
+  field(DESC, "Command code to write OTPE")
+  field(DTYP, "stream")
+  field(VAL, "0x4F") # (0x40 | reg number=15)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),E) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_getE") {
+  field(DESC, "Command code to read OTPE")
+  field(DTYP, "stream")
+  field(VAL, "0x8F") # (0x80 | reg number=15)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),E) $(PORT)")
+}
+
 ########################################################################
 # OTPF Register [16]
 
 record(longout, "$(device):eventF") {
   field(DESC, "EVE event code")
   field(DTYP, "stream")
-  field(DRVH, "255")
-  field(DRVL, "0")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),F) $(PORT)")
 }
 
@@ -2232,71 +2665,86 @@ record(bo, "$(device):enableF") {
   field(DESC, "EVE Enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(device):enpolF.A")
+  field(OUT, "$(device):enpoltimeF.A")
   field(FLNK, "$(device):ENABLEF")
 }
 
 record(bo, "$(device):polF") {
-  field(DESC, "EVE Enable")
+  field(DESC, "EVE Polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(device):enpolF.B")
+  field(OUT, "$(device):enpoltimeF.B")
   field(FLNK, "$(device):POLF")
 }
 
+record(bo, "$(device):timeF") {
+  field(DESC, "OTPF mapped event timestamping enable")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(OUT, "$(device):enpoltimeF.C")
+  field(FLNK, "$(device):TIMEF")
+}
+
 record(calcout, "$(device):ENABLEF") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableF.VAL")
   field(INPB, "$(device):polFRBV.VAL")
+  field(INPC, "$(device):timeFRBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),F,ENABLE) $(PORT)")
-  field(FLNK, "$(device):enpolF")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),F,ENABLE) $(PORT)")
+  field(FLNK, "$(device):enpoltimeF")
 }
 
 record(calcout, "$(device):POLF") {
-  field(DESC, "EVE event EN and POL")
+  field(DESC, "EVE event EN, POL, and TIME")
   field(DTYP, "stream")
   field(INPA, "$(device):enableFRBV.VAL")
   field(INPB, "$(device):polF.VAL")
+  field(INPC, "$(device):timeFRBV.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_otp_en_pol_set($(device),F,POL) $(PORT)")
-  field(FLNK, "$(device):enpolF")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),F,POL) $(PORT)")
+  field(FLNK, "$(device):enpoltimeF")
 }
 
-record(calcout, "$(device):enpolF") {
-  field(DESC, "EVE event EN and POL")
+record(calcout, "$(device):TIMEF") {
+  field(DESC, "EVE event EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(device):enableFRBV.VAL")
+  field(INPB, "$(device):polFRBV.VAL")
+  field(INPC, "$(device):timeF.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(device),F,TIME) $(PORT)")
+  field(FLNK, "$(device):enpoltimeF")
+}
+
+record(calcout, "$(device):enpoltimeF") {
+  field(DESC, "EVE event EN, POL, and TIME")
   field(INPA, "$(device):enableF.VAL")
   field(INPB, "$(device):polF.VAL")
+  field(INPC, "$(device):timeF.VAL")
   #field(ASG, "Reserved")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(device):cmd_evre_otp_setF") {
-  field(DESC, "Command code to write OTPF")
-  field(DTYP, "stream")
-  field(VAL, "0x50") # (0x40 | reg number=16)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_set($(device),F) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evre_otp_getF") {
-  field(DESC, "Command code to read OTPF")
-  field(DTYP, "stream")
-  field(VAL, "0x90") # (0x80 | reg number=16)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_otp_get($(device),F) $(PORT)")
-}
-
-record(mbbiDirect, "$(device):enpolFRBV") {
-  field(DESC, "EVE enable and polarity OTPF status")
+record(mbbiDirect, "$(device):enpoltimeFRBV") {
+  field(DESC, "OTPF enable, polarity, and timestamp RBV")
   field(DTYP, "stream")
   field(NOBT, "8")
-  field(SHFT, "6")
+  field(SHFT, "5")
   #field(ASG, "Reserved")
   field(INP, "@timing.proto evre_otp_get($(device),F) $(PORT) PP")
+  field(FLNK, "$(device):timeFRBV")
+}
+
+record(bi, "$(device):timeFRBV") {
+  field(DESC, "EVE OTPF timestamping status")
+  field(ZNAM, "DISABLED")
+  field(ONAM, "ENABLED")
+  field(INP, "$(device):enpoltimeFRBV.B0")
   field(FLNK, "$(device):polFRBV")
 }
 
@@ -2304,7 +2752,7 @@ record(bi, "$(device):polFRBV") {
   field(DESC, "EVE polarity OTPF status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(device):enpolFRBV.B0")
+  field(INP, "$(device):enpoltimeFRBV.B1")
   field(FLNK, "$(device):enableFRBV")
 }
 
@@ -2312,7 +2760,7 @@ record(bi, "$(device):enableFRBV") {
   field(DESC, "EVE enable OTPF status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(device):enpolFRBV.B1")
+  field(INP, "$(device):enpoltimeFRBV.B2")
 }
 
 record(longin, "$(device):pulsesFRBV"){
@@ -2337,6 +2785,22 @@ record(longin, "$(device):delayFRBV") {
   field(DESC, "EVE delay to OTPF")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_get($(device),F) $(PORT) PP")
+}
+
+record(longout, "$(device):cmd_evre_otp_setF") {
+  field(DESC, "Command code to write OTPF")
+  field(DTYP, "stream")
+  field(VAL, "0x50") # (0x40 | reg number=16)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_set($(device),F) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_otp_getF") {
+  field(DESC, "Command code to read OTPF")
+  field(DTYP, "stream")
+  field(VAL, "0x90") # (0x80 | reg number=16)
+  #field(ASG, "Reserved")
+  field(OUT, "@timing.proto evre_otp_get($(device),F) $(PORT)")
 }
 
 ########################################################################

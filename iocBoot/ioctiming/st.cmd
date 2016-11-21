@@ -76,11 +76,6 @@ iocInit
 # Module initialization and network status
 seq sncModuleSupport, "device=EVG1"
 
-#seq sncModuleSupport, "device=EVE1"
-#seq sncModuleSupport, "device=EVE2"
-#seq sncModuleSupport, "device=EVE3"
-#seq sncModuleSupport, "device=EVE4"
-
 #seq sncModuleSupport, "device=EVR1"
 #seq sncModuleSupport, "device=EVR2"
 #seq sncModuleSupport, "device=EVR3"
@@ -88,6 +83,11 @@ seq sncModuleSupport, "device=EVG1"
 #seq sncModuleSupport, "device=EVR5"
 #seq sncModuleSupport, "device=EVR6"
 #seq sncModuleSupport, "device=EVR7"
+
+#seq sncModuleSupport, "device=EVE1"
+#seq sncModuleSupport, "device=EVE2"
+#seq sncModuleSupport, "device=EVE3"
+#seq sncModuleSupport, "device=EVE4"
 
 # Injection System State Machine
 seq sncSeqRAM, "device=EVG1, ev_num=4"
