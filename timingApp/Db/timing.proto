@@ -226,9 +226,8 @@ evre_timestamp_log_get{
 }
 
 evre_timestamp_log_set{
-    out "%(\$1:cmd_evre_timestamp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:\$2)r";
-    evre_timestamp_log_get;
+    out "%(\$1:cmd_evre_timestamp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:\$2)r";
+    in "%*r%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%(\$1:LOGCTRLRBV)r";
 }
 
 ################################################################################
@@ -312,6 +311,9 @@ eve_download{
     out "%(\$1:cmd_evre_out_set5).1r%(\$1:ITL5).1r\x00\x00%(\$1:sel5).1r\x00\x00%(\$1:finedly5).2r\x00\x00\x00%(\$1:rfdly5).1r";
     out "%(\$1:cmd_evre_out_set6).1r%(\$1:ITL6).1r\x00\x00%(\$1:sel6).1r\x00\x00%(\$1:finedly6).2r\x00\x00\x00%(\$1:rfdly6).1r";
     out "%(\$1:cmd_evre_out_set7).1r%(\$1:ITL7).1r\x00\x00%(\$1:sel7).1r\x00\x00%(\$1:finedly7).2r\x00\x00\x00%(\$1:rfdly7).1r";
+    # Timestamp log
+    out "%(\$1:cmd_evre_timestamp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:LOGCTRL)r";
+    in "%*r%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%(\$1:LOGCTRLRBV)r";
     evre_ctrl_set;
 }
 
@@ -341,6 +343,9 @@ evr_download{
     out "%(\$1:cmd_evre_out_set5).1r%(\$1:ITL5).1r\x00\x00%(\$1:sel5).1r\x00\x00%(\$1:finedly5).2r\x00\x00\x00%(\$1:rfdly5).1r";
     out "%(\$1:cmd_evre_out_set6).1r%(\$1:ITL6).1r\x00\x00%(\$1:sel6).1r\x00\x00%(\$1:finedly6).2r\x00\x00\x00%(\$1:rfdly6).1r";
     out "%(\$1:cmd_evre_out_set7).1r%(\$1:ITL7).1r\x00\x00%(\$1:sel7).1r\x00\x00%(\$1:finedly7).2r\x00\x00\x00%(\$1:rfdly7).1r";
+    # Timestamp log
+    out "%(\$1:cmd_evre_timestamp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:LOGCTRL)r";
+    in "%*r%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%(\$1:LOGCTRLRBV)r";
     evre_ctrl_set;
 }
 
@@ -438,6 +443,8 @@ eve_upload{
 	# RF output upload
 	eve_rf_get;
     #wait 100;
+    	# Timestamp log
+    evre_timestamp_log_get;
 }
 
 evr_upload{
@@ -515,6 +522,8 @@ evr_upload{
     out "%(\$1:cmd_evre_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%(\$1:itl7RAW.RVAL)r%*02r%(\$1:sel7RBV.RVAL)r%*02r%(\$1:finedly7RBV.RVAL)02r%*03r%(\$1:rfdly7RBV.RVAL)r";
     #wait 100;
+    	# Timestamp log
+    evre_timestamp_log_get;
 }
 
 evg_upload{

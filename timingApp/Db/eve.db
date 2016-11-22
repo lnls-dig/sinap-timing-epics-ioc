@@ -3648,24 +3648,6 @@ record(longout, "$(device):cmd_evre_timestamp_get"){
 ########################################################################
 # Timestamp log register [52]
 
-record(longin, "$(device):LOGUTC"){
-  field(DESC, "UTC timestamp from log")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
-}
-
-record(longin, "$(device):LOGSUBSEC"){
-  field(DESC, "Subsecond timestamp from log")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
-}
-
-record(longin, "$(device):LOGEVENT"){
-  field(DESC, "Timestamp event from log")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
-}
-
 record(bo, "$(device):stoplog"){
   field(DESC, "Stop log command")
   field(FLNK, "$(device):STOPLOG")
@@ -3770,6 +3752,24 @@ record(bi, "$(device):FULL"){
 record(bi, "$(device):EMPTY"){
   field(DESC, "Timestamp buffer empty flag")
   field(INP, "$(device):LOGCTRLRBV.B0")
+}
+
+record(longin, "$(device):LOGUTC"){
+  field(DESC, "UTC timestamp from log")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
+}
+
+record(longin, "$(device):LOGSUBSEC"){
+  field(DESC, "Subsecond timestamp from log")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
+}
+
+record(longin, "$(device):LOGEVENT"){
+  field(DESC, "Timestamp event from log")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
 }
 
 record(longout, "$(device):cmd_evre_timestamp_log_get"){
