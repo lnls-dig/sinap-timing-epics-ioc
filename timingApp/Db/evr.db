@@ -3586,19 +3586,19 @@ record(mbbo, "$(device):TIMESRC"){
   field(THVL, "3")
   field(VAL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_tmstmp_set($(device)) $(PORT)")
+  field(OUT, "@timing.proto evre_timestamp_set($(device)) $(PORT)")
 }
 
 record(longin, "$(device):UTCRBV"){
   field(DESC, "Timestamp UTC field RBV")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evre_timestamp_get($(device)) $(PORT) PP")
 }
 
 record(longin, "$(device):subsecondRBV"){
   field(DESC, "Timestamp subsecond field RBV")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evre_timestamp_get($(device)) $(PORT) PP")
 }
 
 record(mbbi, "$(device):TIMESRCRBV"){
@@ -3612,21 +3612,158 @@ record(mbbi, "$(device):TIMESRCRBV"){
   field(THST, "INTERNAL")
   field(THVL, "3")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evre_tmstmp_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evre_timestamp_get($(device)) $(PORT) PP")
 }
 
-record(longout, "$(device):cmd_evre_tmstmp_set"){
+record(longout, "$(device):cmd_evre_timestamp_set"){
   field(DESC, "cmd")
   field(DTYP, "stream")
   field(VAL, "0x73")
-  field(OUT, "@timing.proto evre_tmstmp_set($(device)) $(PORT)")
+  field(OUT, "@timing.proto evre_timestamp_set($(device)) $(PORT)")
 }
 
-record(longout, "$(device):cmd_evre_tmstmp_get"){
+record(longout, "$(device):cmd_evre_timestamp_get"){
   field(DESC, "cmd")
   field(DTYP, "stream")
   field(VAL, "0xB3")
-  field(OUT, "@timing.proto evre_tmstmp_get($(device)) $(PORT)")
+  field(OUT, "@timing.proto evre_timestamp_get($(device)) $(PORT)")
+}
+
+########################################################################
+# Timestamp log register [52]
+
+record(longin, "$(device):LOGUTC"){
+  field(DESC, "UTC timestamp from log")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
+}
+
+record(longin, "$(device):LOGSUBSEC"){
+  field(DESC, "Subsecond timestamp from log")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
+}
+
+record(longin, "$(device):LOGEVENT"){
+  field(DESC, "Timestamp event from log")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
+}
+
+record(bo, "$(device):stoplog"){
+  field(DESC, "Stop log command")
+  field(FLNK, "$(device):STOPLOG")
+  field(VAL, "0")
+}
+
+record(bo, "$(device):rstlog"){
+  field(DESC, "Reset log command")
+  field(FLNK, "$(device):RSTLOG")
+  field(VAL, "0")
+}
+
+record(bo, "$(device):pull"){
+  field(DESC, "Pull from log command")
+  field(FLNK, "$(device):PULL")
+  field(VAL, "0")
+}
+
+record(calcout, "$(device):STOPLOG") {
+  field(DESC, "EVR stop, resetRBV, and pullRBV")
+  field(DTYP, "stream")
+  field(INPA, "$(device):stoplog.VAL")
+  field(INPB, "$(device):RSTLOGRBV.VAL")
+  field(INPC, "$(device):PULLRBV.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_timestamp_log_set($(device),STOPLOG) $(PORT)")
+  field(FLNK, "$(device):LOGCTRL")
+}
+
+record(calcout, "$(device):RSTLOG") {
+  field(DESC, "EVR stopRBV, reset, and pullRBV")
+  field(DTYP, "stream")
+  field(INPA, "$(device):STOPLOGRBV.VAL")
+  field(INPB, "$(device):rstlog.VAL")
+  field(INPC, "$(device):PULLRBV.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_timestamp_log_set($(device),RSTLOG) $(PORT)")
+  field(FLNK, "$(device):LOGCTRL")
+}
+
+record(calcout, "$(device):PULL") {
+  field(DESC, "EVR stopRBV, resetRBV, and pull")
+  field(DTYP, "stream")
+  field(INPA, "$(device):STOPLOGRBV.VAL")
+  field(INPB, "$(device):RSTLOGRBV.VAL")
+  field(INPC, "$(device):pull.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_timestamp_log_set($(device),PULL) $(PORT)")
+  field(FLNK, "$(device):LOGCTRL")
+}
+
+record(calcout, "$(device):LOGCTRL") {
+  field(DESC, "EVR stop, reset, and pull")
+  field(INPA, "$(device):stoplog.VAL")
+  field(INPB, "$(device):rstlog.VAL")
+  field(INPC, "$(device):pull.VAL")
+  #field(ASG, "Reserved")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+}
+
+record(longin, "$(device):LOGCOUNT"){
+  field(DESC, "Number of timestamps in the buffer")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
+}
+
+record(mbbiDirect, "$(device):LOGCTRLRBV"){
+  field(DESC, "Timestamp log control")
+  field(NOBT, "8")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
+  field(FLNK, "$(device):STOPLOGRBV")
+}
+
+record(bi, "$(device):STOPLOGRBV"){
+  field(DESC, "Stop log command RBV")
+  field(INP, "$(device):LOGCTRLRBV.B7")
+  field(FLNK, "$(device):RSTLOGRBV")
+}
+
+record(bi, "$(device):RSTLOGRBV"){
+  field(DESC, "Reset log command RBV")
+  field(INP, "$(device):LOGCTRLRBV.B6")
+  field(FLNK, "$(device):PULLRBV")
+}
+
+record(bi, "$(device):PULLRBV"){
+  field(DESC, "Pull from log command RBV")
+  field(INP, "$(device):LOGCTRLRBV.B5")
+  field(FLNK, "$(device):FULL")
+}
+
+record(bi, "$(device):FULL"){
+  field(DESC, "Timestamp buffer full flag")
+  field(INP, "$(device):LOGCTRLRBV.B1")
+  field(FLNK, "$(device):EMPTY")
+}
+
+record(bi, "$(device):EMPTY"){
+  field(DESC, "Timestamp buffer empty flag")
+  field(INP, "$(device):LOGCTRLRBV.B0")
+}
+
+record(longout, "$(device):cmd_evre_timestamp_log_get"){
+  field(DESC, "cmd")
+  field(VAL, "0xB4")
+}
+
+record(longout, "$(device):cmd_evre_timestamp_log_set"){
+  field(DESC, "cmd")
+  field(VAL, "0x74")
 }
 
 ########################################################################

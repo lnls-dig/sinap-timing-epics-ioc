@@ -704,7 +704,7 @@ record(longout, "$(device):cmd_evg_seqramsw_set") {
 record(longout, "$(device):UTC"){
   field(DESC, "Timestamp UTC field")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_tmstmp_utc_set($(device)) $(PORT)")
+  field(OUT, "@timing.proto evg_timestamp_utc_set($(device)) $(PORT)")
 }
 
 record(mbbo, "$(device):TIMESRC"){
@@ -719,19 +719,19 @@ record(mbbo, "$(device):TIMESRC"){
   field(THVL, "3")
   field(VAL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_tmstmp_timesrc_set($(device)) $(PORT)")
+  field(OUT, "@timing.proto evg_timestamp_timesrc_set($(device)) $(PORT)")
 }
 
 record(longin, "$(device):UTCRBV"){
   field(DESC, "Timestamp UTC field RBV")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evg_timestamp_get($(device)) $(PORT) PP")
 }
 
 record(longin, "$(device):subsecondRBV"){
   field(DESC, "Timestamp subsecond field RBV")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evg_timestamp_get($(device)) $(PORT) PP")
 }
 
 record(mbbi, "$(device):TIMESRCRBV"){
@@ -745,21 +745,21 @@ record(mbbi, "$(device):TIMESRCRBV"){
   field(THST, "INTERNAL")
   field(THVL, "3")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evg_tmstmp_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evg_timestamp_get($(device)) $(PORT) PP")
 }
 
-record(longout, "$(device):cmd_evg_tmstmp_get"){
+record(longout, "$(device):cmd_evg_timestamp_get"){
   field(DESC, "cmd")
   field(DTYP, "stream")
   field(VAL, "0xB3")
-  field(OUT, "@timing.proto evg_tmstmp_get($(device)) $(PORT)")
+  field(OUT, "@timing.proto evg_timestamp_get($(device)) $(PORT)")
 }
 
-record(longout, "$(device):cmd_evg_tmstmp_set"){
+record(longout, "$(device):cmd_evg_timestamp_set"){
   field(DESC, "cmd")
   field(DTYP, "stream")
   field(VAL, "0x73")
-  field(OUT, "@timing.proto evg_tmstmp_set($(device)) $(PORT)")
+  field(OUT, "@timing.proto evg_timestamp_set($(device)) $(PORT)")
 }
 
 ########################################################################

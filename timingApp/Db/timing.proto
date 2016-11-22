@@ -184,37 +184,51 @@ evg_seqramsw_set{
 
 ################################################################################
 # Timestamp register EVG [51]
-evg_tmstmp_get{
-    out "%(\$1:cmd_evg_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+evg_timestamp_get{
+    out "%(\$1:cmd_evg_timestamp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r\x00\x00\x00%(\$1:TIMESRCRBV)r";
 }
 
-evg_tmstmp_utc_set{
-    out "%(\$1:cmd_evg_tmstmp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRCRBV)r";
-    evg_tmstmp_get;
+evg_timestamp_utc_set{
+    out "%(\$1:cmd_evg_timestamp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRCRBV)r";
+    evg_timestamp_get;
 }
 
 # utc receives 0 causing it to be broadcast
-evg_tmstmp_timesrc_set{
-    out "%(\$1:cmd_evg_tmstmp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
-    evg_tmstmp_get;
+evg_timestamp_timesrc_set{
+    out "%(\$1:cmd_evg_timestamp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
+    evg_timestamp_get;
 }
 
-evg_tmstmp_set{
-    out "%(\$1:cmd_evg_tmstmp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
-    evg_tmstmp_get;
+evg_timestamp_set{
+    out "%(\$1:cmd_evg_timestamp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
+    evg_timestamp_get;
 }
 
 ################################################################################
 # Timestamp register EVE & EVR [51]
-evre_tmstmp_get{
-    out "%(\$1:cmd_evre_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+evre_timestamp_get{
+    out "%(\$1:cmd_evre_timestamp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r\x00\x00\x00%(\$1:TIMESRCRBV)r";
 }
 
-evre_tmstmp_set{
-    out "%(\$1:cmd_evre_tmstmp_set)r%(\$1:UTCRBV).4r%(\$1:subsecondRBV).4r\x00\x00\x00%(\$1:TIMESRC)r";
-    evre_tmstmp_get;
+evre_timestamp_set{
+    out "%(\$1:cmd_evre_timestamp_set)r%(\$1:UTCRBV).4r%(\$1:subsecondRBV).4r\x00\x00\x00%(\$1:TIMESRC)r";
+    evre_timestamp_get;
+}
+
+################################################################################
+# Timestamp log register EVE & EVR [52]
+
+evre_timestamp_log_get{
+    out "%(\$1:cmd_evre_timestamp_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%(\$1:LOGCTRLRBV)r";
+}
+
+evre_timestamp_log_set{
+    out "%(\$1:cmd_evre_timestamp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:\$2)r";
+    evre_timestamp_log_get;
 }
 
 ################################################################################
