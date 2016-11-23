@@ -647,21 +647,25 @@ record(longout, "$(device):cmd_evg_seqramset_get") {
 
 record(longout, "$(device):seqaddr"){
   field(DESC, "The address of SEQRAM")
+  field(PRIO, "HIGH")
 }
 
 record(longout, "$(device):seqcode"){
   field(DESC, "Event code in the SEQRAM")
+  field(PRIO, "HIGH")
 }
 
 record(longout, "$(device):seqtime"){
   field(DESC, "Timestamp in the SEQRAM")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_seqramset_set($(device)) $(PORT)")
+  field(PRIO, "HIGH")
 }
 
 record(longout, "$(device):cmd_evg_seqramset_set") {
   field(DESC, "cmd")
   field(VAL, "0x71")
+  field(PRIO, "HIGH")
 }
 
 ########################################################################
