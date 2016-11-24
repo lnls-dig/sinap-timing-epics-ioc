@@ -1,0 +1,4 @@
+2016-11-24 13:11:23.530 INFO [Thread 22] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2016-11-24 13:11:24.836 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Initializing configuration file configuration/diirt/datasources/datasources.xml
+2016-11-24 13:11:24.839 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2016-11-24 13:11:25.107 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
