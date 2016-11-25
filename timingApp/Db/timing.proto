@@ -39,32 +39,26 @@ evre_otp_get {
 
 evre_otp_ev_set {
     out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2)r%(\$1:delay\$2RBV).4r%(\$1:width\$2RBV).4r";
-    evre_otp_get;
 }
 
 evre_otp_pulses_set{
     out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2).2r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV).4r%(\$1:width\$2RBV).4r";
-    evre_otp_get;
 }
 
 evre_otp_width_set {
     out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV).4r%(\$1:width\$2).4r";
-    evre_otp_get;
 }
 
 evre_otp_dly_set {
     out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2RBV)r%(\$1:delay\$2).4r%(\$1:width\$2RBV).4r";
-    evre_otp_get;
 }
 
 evre_otp_en_pol_time_set {
     out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:\$3\$2)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV).4r%(\$1:width\$2RBV).4r";
-    evre_otp_get;
 }
 
 evre_otp_set {
     out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2)r%(\$1:pulses\$2).2r%(\$1:event\$2)r%(\$1:delay\$2).4r%(\$1:width\$2).4r";
-    evre_otp_get;
 }
 
 ################################################################################
