@@ -3607,14 +3607,15 @@ record(mbbo, "$(device):TIMESRC"){
 
 record(longin, "$(device):UTCRBV"){
   field(DESC, "Timestamp UTC field RBV")
+  field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evre_timestamp_get($(device)) $(PORT)")
+  field(FLNK, "$(device):subsecondRBV")
 }
 
 record(longin, "$(device):subsecondRBV"){
   field(DESC, "Timestamp subsecond field RBV")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_get($(device)) $(PORT) PP")
+  field(FLNK, "$(device):TIMESRCRBV")
 }
 
 record(mbbi, "$(device):TIMESRCRBV"){
@@ -3627,22 +3628,16 @@ record(mbbi, "$(device):TIMESRCRBV"){
   field(TWVL, "2")
   field(THST, "INTERNAL")
   field(THVL, "3")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_get($(device)) $(PORT) PP")
 }
 
 record(longout, "$(device):cmd_evre_timestamp_set"){
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x73")
-  field(OUT, "@timing.proto evre_timestamp_set($(device)) $(PORT)")
 }
 
 record(longout, "$(device):cmd_evre_timestamp_get"){
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0xB3")
-  field(OUT, "@timing.proto evre_timestamp_get($(device)) $(PORT)")
 }
 
 ########################################################################

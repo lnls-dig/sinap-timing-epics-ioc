@@ -34,7 +34,7 @@ evg_ctrl_set{
 # OTP Registers [1 - 16]
 evre_otp_get {
     out "%(\$1:cmd_evre_otp_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV)04r%(\$1:width\$2RBV)04r";
+    in "%*r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2RBV)02r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV)04r%(\$1:width\$2RBV)04r";
 }
 
 evre_otp_ev_set {
