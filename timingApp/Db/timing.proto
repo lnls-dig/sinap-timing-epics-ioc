@@ -186,22 +186,22 @@ evg_seqramsw_set{
 # Timestamp register EVG [51]
 evg_timestamp_get{
     out "%(\$1:cmd_evg_timestamp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r\x00\x00\x00%(\$1:TIMESRCRBV)r";
+    in "%*r%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r\x00\x00\x00%(\$1:TIMESRCRBV.RVAL)r";
 }
 
 evg_timestamp_utc_set{
-    out "%(\$1:cmd_evg_timestamp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRCRBV)r";
+    out "%(\$1:cmd_evg_timestamp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRCRBV.RVAL)r";
     evg_timestamp_get;
 }
 
 # utc receives 0 causing it to be broadcast
 evg_timestamp_timesrc_set{
-    out "%(\$1:cmd_evg_timestamp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
+    out "%(\$1:cmd_evg_timestamp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC.RVAL)r";
     evg_timestamp_get;
 }
 
 evg_timestamp_set{
-    out "%(\$1:cmd_evg_timestamp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
+    out "%(\$1:cmd_evg_timestamp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC.RVAL)r";
     evg_timestamp_get;
 }
 
