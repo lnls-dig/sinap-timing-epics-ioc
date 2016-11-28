@@ -17,7 +17,15 @@ evre_ctrl_set {
 # Control and Status Register EVG [0]
 evg_ctrl_get {
     out "%(\$1:cmd_evg_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xc0%*04r%*04r%*02r%(\$1:seqstat_rfstat.RVAL)r%(\$1:seqen_enable.RVAL)r";
+    in "\xc0%*04r%*04r%*04r";
+}
+
+evg_ctrl_seqstat_rfstat_intr{
+    in "\xc0%*04r%*04r%*02r%r%*r";
+}
+
+evg_ctrl_seqen_enable_intr{
+    in "\xc0%*04r%*04r%*02r%*r%r";
 }
 
 evg_ctrl_seq_en_set{
@@ -109,7 +117,11 @@ eve_rf_set {
 # AC Line register [40]
 evg_acline_get {
     out "%(\$1:cmd_evg_acline_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xE8%*03r%(\$1:acenRBV.RVAL)r%*04r%(\$1:acdivRAW)04r";
+    in "\xE8%*03r%(\$1:acenRBV)r%*04r%*04r";
+}
+
+evg_acline_acdivraw_intr{
+    in "\xE8%*03r%*r%*04r%04r";
 }
 
 evg_acline_acen_set{
@@ -131,7 +143,7 @@ evg_acline_set{
 # Mux register [41 - 48]
 evg_mux_get {
     out "%(\$1:cmd_evg_mux_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen\$2RBV.RVAL)r%*04r%(\$1:muxdiv\$2RAW)04r";
+    in "%*r%*03r%(\$1:muxen\$2RBV.RVAL)r%*04r%*04r";
 }
 
 evg_mux_en_set{
@@ -149,6 +161,33 @@ evg_mux_set{
     evg_mux_get;
 }
 
+# Mux interrupts
+
+evg_mux_div0RAW_intr{
+    in "\xE9%*03r%*r%*04r%04r";
+}
+evg_mux_div1RAW_intr{
+    in "\xEA%*03r%*r%*04r%04r";
+}
+evg_mux_div2RAW_intr{
+    in "\xEB%*03r%*r%*04r%04r";
+}
+evg_mux_div3RAW_intr{
+    in "\xEC%*03r%*r%*04r%04r";
+}
+evg_mux_div4RAW_intr{
+    in "\xED%*03r%*r%*04r%04r";
+}
+evg_mux_div5RAW_intr{
+    in "\xEE%*03r%*r%*04r%04r";
+}
+evg_mux_div6RAW_intr{
+    in "\xEF%*03r%*r%*04r%04r";
+}
+evg_mux_div7RAW_intr{
+    in "\xF0%*03r%*r%*04r%04r";
+}
+
 ################################################################################
 # SEQRAM setting register [49]
 evg_seqramset_get {
@@ -158,10 +197,6 @@ evg_seqramset_get {
 
 evg_seqramset_set{
     out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr).2r\x00\x00\x00%(\$1:seqcode).1r%(\$1:seqtime).4r";
-    
-    #evg_seqramsw_get
-    #out "%(\$1:cmd_evg_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    #in "\xF2%*04r%*04r%*02r%(\$1:seqcountRBV.RVAL)02r";
 }
 
 ################################################################################
@@ -237,8 +272,8 @@ evr_conf_get {
 }
 
 evg_conf_get {
-    out "\xBF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFF%(\$1:alive)04r%*r%(\$1:rfdivRAW)r%*02r%*03r%(\$1:funselRBV)r";
+    out "%(\$1:cmd_evg_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xFF%*04r%*04r%*03r%(\$1:funselRBV)r";
 }
 
 evg_conf_funsel_set{
@@ -274,6 +309,16 @@ evr_conf_clk_set{
 evr_conf_set{
     out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode).1r\x00\x00\x00%(\$1:funsel).1r";
     evr_conf_get;
+}
+
+# Interrupts
+
+evg_conf_alive_intr{
+    in "\xFF%04r%*04r%*04r";
+}
+
+evg_conf_rfdivRAW_intr{
+    in "\xFF%*04r%*r%r%*02r%*04r";
 }
 
 ########################################################################
@@ -523,30 +568,32 @@ evr_upload{
 evg_upload{
 	# MUXs upload
     out "%(\$1:cmd_evg_mux_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen0RBV)r%*04r%(\$1:muxdiv0RAW)04r";
+    in "%*r%*03r%(\$1:muxen0RBV)r%*04r%*04r";
     #wait 100;
     out "%(\$1:cmd_evg_mux_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen1RBV)r%*04r%(\$1:muxdiv1RAW)04r";
+    in "%*r%*03r%(\$1:muxen1RBV)r%*04r%*04r";
     #wait 100;
     out "%(\$1:cmd_evg_mux_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen2RBV)r%*04r%(\$1:muxdiv2RAW)04r";
+    in "%*r%*03r%(\$1:muxen2RBV)r%*04r%*04r";
     #wait 100;
     out "%(\$1:cmd_evg_mux_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen3RBV)r%*04r%(\$1:muxdiv3RAW)04r";
+    in "%*r%*03r%(\$1:muxen3RBV)r%*04r%*04r";
     #wait 100;
     out "%(\$1:cmd_evg_mux_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen4RBV)r%*04r%(\$1:muxdiv4RAW)04r";
+    in "%*r%*03r%(\$1:muxen4RBV)r%*04r%*04r";
     #wait 100;
     out "%(\$1:cmd_evg_mux_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen5RBV)r%*04r%(\$1:muxdiv5RAW)04r";
+    in "%*r%*03r%(\$1:muxen5RBV)r%*04r%*04r";
     #wait 100;
     out "%(\$1:cmd_evg_mux_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen6RBV)r%*04r%(\$1:muxdiv6RAW)04r";
+    in "%*r%*03r%(\$1:muxen6RBV)r%*04r%*04r";
     #wait 100;
     out "%(\$1:cmd_evg_mux_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen7RBV)r%*04r%(\$1:muxdiv7RAW)04r";
+    in "%*r%*03r%(\$1:muxen7RBV)r%*04r%*04r";
     #wait 100;
     evg_acline_get;
     #wait 100;
+    evg_seqramsw_get;
+    evg_timestamp_get;
 }
 

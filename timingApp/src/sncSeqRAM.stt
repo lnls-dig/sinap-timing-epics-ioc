@@ -186,11 +186,11 @@ sync update_tg updateFlag;
     void swap(Event* *a, Event* *b);
     void updateEventPointerArray(int evNumber, int * code_arr,
 				 int * time_arr, int * mode_arr, int * control_arr);
-    int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
-					VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id);
+    int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
+							VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id);
 											
-    int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
-						VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id);
+    int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
+								VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id);
 }%
 
 %%//----------------------------------------
@@ -330,6 +330,10 @@ ss seq {
 
 	        numberOfWrites = 0;
 
+		%%// Force seqcountRBV to update
+		seqcount_proc = 1;
+		pvPut(seqcount_proc, SYNC);
+
 	}state Stopped
 
 	when(efTestAndClear(updateFlag) && update_tg){
@@ -367,8 +371,8 @@ ss seq {
 	   	StateMachineStatus = 6;
 		pvPut(StateMachineStatus, SYNC);
 
-		numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+		numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
+					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
 
 		%%// Force seqcountRBV to update
 		seqcount_proc = 1;
@@ -501,8 +505,8 @@ ss seq {
 
 		%%// Write to seqRAM 2
 		if(tbl_length > 0){
-			numberOfWrites = seqTwoWrite(eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-						pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+			numberOfWrites = seqTwoWrite(eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
+								pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
 
 			%%// Force seqcountRBV to update
 			seqcount_proc = 1;
@@ -536,6 +540,8 @@ ss seq {
 	    */}%
 
 	    printf("CheckSeq2Write Entry\n");
+
+	    printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
 	}
 
 	when(tbl_length == 0){
@@ -547,6 +553,8 @@ ss seq {
 	when(seqcount == numberOfWrites){
 
 		%{/* Successful Write */}%
+
+		printf("Condition entered!!!\n");
 
 		%%// Avoid when condition being entered again
 		numberOfWrites = -1;
@@ -685,14 +693,18 @@ ss seq {
 
 	        numberOfWrites = 0;
 
+		%%// Force seqcountRBV to update
+		seqcount_proc = 1;
+		pvPut(seqcount_proc, SYNC);
+
 	}state Restarting
 
 	when(seqs == 0 && seqen_rbv == 0 && seqcount == 0){
 
 		%{/* Write to SeqRAM 1 */}%
 
-		numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime, &seqcount,
-					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), pvIndex(seqcount));
+		numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
+					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
 
 		%%// Force seqcountRBV to update
 		seqcount_proc = 1;
@@ -944,13 +956,13 @@ ss reset_tg_pv{
 
 	   Arguments: First argument is the total number of events (ALWAYS and INJECTION).
 		      Second argument is the calling state set.
-		      Next four arguments are pointers to variables seqaddr, seqcode, seqtime, and seqcount.
-		      Following four arguments are the VAR_IDs of the variables seqaddr, seqcode, seqtime, and seqcount.
+		      Next three arguments are pointers to variables seqaddr, seqcode, and seqtime.
+		      Following three arguments are the VAR_IDs of the variables seqaddr, seqcode, and seqtime.
 
 	   Return: Number of write operations performed.	   
 	*/
-	int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
-				VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id){
+	int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
+						VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id){
 											
 		int i, maxdelay = 0, address = 0;
 
@@ -1024,13 +1036,13 @@ ss reset_tg_pv{
 	   Arguments: First argument is total number of events (ALWAYS and INJECTION).
 		      Second argument is the bucket array.
 		      Third argument is the length of the bucket array.
-		      Next four arguments are pointers to variables seqaddr, seqcode, seqtime, and seqcount.
-		      Following four arguments are the VAR_IDs of the variables seqaddr, seqcode, seqtime, and seqcount.
+		      Next three arguments are pointers to variables seqaddr, seqcode, and seqtime.
+		      Following three arguments are the VAR_IDs of the variables seqaddr, seqcode, and seqtime.
 
 	   Return: Number of write operations performed.	   
 	*/
-	int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime, int *pseqcount,
-				VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, VAR_ID seqcount_id){
+	int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
+								VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id){
 									
 		int i, j, seqdly, rfdly, maxdelay = 0, address = 0;
 
