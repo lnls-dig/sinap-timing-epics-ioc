@@ -11,11 +11,11 @@ record(bo, "$(device):enable") {
 
 record(mbbiDirect, "$(device):enableRAW") {
   field(DESC, "EVE enable status")
-  field(DTYP, "stream")
   field(NOBT, "1")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_ctrl_get($(device)) $(PORT) PP")
-  field(SCAN, "1 second")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_ctrl_enableRAW_intr $(PORT)")
   field(FLNK, "$(device):enableRBV")
 }
 
@@ -28,11 +28,12 @@ record(bi, "$(device):enableRBV") {
 
 record(mbbiDirect, "$(device):linkinhs") {
   field(DESC, "EVE link and inhs status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "6")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_ctrl_get($(device)) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_ctrl_linkinhs_intr $(PORT)")
   field(FLNK, "$(device):inhs")
 }
 
@@ -55,6 +56,9 @@ record(longout, "$(device):cmd_evre_ctrl_get") {
   field(DESC, "Command code to read Control Status reg")
   field(VAL, "0x80") # (0x80 | reg number)
   #field(ASG, "Reserved")
+  field(SCAN, "1 second")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_ctrl_get($(device)) $(PORT)")
 }
 
 record(longout, "$(device):cmd_evre_ctrl_set") {
@@ -163,16 +167,16 @@ record(calcout, "$(device):enpoltime0") {
   field(INPC, "$(device):time0.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime0RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime0RBV") {
   field(DESC, "OTP0 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),0) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime0RBV_intr $(PORT)")
   field(FLNK, "$(device):time0RBV")
 }
 
@@ -327,16 +331,16 @@ record(calcout, "$(device):enpoltime1") {
   field(INPC, "$(device):time1.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime1RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime1RBV") {
   field(DESC, "OTP1 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),1) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime1RBV_intr $(PORT)")
   field(FLNK, "$(device):time1RBV")
 }
 
@@ -491,16 +495,16 @@ record(calcout, "$(device):enpoltime2") {
   field(INPC, "$(device):time2.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime2RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime2RBV") {
   field(DESC, "OTP2 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),2) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime2RBV_intr $(PORT)")
   field(FLNK, "$(device):time2RBV")
 }
 
@@ -655,16 +659,16 @@ record(calcout, "$(device):enpoltime3") {
   field(INPC, "$(device):time3.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime3RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime3RBV") {
   field(DESC, "OTP3 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),3) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime3RBV_intr $(PORT)")
   field(FLNK, "$(device):time3RBV")
 }
 
@@ -819,16 +823,16 @@ record(calcout, "$(device):enpoltime4") {
   field(INPC, "$(device):time4.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime4RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime4RBV") {
   field(DESC, "OTP4 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),4) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime4RBV_intr $(PORT)")
   field(FLNK, "$(device):time4RBV")
 }
 
@@ -983,16 +987,16 @@ record(calcout, "$(device):enpoltime5") {
   field(INPC, "$(device):time5.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime5RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime5RBV") {
   field(DESC, "OTP5 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),5) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime5RBV_intr $(PORT)")
   field(FLNK, "$(device):time5RBV")
 }
 
@@ -1147,16 +1151,16 @@ record(calcout, "$(device):enpoltime6") {
   field(INPC, "$(device):time6.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime6RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime6RBV") {
   field(DESC, "OTP6 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),6) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime6RBV_intr $(PORT)")
   field(FLNK, "$(device):time6RBV")
 }
 
@@ -1311,16 +1315,16 @@ record(calcout, "$(device):enpoltime7") {
   field(INPC, "$(device):time7.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime7RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime7RBV") {
   field(DESC, "OTP7 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),7) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime7RBV_intr $(PORT)")
   field(FLNK, "$(device):time7RBV")
 }
 
@@ -1475,16 +1479,16 @@ record(calcout, "$(device):enpoltime8") {
   field(INPC, "$(device):time8.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime8RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime8RBV") {
   field(DESC, "OTP8 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),8) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime8RBV_intr $(PORT)")
   field(FLNK, "$(device):time8RBV")
 }
 
@@ -1639,16 +1643,16 @@ record(calcout, "$(device):enpoltime9") {
   field(INPC, "$(device):time9.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltime9RBV")
 }
 
 record(mbbiDirect, "$(device):enpoltime9RBV") {
   field(DESC, "OTP9 enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),9) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime9RBV_intr $(PORT)")
   field(FLNK, "$(device):time9RBV")
 }
 
@@ -1803,16 +1807,16 @@ record(calcout, "$(device):enpoltimeA") {
   field(INPC, "$(device):timeA.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltimeARBV")
 }
 
 record(mbbiDirect, "$(device):enpoltimeARBV") {
   field(DESC, "OTPA enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),A) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltimeARBV_intr $(PORT)")
   field(FLNK, "$(device):timeARBV")
 }
 
@@ -1967,16 +1971,16 @@ record(calcout, "$(device):enpoltimeB") {
   field(INPC, "$(device):timeB.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltimeBRBV")
 }
 
 record(mbbiDirect, "$(device):enpoltimeBRBV") {
   field(DESC, "OTPB enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),B) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltimeBRBV_intr $(PORT)")
   field(FLNK, "$(device):timeBRBV")
 }
 
@@ -2131,16 +2135,16 @@ record(calcout, "$(device):enpoltimeC") {
   field(INPC, "$(device):timeC.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltimeCRBV")
 }
 
 record(mbbiDirect, "$(device):enpoltimeCRBV") {
   field(DESC, "OTPC enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),C) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltimeCRBV_intr $(PORT)")
   field(FLNK, "$(device):timeCRBV")
 }
 
@@ -2295,16 +2299,16 @@ record(calcout, "$(device):enpoltimeD") {
   field(INPC, "$(device):timeD.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltimeDRBV")
 }
 
 record(mbbiDirect, "$(device):enpoltimeDRBV") {
   field(DESC, "OTPD enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),D) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltimeDRBV_intr $(PORT)")
   field(FLNK, "$(device):timeDRBV")
 }
 
@@ -2459,16 +2463,16 @@ record(calcout, "$(device):enpoltimeE") {
   field(INPC, "$(device):timeE.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltimeERBV")
 }
 
 record(mbbiDirect, "$(device):enpoltimeERBV") {
   field(DESC, "OTPE enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),E) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltimeERBV_intr $(PORT)")
   field(FLNK, "$(device):timeERBV")
 }
 
@@ -2623,16 +2627,16 @@ record(calcout, "$(device):enpoltimeF") {
   field(INPC, "$(device):timeF.VAL")
   #field(ASG, "Reserved")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):enpoltimeFRBV")
 }
 
 record(mbbiDirect, "$(device):enpoltimeFRBV") {
   field(DESC, "OTPF enable, polarity, and timestamp RBV")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_otp_get($(device),F) $(PORT)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltimeFRBV_intr $(PORT)")
   field(FLNK, "$(device):timeFRBV")
 }
 
@@ -2692,11 +2696,12 @@ record(longout, "$(device):cmd_evre_otp_getF") {
 
 record(mbbiDirect, "$(device):itl0RAW") {
   field(DESC, "EVE itl OUT0 raw status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),0) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl0RAW_intr $(PORT)")
   field(FLNK, "$(device):itl0RBV")
 }
 
@@ -2778,11 +2783,12 @@ record(longout, "$(device):cmd_evre_out_set0") {
 
 record(mbbiDirect, "$(device):itl1RAW") {
   field(DESC, "EVE itl OUT1 raw status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),1) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl1RAW_intr $(PORT)")
   field(FLNK, "$(device):itl1RBV")
 }
 
@@ -2864,11 +2870,12 @@ record(longout, "$(device):cmd_evre_out_set1") {
 
 record(mbbiDirect, "$(device):itl2RAW") {
   field(DESC, "EVE itl OUT2 raw status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),2) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl2RAW_intr $(PORT)")
   field(FLNK, "$(device):itl2RBV")
 }
 
@@ -2950,11 +2957,12 @@ record(longout, "$(device):cmd_evre_out_set2") {
 
 record(mbbiDirect, "$(device):itl3RAW") {
   field(DESC, "EVE itl OUT3 raw status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),3) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl3RAW_intr $(PORT)")
   field(FLNK, "$(device):itl3RBV")
 }
 
@@ -3036,11 +3044,12 @@ record(longout, "$(device):cmd_evre_out_set3") {
 
 record(mbbiDirect, "$(device):itl4RAW") {
   field(DESC, "EVE itl OUT4 raw status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),4) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl4RAW_intr $(PORT)")
   field(FLNK, "$(device):itl4RBV")
 }
 
@@ -3122,11 +3131,12 @@ record(longout, "$(device):cmd_evre_out_set4") {
 
 record(mbbiDirect, "$(device):itl5RAW") {
   field(DESC, "EVE itl OUT5 raw status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),5) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl5RAW_intr $(PORT)")
   field(FLNK, "$(device):itl5RBV")
 }
 
@@ -3208,11 +3218,12 @@ record(longout, "$(device):cmd_evre_out_set5") {
 
 record(mbbiDirect, "$(device):itl6RAW") {
   field(DESC, "EVE itl OUT6 raw status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),6) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl6RAW_intr $(PORT)")
   field(FLNK, "$(device):itl6RBV")
 }
 
@@ -3294,11 +3305,12 @@ record(longout, "$(device):cmd_evre_out_set6") {
 
 record(mbbiDirect, "$(device):itl7RAW") {
   field(DESC, "EVE itl OUT7 raw status")
-  field(DTYP, "stream")
   field(NOBT, "8")
   field(SHFT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),7) $(PORT) PP")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl7RAW_intr $(PORT)")
   field(FLNK, "$(device):itl7RBV")
 }
 
@@ -3409,15 +3421,10 @@ record(mbbo, "$(device):TIMESRC"){
 
 record(longin, "$(device):UTCRBV"){
   field(DESC, "Timestamp UTC field RBV")
-  field(SCAN, "1 second")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_get($(device)) $(PORT)")
-  field(FLNK, "$(device):subsecondRBV")
 }
 
 record(longin, "$(device):subsecondRBV"){
   field(DESC, "Timestamp subsecond field RBV")
-  field(FLNK, "$(device):TIMESRCRBV")
 }
 
 record(mbbi, "$(device):TIMESRCRBV"){
@@ -3430,16 +3437,22 @@ record(mbbi, "$(device):TIMESRCRBV"){
   field(TWVL, "2")
   field(THST, "INTERNAL")
   field(THVL, "3")
-}
-
-record(longout, "$(device):cmd_evre_timestamp_set"){
-  field(DESC, "cmd")
-  field(VAL, "0x73")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_timestamp_timesrcRBV_intr $(PORT)")
 }
 
 record(longout, "$(device):cmd_evre_timestamp_get"){
   field(DESC, "cmd")
   field(VAL, "0xB3")
+  field(SCAN, "1 second")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_timestamp_get($(device)) $(PORT)")
+}
+
+record(longout, "$(device):cmd_evre_timestamp_set"){
+  field(DESC, "cmd")
+  field(VAL, "0x73")
 }
 
 ########################################################################
@@ -3515,8 +3528,9 @@ record(longin, "$(device):LOGCOUNT"){
 record(mbbiDirect, "$(device):LOGCTRLRBV"){
   field(DESC, "Timestamp log control")
   field(NOBT, "8")
+  field(SCAN, "I/O Intr")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evre_timestamp_log_ctrlRBV_intr $(PORT)")
   field(FLNK, "$(device):STOPLOGRBV")
 }
 
@@ -3576,9 +3590,9 @@ record(longout, "$(device):cmd_evre_timestamp_log_set"){
 
 record(longin, "$(device):alive") {
   field(DESC, "EVE alive")
+  field(SCAN, "I/O Intr")
   field(DTYP, "stream")
-  field(SCAN, "1 second")
-  field(INP, "@timing.proto eve_conf_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evre_conf_alive_intr $(PORT)")
   field(FLNK, "$(device):statdevcalc")
 }
 
@@ -3595,6 +3609,14 @@ record(longout, "$(device):clkmode"){
   field(DTYP, "stream")
   field(VAL, "16")
   field(OUT, "@timing.proto eve_conf_set($(device)) $(PORT)")
+}
+
+record(longout, "$(device):cmd_eve_conf_get"){
+  field(DESC, "cmd")
+  field(VAL, "0xBF")
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(OUT, "@timing.proto eve_conf_get($(device)) $(PORT)")
 }
 
 record(longout, "$(device):cmd_eve_conf_set") {

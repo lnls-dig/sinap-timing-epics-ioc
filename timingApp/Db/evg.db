@@ -686,11 +686,17 @@ record(mbbi, "$(device):TIMESRCRBV"){
   field(TWVL, "2")
   field(THST, "INTERNAL")
   field(THVL, "3")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_timestamp_timesrcRBV_intr $(PORT)")
 }
 
 record(longout, "$(device):cmd_evg_timestamp_get"){
   field(DESC, "cmd")
   field(VAL, "0xB3")
+  field(SCAN, "1 second")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_timestamp_get($(device)) $(PORT)")
 }
 
 record(longout, "$(device):cmd_evg_timestamp_set"){
