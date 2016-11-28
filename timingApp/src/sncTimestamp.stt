@@ -1,0 +1,234 @@
+program sncTimestamp
+
+%%//----------------------------------------
+%%// 	        Variables
+%%//----------------------------------------
+
+
+
+%%//----------------------------------------
+%%// 	       Monitored PVs
+%%//----------------------------------------
+
+string filepath;
+assign filepath to "$(device):FILEPATH";
+monitor filepath;
+
+int sample_cntr;
+assign sample_cntr to "$(device):SAMPLING_CNTR";
+monitor sample_cntr;
+
+float sample_rate;
+assign sample_rate to "$(device):SAMPLE_RATE";
+monitor sample_rate;
+
+int pull_data;
+assign pull_data to "$(device):pull";
+monitor pull_data;
+
+int stoplogRBV;
+assign stoplogRBV to "$(device):STOPLOGRBV";
+monitor stoplogRBV;
+evflag stoplogFlag;
+sync stoplogRBV stoplogFlag;
+
+int hw_buffer_empty;
+assign hw_buffer_empty to "$(device):EMPTY";
+monitor hw_buffer_empty;
+
+%%//int logsoftcount;
+%%//assign logsoftcount to "$(device):LOGSOFTCNT";
+%%//monitor logsoftcount;
+
+int buffer_cnt;
+assign buffer_cnt to "$(device):EVENTbuffer.NUSE";
+monitor buffer_cnt;
+
+int reset_utc_buff;
+assign reset_utc_buff to "$(device):UTCbuffer.RES";
+
+int reset_subsec_buff;
+assign reset_subsec_buff to "$(device):SUBSECbuffer.RES";
+
+int reset_event_buff;
+assign reset_event_buff to "$(device):EVENTbuffer.RES";
+
+int utc_buff[16384];
+assign utc_buff to "$(device):UTCbuffer";
+monitor utc_buff;
+
+int subsec_buff[16384];
+assign subsec_buff to "$(device):SUBSECbuffer";
+monitor subsec_buff;
+
+int event_buff[16384];
+assign event_buff to "$(device):EVENTbuffer";
+monitor event_buff;
+
+%%//----------------------------------------
+%%// 	  Escaped C Code Declaration
+%%//----------------------------------------
+
+%%#include <stdlib.h>
+%%#include <stdio.h>
+
+%{
+    int writeToFile(string filename, /*int soft_count,*/ int buffer_count, int UTCBuffer[], int SUBSECBuffer[], int EVBuffer[]);
+
+}%
+
+%%//----------------------------------------
+%%// 	    State Notation Language
+%%//----------------------------------------
+
+ss timestamp {
+    state monitoring {
+	when(efTestAndClear(stoplogFlag) && stoplogRBV){
+
+		%{/* Perform stop log procedure */}%
+
+	} state stopProcedure
+	
+	when (buffer_cnt >= sample_cntr){
+
+		%{/* 
+		     -Copy array elements to file
+		     -Reset LOGSOFTCNT
+		     -Reset buffers
+		*/}%
+
+		%%// Read buffers (only necessary if it's not possible to monitor)
+		pvGet(utc_buff, SYNC);
+		pvGet(subsec_buff, SYNC);
+		pvGet(event_buff, SYNC);
+
+		%%// Copy buffers to txt file
+		if(writeToFile(filepath, buffer_cnt, utc_buff, subsec_buff, event_buff))
+		{
+			%%// Reset log soft count
+			%%//logsoftcount = 0;
+			%%//pvPut(logsoftcount, SYNC);
+
+			%%// Reset buffers
+			reset_utc_buff = 1;
+			reset_subsec_buff = 1;
+			reset_event_buff = 1;
+			pvPut(reset_utc_buff, SYNC);
+			pvPut(reset_subsec_buff, SYNC);
+			pvPut(reset_event_buff, SYNC);
+		}
+		else
+		{
+			printf("Error: Problem storing timestamp info.\n");
+		}
+
+	} state monitoring
+
+	when(!hw_buffer_empty && delay(sample_rate)){
+
+		%{/* Pull timestamp data */}%
+
+		pull_data = 1;
+		pvPut(pull_data, SYNC);
+	} state monitoring
+    }
+
+    state stopProcedure{
+	when(hw_buffer_empty){
+
+		%{/*
+		   -Wait for hardware buffer to get empty
+		   -Store remaining timestamp information
+		   -Reset LOGSOFTCNT
+		   -Reset buffers
+		*/}%
+	
+		%%// Copy buffers to txt file
+		if(writeToFile(filepath, buffer_cnt, utc_buff, subsec_buff, event_buff))
+		{
+			%%// Reset log soft count
+			%%//logsoftcount = 0;
+			%%//pvPut(logsoftcount, SYNC);
+
+			%%// Reset buffers
+			reset_utc_buff = 1;
+			reset_subsec_buff = 1;
+			reset_event_buff = 1;
+			pvPut(reset_utc_buff, SYNC);
+			pvPut(reset_subsec_buff, SYNC);
+			pvPut(reset_event_buff, SYNC);
+		}
+		else		
+		{
+			printf("Error: Problem storing timestamp info.\n");
+		}
+
+	} state restartProcedure
+    }
+
+    state restartProcedure{
+	when(){
+
+	    %{/* Restart timestamping when adequate */}%
+
+	} state monitoring
+    }
+}
+
+%%//----------------------------------------
+%%// 	  Escaped C Code Definition
+%%//----------------------------------------
+
+%{
+
+	/*
+	   Name: writeToFile
+
+	   Description: Write the UTC, subsecond, and event timestamp information to a given file.
+
+	   Arguments: First argument is the file name.
+		      Second argument is the count of elements in each buffer.
+		      Third argument is the number of elements in each buffer.
+		      Fourth argument is the UTC data array.
+		      Fifth argument is the subsecond data array.
+		      Sixth argument is the event data array.
+
+	   Return: 0-> Fail, 1-> Success.
+	*/
+	int writeToFile(string filename, /*int soft_count,*/ int buffer_count, int UTCBuffer[], int SUBSECBuffer[], int EVBuffer[]){
+
+		int i;
+
+		// error check
+		/*if(soft_count > buffer_count){
+
+			printf("Error: Received timestamps count is greater than the number of stored timestamps.");
+			return 0;
+		}*/
+
+		FILE* fp = fopen(filename, "a");
+
+		// could not open
+		if(fp == NULL){
+
+			printf("Error: Unable to open file: %s.\n", filename);		
+			return 0;
+		}
+
+		// Append new timestamp information to file
+		/*for(i = buffer_count - soft_count; i < buffer_count; i++){
+			fprintf(fp, "%i\t%i\t%i\n", EVBuffer[i], UTCBuffer[i], SUBSECBuffer[i]);
+		}*/
+
+		for(i = 0; i < buffer_count; i++){
+			fprintf(fp, "%i\t%i\t%i\n", EVBuffer[i], UTCBuffer[i], SUBSECBuffer[i]);
+		}
+
+		// close file
+		fclose(fp);
+
+		// success
+		return 1;
+	}
+
+}%

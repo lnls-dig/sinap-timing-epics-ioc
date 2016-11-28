@@ -216,10 +216,6 @@ evg_acline_get {
     in "\xE8%*03r%(\$1:acenRBV)r%*04r%*04r";
 }
 
-evg_acline_acdivraw_intr{
-    in "\xE8%*03r%*r%*04r%04r";
-}
-
 evg_acline_acen_set{
     out "%(\$1:cmd_evg_acline_set).1r\x00\x00\x00%(\$1:acen).1r\x00\x00\x00\x00%(\$1:acdivRAW).4r";
     evg_acline_get;
@@ -233,6 +229,12 @@ evg_acline_acdiv_set{
 evg_acline_set{
     out "%(\$1:cmd_evg_acline_set).1r\x00\x00\x00%(\$1:acen).1r\x00\x00\x00\x00%(\$1:acdiv.RVAL).4r";
     evg_acline_get;
+}
+
+# Interrupts
+
+evg_acline_acdivraw_intr{
+    in "\xE8%*03r%*r%*04r%04r";
 }
 
 ################################################################################

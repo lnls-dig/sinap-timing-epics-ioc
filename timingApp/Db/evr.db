@@ -3547,6 +3547,7 @@ record(bi, "$(device):FULL"){
 record(bi, "$(device):EMPTY"){
   field(DESC, "Timestamp buffer empty flag")
   field(INP, "$(device):LOGCTRLRBV.B0")
+  field(FLNK, "$(device):validSample")
 }
 
 record(longin, "$(device):LOGUTC"){
@@ -3560,6 +3561,68 @@ record(longin, "$(device):LOGSUBSEC"){
 record(longin, "$(device):LOGEVENT"){
   field(DESC, "Timestamp event from log")
 }
+
+record(stringout, "$(device):FILEPATH"){
+  field(DESC, "Path to file storing timestamp data")
+  field(VAL, "/home/Desktop/TimestampLog.txt")
+}
+
+record(longout, "$(device):SAMPLING_CNTR"){
+  field(DESC, "Minimum timestamp samples before storage")
+  field(VAL, "50")
+}
+
+record(ao, "$(device):SAMPLE_RATE"){
+  field(DESC, "Timestamp log sampling rate")
+  field(VAL, "2.0")
+}
+
+#record(longout, "$(device):pullBlock"){
+#  field(DESC, "Pull a block of timestamps")
+#  field(VAL, "16")
+#  field(DTYP, "stream")
+#  field(OUT, "@timing.proto evre_timestamp_log_pullBlock_set($(device)) $(PORT)")
+#}
+
+record(calcout, "$(device):validSample"){
+  field(DESC, "Timestamp sample validation")
+  field(INPA, "$(device):PULLRBV")
+  field(INPB, "$(device):LOGUTC")
+  field(CALC, "(A > 0) && (B > 0)")
+  field(OUT, "$(device):UTCbuffer.PROC")
+  field(VAL, "0")
+}
+
+record(compress, "$(device):UTCbuffer"){
+  field(DESC, "UTC circular buffer")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "16384")
+  field(INP, "$(device):LOGUTC")
+  field(FLNK, "$(device):SUBSECbuffer")
+}
+
+record(compress, "$(device):SUBSECbuffer"){
+  field(DESC, "SUBSEC circular buffer")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "16384")
+  field(INP, "$(device):LOGSUBSEC")
+  field(FLNK, "$(device):EVENTbuffer")
+}
+
+record(compress, "$(device):EVENTbuffer"){
+  field(DESC, "Event circular buffer")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "16384")
+  field(INP, "$(device):LOGEVENT")
+#  field(FLNK, "$(device):LOGSOFTCNT")
+}
+
+#record(calc, "$(device):LOGSOFTCNT"){
+#  field(DESC, "Software buffer counter")
+#  field(INPA, "VAL")
+#  field(CALC, "A + 1")
+#  field(VAL, "0")
+#}
 
 record(longout, "$(device):cmd_evre_timestamp_log_get"){
   field(DESC, "cmd")
