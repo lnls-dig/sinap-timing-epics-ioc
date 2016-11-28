@@ -6,9 +6,7 @@ record(mbbiDirect, "$(device):seqen_enable") {
   field(DTYP, "stream")
   field(NOBT, "8")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evg_ctrl_get($(device)) $(PORT) PP")
-#  field(SCAN, "1 second")
-#  field(PRIO, "HIGH")
+  field(INP, "@timing.proto evg_ctrl_get($(device)) $(PORT)")
   field(FLNK, "$(device):enableRBV")
 }
 
@@ -34,7 +32,7 @@ record(mbbiDirect, "$(device):seqstat_rfstat") {
   field(SHFT, "3")
   field(SCAN, ".1 second")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evg_ctrl_get($(device)) $(PORT) PP")
+  field(INP, "@timing.proto evg_ctrl_get($(device)) $(PORT)")
   field(FLNK, "$(device):rfstat")
 }
 
@@ -51,14 +49,7 @@ record(calc, "$(device):seqstat") {
   field(INPA, "$(device):seqstat_rfstat")
   #field(ASG, "Reserved")
   field(CALC, "A&3")
-}
-
-record(longout, "$(device):cmd_evg_ctrl_get") {
-  field(DESC, "Command code to read Control Status reg")
-  field(DTYP, "stream")
-  field(VAL, "0x80") # (0x80 | reg number)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_ctrl_get($(device)) $(PORT)")
+  field(FLNK, "$(device):seqen_enable")
 }
 
 record(calcout, "$(device):SEQEN_ENABLE") {
@@ -103,11 +94,15 @@ record(bo, "$(device):enable"){
   field(FLNK, "$(device):EVGEN")
 }
 
+record(longout, "$(device):cmd_evg_ctrl_get") {
+  field(DESC, "Command code to read Control Status reg")
+  field(VAL, "0x80") # (0x80 | reg number)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_ctrl_set") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x40")
-  field(OUT, "@timing.proto evg_ctrl_set($(device)) $(PORT)")
 }
 
 ########################################################################
@@ -115,10 +110,8 @@ record(longout, "$(device):cmd_evg_ctrl_set") {
 
 record(bi, "$(device):acenRBV") {
   field(DESC, "EVG AC line input enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_acline_get($(device)) $(PORT) PP")
 }
 
 record(longin, "$(device):acdivRAW") {
@@ -136,10 +129,8 @@ record(calc, "$(device):acdivRBV") {
 
 record(longout, "$(device):cmd_evg_acline_get") {
   field(DESC, "Command code to read AC Line register")
-  field(DTYP, "stream")
   field(VAL, "0xA8") # (0x80 | reg number=40)
   #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_acline_get($(device)) $(PORT)")
 }
 
 record(bo, "$(device):acen"){
@@ -161,9 +152,7 @@ record(ao, "$(device):acdiv"){
 
 record(longout, "$(device):cmd_evg_acline_set") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x68")
-  field(OUT, "@timing.proto evg_acline_set($(device)) $(PORT)")
 }
 
 ########################################################################
@@ -171,10 +160,8 @@ record(longout, "$(device):cmd_evg_acline_set") {
 
 record(bi, "$(device):muxen0RBV") {
   field(DESC, "EVG Mux0 enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_mux_get($(device),0) $(PORT) PP")
 }
 
 record(longin, "$(device):muxdiv0RAW") {
@@ -188,14 +175,6 @@ record(calc, "$(device):muxdiv0RBV") {
   field(DESC, "EVG Mux0 frequency divider")
   field(INPA, "$(device):muxdiv0RAW")
   field(CALC, "A+1")
-}
-
-record(longout, "$(device):cmd_evg_mux_get0") {
-  field(DESC, "Command code to read Mux0 register")
-  field(DTYP, "stream")
-  field(VAL, "0xA9") # (0x80 | reg number=41)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_mux_get($(device),0) $(PORT)")
 }
 
 record(bo, "$(device):muxen0"){
@@ -215,11 +194,16 @@ record(ao, "$(device):muxdiv0"){
   field(OUT, "@timing.proto evg_mux_div_set($(device),0) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_mux_get0") {
+  field(DESC, "Command code to read Mux0 register")
+  field(VAL, "0xA9") # (0x80 | reg number=41)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_mux_set0") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x69")
-  field(OUT, "@timing.proto evg_mux_set($(device),0) $(PORT)")
+  #field(ASG, "Reserved")
 }
 
 ########################################################################
@@ -227,10 +211,8 @@ record(longout, "$(device):cmd_evg_mux_set0") {
 
 record(bi, "$(device):muxen1RBV") {
   field(DESC, "EVG Mux1 enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_mux_get($(device),1) $(PORT) PP")
 }
 
 record(longin, "$(device):muxdiv1RAW") {
@@ -244,14 +226,6 @@ record(calc, "$(device):muxdiv1RBV") {
   field(DESC, "EVG Mux1 frequency divider")
   field(INPA, "$(device):muxdiv1RAW")
   field(CALC, "A+1")
-}
-
-record(longout, "$(device):cmd_evg_mux_get1") {
-  field(DESC, "Command code to read Mux1 register")
-  field(DTYP, "stream")
-  field(VAL, "0xAA") # (0x80 | reg number=42)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_mux_get($(device),1) $(PORT)")
 }
 
 record(bo, "$(device):muxen1"){
@@ -271,11 +245,15 @@ record(ao, "$(device):muxdiv1"){
   field(OUT, "@timing.proto evg_mux_div_set($(device),1) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_mux_get1") {
+  field(DESC, "Command code to read Mux1 register")
+  field(VAL, "0xAA") # (0x80 | reg number=42)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_mux_set1") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x6A")
-  field(OUT, "@timing.proto evg_mux_set($(device),1) $(PORT)")
 }
 
 ########################################################################
@@ -283,10 +261,8 @@ record(longout, "$(device):cmd_evg_mux_set1") {
 
 record(bi, "$(device):muxen2RBV") {
   field(DESC, "EVG Mux2 enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_mux_get($(device),2) $(PORT) PP")
 }
 
 record(longin, "$(device):muxdiv2RAW") {
@@ -300,14 +276,6 @@ record(calc, "$(device):muxdiv2RBV") {
   field(DESC, "EVG Mux2 frequency divider")
   field(INPA, "$(device):muxdiv2RAW")
   field(CALC, "A+1")
-}
-
-record(longout, "$(device):cmd_evg_mux_get2") {
-  field(DESC, "Command code to read Mux2 register")
-  field(DTYP, "stream")
-  field(VAL, "0xAB") # (0x80 | reg number=43)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_mux_get($(device),2) $(PORT)")
 }
 
 record(bo, "$(device):muxen2"){
@@ -327,11 +295,15 @@ record(ao, "$(device):muxdiv2"){
   field(OUT, "@timing.proto evg_mux_div_set($(device),2) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_mux_get2") {
+  field(DESC, "Command code to read Mux2 register")
+  field(VAL, "0xAB") # (0x80 | reg number=43)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_mux_set2") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x6B")
-  field(OUT, "@timing.proto evg_mux_set($(device),2) $(PORT)")
 }
 
 ########################################################################
@@ -339,10 +311,8 @@ record(longout, "$(device):cmd_evg_mux_set2") {
 
 record(bi, "$(device):muxen3RBV") {
   field(DESC, "EVG Mux3 enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_mux_get($(device),3) $(PORT) PP")
 }
 
 record(longin, "$(device):muxdiv3RAW") {
@@ -356,14 +326,6 @@ record(calc, "$(device):muxdiv3RBV") {
   field(DESC, "EVG Mux3 frequency divider")
   field(INPA, "$(device):muxdiv3RAW")
   field(CALC, "A+1")
-}
-
-record(longout, "$(device):cmd_evg_mux_get3") {
-  field(DESC, "Command code to read Mux3 register")
-  field(DTYP, "stream")
-  field(VAL, "0xAC") # (0x80 | reg number=44)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_mux_get($(device),3) $(PORT)")
 }
 
 record(bo, "$(device):muxen3"){
@@ -383,11 +345,15 @@ record(ao, "$(device):muxdiv3"){
   field(OUT, "@timing.proto evg_mux_div_set($(device),3) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_mux_get3") {
+  field(DESC, "Command code to read Mux3 register")
+  field(VAL, "0xAC") # (0x80 | reg number=44)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_mux_set3") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x6C")
-  field(OUT, "@timing.proto evg_mux_set($(device),3) $(PORT)")
 }
 
 ########################################################################
@@ -395,10 +361,8 @@ record(longout, "$(device):cmd_evg_mux_set3") {
 
 record(bi, "$(device):muxen4RBV") {
   field(DESC, "EVG Mux4 enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_mux_get($(device),4) $(PORT) PP")
 }
 
 record(longin, "$(device):muxdiv4RAW") {
@@ -412,14 +376,6 @@ record(calc, "$(device):muxdiv4RBV") {
   field(DESC, "EVG Mux4 frequency divider")
   field(INPA, "$(device):muxdiv4RAW")
   field(CALC, "A+1")
-}
-
-record(longout, "$(device):cmd_evg_mux_get4") {
-  field(DESC, "Command code to read Mux4 register")
-  field(DTYP, "stream")
-  field(VAL, "0xAD") # (0x80 | reg number=45)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_mux_get($(device),4) $(PORT)")
 }
 
 record(bo, "$(device):muxen4"){
@@ -439,11 +395,15 @@ record(ao, "$(device):muxdiv4"){
   field(OUT, "@timing.proto evg_mux_div_set($(device),4) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_mux_get4") {
+  field(DESC, "Command code to read Mux4 register")
+  field(VAL, "0xAD") # (0x80 | reg number=45)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_mux_set4") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x6D")
-  field(OUT, "@timing.proto evg_mux_set($(device),4) $(PORT)")
 }
 
 ########################################################################
@@ -451,10 +411,8 @@ record(longout, "$(device):cmd_evg_mux_set4") {
 
 record(bi, "$(device):muxen5RBV") {
   field(DESC, "EVG Mux5 enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_mux_get($(device),5) $(PORT) PP")
 }
 
 record(longin, "$(device):muxdiv5RAW") {
@@ -468,14 +426,6 @@ record(calc, "$(device):muxdiv5RBV") {
   field(DESC, "EVG Mux5 frequency divider")
   field(INPA, "$(device):muxdiv5RAW")
   field(CALC, "A+1")
-}
-
-record(longout, "$(device):cmd_evg_mux_get5") {
-  field(DESC, "Command code to read Mux5 register")
-  field(DTYP, "stream")
-  field(VAL, "0xAE") # (0x80 | reg number=46)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_mux_get($(device),5) $(PORT)")
 }
 
 record(bo, "$(device):muxen5"){
@@ -495,11 +445,15 @@ record(ao, "$(device):muxdiv5"){
   field(OUT, "@timing.proto evg_mux_div_set($(device),5) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_mux_get5") {
+  field(DESC, "Command code to read Mux5 register")
+  field(VAL, "0xAE") # (0x80 | reg number=46)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_mux_set5") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x6E")
-  field(OUT, "@timing.proto evg_mux_set($(device),5) $(PORT)")
 }
 
 ########################################################################
@@ -507,10 +461,8 @@ record(longout, "$(device):cmd_evg_mux_set5") {
 
 record(bi, "$(device):muxen6RBV") {
   field(DESC, "EVG Mux6 enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_mux_get($(device),6) $(PORT) PP")
 }
 
 record(longin, "$(device):muxdiv6RAW") {
@@ -524,14 +476,6 @@ record(calc, "$(device):muxdiv6RBV") {
   field(DESC, "EVG Mux6 frequency divider")
   field(INPA, "$(device):muxdiv6RAW")
   field(CALC, "A+1")
-}
-
-record(longout, "$(device):cmd_evg_mux_get6") {
-  field(DESC, "Command code to read Mux6 register")
-  field(DTYP, "stream")
-  field(VAL, "0xAF") # (0x80 | reg number=47)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_mux_get($(device),6) $(PORT)")
 }
 
 record(bo, "$(device):muxen6"){
@@ -551,11 +495,15 @@ record(ao, "$(device):muxdiv6"){
   field(OUT, "@timing.proto evg_mux_div_set($(device),6) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_mux_get6") {
+  field(DESC, "Command code to read Mux6 register")
+  field(VAL, "0xAF") # (0x80 | reg number=47)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_mux_set6") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x6F")
-  field(OUT, "@timing.proto evg_mux_set($(device),6) $(PORT)")
 }
 
 ########################################################################
@@ -563,10 +511,8 @@ record(longout, "$(device):cmd_evg_mux_set6") {
 
 record(bi, "$(device):muxen7RBV") {
   field(DESC, "EVG Mux7 enable status")
-  field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "@timing.proto evg_mux_get($(device),7) $(PORT) PP")
 }
 
 record(longin, "$(device):muxdiv7RAW") {
@@ -580,14 +526,6 @@ record(calc, "$(device):muxdiv7RBV") {
   field(DESC, "EVG Mux7 frequency divider")
   field(INPA, "$(device):muxdiv7RAW")
   field(CALC, "A+1")
-}
-
-record(longout, "$(device):cmd_evg_mux_get7") {
-  field(DESC, "Command code to read Mux7 register")
-  field(DTYP, "stream")
-  field(VAL, "0xB0") # (0x80 | reg number=48)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_mux_get($(device),7) $(PORT)")
 }
 
 record(bo, "$(device):muxen7"){
@@ -607,11 +545,15 @@ record(ao, "$(device):muxdiv7"){
   field(OUT, "@timing.proto evg_mux_div_set($(device),7) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_mux_get7") {
+  field(DESC, "Command code to read Mux7 register")
+  field(VAL, "0xB0") # (0x80 | reg number=48)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_mux_set7") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x70")
-  field(OUT, "@timing.proto evg_mux_set($(device),7) $(PORT)")
 }
 
 ########################################################################
@@ -619,30 +561,16 @@ record(longout, "$(device):cmd_evg_mux_set7") {
 
 record(mbbiDirect, "$(device):seqaddrRBV") {
   field(DESC, "EVG seqaddr status")
-  field(DTYP, "stream")
   field(NOBT, "14")
-  field(INP, "@timing.proto evg_seqramset_get($(device)) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):seqcodeRBV") {
   field(DESC, "EVG seqcode status")
-  field(DTYP, "stream")
   field(NOBT, "8")
-  field(INP, "@timing.proto evg_seqramset_get($(device)) $(PORT) PP")
 }
 
 record(longin, "$(device):seqtimeRBV") {
   field(DESC, "EVG seqtime status")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_seqramset_get($(device)) $(PORT) PP")
-}
-
-record(longout, "$(device):cmd_evg_seqramset_get") {
-  field(DESC, "Command code to read SEQRAM setting reg")
-  field(DTYP, "stream")
-  field(VAL, "0xB1") # (0x80 | reg number=49)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_seqramset_get($(device)) $(PORT)")
 }
 
 record(longout, "$(device):seqaddr"){
@@ -662,6 +590,12 @@ record(longout, "$(device):seqtime"){
   field(PRIO, "HIGH")
 }
 
+record(longout, "$(device):cmd_evg_seqramset_get") {
+  field(DESC, "Command code to read SEQRAM setting reg")
+  field(VAL, "0xB1") # (0x80 | reg number=49)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_seqramset_set") {
   field(DESC, "cmd")
   field(VAL, "0x71")
@@ -673,17 +607,7 @@ record(longout, "$(device):cmd_evg_seqramset_set") {
 
 record(mbbiDirect, "$(device):seqcountRBV") {
   field(DESC, "EVG seqcount status")
-  field(DTYP, "stream")
   field(NOBT, "14")
-  field(INP, "@timing.proto evg_seqramsw_get($(device)) $(PORT) PP")
-}
-
-record(longout, "$(device):cmd_evg_seqramsw_get") {
-  field(DESC, "Command code to read SEQRAM switch reg")
-  field(DTYP, "stream")
-  field(VAL, "0xB2") # (0x80 | reg number=50)
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evg_seqramsw_get($(device)) $(PORT)")
 }
 
 record(longout, "$(device):seqram_switch"){
@@ -692,11 +616,15 @@ record(longout, "$(device):seqram_switch"){
   field(OUT, "@timing.proto evg_seqramsw_set($(device)) $(PORT)")
 }
 
+record(longout, "$(device):cmd_evg_seqramsw_get") {
+  field(DESC, "Command code to read SEQRAM switch reg")
+  field(VAL, "0xB2") # (0x80 | reg number=50)
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evg_seqramsw_set") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x72")
-  field(OUT, "@timing.proto evg_seqramsw_set($(device)) $(PORT)")
 }
 
 ########################################################################
@@ -787,8 +715,6 @@ record(calc, "$(device):rfdivRBV") {
 
 record(longin, "$(device):funselRBV") {
   field(DESC, "EVG function select status")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_conf_get($(device)) $(PORT) PP")
 }
 
 record(longout, "$(device):funsel") {
@@ -809,9 +735,7 @@ record(ao, "$(device):rfdiv"){
 
 record(longout, "$(device):cmd_evg_conf_set") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x7F")
-  field(OUT, "@timing.proto evg_conf_set($(device)) $(PORT)")
 }
 
 ########################################################################

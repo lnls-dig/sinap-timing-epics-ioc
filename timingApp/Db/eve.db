@@ -53,18 +53,14 @@ record(bi, "$(device):link") {
 
 record(longout, "$(device):cmd_evre_ctrl_get") {
   field(DESC, "Command code to read Control Status reg")
-  field(DTYP, "stream")
   field(VAL, "0x80") # (0x80 | reg number)
   #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_ctrl_get($(device)) $(PORT)")
 }
 
 record(longout, "$(device):cmd_evre_ctrl_set") {
   field(DESC, "Command code to write Control Status reg")
-  field(DTYP, "stream")
   field(VAL, "0x40") # (0x40 | reg number)
   #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_ctrl_set($(device)) $(PORT)")
 }
 
 ########################################################################
@@ -2711,36 +2707,22 @@ record(bi, "$(device):itl0RBV") {
   field(INP, "$(device):itl0RAW.B0")
 }
 
-record(longout, "$(device):cmd_evre_out_get0") {
-  field(DESC, "Command code to read OUT0")
-  field(DTYP, "stream")
-  field(VAL, "0x91") # (0x80 | (reg number=17))
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_out_get($(device),0) $(PORT)")
-}
-
 record(mbbiDirect, "$(device):sel0RBV") {
   field(DESC, "EVE itl OUT0 raw status")
-  field(DTYP, "stream")
   field(NOBT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),0) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):finedly0RBV") {
   field(DESC, "EVE fine delay OUT0 status")
-  field(DTYP, "stream")
   field(NOBT, "10")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),0) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):rfdly0RBV") {
   field(DESC, "EVE RF delay OUT0 status")
-  field(DTYP, "stream")
   field(NOBT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),0) $(PORT) PP")
 }
 
 record(longout, "$(device):rfdly0"){
@@ -2780,11 +2762,15 @@ record(bo, "$(device):itl0"){
   field(FLNK, "$(device):ITL0")
 }
 
+record(longout, "$(device):cmd_evre_out_get0") {
+  field(DESC, "Command code to read OUT0")
+  field(VAL, "0x91") # (0x80 | (reg number=17))
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evre_out_set0") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x51")
-  field(OUT, "@timing.proto evre_out_set($(device),0) $(PORT)")
 }
 
 ########################################################################
@@ -2807,36 +2793,22 @@ record(bi, "$(device):itl1RBV") {
   field(INP, "$(device):itl1RAW.B0")
 }
 
-record(longout, "$(device):cmd_evre_out_get1") {
-  field(DESC, "Command code to read OUT1")
-  field(DTYP, "stream")
-  field(VAL, "0x92") # (0x80 | (reg number=18))
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_out_get($(device),1) $(PORT)")
-}
-
 record(mbbiDirect, "$(device):sel1RBV") {
   field(DESC, "EVE itl OUT1 raw status")
-  field(DTYP, "stream")
   field(NOBT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),1) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):finedly1RBV") {
   field(DESC, "EVE fine delay OUT1 status")
-  field(DTYP, "stream")
   field(NOBT, "10")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),1) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):rfdly1RBV") {
   field(DESC, "EVE RF delay OUT1 status")
-  field(DTYP, "stream")
   field(NOBT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),1) $(PORT) PP")
 }
 
 record(longout, "$(device):rfdly1"){
@@ -2876,11 +2848,15 @@ record(bo, "$(device):itl1"){
   field(FLNK, "$(device):ITL1")
 }
 
+record(longout, "$(device):cmd_evre_out_get1") {
+  field(DESC, "Command code to read OUT1")
+  field(VAL, "0x92") # (0x80 | (reg number=18))
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evre_out_set1") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x52")
-  field(OUT, "@timing.proto evre_out_set($(device),1) $(PORT)")
 }
 
 ########################################################################
@@ -2903,36 +2879,22 @@ record(bi, "$(device):itl2RBV") {
   field(INP, "$(device):itl2RAW.B0")
 }
 
-record(longout, "$(device):cmd_evre_out_get2") {
-  field(DESC, "Command code to read OUT2")
-  field(DTYP, "stream")
-  field(VAL, "0x93") # (0x80 | (reg number=19))
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_out_get($(device),2) $(PORT)")
-}
-
 record(mbbiDirect, "$(device):sel2RBV") {
   field(DESC, "EVE itl OUT2 raw status")
-  field(DTYP, "stream")
   field(NOBT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),2) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):finedly2RBV") {
   field(DESC, "EVE fine delay OUT2 status")
-  field(DTYP, "stream")
   field(NOBT, "10")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),2) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):rfdly2RBV") {
   field(DESC, "EVE RF delay OUT2 status")
-  field(DTYP, "stream")
   field(NOBT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),2) $(PORT) PP")
 }
 
 record(longout, "$(device):rfdly2"){
@@ -2972,11 +2934,15 @@ record(bo, "$(device):itl2"){
   field(FLNK, "$(device):ITL2")
 }
 
+record(longout, "$(device):cmd_evre_out_get2") {
+  field(DESC, "Command code to read OUT2")
+  field(VAL, "0x93") # (0x80 | (reg number=19))
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evre_out_set2") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x53")
-  field(OUT, "@timing.proto evre_out_set($(device),2) $(PORT)")
 }
 
 ########################################################################
@@ -2999,36 +2965,22 @@ record(bi, "$(device):itl3RBV") {
   field(INP, "$(device):itl3RAW.B0")
 }
 
-record(longout, "$(device):cmd_evre_out_get3") {
-  field(DESC, "Command code to read OUT3")
-  field(DTYP, "stream")
-  field(VAL, "0x94") # (0x80 | (reg number=20))
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_out_get($(device),3) $(PORT)")
-}
-
 record(mbbiDirect, "$(device):sel3RBV") {
   field(DESC, "EVE itl OUT3 raw status")
-  field(DTYP, "stream")
   field(NOBT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),3) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):finedly3RBV") {
   field(DESC, "EVE fine delay OUT3 status")
-  field(DTYP, "stream")
   field(NOBT, "10")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),3) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):rfdly3RBV") {
   field(DESC, "EVE RF delay OUT3 status")
-  field(DTYP, "stream")
   field(NOBT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),3) $(PORT) PP")
 }
 
 record(longout, "$(device):rfdly3"){
@@ -3068,11 +3020,15 @@ record(bo, "$(device):itl3"){
   field(FLNK, "$(device):ITL3")
 }
 
+record(longout, "$(device):cmd_evre_out_get3") {
+  field(DESC, "Command code to read OUT3")
+  field(VAL, "0x94") # (0x80 | (reg number=20))
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evre_out_set3") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x54")
-  field(OUT, "@timing.proto evre_out_set($(device),3) $(PORT)")
 }
 
 ########################################################################
@@ -3095,36 +3051,22 @@ record(bi, "$(device):itl4RBV") {
   field(INP, "$(device):itl4RAW.B0")
 }
 
-record(longout, "$(device):cmd_evre_out_get4") {
-  field(DESC, "Command code to read OUT4")
-  field(DTYP, "stream")
-  field(VAL, "0x95") # (0x80 | (reg number=21))
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_out_get($(device),4) $(PORT)")
-}
-
 record(mbbiDirect, "$(device):sel4RBV") {
   field(DESC, "EVE itl OUT4 raw status")
-  field(DTYP, "stream")
   field(NOBT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),4) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):finedly4RBV") {
   field(DESC, "EVE fine delay OUT4 status")
-  field(DTYP, "stream")
   field(NOBT, "10")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),4) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):rfdly4RBV") {
   field(DESC, "EVE RF delay OUT4 status")
-  field(DTYP, "stream")
   field(NOBT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),4) $(PORT) PP")
 }
 
 record(longout, "$(device):rfdly4"){
@@ -3164,11 +3106,15 @@ record(bo, "$(device):itl4"){
   field(FLNK, "$(device):ITL4")
 }
 
+record(longout, "$(device):cmd_evre_out_get4") {
+  field(DESC, "Command code to read OUT4")
+  field(VAL, "0x95") # (0x80 | (reg number=21))
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evre_out_set4") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x55")
-  field(OUT, "@timing.proto evre_out_set($(device),4) $(PORT)")
 }
 
 ########################################################################
@@ -3191,36 +3137,22 @@ record(bi, "$(device):itl5RBV") {
   field(INP, "$(device):itl5RAW.B0")
 }
 
-record(longout, "$(device):cmd_evre_out_get5") {
-  field(DESC, "Command code to read OUT5")
-  field(DTYP, "stream")
-  field(VAL, "0x96") # (0x80 | (reg number=22))
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_out_get($(device),5) $(PORT)")
-}
-
 record(mbbiDirect, "$(device):sel5RBV") {
   field(DESC, "EVE itl OUT5 raw status")
-  field(DTYP, "stream")
   field(NOBT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),5) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):finedly5RBV") {
   field(DESC, "EVE fine delay OUT5 status")
-  field(DTYP, "stream")
   field(NOBT, "10")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),5) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):rfdly5RBV") {
   field(DESC, "EVE RF delay OUT5 status")
-  field(DTYP, "stream")
   field(NOBT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),5) $(PORT) PP")
 }
 
 record(longout, "$(device):rfdly5"){
@@ -3260,11 +3192,15 @@ record(bo, "$(device):itl5"){
   field(FLNK, "$(device):ITL5")
 }
 
+record(longout, "$(device):cmd_evre_out_get5") {
+  field(DESC, "Command code to read OUT5")
+  field(VAL, "0x96") # (0x80 | (reg number=22))
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evre_out_set5") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x56")
-  field(OUT, "@timing.proto evre_out_set($(device),5) $(PORT)")
 }
 
 ########################################################################
@@ -3287,36 +3223,22 @@ record(bi, "$(device):itl6RBV") {
   field(INP, "$(device):itl6RAW.B0")
 }
 
-record(longout, "$(device):cmd_evre_out_get6") {
-  field(DESC, "Command code to read OUT6")
-  field(DTYP, "stream")
-  field(VAL, "0x97") # (0x80 | (reg number=23))
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_out_get($(device),6) $(PORT)")
-}
-
 record(mbbiDirect, "$(device):sel6RBV") {
   field(DESC, "EVE itl OUT6 raw status")
-  field(DTYP, "stream")
   field(NOBT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),6) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):finedly6RBV") {
   field(DESC, "EVE fine delay OUT6 status")
-  field(DTYP, "stream")
   field(NOBT, "10")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),6) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):rfdly6RBV") {
   field(DESC, "EVE RF delay OUT6 status")
-  field(DTYP, "stream")
   field(NOBT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),6) $(PORT) PP")
 }
 
 record(longout, "$(device):rfdly6"){
@@ -3356,11 +3278,15 @@ record(bo, "$(device):itl6"){
   field(FLNK, "$(device):ITL6")
 }
 
+record(longout, "$(device):cmd_evre_out_get6") {
+  field(DESC, "Command code to read OUT6")
+  field(VAL, "0x97") # (0x80 | (reg number=23))
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evre_out_set6") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x57")
-  field(OUT, "@timing.proto evre_out_set($(device),6) $(PORT)")
 }
 
 ########################################################################
@@ -3383,36 +3309,22 @@ record(bi, "$(device):itl7RBV") {
   field(INP, "$(device):itl7RAW.B0")
 }
 
-record(longout, "$(device):cmd_evre_out_get7") {
-  field(DESC, "Command code to read OUT7")
-  field(DTYP, "stream")
-  field(VAL, "0x98") # (0x80 | (reg number=24))
-  #field(ASG, "Reserved")
-  field(OUT, "@timing.proto evre_out_get($(device),7) $(PORT)")
-}
-
 record(mbbiDirect, "$(device):sel7RBV") {
   field(DESC, "EVE itl OUT7 raw status")
-  field(DTYP, "stream")
   field(NOBT, "7")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),7) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):finedly7RBV") {
   field(DESC, "EVE fine delay OUT7 status")
-  field(DTYP, "stream")
   field(NOBT, "10")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),7) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):rfdly7RBV") {
   field(DESC, "EVE RF delay OUT7 status")
-  field(DTYP, "stream")
   field(NOBT, "5")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto evre_out_get($(device),7) $(PORT) PP")
 }
 
 record(longout, "$(device):rfdly7"){
@@ -3452,11 +3364,15 @@ record(bo, "$(device):itl7"){
   field(FLNK, "$(device):ITL7")
 }
 
+record(longout, "$(device):cmd_evre_out_get7") {
+  field(DESC, "Command code to read OUT7")
+  field(VAL, "0x98") # (0x80 | (reg number=24))
+  #field(ASG, "Reserved")
+}
+
 record(longout, "$(device):cmd_evre_out_set7") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x58")
-  field(OUT, "@timing.proto evre_out_set($(device),7) $(PORT)")
 }
 
 ########################################################################
@@ -3470,9 +3386,7 @@ record(longout, "$(device):cmsel") {
 
 record(longin, "$(device):cmselRBV") {
   field(DESC, "EVE RF out mode status")
-  field(DTYP, "stream")
   #field(ASG, "Reserved")
-  field(INP, "@timing.proto eve_rf_get($(device)) $(PORT) PP")
 }
 
 ########################################################################
@@ -3596,8 +3510,6 @@ record(calcout, "$(device):LOGCTRL") {
 
 record(longin, "$(device):LOGCOUNT"){
   field(DESC, "Number of timestamps in the buffer")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
 }
 
 record(mbbiDirect, "$(device):LOGCTRLRBV"){
@@ -3639,20 +3551,14 @@ record(bi, "$(device):EMPTY"){
 
 record(longin, "$(device):LOGUTC"){
   field(DESC, "UTC timestamp from log")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
 }
 
 record(longin, "$(device):LOGSUBSEC"){
   field(DESC, "Subsecond timestamp from log")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
 }
 
 record(longin, "$(device):LOGEVENT"){
   field(DESC, "Timestamp event from log")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_get($(device)) $(PORT) PP")
 }
 
 record(longout, "$(device):cmd_evre_timestamp_log_get"){
@@ -3678,14 +3584,10 @@ record(longin, "$(device):alive") {
 
 record(longin, "$(device):clkmodeRBV") {
   field(DESC, "EVE clock mode status")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto eve_conf_get($(device)) $(PORT) PP")
 }
 
 record(longin, "$(device):funselRBV") {
   field(DESC, "EVE function select status")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto eve_conf_get($(device)) $(PORT) PP")
 }
 
 record(longout, "$(device):clkmode"){
@@ -3697,9 +3599,7 @@ record(longout, "$(device):clkmode"){
 
 record(longout, "$(device):cmd_eve_conf_set") {
   field(DESC, "cmd")
-  field(DTYP, "stream")
   field(VAL, "0x7F")
-  field(OUT, "@timing.proto eve_conf_set($(device)) $(PORT)")
 }
 
 ########################################################################
