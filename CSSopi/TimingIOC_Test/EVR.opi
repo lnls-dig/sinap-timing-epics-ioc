@@ -17586,7 +17586,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_173</name>
     <precision>0</precision>
@@ -17733,7 +17735,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_174</name>
     <precision>0</precision>
@@ -17840,7 +17844,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_175</name>
     <precision>0</precision>
@@ -17947,7 +17953,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_176</name>
     <precision>0</precision>
@@ -18054,7 +18062,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_177</name>
     <precision>0</precision>
@@ -18161,7 +18171,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_178</name>
     <precision>0</precision>
@@ -18268,7 +18280,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_179</name>
     <precision>0</precision>
@@ -18375,7 +18389,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_180</name>
     <precision>0</precision>
@@ -18482,7 +18498,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_181</name>
     <precision>0</precision>
@@ -18589,7 +18607,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_182</name>
     <precision>0</precision>
@@ -18696,7 +18716,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_183</name>
     <precision>0</precision>
@@ -18803,7 +18825,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_184</name>
     <precision>0</precision>
@@ -18910,7 +18934,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_185</name>
     <precision>0</precision>
@@ -19017,7 +19043,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_186</name>
     <precision>0</precision>
@@ -19124,7 +19152,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_187</name>
     <precision>0</precision>
@@ -19231,7 +19261,9 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>25</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <limits_from_pv>true</limits_from_pv>
+    <limits_from_pv>false</limits_from_pv>
+    <maximum>Infinity</maximum>
+    <minimum>-Infinity</minimum>
     <multiline_input>false</multiline_input>
     <name>Text Input_188</name>
     <precision>0</precision>
