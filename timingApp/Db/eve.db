@@ -3609,7 +3609,7 @@ record(calcout, "$(device):validSample"){
 record(compress, "$(device):UTCbuffer"){
   field(DESC, "UTC circular buffer")
   field(ALG, "Circular Buffer")
-  field(NSAM, "16384")
+  field(NSAM, "1000")
   field(INP, "$(device):LOGUTC")
   field(FLNK, "$(device):SUBSECbuffer")
 }
@@ -3617,7 +3617,7 @@ record(compress, "$(device):UTCbuffer"){
 record(compress, "$(device):SUBSECbuffer"){
   field(DESC, "SUBSEC circular buffer")
   field(ALG, "Circular Buffer")
-  field(NSAM, "16384")
+  field(NSAM, "1000")
   field(INP, "$(device):LOGSUBSEC")
   field(FLNK, "$(device):EVENTbuffer")
 }
@@ -3625,7 +3625,7 @@ record(compress, "$(device):SUBSECbuffer"){
 record(compress, "$(device):EVENTbuffer"){
   field(DESC, "Event circular buffer")
   field(ALG, "Circular Buffer")
-  field(NSAM, "16384")
+  field(NSAM, "1000")
   field(INP, "$(device):LOGEVENT")
 #  field(FLNK, "$(device):LOGSOFTCNT")
 }

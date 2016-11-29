@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="auto_complete_history">
 		<list key="PV">
+			<item value="$(device):EVENTbuffer"/>
+			<item value="$(device):SUBSECbuffer"/>
 			<item value="$(device):LOGEVENT"/>
 			<item value="$(device):LOGSUBSEC"/>
 			<item value="$(device):LOGUTC"/>
@@ -100,8 +102,6 @@
 			<item value="$(device):EVTRANSM0"/>
 			<item value="$(device):EVDLYMODE0"/>
 			<item value="$(device):EVTIME0"/>
-			<item value="EVG:EVCODE0"/>
-			<item value="EVG:EVTRANSM3"/>
 		</list>
 	</section>
 </section>
