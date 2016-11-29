@@ -606,7 +606,7 @@ eve_upload{
     	# Timestamp log
     evre_timestamp_log_get;
 	# Timestamp
-    #evre_timestamp_get;
+    evre_timestamp_get;
 }
 
 evr_upload{
@@ -687,7 +687,7 @@ evr_upload{
     	# Timestamp log
     evre_timestamp_log_get;
 	# Timestamp
-    #evre_timestamp_get;
+    evre_timestamp_get;
 }
 
 evg_upload{
@@ -722,6 +722,6 @@ evg_upload{
 	# SequenceRAM counter
     evg_seqramsw_get;
 	# Timestamp
-    #evg_timestamp_get;
+    evg_timestamp_get;
 }
 
