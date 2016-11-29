@@ -11542,3 +11542,18 @@ Caused by: java.lang.ClassNotFoundException: org.eclipse.equinox.http.jetty.Jett
 	at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:160)
 	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
 	... 1 more
+!SESSION 2016-11-29 13:26:52.946 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-11-29 13:26:53.478
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterDatasource. The reference is: Reference[name = DataSourceProvider, interface = org.diirt.datasource.DataSourceProvider, policy = dynamic, cardinality = 0..n, target = null, bind = registerDatasource, unbind = deregisterDatasource]
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-11-29 13:26:53.480
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterFormulaFunctionSet. The reference is: Reference[name = FormulaFunctionSet, interface = org.diirt.datasource.formula.FormulaFunctionSet, policy = dynamic, cardinality = 0..n, target = null, bind = registerFormulaFunctionSet, unbind = deregisterFormulaFunctionSet]
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-11-29 13:26:53.480
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterService. The reference is: Reference[name = ServiceProvider, interface = org.diirt.service.ServiceProvider, policy = static, cardinality = 0..n, target = null, bind = registerService, unbind = null]

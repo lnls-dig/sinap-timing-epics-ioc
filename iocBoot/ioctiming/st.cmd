@@ -24,7 +24,7 @@ drvAsynIPPortConfigure ("EVG1", "10.0.18.118:50118:50118 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR5", "10.0.18.115:50115:50115 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR6", "10.0.18.117:50117:50117 udp",0,0,0)
 
-drvAsynIPPortConfigure ("EVE1", "10.0.18.121:50121:50121 udp",0,0,0)
+#drvAsynIPPortConfigure ("EVE1", "10.0.18.121:50121:50121 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE2", "10.0.18.122:50122:50122 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE3", "10.0.18.123:50123:50123 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE4", "10.0.18.124:50124:50124 udp",0,0,0)
@@ -58,7 +58,7 @@ dbLoadRecords "${TOP}/db/Eventos.db", "device=EVG1, num=3, desc='Kicker LTB', co
 #dbLoadRecords("${TOP}/db/evr.db", "device=EVR6, PORT=EVR6, ADDR=0, TIMEOUT=2")
 
 # EVE
-dbLoadRecords("${TOP}/db/eve.db", "device=EVE1, PORT=EVE1, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/eve.db", "device=EVE1, PORT=EVE1, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/eve.db", "device=EVE2, PORT=EVE2, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/eve.db", "device=EVE3, PORT=EVE3, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/eve.db", "device=EVE4, PORT=EVE4, ADDR=0, TIMEOUT=2")
