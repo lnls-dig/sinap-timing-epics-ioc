@@ -1,4 +1,8 @@
-program sncModuleSupport
+program sncEVGSetup
+
+%%//----------------------------------------
+%%// 	      Monitored PVs
+%%//----------------------------------------
 
 int uploadproc;
 assign uploadproc to "{device}:uploadT.PROC";
@@ -25,6 +29,19 @@ monitor funselRBV;
 
 int network;
 assign network to "{device}:network";
+
+int utc;
+assign utc to "{device}:UTC";
+
+%%//----------------------------------------
+%%// 	  Escaped C Code Declaration
+%%//----------------------------------------
+
+%%#include <time.h>
+
+%%//----------------------------------------
+%%// 	    State Notation Language
+%%//----------------------------------------
 
 ss configuration {
     state init {
@@ -61,6 +78,13 @@ ss configuration {
 			printf("\nConfiguration downloaded to %s.\n", macValueGet("device"));
 			download = 0;
 			pvPut(download,SYNC);
+
+			%%// Update UTC to epoch time
+			utc = time(NULL);
+			pvPut(utc, SYNC);
+			%%// Force broadcast
+			%%//utc = 0;
+			%%//pvPut(utc, SYNC);
 		} 
 		when (delay(1)) {
 		}state waiting

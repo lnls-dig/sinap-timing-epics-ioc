@@ -45,19 +45,19 @@ timing_LIBS += timingSupport
 # in the <top>/configure/RELEASE file
 
 ifneq ($(SNCSEQ),)
-    # Build sncModuleSupport into timingSupport
-    sncModuleSupport_SNCFLAGS += +r
-    timing_DBD += sncModuleSupport.dbd
-    timingSupport_SRCS += sncModuleSupport.stt
+    # Build sncEVRESetup into timingSupport
+    sncEVRESetup_SNCFLAGS += +r
+    timing_DBD += sncEVRESetup.dbd
+    timingSupport_SRCS += sncEVRESetup.stt
     timingSupport_LIBS += seq pv
     timing_LIBS += seq pv
 
-    # Build sncModuleProgram as a standalone program
-    PROD_HOST += sncModuleProgram
-    sncModuleProgram_SNCFLAGS += +m
-    sncModuleProgram_SRCS += sncModuleProgram.st
-    sncModuleProgram_LIBS += seq pv
-    sncModuleProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
+    # Build sncEVRESetupProgram as a standalone program
+    PROD_HOST += sncEVRESetupProgram
+    sncEVRESetupProgram_SNCFLAGS += +m
+    sncEVRESetupProgram_SRCS += sncEVRESetupProgram.st
+    sncEVRESetupProgram_LIBS += seq pv
+    sncEVRESetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
 
     # Build sncSeqRAM into timingSupport
     sncSeqRAM_SNCFLAGS += +r
@@ -80,12 +80,26 @@ ifneq ($(SNCSEQ),)
     timingSupport_LIBS += seq pv
     timing_LIBS += seq pv
 
-    # Build sncSeqRAMProgram as a standalone program
+    # Build sncTimestampProgram as a standalone program
     PROD_HOST += sncTimestampProgram
     sncTimestampProgram_SNCFLAGS += +m
     sncTimestampProgram_SRCS += sncTimestampProgram.st
     sncTimestampProgram_LIBS += seq pv
     sncTimestampProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    # Build sncEVGSetup into timingSupport
+    sncEVGSetup_SNCFLAGS += +r
+    timing_DBD += sncEVGSetup.dbd
+    timingSupport_SRCS += sncEVGSetup.stt
+    timingSupport_LIBS += seq pv
+    timing_LIBS += seq pv
+
+    # Build sncEVGSetupProgram as a standalone program
+    PROD_HOST += sncEVGSetupProgram
+    sncEVGSetupProgram_SNCFLAGS += +m
+    sncEVGSetupProgram_SRCS += sncEVGSetupProgram.st
+    sncEVGSetupProgram_LIBS += seq pv
+    sncEVGSetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
 endif
 
 # Finally link to the EPICS Base libraries

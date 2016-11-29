@@ -11,58 +11,58 @@ program sncTimestamp
 %%//----------------------------------------
 
 string filepath;
-assign filepath to "$(device):FILEPATH";
+assign filepath to "${device}:FILEPATH";
 monitor filepath;
 
 int sample_cntr;
-assign sample_cntr to "$(device):SAMPLING_CNTR";
+assign sample_cntr to "${device}:SAMPLING_CNTR";
 monitor sample_cntr;
 
 float sample_rate;
-assign sample_rate to "$(device):SAMPLE_RATE";
+assign sample_rate to "${device}:SAMPLE_RATE";
 monitor sample_rate;
 
 int pull_data;
-assign pull_data to "$(device):pull";
+assign pull_data to "${device}:pull";
 monitor pull_data;
 
 int stoplogRBV;
-assign stoplogRBV to "$(device):STOPLOGRBV";
+assign stoplogRBV to "${device}:STOPLOGRBV";
 monitor stoplogRBV;
 evflag stoplogFlag;
 sync stoplogRBV stoplogFlag;
 
 int hw_buffer_empty;
-assign hw_buffer_empty to "$(device):EMPTY";
+assign hw_buffer_empty to "${device}:EMPTY";
 monitor hw_buffer_empty;
 
 %%//int logsoftcount;
-%%//assign logsoftcount to "$(device):LOGSOFTCNT";
+%%//assign logsoftcount to "${device}:LOGSOFTCNT";
 %%//monitor logsoftcount;
 
 int buffer_cnt;
-assign buffer_cnt to "$(device):EVENTbuffer.NUSE";
+assign buffer_cnt to "${device}:EVENTbuffer.NUSE";
 monitor buffer_cnt;
 
 int reset_utc_buff;
-assign reset_utc_buff to "$(device):UTCbuffer.RES";
+assign reset_utc_buff to "${device}:UTCbuffer.RES";
 
 int reset_subsec_buff;
-assign reset_subsec_buff to "$(device):SUBSECbuffer.RES";
+assign reset_subsec_buff to "${device}:SUBSECbuffer.RES";
 
 int reset_event_buff;
-assign reset_event_buff to "$(device):EVENTbuffer.RES";
+assign reset_event_buff to "${device}:EVENTbuffer.RES";
 
 int utc_buff[16384];
-assign utc_buff to "$(device):UTCbuffer";
+assign utc_buff to "${device}:UTCbuffer";
 monitor utc_buff;
 
 int subsec_buff[16384];
-assign subsec_buff to "$(device):SUBSECbuffer";
+assign subsec_buff to "${device}:SUBSECbuffer";
 monitor subsec_buff;
 
 int event_buff[16384];
-assign event_buff to "$(device):EVENTbuffer";
+assign event_buff to "${device}:EVENTbuffer";
 monitor event_buff;
 
 %%//----------------------------------------
