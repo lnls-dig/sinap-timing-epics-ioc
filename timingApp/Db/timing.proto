@@ -241,7 +241,7 @@ evg_acline_acdivraw_intr{
 # Mux register [41 - 48]
 evg_mux_get {
     out "%(\$1:cmd_evg_mux_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen\$2RBV.RVAL)r%*04r%*04r";
+    in "%*r%*03r%(\$1:muxen\$2RBV)r%*04r%*04r";
 }
 
 evg_mux_en_set{
