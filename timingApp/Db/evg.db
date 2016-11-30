@@ -102,7 +102,7 @@ record(bo, "$(device):enable"){
 
 record(longout, "$(device):cmd_evg_ctrl_get") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to read Control Status reg")
+  field(DESC, "Control Status reg read command code")
   field(VAL, "0x80") # (0x80 | reg number)
   field(SCAN, ".5 second")
   field(DTYP, "stream")
@@ -111,7 +111,7 @@ record(longout, "$(device):cmd_evg_ctrl_get") {
 
 record(longout, "$(device):cmd_evg_ctrl_set") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Control Status reg write command code")
   field(VAL, "0x40")
 }
 
@@ -160,13 +160,13 @@ record(ao, "$(device):acdiv"){
 
 record(longout, "$(device):cmd_evg_acline_get") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to read AC Line register")
+  field(DESC, "AC Line reg read command code")
   field(VAL, "0xA8") # (0x80 | reg number=40)
 }
 
 record(longout, "$(device):cmd_evg_acline_set") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "AC Line reg write command code")
   field(VAL, "0x68")
 }
 
@@ -222,7 +222,7 @@ record(longout, "$(device):cmd_evg_mux_get0") {
 
 record(longout, "$(device):cmd_evg_mux_set0") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to Mux0 register")
   field(VAL, "0x69")
   #field(ASG, "Reserved")
 }
@@ -278,7 +278,7 @@ record(longout, "$(device):cmd_evg_mux_get1") {
 
 record(longout, "$(device):cmd_evg_mux_set1") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to Mux1 register")
   field(VAL, "0x6A")
 }
 
@@ -333,7 +333,7 @@ record(longout, "$(device):cmd_evg_mux_get2") {
 
 record(longout, "$(device):cmd_evg_mux_set2") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to Mux2 register")
   field(VAL, "0x6B")
 }
 
@@ -388,7 +388,7 @@ record(longout, "$(device):cmd_evg_mux_get3") {
 
 record(longout, "$(device):cmd_evg_mux_set3") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to Mux3 register")
   field(VAL, "0x6C")
 }
 
@@ -443,7 +443,7 @@ record(longout, "$(device):cmd_evg_mux_get4") {
 
 record(longout, "$(device):cmd_evg_mux_set4") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to Mux4 register")
   field(VAL, "0x6D")
 }
 
@@ -499,7 +499,7 @@ record(longout, "$(device):cmd_evg_mux_get5") {
 
 record(longout, "$(device):cmd_evg_mux_set5") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to Mux5 register")
   field(VAL, "0x6E")
 }
 
@@ -554,7 +554,7 @@ record(longout, "$(device):cmd_evg_mux_get6") {
 
 record(longout, "$(device):cmd_evg_mux_set6") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to Mux6 register")
   field(VAL, "0x6F")
 }
 
@@ -609,7 +609,7 @@ record(longout, "$(device):cmd_evg_mux_get7") {
 
 record(longout, "$(device):cmd_evg_mux_set7") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to Mux7 register")
   field(VAL, "0x70")
 }
 
@@ -649,13 +649,13 @@ record(longout, "$(device):seqtime"){
 
 record(longout, "$(device):cmd_evg_seqramset_get") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to read SEQRAM setting reg")
+  field(DESC, "SEQRAM setting reg read command code")
   field(VAL, "0xB1") # (0x80 | reg number=49)
 }
 
 record(longout, "$(device):cmd_evg_seqramset_set") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "SEQRAM setting reg write command code")
   field(VAL, "0x71")
   field(PRIO, "HIGH")
 }
@@ -680,13 +680,13 @@ record(longout, "$(device):seqram_switch"){
 
 record(longout, "$(device):cmd_evg_seqramsw_get") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to read SEQRAM switch reg")
+  field(DESC, "SEQRAM switch reg read command code")
   field(VAL, "0xB2") # (0x80 | reg number=50)
 }
 
 record(longout, "$(device):cmd_evg_seqramsw_set") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "SEQRAM switch reg write command code")
   field(VAL, "0x72")
 }
 
@@ -745,7 +745,7 @@ record(mbbi, "$(device):TIMESRCRBV"){
 
 record(longout, "$(device):cmd_evg_timestamp_get"){
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Timestamp reg read command code")
   field(VAL, "0xB3")
   field(SCAN, "1 second")
   field(DTYP, "stream")
@@ -754,7 +754,7 @@ record(longout, "$(device):cmd_evg_timestamp_get"){
 
 record(longout, "$(device):cmd_evg_timestamp_set"){
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Timestamp reg write command code")
   field(VAL, "0x73")
 }
 
@@ -810,7 +810,7 @@ record(ao, "$(device):rfdiv"){
 
 record(longout, "$(device):cmd_evg_conf_get") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Configuration reg read command code")
   field(VAL, "0xBF")
   field(SCAN, "1 second")
   field(DTYP, "stream")
@@ -819,7 +819,7 @@ record(longout, "$(device):cmd_evg_conf_get") {
 
 record(longout, "$(device):cmd_evg_conf_set") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Configuration reg write command code")
   field(VAL, "0x7F")
 }
 

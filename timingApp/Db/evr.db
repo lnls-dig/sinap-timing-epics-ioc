@@ -57,7 +57,7 @@ record(bi, "$(device):link") {
 
 record(longout, "$(device):cmd_evre_ctrl_get") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to read Control Status reg")
+  field(DESC, "Command code to read Ctrl Status reg")
   field(VAL, "0x80") # (0x80 | reg number)
   field(SCAN, "1 second")
   field(DTYP, "stream")
@@ -66,7 +66,7 @@ record(longout, "$(device):cmd_evre_ctrl_get") {
 
 record(longout, "$(device):cmd_evre_ctrl_set") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write Control Status reg")
+  field(DESC, "Command code to write to Ctrl Status reg")
   field(VAL, "0x40") # (0x40 | reg number)
 }
 
@@ -402,7 +402,7 @@ record(longin, "$(device):delay1RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set1") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP1")
+  field(DESC, "Command code to write to OTP1")
   field(VAL, "0x42") # (0x40 | reg number=2)
 }
 
@@ -573,7 +573,7 @@ record(longin, "$(device):delay2RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set2") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP2")
+  field(DESC, "Command code to write to OTP2")
   field(VAL, "0x43") # (0x40 | reg number=3)
 }
 
@@ -744,7 +744,7 @@ record(longin, "$(device):delay3RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set3") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP3")
+  field(DESC, "Command code to write to OTP3")
   field(VAL, "0x44") # (0x40 | reg number=4)
 }
 
@@ -915,7 +915,7 @@ record(longin, "$(device):delay4RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set4") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP4")
+  field(DESC, "Command code to write to OTP4")
   field(VAL, "0x45") # (0x40 | reg number=5)
 }
 
@@ -1086,7 +1086,7 @@ record(longin, "$(device):delay5RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set5") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP5")
+  field(DESC, "Command code to write to OTP5")
   field(VAL, "0x46") # (0x40 | reg number=6)
 }
 
@@ -1257,7 +1257,7 @@ record(longin, "$(device):delay6RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set6") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP6")
+  field(DESC, "Command code to write to OTP6")
   field(VAL, "0x47") # (0x40 | reg number=7)
 }
 
@@ -1428,7 +1428,7 @@ record(longin, "$(device):delay7RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set7") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP7")
+  field(DESC, "Command code to write to OTP7")
   field(VAL, "0x48") # (0x40 | reg number=8)
 }
 
@@ -1599,7 +1599,7 @@ record(longin, "$(device):delay8RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set8") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP8")
+  field(DESC, "Command code to write to OTP8")
   field(VAL, "0x49") # (0x40 | reg number=9)
 }
 
@@ -1770,7 +1770,7 @@ record(longin, "$(device):delay9RBV") {
 
 record(longout, "$(device):cmd_evre_otp_set9") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTP9")
+  field(DESC, "Command code to write to OTP9")
   field(VAL, "0x4A") # (0x40 | reg number=10)
 }
 
@@ -1941,7 +1941,7 @@ record(longin, "$(device):delayARBV") {
 
 record(longout, "$(device):cmd_evre_otp_setA") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTPA")
+  field(DESC, "Command code to write to OTPA")
   field(VAL, "0x4B") # (0x40 | reg number=11)
 }
 
@@ -2112,7 +2112,7 @@ record(longin, "$(device):delayBRBV") {
 
 record(longout, "$(device):cmd_evre_otp_setB") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTPB")
+  field(DESC, "Command code to write to OTPB")
   field(VAL, "0x4C") # (0x40 | reg number=12)
 }
 
@@ -2283,7 +2283,7 @@ record(longin, "$(device):delayCRBV") {
 
 record(longout, "$(device):cmd_evre_otp_setC") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTPC")
+  field(DESC, "Command code to write to OTPC")
   field(VAL, "0x4D") # (0x40 | reg number=13)
 }
 
@@ -2454,7 +2454,7 @@ record(longin, "$(device):delayDRBV") {
 
 record(longout, "$(device):cmd_evre_otp_setD") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTPD")
+  field(DESC, "Command code to write to OTPD")
   field(VAL, "0x4E") # (0x40 | reg number=14)
 }
 
@@ -2625,7 +2625,7 @@ record(longin, "$(device):delayERBV") {
 
 record(longout, "$(device):cmd_evre_otp_setE") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTPE")
+  field(DESC, "Command code to write to OTPE")
   field(VAL, "0x4F") # (0x40 | reg number=15)
 }
 
@@ -2796,7 +2796,7 @@ record(longin, "$(device):delayFRBV") {
 
 record(longout, "$(device):cmd_evre_otp_setF") {
 # field(ASG, "Reserved")
-  field(DESC, "Command code to write OTPF")
+  field(DESC, "Command code to write to OTPF")
   field(VAL, "0x50") # (0x40 | reg number=16)
 }
 
@@ -2892,7 +2892,7 @@ record(longout, "$(device):cmd_evre_out_get0") {
 
 record(longout, "$(device):cmd_evre_out_set0") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to OUT0")
   field(VAL, "0x51")
 }
 
@@ -2982,7 +2982,7 @@ record(longout, "$(device):cmd_evre_out_get1") {
 
 record(longout, "$(device):cmd_evre_out_set1") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to OUT1")
   field(VAL, "0x52")
 }
 
@@ -3072,7 +3072,7 @@ record(longout, "$(device):cmd_evre_out_get2") {
 
 record(longout, "$(device):cmd_evre_out_set2") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to OUT2")
   field(VAL, "0x53")
 }
 
@@ -3162,7 +3162,7 @@ record(longout, "$(device):cmd_evre_out_get3") {
 
 record(longout, "$(device):cmd_evre_out_set3") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to OUT3")
   field(VAL, "0x54")
 }
 
@@ -3252,7 +3252,7 @@ record(longout, "$(device):cmd_evre_out_get4") {
 
 record(longout, "$(device):cmd_evre_out_set4") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to OUT4")
   field(VAL, "0x55")
 }
 
@@ -3342,7 +3342,7 @@ record(longout, "$(device):cmd_evre_out_get5") {
 
 record(longout, "$(device):cmd_evre_out_set5") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to OUT5")
   field(VAL, "0x56")
 }
 
@@ -3432,7 +3432,7 @@ record(longout, "$(device):cmd_evre_out_get6") {
 
 record(longout, "$(device):cmd_evre_out_set6") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to OUT6")
   field(VAL, "0x57")
 }
 
@@ -3522,7 +3522,7 @@ record(longout, "$(device):cmd_evre_out_get7") {
 
 record(longout, "$(device):cmd_evre_out_set7") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to OUT7")
   field(VAL, "0x58")
 }
 
@@ -3547,6 +3547,7 @@ record(mbbo, "$(device):TIMESRC"){
 record(longin, "$(device):UTCRBV"){
 # field(ASG, "Reserved")
   field(DESC, "Timestamp UTC field RBV")
+  field(EGU, "seconds")
 }
 
 record(longin, "$(device):subsecondRBV"){
@@ -3572,7 +3573,7 @@ record(mbbi, "$(device):TIMESRCRBV"){
 
 record(longout, "$(device):cmd_evre_timestamp_get"){
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to read timestamp reg")
   field(VAL, "0xB3")
   field(SCAN, "1 second")
   field(DTYP, "stream")
@@ -3581,7 +3582,7 @@ record(longout, "$(device):cmd_evre_timestamp_get"){
 
 record(longout, "$(device):cmd_evre_timestamp_set"){
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Command code to write to timestamp reg")
   field(VAL, "0x73")
 }
 
@@ -3704,6 +3705,7 @@ record(bi, "$(device):EMPTY"){
 record(longin, "$(device):LOGUTC"){
 # field(ASG, "Reserved")
   field(DESC, "UTC timestamp from log")
+  field(EGU, "seconds")
 }
 
 record(longin, "$(device):LOGSUBSEC"){
@@ -3785,13 +3787,13 @@ record(compress, "$(device):EVENTbuffer"){
 
 record(longout, "$(device):cmd_evre_timestamp_log_get"){
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Timestamp log reg read command code")
   field(VAL, "0xB4")
 }
 
 record(longout, "$(device):cmd_evre_timestamp_log_set"){
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Timestamp log reg write command code")
   field(VAL, "0x74")
 }
 
@@ -3833,7 +3835,7 @@ record(longout, "$(device):clkmode"){
 
 record(longout, "$(device):cmd_evr_conf_get"){
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Configuration reg read command code")
   field(VAL, "0xBF")
   field(DTYP, "stream")
   field(SCAN, "1 second")
@@ -3842,7 +3844,7 @@ record(longout, "$(device):cmd_evr_conf_get"){
 
 record(longout, "$(device):cmd_evr_conf_set") {
 # field(ASG, "Reserved")
-  field(DESC, "cmd")
+  field(DESC, "Configuration reg write command code")
   field(VAL, "0x7F")
 }
 
