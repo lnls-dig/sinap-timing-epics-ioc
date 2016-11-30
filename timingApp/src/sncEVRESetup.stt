@@ -1,5 +1,9 @@
 program sncEVRESetup
 
+%%//----------------------------------------
+%%// 	      Monitored PVs
+%%//----------------------------------------
+
 int uploadproc;
 assign uploadproc to "{device}:uploadT.PROC";
 
@@ -25,6 +29,10 @@ monitor funselRBV;
 
 int network;
 assign network to "{device}:network";
+
+%%//----------------------------------------
+%%// 	    State Notation Language
+%%//----------------------------------------
 
 ss configuration {
     state init {

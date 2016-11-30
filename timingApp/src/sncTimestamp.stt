@@ -4,7 +4,7 @@ program sncTimestamp
 %%// 	        Variables
 %%//----------------------------------------
 
-
+int read_hardware;
 
 %%//----------------------------------------
 %%// 	       Monitored PVs
@@ -83,6 +83,13 @@ monitor event_buff;
 
 ss timestamp {
     state monitoring {
+	entry{
+
+		%{/* Initialization */}%
+
+		read_hardware = 0;
+	}
+
 	when(efTestAndClear(stoplogFlag) && stoplogRBV){
 
 		%{/* Perform stop log procedure */}%
@@ -126,14 +133,41 @@ ss timestamp {
 
 	when(!hw_buffer_empty && delay(sample_rate)){
 
-		%{/* Pull timestamp data */}%
+		%{/* Request timestamp data pull */}%
+
+		read_hardware = 1;
+
+	} state monitoring
+
+	when(!hw_buffer_empty && read_hardware){
+
+		%{/* Pull timestamp data from hardware */}%
 
 		pull_data = 1;
 		pvPut(pull_data, SYNC);
+
+	} state monitoring
+
+	when(hw_buffer_empty){
+
+		%{/* Stop hardware timestamp reading */}%
+
+		read_hardware = 0;
+
 	} state monitoring
     }
 
     state stopProcedure{
+
+	when(!hw_buffer_empty){
+
+		%{/* Pull timestamp data from hardware */}%
+
+		pull_data = 1;
+		pvPut(pull_data, SYNC);
+
+	} state monitoring
+	
 	when(hw_buffer_empty){
 
 		%{/*
