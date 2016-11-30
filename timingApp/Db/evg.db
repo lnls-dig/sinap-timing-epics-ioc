@@ -622,6 +622,7 @@ record(mbbiDirect, "$(device):seqcountRBV") {
   field(NOBT, "14")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_seqramsw_get($(device)) $(PORT)")
+  field(PRIO, "HIGH")
 }
 
 record(longout, "$(device):seqram_switch"){

@@ -554,8 +554,6 @@ ss seq {
 
 		%{/* Successful Write */}%
 
-		printf("Condition entered!!!\n");
-
 		%%// Avoid when condition being entered again
 		numberOfWrites = -1;
 
