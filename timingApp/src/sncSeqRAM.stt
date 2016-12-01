@@ -130,16 +130,6 @@ monitor restart_tg;
 evflag restFlag;
 sync restart_tg restFlag;
 
-int update_pv;
-assign update_pv to "{device}:UPDATEEV";
-monitor update_pv;
-
-int update_tg;
-assign update_tg to "{device}:UPDATE_TG.PROC";
-monitor update_tg;
-evflag updateFlag;
-sync update_tg updateFlag;
-
 %%//----------------------------------------
 %%// 	  Escaped C Code Declaration
 %%//----------------------------------------
@@ -239,18 +229,6 @@ ss seq {
 	  %%// Initialize Event Pointer Array
 	   init_EventPointerArray(eventNum);
 
-	  %%// Update event record arrays
-	   for(i = 0; i < eventNum; i++){
-
-		pvGet(event_codes[i], SYNC);
-		pvGet(event_timestamps[i], SYNC);
-		pvGet(event_modes[i], SYNC);
-		pvGet(event_ctrl[i], SYNC);
-	   }
-
-	  %%// Update and order EventPointerArray
-	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
-
 	   printf("Initialization Entry\n");
 	}
 
@@ -295,19 +273,6 @@ ss seq {
 
 	   %%// Clear Trigger Flags
 	   efClear(runFlag);
-	   efClear(updateFlag);
-
-	   %%// Update event record arrays
-	   for(i = 0; i < eventNum; i++){
-
-		pvGet(event_codes[i], SYNC);
-		pvGet(event_timestamps[i], SYNC);
-		pvGet(event_modes[i], SYNC);
-		pvGet(event_ctrl[i], SYNC);
-	   }
-
-	   %%// Update and order EventPointerArray
-	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
 	   printf("Stopped Entry\n");
 	}
@@ -336,11 +301,11 @@ ss seq {
 
 	}state Stopped
 
-	when(efTestAndClear(updateFlag) && update_tg){
+	when(efTestAndClear(runFlag) && run_tg && (seqcount == 0)){
+		
+		%{/* Write to SeqRAM 1 */}%
 
-		%{/* Re-update and re-order EventPointerArray*/}%
-
-		%%// Status update (updating)
+		%%// Status update (preparing to run)
 	   	StateMachineStatus = 5;
 		pvPut(StateMachineStatus, SYNC);
 
@@ -355,21 +320,6 @@ ss seq {
 
 		%%// Update and order EventPointerArray
 	   	updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
-
-		%%// Status update (stopped)
-	   	StateMachineStatus = 1;
-		pvPut(StateMachineStatus, SYNC);
-
-		printf("Update Finished\n");
-	} state Stopped
-
-	when(efTestAndClear(runFlag) && run_tg && (seqcount == 0)){
-		
-		%{/* Write to SeqRAM 1 */}%
-
-		%%// Status update (preparing to run)
-	   	StateMachineStatus = 6;
-		pvPut(StateMachineStatus, SYNC);
 
 		numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
 					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
@@ -494,7 +444,7 @@ ss seq {
 		*/}%
 
 		%%// Status update (preparing to inject)
-	   	StateMachineStatus = 7;
+	   	StateMachineStatus = 6;
 		pvPut(StateMachineStatus, SYNC);
 
 		%%// Update bucket list
@@ -505,6 +455,19 @@ ss seq {
 
 		%%// Write to seqRAM 2
 		if(tbl_length > 0){
+
+			%%// Update event record arrays
+	   		for(i = 0; i < eventNum; i++){
+
+				pvGet(event_codes[i], SYNC);
+				pvGet(event_timestamps[i], SYNC);
+				pvGet(event_modes[i], SYNC);
+				pvGet(event_ctrl[i], SYNC);
+	   		}	
+
+			%%// Update and order EventPointerArray
+	   		updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+
 			numberOfWrites = seqTwoWrite(eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
 								pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
 
@@ -658,18 +621,6 @@ ss seq {
 	   StateMachineStatus = 4;
 	   pvPut(StateMachineStatus, SYNC);
 
-	   %%// Update event record arrays
-	   for(i = 0; i < eventNum; i++){
-
-		pvGet(event_codes[i], SYNC);
-		pvGet(event_timestamps[i], SYNC);
-		pvGet(event_modes[i], SYNC);
-		pvGet(event_ctrl[i], SYNC);
-	   }
-
-	   %%// Update and order EventPointerArray
-	   updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
-
 	   printf("Restarting Entry\n");
 	}
 
@@ -700,6 +651,18 @@ ss seq {
 	when(seqs == 0 && seqen_rbv == 0 && seqcount == 0){
 
 		%{/* Write to SeqRAM 1 */}%
+
+		%%// Update event record arrays
+	   	for(i = 0; i < eventNum; i++){
+
+			pvGet(event_codes[i], SYNC);
+			pvGet(event_timestamps[i], SYNC);
+			pvGet(event_modes[i], SYNC);
+			pvGet(event_ctrl[i], SYNC);
+	   	}
+
+	   	%%// Update and order EventPointerArray
+	   	updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
 
 		numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
 					pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
@@ -743,12 +706,6 @@ ss reset_tg_pv{
 	    %{/* Clear restart PV */}%
 		restart_pv = 0;
 		pvPut(restart_pv, SYNC);
-	} state checking
-
-	when(update_pv && delay(1.5)){
-	    %{/* Clear update PV */}%
-		update_pv = 0;
-		pvPut(update_pv, SYNC);
 	} state checking	
     }
 }
