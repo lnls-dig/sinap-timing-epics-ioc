@@ -827,6 +827,7 @@ record(longout, "$(device):cmd_evg_conf_set") {
 # Injection Table
 
 record(waveform, "$(device):ITBL") {
+  field(DESC, "Injection table")
   field(NELM, "$(ITBL_LEN)")
   field(FTVL, "USHORT")
 }

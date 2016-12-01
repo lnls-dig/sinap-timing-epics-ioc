@@ -3606,19 +3606,16 @@ record(longout, "$(device):cmd_evre_timestamp_set"){
 record(bo, "$(device):stoplog"){
   field(DESC, "Stop log command")
   field(FLNK, "$(device):STOPLOG")
-  field(VAL, "0")
 }
 
 record(bo, "$(device):rstlog"){
   field(DESC, "Reset log command")
   field(FLNK, "$(device):RSTLOG")
-  field(VAL, "0")
 }
 
 record(bo, "$(device):pull"){
   field(DESC, "Pull from log command")
   field(FLNK, "$(device):PULL")
-  field(VAL, "0")
 }
 
 record(calcout, "$(device):STOPLOG") {
@@ -3629,7 +3626,7 @@ record(calcout, "$(device):STOPLOG") {
   field(INPB, "$(device):RSTLOGRBV.VAL")
   field(INPC, "$(device):PULLRBV.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_timestamp_log_set($(device),STOPLOG) $(PORT)")
+  field(OUT, "@timing.proto evre_tmstmp_log_set($(device),STOPLOG) $(PORT)")
   field(FLNK, "$(device):LOGCTRL")
 }
 
@@ -3641,7 +3638,7 @@ record(calcout, "$(device):RSTLOG") {
   field(INPB, "$(device):rstlog.VAL")
   field(INPC, "$(device):PULLRBV.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_timestamp_log_set($(device),RSTLOG) $(PORT)")
+  field(OUT, "@timing.proto evre_tmstmp_log_set($(device),RSTLOG) $(PORT)")
   field(FLNK, "$(device):LOGCTRL")
 }
 
@@ -3653,7 +3650,7 @@ record(calcout, "$(device):PULL") {
   field(INPB, "$(device):RSTLOGRBV.VAL")
   field(INPC, "$(device):pull.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_timestamp_log_set($(device),PULL) $(PORT)")
+  field(OUT, "@timing.proto evre_tmstmp_log_set($(device),PULL) $(PORT)")
   field(FLNK, "$(device):LOGCTRL")
 }
 
@@ -3677,7 +3674,7 @@ record(mbbiDirect, "$(device):LOGCTRLRBV"){
   field(NOBT, "8")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evre_timestamp_log_ctrlRBV_intr $(PORT)")
+  field(INP, "@timing.proto evre_tmstmp_log_ctrlRBV_intr $(PORT)")
   field(FLNK, "$(device):STOPLOGRBV")
 }
 
@@ -3794,13 +3791,16 @@ record(bo, "$(device):STORE_DATA"){
   field(VAL, "0")
 }
 
-record(longout, "$(device):cmd_evre_timestamp_log_get"){
+record(longout, "$(device):cmd_evre_tmstmp_log_get"){
 # field(ASG, "Reserved")
   field(DESC, "Timestamp log reg read command code")
   field(VAL, "0xB4")
+  field(SCAN, "1 second")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_tmstmp_log_get($(device)) $(PORT)")
 }
 
-record(longout, "$(device):cmd_evre_timestamp_log_set"){
+record(longout, "$(device):cmd_evre_tmstmp_log_set"){
 # field(ASG, "Reserved")
   field(DESC, "Timestamp log reg write command code")
   field(VAL, "0x74")

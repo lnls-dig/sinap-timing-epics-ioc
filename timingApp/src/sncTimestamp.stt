@@ -139,7 +139,7 @@ ss timestamp {
 
 	} state monitoring
 
-	when(hw_buffer_empty){
+	when(hw_buffer_empty && read_hardware){
 
 		%{/* Stop hardware timestamp reading */}%
 
