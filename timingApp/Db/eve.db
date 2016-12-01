@@ -3746,13 +3746,6 @@ record(ao, "$(device):SAMPLE_RATE"){
   field(VAL, "2.0")
 }
 
-#record(longout, "$(device):pullBlock"){
-#  field(DESC, "Pull a block of timestamps")
-#  field(VAL, "16")
-#  field(DTYP, "stream")
-#  field(OUT, "@timing.proto evre_timestamp_log_pullBlock_set($(device)) $(PORT)")
-#}
-
 record(calcout, "$(device):validSample"){
 # field(ASG, "Reserved")
   field(DESC, "Timestamp sample validation")
@@ -3787,16 +3780,19 @@ record(compress, "$(device):EVENTbuffer"){
   field(ALG, "Circular Buffer")
   field(NSAM, "1000")
   field(INP, "$(device):LOGEVENT")
-#  field(FLNK, "$(device):LOGSOFTCNT")
+  field(FLNK, "$(device):LOGSOFTCNT")
 }
 
-#record(calc, "$(device):LOGSOFTCNT"){
+record(calc, "$(device):LOGSOFTCNT"){
 #  field(ASG, "Reserved")
-#  field(DESC, "Software buffer counter")
-#  field(INPA, "VAL")
-#  field(CALC, "A + 1")
-#  field(VAL, "0")
-#}
+  field(DESC, "Software fresh data buffer counter")
+  field(CALC, "VAL + 1")
+}
+
+record(bo, "$(device):STORE_DATA"){
+  field(DESC, "Store software buffer data trigger")
+  field(VAL, "0")
+}
 
 record(longout, "$(device):cmd_evre_timestamp_log_get"){
 # field(ASG, "Reserved")

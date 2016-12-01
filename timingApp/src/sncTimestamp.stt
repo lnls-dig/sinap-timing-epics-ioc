@@ -10,6 +10,10 @@ int read_hardware;
 %%// 	       Monitored PVs
 %%//----------------------------------------
 
+int storage_tg;
+assign storage_tg to "{device}:STORE_DATA";
+monitor storage_tg;
+
 string filepath;
 assign filepath to "{device}:FILEPATH";
 monitor filepath;
@@ -36,22 +40,13 @@ int hw_buffer_empty;
 assign hw_buffer_empty to "{device}:EMPTY";
 monitor hw_buffer_empty;
 
-%%//int logsoftcount;
-%%//assign logsoftcount to "{device}:LOGSOFTCNT";
-%%//monitor logsoftcount;
+int logsoftcount;
+assign logsoftcount to "{device}:LOGSOFTCNT";
+monitor logsoftcount;
 
 int buffer_cnt;
 assign buffer_cnt to "{device}:EVENTbuffer.NUSE";
 monitor buffer_cnt;
-
-int reset_utc_buff;
-assign reset_utc_buff to "{device}:UTCbuffer.RES";
-
-int reset_subsec_buff;
-assign reset_subsec_buff to "{device}:SUBSECbuffer.RES";
-
-int reset_event_buff;
-assign reset_event_buff to "{device}:EVENTbuffer.RES";
 
 int utc_buff[1000];
 assign utc_buff to "{device}:UTCbuffer";
@@ -73,7 +68,7 @@ monitor event_buff;
 %%#include <stdio.h>
 
 %{
-    int writeToFile(string filename, /*int soft_count,*/ int buffer_count, int UTCBuffer[], int SUBSECBuffer[], int EVBuffer[]);
+    int writeToFile(string filename, int soft_count, int buffer_count, int UTCBuffer[], int SUBSECBuffer[], int EVBuffer[]);
 
 }%
 
@@ -96,38 +91,34 @@ ss timestamp {
 
 	} state stopProcedure
 	
-	when (buffer_cnt >= sample_cntr){
+	when (((logsoftcount >= sample_cntr) || storage_tg) && !read_hardware){
 
 		%{/* 
 		     -Copy array elements to file
 		     -Reset LOGSOFTCNT
-		     -Reset buffers
+		     -Reset storage trigger
 		*/}%
 
-		%%// Read buffers (only necessary if it's not possible to monitor)
+		%%// Read buffers
 		pvGet(utc_buff, SYNC);
 		pvGet(subsec_buff, SYNC);
 		pvGet(event_buff, SYNC);
 
 		%%// Copy buffers to txt file
-		if(writeToFile(filepath, buffer_cnt, utc_buff, subsec_buff, event_buff))
+		if(writeToFile(filepath, logsoftcount, buffer_cnt, utc_buff, subsec_buff, event_buff))
 		{
 			%%// Reset log soft count
-			%%//logsoftcount = 0;
-			%%//pvPut(logsoftcount, SYNC);
-
-			%%// Reset buffers
-			reset_utc_buff = 1;
-			reset_subsec_buff = 1;
-			reset_event_buff = 1;
-			pvPut(reset_utc_buff, SYNC);
-			pvPut(reset_subsec_buff, SYNC);
-			pvPut(reset_event_buff, SYNC);
+			logsoftcount = 0;
+			pvPut(logsoftcount, SYNC);
 		}
 		else
 		{
 			printf("Error: Problem storing timestamp info.\n");
 		}
+
+		%%// Reset storage trigger
+		storage_tg = 0;
+		pvPut(storage_tg, SYNC);
 
 	} state monitoring
 
@@ -174,23 +165,14 @@ ss timestamp {
 		   -Wait for hardware buffer to get empty
 		   -Store remaining timestamp information
 		   -Reset LOGSOFTCNT
-		   -Reset buffers
 		*/}%
 	
 		%%// Copy buffers to txt file
-		if(writeToFile(filepath, buffer_cnt, utc_buff, subsec_buff, event_buff))
+		if(writeToFile(filepath, logsoftcount, buffer_cnt, utc_buff, subsec_buff, event_buff))
 		{
 			%%// Reset log soft count
-			%%//logsoftcount = 0;
-			%%//pvPut(logsoftcount, SYNC);
-
-			%%// Reset buffers
-			reset_utc_buff = 1;
-			reset_subsec_buff = 1;
-			reset_event_buff = 1;
-			pvPut(reset_utc_buff, SYNC);
-			pvPut(reset_subsec_buff, SYNC);
-			pvPut(reset_event_buff, SYNC);
+			logsoftcount = 0;
+			pvPut(logsoftcount, SYNC);
 		}
 		else		
 		{
@@ -221,7 +203,7 @@ ss timestamp {
 	   Description: Write the UTC, subsecond, and event timestamp information to a given file.
 
 	   Arguments: First argument is the file name.
-		      Second argument is the count of elements in each buffer.
+		      Second argument is the count of new elements in each buffer.
 		      Third argument is the number of elements in each buffer.
 		      Fourth argument is the UTC data array.
 		      Fifth argument is the subsecond data array.
@@ -229,16 +211,16 @@ ss timestamp {
 
 	   Return: 0-> Fail, 1-> Success.
 	*/
-	int writeToFile(string filename, /*int soft_count,*/ int buffer_count, int UTCBuffer[], int SUBSECBuffer[], int EVBuffer[]){
+	int writeToFile(string filename, int soft_count, int buffer_count, int UTCBuffer[], int SUBSECBuffer[], int EVBuffer[]){
 
 		int i;
 
 		// error check
-		/*if(soft_count > buffer_count){
+		if(soft_count > buffer_count){
 
-			printf("Error: Received timestamps count is greater than the number of stored timestamps.");
+			printf("Error: Received timestamps count is greater than the number of stored timestamps\n");
 			return 0;
-		}*/
+		}
 
 		FILE* fp = fopen(filename, "a");
 
@@ -250,11 +232,7 @@ ss timestamp {
 		}
 
 		// Append new timestamp information to file
-		/*for(i = buffer_count - soft_count; i < buffer_count; i++){
-			fprintf(fp, "%i\t%i\t%i\n", EVBuffer[i], UTCBuffer[i], SUBSECBuffer[i]);
-		}*/
-
-		for(i = 0; i < buffer_count; i++){
+		for(i = buffer_count - soft_count; i < buffer_count; i++){
 			fprintf(fp, "%i\t%i\t%i\n", EVBuffer[i], UTCBuffer[i], SUBSECBuffer[i]);
 		}
 
