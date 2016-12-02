@@ -3807,6 +3807,21 @@ record(longout, "$(device):cmd_evre_tmstmp_log_set"){
 }
 
 ########################################################################
+# Firmware Version [62]
+
+record(stringin, "$(device):FRMVERSION"){
+  field(DESC, "Module's firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_frmversion_get($(device)) $(PORT)")
+}
+
+record(calcout, "$(device):cmd_evre_frmversion_get"){
+# field(ASG, "Reserved")
+  field(DESC, "Firmware version read command code")
+  field(VAL, "0xBE")
+}
+
+########################################################################
 # Configuration Register [63]
 
 record(longin, "$(device):alive") {

@@ -759,6 +759,21 @@ record(longout, "$(device):cmd_evg_timestamp_set"){
 }
 
 ########################################################################
+# Firmware Version [62]
+
+record(stringin, "$(device):FRMVERSION"){
+  field(DESC, "Module's firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_frmversion_get($(device)) $(PORT)")
+}
+
+record(calcout, "$(device):cmd_evg_frmversion_get"){
+# field(ASG, "Reserved")
+  field(DESC, "Firmware version read command code")
+  field(VAL, "0xBE")
+}
+
+########################################################################
 # Configuration Register [63]
 
 record(longin, "$(device):alive") {

@@ -377,6 +377,27 @@ evre_tmstmp_log_ctrlRBV_intr{
 }
 
 ################################################################################
+# Firmware version register EVG, EVR & EVE [62]
+
+evg_frmversion_get{
+    out "%(\$1:cmd_evg_frmversion_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xFE%s";
+    @init{
+	out "%(\$1:cmd_evg_frmversion_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    	in "\xFE%s";
+    }
+}
+
+evre_frmversion_get{
+    out "%(\$1:cmd_evre_frmversion_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xFE%s";
+    @init{
+	out "%(\$1:cmd_evre_frmversion_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    	in "\xFE%s";
+    }
+}
+
+################################################################################
 # Configutarion register [63]
 eve_conf_get {
     out "%(\$1:cmd_eve_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
