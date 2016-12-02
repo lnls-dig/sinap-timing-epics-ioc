@@ -510,7 +510,8 @@ evr_download{
 }
 
 evg_download{
-	evg_conf_set; # initialize the module
+	# initialize the module
+    evg_conf_set;
     out "%(\$1:cmd_evg_mux_set0).1r\x00\x00\x00%(\$1:muxen0).1r\x00\x00\x00\x00%(\$1:muxdiv0).4r";
     out "%(\$1:cmd_evg_mux_set1).1r\x00\x00\x00%(\$1:muxen1).1r\x00\x00\x00\x00%(\$1:muxdiv1).4r";
     out "%(\$1:cmd_evg_mux_set2).1r\x00\x00\x00%(\$1:muxen2).1r\x00\x00\x00\x00%(\$1:muxdiv2).4r";

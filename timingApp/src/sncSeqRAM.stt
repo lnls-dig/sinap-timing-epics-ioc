@@ -80,55 +80,25 @@ assign event_ctrl to {};
 %%// 	      Monitored Trigger PVs
 %%//----------------------------------------
 
-int stop_pv;
-assign stop_pv to "{device}:STOPSEQ";
-monitor stop_pv;
-
 int stop_tg;
-assign stop_tg to "{device}:STOP_TG.PROC";
+assign stop_tg to "{device}:STOPSEQ";
 monitor stop_tg;
-evflag stopFlag;
-sync stop_tg stopFlag;
-
-int stopinj_pv;
-assign stopinj_pv to "{device}:STOPINJSEQ";
-monitor stopinj_pv;
 
 int stopinj_tg;
-assign stopinj_tg to "{device}:STOPINJ_TG.PROC";
+assign stopinj_tg to "{device}:STOPINJSEQ";
 monitor stopinj_tg;
-evflag stopInjFlag;
-sync stopinj_tg stopInjFlag;
-
-int run_pv;
-assign run_pv to "{device}:RUNSEQ";
-monitor run_pv;
 
 int run_tg;
-assign run_tg to "{device}:RUN_TG.PROC";
+assign run_tg to "{device}:RUNSEQ";
 monitor run_tg;
-evflag runFlag;
-sync run_tg runFlag;
-
-int inj_pv;
-assign inj_pv to "{device}:INJSEQ";
-monitor inj_pv;
 
 int inj_tg;
-assign inj_tg to "{device}:INJ_TG.PROC";
+assign inj_tg to "{device}:INJSEQ";
 monitor inj_tg;
-evflag injFlag;
-sync inj_tg injFlag;
-
-int restart_pv;
-assign restart_pv to "{device}:RESTSEQ";
-monitor restart_pv;
 
 int restart_tg;
-assign restart_tg to "{device}:RESTART_TG.PROC";
+assign restart_tg to "{device}:RESTSEQ";
 monitor restart_tg;
-evflag restFlag;
-sync restart_tg restFlag;
 
 %%//----------------------------------------
 %%// 	  Escaped C Code Declaration
@@ -260,7 +230,6 @@ ss seq {
 	   %{/* STOPPED ENTRY	
 
 		-Status update
-		-Clear Trigger Flags
 		-Update Event Pointer Array
 		-Make sure SeqRAM is disabled
 		-Reset SequenceRAM Count
@@ -270,9 +239,6 @@ ss seq {
 	   %%// Status update (stopped)
 	   StateMachineStatus = 1;
 	   pvPut(StateMachineStatus, SYNC);
-
-	   %%// Clear Trigger Flags
-	   efClear(runFlag);
 
 	   printf("Stopped Entry\n");
 	}
@@ -301,9 +267,13 @@ ss seq {
 
 	}state Stopped
 
-	when(efTestAndClear(runFlag) && run_tg && (seqcount == 0)){
-		
+	when(run_tg && (seqcount == 0)){
+
 		%{/* Write to SeqRAM 1 */}%
+
+		%%// Reset trigger
+		run_tg = 0;
+		pvPut(run_tg, SYNC);
 
 		%%// Status update (preparing to run)
 	   	StateMachineStatus = 5;
@@ -337,6 +307,42 @@ ss seq {
 
 		printf("Moving to Running State\n");
 	} state Running
+
+	when(stop_tg){
+
+		%{/* Reset trigger */}%
+
+		stop_tg = 0;
+		pvPut(stop_tg, SYNC);
+
+	} state Stopped
+
+	when(stopinj_tg){
+
+		%{/* Reset trigger */}%
+
+		stopinj_tg = 0;
+		pvPut(stopinj_tg, SYNC);
+
+	} state Stopped
+
+	when(inj_tg){
+
+		%{/* Reset trigger */}%
+
+		inj_tg = 0;
+		pvPut(inj_tg, SYNC);
+
+	} state Stopped
+
+	when(restart_tg){
+
+		%{/* Reset trigger */}%
+
+		restart_tg = 0;
+		pvPut(restart_tg, SYNC);
+
+	} state Stopped
     }
 
     state CheckSeq1Write{
@@ -397,7 +403,6 @@ ss seq {
 	    %{/* RUNNING ENTRY	
 
 		-Status update
-		-Clear Trigger Flags
 		-Clear numberOfWrites
 
 	    */}%
@@ -406,20 +411,19 @@ ss seq {
 	   StateMachineStatus = 2;
 	   pvPut(StateMachineStatus, SYNC);
 
-	   %%// Clear Trigger Flags
-	   efClear(stopFlag);
-	   efClear(injFlag);
-	   efClear(restFlag);
-
 	   %%// Clear number of writes
 	   numberOfWrites = 0;
 
 	   printf("Running Entry\n");
 	}
 	
-	when(efTestAndClear(stopFlag) && stop_tg){
+	when(stop_tg){
 
 		%{/* Stop SeqRAM (disable SeqRAM) */}%
+
+		%%// Reset trigger
+		stop_tg = 0;
+		pvPut(stop_tg, SYNC);
 
 		%%// Disable SeqRAM
 		seqen = 0;
@@ -435,13 +439,17 @@ ss seq {
 	    	printf("Moving to Stopped State\n");
 	} state Stopped
 
-	when(efTestAndClear(injFlag) && inj_tg){
+	when(inj_tg){
 
 		%{/* 
 		      -Update Bucket list
 		      -Update Bucket list length
 		      -Write to seqRAM 2
 		*/}%
+
+		%%// Reset trigger
+		inj_tg = 0;
+		pvPut(inj_tg, SYNC);
 
 		%%// Status update (preparing to inject)
 	   	StateMachineStatus = 6;
@@ -486,12 +494,34 @@ ss seq {
 	    	printf("Moving to Injecting State\n");
 	} state Injecting
 
-	when(efTestAndClear(restFlag) && restart_tg){
+	when(restart_tg){
 
 		%{/* Just go to Restarting state */}%
 
+		%%// Reset trigger
+		restart_tg = 0;
+		pvPut(restart_tg, SYNC);
+
 	   	printf("Moving to Restarting State\n");
 	} state Restarting
+
+	when(run_tg){
+
+		%{/* Reset trigger */}%
+
+		run_tg = 0;
+		pvPut(run_tg, SYNC);
+
+	} state Running
+
+	when(stopinj_tg){
+
+		%{/* Reset trigger */}%
+
+		stopinj_tg = 0;
+		pvPut(stopinj_tg, SYNC);
+
+	} state Running
     }
 
     state CheckSeq2Write{
@@ -551,16 +581,12 @@ ss seq {
 	    %{/* INJECTING ENTRY	
 
 		-Status update
-		-Clear Trigger Flags
 
 	    */}%
 
 	   %%// Status update (injecting)
 	   StateMachineStatus = 3;
 	   pvPut(StateMachineStatus, SYNC);
-
-	   %%// Clear Trigger Flags
-	   efClear(stopFlag);
 
 	   printf("Injecting Entry\n");
 	}
@@ -572,9 +598,13 @@ ss seq {
 	   	printf("Moving to Running State\n");
 	} state Running
 
-	when(efTestAndClear(stopInjFlag) && stopinj_tg){
+	when(stopinj_tg){
 
 		%{/* Return to SeqRAM 1 */}%
+
+		%%// Reset trigger
+		stopinj_tg = 0;
+		pvPut(stopinj_tg, SYNC);
 
 		%%// Switch seqRAM
 		if(seqs == 2){
@@ -585,9 +615,13 @@ ss seq {
 	   	printf("Stop Inj Triggered\n");
 	} state Injecting
 
-	when(efTestAndClear(stopFlag) && stop_tg){
+	when(stop_tg){
 
 		%{/* Stop SequenceRAM (disable SeqRAM) */}%
+
+		%%// Reset trigger
+		stop_tg = 0;
+		pvPut(stop_tg, SYNC);
 
 		%%// Disable SeqRAM
 		seqen = 0;
@@ -602,6 +636,33 @@ ss seq {
 
 		printf("Moving to Stopped State\n");
 	} state Stopped
+
+	when(run_tg){
+
+		%{/* Reset trigger */}%
+
+		run_tg = 0;
+		pvPut(run_tg, SYNC);
+
+	} state Injecting
+
+	when(inj_tg){
+
+		%{/* Reset trigger */}%
+
+		inj_tg = 0;
+		pvPut(inj_tg, SYNC);
+
+	} state Injecting
+
+	when(restart_tg){
+
+		%{/* Reset trigger */}%
+
+		restart_tg = 0;
+		pvPut(restart_tg, SYNC);
+
+	} state Injecting
     }
 
     state Restarting{
@@ -672,41 +733,51 @@ ss seq {
 		pvPut(seqcount_proc, SYNC);
 
 	} state CheckSeq1Write
-    }
-}
 
-ss reset_tg_pv{
-    state checking{
-	
-	when(stop_pv && delay(1.5)){
-	     %{/* Clear stop PV */}%	
-		stop_pv = 0;
-		pvPut(stop_pv, SYNC);
-	} state checking
+	when(stop_tg){
 
-	when(run_pv && delay(1.5)){
-	     %{/* Clear run PV */}%
-		run_pv = 0;
-		pvPut(run_pv, SYNC);
-	} state checking
+		%{/* Reset trigger */}%
 
-	when(stopinj_pv && delay(1.5)){
-	    %{/* Clear stopinj PV */}%
-		stopinj_pv = 0;
-		pvPut(stopinj_pv, SYNC);
-	} state checking
+		stop_tg = 0;
+		pvPut(stop_tg, SYNC);
 
-	when(inj_pv && delay(1.5)){
-	    %{/* Clear injection PV */}%
-		inj_pv = 0;
-		pvPut(inj_pv, SYNC);
-	} state checking
+	} state Restarting
 
-	when(restart_pv && delay(1.5)){
-	    %{/* Clear restart PV */}%
-		restart_pv = 0;
-		pvPut(restart_pv, SYNC);
-	} state checking	
+	when(stopinj_tg){
+
+		%{/* Reset trigger */}%
+
+		stopinj_tg = 0;
+		pvPut(stopinj_tg, SYNC);
+
+	} state Restarting
+
+	when(run_tg){
+
+		%{/* Reset trigger */}%
+
+		run_tg = 0;
+		pvPut(run_tg, SYNC);
+
+	} state Restarting
+
+	when(inj_tg){
+
+		%{/* Reset trigger */}%
+
+		inj_tg = 0;
+		pvPut(inj_tg, SYNC);
+
+	} state Restarting
+
+	when(restart_tg){
+
+		%{/* Reset trigger */}%
+
+		restart_tg = 0;
+		pvPut(restart_tg, SYNC);
+
+	} state Restarting
     }
 }
 

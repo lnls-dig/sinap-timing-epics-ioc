@@ -162,7 +162,7 @@
       <toolbar xmi:id="_I4ZkV7WlEeagILg6B4CFZw" elementId="org.eclipse.ui.internal.introview" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_I4ZkWLWlEeagILg6B4CFZw" elementId="org.eclipse.ui.editorss" selectedElement="_I4ZkWbWlEeagILg6B4CFZw">
-      <children xsi:type="basic:PartStack" xmi:id="_I4ZkWbWlEeagILg6B4CFZw" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_I4ZkX7WlEeagILg6B4CFZw">
+      <children xsi:type="basic:PartStack" xmi:id="_I4ZkWbWlEeagILg6B4CFZw" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_I4ZkWrWlEeagILg6B4CFZw">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
@@ -171,6 +171,8 @@
           <tags>Editor</tags>
           <tags>org.csstudio.opibuilder.OPIEditor</tags>
           <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_I4ZkW7WlEeagILg6B4CFZw" elementId="org.csstudio.opibuilder.OPIEditor">
             <tags>menuContribution:popup</tags>
             <tags>popup:org.csstudio.opibuilder.OPIEditor</tags>
@@ -193,8 +195,6 @@
           <tags>Editor</tags>
           <tags>org.csstudio.opibuilder.OPIEditor</tags>
           <tags>removeOnHide</tags>
-          <tags>active</tags>
-          <tags>activeOnClose</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_I4ZkYLWlEeagILg6B4CFZw" elementId="org.csstudio.opibuilder.OPIEditor">
             <tags>menuContribution:popup</tags>
             <tags>popup:org.csstudio.opibuilder.OPIEditor</tags>

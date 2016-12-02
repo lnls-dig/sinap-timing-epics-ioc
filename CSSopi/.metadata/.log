@@ -11617,3 +11617,48 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 
 !ENTRY org.eclipse.equinox.ds 1 0 2016-12-01 16:29:18.147
 !MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterService. The reference is: Reference[name = ServiceProvider, interface = org.diirt.service.ServiceProvider, policy = static, cardinality = 0..n, target = null, bind = registerService, unbind = null]
+!SESSION 2016-12-01 16:38:17.563 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-01 16:38:18.133
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterDatasource. The reference is: Reference[name = DataSourceProvider, interface = org.diirt.datasource.DataSourceProvider, policy = dynamic, cardinality = 0..n, target = null, bind = registerDatasource, unbind = deregisterDatasource]
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-01 16:38:18.134
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterFormulaFunctionSet. The reference is: Reference[name = FormulaFunctionSet, interface = org.diirt.datasource.formula.FormulaFunctionSet, policy = dynamic, cardinality = 0..n, target = null, bind = registerFormulaFunctionSet, unbind = deregisterFormulaFunctionSet]
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-01 16:38:18.135
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterService. The reference is: Reference[name = ServiceProvider, interface = org.diirt.service.ServiceProvider, policy = static, cardinality = 0..n, target = null, bind = registerService, unbind = null]
+!SESSION 2016-12-02 09:22:24.090 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-02 09:22:24.623
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterDatasource. The reference is: Reference[name = DataSourceProvider, interface = org.diirt.datasource.DataSourceProvider, policy = dynamic, cardinality = 0..n, target = null, bind = registerDatasource, unbind = deregisterDatasource]
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-02 09:22:24.624
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterFormulaFunctionSet. The reference is: Reference[name = FormulaFunctionSet, interface = org.diirt.datasource.formula.FormulaFunctionSet, policy = dynamic, cardinality = 0..n, target = null, bind = registerFormulaFunctionSet, unbind = deregisterFormulaFunctionSet]
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-02 09:22:24.625
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterService. The reference is: Reference[name = ServiceProvider, interface = org.diirt.service.ServiceProvider, policy = static, cardinality = 0..n, target = null, bind = registerService, unbind = null]
+!SESSION 2016-12-02 09:29:10.234 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0_111
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-02 09:29:10.772
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterDatasource. The reference is: Reference[name = DataSourceProvider, interface = org.diirt.datasource.DataSourceProvider, policy = dynamic, cardinality = 0..n, target = null, bind = registerDatasource, unbind = deregisterDatasource]
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-02 09:29:10.773
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterFormulaFunctionSet. The reference is: Reference[name = FormulaFunctionSet, interface = org.diirt.datasource.formula.FormulaFunctionSet, policy = dynamic, cardinality = 0..n, target = null, bind = registerFormulaFunctionSet, unbind = deregisterFormulaFunctionSet]
+
+!ENTRY org.eclipse.equinox.ds 1 0 2016-12-02 09:29:10.774
+!MESSAGE Could not bind a reference of component org.csstudio.diirt.util.RegisterService. The reference is: Reference[name = ServiceProvider, interface = org.diirt.service.ServiceProvider, policy = static, cardinality = 0..n, target = null, bind = registerService, unbind = null]
