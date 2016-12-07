@@ -3592,16 +3592,22 @@ record(longout, "$(device):cmd_evre_timestamp_set"){
 record(bo, "$(device):stoplog"){
   field(DESC, "Stop log command")
   field(FLNK, "$(device):STOPLOG")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
 }
 
 record(bo, "$(device):rstlog"){
   field(DESC, "Reset log command")
   field(FLNK, "$(device):RSTLOG")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
 }
 
 record(bo, "$(device):pull"){
   field(DESC, "Pull from log command")
   field(FLNK, "$(device):PULL")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
 }
 
 record(calcout, "$(device):STOPLOG") {
@@ -3610,8 +3616,7 @@ record(calcout, "$(device):STOPLOG") {
   field(DTYP, "stream")
   field(INPA, "$(device):stoplog.VAL")
   field(INPB, "$(device):RSTLOGRBV.VAL")
-  field(INPC, "$(device):PULLRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(CALC, "(A<<7)|(B<<6)")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),STOPLOG) $(PORT)")
   field(FLNK, "$(device):LOGCTRL")
 }
@@ -3622,8 +3627,7 @@ record(calcout, "$(device):RSTLOG") {
   field(DTYP, "stream")
   field(INPA, "$(device):STOPLOGRBV.VAL")
   field(INPB, "$(device):rstlog.VAL")
-  field(INPC, "$(device):PULLRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(CALC, "(A<<7)|(B<<6)")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),RSTLOG) $(PORT)")
   field(FLNK, "$(device):LOGCTRL")
 }
@@ -3635,7 +3639,8 @@ record(calcout, "$(device):PULL") {
   field(INPA, "$(device):STOPLOGRBV.VAL")
   field(INPB, "$(device):RSTLOGRBV.VAL")
   field(INPC, "$(device):pull.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(CALC, "C > 0 ? (A<<7)|(B<<6)|(C<<5) : 0")
+  field(OOPT, "When Non-zero")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),PULL) $(PORT)")
   field(FLNK, "$(device):LOGCTRL")
 }
@@ -3647,6 +3652,7 @@ record(calcout, "$(device):LOGCTRL") {
   field(INPB, "$(device):rstlog.VAL")
   field(INPC, "$(device):pull.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(FLNK, "$(device):syncRead")
 }
 
 record(longin, "$(device):LOGCOUNT"){
@@ -3666,6 +3672,8 @@ record(mbbiDirect, "$(device):LOGCTRLRBV"){
 
 record(bi, "$(device):STOPLOGRBV"){
 # field(ASG, "Reserved")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
   field(DESC, "Stop log command RBV")
   field(INP, "$(device):LOGCTRLRBV.B7")
   field(FLNK, "$(device):RSTLOGRBV")
@@ -3673,20 +3681,17 @@ record(bi, "$(device):STOPLOGRBV"){
 
 record(bi, "$(device):RSTLOGRBV"){
 # field(ASG, "Reserved")
+  field(ONAM, "ON")
+  field(ZNAM, "OFF")
   field(DESC, "Reset log command RBV")
   field(INP, "$(device):LOGCTRLRBV.B6")
-  field(FLNK, "$(device):PULLRBV")
-}
-
-record(bi, "$(device):PULLRBV"){
-# field(ASG, "Reserved")
-  field(DESC, "Pull from log command RBV")
-  field(INP, "$(device):LOGCTRLRBV.B5")
   field(FLNK, "$(device):FULL")
 }
 
 record(bi, "$(device):FULL"){
 # field(ASG, "Reserved")
+  field(ONAM, "YES")
+  field(ZNAM, "NO")
   field(DESC, "Timestamp buffer full flag")
   field(INP, "$(device):LOGCTRLRBV.B1")
   field(FLNK, "$(device):EMPTY")
@@ -3694,9 +3699,10 @@ record(bi, "$(device):FULL"){
 
 record(bi, "$(device):EMPTY"){
 # field(ASG, "Reserved")
+  field(ONAM, "YES")
+  field(ZNAM, "NO")
   field(DESC, "Timestamp buffer empty flag")
   field(INP, "$(device):LOGCTRLRBV.B0")
-  field(FLNK, "$(device):validSample")
 }
 
 record(longin, "$(device):LOGUTC"){
@@ -3715,29 +3721,32 @@ record(longin, "$(device):LOGEVENT"){
   field(DESC, "Timestamp event from log")
 }
 
-record(stringout, "$(device):FILEPATH"){
-  field(DESC, "Path to file storing timestamp data")
-  field(VAL, "/home/Desktop/TimestampLog.txt")
+record(longout, "$(device):syncRead"){
+  field(DESC, "Sync read to processing")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_tmstmp_log_get($(device)) $(PORT)")
+  field(FLNK, "$(device):verifyCount")
 }
 
-record(longout, "$(device):SAMPLING_CNTR"){
-  field(DESC, "Minimum timestamp samples before storage")
-  field(VAL, "50")
-}
-
-record(ao, "$(device):SAMPLE_RATE"){
-  field(DESC, "Timestamp log sampling rate")
-  field(VAL, "2.0")
-}
-
-record(calcout, "$(device):validSample"){
+record(calcout, "$(device):verifyCount"){
 # field(ASG, "Reserved")
-  field(DESC, "Timestamp sample validation")
-  field(INPA, "$(device):PULLRBV")
-  field(INPB, "$(device):LOGUTC")
-  field(CALC, "(A > 0) && (B > 0)")
+  field(DESC, "Verify if a new timestamp was pulled")
+  field(INPA, "$(device):LOGCOUNT")
+  field(INPB, "$(device):lastCntValue")
+  field(CALC, "A != B ? 1 : 0")
+  field(OOPT, "When Non-zero")
   field(OUT, "$(device):UTCbuffer.PROC")
+  field(FLNK, "$(device):lastCntValue")
   field(VAL, "0")
+}
+
+# this record is initialized at the @init
+# part of this register's read protocol
+
+record(longin, "$(device):lastCntValue"){
+# field(ASG, "Reserved")
+  field(DESC, "Last LOGCOUNT value")
+  field(INP, "$(device):LOGCOUNT")
 }
 
 record(compress, "$(device):UTCbuffer"){
@@ -3771,11 +3780,35 @@ record(calc, "$(device):LOGSOFTCNT"){
 #  field(ASG, "Reserved")
   field(DESC, "Software fresh data buffer counter")
   field(CALC, "VAL + 1")
+  field(FLNK, "$(device):pullAgain")
 }
 
-record(bo, "$(device):STORE_DATA"){
-  field(DESC, "Store software buffer data trigger")
+record(calcout, "$(device):pullAgain"){
+  field(DESC, "Pull again decision calc")
+  field(INPA, "$(device):whileNotEmpty.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(device):whileNotEmpty.PROC")
+}
+
+record(calcout, "$(device):PeriodicPull"){
+  field(DESC, "Periodically pull of timestamps")
+  field(SCAN, "2 second")
+  field(INPA, "$(device):whileNotEmpty.VAL")
+  field(INPB, "$(device):EMPTY")
+  field(CALC, "(A == 0) && (B == 0)")
   field(VAL, "0")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(device):whileNotEmpty.PROC")
+}
+
+record(calcout, "$(device):whileNotEmpty"){
+  field(DESC, "Flag: pull while buffer not empty")
+  field(INPA, "$(device):EMPTY")
+  field(CALC, "A == 0")
+  field(VAL, "0")
+  field(OUT, "$(device):pull")
+  field(FLNK, "$(device):pull")
 }
 
 record(longout, "$(device):cmd_evre_tmstmp_log_get"){

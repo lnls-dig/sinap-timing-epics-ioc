@@ -5,6 +5,7 @@ program sncTimestamp
 %%//----------------------------------------
 
 int read_hardware;
+int lastSoftCount;
 
 %%//----------------------------------------
 %%// 	       Monitored PVs
@@ -28,7 +29,6 @@ monitor sample_rate;
 
 int pull_data;
 assign pull_data to "{device}:pull";
-monitor pull_data;
 
 int stoplogRBV;
 assign stoplogRBV to "{device}:STOPLOGRBV";
@@ -117,22 +117,38 @@ ss timestamp {
 		}
 
 		%%// Reset storage trigger
-		storage_tg = 0;
-		pvPut(storage_tg, SYNC);
+		if(storage_tg != 0){
+			storage_tg = 0;
+			pvPut(storage_tg, SYNC);
+		}
 
 	} state monitoring
 
-	when(!hw_buffer_empty && delay(sample_rate)){
+	when(!hw_buffer_empty && !read_hardware && delay(sample_rate)){
 
 		%{/* Request timestamp data pull */}%
+
+		printf("Entered 1! : read_hardware=%d\n", read_hardware);
+
+		lastSoftCount = logsoftcount;
+
+		pull_data = 1;
+		pvPut(pull_data, SYNC);
 
 		read_hardware = 1;
 
 	} state monitoring
 
-	when(!hw_buffer_empty && read_hardware){
+	when(!hw_buffer_empty && read_hardware && (lastSoftCount > logsoftcount)){
 
-		%{/* Pull timestamp data from hardware */}%
+		%{/* 
+		     -Condition waits processing to finish (lastSoftCount < logsoftcount)
+		     -Pull timestamp data from hardware
+		 */}%
+
+		printf("Entered 2! : read_hardware=%d\n", read_hardware);
+		
+		lastSoftCount = logsoftcount;
 
 		pull_data = 1;
 		pvPut(pull_data, SYNC);
@@ -142,6 +158,8 @@ ss timestamp {
 	when(hw_buffer_empty && read_hardware){
 
 		%{/* Stop hardware timestamp reading */}%
+
+		printf("Entered here 3!\n");
 
 		read_hardware = 0;
 
@@ -211,7 +229,7 @@ ss timestamp {
 
 	   Return: 0-> Fail, 1-> Success.
 	*/
-	int writeToFile(string filename, int soft_count, int buffer_count, int UTCBuffer[], int SUBSECBuffer[], int EVBuffer[]){
+	int writeToFile(char* filename, int soft_count, int buffer_count, int UTCBuffer[], int SUBSECBuffer[], int EVBuffer[]){
 
 		int i;
 

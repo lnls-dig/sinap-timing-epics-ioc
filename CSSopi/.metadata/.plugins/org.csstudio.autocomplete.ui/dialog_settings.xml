@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="auto_complete_history">
 		<list key="PV">
+			<item value="$(device):LOGSOFTCNT"/>
 			<item value="$(device):EVENTbuffer"/>
 			<item value="$(device):SUBSECbuffer"/>
 			<item value="$(device):LOGEVENT"/>
@@ -101,7 +102,6 @@
 			<item value="$(device):EVCODE1"/>
 			<item value="$(device):EVTRANSM0"/>
 			<item value="$(device):EVDLYMODE0"/>
-			<item value="$(device):EVTIME0"/>
 		</list>
 	</section>
 </section>
