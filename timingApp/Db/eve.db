@@ -3909,12 +3909,16 @@ record(bo, "$(device):download") {
 
 record(bo, "$(device):downloadT") {
   field(DESC, "EVE download trigger")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
   field(DTYP, "stream")
   field(OUT, "@timing.proto eve_download($(device)) $(PORT)")
 }
 
 record(bo, "$(device):uploadT") {
   field(DESC, "EVE upload trigger")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
   field(DTYP, "stream")
   field(OUT, "@timing.proto eve_upload($(device)) $(PORT)")
 }

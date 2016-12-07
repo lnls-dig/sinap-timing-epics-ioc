@@ -3902,12 +3902,16 @@ record(bo, "$(device):download") {
 
 record(bo, "$(device):downloadT") {
   field(DESC, "EVR download trigger")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evr_download($(device)) $(PORT)")
 }
 
 record(bo, "$(device):uploadT") {
   field(DESC, "EVR upload trigger")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evr_upload($(device)) $(PORT)")
 }
