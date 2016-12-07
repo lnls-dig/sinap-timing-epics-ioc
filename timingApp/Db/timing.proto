@@ -363,13 +363,6 @@ evre_timestamp_timesrcRBV_intr{
 evre_tmstmp_log_get{
     out "%(\$1:cmd_evre_tmstmp_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xF4%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%*r";
-
-    # this special init procedure initializes lasCntValue, which must start with the correct value,
-    # but can't be changed after initialization by other means than a FLNK
-    @init{
-	out "%(\$1:cmd_evre_tmstmp_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-	in "\xF4%*04r%*04r%*r%(\$1:lastCntValue)02r%*r";
-    }
 }
 
 evre_tmstmp_log_set{

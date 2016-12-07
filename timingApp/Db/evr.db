@@ -3605,9 +3605,18 @@ record(bo, "$(device):rstlog"){
 
 record(bo, "$(device):pull"){
   field(DESC, "Pull from log command")
-  field(FLNK, "$(device):PULL")
   field(ONAM, "ON")
   field(ZNAM, "OFF")
+  field(FLNK, "$(device):checkPull")
+}
+
+record(calcout, "$(device):checkPull"){
+  field(DESC, "Validate pull action")
+  field(INPA, "$(device):EMPTY")
+  field(INPB, "$(device):pull")
+  field(CALC, "(A == 0) && (B != 0)")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(device):PULL.PROC")
 }
 
 record(calcout, "$(device):STOPLOG") {
@@ -3618,7 +3627,7 @@ record(calcout, "$(device):STOPLOG") {
   field(INPB, "$(device):RSTLOGRBV.VAL")
   field(CALC, "(A<<7)|(B<<6)")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),STOPLOG) $(PORT)")
-  field(FLNK, "$(device):LOGCTRL")
+  field(FLNK, "$(device):onlyRead")
 }
 
 record(calcout, "$(device):RSTLOG") {
@@ -3629,7 +3638,7 @@ record(calcout, "$(device):RSTLOG") {
   field(INPB, "$(device):rstlog.VAL")
   field(CALC, "(A<<7)|(B<<6)")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),RSTLOG) $(PORT)")
-  field(FLNK, "$(device):LOGCTRL")
+  field(FLNK, "$(device):onlyRead")
 }
 
 record(calcout, "$(device):PULL") {
@@ -3639,10 +3648,9 @@ record(calcout, "$(device):PULL") {
   field(INPA, "$(device):STOPLOGRBV.VAL")
   field(INPB, "$(device):RSTLOGRBV.VAL")
   field(INPC, "$(device):pull.VAL")
-  field(CALC, "C > 0 ? (A<<7)|(B<<6)|(C<<5) : 0")
-  field(OOPT, "When Non-zero")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),PULL) $(PORT)")
-  field(FLNK, "$(device):LOGCTRL")
+  field(FLNK, "$(device):readAndUpdate")
 }
 
 record(calcout, "$(device):LOGCTRL") {
@@ -3652,7 +3660,6 @@ record(calcout, "$(device):LOGCTRL") {
   field(INPB, "$(device):rstlog.VAL")
   field(INPC, "$(device):pull.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(FLNK, "$(device):syncRead")
 }
 
 record(longin, "$(device):LOGCOUNT"){
@@ -3721,32 +3728,18 @@ record(longin, "$(device):LOGEVENT"){
   field(DESC, "Timestamp event from log")
 }
 
-record(longout, "$(device):syncRead"){
-  field(DESC, "Sync read to processing")
+record(longout, "$(device):onlyRead"){
+  field(DESC, "Read register")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_tmstmp_log_get($(device)) $(PORT)")
-  field(FLNK, "$(device):verifyCount")
+  field(FLNK, "$(device):LOGCTRL")
 }
 
-record(calcout, "$(device):verifyCount"){
-# field(ASG, "Reserved")
-  field(DESC, "Verify if a new timestamp was pulled")
-  field(INPA, "$(device):LOGCOUNT")
-  field(INPB, "$(device):lastCntValue")
-  field(CALC, "A != B ? 1 : 0")
-  field(OOPT, "When Non-zero")
-  field(OUT, "$(device):UTCbuffer.PROC")
-  field(FLNK, "$(device):lastCntValue")
-  field(VAL, "0")
-}
-
-# this record is initialized at the @init
-# part of this register's read protocol
-
-record(longin, "$(device):lastCntValue"){
-# field(ASG, "Reserved")
-  field(DESC, "Last LOGCOUNT value")
-  field(INP, "$(device):LOGCOUNT")
+record(longout, "$(device):readAndUpdate"){
+  field(DESC, "Read register and update buffers")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_tmstmp_log_get($(device)) $(PORT)")
+  field(FLNK, "$(device):UTCbuffer")
 }
 
 record(compress, "$(device):UTCbuffer"){
@@ -3789,6 +3782,7 @@ record(calcout, "$(device):pullAgain"){
   field(CALC, "A")
   field(OOPT, "When Non-zero")
   field(OUT, "$(device):whileNotEmpty.PROC")
+  field(FLNK, "$(device):LOGCTRL")
 }
 
 record(calcout, "$(device):PeriodicPull"){
