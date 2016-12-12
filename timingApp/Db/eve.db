@@ -2831,19 +2831,19 @@ record(bi, "$(device):itl0RBV") {
 record(mbbiDirect, "$(device):sel0RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE itl OUT0 raw status")
-  field(NOBT, "7")
+#  field(NOBT, "7")
 }
 
 record(mbbiDirect, "$(device):finedly0RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fine delay OUT0 status")
-  field(NOBT, "10")
+#  field(NOBT, "10")
 }
 
 record(mbbiDirect, "$(device):rfdly0RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF delay OUT0 status")
-  field(NOBT, "5")
+#  field(NOBT, "5")
 }
 
 record(longout, "$(device):rfdly0"){
@@ -2921,19 +2921,19 @@ record(bi, "$(device):itl1RBV") {
 record(mbbiDirect, "$(device):sel1RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE itl OUT1 raw status")
-  field(NOBT, "7")
+#  field(NOBT, "7")
 }
 
 record(mbbiDirect, "$(device):finedly1RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fine delay OUT1 status")
-  field(NOBT, "10")
+#  field(NOBT, "10")
 }
 
 record(mbbiDirect, "$(device):rfdly1RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF delay OUT1 status")
-  field(NOBT, "5")
+#  field(NOBT, "5")
 }
 
 record(longout, "$(device):rfdly1"){
@@ -3011,19 +3011,19 @@ record(bi, "$(device):itl2RBV") {
 record(mbbiDirect, "$(device):sel2RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE itl OUT2 raw status")
-  field(NOBT, "7")
+#  field(NOBT, "7")
 }
 
 record(mbbiDirect, "$(device):finedly2RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fine delay OUT2 status")
-  field(NOBT, "10")
+#  field(NOBT, "10")
 }
 
 record(mbbiDirect, "$(device):rfdly2RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF delay OUT2 status")
-  field(NOBT, "5")
+#  field(NOBT, "5")
 }
 
 record(longout, "$(device):rfdly2"){
@@ -3101,19 +3101,19 @@ record(bi, "$(device):itl3RBV") {
 record(mbbiDirect, "$(device):sel3RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE itl OUT3 raw status")
-  field(NOBT, "7")
+#  field(NOBT, "7")
 }
 
 record(mbbiDirect, "$(device):finedly3RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fine delay OUT3 status")
-  field(NOBT, "10")
+#  field(NOBT, "10")
 }
 
 record(mbbiDirect, "$(device):rfdly3RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF delay OUT3 status")
-  field(NOBT, "5")
+#  field(NOBT, "5")
 }
 
 record(longout, "$(device):rfdly3"){
@@ -3191,19 +3191,19 @@ record(bi, "$(device):itl4RBV") {
 record(mbbiDirect, "$(device):sel4RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE itl OUT4 raw status")
-  field(NOBT, "7")
+#  field(NOBT, "7")
 }
 
 record(mbbiDirect, "$(device):finedly4RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fine delay OUT4 status")
-  field(NOBT, "10")
+#  field(NOBT, "10")
 }
 
 record(mbbiDirect, "$(device):rfdly4RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF delay OUT4 status")
-  field(NOBT, "5")
+#  field(NOBT, "5")
 }
 
 record(longout, "$(device):rfdly4"){
@@ -3281,19 +3281,19 @@ record(bi, "$(device):itl5RBV") {
 record(mbbiDirect, "$(device):sel5RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE itl OUT5 raw status")
-  field(NOBT, "7")
+#  field(NOBT, "7")
 }
 
 record(mbbiDirect, "$(device):finedly5RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fine delay OUT5 status")
-  field(NOBT, "10")
+#  field(NOBT, "10")
 }
 
 record(mbbiDirect, "$(device):rfdly5RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF delay OUT5 status")
-  field(NOBT, "5")
+#  field(NOBT, "5")
 }
 
 record(longout, "$(device):rfdly5"){
@@ -3371,19 +3371,19 @@ record(bi, "$(device):itl6RBV") {
 record(mbbiDirect, "$(device):sel6RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE itl OUT6 raw status")
-  field(NOBT, "7")
+#  field(NOBT, "7")
 }
 
 record(mbbiDirect, "$(device):finedly6RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fine delay OUT6 status")
-  field(NOBT, "10")
+#  field(NOBT, "10")
 }
 
 record(mbbiDirect, "$(device):rfdly6RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF delay OUT6 status")
-  field(NOBT, "5")
+#  field(NOBT, "5")
 }
 
 record(longout, "$(device):rfdly6"){
@@ -3461,19 +3461,19 @@ record(bi, "$(device):itl7RBV") {
 record(mbbiDirect, "$(device):sel7RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE itl OUT7 raw status")
-  field(NOBT, "7")
+#  field(NOBT, "7")
 }
 
 record(mbbiDirect, "$(device):finedly7RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fine delay OUT7 status")
-  field(NOBT, "10")
+#  field(NOBT, "10")
 }
 
 record(mbbiDirect, "$(device):rfdly7RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF delay OUT7 status")
-  field(NOBT, "5")
+#  field(NOBT, "5")
 }
 
 record(longout, "$(device):rfdly7"){
@@ -3664,6 +3664,7 @@ record(calcout, "$(device):PULL") {
   field(INPC, "$(device):pull.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),PULL) $(PORT)")
+  field(PRIO, "HIGH")
   field(FLNK, "$(device):readAndUpdate")
 }
 
@@ -3753,6 +3754,7 @@ record(longout, "$(device):readAndUpdate"){
   field(DESC, "Read register and update buffers")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_tmstmp_log_get($(device)) $(PORT)")
+  field(PRIO, "HIGH")
   field(FLNK, "$(device):UTCbuffer")
 }
 

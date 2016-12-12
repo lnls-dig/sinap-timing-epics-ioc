@@ -142,26 +142,26 @@ evre_otp_enpoltimeFRBV_intr{
 # OUT Registers [17 - 24]
 evre_out_get {
     out "%(\$1:cmd_evre_out_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel\$2RBV.RVAL)r%*02r%(\$1:finedly\$2RBV.RVAL)02r%*03r%(\$1:rfdly\$2RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel\$2RBV)r%*02r%(\$1:finedly\$2RBV)02r%*03r%(\$1:rfdly\$2RBV)r";
 }
 
 evre_out_rfdly_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RBV.RVAL).1r\x00\x00%(\$1:finedly\$2RBV.RVAL).2r\x00\x00\x00%(\$1:rfdly\$2).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RBV).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2).1r";
     evre_out_get;
 }
 
 evre_out_finedly_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RBV.RVAL).1r\x00\x00%(\$1:finedly\$2).2r\x00\x00\x00%(\$1:rfdly\$2RBV.RVAL).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RBV).1r\x00\x00%(\$1:finedly\$2).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
     evre_out_get;
 }
 
 evre_out_sel_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2).1r\x00\x00%(\$1:finedly\$2RBV.RVAL).2r\x00\x00\x00%(\$1:rfdly\$2RBV.RVAL).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
     evre_out_get;
 }
 
 evre_out_itl_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:ITL\$2).1r\x00\x00%(\$1:sel\$2RBV.RVAL).1r\x00\x00%(\$1:finedly\$2RBV.RVAL).2r\x00\x00\x00%(\$1:rfdly\$2RBV.RVAL).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:ITL\$2).1r\x00\x00%(\$1:sel\$2RBV).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
     evre_out_get;
 }
 
@@ -598,28 +598,28 @@ eve_upload{
     #wait 100;
 	# OUTs upload
     out "%(\$1:cmd_evre_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel0RBV.RVAL)r%*02r%(\$1:finedly0RBV.RVAL)02r%*03r%(\$1:rfdly0RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel0RBV)r%*02r%(\$1:finedly0RBV)02r%*03r%(\$1:rfdly0RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel1RBV.RVAL)r%*02r%(\$1:finedly1RBV.RVAL)02r%*03r%(\$1:rfdly1RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel1RBV)r%*02r%(\$1:finedly1RBV)02r%*03r%(\$1:rfdly1RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel2RBV.RVAL)r%*02r%(\$1:finedly2RBV.RVAL)02r%*03r%(\$1:rfdly2RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel2RBV)r%*02r%(\$1:finedly2RBV)02r%*03r%(\$1:rfdly2RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel3RBV.RVAL)r%*02r%(\$1:finedly3RBV.RVAL)02r%*03r%(\$1:rfdly3RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel3RBV)r%*02r%(\$1:finedly3RBV)02r%*03r%(\$1:rfdly3RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel4RBV.RVAL)r%*02r%(\$1:finedly4RBV.RVAL)02r%*03r%(\$1:rfdly4RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel4RBV)r%*02r%(\$1:finedly4RBV)02r%*03r%(\$1:rfdly4RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel5RBV.RVAL)r%*02r%(\$1:finedly5RBV.RVAL)02r%*03r%(\$1:rfdly5RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel5RBV)r%*02r%(\$1:finedly5RBV)02r%*03r%(\$1:rfdly5RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel6RBV.RVAL)r%*02r%(\$1:finedly6RBV.RVAL)02r%*03r%(\$1:rfdly6RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel6RBV)r%*02r%(\$1:finedly6RBV)02r%*03r%(\$1:rfdly6RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel7RBV.RVAL)r%*02r%(\$1:finedly7RBV.RVAL)02r%*03r%(\$1:rfdly7RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel7RBV)r%*02r%(\$1:finedly7RBV)02r%*03r%(\$1:rfdly7RBV)r";
     #wait 100;
 	# RF output upload
 	eve_rf_get;
@@ -682,28 +682,28 @@ evr_upload{
     #wait 100;
 	# OUTs upload
     out "%(\$1:cmd_evre_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel0RBV.RVAL)r%*02r%(\$1:finedly0RBV.RVAL)02r%*03r%(\$1:rfdly0RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel0RBV)r%*02r%(\$1:finedly0RBV)02r%*03r%(\$1:rfdly0RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel1RBV.RVAL)r%*02r%(\$1:finedly1RBV.RVAL)02r%*03r%(\$1:rfdly1RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel1RBV)r%*02r%(\$1:finedly1RBV)02r%*03r%(\$1:rfdly1RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel2RBV.RVAL)r%*02r%(\$1:finedly2RBV.RVAL)02r%*03r%(\$1:rfdly2RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel2RBV)r%*02r%(\$1:finedly2RBV)02r%*03r%(\$1:rfdly2RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel3RBV.RVAL)r%*02r%(\$1:finedly3RBV.RVAL)02r%*03r%(\$1:rfdly3RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel3RBV)r%*02r%(\$1:finedly3RBV)02r%*03r%(\$1:rfdly3RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel4RBV.RVAL)r%*02r%(\$1:finedly4RBV.RVAL)02r%*03r%(\$1:rfdly4RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel4RBV)r%*02r%(\$1:finedly4RBV)02r%*03r%(\$1:rfdly4RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel5RBV.RVAL)r%*02r%(\$1:finedly5RBV.RVAL)02r%*03r%(\$1:rfdly5RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel5RBV)r%*02r%(\$1:finedly5RBV)02r%*03r%(\$1:rfdly5RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel6RBV.RVAL)r%*02r%(\$1:finedly6RBV.RVAL)02r%*03r%(\$1:rfdly6RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel6RBV)r%*02r%(\$1:finedly6RBV)02r%*03r%(\$1:rfdly6RBV)r";
     #wait 100;
     out "%(\$1:cmd_evre_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel7RBV.RVAL)r%*02r%(\$1:finedly7RBV.RVAL)02r%*03r%(\$1:rfdly7RBV.RVAL)r";
+    in "%*r%*r%*02r%(\$1:sel7RBV)r%*02r%(\$1:finedly7RBV)02r%*03r%(\$1:rfdly7RBV)r";
     #wait 100;
     	# Timestamp log
     evre_tmstmp_log_get;
