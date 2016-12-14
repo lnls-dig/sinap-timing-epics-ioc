@@ -3591,16 +3591,24 @@ record(longout, "$(device):cmd_evre_timestamp_set"){
 
 record(bo, "$(device):stoplog"){
   field(DESC, "Stop log command")
-  field(FLNK, "$(device):STOPLOG")
   field(ONAM, "ON")
   field(ZNAM, "OFF")
+  field(FLNK, "$(device):stoplogAUX")
+}
+
+# initialization by @init
+record(calcout, "$(device):stoplogAUX"){
+  field(DESC, "Auxiliar var for stoplog")
+  field(INPA, "$(device):stoplog")
+  field(CALC, "A << 7")
+  field(FLNK, "$(device):STOPLOG")
 }
 
 record(bo, "$(device):rstlog"){
   field(DESC, "Reset log command")
-  field(FLNK, "$(device):RSTLOG")
   field(ONAM, "ON")
   field(ZNAM, "OFF")
+  field(FLNK, "$(device):RSTLOG")
 }
 
 record(bo, "$(device):pull"){
@@ -3621,7 +3629,7 @@ record(calcout, "$(device):checkPull"){
 
 record(calcout, "$(device):STOPLOG") {
 # field(ASG, "Reserved")
-  field(DESC, "EVR stop, resetRBV, and pullRBV")
+  field(DESC, "EVE stop, resetRBV, and pullRBV")
   field(DTYP, "stream")
   field(INPA, "$(device):stoplog.VAL")
   field(INPB, "$(device):RSTLOGRBV.VAL")
@@ -3632,23 +3640,23 @@ record(calcout, "$(device):STOPLOG") {
 
 record(calcout, "$(device):RSTLOG") {
 # field(ASG, "Reserved")
-  field(DESC, "EVR stopRBV, reset, and pullRBV")
+  field(DESC, "EVE stopRBV, reset, and pullRBV")
   field(DTYP, "stream")
-  field(INPA, "$(device):STOPLOGRBV.VAL")
+  field(INPA, "$(device):stoplogAUX.VAL")
   field(INPB, "$(device):rstlog.VAL")
-  field(CALC, "(A<<7)|(B<<6)")
+  field(CALC, "(A & 128)|(B<<6)")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),RSTLOG) $(PORT)")
   field(FLNK, "$(device):onlyRead")
 }
 
 record(calcout, "$(device):PULL") {
 # field(ASG, "Reserved")
-  field(DESC, "EVR stopRBV, resetRBV, and pull")
+  field(DESC, "EVE stopRBV, resetRBV, and pull")
   field(DTYP, "stream")
-  field(INPA, "$(device):STOPLOGRBV.VAL")
+  field(INPA, "$(device):stoplogAUX.VAL")
   field(INPB, "$(device):RSTLOGRBV.VAL")
   field(INPC, "$(device):pull.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(CALC, "(A & 128)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_tmstmp_log_set($(device),PULL) $(PORT)")
   field(PRIO, "HIGH")
   field(FLNK, "$(device):readAndUpdate")
@@ -3656,7 +3664,7 @@ record(calcout, "$(device):PULL") {
 
 record(calcout, "$(device):LOGCTRL") {
 # field(ASG, "Reserved")
-  field(DESC, "EVR stop, reset, and pull")
+  field(DESC, "EVE stop, reset, and pull")
   field(INPA, "$(device):stoplog.VAL")
   field(INPB, "$(device):rstlog.VAL")
   field(INPC, "$(device):pull.VAL")

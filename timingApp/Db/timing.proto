@@ -363,6 +363,12 @@ evre_timestamp_timesrcRBV_intr{
 evre_tmstmp_log_get{
     out "%(\$1:cmd_evre_tmstmp_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xF4%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%*r";
+    @init{
+	out "%(\$1:cmd_evre_tmstmp_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    	in "\xF4%*04r%*04r%*03r%(\$1:stoplogAUX)r";
+#	out "%(\$1:cmd_evre_tmstmp_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+#   	in "\xF4%*04r%*04r%*03r%(\$1:rstlogAUX)r";
+    }
 }
 
 evre_tmstmp_log_set{
