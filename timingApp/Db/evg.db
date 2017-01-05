@@ -57,7 +57,7 @@ record(calc, "$(device):seqstat") {
 
 record(calcout, "$(device):SEQEN_ENABLE") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG SEQEN and ENABLE")
+  field(DESC, "EVG download SEQEN and ENABLE")
   field(PINI, "1")
   field(INPA, "$(device):seqen")
   field(INPB, "$(device):enable")
@@ -66,7 +66,7 @@ record(calcout, "$(device):SEQEN_ENABLE") {
 
 record(calcout, "$(device):SEQEN") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG SEQEN")
+  field(DESC, "EVG SEQRAM set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):seqen")
   field(INPB, "$(device):enableRBV")
@@ -77,7 +77,7 @@ record(calcout, "$(device):SEQEN") {
 
 record(calcout, "$(device):EVGEN") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG ENABLE")
+  field(DESC, "EVG set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):seqenRBV")
   field(INPB, "$(device):enable")
@@ -87,7 +87,7 @@ record(calcout, "$(device):EVGEN") {
 }
 
 record(bo, "$(device):seqen"){
-  field(DESC, "Enable/Disable EVENT SEQUENCER")
+  field(DESC, "Enable/Disable Sequence RAM")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
   field(FLNK, "$(device):SEQEN")
@@ -136,7 +136,7 @@ record(longin, "$(device):acdivRAW") {
 
 record(calc, "$(device):acdivRBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG AC line frequency divider")
+  field(DESC, "EVG AC line frequency divider RBV")
   field(INPA, "$(device):acdivRAW")
   field(CALC, "A+1")
 }
@@ -150,7 +150,7 @@ record(bo, "$(device):acen"){
 }
 
 record(ao, "$(device):acdiv"){
-  field(DESC, "Prescaler setting in AC divider")
+  field(DESC, "EVG AC divider prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -182,7 +182,7 @@ record(bi, "$(device):muxen0RBV") {
 
 record(longin, "$(device):muxdiv0RAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux0 frequency divider")
+  field(DESC, "EVG Mux0 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div0RAW_intr $(PORT)")
@@ -191,7 +191,7 @@ record(longin, "$(device):muxdiv0RAW") {
 
 record(calc, "$(device):muxdiv0RBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux0 frequency divider")
+  field(DESC, "EVG Mux0 frequency divider RBV")
   field(INPA, "$(device):muxdiv0RAW")
   field(CALC, "A+1")
 }
@@ -205,7 +205,7 @@ record(bo, "$(device):muxen0"){
 }
 
 record(ao, "$(device):muxdiv0"){
-  field(DESC, "Prescaler setting in MUX0 divider")
+  field(DESC, "EVG MUX0 prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -239,7 +239,7 @@ record(bi, "$(device):muxen1RBV") {
 
 record(longin, "$(device):muxdiv1RAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux1 frequency divider")
+  field(DESC, "EVG Mux1 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div1RAW_intr $(PORT)")
@@ -248,7 +248,7 @@ record(longin, "$(device):muxdiv1RAW") {
 
 record(calc, "$(device):muxdiv1RBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux1 frequency divider")
+  field(DESC, "EVG Mux1 frequency divider RBV")
   field(INPA, "$(device):muxdiv1RAW")
   field(CALC, "A+1")
 }
@@ -262,7 +262,7 @@ record(bo, "$(device):muxen1"){
 }
 
 record(ao, "$(device):muxdiv1"){
-  field(DESC, "Prescaler setting in MUX1 divider")
+  field(DESC, "EVG Mux1 prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -294,7 +294,7 @@ record(bi, "$(device):muxen2RBV") {
 
 record(longin, "$(device):muxdiv2RAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux2 frequency divider")
+  field(DESC, "EVG Mux2 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div2RAW_intr $(PORT)")
@@ -303,7 +303,7 @@ record(longin, "$(device):muxdiv2RAW") {
 
 record(calc, "$(device):muxdiv2RBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux2 frequency divider")
+  field(DESC, "EVG Mux2 frequency divider RBV")
   field(INPA, "$(device):muxdiv2RAW")
   field(CALC, "A+1")
 }
@@ -317,7 +317,7 @@ record(bo, "$(device):muxen2"){
 }
 
 record(ao, "$(device):muxdiv2"){
-  field(DESC, "Prescaler setting in MUX2 divider")
+  field(DESC, "EVG Mux2 prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -349,7 +349,7 @@ record(bi, "$(device):muxen3RBV") {
 
 record(longin, "$(device):muxdiv3RAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux3 frequency divider")
+  field(DESC, "EVG Mux3 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div3RAW_intr $(PORT)")
@@ -358,7 +358,7 @@ record(longin, "$(device):muxdiv3RAW") {
 
 record(calc, "$(device):muxdiv3RBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux3 frequency divider")
+  field(DESC, "EVG Mux3 frequency divider RBV")
   field(INPA, "$(device):muxdiv3RAW")
   field(CALC, "A+1")
 }
@@ -372,7 +372,7 @@ record(bo, "$(device):muxen3"){
 }
 
 record(ao, "$(device):muxdiv3"){
-  field(DESC, "Prescaler setting in MUX3 divider")
+  field(DESC, "EVG Mux3 prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -404,7 +404,7 @@ record(bi, "$(device):muxen4RBV") {
 
 record(longin, "$(device):muxdiv4RAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux4 frequency divider")
+  field(DESC, "EVG Mux4 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div4RAW_intr $(PORT)")
@@ -413,7 +413,7 @@ record(longin, "$(device):muxdiv4RAW") {
 
 record(calc, "$(device):muxdiv4RBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux4 frequency divider")
+  field(DESC, "EVG Mux4 frequency divider RBV")
   field(INPA, "$(device):muxdiv4RAW")
   field(CALC, "A+1")
 }
@@ -427,7 +427,7 @@ record(bo, "$(device):muxen4"){
 }
 
 record(ao, "$(device):muxdiv4"){
-  field(DESC, "Prescaler setting in MUX4 divider")
+  field(DESC, "EVG Mux4 prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -459,7 +459,7 @@ record(bi, "$(device):muxen5RBV") {
 
 record(longin, "$(device):muxdiv5RAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux5 frequency divider")
+  field(DESC, "EVG Mux5 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div5RAW_intr $(PORT)")
@@ -468,7 +468,7 @@ record(longin, "$(device):muxdiv5RAW") {
 
 record(calc, "$(device):muxdiv5RBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux5 frequency divider")
+  field(DESC, "EVG Mux5 frequency divider RBV")
   field(INPA, "$(device):muxdiv5RAW")
   field(CALC, "A+1")
 }
@@ -482,7 +482,7 @@ record(bo, "$(device):muxen5"){
 }
 
 record(ao, "$(device):muxdiv5"){
-  field(DESC, "Prescaler setting in MUX5 divider")
+  field(DESC, "EVG Mux5 prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -515,7 +515,7 @@ record(bi, "$(device):muxen6RBV") {
 
 record(longin, "$(device):muxdiv6RAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux6 frequency divider")
+  field(DESC, "EVG Mux6 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div6RAW_intr $(PORT)")
@@ -524,7 +524,7 @@ record(longin, "$(device):muxdiv6RAW") {
 
 record(calc, "$(device):muxdiv6RBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux6 frequency divider")
+  field(DESC, "EVG Mux6 frequency divider RBV")
   field(INPA, "$(device):muxdiv6RAW")
   field(CALC, "A+1")
 }
@@ -538,7 +538,7 @@ record(bo, "$(device):muxen6"){
 }
 
 record(ao, "$(device):muxdiv6"){
-  field(DESC, "Prescaler setting in MUX6 divider")
+  field(DESC, "EVG Mux6 prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -570,7 +570,7 @@ record(bi, "$(device):muxen7RBV") {
 
 record(longin, "$(device):muxdiv7RAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux7 frequency divider")
+  field(DESC, "EVG Mux7 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div7RAW_intr $(PORT)")
@@ -579,7 +579,7 @@ record(longin, "$(device):muxdiv7RAW") {
 
 record(calc, "$(device):muxdiv7RBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG Mux7 frequency divider")
+  field(DESC, "EVG Mux7 frequency divider RBV")
   field(INPA, "$(device):muxdiv7RAW")
   field(CALC, "A+1")
 }
@@ -593,7 +593,7 @@ record(bo, "$(device):muxen7"){
 }
 
 record(ao, "$(device):muxdiv7"){
-  field(DESC, "Prescaler setting in MUX7 divider")
+  field(DESC, "EVG Mux7 prescaler setting")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -631,15 +631,15 @@ record(longin, "$(device):seqtimeRBV") {
 }
 
 record(longout, "$(device):seqaddr"){
-  field(DESC, "The address of SEQRAM")
+  field(DESC, "Set address of EVG SEQRAM")
 }
 
 record(longout, "$(device):seqcode"){
-  field(DESC, "Event code in the SEQRAM")
+  field(DESC, "Set event code in EVG SEQRAM")
 }
 
 record(longout, "$(device):seqtime"){
-  field(DESC, "Timestamp in the SEQRAM")
+  field(DESC, "Set timestamp in EVG SEQRAM")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_seqramset_set($(device)) $(PORT)")
 }
@@ -692,13 +692,13 @@ record(longout, "$(device):cmd_evg_seqramsw_set") {
 # 	the timestamp to the EVEs and EVRs.
 
 record(longout, "$(device):UTC"){
-  field(DESC, "Timestamp UTC field")
+  field(DESC, "EVG timestamp UTC field")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_timestamp_utc_set($(device)) $(PORT)")
 }
 
 record(mbbo, "$(device):TIMESRC"){
-  field(DESC, "Timestamp signal source")	
+  field(DESC, "EVG timestamp signal source")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
   field(ONST, "DBUS")
@@ -714,17 +714,17 @@ record(mbbo, "$(device):TIMESRC"){
 
 record(longin, "$(device):UTCRBV"){
 # field(ASG, "Reserved")
-  field(DESC, "Timestamp UTC field RBV")
+  field(DESC, "ECG timestamp UTC field RBV")
 }
 
 record(longin, "$(device):subsecondRBV"){
 # field(ASG, "Reserved")
-  field(DESC, "Timestamp subsecond field RBV")
+  field(DESC, "EVG timestamp subsecond field RBV")
 }
 
 record(mbbi, "$(device):TIMESRCRBV"){
 # field(ASG, "Reserved")
-  field(DESC, "Timestamp signal source RBV")	
+  field(DESC, "EVG timestamp signal source RBV")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
   field(ONST, "DBUS")
@@ -757,7 +757,7 @@ record(longout, "$(device):cmd_evg_timestamp_set"){
 # Firmware Version [62]
 
 record(stringin, "$(device):FRMVERSION"){
-  field(DESC, "Module's firmware version")
+  field(DESC, "EVG firmware version")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_frmversion_get($(device)) $(PORT)")
 }
@@ -783,7 +783,7 @@ record(longin, "$(device):alive") {
 
 record(longin, "$(device):rfdivRAW") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG RF divider status")
+  field(DESC, "EVG RF divider status RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_conf_rfdivRAW_intr $(PORT)")
@@ -792,7 +792,7 @@ record(longin, "$(device):rfdivRAW") {
 
 record(calc, "$(device):rfdivRBV") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG RF divider status")
+  field(DESC, "EVG RF divider status RBV")
   field(INPA, "$(device):rfdivRAW")
   field(CALC, "A+1")
 }
@@ -803,14 +803,14 @@ record(longin, "$(device):funselRBV") {
 }
 
 record(longout, "$(device):funsel") {
-  field(DESC, "STD-EVO configuration to EVG")
+  field(DESC, "STD-EVO configuration as EVG")
   field(DTYP, "stream")
   field(VAL, "0x12")
   field(OUT, "@timing.proto evg_conf_funsel_set($(device)) $(PORT)")
 }
 
 record(ao, "$(device):rfdiv"){
-  field(DESC, "Prescaler for RF clock divider")
+  field(DESC, "EVG RF clock divider")
   field(DTYP, "stream")
   field(DRVL, "0")
   field(AOFF, "1")
@@ -868,7 +868,7 @@ record(bo, "$(device):uploadT") {
 
 record(calc, "$(device):statdevcalc") {
 # field(ASG, "Reserved")
-  field(DESC, "EVG device status")
+  field(DESC, "EVG device status calc")
   field(INPA, "$(device):alive")
   field(CALC, "A=0?0:1")
   #field(ASG, "Reserved")

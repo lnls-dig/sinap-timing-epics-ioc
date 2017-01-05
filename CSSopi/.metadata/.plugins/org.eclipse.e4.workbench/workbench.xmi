@@ -89,8 +89,8 @@
                     <children xsi:type="advanced:Placeholder" xmi:id="_I4ZjwrWlEeagILg6B4CFZw" elementId="org.eclipse.ui.views.ProblemView" toBeRendered="false" ref="_I4ZkxLWlEeagILg6B4CFZw"/>
                   </children>
                 </children>
-                <children xsi:type="basic:PartStack" xmi:id="_I4Zjw7WlEeagILg6B4CFZw" elementId="bottom" toBeRendered="false" containerData="1599">
-                  <children xsi:type="advanced:Placeholder" xmi:id="_I4ZjxLWlEeagILg6B4CFZw" elementId="org.eclipse.ui.console.ConsoleView" toBeRendered="false" ref="_I4ZktbWlEeagILg6B4CFZw"/>
+                <children xsi:type="basic:PartStack" xmi:id="_I4Zjw7WlEeagILg6B4CFZw" elementId="bottom" containerData="1599" selectedElement="_I4ZjxLWlEeagILg6B4CFZw">
+                  <children xsi:type="advanced:Placeholder" xmi:id="_I4ZjxLWlEeagILg6B4CFZw" elementId="org.eclipse.ui.console.ConsoleView" ref="_I4ZktbWlEeagILg6B4CFZw"/>
                   <children xsi:type="advanced:Placeholder" xmi:id="_I4ZjxbWlEeagILg6B4CFZw" elementId="org.eclipse.ui.views.ProgressView" toBeRendered="false" ref="_I4Zkf7WlEeagILg6B4CFZw"/>
                 </children>
               </children>
@@ -345,7 +345,7 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:org.eclipse.ui.MessageConsole.#ContextMenu</tags>
       </menus>
-      <toolbar xmi:id="_I4ZkurWlEeagILg6B4CFZw" elementId="org.eclipse.ui.console.ConsoleView" visible="false"/>
+      <toolbar xmi:id="_I4ZkurWlEeagILg6B4CFZw" elementId="org.eclipse.ui.console.ConsoleView"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_I4ZkxLWlEeagILg6B4CFZw" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" tooltip="" closeable="true">
       <tags>View</tags>

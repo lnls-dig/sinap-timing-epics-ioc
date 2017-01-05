@@ -15,17 +15,17 @@ timing_registerRecordDeviceDriver pdbbase
 
 asSetFilename("$(TOP)/accessSecurityFile.acf")
 
-drvAsynIPPortConfigure ("EVG1", "10.0.18.118:50118:50118 udp",0,0,0)
+drvAsynIPPortConfigure ("EVG1", "10.0.18.114:50114:50114 udp",0,0,0)
 
 #drvAsynIPPortConfigure ("EVR1", "10.0.18.111:50111:50111 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR2", "10.0.18.112:50112:50112 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR3", "10.0.18.113:50113:50113 udp",0,0,0)
-drvAsynIPPortConfigure ("EVR4", "10.0.18.114:50114:50114 udp",0,0,0)
+#drvAsynIPPortConfigure ("EVR4", "10.0.18.114:50114:50114 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR5", "10.0.18.115:50115:50115 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR6", "10.0.18.117:50117:50117 udp",0,0,0)
 
 #drvAsynIPPortConfigure ("EVE1", "10.0.18.121:50121:50121 udp",0,0,0)
-drvAsynIPPortConfigure ("EVE2", "10.0.18.122:50122:50122 udp",0,0,0)
+#drvAsynIPPortConfigure ("EVE2", "10.0.18.122:50122:50122 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE3", "10.0.18.123:50123:50123 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE4", "10.0.18.124:50124:50124 udp",0,0,0)
 
@@ -53,13 +53,13 @@ dbLoadRecords "${TOP}/db/Eventos.db", "device=EVG1, num=9, desc='Septa LTB', cod
 #dbLoadRecords("${TOP}/db/evr.db", "device=EVR1, PORT=EVR1, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/evr.db", "device=EVR2, PORT=EVR2, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/evr.db", "device=EVR3, PORT=EVR3, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evr.db", "device=EVR4, PORT=EVR4, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/evr.db", "device=EVR4, PORT=EVR4, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/evr.db", "device=EVR5, PORT=EVR5, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/evr.db", "device=EVR6, PORT=EVR6, ADDR=0, TIMEOUT=2")
 
 # EVE
 #dbLoadRecords("${TOP}/db/eve.db", "device=EVE1, PORT=EVE1, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/eve.db", "device=EVE2, PORT=EVE2, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/eve.db", "device=EVE2, PORT=EVE2, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/eve.db", "device=EVE3, PORT=EVE3, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/eve.db", "device=EVE4, PORT=EVE4, ADDR=0, TIMEOUT=2")
 
@@ -72,22 +72,22 @@ iocInit
 ## Start any sequence programs
 
 # Module initialization and network status
-seq sncEVGSetup, "device=EVG1"
+#seq sncEVGSetup, "device=EVG1"
 
 #seq sncEVRESetup, "device=EVR1"
 #seq sncEVRESetup, "device=EVR2"
 #seq sncEVRESetup, "device=EVR3"
-seq sncEVRESetup, "device=EVR4"
+#seq sncEVRESetup, "device=EVR4"
 #seq sncEVRESetup, "device=EVR5"
 #seq sncEVRESetup, "device=EVR6"
 
 #seq sncEVRESetup, "device=EVE1"
-seq sncEVRESetup, "device=EVE2"
+#seq sncEVRESetup, "device=EVE2"
 #seq sncEVRESetup, "device=EVE3"
 #seq sncEVRESetup, "device=EVE4"
 
 # Injection System State Machine
-seq sncSeqRAM, "device=EVG1, ev_num=10"
+#seq sncSeqRAM, "device=EVG1, ev_num=10"
 
 # Timestamp log
 #seq sncTimestamp, "device=EVR4"
