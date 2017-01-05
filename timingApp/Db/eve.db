@@ -3636,7 +3636,7 @@ record(calcout, "$(device):checkPull"){
   field(DESC, "Validate pull action")
   field(INPA, "$(device):EMPTY")
   field(INPB, "$(device):pull")
-  field(CALC, "(A == 0) && (B != 0)")
+  field(CALC, "(A = 0) && !(B = 0)")
   field(OOPT, "When Non-zero")
   field(OUT, "$(device):PULL.PROC")
 }
@@ -3814,7 +3814,7 @@ record(calcout, "$(device):PeriodicPull"){
   field(SCAN, "2 second")
   field(INPA, "$(device):whileNotEmpty.VAL")
   field(INPB, "$(device):EMPTY")
-  field(CALC, "(A == 0) && (B == 0)")
+  field(CALC, "(A = 0) && (B = 0)")
   field(VAL, "0")
   field(OOPT, "When Non-zero")
   field(OUT, "$(device):whileNotEmpty.PROC")
@@ -3823,7 +3823,7 @@ record(calcout, "$(device):PeriodicPull"){
 record(calcout, "$(device):whileNotEmpty"){
   field(DESC, "Flag: pull while buffer is not empty")
   field(INPA, "$(device):EMPTY")
-  field(CALC, "A == 0")
+  field(CALC, "A = 0")
   field(VAL, "0")
   field(OUT, "$(device):pull")
   field(FLNK, "$(device):pull")

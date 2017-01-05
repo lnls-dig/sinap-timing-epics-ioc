@@ -71,7 +71,7 @@ record(calcout, "$(device):SEQEN") {
   field(INPA, "$(device):seqen")
   field(INPB, "$(device):enableRBV")
   field(CALC, "(A<<1)|B")
-  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(device),$(device):SEQEN) $(PORT)")
+  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(device),SEQEN) $(PORT)")
   field(FLNK, "$(device):SEQEN_ENABLE")
 }
 
@@ -82,7 +82,7 @@ record(calcout, "$(device):EVGEN") {
   field(INPA, "$(device):seqenRBV")
   field(INPB, "$(device):enable")
   field(CALC, "(A<<1)|B")
-  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(device),$(device):EVGEN) $(PORT)")
+  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(device),EVGEN) $(PORT)")
   field(FLNK, "$(device):SEQEN_ENABLE")
 }
 
@@ -774,7 +774,6 @@ record(calcout, "$(device):cmd_evg_frmversion_get"){
 record(longin, "$(device):alive") {
 # field(ASG, "Reserved")
   field(DESC, "EVG alive")
-  #field(ASG, "Reserved")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_conf_alive_intr $(PORT)")

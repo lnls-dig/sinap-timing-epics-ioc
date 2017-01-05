@@ -31,7 +31,7 @@ evg_ctrl_get {
 }
 
 evg_ctrl_seq_en_set{
-    out "%(\$1:cmd_evg_ctrl_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$2).1r";
+    out "%(\$1:cmd_evg_ctrl_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:\$2).1r";
     evg_ctrl_get;
 }
 
@@ -198,7 +198,7 @@ evre_out_itl7RAW_intr{
 }
 
 ################################################################################
-# Clock mode select [25]
+# Clock mode select EVE [25]
 eve_rf_get {
     out "\x99\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xd9%*04r%*04r%*03r%(\$1:cmselRBV)r";
@@ -347,7 +347,7 @@ evre_timestamp_get{
 }
 
 evre_timestamp_set{
-    out "%(\$1:cmd_evre_timestamp_set)r%(\$1:UTCRBV).4r%(\$1:subsecondRBV).4r\x00\x00\x00%(\$1:TIMESRC)r";
+    out "%(\$1:cmd_evre_timestamp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
     evre_timestamp_get;
 }
 
@@ -371,7 +371,7 @@ evre_tmstmp_log_get{
 
 evre_tmstmp_log_set{
     out "%(\$1:cmd_evre_tmstmp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:\$2)r";
-    # reading of register is made by record "syncRead" to assure synchronization
+    # reading of register is made by record "onlyRead" or "readAndUpdate" to assure synchronization
 }
 
 # Interrupts
@@ -496,10 +496,9 @@ eve_download{
     out "%(\$1:cmd_evre_out_set5).1r%(\$1:ITL5).1r\x00\x00%(\$1:sel5).1r\x00\x00%(\$1:finedly5).2r\x00\x00\x00%(\$1:rfdly5).1r";
     out "%(\$1:cmd_evre_out_set6).1r%(\$1:ITL6).1r\x00\x00%(\$1:sel6).1r\x00\x00%(\$1:finedly6).2r\x00\x00\x00%(\$1:rfdly6).1r";
     out "%(\$1:cmd_evre_out_set7).1r%(\$1:ITL7).1r\x00\x00%(\$1:sel7).1r\x00\x00%(\$1:finedly7).2r\x00\x00\x00%(\$1:rfdly7).1r";
-    # Timestamp log
-    #out "%(\$1:cmd_evre_tmstmp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:LOGCTRL)r";
-    #in "%*r%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%*r";
     evre_ctrl_set;
+    # Timestamp source
+    evre_timestamp_set;
 }
 
 evr_download{
@@ -528,9 +527,8 @@ evr_download{
     out "%(\$1:cmd_evre_out_set5).1r%(\$1:ITL5).1r\x00\x00%(\$1:sel5).1r\x00\x00%(\$1:finedly5).2r\x00\x00\x00%(\$1:rfdly5).1r";
     out "%(\$1:cmd_evre_out_set6).1r%(\$1:ITL6).1r\x00\x00%(\$1:sel6).1r\x00\x00%(\$1:finedly6).2r\x00\x00\x00%(\$1:rfdly6).1r";
     out "%(\$1:cmd_evre_out_set7).1r%(\$1:ITL7).1r\x00\x00%(\$1:sel7).1r\x00\x00%(\$1:finedly7).2r\x00\x00\x00%(\$1:rfdly7).1r";
-    # Timestamp log
-    #out "%(\$1:cmd_evre_tmstmp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:LOGCTRL)r";
-    #in "%*r%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%*r";
+    # Timestamp source
+    evre_timestamp_set;
     evre_ctrl_set;
 }
 
@@ -546,6 +544,8 @@ evg_download{
     out "%(\$1:cmd_evg_mux_set7).1r\x00\x00\x00%(\$1:muxen7).1r\x00\x00\x00\x00%(\$1:muxdiv7).4r";
     evg_acline_set;
     evg_ctrl_set;
+    # Timestamp souce
+    evg_timestamp_timesrc_set;
 }
 
 ########################################################################
