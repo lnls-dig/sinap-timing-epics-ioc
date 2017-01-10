@@ -10,7 +10,7 @@ record(bo, "$(device):enable") {
 }
 
 record(mbbiDirect, "$(device):enableRAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR enable status RAW")
   field(NOBT, "1")
   field(SCAN, "I/O Intr")
@@ -20,7 +20,7 @@ record(mbbiDirect, "$(device):enableRAW") {
 }
 
 record(bi, "$(device):enableRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -28,7 +28,7 @@ record(bi, "$(device):enableRBV") {
 }
 
 record(mbbiDirect, "$(device):linkinhs") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR link and inhs status")
   field(NOBT, "8")
   field(SHFT, "6")
@@ -39,7 +39,7 @@ record(mbbiDirect, "$(device):linkinhs") {
 }
 
 record(bi, "$(device):inhs") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR interlock status")
   field(ZNAM, "DISSERTED")
   field(ONAM, "ASSERTED")
@@ -48,7 +48,7 @@ record(bi, "$(device):inhs") {
 }
 
 record(bi, "$(device):link") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR fibre link status")
   field(ZNAM, "UNLINK")
   field(ONAM, "LINK")
@@ -56,7 +56,7 @@ record(bi, "$(device):link") {
 }
 
 record(longout, "$(device):cmd_evre_ctrl_get") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read Ctrl Status reg")
   field(VAL, "0x80") # (0x80 | reg number)
   field(SCAN, "1 second")
@@ -65,7 +65,7 @@ record(longout, "$(device):cmd_evre_ctrl_get") {
 }
 
 record(longout, "$(device):cmd_evre_ctrl_set") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to Ctrl Status reg")
   field(VAL, "0x40") # (0x40 | reg number)
 }
@@ -133,7 +133,7 @@ record(bo, "$(device):time0") {
 }
 
 record(calcout, "$(device):ENABLE0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable0.VAL")
@@ -145,7 +145,7 @@ record(calcout, "$(device):ENABLE0") {
 }
 
 record(calcout, "$(device):POL0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable0RBV.VAL")
@@ -157,7 +157,7 @@ record(calcout, "$(device):POL0") {
 }
 
 record(calcout, "$(device):TIME0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable0RBV.VAL")
@@ -169,7 +169,7 @@ record(calcout, "$(device):TIME0") {
 }
 
 record(calcout, "$(device):enpoltime0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 download EN, POL, and TIME")
   field(INPA, "$(device):enable0.VAL")
   field(INPB, "$(device):pol0.VAL")
@@ -178,7 +178,7 @@ record(calcout, "$(device):enpoltime0") {
 }
 
 record(mbbiDirect, "$(device):enpoltime0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP0 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -189,7 +189,7 @@ record(mbbiDirect, "$(device):enpoltime0RBV") {
 }
 
 record(bi, "$(device):time0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -198,7 +198,7 @@ record(bi, "$(device):time0RBV") {
 }
 
 record(bi, "$(device):pol0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -207,7 +207,7 @@ record(bi, "$(device):pol0RBV") {
 }
 
 record(bi, "$(device):enable0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -215,36 +215,36 @@ record(bi, "$(device):enable0RBV") {
 }
 
 record(longin, "$(device):pulses0RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 event RBV")
 }
 
 record(longin, "$(device):width0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP0 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP0")
   field(VAL, "0x41") # (0x40 | reg number=1)
 }
 
 record(longout, "$(device):cmd_evre_otp_get0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP0")
   field(VAL, "0x81") # (0x80 | reg number=1)
 }
@@ -312,7 +312,7 @@ record(bo, "$(device):time1") {
 }
 
 record(calcout, "$(device):ENABLE1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable1.VAL")
@@ -324,7 +324,7 @@ record(calcout, "$(device):ENABLE1") {
 }
 
 record(calcout, "$(device):POL1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable1RBV.VAL")
@@ -336,7 +336,7 @@ record(calcout, "$(device):POL1") {
 }
 
 record(calcout, "$(device):TIME1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable1RBV.VAL")
@@ -348,7 +348,7 @@ record(calcout, "$(device):TIME1") {
 }
 
 record(calcout, "$(device):enpoltime1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 download EN, POL, and TIME")
   field(INPA, "$(device):enable1.VAL")
   field(INPB, "$(device):pol1.VAL")
@@ -357,7 +357,7 @@ record(calcout, "$(device):enpoltime1") {
 }
 
 record(mbbiDirect, "$(device):enpoltime1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP1 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -368,7 +368,7 @@ record(mbbiDirect, "$(device):enpoltime1RBV") {
 }
 
 record(bi, "$(device):time1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -377,7 +377,7 @@ record(bi, "$(device):time1RBV") {
 }
 
 record(bi, "$(device):pol1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -386,7 +386,7 @@ record(bi, "$(device):pol1RBV") {
 }
 
 record(bi, "$(device):enable1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -394,36 +394,36 @@ record(bi, "$(device):enable1RBV") {
 }
 
 record(longin, "$(device):pulses1RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 event RBV")
 }
 
 record(longin, "$(device):width1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP1 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP1")
   field(VAL, "0x42") # (0x40 | reg number=2)
 }
 
 record(longout, "$(device):cmd_evre_otp_get1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP1")
   field(VAL, "0x82") # (0x80 | reg number=2)
 }
@@ -491,7 +491,7 @@ record(bo, "$(device):time2") {
 }
 
 record(calcout, "$(device):ENABLE2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable2.VAL")
@@ -503,7 +503,7 @@ record(calcout, "$(device):ENABLE2") {
 }
 
 record(calcout, "$(device):POL2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable2RBV.VAL")
@@ -515,7 +515,7 @@ record(calcout, "$(device):POL2") {
 }
 
 record(calcout, "$(device):TIME2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable2RBV.VAL")
@@ -527,7 +527,7 @@ record(calcout, "$(device):TIME2") {
 }
 
 record(calcout, "$(device):enpoltime2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 download EN, POL, and TIME")
   field(INPA, "$(device):enable2.VAL")
   field(INPB, "$(device):pol2.VAL")
@@ -536,7 +536,7 @@ record(calcout, "$(device):enpoltime2") {
 }
 
 record(mbbiDirect, "$(device):enpoltime2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP2 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -547,7 +547,7 @@ record(mbbiDirect, "$(device):enpoltime2RBV") {
 }
 
 record(bi, "$(device):time2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -556,7 +556,7 @@ record(bi, "$(device):time2RBV") {
 }
 
 record(bi, "$(device):pol2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -565,7 +565,7 @@ record(bi, "$(device):pol2RBV") {
 }
 
 record(bi, "$(device):enable2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -573,36 +573,36 @@ record(bi, "$(device):enable2RBV") {
 }
 
 record(longin, "$(device):pulses2RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 event RBV")
 }
 
 record(longin, "$(device):width2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP2 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP2")
   field(VAL, "0x43") # (0x40 | reg number=3)
 }
 
 record(longout, "$(device):cmd_evre_otp_get2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP2")
   field(VAL, "0x83") # (0x80 | reg number=3)
 }
@@ -670,7 +670,7 @@ record(bo, "$(device):time3") {
 }
 
 record(calcout, "$(device):ENABLE3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable3.VAL")
@@ -682,7 +682,7 @@ record(calcout, "$(device):ENABLE3") {
 }
 
 record(calcout, "$(device):POL3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable3RBV.VAL")
@@ -694,7 +694,7 @@ record(calcout, "$(device):POL3") {
 }
 
 record(calcout, "$(device):TIME3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable3RBV.VAL")
@@ -706,7 +706,7 @@ record(calcout, "$(device):TIME3") {
 }
 
 record(calcout, "$(device):enpoltime3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 download EN, POL, and TIME")
   field(INPA, "$(device):enable3.VAL")
   field(INPB, "$(device):pol3.VAL")
@@ -715,7 +715,7 @@ record(calcout, "$(device):enpoltime3") {
 }
 
 record(mbbiDirect, "$(device):enpoltime3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP3 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -726,7 +726,7 @@ record(mbbiDirect, "$(device):enpoltime3RBV") {
 }
 
 record(bi, "$(device):time3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -735,7 +735,7 @@ record(bi, "$(device):time3RBV") {
 }
 
 record(bi, "$(device):pol3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -744,7 +744,7 @@ record(bi, "$(device):pol3RBV") {
 }
 
 record(bi, "$(device):enable3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -752,36 +752,36 @@ record(bi, "$(device):enable3RBV") {
 }
 
 record(longin, "$(device):pulses3RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 event RBV")
 }
 
 record(longin, "$(device):width3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP3 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP3")
   field(VAL, "0x44") # (0x40 | reg number=4)
 }
 
 record(longout, "$(device):cmd_evre_otp_get3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP3")
   field(VAL, "0x84") # (0x80 | reg number=4)
 }
@@ -849,7 +849,7 @@ record(bo, "$(device):time4") {
 }
 
 record(calcout, "$(device):ENABLE4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable4.VAL")
@@ -861,7 +861,7 @@ record(calcout, "$(device):ENABLE4") {
 }
 
 record(calcout, "$(device):POL4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable4RBV.VAL")
@@ -873,7 +873,7 @@ record(calcout, "$(device):POL4") {
 }
 
 record(calcout, "$(device):TIME4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable4RBV.VAL")
@@ -885,7 +885,7 @@ record(calcout, "$(device):TIME4") {
 }
 
 record(calcout, "$(device):enpoltime4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 download EN, POL, and TIME")
   field(INPA, "$(device):enable4.VAL")
   field(INPB, "$(device):pol4.VAL")
@@ -894,7 +894,7 @@ record(calcout, "$(device):enpoltime4") {
 }
 
 record(mbbiDirect, "$(device):enpoltime4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP4 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -905,7 +905,7 @@ record(mbbiDirect, "$(device):enpoltime4RBV") {
 }
 
 record(bi, "$(device):time4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -914,7 +914,7 @@ record(bi, "$(device):time4RBV") {
 }
 
 record(bi, "$(device):pol4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -923,7 +923,7 @@ record(bi, "$(device):pol4RBV") {
 }
 
 record(bi, "$(device):enable4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -931,36 +931,36 @@ record(bi, "$(device):enable4RBV") {
 }
 
 record(longin, "$(device):pulses4RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 event RBV")
 }
 
 record(longin, "$(device):width4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP4 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP4")
   field(VAL, "0x45") # (0x40 | reg number=5)
 }
 
 record(longout, "$(device):cmd_evre_otp_get4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP4")
   field(VAL, "0x85") # (0x80 | reg number=5)
 }
@@ -1028,7 +1028,7 @@ record(bo, "$(device):time5") {
 }
 
 record(calcout, "$(device):ENABLE5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable5.VAL")
@@ -1040,7 +1040,7 @@ record(calcout, "$(device):ENABLE5") {
 }
 
 record(calcout, "$(device):POL5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable5RBV.VAL")
@@ -1052,7 +1052,7 @@ record(calcout, "$(device):POL5") {
 }
 
 record(calcout, "$(device):TIME5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable5RBV.VAL")
@@ -1064,7 +1064,7 @@ record(calcout, "$(device):TIME5") {
 }
 
 record(calcout, "$(device):enpoltime5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 download EN, POL, and TIME")
   field(INPA, "$(device):enable5.VAL")
   field(INPB, "$(device):pol5.VAL")
@@ -1073,7 +1073,7 @@ record(calcout, "$(device):enpoltime5") {
 }
 
 record(mbbiDirect, "$(device):enpoltime5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP5 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -1084,7 +1084,7 @@ record(mbbiDirect, "$(device):enpoltime5RBV") {
 }
 
 record(bi, "$(device):time5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -1093,7 +1093,7 @@ record(bi, "$(device):time5RBV") {
 }
 
 record(bi, "$(device):pol5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -1102,7 +1102,7 @@ record(bi, "$(device):pol5RBV") {
 }
 
 record(bi, "$(device):enable5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -1110,36 +1110,36 @@ record(bi, "$(device):enable5RBV") {
 }
 
 record(longin, "$(device):pulses5RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 event RBV")
 }
 
 record(longin, "$(device):width5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP5 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP5")
   field(VAL, "0x46") # (0x40 | reg number=6)
 }
 
 record(longout, "$(device):cmd_evre_otp_get5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP5")
   field(VAL, "0x86") # (0x80 | reg number=6)
 }
@@ -1207,7 +1207,7 @@ record(bo, "$(device):time6") {
 }
 
 record(calcout, "$(device):ENABLE6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable6.VAL")
@@ -1219,7 +1219,7 @@ record(calcout, "$(device):ENABLE6") {
 }
 
 record(calcout, "$(device):POL6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable6RBV.VAL")
@@ -1231,7 +1231,7 @@ record(calcout, "$(device):POL6") {
 }
 
 record(calcout, "$(device):TIME6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable6RBV.VAL")
@@ -1243,7 +1243,7 @@ record(calcout, "$(device):TIME6") {
 }
 
 record(calcout, "$(device):enpoltime6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 download EN, POL, and TIME")
   field(INPA, "$(device):enable6.VAL")
   field(INPB, "$(device):pol6.VAL")
@@ -1252,7 +1252,7 @@ record(calcout, "$(device):enpoltime6") {
 }
 
 record(mbbiDirect, "$(device):enpoltime6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP6 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -1263,7 +1263,7 @@ record(mbbiDirect, "$(device):enpoltime6RBV") {
 }
 
 record(bi, "$(device):time6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -1272,7 +1272,7 @@ record(bi, "$(device):time6RBV") {
 }
 
 record(bi, "$(device):pol6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -1281,7 +1281,7 @@ record(bi, "$(device):pol6RBV") {
 }
 
 record(bi, "$(device):enable6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -1289,36 +1289,36 @@ record(bi, "$(device):enable6RBV") {
 }
 
 record(longin, "$(device):pulses6RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 event RBV")
 }
 
 record(longin, "$(device):width6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP6 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP6")
   field(VAL, "0x47") # (0x40 | reg number=7)
 }
 
 record(longout, "$(device):cmd_evre_otp_get6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP6")
   field(VAL, "0x87") # (0x80 | reg number=7)
 }
@@ -1386,7 +1386,7 @@ record(bo, "$(device):time7") {
 }
 
 record(calcout, "$(device):ENABLE7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable7.VAL")
@@ -1398,7 +1398,7 @@ record(calcout, "$(device):ENABLE7") {
 }
 
 record(calcout, "$(device):POL7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable7RBV.VAL")
@@ -1410,7 +1410,7 @@ record(calcout, "$(device):POL7") {
 }
 
 record(calcout, "$(device):TIME7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable7RBV.VAL")
@@ -1422,7 +1422,7 @@ record(calcout, "$(device):TIME7") {
 }
 
 record(calcout, "$(device):enpoltime7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 download EN, POL, and TIME")
   field(INPA, "$(device):enable7.VAL")
   field(INPB, "$(device):pol7.VAL")
@@ -1431,7 +1431,7 @@ record(calcout, "$(device):enpoltime7") {
 }
 
 record(mbbiDirect, "$(device):enpoltime7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP7 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -1442,7 +1442,7 @@ record(mbbiDirect, "$(device):enpoltime7RBV") {
 }
 
 record(bi, "$(device):time7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -1451,7 +1451,7 @@ record(bi, "$(device):time7RBV") {
 }
 
 record(bi, "$(device):pol7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -1460,7 +1460,7 @@ record(bi, "$(device):pol7RBV") {
 }
 
 record(bi, "$(device):enable7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -1468,36 +1468,36 @@ record(bi, "$(device):enable7RBV") {
 }
 
 record(longin, "$(device):pulses7RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 event RBV")
 }
 
 record(longin, "$(device):width7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP7 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP7")
   field(VAL, "0x48") # (0x40 | reg number=8)
 }
 
 record(longout, "$(device):cmd_evre_otp_get7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP7")
   field(VAL, "0x88") # (0x80 | reg number=8)
 }
@@ -1565,7 +1565,7 @@ record(bo, "$(device):time8") {
 }
 
 record(calcout, "$(device):ENABLE8") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable8.VAL")
@@ -1577,7 +1577,7 @@ record(calcout, "$(device):ENABLE8") {
 }
 
 record(calcout, "$(device):POL8") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable8RBV.VAL")
@@ -1589,7 +1589,7 @@ record(calcout, "$(device):POL8") {
 }
 
 record(calcout, "$(device):TIME8") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable8RBV.VAL")
@@ -1601,7 +1601,7 @@ record(calcout, "$(device):TIME8") {
 }
 
 record(calcout, "$(device):enpoltime8") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 download EN, POL, and TIME")
   field(INPA, "$(device):enable8.VAL")
   field(INPB, "$(device):pol8.VAL")
@@ -1610,7 +1610,7 @@ record(calcout, "$(device):enpoltime8") {
 }
 
 record(mbbiDirect, "$(device):enpoltime8RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP8 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -1621,7 +1621,7 @@ record(mbbiDirect, "$(device):enpoltime8RBV") {
 }
 
 record(bi, "$(device):time8RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -1630,7 +1630,7 @@ record(bi, "$(device):time8RBV") {
 }
 
 record(bi, "$(device):pol8RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -1639,7 +1639,7 @@ record(bi, "$(device):pol8RBV") {
 }
 
 record(bi, "$(device):enable8RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -1647,35 +1647,35 @@ record(bi, "$(device):enable8RBV") {
 }
 
 record(longin, "$(device):pulses8RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 number of pulses RBV")
 }
 
 record(longin, "$(device):event8RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 event RBV")
 }
 
 record(longin, "$(device):width8RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay8RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP8 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set8") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP8")
   field(VAL, "0x49") # (0x40 | reg number=9)
 }
 
 record(longout, "$(device):cmd_evre_otp_get8") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP8")
   field(VAL, "0x89") # (0x80 | reg number=9)
 }
@@ -1743,7 +1743,7 @@ record(bo, "$(device):time9") {
 }
 
 record(calcout, "$(device):ENABLE9") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable9.VAL")
@@ -1755,7 +1755,7 @@ record(calcout, "$(device):ENABLE9") {
 }
 
 record(calcout, "$(device):POL9") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable9RBV.VAL")
@@ -1767,7 +1767,7 @@ record(calcout, "$(device):POL9") {
 }
 
 record(calcout, "$(device):TIME9") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enable9RBV.VAL")
@@ -1779,7 +1779,7 @@ record(calcout, "$(device):TIME9") {
 }
 
 record(calcout, "$(device):enpoltime9") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 download EN, POL, and TIME")
   field(INPA, "$(device):enable9.VAL")
   field(INPB, "$(device):pol9.VAL")
@@ -1788,7 +1788,7 @@ record(calcout, "$(device):enpoltime9") {
 }
 
 record(mbbiDirect, "$(device):enpoltime9RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTP9 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -1799,7 +1799,7 @@ record(mbbiDirect, "$(device):enpoltime9RBV") {
 }
 
 record(bi, "$(device):time9RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -1808,7 +1808,7 @@ record(bi, "$(device):time9RBV") {
 }
 
 record(bi, "$(device):pol9RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -1817,7 +1817,7 @@ record(bi, "$(device):pol9RBV") {
 }
 
 record(bi, "$(device):enable9RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -1825,36 +1825,36 @@ record(bi, "$(device):enable9RBV") {
 }
 
 record(longin, "$(device):pulses9RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):event9RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 event RBV")
 }
 
 record(longin, "$(device):width9RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay9RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTP9 delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set9") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTP9")
   field(VAL, "0x4A") # (0x40 | reg number=10)
 }
 
 record(longout, "$(device):cmd_evre_otp_get9") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTP9")
   field(VAL, "0x8A") # (0x80 | reg number=10)
 }
@@ -1922,7 +1922,7 @@ record(bo, "$(device):timeA") {
 }
 
 record(calcout, "$(device):ENABLEA") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableA.VAL")
@@ -1934,7 +1934,7 @@ record(calcout, "$(device):ENABLEA") {
 }
 
 record(calcout, "$(device):POLA") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableARBV.VAL")
@@ -1946,7 +1946,7 @@ record(calcout, "$(device):POLA") {
 }
 
 record(calcout, "$(device):TIMEA") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableARBV.VAL")
@@ -1958,7 +1958,7 @@ record(calcout, "$(device):TIMEA") {
 }
 
 record(calcout, "$(device):enpoltimeA") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA download EN, POL, and TIME")
   field(INPA, "$(device):enableA.VAL")
   field(INPB, "$(device):polA.VAL")
@@ -1967,7 +1967,7 @@ record(calcout, "$(device):enpoltimeA") {
 }
 
 record(mbbiDirect, "$(device):enpoltimeARBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTPA enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -1978,7 +1978,7 @@ record(mbbiDirect, "$(device):enpoltimeARBV") {
 }
 
 record(bi, "$(device):timeARBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -1987,7 +1987,7 @@ record(bi, "$(device):timeARBV") {
 }
 
 record(bi, "$(device):polARBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -1996,7 +1996,7 @@ record(bi, "$(device):polARBV") {
 }
 
 record(bi, "$(device):enableARBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -2004,36 +2004,36 @@ record(bi, "$(device):enableARBV") {
 }
 
 record(longin, "$(device):pulsesARBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventARBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA event RBV")
 }
 
 record(longin, "$(device):widthARBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayARBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPA delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setA") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTPA")
   field(VAL, "0x4B") # (0x40 | reg number=11)
 }
 
 record(longout, "$(device):cmd_evre_otp_getA") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTPA")
   field(VAL, "0x8B") # (0x80 | reg number=11)
 }
@@ -2101,7 +2101,7 @@ record(bo, "$(device):timeB") {
 }
 
 record(calcout, "$(device):ENABLEB") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableB.VAL")
@@ -2113,7 +2113,7 @@ record(calcout, "$(device):ENABLEB") {
 }
 
 record(calcout, "$(device):POLB") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableBRBV.VAL")
@@ -2125,7 +2125,7 @@ record(calcout, "$(device):POLB") {
 }
 
 record(calcout, "$(device):TIMEB") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableBRBV.VAL")
@@ -2137,7 +2137,7 @@ record(calcout, "$(device):TIMEB") {
 }
 
 record(calcout, "$(device):enpoltimeB") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB download EN, POL, and TIME")
   field(INPA, "$(device):enableB.VAL")
   field(INPB, "$(device):polB.VAL")
@@ -2146,7 +2146,7 @@ record(calcout, "$(device):enpoltimeB") {
 }
 
 record(mbbiDirect, "$(device):enpoltimeBRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTPB enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -2157,7 +2157,7 @@ record(mbbiDirect, "$(device):enpoltimeBRBV") {
 }
 
 record(bi, "$(device):timeBRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -2166,7 +2166,7 @@ record(bi, "$(device):timeBRBV") {
 }
 
 record(bi, "$(device):polBRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -2175,7 +2175,7 @@ record(bi, "$(device):polBRBV") {
 }
 
 record(bi, "$(device):enableBRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -2183,36 +2183,36 @@ record(bi, "$(device):enableBRBV") {
 }
 
 record(longin, "$(device):pulsesBRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventBRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB event RBV")
 }
 
 record(longin, "$(device):widthBRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayBRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPB delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setB") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTPB")
   field(VAL, "0x4C") # (0x40 | reg number=12)
 }
 
 record(longout, "$(device):cmd_evre_otp_getB") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTPB")
   field(VAL, "0x8C") # (0x80 | reg number=12)
 }
@@ -2280,7 +2280,7 @@ record(bo, "$(device):timeC") {
 }
 
 record(calcout, "$(device):ENABLEC") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableC.VAL")
@@ -2292,7 +2292,7 @@ record(calcout, "$(device):ENABLEC") {
 }
 
 record(calcout, "$(device):POLC") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableCRBV.VAL")
@@ -2304,7 +2304,7 @@ record(calcout, "$(device):POLC") {
 }
 
 record(calcout, "$(device):TIMEC") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableCRBV.VAL")
@@ -2316,7 +2316,7 @@ record(calcout, "$(device):TIMEC") {
 }
 
 record(calcout, "$(device):enpoltimeC") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC download EN, POL, and TIME")
   field(INPA, "$(device):enableC.VAL")
   field(INPB, "$(device):polC.VAL")
@@ -2325,7 +2325,7 @@ record(calcout, "$(device):enpoltimeC") {
 }
 
 record(mbbiDirect, "$(device):enpoltimeCRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTPC enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -2336,7 +2336,7 @@ record(mbbiDirect, "$(device):enpoltimeCRBV") {
 }
 
 record(bi, "$(device):timeCRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -2345,7 +2345,7 @@ record(bi, "$(device):timeCRBV") {
 }
 
 record(bi, "$(device):polCRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -2354,7 +2354,7 @@ record(bi, "$(device):polCRBV") {
 }
 
 record(bi, "$(device):enableCRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -2362,36 +2362,36 @@ record(bi, "$(device):enableCRBV") {
 }
 
 record(longin, "$(device):pulsesCRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventCRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC event RBV")
 }
 
 record(longin, "$(device):widthCRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayCRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPC delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setC") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTPC")
   field(VAL, "0x4D") # (0x40 | reg number=13)
 }
 
 record(longout, "$(device):cmd_evre_otp_getC") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTPC")
   field(VAL, "0x8D") # (0x80 | reg number=13)
 }
@@ -2459,7 +2459,7 @@ record(bo, "$(device):timeD") {
 }
 
 record(calcout, "$(device):ENABLED") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableD.VAL")
@@ -2471,7 +2471,7 @@ record(calcout, "$(device):ENABLED") {
 }
 
 record(calcout, "$(device):POLD") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableDRBV.VAL")
@@ -2483,7 +2483,7 @@ record(calcout, "$(device):POLD") {
 }
 
 record(calcout, "$(device):TIMED") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableDRBV.VAL")
@@ -2495,7 +2495,7 @@ record(calcout, "$(device):TIMED") {
 }
 
 record(calcout, "$(device):enpoltimeD") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD download EN, POL, and TIME")
   field(INPA, "$(device):enableD.VAL")
   field(INPB, "$(device):polD.VAL")
@@ -2504,7 +2504,7 @@ record(calcout, "$(device):enpoltimeD") {
 }
 
 record(mbbiDirect, "$(device):enpoltimeDRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTPD enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -2515,7 +2515,7 @@ record(mbbiDirect, "$(device):enpoltimeDRBV") {
 }
 
 record(bi, "$(device):timeDRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -2524,7 +2524,7 @@ record(bi, "$(device):timeDRBV") {
 }
 
 record(bi, "$(device):polDRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -2533,7 +2533,7 @@ record(bi, "$(device):polDRBV") {
 }
 
 record(bi, "$(device):enableDRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -2541,36 +2541,36 @@ record(bi, "$(device):enableDRBV") {
 }
 
 record(longin, "$(device):pulsesDRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventDRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD event RBV")
 }
 
 record(longin, "$(device):widthDRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayDRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPD delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setD") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTPD")
   field(VAL, "0x4E") # (0x40 | reg number=14)
 }
 
 record(longout, "$(device):cmd_evre_otp_getD") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTPD")
   field(VAL, "0x8E") # (0x80 | reg number=14)
 }
@@ -2638,7 +2638,7 @@ record(bo, "$(device):timeE") {
 }
 
 record(calcout, "$(device):ENABLEE") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableE.VAL")
@@ -2650,7 +2650,7 @@ record(calcout, "$(device):ENABLEE") {
 }
 
 record(calcout, "$(device):POLE") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableERBV.VAL")
@@ -2662,7 +2662,7 @@ record(calcout, "$(device):POLE") {
 }
 
 record(calcout, "$(device):TIMEE") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableERBV.VAL")
@@ -2674,7 +2674,7 @@ record(calcout, "$(device):TIMEE") {
 }
 
 record(calcout, "$(device):enpoltimeE") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE download EN, POL, and TIME")
   field(INPA, "$(device):enableE.VAL")
   field(INPB, "$(device):polE.VAL")
@@ -2683,7 +2683,7 @@ record(calcout, "$(device):enpoltimeE") {
 }
 
 record(mbbiDirect, "$(device):enpoltimeERBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTPE enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -2694,7 +2694,7 @@ record(mbbiDirect, "$(device):enpoltimeERBV") {
 }
 
 record(bi, "$(device):timeERBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -2703,7 +2703,7 @@ record(bi, "$(device):timeERBV") {
 }
 
 record(bi, "$(device):polERBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -2712,7 +2712,7 @@ record(bi, "$(device):polERBV") {
 }
 
 record(bi, "$(device):enableERBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -2720,36 +2720,36 @@ record(bi, "$(device):enableERBV") {
 }
 
 record(longin, "$(device):pulsesERBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventERBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE event RBV")
 }
 
 record(longin, "$(device):widthERBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayERBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPE delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setE") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTPE")
   field(VAL, "0x4F") # (0x40 | reg number=15)
 }
 
 record(longout, "$(device):cmd_evre_otp_getE") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTPE")
   field(VAL, "0x8F") # (0x80 | reg number=15)
 }
@@ -2817,7 +2817,7 @@ record(bo, "$(device):timeF") {
 }
 
 record(calcout, "$(device):ENABLEF") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableF.VAL")
@@ -2829,7 +2829,7 @@ record(calcout, "$(device):ENABLEF") {
 }
 
 record(calcout, "$(device):POLF") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableFRBV.VAL")
@@ -2841,7 +2841,7 @@ record(calcout, "$(device):POLF") {
 }
 
 record(calcout, "$(device):TIMEF") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF set timestamping calc")
   field(DTYP, "stream")
   field(INPA, "$(device):enableFRBV.VAL")
@@ -2853,7 +2853,7 @@ record(calcout, "$(device):TIMEF") {
 }
 
 record(calcout, "$(device):enpoltimeF") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF download EN, POL, and TIME")
   field(INPA, "$(device):enableF.VAL")
   field(INPB, "$(device):polF.VAL")
@@ -2862,7 +2862,7 @@ record(calcout, "$(device):enpoltimeF") {
 }
 
 record(mbbiDirect, "$(device):enpoltimeFRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OTPF enable, polarity, and timestamp RBV")
   field(NOBT, "8")
   field(SHFT, "5")
@@ -2873,7 +2873,7 @@ record(mbbiDirect, "$(device):enpoltimeFRBV") {
 }
 
 record(bi, "$(device):timeFRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
@@ -2882,7 +2882,7 @@ record(bi, "$(device):timeFRBV") {
 }
 
 record(bi, "$(device):polFRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
@@ -2891,7 +2891,7 @@ record(bi, "$(device):polFRBV") {
 }
 
 record(bi, "$(device):enableFRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -2899,36 +2899,36 @@ record(bi, "$(device):enableFRBV") {
 }
 
 record(longin, "$(device):pulsesFRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF number of pulses RBV")
   field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventFRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF event RBV")
 }
 
 record(longin, "$(device):widthFRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF width RBV")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayFRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OTPF delay RBV")
   field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setF") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OTPF")
   field(VAL, "0x50") # (0x40 | reg number=16)
 }
 
 record(longout, "$(device):cmd_evre_otp_getF") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OTPF")
   field(VAL, "0x90") # (0x80 | reg number=16)
 }
@@ -2937,7 +2937,7 @@ record(longout, "$(device):cmd_evre_otp_getF") {
 # OUT0 Register [17]
 
 record(mbbiDirect, "$(device):itl0RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 interlock raw status")
   field(NOBT, "8")
   field(SHFT, "7")
@@ -2948,7 +2948,7 @@ record(mbbiDirect, "$(device):itl0RAW") {
 }
 
 record(bi, "$(device):itl0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -2956,7 +2956,7 @@ record(bi, "$(device):itl0RBV") {
 }
 
 record(mbbiDirect, "$(device):sel0RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 source selection status RAW")
   field(NOBT, "7")
   field(SCAN, "I/O Intr")
@@ -2966,7 +2966,7 @@ record(mbbiDirect, "$(device):sel0RAW") {
 }
 
 record(scalcout, "$(device):sel0StatCalc"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 source selection status calc")
   field(INPA, "$(device):sel0RAW.VAL")
   field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
@@ -2974,19 +2974,19 @@ record(scalcout, "$(device):sel0StatCalc"){
 }
 
 record(stringin, "$(device):sel0RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 source selection status")
   field(INP, "$(device):sel0StatCalc.SVAL")
 }
 
 record(longin, "$(device):finedly0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 fine delay status")
   field(EGU, "5 ps")
 }
 
 record(longin, "$(device):rfdly0RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 RF delay status")
   field(EGU, "evt_T/20")
 }
@@ -3015,7 +3015,7 @@ record(stringout, "$(device):sel0"){
 }
 
 record(scalcout, "$(device):sel0Calc1"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 source selection calc 1")
   field(INAA, "$(device):sel0.VAL")
   field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
@@ -3023,7 +3023,7 @@ record(scalcout, "$(device):sel0Calc1"){
 }
 
 record(scalcout, "$(device):sel0Calc2"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 source selection calc 2")
   field(INAA, "$(device):sel0.VAL")
   field(INPB, "$(device):sel0Calc1.VAL")
@@ -3032,7 +3032,7 @@ record(scalcout, "$(device):sel0Calc2"){
 }
 
 record(scalcout, "$(device):sel0Calc3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 source selection calc 3")
   field(INAA, "$(device):sel0.VAL")
   field(INPB, "$(device):sel0Calc2.VAL")
@@ -3044,14 +3044,14 @@ record(scalcout, "$(device):sel0Calc3") {
 }
 
 record(longout, "$(device):sel0toHW"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),0) $(PORT)")
 }
 
 record(calcout, "$(device):ITL0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT0 set interlock function calc")
   field(DTYP, "stream")
   field(INPA, "$(device):itl0")
@@ -3067,13 +3067,13 @@ record(bo, "$(device):itl0"){
 }
 
 record(longout, "$(device):cmd_evre_out_get0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OUT0")
   field(VAL, "0x91") # (0x80 | (reg number=17))
 }
 
 record(longout, "$(device):cmd_evre_out_set0") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OUT0")
   field(VAL, "0x51")
 }
@@ -3082,7 +3082,7 @@ record(longout, "$(device):cmd_evre_out_set0") {
 # OUT1 Register [18]
 
 record(mbbiDirect, "$(device):itl1RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 interlock raw status")
   field(NOBT, "8")
   field(SHFT, "7")
@@ -3093,7 +3093,7 @@ record(mbbiDirect, "$(device):itl1RAW") {
 }
 
 record(bi, "$(device):itl1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -3101,7 +3101,7 @@ record(bi, "$(device):itl1RBV") {
 }
 
 record(mbbiDirect, "$(device):sel1RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 source selection status RAW")
   field(NOBT, "7")
   field(SCAN, "I/O Intr")
@@ -3111,7 +3111,7 @@ record(mbbiDirect, "$(device):sel1RAW") {
 }
 
 record(scalcout, "$(device):sel1StatCalc"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 source selection status calc")
   field(INPA, "$(device):sel1RAW.VAL")
   field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
@@ -3119,19 +3119,19 @@ record(scalcout, "$(device):sel1StatCalc"){
 }
 
 record(stringin, "$(device):sel1RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 source selection status")
   field(INP, "$(device):sel1StatCalc.SVAL")
 }
 
 record(longin, "$(device):finedly1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 fine delay status")
   field(EGU, "5 ps")
 }
 
 record(longin, "$(device):rfdly1RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 RF delay status")
   field(EGU, "evt_T/20")
 }
@@ -3160,7 +3160,7 @@ record(stringout, "$(device):sel1"){
 }
 
 record(scalcout, "$(device):sel1Calc1"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 source selection calc 1")
   field(INAA, "$(device):sel1.VAL")
   field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
@@ -3168,7 +3168,7 @@ record(scalcout, "$(device):sel1Calc1"){
 }
 
 record(scalcout, "$(device):sel1Calc2"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 source selection calc 2")
   field(INAA, "$(device):sel1.VAL")
   field(INPB, "$(device):sel1Calc1.VAL")
@@ -3177,7 +3177,7 @@ record(scalcout, "$(device):sel1Calc2"){
 }
 
 record(scalcout, "$(device):sel1Calc3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 source selection calc 3")
   field(INAA, "$(device):sel1.VAL")
   field(INPB, "$(device):sel1Calc2.VAL")
@@ -3189,14 +3189,14 @@ record(scalcout, "$(device):sel1Calc3") {
 }
 
 record(longout, "$(device):sel1toHW"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),1) $(PORT)")
 }
 
 record(calcout, "$(device):ITL1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT1 set interlock function calc")
   field(DTYP, "stream")
   field(INPA, "$(device):itl1")
@@ -3212,13 +3212,13 @@ record(bo, "$(device):itl1"){
 }
 
 record(longout, "$(device):cmd_evre_out_get1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OUT1")
   field(VAL, "0x92") # (0x80 | (reg number=18))
 }
 
 record(longout, "$(device):cmd_evre_out_set1") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OUT1")
   field(VAL, "0x52")
 }
@@ -3227,7 +3227,7 @@ record(longout, "$(device):cmd_evre_out_set1") {
 # OUT2 Register [19]
 
 record(mbbiDirect, "$(device):itl2RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 interlock raw status")
   field(NOBT, "8")
   field(SHFT, "7")
@@ -3238,7 +3238,7 @@ record(mbbiDirect, "$(device):itl2RAW") {
 }
 
 record(bi, "$(device):itl2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -3246,7 +3246,7 @@ record(bi, "$(device):itl2RBV") {
 }
 
 record(mbbiDirect, "$(device):sel2RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 source selection status RAW")
   field(NOBT, "7")
   field(SCAN, "I/O Intr")
@@ -3256,7 +3256,7 @@ record(mbbiDirect, "$(device):sel2RAW") {
 }
 
 record(scalcout, "$(device):sel2StatCalc"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 source selection status calc")
   field(INPA, "$(device):sel2RAW.VAL")
   field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
@@ -3264,19 +3264,19 @@ record(scalcout, "$(device):sel2StatCalc"){
 }
 
 record(stringin, "$(device):sel2RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 source selection status")
   field(INP, "$(device):sel2StatCalc.SVAL")
 }
 
 record(longin, "$(device):finedly2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 fine delay status")
   field(EGU, "5 ps")
 }
 
 record(longin, "$(device):rfdly2RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 RF delay status")
   field(EGU, "evt_T/20")
 }
@@ -3305,7 +3305,7 @@ record(stringout, "$(device):sel2"){
 }
 
 record(scalcout, "$(device):sel2Calc1"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 source selection calc 1")
   field(INAA, "$(device):sel2.VAL")
   field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
@@ -3313,7 +3313,7 @@ record(scalcout, "$(device):sel2Calc1"){
 }
 
 record(scalcout, "$(device):sel2Calc2"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 source selection calc 2")
   field(INAA, "$(device):sel2.VAL")
   field(INPB, "$(device):sel2Calc1.VAL")
@@ -3322,7 +3322,7 @@ record(scalcout, "$(device):sel2Calc2"){
 }
 
 record(scalcout, "$(device):sel2Calc3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 source selection calc 3")
   field(INAA, "$(device):sel2.VAL")
   field(INPB, "$(device):sel2Calc2.VAL")
@@ -3334,14 +3334,14 @@ record(scalcout, "$(device):sel2Calc3") {
 }
 
 record(longout, "$(device):sel2toHW"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),2) $(PORT)")
 }
 
 record(calcout, "$(device):ITL2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT2 set interlock function calc")
   field(DTYP, "stream")
   field(INPA, "$(device):itl2")
@@ -3357,13 +3357,13 @@ record(bo, "$(device):itl2"){
 }
 
 record(longout, "$(device):cmd_evre_out_get2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OUT2")
   field(VAL, "0x93") # (0x80 | (reg number=19))
 }
 
 record(longout, "$(device):cmd_evre_out_set2") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OUT2")
   field(VAL, "0x53")
 }
@@ -3372,7 +3372,7 @@ record(longout, "$(device):cmd_evre_out_set2") {
 # OUT3 Register [20]
 
 record(mbbiDirect, "$(device):itl3RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 interlock raw status")
   field(NOBT, "8")
   field(SHFT, "7")
@@ -3383,7 +3383,7 @@ record(mbbiDirect, "$(device):itl3RAW") {
 }
 
 record(bi, "$(device):itl3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -3391,7 +3391,7 @@ record(bi, "$(device):itl3RBV") {
 }
 
 record(mbbiDirect, "$(device):sel3RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 source selection status RAW")
   field(NOBT, "7")
   field(SCAN, "I/O Intr")
@@ -3401,7 +3401,7 @@ record(mbbiDirect, "$(device):sel3RAW") {
 }
 
 record(scalcout, "$(device):sel3StatCalc"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 source selection status calc")
   field(INPA, "$(device):sel3RAW.VAL")
   field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
@@ -3409,19 +3409,19 @@ record(scalcout, "$(device):sel3StatCalc"){
 }
 
 record(stringin, "$(device):sel3RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 source selection status")
   field(INP, "$(device):sel3StatCalc.SVAL")
 }
 
 record(longin, "$(device):finedly3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 fine delay status")
   field(EGU, "5 ps")
 }
 
 record(longin, "$(device):rfdly3RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 RF delay status")
   field(EGU, "evt_T/20")
 }
@@ -3450,7 +3450,7 @@ record(stringout, "$(device):sel3"){
 }
 
 record(scalcout, "$(device):sel3Calc1"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 source selection calc 1")
   field(INAA, "$(device):sel3.VAL")
   field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
@@ -3458,7 +3458,7 @@ record(scalcout, "$(device):sel3Calc1"){
 }
 
 record(scalcout, "$(device):sel3Calc2"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 source selection calc 2")
   field(INAA, "$(device):sel3.VAL")
   field(INPB, "$(device):sel3Calc1.VAL")
@@ -3467,7 +3467,7 @@ record(scalcout, "$(device):sel3Calc2"){
 }
 
 record(scalcout, "$(device):sel3Calc3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 source selection calc 3")
   field(INAA, "$(device):sel3.VAL")
   field(INPB, "$(device):sel3Calc2.VAL")
@@ -3479,13 +3479,13 @@ record(scalcout, "$(device):sel3Calc3") {
 }
 
 record(longout, "$(device):sel3toHW"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),3) $(PORT)")
 }
 record(calcout, "$(device):ITL3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT3 set interlock function calc")
   field(DTYP, "stream")
   field(INPA, "$(device):itl3")
@@ -3501,13 +3501,13 @@ record(bo, "$(device):itl3"){
 }
 
 record(longout, "$(device):cmd_evre_out_get3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OUT3")
   field(VAL, "0x94") # (0x80 | (reg number=20))
 }
 
 record(longout, "$(device):cmd_evre_out_set3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OUT3")
   field(VAL, "0x54")
 }
@@ -3516,7 +3516,7 @@ record(longout, "$(device):cmd_evre_out_set3") {
 # OUT4 Register [21]
 
 record(mbbiDirect, "$(device):itl4RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 interlock raw status")
   field(NOBT, "8")
   field(SHFT, "7")
@@ -3527,7 +3527,7 @@ record(mbbiDirect, "$(device):itl4RAW") {
 }
 
 record(bi, "$(device):itl4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -3535,7 +3535,7 @@ record(bi, "$(device):itl4RBV") {
 }
 
 record(mbbiDirect, "$(device):sel4RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 source selection status RAW")
   field(NOBT, "7")
   field(SCAN, "I/O Intr")
@@ -3545,7 +3545,7 @@ record(mbbiDirect, "$(device):sel4RAW") {
 }
 
 record(scalcout, "$(device):sel4StatCalc"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 source selection status calc")
   field(INPA, "$(device):sel4RAW.VAL")
   field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
@@ -3553,19 +3553,19 @@ record(scalcout, "$(device):sel4StatCalc"){
 }
 
 record(stringin, "$(device):sel4RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 source selection status")
   field(INP, "$(device):sel4StatCalc.SVAL")
 }
 
 record(longin, "$(device):finedly4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 fine delay status")
   field(EGU, "5 ps")
 }
 
 record(longin, "$(device):rfdly4RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 RF delay status")
   field(EGU, "evt_T/20")
 }
@@ -3594,7 +3594,7 @@ record(stringout, "$(device):sel4"){
 }
 
 record(scalcout, "$(device):sel4Calc1"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 source selection calc 1")
   field(INAA, "$(device):sel4.VAL")
   field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
@@ -3602,7 +3602,7 @@ record(scalcout, "$(device):sel4Calc1"){
 }
 
 record(scalcout, "$(device):sel4Calc2"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 source selection calc 2")
   field(INAA, "$(device):sel4.VAL")
   field(INPB, "$(device):sel4Calc1.VAL")
@@ -3611,7 +3611,7 @@ record(scalcout, "$(device):sel4Calc2"){
 }
 
 record(scalcout, "$(device):sel4Calc3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 source selection calc 3")
   field(INAA, "$(device):sel4.VAL")
   field(INPB, "$(device):sel4Calc2.VAL")
@@ -3623,14 +3623,14 @@ record(scalcout, "$(device):sel4Calc3") {
 }
 
 record(longout, "$(device):sel4toHW"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),4) $(PORT)")
 }
 
 record(calcout, "$(device):ITL4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT4 set interlock function calc")
   field(DTYP, "stream")
   field(INPA, "$(device):itl4")
@@ -3646,13 +3646,13 @@ record(bo, "$(device):itl4"){
 }
 
 record(longout, "$(device):cmd_evre_out_get4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OUT4")
   field(VAL, "0x95") # (0x80 | (reg number=21))
 }
 
 record(longout, "$(device):cmd_evre_out_set4") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OUT4")
   field(VAL, "0x55")
 }
@@ -3661,7 +3661,7 @@ record(longout, "$(device):cmd_evre_out_set4") {
 # OUT5 Register [22]
 
 record(mbbiDirect, "$(device):itl5RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 interlock raw status")
   field(NOBT, "8")
   field(SHFT, "7")
@@ -3672,7 +3672,7 @@ record(mbbiDirect, "$(device):itl5RAW") {
 }
 
 record(bi, "$(device):itl5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -3680,7 +3680,7 @@ record(bi, "$(device):itl5RBV") {
 }
 
 record(mbbiDirect, "$(device):sel5RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 source selection status RAW")
   field(NOBT, "7")
   field(SCAN, "I/O Intr")
@@ -3690,7 +3690,7 @@ record(mbbiDirect, "$(device):sel5RAW") {
 }
 
 record(scalcout, "$(device):sel5StatCalc"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 source selection status calc")
   field(INPA, "$(device):sel5RAW.VAL")
   field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
@@ -3698,19 +3698,19 @@ record(scalcout, "$(device):sel5StatCalc"){
 }
 
 record(stringin, "$(device):sel5RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 source selection status")
   field(INP, "$(device):sel5StatCalc.SVAL")
 }
 
 record(longin, "$(device):finedly5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 fine delay status")
   field(EGU, "5 ps")
 }
 
 record(longin, "$(device):rfdly5RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 RF delay status")
   field(EGU, "evt_T/20")
 }
@@ -3739,7 +3739,7 @@ record(stringout, "$(device):sel5"){
 }
 
 record(scalcout, "$(device):sel5Calc1"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 source selection calc 1")
   field(INAA, "$(device):sel5.VAL")
   field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
@@ -3747,7 +3747,7 @@ record(scalcout, "$(device):sel5Calc1"){
 }
 
 record(scalcout, "$(device):sel5Calc2"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 source selection calc 2")
   field(INAA, "$(device):sel5.VAL")
   field(INPB, "$(device):sel5Calc1.VAL")
@@ -3756,7 +3756,7 @@ record(scalcout, "$(device):sel5Calc2"){
 }
 
 record(scalcout, "$(device):sel5Calc3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 source selection calc 3")
   field(INAA, "$(device):sel5.VAL")
   field(INPB, "$(device):sel5Calc2.VAL")
@@ -3768,14 +3768,14 @@ record(scalcout, "$(device):sel5Calc3") {
 }
 
 record(longout, "$(device):sel5toHW"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),5) $(PORT)")
 }
 
 record(calcout, "$(device):ITL5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT5 set interlock function calc")
   field(DTYP, "stream")
   field(INPA, "$(device):itl5")
@@ -3791,13 +3791,13 @@ record(bo, "$(device):itl5"){
 }
 
 record(longout, "$(device):cmd_evre_out_get5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OUT5")
   field(VAL, "0x96") # (0x80 | (reg number=22))
 }
 
 record(longout, "$(device):cmd_evre_out_set5") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OUT5")
   field(VAL, "0x56")
 }
@@ -3806,7 +3806,7 @@ record(longout, "$(device):cmd_evre_out_set5") {
 # OUT6 Register [23]
 
 record(mbbiDirect, "$(device):itl6RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 interlock raw status")
   field(NOBT, "8")
   field(SHFT, "7")
@@ -3817,7 +3817,7 @@ record(mbbiDirect, "$(device):itl6RAW") {
 }
 
 record(bi, "$(device):itl6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -3825,7 +3825,7 @@ record(bi, "$(device):itl6RBV") {
 }
 
 record(mbbiDirect, "$(device):sel6RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 source selection status RAW")
   field(NOBT, "7")
   field(SCAN, "I/O Intr")
@@ -3835,7 +3835,7 @@ record(mbbiDirect, "$(device):sel6RAW") {
 }
 
 record(scalcout, "$(device):sel6StatCalc"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 source selection status calc")
   field(INPA, "$(device):sel6RAW.VAL")
   field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
@@ -3843,19 +3843,19 @@ record(scalcout, "$(device):sel6StatCalc"){
 }
 
 record(stringin, "$(device):sel6RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 source selection status")
   field(INP, "$(device):sel6StatCalc.SVAL")
 }
 
 record(longin, "$(device):finedly6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 fine delay status")
   field(EGU, "5 ps")
 }
 
 record(longin, "$(device):rfdly6RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 RF delay status")
   field(EGU, "evt_T/20")
 }
@@ -3884,7 +3884,7 @@ record(stringout, "$(device):sel6"){
 }
 
 record(scalcout, "$(device):sel6Calc1"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 source selection calc 1")
   field(INAA, "$(device):sel6.VAL")
   field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
@@ -3892,7 +3892,7 @@ record(scalcout, "$(device):sel6Calc1"){
 }
 
 record(scalcout, "$(device):sel6Calc2"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 source selection calc 2")
   field(INAA, "$(device):sel6.VAL")
   field(INPB, "$(device):sel6Calc1.VAL")
@@ -3901,7 +3901,7 @@ record(scalcout, "$(device):sel6Calc2"){
 }
 
 record(scalcout, "$(device):sel6Calc3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 source selection calc 3")
   field(INAA, "$(device):sel6.VAL")
   field(INPB, "$(device):sel6Calc2.VAL")
@@ -3913,14 +3913,14 @@ record(scalcout, "$(device):sel6Calc3") {
 }
 
 record(longout, "$(device):sel6toHW"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),6) $(PORT)")
 }
 
 record(calcout, "$(device):ITL6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT6 set interlock function calc")
   field(DTYP, "stream")
   field(INPA, "$(device):itl6")
@@ -3936,13 +3936,13 @@ record(bo, "$(device):itl6"){
 }
 
 record(longout, "$(device):cmd_evre_out_get6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OUT6")
   field(VAL, "0x97") # (0x80 | (reg number=23))
 }
 
 record(longout, "$(device):cmd_evre_out_set6") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OUT6")
   field(VAL, "0x57")
 }
@@ -3951,7 +3951,7 @@ record(longout, "$(device):cmd_evre_out_set6") {
 # OUT7 Register [24]
 
 record(mbbiDirect, "$(device):itl7RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 interlock raw status")
   field(NOBT, "8")
   field(SHFT, "7")
@@ -3962,7 +3962,7 @@ record(mbbiDirect, "$(device):itl7RAW") {
 }
 
 record(bi, "$(device):itl7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -3970,7 +3970,7 @@ record(bi, "$(device):itl7RBV") {
 }
 
 record(mbbiDirect, "$(device):sel7RAW") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 source selection status RAW")
   field(NOBT, "7")
   field(SCAN, "I/O Intr")
@@ -3980,7 +3980,7 @@ record(mbbiDirect, "$(device):sel7RAW") {
 }
 
 record(scalcout, "$(device):sel7StatCalc"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 source selection status calc")
   field(INPA, "$(device):sel7RAW.VAL")
   field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
@@ -3988,19 +3988,19 @@ record(scalcout, "$(device):sel7StatCalc"){
 }
 
 record(stringin, "$(device):sel7RBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 source selection status")
   field(INP, "$(device):sel7StatCalc.SVAL")
 }
 
 record(longin, "$(device):finedly7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 fine delay status")
   field(EGU, "5 ps")
 }
 
 record(longin, "$(device):rfdly7RBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 RF delay status")
   field(EGU, "evt_T/20")
 }
@@ -4029,7 +4029,7 @@ record(stringout, "$(device):sel7"){
 }
 
 record(scalcout, "$(device):sel7Calc1"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 source selection calc 1")
   field(INAA, "$(device):sel7.VAL")
   field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
@@ -4037,7 +4037,7 @@ record(scalcout, "$(device):sel7Calc1"){
 }
 
 record(scalcout, "$(device):sel7Calc2"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 source selection calc 2")
   field(INAA, "$(device):sel7.VAL")
   field(INPB, "$(device):sel7Calc1.VAL")
@@ -4046,7 +4046,7 @@ record(scalcout, "$(device):sel7Calc2"){
 }
 
 record(scalcout, "$(device):sel7Calc3") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 source selection calc 3")
   field(INAA, "$(device):sel7.VAL")
   field(INPB, "$(device):sel7Calc2.VAL")
@@ -4058,14 +4058,14 @@ record(scalcout, "$(device):sel7Calc3") {
 }
 
 record(longout, "$(device):sel7toHW"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),7) $(PORT)")
 }
 
 record(calcout, "$(device):ITL7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR OUT7 set interlock function calc")
   field(DTYP, "stream")
   field(INPA, "$(device):itl7")
@@ -4081,13 +4081,13 @@ record(bo, "$(device):itl7"){
 }
 
 record(longout, "$(device):cmd_evre_out_get7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read OUT7")
   field(VAL, "0x98") # (0x80 | (reg number=24))
 }
 
 record(longout, "$(device):cmd_evre_out_set7") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to OUT7")
   field(VAL, "0x58")
 }
@@ -4111,19 +4111,19 @@ record(mbbo, "$(device):TIMESRC"){
 }
 
 record(longin, "$(device):UTCRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR timestamp UTC field RBV")
   field(EGU, "seconds")
 }
 
 record(longin, "$(device):subsecondRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR timestamp subsecond field RBV")
   field(EGU, "evt_T")
 }
 
 record(mbbi, "$(device):TIMESRCRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR timestamp signal source RBV")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
@@ -4139,7 +4139,7 @@ record(mbbi, "$(device):TIMESRCRBV"){
 }
 
 record(longout, "$(device):cmd_evre_timestamp_get"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to read timestamp reg")
   field(VAL, "0xB3")
   field(SCAN, "1 second")
@@ -4148,7 +4148,7 @@ record(longout, "$(device):cmd_evre_timestamp_get"){
 }
 
 record(longout, "$(device):cmd_evre_timestamp_set"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Command code to write to timestamp reg")
   field(VAL, "0x73")
 }
@@ -4165,6 +4165,7 @@ record(bo, "$(device):stoplog"){
 
 # initialization by @init
 record(calcout, "$(device):stoplogAUX"){
+  field(ASG, "Reserved")
   field(DESC, "Auxiliar var for stoplog")
   field(INPA, "$(device):stoplog")
   field(CALC, "A << 7")
@@ -4186,6 +4187,7 @@ record(bo, "$(device):pull"){
 }
 
 record(calcout, "$(device):checkPull"){
+  field(ASG, "Reserved")
   field(DESC, "Validate pull action")
   field(INPA, "$(device):EMPTY")
   field(INPB, "$(device):pull")
@@ -4195,7 +4197,7 @@ record(calcout, "$(device):checkPull"){
 }
 
 record(calcout, "$(device):STOPLOG") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR set stop log calc")
   field(DTYP, "stream")
   field(INPA, "$(device):stoplog.VAL")
@@ -4206,7 +4208,7 @@ record(calcout, "$(device):STOPLOG") {
 }
 
 record(calcout, "$(device):RSTLOG") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR set reset log calc")
   field(DTYP, "stream")
   field(INPA, "$(device):stoplogAUX.VAL")
@@ -4217,7 +4219,7 @@ record(calcout, "$(device):RSTLOG") {
 }
 
 record(calcout, "$(device):PULL") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR set pull log calc")
   field(DTYP, "stream")
   field(INPA, "$(device):stoplogAUX.VAL")
@@ -4230,7 +4232,7 @@ record(calcout, "$(device):PULL") {
 }
 
 record(calcout, "$(device):LOGCTRL") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR download stop, reset, and pull")
   field(INPA, "$(device):stoplog.VAL")
   field(INPB, "$(device):rstlog.VAL")
@@ -4239,13 +4241,13 @@ record(calcout, "$(device):LOGCTRL") {
 }
 
 record(longin, "$(device):LOGCOUNT"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR number of timestamps in the buffer")
   field(EGU, "timestamps")
 }
 
 record(mbbiDirect, "$(device):LOGCTRLRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR timestamp log control RBV")
   field(NOBT, "8")
   field(SCAN, "I/O Intr")
@@ -4255,7 +4257,7 @@ record(mbbiDirect, "$(device):LOGCTRLRBV"){
 }
 
 record(bi, "$(device):STOPLOGRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(ONAM, "ON")
   field(ZNAM, "OFF")
   field(DESC, "EVR stop log command RBV")
@@ -4264,7 +4266,7 @@ record(bi, "$(device):STOPLOGRBV"){
 }
 
 record(bi, "$(device):RSTLOGRBV"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(ONAM, "ON")
   field(ZNAM, "OFF")
   field(DESC, "EVR reset log command RBV")
@@ -4273,7 +4275,7 @@ record(bi, "$(device):RSTLOGRBV"){
 }
 
 record(bi, "$(device):FULL"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(ONAM, "YES")
   field(ZNAM, "NO")
   field(DESC, "EVR timestamp buffer full flag")
@@ -4282,7 +4284,7 @@ record(bi, "$(device):FULL"){
 }
 
 record(bi, "$(device):EMPTY"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(ONAM, "YES")
   field(ZNAM, "NO")
   field(DESC, "EVR timestamp buffer empty flag")
@@ -4290,23 +4292,24 @@ record(bi, "$(device):EMPTY"){
 }
 
 record(longin, "$(device):LOGUTC"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR UTC timestamp pulled from log")
   field(EGU, "seconds")
 }
 
 record(longin, "$(device):LOGSUBSEC"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR subsecond timestamp pulled from log")
   field(EGU, "evt_T")
 }
 
 record(longin, "$(device):LOGEVENT"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR timestamp event pulled from log")
 }
 
 record(longout, "$(device):onlyRead"){
+  field(ASG, "Reserved")
   field(DESC, "Read timestamp and don't update buffers")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_tmstmp_log_get($(device)) $(PORT)")
@@ -4314,6 +4317,7 @@ record(longout, "$(device):onlyRead"){
 }
 
 record(longout, "$(device):readAndUpdate"){
+  field(ASG, "Reserved")
   field(DESC, "Read register and update buffers")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_tmstmp_log_get($(device)) $(PORT)")
@@ -4322,7 +4326,7 @@ record(longout, "$(device):readAndUpdate"){
 }
 
 record(compress, "$(device):UTCbuffer"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "UTC circular buffer")
   field(EGU, "seconds")
   field(ALG, "Circular Buffer")
@@ -4332,7 +4336,7 @@ record(compress, "$(device):UTCbuffer"){
 }
 
 record(compress, "$(device):SUBSECbuffer"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "SUBSEC circular buffer")
   field(EGU, "evt_T")
   field(ALG, "Circular Buffer")
@@ -4342,7 +4346,7 @@ record(compress, "$(device):SUBSECbuffer"){
 }
 
 record(compress, "$(device):EVENTbuffer"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Event circular buffer")
   field(ALG, "Circular Buffer")
   field(NSAM, "1000")
@@ -4351,7 +4355,7 @@ record(compress, "$(device):EVENTbuffer"){
 }
 
 record(calc, "$(device):LOGSOFTCNT"){
-#  field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Software fresh data buffer counter")
   field(EGU, "timestamps")
   field(CALC, "VAL + 1")
@@ -4359,6 +4363,7 @@ record(calc, "$(device):LOGSOFTCNT"){
 }
 
 record(calcout, "$(device):pullAgain"){
+  field(ASG, "Reserved")
   field(DESC, "Pull again decision calc")
   field(INPA, "$(device):whileNotEmpty.VAL")
   field(CALC, "A")
@@ -4368,6 +4373,7 @@ record(calcout, "$(device):pullAgain"){
 }
 
 record(calcout, "$(device):PeriodicPull"){
+  field(ASG, "Reserved")
   field(DESC, "Periodic pull of timestamps")
   field(SCAN, "2 second")
   field(INPA, "$(device):whileNotEmpty.VAL")
@@ -4379,6 +4385,7 @@ record(calcout, "$(device):PeriodicPull"){
 }
 
 record(calcout, "$(device):whileNotEmpty"){
+  field(ASG, "Reserved")
   field(DESC, "Flag: pull while buffer is not empty")
   field(INPA, "$(device):EMPTY")
   field(CALC, "A = 0")
@@ -4388,7 +4395,7 @@ record(calcout, "$(device):whileNotEmpty"){
 }
 
 record(longout, "$(device):cmd_evre_tmstmp_log_get"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Timestamp log reg read command code")
   field(VAL, "0xB4")
   field(SCAN, "1 second")
@@ -4397,7 +4404,7 @@ record(longout, "$(device):cmd_evre_tmstmp_log_get"){
 }
 
 record(longout, "$(device):cmd_evre_tmstmp_log_set"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Timestamp log reg write command code")
   field(VAL, "0x74")
 }
@@ -4406,13 +4413,14 @@ record(longout, "$(device):cmd_evre_tmstmp_log_set"){
 # Firmware Version [62]
 
 record(stringin, "$(device):FRMVERSION"){
+  field(ASG, "Reserved")
   field(DESC, "EVR firmware version")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_frmversion_get($(device)) $(PORT)")
 }
 
 record(calcout, "$(device):cmd_evre_frmversion_get"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR firmware version read command code")
   field(VAL, "0xBE")
 }
@@ -4421,7 +4429,7 @@ record(calcout, "$(device):cmd_evre_frmversion_get"){
 # Configuration Register [63]
 
 record(longin, "$(device):alive") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR alive")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
@@ -4430,7 +4438,7 @@ record(longin, "$(device):alive") {
 }
 
 record(mbbi, "$(device):clkmodeRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR clock mode status")
   field(NOBT, "6")
   field(ZRVL, "11")
@@ -4451,7 +4459,7 @@ record(mbbi, "$(device):clkmodeRBV") {
 }
 
 record(mbbi, "$(device):funselRBV") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR function select status")
   field(NOBT, "6")
   field(ZRVL, "16")
@@ -4502,7 +4510,7 @@ record(mbbo, "$(device):clkmode"){
 }
 
 record(longout, "$(device):cmd_evr_conf_get"){
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Configuration reg read command code")
   field(VAL, "0xBF")
   field(DTYP, "stream")
@@ -4511,7 +4519,7 @@ record(longout, "$(device):cmd_evr_conf_get"){
 }
 
 record(longout, "$(device):cmd_evr_conf_set") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "Configuration reg write command code")
   field(VAL, "0x7F")
 }
@@ -4541,7 +4549,7 @@ record(bo, "$(device):uploadT") {
 }
 
 record(calc, "$(device):statdevcalc") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR device status calc")
   field(INPA, "$(device):alive")
   field(CALC, "A=0?0:1")
@@ -4549,7 +4557,7 @@ record(calc, "$(device):statdevcalc") {
 }
 
 record(bi, "$(device):statdev") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR device status")
   field(ZNAM, "WAITING")
   field(ONAM, "RUNNING")
@@ -4557,7 +4565,7 @@ record(bi, "$(device):statdev") {
 }
 
 record(bi, "$(device):network") {
-# field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "EVR network status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")

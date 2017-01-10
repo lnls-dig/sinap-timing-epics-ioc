@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_xvCv0NZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_xvDYItZ8EeaUNaq7QT-Y1g" bindingContexts="_xvD-n9Z8EeaUNaq7QT-Y1g">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;Main.opi&quot; tooltip=&quot;TimingIOC_Test/Main.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/Main.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;5_2_Script.opi&quot; tooltip=&quot;BOY Examples/5_2_Script.opi&quot;>&#xA;&lt;persistable path=&quot;/BOY Examples/5_2_Script.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVR.opi&quot; tooltip=&quot;TimingIOC_Test/EVR.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/EVR.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.DisplayLauncher&quot; name=&quot;Event.opi&quot; tooltip=&quot;TimingIOC_Test/Event.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/Event.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.DisplayLauncher&quot; name=&quot;IOCStreamTest.opi&quot; tooltip=&quot;TimingIOC_Test/IOCStreamTest.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/IOCStreamTest.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.DisplayLauncher&quot; name=&quot;Operator.opi&quot; tooltip=&quot;TimingIOC_Test/Operator.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/Operator.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.DisplayLauncher&quot; name=&quot;timing_test.opi&quot; tooltip=&quot;TimingIOC_Test/timing_test.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/timing_test.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;Bucket.opi&quot; tooltip=&quot;TimingIOC_Test/Bucket.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/Bucket.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVG.opi&quot; tooltip=&quot;TimingIOC_Test/EVG.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/EVG.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;1_2_WidgetExamples.opi&quot; tooltip=&quot;BOY Examples/1_2_WidgetExamples.opi&quot;>&#xA;&lt;persistable path=&quot;/BOY Examples/1_2_WidgetExamples.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;6_Macro.opi&quot; tooltip=&quot;BOY Examples/6_Macro.opi&quot;>&#xA;&lt;persistable path=&quot;/BOY Examples/6_Macro.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVE.opi&quot; tooltip=&quot;TimingIOC_Test/EVE.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/EVE.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;5_1_Rules.opi&quot; tooltip=&quot;BOY Examples/5_1_Rules.opi&quot;>&#xA;&lt;persistable path=&quot;/BOY Examples/5_1_Rules.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;rssmx100a_Layout_2.opi&quot; tooltip=&quot;CSS/rssmx100a_Layout_2.opi&quot;>&#xA;&lt;persistable path=&quot;/CSS/rssmx100a_Layout_2.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;alarmconf_rssmx100a.opi&quot; tooltip=&quot;CSS/alarmconf_rssmx100a.opi&quot;>&#xA;&lt;persistable path=&quot;/CSS/alarmconf_rssmx100a.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVR.opi&quot; tooltip=&quot;TimingIOC_Test/EVR.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/EVR.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVG.opi&quot; tooltip=&quot;TimingIOC_Test/EVG.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/EVG.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVE.opi&quot; tooltip=&quot;TimingIOC_Test/EVE.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/EVE.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;Main.opi&quot; tooltip=&quot;TimingIOC_Test/Main.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/Main.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;5_2_Script.opi&quot; tooltip=&quot;BOY Examples/5_2_Script.opi&quot;>&#xA;&lt;persistable path=&quot;/BOY Examples/5_2_Script.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.DisplayLauncher&quot; name=&quot;Event.opi&quot; tooltip=&quot;TimingIOC_Test/Event.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/Event.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.DisplayLauncher&quot; name=&quot;IOCStreamTest.opi&quot; tooltip=&quot;TimingIOC_Test/IOCStreamTest.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/IOCStreamTest.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.DisplayLauncher&quot; name=&quot;Operator.opi&quot; tooltip=&quot;TimingIOC_Test/Operator.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/Operator.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.DisplayLauncher&quot; name=&quot;timing_test.opi&quot; tooltip=&quot;TimingIOC_Test/timing_test.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/timing_test.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;Bucket.opi&quot; tooltip=&quot;TimingIOC_Test/Bucket.opi&quot;>&#xA;&lt;persistable path=&quot;/TimingIOC_Test/Bucket.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;1_2_WidgetExamples.opi&quot; tooltip=&quot;BOY Examples/1_2_WidgetExamples.opi&quot;>&#xA;&lt;persistable path=&quot;/BOY Examples/1_2_WidgetExamples.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;6_Macro.opi&quot; tooltip=&quot;BOY Examples/6_Macro.opi&quot;>&#xA;&lt;persistable path=&quot;/BOY Examples/6_Macro.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;5_1_Rules.opi&quot; tooltip=&quot;BOY Examples/5_1_Rules.opi&quot;>&#xA;&lt;persistable path=&quot;/BOY Examples/5_1_Rules.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;rssmx100a_Layout_2.opi&quot; tooltip=&quot;CSS/rssmx100a_Layout_2.opi&quot;>&#xA;&lt;persistable path=&quot;/CSS/rssmx100a_Layout_2.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;alarmconf_rssmx100a.opi&quot; tooltip=&quot;CSS/alarmconf_rssmx100a.opi&quot;>&#xA;&lt;persistable path=&quot;/CSS/alarmconf_rssmx100a.opi&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <tags>ModelMigrationProcessor.001</tags>
   <children xsi:type="basic:TrimmedWindow" xmi:id="_xvDYItZ8EeaUNaq7QT-Y1g" selectedElement="_xvDYI9Z8EeaUNaq7QT-Y1g" x="49" y="18" width="975" height="750">
@@ -13,8 +13,8 @@
     <tags>topLevel</tags>
     <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYI9Z8EeaUNaq7QT-Y1g" selectedElement="_xvDYJNZ8EeaUNaq7QT-Y1g" horizontal="true">
-      <children xsi:type="advanced:PerspectiveStack" xmi:id="_xvDYJNZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.ide.perspectivestack" containerData="7500" selectedElement="_xvDYJdZ8EeaUNaq7QT-Y1g">
-        <children xsi:type="advanced:Perspective" xmi:id="_xvDYJdZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.OPIRuntime.perspective" selectedElement="_xvDYJtZ8EeaUNaq7QT-Y1g" label="OPI Runtime" iconURI="platform:/plugin/org.csstudio.opibuilder/icons/OPIBuilder.png">
+      <children xsi:type="advanced:PerspectiveStack" xmi:id="_xvDYJNZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.ide.perspectivestack" containerData="7500" selectedElement="_v2XfcNdXEea1m_EUVXmszw">
+        <children xsi:type="advanced:Perspective" xmi:id="_xvDYJdZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.OPIRuntime.perspective" label="OPI Runtime" iconURI="platform:/plugin/org.csstudio.opibuilder/icons/OPIBuilder.png">
           <persistedState key="persp.hiddenItems" value="persp.hideToolbarSC:print,persp.hideToolbarSC:org.eclipse.ui.edit.text.toggleShowSelectedElementOnly,"/>
           <tags>persp.actionSet:org.csstudio.opibuilder.actionSet</tags>
           <tags>persp.actionSet:org.csstudio.opibuilder.editor.actionSet</tags>
@@ -26,22 +26,22 @@
           <tags>persp.actionSet:org.eclipse.ui.edit.text.actionSet.annotationNavigation</tags>
           <tags>persp.actionSet:org.eclipse.ui.edit.text.actionSet.navigation</tags>
           <tags>persp.actionSet:org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo</tags>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYJtZ8EeaUNaq7QT-Y1g" selectedElement="_xvDYKtZ8EeaUNaq7QT-Y1g" horizontal="true">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYJtZ8EeaUNaq7QT-Y1g" toBeRendered="false" horizontal="true">
             <children xsi:type="basic:PartStack" xmi:id="_xvDYJ9Z8EeaUNaq7QT-Y1g" elementId="LEFT" toBeRendered="false" containerData="2500">
               <children xsi:type="advanced:Placeholder" xmi:id="_xvDYKNZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiViewLEFT:*" toBeRendered="false" ref="_xvDYqNZ8EeaUNaq7QT-Y1g"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_xvDYKdZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.views.ResourceNavigator" toBeRendered="false" ref="_xvDYrtZ8EeaUNaq7QT-Y1g"/>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYKtZ8EeaUNaq7QT-Y1g" containerData="7500" selectedElement="_xvDYK9Z8EeaUNaq7QT-Y1g" horizontal="true">
-              <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYK9Z8EeaUNaq7QT-Y1g" containerData="7500" selectedElement="_xvDYLtZ8EeaUNaq7QT-Y1g">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYKtZ8EeaUNaq7QT-Y1g" toBeRendered="false" containerData="7500" horizontal="true">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYK9Z8EeaUNaq7QT-Y1g" toBeRendered="false" containerData="7500">
                 <children xsi:type="basic:PartStack" xmi:id="_xvDYLNZ8EeaUNaq7QT-Y1g" elementId="TOP" toBeRendered="false" containerData="2500">
                   <children xsi:type="advanced:Placeholder" xmi:id="_xvDYLdZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiViewTOP:*" toBeRendered="false" ref="_xvDYqtZ8EeaUNaq7QT-Y1g"/>
                 </children>
-                <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYLtZ8EeaUNaq7QT-Y1g" containerData="7500" selectedElement="_xvDYL9Z8EeaUNaq7QT-Y1g">
-                  <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYL9Z8EeaUNaq7QT-Y1g" containerData="7500" selectedElement="_xvDYMdZ8EeaUNaq7QT-Y1g" horizontal="true">
+                <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYLtZ8EeaUNaq7QT-Y1g" toBeRendered="false" containerData="7500">
+                  <children xsi:type="basic:PartSashContainer" xmi:id="_xvDYL9Z8EeaUNaq7QT-Y1g" toBeRendered="false" containerData="7500" horizontal="true">
                     <children xsi:type="advanced:Placeholder" xmi:id="_xvDYMNZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.editorss" toBeRendered="false" containerData="5000" ref="_xvDYptZ8EeaUNaq7QT-Y1g"/>
-                    <children xsi:type="basic:PartStack" xmi:id="_xvDYMdZ8EeaUNaq7QT-Y1g" elementId="DEFAULT_VIEW" containerData="5000" selectedElement="_xvDYMtZ8EeaUNaq7QT-Y1g">
-                      <tags>active</tags>
-                      <children xsi:type="advanced:Placeholder" xmi:id="_xvDYMtZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiView:6a216212-f7c4-424e-8cf3-7cca336daf29" ref="_xvDYr9Z8EeaUNaq7QT-Y1g"/>
+                    <children xsi:type="basic:PartStack" xmi:id="_xvDYMdZ8EeaUNaq7QT-Y1g" elementId="DEFAULT_VIEW" toBeRendered="false" containerData="5000">
+                      <tags>noFocus</tags>
+                      <children xsi:type="advanced:Placeholder" xmi:id="_xvDYMtZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiView:6a216212-f7c4-424e-8cf3-7cca336daf29" toBeRendered="false" ref="_xvDYr9Z8EeaUNaq7QT-Y1g"/>
                       <children xsi:type="advanced:Placeholder" xmi:id="_xvDYM9Z8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiView:*" toBeRendered="false" ref="_xvDYrNZ8EeaUNaq7QT-Y1g"/>
                     </children>
                   </children>
@@ -53,6 +53,46 @@
               </children>
               <children xsi:type="basic:PartStack" xmi:id="_xvDYN9Z8EeaUNaq7QT-Y1g" elementId="RIGHT" toBeRendered="false" containerData="2500">
                 <children xsi:type="advanced:Placeholder" xmi:id="_xvDYONZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiViewRIGHT:*" toBeRendered="false" ref="_xvDYqdZ8EeaUNaq7QT-Y1g"/>
+              </children>
+            </children>
+          </children>
+        </children>
+        <children xsi:type="advanced:Perspective" xmi:id="_v2XfcNdXEea1m_EUVXmszw" elementId="org.csstudio.opibuilder.opieditor" selectedElement="_v2XfcddXEea1m_EUVXmszw" label="OPI Editor" iconURI="platform:/plugin/org.csstudio.opibuilder.editor/icons/OPIBuilder.png">
+          <persistedState key="persp.hiddenItems" value="persp.hideToolbarSC:print,persp.hideToolbarSC:org.eclipse.ui.edit.text.toggleShowSelectedElementOnly,"/>
+          <tags>persp.actionSet:org.csstudio.opibuilder.actionSet</tags>
+          <tags>persp.actionSet:org.csstudio.opibuilder.editor.actionSet</tags>
+          <tags>persp.actionSet:org.eclipse.search.searchActionSet</tags>
+          <tags>persp.actionSet:org.eclipse.ui.actionSet.keyBindings</tags>
+          <tags>persp.actionSet:org.eclipse.ui.actionSet.openFiles</tags>
+          <tags>persp.viewSC:org.eclipse.ui.views.ResourceNavigator</tags>
+          <tags>persp.viewSC:org.eclipse.ui.views.PropertySheet</tags>
+          <tags>persp.viewSC:org.eclipse.ui.views.ContentOutline</tags>
+          <tags>persp.viewSC:org.eclipse.ui.console.ConsoleView</tags>
+          <tags>persp.viewSC:org.eclipse.help.ui.HelpView</tags>
+          <tags>persp.newWizSC:org.eclipse.ui.wizards.new.folder</tags>
+          <tags>persp.newWizSC:org.csstudio.opibuilder.wizards.newOPIWizard</tags>
+          <tags>persp.newWizSC:org.csstudio.opibuilder.wizards.newJSWizard</tags>
+          <tags>persp.newWizSC:org.csstudio.opibuilder.wizards.newPyWizard</tags>
+          <children xsi:type="basic:PartSashContainer" xmi:id="_v2XfcddXEea1m_EUVXmszw" selectedElement="_v2Xfd9dXEea1m_EUVXmszw" horizontal="true">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_v2XfctdXEea1m_EUVXmszw" containerData="2000" selectedElement="_v2Xfc9dXEea1m_EUVXmszw">
+              <children xsi:type="basic:PartStack" xmi:id="_v2Xfc9dXEea1m_EUVXmszw" elementId="left" containerData="7000" selectedElement="_v2XfdNdXEea1m_EUVXmszw">
+                <children xsi:type="advanced:Placeholder" xmi:id="_v2XfdNdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ResourceNavigator" ref="_xvDYrtZ8EeaUNaq7QT-Y1g"/>
+              </children>
+              <children xsi:type="basic:PartStack" xmi:id="_v2XfdddXEea1m_EUVXmszw" elementId="leftBottom" containerData="3000" selectedElement="_v2XfdtdXEea1m_EUVXmszw">
+                <children xsi:type="advanced:Placeholder" xmi:id="_v2XfdtdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ContentOutline" ref="_v2QKsNdXEea1m_EUVXmszw"/>
+              </children>
+            </children>
+            <children xsi:type="basic:PartSashContainer" xmi:id="_v2Xfd9dXEea1m_EUVXmszw" containerData="8000" selectedElement="_v2XfeNdXEea1m_EUVXmszw" horizontal="true">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_v2XfeNdXEea1m_EUVXmszw" containerData="7500" selectedElement="_v2XfeddXEea1m_EUVXmszw">
+                <children xsi:type="advanced:Placeholder" xmi:id="_v2XfeddXEea1m_EUVXmszw" elementId="org.eclipse.ui.editorss" containerData="7500" ref="_xvDYptZ8EeaUNaq7QT-Y1g"/>
+                <children xsi:type="basic:PartStack" xmi:id="_v2XfetdXEea1m_EUVXmszw" elementId="bottom" containerData="2500" selectedElement="_v2Xfe9dXEea1m_EUVXmszw">
+                  <children xsi:type="advanced:Placeholder" xmi:id="_v2Xfe9dXEea1m_EUVXmszw" elementId="org.eclipse.ui.console.ConsoleView" ref="_xvDYrdZ8EeaUNaq7QT-Y1g"/>
+                  <children xsi:type="advanced:Placeholder" xmi:id="_v2XffNdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ProgressView" toBeRendered="false" ref="_v2RY0NdXEea1m_EUVXmszw"/>
+                  <children xsi:type="advanced:Placeholder" xmi:id="_v2XffddXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ProblemView" ref="_v2T1ENdXEea1m_EUVXmszw"/>
+                </children>
+              </children>
+              <children xsi:type="basic:PartStack" xmi:id="_v2XfftdXEea1m_EUVXmszw" elementId="right" containerData="2500" selectedElement="_v2Xff9dXEea1m_EUVXmszw">
+                <children xsi:type="advanced:Placeholder" xmi:id="_v2Xff9dXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.PropertySheet" ref="_v2QxwNdXEea1m_EUVXmszw"/>
               </children>
             </children>
           </children>
@@ -71,10 +111,37 @@
       <tags>View</tags>
       <tags>categoryTag:General</tags>
     </sharedElements>
-    <sharedElements xsi:type="advanced:Area" xmi:id="_xvDYptZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.editorss">
-      <children xsi:type="basic:PartStack" xmi:id="_xvDYp9Z8EeaUNaq7QT-Y1g" elementId="org.eclipse.e4.primaryDataStack">
+    <sharedElements xsi:type="advanced:Area" xmi:id="_xvDYptZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.editorss" selectedElement="_xvDYp9Z8EeaUNaq7QT-Y1g">
+      <children xsi:type="basic:PartStack" xmi:id="_xvDYp9Z8EeaUNaq7QT-Y1g" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_ywixkNdXEea1m_EUVXmszw">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
+        <tags>active</tags>
+        <children xsi:type="basic:Part" xmi:id="_ywixkNdXEea1m_EUVXmszw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Main.opi" iconURI="platform:/plugin/org.csstudio.opibuilder.editor/icons/OPIBuilder.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;Main.opi&quot; partName=&quot;Main.opi&quot; title=&quot;Main.opi&quot; tooltip=&quot;TimingIOC_Test/Main.opi&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TimingIOC_Test/Main.opi&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.csstudio.opibuilder.OPIEditor</tags>
+          <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_zT9nsNdXEea1m_EUVXmszw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="EVE.opi" iconURI="platform:/plugin/org.csstudio.opibuilder.editor/icons/OPIBuilder.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVE.opi&quot; partName=&quot;EVE.opi&quot; title=&quot;EVE.opi&quot; tooltip=&quot;TimingIOC_Test/EVE.opi&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TimingIOC_Test/EVE.opi&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.csstudio.opibuilder.OPIEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_zlKFYNdXEea1m_EUVXmszw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="EVG.opi" iconURI="platform:/plugin/org.csstudio.opibuilder.editor/icons/OPIBuilder.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVG.opi&quot; partName=&quot;EVG.opi&quot; title=&quot;EVG.opi&quot; tooltip=&quot;TimingIOC_Test/EVG.opi&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TimingIOC_Test/EVG.opi&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.csstudio.opibuilder.OPIEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_zt6_0NdXEea1m_EUVXmszw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="EVR.opi" iconURI="platform:/plugin/org.csstudio.opibuilder.editor/icons/OPIBuilder.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;EVR.opi&quot; partName=&quot;EVR.opi&quot; title=&quot;EVR.opi&quot; tooltip=&quot;TimingIOC_Test/EVR.opi&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TimingIOC_Test/EVR.opi&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.csstudio.opibuilder.OPIEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_xvDYqNZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiViewLEFT:*" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="OPI View (Left)" iconURI="platform:/plugin/org.csstudio.opibuilder/icons/OPIRunner.png" tooltip="" closeable="true">
@@ -98,19 +165,29 @@
       <tags>categoryTag:BOY</tags>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_xvDYrdZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.console.ConsoleView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Console" iconURI="platform:/plugin/org.eclipse.ui.console/icons/full/cview16/console_view.png" tooltip="" closeable="true">
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view/>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+      <menus xmi:id="_v5ivQNdXEea1m_EUVXmszw" elementId="org.eclipse.ui.console.ConsoleView">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_v5ivQddXEea1m_EUVXmszw" elementId="org.eclipse.ui.console.ConsoleView"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_xvDYrtZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.views.ResourceNavigator" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Navigator" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/filenav_nav.png" tooltip="" closeable="true">
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view LINK_NAVIGATOR_TO_EDITOR=&quot;0&quot; sorter=&quot;1&quot;>&#xA;&lt;filters>&#xA;&lt;filter element=&quot;.*&quot; isEnabled=&quot;false&quot;/>&#xA;&lt;/filters>&#xA;&lt;expanded>&#xA;&lt;element path=&quot;/TimingIOC_Test&quot;/>&#xA;&lt;/expanded>&#xA;&lt;selection>&#xA;&lt;element path=&quot;/TimingIOC_Test/EVR.opi&quot;/>&#xA;&lt;/selection>&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+      <menus xmi:id="_v3Ml4NdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ResourceNavigator">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_v3Ml4ddXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ResourceNavigator"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_xvDYr9Z8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiView:6a216212-f7c4-424e-8cf3-7cca336daf29" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="EVE.opi" iconURI="platform:/plugin/org.csstudio.opibuilder/icons/OPIRunner.png" tooltip="" closeable="true">
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view factory_id=&quot;org.csstudio.opibuilder.runmode.RunnerInputFactory&quot;>&#xA;&lt;input macro=&quot;&amp;quot;true&amp;quot;,&amp;quot;ScanFast=passive&amp;quot;,&amp;quot;ScanSlow=Passive&amp;quot;,&amp;quot;device=EVE1&amp;quot;&quot; path=&quot;/TimingIOC_Test/EVE.opi&quot;/>&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:BOY</tags>
-      <tags>active</tags>
-      <tags>activeOnClose</tags>
       <menus xmi:id="_xvDYsNZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiView">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -119,7 +196,35 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:org.csstudio.opibuilder.opiView</tags>
       </menus>
-      <toolbar xmi:id="_xvDYstZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiView"/>
+      <toolbar xmi:id="_xvDYstZ8EeaUNaq7QT-Y1g" elementId="org.csstudio.opibuilder.opiView" visible="false"/>
+    </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_v2QKsNdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ContentOutline" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png" tooltip="" closeable="true">
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view/>"/>
+      <tags>View</tags>
+      <tags>categoryTag:General</tags>
+      <menus xmi:id="_v45PANdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ContentOutline">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_v45PAddXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ContentOutline"/>
+    </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_v2QxwNdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.PropertySheet" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Properties" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/prop_ps.png" tooltip="" closeable="true">
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view/>"/>
+      <tags>View</tags>
+      <tags>categoryTag:General</tags>
+      <menus xmi:id="_v6HXANdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.PropertySheet">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_v6HXAddXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.PropertySheet"/>
+    </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_v2RY0NdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ProgressView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Progress" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/pview.png" tooltip="" closeable="true">
+      <tags>View</tags>
+      <tags>categoryTag:General</tags>
+    </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_v2T1ENdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" tooltip="" closeable="true">
+      <tags>View</tags>
+      <tags>categoryTag:General</tags>
     </sharedElements>
     <trimBars xmi:id="_xvDYuNZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.main.toolbar">
       <children xsi:type="menu:ToolBar" xmi:id="_xvDYudZ8EeaUNaq7QT-Y1g" elementId="file">
