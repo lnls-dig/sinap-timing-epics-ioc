@@ -28,6 +28,7 @@ record(mbbo, "$(device):STATEMACHINE"){
 	field(SXVL, "6")
 	field(VAL, "0")	
 	field(DESC, "Injection State Machine Status")
+	field(ASG, "Reserved")
 }
 #####################################################
 # Stop Trigger: Return SeqRAM to STOPPED state

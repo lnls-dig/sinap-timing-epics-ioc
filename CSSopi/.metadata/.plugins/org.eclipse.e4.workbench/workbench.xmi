@@ -73,6 +73,9 @@
           <tags>persp.newWizSC:org.csstudio.opibuilder.wizards.newOPIWizard</tags>
           <tags>persp.newWizSC:org.csstudio.opibuilder.wizards.newJSWizard</tags>
           <tags>persp.newWizSC:org.csstudio.opibuilder.wizards.newPyWizard</tags>
+          <tags>persp.actionSet:org.eclipse.ui.edit.text.actionSet.annotationNavigation</tags>
+          <tags>persp.actionSet:org.eclipse.ui.edit.text.actionSet.navigation</tags>
+          <tags>persp.actionSet:org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo</tags>
           <children xsi:type="basic:PartSashContainer" xmi:id="_v2XfcddXEea1m_EUVXmszw" selectedElement="_v2Xfd9dXEea1m_EUVXmszw" horizontal="true">
             <children xsi:type="basic:PartSashContainer" xmi:id="_v2XfctdXEea1m_EUVXmszw" containerData="2000" selectedElement="_v2Xfc9dXEea1m_EUVXmszw">
               <children xsi:type="basic:PartStack" xmi:id="_v2Xfc9dXEea1m_EUVXmszw" elementId="left" containerData="7000" selectedElement="_v2XfdNdXEea1m_EUVXmszw">
@@ -223,8 +226,14 @@
       <tags>categoryTag:General</tags>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_v2T1ENdXEea1m_EUVXmszw" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" tooltip="" closeable="true">
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot; partName=&quot;Problems&quot;>&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;75&quot; org.eclipse.ui.ide.markerType=&quot;75&quot; org.eclipse.ui.ide.pathField=&quot;100&quot; org.eclipse.ui.ide.resourceField=&quot;75&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;250&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+      <menus xmi:id="_dFvAENdZEeaL2aGd2Y_ghA" elementId="org.eclipse.ui.views.ProblemView">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_dFvnINdZEeaL2aGd2Y_ghA" elementId="org.eclipse.ui.views.ProblemView"/>
     </sharedElements>
     <trimBars xmi:id="_xvDYuNZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.main.toolbar">
       <children xsi:type="menu:ToolBar" xmi:id="_xvDYudZ8EeaUNaq7QT-Y1g" elementId="file">
