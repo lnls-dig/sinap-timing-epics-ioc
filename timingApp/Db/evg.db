@@ -42,17 +42,30 @@ record(mbbiDirect, "$(device):seqstat_rfstat") {
 record(bi, "$(device):rfstat") {
 # field(ASG, "Reserved")
   field(DESC, "EVG RF input status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "LOSS OR OUT OF RANGE")
+  field(ONAM, "NORMAL")
   field(INP, "$(device):seqstat_rfstat.B2")
+  field(FLNK, "$(device):seqstatCalc")
+}
+
+record(calc, "$(device):seqstatCalc") {
+# field(ASG, "Reserved")
+  field(DESC, "EVG SEQRAM status calculation")
+  field(INPA, "$(device):seqstat_rfstat")
+  field(CALC, "A&3")
   field(FLNK, "$(device):seqstat")
 }
 
-record(calc, "$(device):seqstat") {
+record(mbbi, "$(device):seqstat") {
 # field(ASG, "Reserved")
   field(DESC, "EVG SEQRAM status")
-  field(INPA, "$(device):seqstat_rfstat")
-  field(CALC, "A&3")
+  field(INP, "$(device):seqstatCalc")
+  field(ZRVL, "0")
+  field(ZRST, "Stopped")
+  field(ONVL, "1")
+  field(ONST, "SEQRAM 1")
+  field(TWVL, "2")
+  field(TWST, "SEQRAM 2")
 }
 
 record(calcout, "$(device):SEQEN_ENABLE") {
@@ -152,7 +165,8 @@ record(bo, "$(device):acen"){
 record(ao, "$(device):acdiv"){
   field(DESC, "EVG AC divider prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_acline_acdiv_set($(device)) $(PORT)")
@@ -207,7 +221,8 @@ record(bo, "$(device):muxen0"){
 record(ao, "$(device):muxdiv0"){
   field(DESC, "EVG MUX0 prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_mux_div_set($(device),0) $(PORT)")
@@ -264,7 +279,8 @@ record(bo, "$(device):muxen1"){
 record(ao, "$(device):muxdiv1"){
   field(DESC, "EVG Mux1 prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_mux_div_set($(device),1) $(PORT)")
@@ -319,7 +335,8 @@ record(bo, "$(device):muxen2"){
 record(ao, "$(device):muxdiv2"){
   field(DESC, "EVG Mux2 prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_mux_div_set($(device),2) $(PORT)")
@@ -374,7 +391,8 @@ record(bo, "$(device):muxen3"){
 record(ao, "$(device):muxdiv3"){
   field(DESC, "EVG Mux3 prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_mux_div_set($(device),3) $(PORT)")
@@ -429,7 +447,8 @@ record(bo, "$(device):muxen4"){
 record(ao, "$(device):muxdiv4"){
   field(DESC, "EVG Mux4 prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_mux_div_set($(device),4) $(PORT)")
@@ -484,7 +503,8 @@ record(bo, "$(device):muxen5"){
 record(ao, "$(device):muxdiv5"){
   field(DESC, "EVG Mux5 prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_mux_div_set($(device),5) $(PORT)")
@@ -540,7 +560,8 @@ record(bo, "$(device):muxen6"){
 record(ao, "$(device):muxdiv6"){
   field(DESC, "EVG Mux6 prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_mux_div_set($(device),6) $(PORT)")
@@ -595,7 +616,8 @@ record(bo, "$(device):muxen7"){
 record(ao, "$(device):muxdiv7"){
   field(DESC, "EVG Mux7 prescaler setting")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "1073741824")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_mux_div_set($(device),7) $(PORT)")
@@ -616,38 +638,22 @@ record(longout, "$(device):cmd_evg_mux_set7") {
 ########################################################################
 # SEQRAM setting register [49]
 
-record(mbbiDirect, "$(device):seqaddrRBV") {
-  field(DESC, "EVG seqaddr status")
-  field(NOBT, "14")
-}
-
-record(mbbiDirect, "$(device):seqcodeRBV") {
-  field(DESC, "EVG seqcode status")
-  field(NOBT, "8")
-}
-
-record(longin, "$(device):seqtimeRBV") {
-  field(DESC, "EVG seqtime status")
-}
-
 record(longout, "$(device):seqaddr"){
   field(DESC, "Set address of EVG SEQRAM")
+  field(DRVH, "16383")
+  field(DRVL, "0")
 }
 
 record(longout, "$(device):seqcode"){
   field(DESC, "Set event code in EVG SEQRAM")
+  field(DRVH, "255")
+  field(DRVL, "0")
 }
 
 record(longout, "$(device):seqtime"){
   field(DESC, "Set timestamp in EVG SEQRAM")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_seqramset_set($(device)) $(PORT)")
-}
-
-record(longout, "$(device):cmd_evg_seqramset_get") {
-# field(ASG, "Reserved")
-  field(DESC, "SEQRAM setting reg read command code")
-  field(VAL, "0xB1") # (0x80 | reg number=49)
 }
 
 record(longout, "$(device):cmd_evg_seqramset_set") {
@@ -693,6 +699,7 @@ record(longout, "$(device):cmd_evg_seqramsw_set") {
 
 record(longout, "$(device):UTC"){
   field(DESC, "EVG timestamp UTC field")
+  field(EGU, "seconds")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_timestamp_utc_set($(device)) $(PORT)")
 }
@@ -714,12 +721,14 @@ record(mbbo, "$(device):TIMESRC"){
 
 record(longin, "$(device):UTCRBV"){
 # field(ASG, "Reserved")
-  field(DESC, "ECG timestamp UTC field RBV")
+  field(DESC, "EVG timestamp UTC field RBV")
+  field(EGU, "seconds")
 }
 
 record(longin, "$(device):subsecondRBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVG timestamp subsecond field RBV")
+  field(EGU, "evt_T")
 }
 
 record(mbbi, "$(device):TIMESRCRBV"){
@@ -796,22 +805,43 @@ record(calc, "$(device):rfdivRBV") {
   field(CALC, "A+1")
 }
 
-record(longin, "$(device):funselRBV") {
+record(mbbi, "$(device):funselRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVG function select status")
+  field(NOBT, "6")
+  field(ZRVL, "16")
+  field(ZRST, "FOUT")
+  field(ONVL, "17")
+  field(ONST, "EVR")
+  field(TWVL, "18")
+  field(TWST, "EVG")
+  field(THVL, "32")
+  field(THST, "EVE")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_conf_funsel_intr $(PORT)")
 }
 
-record(longout, "$(device):funsel") {
+record(mbbo, "$(device):funsel") {
   field(DESC, "STD-EVO configuration as EVG")
+  field(ZRVL, "16")
+  field(ZRST, "FOUT")
+  field(ONVL, "17")
+  field(ONST, "EVR")
+  field(TWVL, "18")
+  field(TWST, "EVG")
+  field(THVL, "32")
+  field(THST, "EVE")
+  field(VAL, "2")
   field(DTYP, "stream")
-  field(VAL, "0x12")
   field(OUT, "@timing.proto evg_conf_funsel_set($(device)) $(PORT)")
 }
 
 record(ao, "$(device):rfdiv"){
   field(DESC, "EVG RF clock divider")
   field(DTYP, "stream")
-  field(DRVL, "0")
+  field(DRVH, "15")
+  field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_conf_rfdiv_set($(device)) $(PORT)")

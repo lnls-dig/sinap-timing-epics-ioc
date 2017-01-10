@@ -41,8 +41,8 @@ record(mbbiDirect, "$(device):linkinhs") {
 record(bi, "$(device):inhs") {
 # field(ASG, "Reserved")
   field(DESC, "EVE interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "DISSERTED")
+  field(ONAM, "ASSERTED")
   field(INP, "$(device):linkinhs.B0")
   field(FLNK, "$(device):link")
 }
@@ -50,8 +50,8 @@ record(bi, "$(device):inhs") {
 record(bi, "$(device):link") {
 # field(ASG, "Reserved")
   field(DESC, "EVE fibre link status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "UNLINK")
+  field(ONAM, "LINK")
   field(INP, "$(device):linkinhs.B1")
 }
 
@@ -75,6 +75,8 @@ record(longout, "$(device):cmd_evre_ctrl_set") {
 
 record(longout, "$(device):event0") {
   field(DESC, "EVE OTP0 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),0) $(PORT)")
   field(FLNK, "$(device):enpoltime0RBV")
@@ -84,6 +86,7 @@ record(longout, "$(device):pulses0"){
   field(DESC, "EVE OTP0 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),0) $(PORT)")
   field(FLNK, "$(device):enpoltime0RBV")
@@ -91,6 +94,7 @@ record(longout, "$(device):pulses0"){
 
 record(longout, "$(device):width0") {
   field(DESC, "EVE OTP0 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),0) $(PORT)")
   field(FLNK, "$(device):enpoltime0RBV")
@@ -98,6 +102,7 @@ record(longout, "$(device):width0") {
 
 record(longout, "$(device):delay0") {
   field(DESC, "EVE OTP0 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),0) $(PORT)")
   field(FLNK, "$(device):enpoltime0RBV")
@@ -121,8 +126,8 @@ record(bo, "$(device):pol0") {
 
 record(bo, "$(device):time0") {
   field(DESC, "EVE OTP0 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime0.C")
   field(FLNK, "$(device):TIME0")
 }
@@ -186,8 +191,8 @@ record(mbbiDirect, "$(device):enpoltime0RBV") {
 record(bi, "$(device):time0RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP0 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime0RBV.B0")
   field(FLNK, "$(device):pol0RBV")
 }
@@ -212,6 +217,7 @@ record(bi, "$(device):enable0RBV") {
 record(longin, "$(device):pulses0RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP0 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event0RBV") {
@@ -222,11 +228,13 @@ record(longin, "$(device):event0RBV") {
 record(longin, "$(device):width0RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP0 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay0RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP0 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set0") {
@@ -246,6 +254,8 @@ record(longout, "$(device):cmd_evre_otp_get0") {
 
 record(longout, "$(device):event1") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),1) $(PORT)")
   field(FLNK, "$(device):enpoltime1RBV")
@@ -255,6 +265,7 @@ record(longout, "$(device):pulses1"){
   field(DESC, "EVE OTP1 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),1) $(PORT)")
   field(FLNK, "$(device):enpoltime1RBV")
@@ -262,6 +273,7 @@ record(longout, "$(device):pulses1"){
 
 record(longout, "$(device):width1") {
   field(DESC, "EVE OTP1 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),1) $(PORT)")
   field(FLNK, "$(device):enpoltime1RBV")
@@ -269,6 +281,7 @@ record(longout, "$(device):width1") {
 
 record(longout, "$(device):delay1") {
   field(DESC, "EVE OTP1 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),1) $(PORT)")
   field(FLNK, "$(device):enpoltime1RBV")
@@ -292,8 +305,8 @@ record(bo, "$(device):pol1") {
 
 record(bo, "$(device):time1") {
   field(DESC, "EVE OTP1 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime1.C")
   field(FLNK, "$(device):TIME1")
 }
@@ -357,8 +370,8 @@ record(mbbiDirect, "$(device):enpoltime1RBV") {
 record(bi, "$(device):time1RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP1 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime1RBV.B0")
   field(FLNK, "$(device):pol1RBV")
 }
@@ -383,6 +396,7 @@ record(bi, "$(device):enable1RBV") {
 record(longin, "$(device):pulses1RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP1 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event1RBV") {
@@ -393,11 +407,13 @@ record(longin, "$(device):event1RBV") {
 record(longin, "$(device):width1RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP1 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay1RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP1 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set1") {
@@ -417,6 +433,8 @@ record(longout, "$(device):cmd_evre_otp_get1") {
 
 record(longout, "$(device):event2") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),2) $(PORT)")
   field(FLNK, "$(device):enpoltime2RBV")
@@ -426,6 +444,7 @@ record(longout, "$(device):pulses2"){
   field(DESC, "EVE OTP2 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),2) $(PORT)")
   field(FLNK, "$(device):enpoltime2RBV")
@@ -433,6 +452,7 @@ record(longout, "$(device):pulses2"){
 
 record(longout, "$(device):width2") {
   field(DESC, "EVE OTP2 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),2) $(PORT)")
   field(FLNK, "$(device):enpoltime2RBV")
@@ -440,6 +460,7 @@ record(longout, "$(device):width2") {
 
 record(longout, "$(device):delay2") {
   field(DESC, "EVE OTP2 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),2) $(PORT)")
   field(FLNK, "$(device):enpoltime2RBV")
@@ -463,8 +484,8 @@ record(bo, "$(device):pol2") {
 
 record(bo, "$(device):time2") {
   field(DESC, "EVE OTP2 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime2.C")
   field(FLNK, "$(device):TIME2")
 }
@@ -528,8 +549,8 @@ record(mbbiDirect, "$(device):enpoltime2RBV") {
 record(bi, "$(device):time2RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP2 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime2RBV.B0")
   field(FLNK, "$(device):pol2RBV")
 }
@@ -554,6 +575,7 @@ record(bi, "$(device):enable2RBV") {
 record(longin, "$(device):pulses2RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP2 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event2RBV") {
@@ -564,11 +586,13 @@ record(longin, "$(device):event2RBV") {
 record(longin, "$(device):width2RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP2 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay2RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP2 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set2") {
@@ -588,6 +612,8 @@ record(longout, "$(device):cmd_evre_otp_get2") {
 
 record(longout, "$(device):event3") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),3) $(PORT)")
   field(FLNK, "$(device):enpoltime3RBV")
@@ -597,6 +623,7 @@ record(longout, "$(device):pulses3"){
   field(DESC, "EVE OTP3 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),3) $(PORT)")
   field(FLNK, "$(device):enpoltime3RBV")
@@ -604,6 +631,7 @@ record(longout, "$(device):pulses3"){
 
 record(longout, "$(device):width3") {
   field(DESC, "EVE OTP3 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),3) $(PORT)")
   field(FLNK, "$(device):enpoltime3RBV")
@@ -611,6 +639,7 @@ record(longout, "$(device):width3") {
 
 record(longout, "$(device):delay3") {
   field(DESC, "EVE OTP3 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),3) $(PORT)")
   field(FLNK, "$(device):enpoltime3RBV")
@@ -634,8 +663,8 @@ record(bo, "$(device):pol3") {
 
 record(bo, "$(device):time3") {
   field(DESC, "EVE OTP3 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime3.C")
   field(FLNK, "$(device):TIME3")
 }
@@ -699,8 +728,8 @@ record(mbbiDirect, "$(device):enpoltime3RBV") {
 record(bi, "$(device):time3RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP3 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime3RBV.B0")
   field(FLNK, "$(device):pol3RBV")
 }
@@ -725,6 +754,7 @@ record(bi, "$(device):enable3RBV") {
 record(longin, "$(device):pulses3RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP3 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event3RBV") {
@@ -735,11 +765,13 @@ record(longin, "$(device):event3RBV") {
 record(longin, "$(device):width3RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP3 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay3RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP3 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set3") {
@@ -759,6 +791,8 @@ record(longout, "$(device):cmd_evre_otp_get3") {
 
 record(longout, "$(device):event4") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),4) $(PORT)")
   field(FLNK, "$(device):enpoltime4RBV")
@@ -768,6 +802,7 @@ record(longout, "$(device):pulses4"){
   field(DESC, "EVE OTP4 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),4) $(PORT)")
   field(FLNK, "$(device):enpoltime4RBV")
@@ -775,6 +810,7 @@ record(longout, "$(device):pulses4"){
 
 record(longout, "$(device):width4") {
   field(DESC, "EVE OTP4 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),4) $(PORT)")
   field(FLNK, "$(device):enpoltime4RBV")
@@ -782,6 +818,7 @@ record(longout, "$(device):width4") {
 
 record(longout, "$(device):delay4") {
   field(DESC, "EVE OTP4 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),4) $(PORT)")
   field(FLNK, "$(device):enpoltime4RBV")
@@ -805,8 +842,8 @@ record(bo, "$(device):pol4") {
 
 record(bo, "$(device):time4") {
   field(DESC, "EVE OTP4 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime4.C")
   field(FLNK, "$(device):TIME4")
 }
@@ -870,8 +907,8 @@ record(mbbiDirect, "$(device):enpoltime4RBV") {
 record(bi, "$(device):time4RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP4 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime4RBV.B0")
   field(FLNK, "$(device):pol4RBV")
 }
@@ -896,6 +933,7 @@ record(bi, "$(device):enable4RBV") {
 record(longin, "$(device):pulses4RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP4 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event4RBV") {
@@ -906,11 +944,13 @@ record(longin, "$(device):event4RBV") {
 record(longin, "$(device):width4RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP4 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay4RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP4 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set4") {
@@ -930,6 +970,8 @@ record(longout, "$(device):cmd_evre_otp_get4") {
 
 record(longout, "$(device):event5") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),5) $(PORT)")
   field(FLNK, "$(device):enpoltime5RBV")
@@ -939,6 +981,7 @@ record(longout, "$(device):pulses5"){
   field(DESC, "EVE OTP5 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),5) $(PORT)")
   field(FLNK, "$(device):enpoltime5RBV")
@@ -946,6 +989,7 @@ record(longout, "$(device):pulses5"){
 
 record(longout, "$(device):width5") {
   field(DESC, "EVE OTP5 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),5) $(PORT)")
   field(FLNK, "$(device):enpoltime5RBV")
@@ -953,6 +997,7 @@ record(longout, "$(device):width5") {
 
 record(longout, "$(device):delay5") {
   field(DESC, "EVE OTP5 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),5) $(PORT)")
   field(FLNK, "$(device):enpoltime5RBV")
@@ -976,8 +1021,8 @@ record(bo, "$(device):pol5") {
 
 record(bo, "$(device):time5") {
   field(DESC, "EVE OTP5 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime5.C")
   field(FLNK, "$(device):TIME5")
 }
@@ -1041,8 +1086,8 @@ record(mbbiDirect, "$(device):enpoltime5RBV") {
 record(bi, "$(device):time5RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP5 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime5RBV.B0")
   field(FLNK, "$(device):pol5RBV")
 }
@@ -1067,6 +1112,7 @@ record(bi, "$(device):enable5RBV") {
 record(longin, "$(device):pulses5RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP5 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event5RBV") {
@@ -1077,11 +1123,13 @@ record(longin, "$(device):event5RBV") {
 record(longin, "$(device):width5RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP5 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay5RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP5 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set5") {
@@ -1101,6 +1149,8 @@ record(longout, "$(device):cmd_evre_otp_get5") {
 
 record(longout, "$(device):event6") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),6) $(PORT)")
   field(FLNK, "$(device):enpoltime6RBV")
@@ -1110,6 +1160,7 @@ record(longout, "$(device):pulses6"){
   field(DESC, "EVE OTP6 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),6) $(PORT)")
   field(FLNK, "$(device):enpoltime6RBV")
@@ -1117,6 +1168,7 @@ record(longout, "$(device):pulses6"){
 
 record(longout, "$(device):width6") {
   field(DESC, "EVE OTP6 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),6) $(PORT)")
   field(FLNK, "$(device):enpoltime6RBV")
@@ -1124,6 +1176,7 @@ record(longout, "$(device):width6") {
 
 record(longout, "$(device):delay6") {
   field(DESC, "EVE OTP6 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),6) $(PORT)")
   field(FLNK, "$(device):enpoltime6RBV")
@@ -1147,8 +1200,8 @@ record(bo, "$(device):pol6") {
 
 record(bo, "$(device):time6") {
   field(DESC, "EVE OTP6 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime6.C")
   field(FLNK, "$(device):TIME6")
 }
@@ -1212,8 +1265,8 @@ record(mbbiDirect, "$(device):enpoltime6RBV") {
 record(bi, "$(device):time6RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP6 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime6RBV.B0")
   field(FLNK, "$(device):pol6RBV")
 }
@@ -1238,6 +1291,7 @@ record(bi, "$(device):enable6RBV") {
 record(longin, "$(device):pulses6RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP6 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event6RBV") {
@@ -1248,11 +1302,13 @@ record(longin, "$(device):event6RBV") {
 record(longin, "$(device):width6RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP6 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay6RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP6 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set6") {
@@ -1272,6 +1328,8 @@ record(longout, "$(device):cmd_evre_otp_get6") {
 
 record(longout, "$(device):event7") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),7) $(PORT)")
   field(FLNK, "$(device):enpoltime7RBV")
@@ -1281,6 +1339,7 @@ record(longout, "$(device):pulses7"){
   field(DESC, "EVE OTP7 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),7) $(PORT)")
   field(FLNK, "$(device):enpoltime7RBV")
@@ -1288,6 +1347,7 @@ record(longout, "$(device):pulses7"){
 
 record(longout, "$(device):width7") {
   field(DESC, "EVE OTP7 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),7) $(PORT)")
   field(FLNK, "$(device):enpoltime7RBV")
@@ -1295,6 +1355,7 @@ record(longout, "$(device):width7") {
 
 record(longout, "$(device):delay7") {
   field(DESC, "EVE OTP7 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),7) $(PORT)")
   field(FLNK, "$(device):enpoltime7RBV")
@@ -1318,8 +1379,8 @@ record(bo, "$(device):pol7") {
 
 record(bo, "$(device):time7") {
   field(DESC, "EVE OTP7 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime7.C")
   field(FLNK, "$(device):TIME7")
 }
@@ -1383,8 +1444,8 @@ record(mbbiDirect, "$(device):enpoltime7RBV") {
 record(bi, "$(device):time7RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP7 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime7RBV.B0")
   field(FLNK, "$(device):pol7RBV")
 }
@@ -1409,6 +1470,7 @@ record(bi, "$(device):enable7RBV") {
 record(longin, "$(device):pulses7RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP7 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event7RBV") {
@@ -1419,11 +1481,13 @@ record(longin, "$(device):event7RBV") {
 record(longin, "$(device):width7RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP7 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay7RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP7 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set7") {
@@ -1443,6 +1507,8 @@ record(longout, "$(device):cmd_evre_otp_get7") {
 
 record(longout, "$(device):event8") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),8) $(PORT)")
   field(FLNK, "$(device):enpoltime8RBV")
@@ -1452,6 +1518,7 @@ record(longout, "$(device):pulses8"){
   field(DESC, "EVE OTP8 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),8) $(PORT)")
   field(FLNK, "$(device):enpoltime8RBV")
@@ -1459,6 +1526,7 @@ record(longout, "$(device):pulses8"){
 
 record(longout, "$(device):width8") {
   field(DESC, "EVE OTP8 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),8) $(PORT)")
   field(FLNK, "$(device):enpoltime8RBV")
@@ -1466,6 +1534,7 @@ record(longout, "$(device):width8") {
 
 record(longout, "$(device):delay8") {
   field(DESC, "EVE OTP8 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),8) $(PORT)")
   field(FLNK, "$(device):enpoltime8RBV")
@@ -1489,8 +1558,8 @@ record(bo, "$(device):pol8") {
 
 record(bo, "$(device):time8") {
   field(DESC, "EVE OTP8 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime8.C")
   field(FLNK, "$(device):TIME8")
 }
@@ -1554,8 +1623,8 @@ record(mbbiDirect, "$(device):enpoltime8RBV") {
 record(bi, "$(device):time8RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP8 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime8RBV.B0")
   field(FLNK, "$(device):pol8RBV")
 }
@@ -1590,11 +1659,13 @@ record(longin, "$(device):event8RBV") {
 record(longin, "$(device):width8RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP8 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay8RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP8 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set8") {
@@ -1614,6 +1685,8 @@ record(longout, "$(device):cmd_evre_otp_get8") {
 
 record(longout, "$(device):event9") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),9) $(PORT)")
   field(FLNK, "$(device):enpoltime9RBV")
@@ -1623,6 +1696,7 @@ record(longout, "$(device):pulses9"){
   field(DESC, "EVE OTP9 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),9) $(PORT)")
   field(FLNK, "$(device):enpoltime9RBV")
@@ -1630,6 +1704,7 @@ record(longout, "$(device):pulses9"){
 
 record(longout, "$(device):width9") {
   field(DESC, "EVE OTP9 event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),9) $(PORT)")
   field(FLNK, "$(device):enpoltime9RBV")
@@ -1637,6 +1712,7 @@ record(longout, "$(device):width9") {
 
 record(longout, "$(device):delay9") {
   field(DESC, "EVE OTP9 event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),9) $(PORT)")
   field(FLNK, "$(device):enpoltime9RBV")
@@ -1660,8 +1736,8 @@ record(bo, "$(device):pol9") {
 
 record(bo, "$(device):time9") {
   field(DESC, "EVE OTP9 event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltime9.C")
   field(FLNK, "$(device):TIME9")
 }
@@ -1725,8 +1801,8 @@ record(mbbiDirect, "$(device):enpoltime9RBV") {
 record(bi, "$(device):time9RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP9 timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltime9RBV.B0")
   field(FLNK, "$(device):pol9RBV")
 }
@@ -1751,6 +1827,7 @@ record(bi, "$(device):enable9RBV") {
 record(longin, "$(device):pulses9RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP9 number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):event9RBV") {
@@ -1761,11 +1838,13 @@ record(longin, "$(device):event9RBV") {
 record(longin, "$(device):width9RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP9 width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delay9RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTP9 delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_set9") {
@@ -1785,6 +1864,8 @@ record(longout, "$(device):cmd_evre_otp_get9") {
 
 record(longout, "$(device):eventA") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),A) $(PORT)")
   field(FLNK, "$(device):enpoltimeARBV")
@@ -1794,6 +1875,7 @@ record(longout, "$(device):pulsesA"){
   field(DESC, "EVE OTPA number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),A) $(PORT)")
   field(FLNK, "$(device):enpoltimeARBV")
@@ -1801,6 +1883,7 @@ record(longout, "$(device):pulsesA"){
 
 record(longout, "$(device):widthA") {
   field(DESC, "EVE OTPA event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),A) $(PORT)")
   field(FLNK, "$(device):enpoltimeARBV")
@@ -1808,6 +1891,7 @@ record(longout, "$(device):widthA") {
 
 record(longout, "$(device):delayA") {
   field(DESC, "EVE OTPA event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),A) $(PORT)")
   field(FLNK, "$(device):enpoltimeARBV")
@@ -1831,8 +1915,8 @@ record(bo, "$(device):polA") {
 
 record(bo, "$(device):timeA") {
   field(DESC, "EVE OTPA event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltimeA.C")
   field(FLNK, "$(device):TIMEA")
 }
@@ -1896,8 +1980,8 @@ record(mbbiDirect, "$(device):enpoltimeARBV") {
 record(bi, "$(device):timeARBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPA timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltimeARBV.B0")
   field(FLNK, "$(device):polARBV")
 }
@@ -1922,6 +2006,7 @@ record(bi, "$(device):enableARBV") {
 record(longin, "$(device):pulsesARBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPA number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventARBV") {
@@ -1932,11 +2017,13 @@ record(longin, "$(device):eventARBV") {
 record(longin, "$(device):widthARBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPA width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayARBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPA delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setA") {
@@ -1956,6 +2043,8 @@ record(longout, "$(device):cmd_evre_otp_getA") {
 
 record(longout, "$(device):eventB") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),B) $(PORT)")
   field(FLNK, "$(device):enpoltimeBRBV")
@@ -1965,6 +2054,7 @@ record(longout, "$(device):pulsesB"){
   field(DESC, "EVE OTPB number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),B) $(PORT)")
   field(FLNK, "$(device):enpoltimeBRBV")
@@ -1972,6 +2062,7 @@ record(longout, "$(device):pulsesB"){
 
 record(longout, "$(device):widthB") {
   field(DESC, "EVE OTPB event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),B) $(PORT)")
   field(FLNK, "$(device):enpoltimeBRBV")
@@ -1979,6 +2070,7 @@ record(longout, "$(device):widthB") {
 
 record(longout, "$(device):delayB") {
   field(DESC, "EVE OTPB event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),B) $(PORT)")
   field(FLNK, "$(device):enpoltimeBRBV")
@@ -2002,8 +2094,8 @@ record(bo, "$(device):polB") {
 
 record(bo, "$(device):timeB") {
   field(DESC, "EVE OTPB event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltimeB.C")
   field(FLNK, "$(device):TIMEB")
 }
@@ -2067,8 +2159,8 @@ record(mbbiDirect, "$(device):enpoltimeBRBV") {
 record(bi, "$(device):timeBRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPB timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltimeBRBV.B0")
   field(FLNK, "$(device):polBRBV")
 }
@@ -2093,6 +2185,7 @@ record(bi, "$(device):enableBRBV") {
 record(longin, "$(device):pulsesBRBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPB number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventBRBV") {
@@ -2103,11 +2196,13 @@ record(longin, "$(device):eventBRBV") {
 record(longin, "$(device):widthBRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPB width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayBRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPB delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setB") {
@@ -2127,6 +2222,8 @@ record(longout, "$(device):cmd_evre_otp_getB") {
 
 record(longout, "$(device):eventC") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),C) $(PORT)")
   field(FLNK, "$(device):enpoltimeCRBV")
@@ -2136,6 +2233,7 @@ record(longout, "$(device):pulsesC"){
   field(DESC, "EVE OTPC number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),C) $(PORT)")
   field(FLNK, "$(device):enpoltimeCRBV")
@@ -2143,6 +2241,7 @@ record(longout, "$(device):pulsesC"){
 
 record(longout, "$(device):widthC") {
   field(DESC, "EVE OTPC event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),C) $(PORT)")
   field(FLNK, "$(device):enpoltimeCRBV")
@@ -2150,6 +2249,7 @@ record(longout, "$(device):widthC") {
 
 record(longout, "$(device):delayC") {
   field(DESC, "EVE OTPC event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),C) $(PORT)")
   field(FLNK, "$(device):enpoltimeCRBV")
@@ -2173,8 +2273,8 @@ record(bo, "$(device):polC") {
 
 record(bo, "$(device):timeC") {
   field(DESC, "EVE OTPC event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltimeC.C")
   field(FLNK, "$(device):TIMEC")
 }
@@ -2238,8 +2338,8 @@ record(mbbiDirect, "$(device):enpoltimeCRBV") {
 record(bi, "$(device):timeCRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPC timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltimeCRBV.B0")
   field(FLNK, "$(device):polCRBV")
 }
@@ -2264,6 +2364,7 @@ record(bi, "$(device):enableCRBV") {
 record(longin, "$(device):pulsesCRBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPC number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventCRBV") {
@@ -2274,11 +2375,13 @@ record(longin, "$(device):eventCRBV") {
 record(longin, "$(device):widthCRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPC width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayCRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPC delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setC") {
@@ -2298,6 +2401,8 @@ record(longout, "$(device):cmd_evre_otp_getC") {
 
 record(longout, "$(device):eventD") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),D) $(PORT)")
   field(FLNK, "$(device):enpoltimeDRBV")
@@ -2307,6 +2412,7 @@ record(longout, "$(device):pulsesD"){
   field(DESC, "EVE OTPD number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),D) $(PORT)")
   field(FLNK, "$(device):enpoltimeDRBV")
@@ -2314,6 +2420,7 @@ record(longout, "$(device):pulsesD"){
 
 record(longout, "$(device):widthD") {
   field(DESC, "EVE OTPD event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),D) $(PORT)")
   field(FLNK, "$(device):enpoltimeDRBV")
@@ -2321,6 +2428,7 @@ record(longout, "$(device):widthD") {
 
 record(longout, "$(device):delayD") {
   field(DESC, "EVE OTPD event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),D) $(PORT)")
   field(FLNK, "$(device):enpoltimeDRBV")
@@ -2344,8 +2452,8 @@ record(bo, "$(device):polD") {
 
 record(bo, "$(device):timeD") {
   field(DESC, "EVE OTPD event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltimeD.C")
   field(FLNK, "$(device):TIMED")
 }
@@ -2409,8 +2517,8 @@ record(mbbiDirect, "$(device):enpoltimeDRBV") {
 record(bi, "$(device):timeDRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPD timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltimeDRBV.B0")
   field(FLNK, "$(device):polDRBV")
 }
@@ -2435,6 +2543,7 @@ record(bi, "$(device):enableDRBV") {
 record(longin, "$(device):pulsesDRBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPD number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventDRBV") {
@@ -2445,11 +2554,13 @@ record(longin, "$(device):eventDRBV") {
 record(longin, "$(device):widthDRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPD width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayDRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPD delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setD") {
@@ -2469,6 +2580,8 @@ record(longout, "$(device):cmd_evre_otp_getD") {
 
 record(longout, "$(device):eventE") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),E) $(PORT)")
   field(FLNK, "$(device):enpoltimeERBV")
@@ -2478,6 +2591,7 @@ record(longout, "$(device):pulsesE"){
   field(DESC, "EVE OTPE number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),E) $(PORT)")
   field(FLNK, "$(device):enpoltimeERBV")
@@ -2485,6 +2599,7 @@ record(longout, "$(device):pulsesE"){
 
 record(longout, "$(device):widthE") {
   field(DESC, "EVE OTPE event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),E) $(PORT)")
   field(FLNK, "$(device):enpoltimeERBV")
@@ -2492,6 +2607,7 @@ record(longout, "$(device):widthE") {
 
 record(longout, "$(device):delayE") {
   field(DESC, "EVE OTPE event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),E) $(PORT)")
   field(FLNK, "$(device):enpoltimeERBV")
@@ -2515,8 +2631,8 @@ record(bo, "$(device):polE") {
 
 record(bo, "$(device):timeE") {
   field(DESC, "EVE OTPE event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltimeE.C")
   field(FLNK, "$(device):TIMEE")
 }
@@ -2580,8 +2696,8 @@ record(mbbiDirect, "$(device):enpoltimeERBV") {
 record(bi, "$(device):timeERBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPE timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltimeERBV.B0")
   field(FLNK, "$(device):polERBV")
 }
@@ -2606,6 +2722,7 @@ record(bi, "$(device):enableERBV") {
 record(longin, "$(device):pulsesERBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPE number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventERBV") {
@@ -2616,11 +2733,13 @@ record(longin, "$(device):eventERBV") {
 record(longin, "$(device):widthERBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPE width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayERBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPE delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setE") {
@@ -2640,6 +2759,8 @@ record(longout, "$(device):cmd_evre_otp_getE") {
 
 record(longout, "$(device):eventF") {
   field(DESC, "EVE event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(device),F) $(PORT)")
   field(FLNK, "$(device):enpoltimeFRBV")
@@ -2649,6 +2770,7 @@ record(longout, "$(device):pulsesF"){
   field(DESC, "EVE OTPF number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
+  field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(device),F) $(PORT)")
   field(FLNK, "$(device):enpoltimeFRBV")
@@ -2656,6 +2778,7 @@ record(longout, "$(device):pulsesF"){
 
 record(longout, "$(device):widthF") {
   field(DESC, "EVE OTPF event width")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(device),F) $(PORT)")
   field(FLNK, "$(device):enpoltimeFRBV")
@@ -2663,6 +2786,7 @@ record(longout, "$(device):widthF") {
 
 record(longout, "$(device):delayF") {
   field(DESC, "EVE OTPF event delay")
+  field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(device),F) $(PORT)")
   field(FLNK, "$(device):enpoltimeFRBV")
@@ -2686,8 +2810,8 @@ record(bo, "$(device):polF") {
 
 record(bo, "$(device):timeF") {
   field(DESC, "EVE OTPF event timestamping enable")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(OUT, "$(device):enpoltimeF.C")
   field(FLNK, "$(device):TIMEF")
 }
@@ -2751,8 +2875,8 @@ record(mbbiDirect, "$(device):enpoltimeFRBV") {
 record(bi, "$(device):timeFRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPF timestamping status")
-  field(ZNAM, "DISABLED")
-  field(ONAM, "ENABLED")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
   field(INP, "$(device):enpoltimeFRBV.B0")
   field(FLNK, "$(device):polFRBV")
 }
@@ -2777,6 +2901,7 @@ record(bi, "$(device):enableFRBV") {
 record(longin, "$(device):pulsesFRBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPF number of pulses RBV")
+  field(EGU, "pulses")
 }
 
 record(longin, "$(device):eventFRBV") {
@@ -2787,11 +2912,13 @@ record(longin, "$(device):eventFRBV") {
 record(longin, "$(device):widthFRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPF width RBV")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):delayFRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OTPF delay RBV")
+  field(EGU, "evt_T")
 }
 
 record(longout, "$(device):cmd_evre_otp_setF") {
@@ -2828,42 +2955,97 @@ record(bi, "$(device):itl0RBV") {
   field(INP, "$(device):itl0RAW.B0")
 }
 
-record(mbbiDirect, "$(device):sel0RBV") {
+record(mbbiDirect, "$(device):sel0RAW") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT0 source selection status RAW")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_sel0RAW_intr $(PORT)")
+  field(FLNK, "$(device):sel0StatCalc")
+}
+
+record(scalcout, "$(device):sel0StatCalc"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT0 source selection status calc")
+  field(INPA, "$(device):sel0RAW.VAL")
+  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
+  field(FLNK, "$(device):sel0RBV")
+}
+
+record(stringin, "$(device):sel0RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT0 source selection status")
-#  field(NOBT, "7")
+  field(INP, "$(device):sel0StatCalc.SVAL")
 }
 
-record(mbbiDirect, "$(device):finedly0RBV") {
+record(longin, "$(device):finedly0RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT0 fine delay status")
-#  field(NOBT, "10")
+    field(EGU, "5 ps")
 }
 
-record(mbbiDirect, "$(device):rfdly0RBV") {
+record(longin, "$(device):rfdly0RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT0 RF delay status")
-#  field(NOBT, "5")
+  field(EGU, "evt_T/20")
 }
 
 record(longout, "$(device):rfdly0"){
   field(DESC, "EVE OUT0 RF delay")
-  field(DTYP, "stream")
+  field(EGU, "evt_T/20")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "20")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(device),0) $(PORT)")
 }
 
 record(longout, "$(device):finedly0"){
   field(DESC, "EVE OUT0 fine delay")
-  field(DTYP, "stream")
+  field(EGU, "5 ps")
   field(DRVL, "0")
   field(DRVH, "1023")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(device),0) $(PORT)")
 }
 
-record(longout, "$(device):sel0"){
+record(stringout, "$(device):sel0"){
   field(DESC, "EVE OUT0 source selection")
+  field(FLNK, "$(device):sel0Calc1")
+}
+
+record(scalcout, "$(device):sel0Calc1"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT0 source selection calc 1")
+  field(INAA, "$(device):sel0.VAL")
+  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
+  field(FLNK, "$(device):sel0Calc2")
+}
+
+record(scalcout, "$(device):sel0Calc2"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT0 source selection calc 2")
+  field(INAA, "$(device):sel0.VAL")
+  field(INPB, "$(device):sel0Calc1.VAL")
+  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
+  field(FLNK, "$(device):sel0Calc3")
+}
+
+record(scalcout, "$(device):sel0Calc3") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT0 source selection calc 3")
+  field(INAA, "$(device):sel0.VAL")
+  field(INPB, "$(device):sel0Calc2.VAL")
+  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
+  field(OUT, "$(device):sel0toHW.VAL PP")
+}
+
+record(longout, "$(device):sel0toHW"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT0 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),0) $(PORT)")
 }
@@ -2918,42 +3100,97 @@ record(bi, "$(device):itl1RBV") {
   field(INP, "$(device):itl1RAW.B0")
 }
 
-record(mbbiDirect, "$(device):sel1RBV") {
+record(mbbiDirect, "$(device):sel1RAW") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT1 source selection status RAW")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_sel1RAW_intr $(PORT)")
+  field(FLNK, "$(device):sel1StatCalc")
+}
+
+record(scalcout, "$(device):sel1StatCalc"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT1 source selection status calc")
+  field(INPA, "$(device):sel1RAW.VAL")
+  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
+  field(FLNK, "$(device):sel1RBV")
+}
+
+record(stringin, "$(device):sel1RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT1 source selection status")
-#  field(NOBT, "7")
+  field(INP, "$(device):sel1StatCalc.SVAL")
 }
 
-record(mbbiDirect, "$(device):finedly1RBV") {
+record(longin, "$(device):finedly1RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT1 fine delay status")
-#  field(NOBT, "10")
+  field(EGU, "5 ps")
 }
 
-record(mbbiDirect, "$(device):rfdly1RBV") {
+record(longin, "$(device):rfdly1RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT1 RF delay status")
-#  field(NOBT, "5")
+  field(EGU, "evt_T/20")
 }
 
 record(longout, "$(device):rfdly1"){
   field(DESC, "EVE OUT1 RF delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "20")
+  field(EGU, "evt_T/20")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(device),1) $(PORT)")
 }
 
 record(longout, "$(device):finedly1"){
   field(DESC, "EVE OUT1 fine delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
   field(DRVH, "1023")
+  field(EGU, "5 ps")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(device),1) $(PORT)")
 }
 
-record(longout, "$(device):sel1"){
+record(stringout, "$(device):sel1"){
   field(DESC, "EVE OUT1 source selection")
+  field(FLNK, "$(device):sel1Calc1")
+}
+
+record(scalcout, "$(device):sel1Calc1"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT1 source selection calc 1")
+  field(INAA, "$(device):sel1.VAL")
+  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
+  field(FLNK, "$(device):sel1Calc2")
+}
+
+record(scalcout, "$(device):sel1Calc2"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT1 source selection calc 2")
+  field(INAA, "$(device):sel1.VAL")
+  field(INPB, "$(device):sel1Calc1.VAL")
+  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
+  field(FLNK, "$(device):sel1Calc3")
+}
+
+record(scalcout, "$(device):sel1Calc3") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT1 source selection calc 3")
+  field(INAA, "$(device):sel1.VAL")
+  field(INPB, "$(device):sel1Calc2.VAL")
+  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
+  field(OUT, "$(device):sel1toHW.VAL PP")
+}
+
+record(longout, "$(device):sel1toHW"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT1 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),1) $(PORT)")
 }
@@ -3008,42 +3245,97 @@ record(bi, "$(device):itl2RBV") {
   field(INP, "$(device):itl2RAW.B0")
 }
 
-record(mbbiDirect, "$(device):sel2RBV") {
+record(mbbiDirect, "$(device):sel2RAW") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT2 source selection status RAW")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_sel2RAW_intr $(PORT)")
+  field(FLNK, "$(device):sel2StatCalc")
+}
+
+record(scalcout, "$(device):sel2StatCalc"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT2 source selection status calc")
+  field(INPA, "$(device):sel2RAW.VAL")
+  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
+  field(FLNK, "$(device):sel2RBV")
+}
+
+record(stringin, "$(device):sel2RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT2 source selection status")
-#  field(NOBT, "7")
+  field(INP, "$(device):sel2StatCalc.SVAL")
 }
 
-record(mbbiDirect, "$(device):finedly2RBV") {
+record(longin, "$(device):finedly2RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT2 fine delay status")
-#  field(NOBT, "10")
+  field(EGU, "5 ps")
 }
 
-record(mbbiDirect, "$(device):rfdly2RBV") {
+record(longin, "$(device):rfdly2RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT2 RF delay status")
-#  field(NOBT, "5")
+  field(EGU, "evt_T/20")
 }
 
 record(longout, "$(device):rfdly2"){
   field(DESC, "EVE OUT2 RF delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "20")
+  field(EGU, "evt_T/20")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(device),2) $(PORT)")
 }
 
 record(longout, "$(device):finedly2"){
   field(DESC, "EVE OUT2 fine delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
   field(DRVH, "1023")
+  field(EGU, "5 ps")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(device),2) $(PORT)")
 }
 
-record(longout, "$(device):sel2"){
+record(stringout, "$(device):sel2"){
   field(DESC, "EVE OUT2 source selection")
+  field(FLNK, "$(device):sel2Calc1")
+}
+
+record(scalcout, "$(device):sel2Calc1"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT2 source selection calc 1")
+  field(INAA, "$(device):sel2.VAL")
+  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
+  field(FLNK, "$(device):sel2Calc2")
+}
+
+record(scalcout, "$(device):sel2Calc2"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT2 source selection calc 2")
+  field(INAA, "$(device):sel2.VAL")
+  field(INPB, "$(device):sel2Calc1.VAL")
+  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
+  field(FLNK, "$(device):sel2Calc3")
+}
+
+record(scalcout, "$(device):sel2Calc3") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT2 source selection calc 3")
+  field(INAA, "$(device):sel2.VAL")
+  field(INPB, "$(device):sel2Calc2.VAL")
+  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
+  field(OUT, "$(device):sel2toHW.VAL PP")
+}
+
+record(longout, "$(device):sel2toHW"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT2 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),2) $(PORT)")
 }
@@ -3098,46 +3390,100 @@ record(bi, "$(device):itl3RBV") {
   field(INP, "$(device):itl3RAW.B0")
 }
 
-record(mbbiDirect, "$(device):sel3RBV") {
+record(mbbiDirect, "$(device):sel3RAW") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT3 source selection status RAW")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_sel3RAW_intr $(PORT)")
+  field(FLNK, "$(device):sel3StatCalc")
+}
+
+record(scalcout, "$(device):sel3StatCalc"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT3 source selection status calc")
+  field(INPA, "$(device):sel3RAW.VAL")
+  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
+  field(FLNK, "$(device):sel3RBV")
+}
+
+record(stringin, "$(device):sel3RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT3 source selection status")
-#  field(NOBT, "7")
+  field(INP, "$(device):sel3StatCalc.SVAL")
 }
 
-record(mbbiDirect, "$(device):finedly3RBV") {
+record(longin, "$(device):finedly3RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT3 fine delay status")
-#  field(NOBT, "10")
+  field(EGU, "5 ps")
 }
 
-record(mbbiDirect, "$(device):rfdly3RBV") {
+record(longin, "$(device):rfdly3RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT3 RF delay status")
-#  field(NOBT, "5")
+  field(EGU, "evt_T/20")
 }
 
 record(longout, "$(device):rfdly3"){
   field(DESC, "EVE OUT3 RF delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "20")
+  field(EGU, "evt_T/20")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(device),3) $(PORT)")
 }
 
 record(longout, "$(device):finedly3"){
   field(DESC, "EVE OUT3 fine delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
   field(DRVH, "1023")
+  field(EGU, "5 ps")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(device),3) $(PORT)")
 }
 
-record(longout, "$(device):sel3"){
+record(stringout, "$(device):sel3"){
   field(DESC, "EVE OUT3 source selection")
+  field(FLNK, "$(device):sel3Calc1")
+}
+
+record(scalcout, "$(device):sel3Calc1"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT3 source selection calc 1")
+  field(INAA, "$(device):sel3.VAL")
+  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
+  field(FLNK, "$(device):sel3Calc2")
+}
+
+record(scalcout, "$(device):sel3Calc2"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT3 source selection calc 2")
+  field(INAA, "$(device):sel3.VAL")
+  field(INPB, "$(device):sel3Calc1.VAL")
+  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
+  field(FLNK, "$(device):sel3Calc3")
+}
+
+record(scalcout, "$(device):sel3Calc3") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT3 source selection calc 3")
+  field(INAA, "$(device):sel3.VAL")
+  field(INPB, "$(device):sel3Calc2.VAL")
+  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
+  field(OUT, "$(device):sel3toHW PP")
+}
+
+record(longout, "$(device):sel3toHW"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT3 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),3) $(PORT)")
 }
-
 record(calcout, "$(device):ITL3") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT3 set interlock function calc")
@@ -3188,42 +3534,97 @@ record(bi, "$(device):itl4RBV") {
   field(INP, "$(device):itl4RAW.B0")
 }
 
-record(mbbiDirect, "$(device):sel4RBV") {
+record(mbbiDirect, "$(device):sel4RAW") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT4 source selection status RAW")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_sel4RAW_intr $(PORT)")
+  field(FLNK, "$(device):sel4StatCalc")
+}
+
+record(scalcout, "$(device):sel4StatCalc"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT4 source selection status calc")
+  field(INPA, "$(device):sel4RAW.VAL")
+  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
+  field(FLNK, "$(device):sel4RBV")
+}
+
+record(stringin, "$(device):sel4RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT4 source selection status")
-#  field(NOBT, "7")
+  field(INP, "$(device):sel4StatCalc.SVAL")
 }
 
-record(mbbiDirect, "$(device):finedly4RBV") {
+record(longin, "$(device):finedly4RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT4 fine delay status")
-#  field(NOBT, "10")
+  field(EGU, "5 ps")
 }
 
-record(mbbiDirect, "$(device):rfdly4RBV") {
+record(longin, "$(device):rfdly4RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT4 RF delay status")
-#  field(NOBT, "5")
+  field(EGU, "evt_T/20")
 }
 
 record(longout, "$(device):rfdly4"){
   field(DESC, "EVE OUT4 RF delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "20")
+  field(EGU, "evt_T/20")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(device),4) $(PORT)")
 }
 
 record(longout, "$(device):finedly4"){
   field(DESC, "EVE OUT4 fine delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
   field(DRVH, "1023")
+  field(EGU, "5 ps")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(device),4) $(PORT)")
 }
 
-record(longout, "$(device):sel4"){
+record(stringout, "$(device):sel4"){
   field(DESC, "EVE OUT4 source selection")
+  field(FLNK, "$(device):sel4Calc1")
+}
+
+record(scalcout, "$(device):sel4Calc1"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT4 source selection calc 1")
+  field(INAA, "$(device):sel4.VAL")
+  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
+  field(FLNK, "$(device):sel4Calc2")
+}
+
+record(scalcout, "$(device):sel4Calc2"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT4 source selection calc 2")
+  field(INAA, "$(device):sel4.VAL")
+  field(INPB, "$(device):sel4Calc1.VAL")
+  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
+  field(FLNK, "$(device):sel4Calc3")
+}
+
+record(scalcout, "$(device):sel4Calc3") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT4 source selection calc 3")
+  field(INAA, "$(device):sel4.VAL")
+  field(INPB, "$(device):sel4Calc2.VAL")
+  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
+  field(OUT, "$(device):sel4toHW PP")
+}
+
+record(longout, "$(device):sel4toHW"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT4 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),4) $(PORT)")
 }
@@ -3278,42 +3679,97 @@ record(bi, "$(device):itl5RBV") {
   field(INP, "$(device):itl5RAW.B0")
 }
 
-record(mbbiDirect, "$(device):sel5RBV") {
+record(mbbiDirect, "$(device):sel5RAW") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT5 source selection status RAW")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_sel5RAW_intr $(PORT)")
+  field(FLNK, "$(device):sel5StatCalc")
+}
+
+record(scalcout, "$(device):sel5StatCalc"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT5 source selection status calc")
+  field(INPA, "$(device):sel5RAW.VAL")
+  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
+  field(FLNK, "$(device):sel5RBV")
+}
+
+record(stringin, "$(device):sel5RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT5 source selection status")
-#  field(NOBT, "7")
+  field(INP, "$(device):sel5StatCalc.SVAL")
 }
 
-record(mbbiDirect, "$(device):finedly5RBV") {
+record(longin, "$(device):finedly5RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT5 fine delay status")
-#  field(NOBT, "10")
+  field(EGU, "5 ps")
 }
 
-record(mbbiDirect, "$(device):rfdly5RBV") {
+record(longin, "$(device):rfdly5RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT5 RF delay status")
-#  field(NOBT, "5")
+  field(EGU, "evt_T/20")
 }
 
 record(longout, "$(device):rfdly5"){
   field(DESC, "EVE OUT5 RF delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "20")
+  field(EGU, "evt_T/20")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(device),5) $(PORT)")
 }
 
 record(longout, "$(device):finedly5"){
   field(DESC, "EVE OUT5 fine delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
-  field(DRVH, "1023")
+  field(DRVH, "1023")  
+  field(EGU, "evt_T")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(device),5) $(PORT)")
 }
 
-record(longout, "$(device):sel5"){
+record(stringout, "$(device):sel5"){
   field(DESC, "EVE OUT5 source selection")
+  field(FLNK, "$(device):sel5Calc1")
+}
+
+record(scalcout, "$(device):sel5Calc1"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT5 source selection calc 1")
+  field(INAA, "$(device):sel5.VAL")
+  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
+  field(FLNK, "$(device):sel5Calc2")
+}
+
+record(scalcout, "$(device):sel5Calc2"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT5 source selection calc 2")
+  field(INAA, "$(device):sel5.VAL")
+  field(INPB, "$(device):sel5Calc1.VAL")
+  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
+  field(FLNK, "$(device):sel5Calc3")
+}
+
+record(scalcout, "$(device):sel5Calc3") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT5 source selection calc 3")
+  field(INAA, "$(device):sel5.VAL")
+  field(INPB, "$(device):sel5Calc2.VAL")
+  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
+  field(OUT, "$(device):sel5toHW PP")
+}
+
+record(longout, "$(device):sel5toHW"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT5 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),5) $(PORT)")
 }
@@ -3368,42 +3824,97 @@ record(bi, "$(device):itl6RBV") {
   field(INP, "$(device):itl6RAW.B0")
 }
 
-record(mbbiDirect, "$(device):sel6RBV") {
+record(mbbiDirect, "$(device):sel6RAW") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT6 source selection status RAW")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_sel6RAW_intr $(PORT)")
+  field(FLNK, "$(device):sel6StatCalc")
+}
+
+record(scalcout, "$(device):sel6StatCalc"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT6 source selection status calc")
+  field(INPA, "$(device):sel6RAW.VAL")
+  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
+  field(FLNK, "$(device):sel6RBV")
+}
+
+record(stringin, "$(device):sel6RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT6 source selection status")
-#  field(NOBT, "7")
+  field(INP, "$(device):sel6StatCalc.SVAL")
 }
 
-record(mbbiDirect, "$(device):finedly6RBV") {
+record(longin, "$(device):finedly6RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT6 fine delay status")
-#  field(NOBT, "10")
+  field(EGU, "5 ps")
 }
 
-record(mbbiDirect, "$(device):rfdly6RBV") {
+record(longin, "$(device):rfdly6RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT6 RF delay status")
-#  field(NOBT, "5")
+  field(EGU, "evt_T/20")
 }
 
 record(longout, "$(device):rfdly6"){
   field(DESC, "EVE OUT6 RF delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "20")
+  field(EGU, "evt_T/20")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(device),6) $(PORT)")
 }
 
 record(longout, "$(device):finedly6"){
   field(DESC, "EVE OUT6 fine delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
   field(DRVH, "1023")
+  field(EGU, "5 ps")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(device),6) $(PORT)")
 }
 
-record(longout, "$(device):sel6"){
+record(stringout, "$(device):sel6"){
   field(DESC, "EVE OUT6 source selection")
+  field(FLNK, "$(device):sel6Calc1")
+}
+
+record(scalcout, "$(device):sel6Calc1"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT6 source selection calc 1")
+  field(INAA, "$(device):sel6.VAL")
+  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
+  field(FLNK, "$(device):sel6Calc2")
+}
+
+record(scalcout, "$(device):sel6Calc2"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT6 source selection calc 2")
+  field(INAA, "$(device):sel6.VAL")
+  field(INPB, "$(device):sel6Calc1.VAL")
+  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
+  field(FLNK, "$(device):sel6Calc3")
+}
+
+record(scalcout, "$(device):sel6Calc3") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT6 source selection calc 3")
+  field(INAA, "$(device):sel6.VAL")
+  field(INPB, "$(device):sel6Calc2.VAL")
+  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
+  field(OUT, "$(device):sel6toHW PP")
+}
+
+record(longout, "$(device):sel6toHW"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT6 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),6) $(PORT)")
 }
@@ -3458,42 +3969,97 @@ record(bi, "$(device):itl7RBV") {
   field(INP, "$(device):itl7RAW.B0")
 }
 
-record(mbbiDirect, "$(device):sel7RBV") {
+record(mbbiDirect, "$(device):sel7RAW") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT7 source selection status RAW")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_sel7RAW_intr $(PORT)")
+  field(FLNK, "$(device):sel7StatCalc")
+}
+
+record(scalcout, "$(device):sel7StatCalc"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT7 source selection status calc")
+  field(INPA, "$(device):sel7RAW.VAL")
+  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
+  field(FLNK, "$(device):sel7RBV")
+}
+
+record(stringin, "$(device):sel7RBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT7 source selection status")
-#  field(NOBT, "7")
+  field(INP, "$(device):sel7StatCalc.SVAL")
 }
 
-record(mbbiDirect, "$(device):finedly7RBV") {
+record(longin, "$(device):finedly7RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT7 fine delay status")
-#  field(NOBT, "10")
+  field(EGU, "5 ps")
 }
 
-record(mbbiDirect, "$(device):rfdly7RBV") {
+record(longin, "$(device):rfdly7RBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE OUT7 RF delay status")
-#  field(NOBT, "5")
+  field(EGU, "evt_T/20")
 }
 
 record(longout, "$(device):rfdly7"){
   field(DESC, "EVE OUT7 RF delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "20")
+  field(EGU, "evt_T/20")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(device),7) $(PORT)")
 }
 
 record(longout, "$(device):finedly7"){
   field(DESC, "EVE OUT7 fine delay")
-  field(DTYP, "stream")
   field(DRVL, "0")
   field(DRVH, "1023")
+  field(EGU, "5 ps")
+  field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(device),7) $(PORT)")
 }
 
-record(longout, "$(device):sel7"){
+record(stringout, "$(device):sel7"){
   field(DESC, "EVE OUT7 source selection")
+  field(FLNK, "$(device):sel7Calc1")
+}
+
+record(scalcout, "$(device):sel7Calc1"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT7 source selection calc 1")
+  field(INAA, "$(device):sel7.VAL")
+  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
+  field(FLNK, "$(device):sel7Calc2")
+}
+
+record(scalcout, "$(device):sel7Calc2"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT7 source selection calc 2")
+  field(INAA, "$(device):sel7.VAL")
+  field(INPB, "$(device):sel7Calc1.VAL")
+  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
+  field(FLNK, "$(device):sel7Calc3")
+}
+
+record(scalcout, "$(device):sel7Calc3") {
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT7 source selection calc 3")
+  field(INAA, "$(device):sel7.VAL")
+  field(INPB, "$(device):sel7Calc2.VAL")
+  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
+  field(OOPT, "When Non-zero")
+  field(DOPT, "Use OCAL")
+  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
+  field(OUT, "$(device):sel7toHW PP")
+}
+
+record(longout, "$(device):sel7toHW"){
+# field(ASG, "Reserved")
+  field(DESC, "EVE OUT7 calculated source selection")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_sel_set($(device),7) $(PORT)")
 }
@@ -3529,15 +4095,42 @@ record(longout, "$(device):cmd_evre_out_set7") {
 ########################################################################
 # RF output register [25]
 
-record(longout, "$(device):cmsel") {
+record(mbbo, "$(device):cmsel") {
   field(DESC, "EVE RF out mode")
+  field(ZRVL, "0")
+  field(ZRST, "OFF")
+  field(ONVL, "1")
+  field(ONST, "RF/4")
+  field(TWVL, "2")
+  field(TWST, "RF/2")
+  field(THVL, "3")
+  field(THST, "RF")
+  field(FRVL, "4")
+  field(FRST, "5*RF/4")
+  field(FVVL, "5")
+  field(FVST, "10*RF/4")
   field(DTYP, "stream")
   field(OUT, "@timing.proto eve_rf_set($(device)) $(PORT)")
 }
 
-record(longin, "$(device):cmselRBV") {
+record(mbbi, "$(device):cmselRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE RF out mode status")
+  field(ZRVL, "0")
+  field(ZRST, "OFF")
+  field(ONVL, "1")
+  field(ONST, "RF/4")
+  field(TWVL, "2")
+  field(TWST, "RF/2")
+  field(THVL, "3")
+  field(THST, "RF")
+  field(FRVL, "4")
+  field(FRST, "5*RF/4")
+  field(FVVL, "5")
+  field(FVST, "10*RF/4")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto eve_rf_intr $(PORT)")
 }
 
 ########################################################################
@@ -3567,6 +4160,7 @@ record(longin, "$(device):UTCRBV"){
 record(longin, "$(device):subsecondRBV"){
 # field(ASG, "Reserved")
   field(DESC, "EVE timestamp subsecond field RBV")
+  field(EGU, "evt_T")
 }
 
 record(mbbi, "$(device):TIMESRCRBV"){
@@ -3688,6 +4282,7 @@ record(calcout, "$(device):LOGCTRL") {
 record(longin, "$(device):LOGCOUNT"){
 # field(ASG, "Reserved")
   field(DESC, "EVE number of timestamps in the buffer")
+  field(EGU, "timestamps")
 }
 
 record(mbbiDirect, "$(device):LOGCTRLRBV"){
@@ -3744,6 +4339,7 @@ record(longin, "$(device):LOGUTC"){
 record(longin, "$(device):LOGSUBSEC"){
 # field(ASG, "Reserved")
   field(DESC, "EVE subsecond timestamp pulled from log")
+  field(EGU, "evt_T")
 }
 
 record(longin, "$(device):LOGEVENT"){
@@ -3769,6 +4365,7 @@ record(longout, "$(device):readAndUpdate"){
 record(compress, "$(device):UTCbuffer"){
 # field(ASG, "Reserved")
   field(DESC, "UTC circular buffer")
+  field(EGU, "seconds")
   field(ALG, "Circular Buffer")
   field(NSAM, "1000")
   field(INP, "$(device):LOGUTC")
@@ -3778,6 +4375,7 @@ record(compress, "$(device):UTCbuffer"){
 record(compress, "$(device):SUBSECbuffer"){
 # field(ASG, "Reserved")
   field(DESC, "SUBSEC circular buffer")
+  field(EGU, "evt_T")
   field(ALG, "Circular Buffer")
   field(NSAM, "1000")
   field(INP, "$(device):LOGSUBSEC")
@@ -3796,6 +4394,7 @@ record(compress, "$(device):EVENTbuffer"){
 record(calc, "$(device):LOGSOFTCNT"){
 #  field(ASG, "Reserved")
   field(DESC, "Software fresh data buffer counter")
+  field(EGU, "timestamps")
   field(CALC, "VAL + 1")
   field(FLNK, "$(device):pullAgain")
 }
@@ -3871,20 +4470,56 @@ record(longin, "$(device):alive") {
   field(FLNK, "$(device):statdevcalc")
 }
 
-record(longin, "$(device):clkmodeRBV") {
+record(mbbi, "$(device):clkmodeRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE clock mode status")
+  field(NOBT, "6")
+  field(ZRVL, "11")
+  field(ZRST, "60-62.5 MHz")
+  field(ONVL, "16")
+  field(ONST, "63-77 MHz/121-135 MHz")
+  field(TWVL, "17")
+  field(TWST, "77.5-91.5 MHz")
+  field(THVL, "18")
+  field(THST, "92-106 MHz")
+  field(FRVL, "19")
+  field(FRST, "106-120.5 MHz")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_conf_clkmode_intr $(PORT)")
 }
 
-record(longin, "$(device):funselRBV") {
+record(mbbi, "$(device):funselRBV") {
 # field(ASG, "Reserved")
   field(DESC, "EVE function select status")
+  field(NOBT, "6")
+  field(ZRVL, "16")
+  field(ZRST, "FOUT")
+  field(ONVL, "17")
+  field(ONST, "EVR")
+  field(TWVL, "18")
+  field(TWST, "EVG")
+  field(THVL, "32")
+  field(THST, "EVE")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_conf_funsel_intr $(PORT)")
 }
 
-record(longout, "$(device):clkmode"){
+record(mbbo, "$(device):clkmode"){
   field(DESC, "EVE clock mode")
+  field(ZRVL, "11")
+  field(ZRST, "11")
+  field(ONVL, "16")
+  field(ONST, "16")
+  field(TWVL, "17")
+  field(TWST, "17")
+  field(THVL, "18")
+  field(THST, "18")
+  field(FRVL, "19")
+  field(FRST, "19")
+  field(VAL, "1")
   field(DTYP, "stream")
-  field(VAL, "16")
   field(OUT, "@timing.proto eve_conf_set($(device)) $(PORT)")
 }
 

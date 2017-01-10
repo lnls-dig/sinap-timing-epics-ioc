@@ -54,7 +54,7 @@ evg_ctrl_seqen_enable_intr{
 # OTP Registers [1 - 16]
 evre_otp_get {
     out "%(\$1:cmd_evre_otp_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses\$2RBV)02r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV)04r%(\$1:width\$2RBV)04r";
+    in "%*r%*r%(\$1:pulses\$2RBV)02r%(\$1:event\$2RBV)0r%(\$1:delay\$2RBV)04r%(\$1:width\$2RBV)04r";
 }
 
 evre_otp_ev_set {
@@ -142,31 +142,31 @@ evre_otp_enpoltimeFRBV_intr{
 # OUT Registers [17 - 24]
 evre_out_get {
     out "%(\$1:cmd_evre_out_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel\$2RBV)r%*02r%(\$1:finedly\$2RBV)02r%*03r%(\$1:rfdly\$2RBV)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1:finedly\$2RBV)02r%*03r%(\$1:rfdly\$2RBV)r";
 }
 
 evre_out_rfdly_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RBV).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RAW).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2).1r";
     evre_out_get;
 }
 
 evre_out_finedly_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RBV).1r\x00\x00%(\$1:finedly\$2).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RAW).1r\x00\x00%(\$1:finedly\$2).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
     evre_out_get;
 }
 
 evre_out_sel_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2toHW).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
     evre_out_get;
 }
 
 evre_out_itl_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:ITL\$2).1r\x00\x00%(\$1:sel\$2RBV).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:ITL\$2).1r\x00\x00%(\$1:sel\$2RAW).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
     evre_out_get;
 }
 
 evre_out_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:ITL\$2).1r\x00\x00%(\$1:sel\$2).1r\x00\x00%(\$1:finedly\$2).2r\x00\x00\x00%(\$1:rfdly\$2).1r";
+    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:ITL\$2).1r\x00\x00%(\$1:sel\$2toHW).1r\x00\x00%(\$1:finedly\$2).2r\x00\x00\x00%(\$1:rfdly\$2).1r";
     evre_out_get;
 }
 
@@ -197,16 +197,47 @@ evre_out_itl7RAW_intr{
     in "\xD8%r%*03r%*04r%*04r";
 }
 
+evre_out_sel0RAW_intr{
+    in "\xD1%*03r%r%*04r%*04r";
+}
+evre_out_sel1RAW_intr{
+    in "\xD2%*03r%r%*04r%*04r";
+}
+evre_out_sel2RAW_intr{
+    in "\xD3%*03r%r%*04r%*04r";
+}
+evre_out_sel3RAW_intr{
+    in "\xD4%*03r%r%*04r%*04r";
+}
+evre_out_sel4RAW_intr{
+    in "\xD5%*03r%r%*04r%*04r";
+}
+evre_out_sel5RAW_intr{
+    in "\xD6%*03r%r%*04r%*04r";
+}
+evre_out_sel6RAW_intr{
+    in "\xD7%*03r%r%*04r%*04r";
+}
+evre_out_sel7RAW_intr{
+    in "\xD8%*03r%r%*04r%*04r";
+}
+
 ################################################################################
 # Clock mode select EVE [25]
 eve_rf_get {
     out "\x99\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xd9%*04r%*04r%*03r%(\$1:cmselRBV)r";
+    in "\xd9%*04r%*04r%*04r";
 }
 
 eve_rf_set {
     out "\x59\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:cmsel)r";
     eve_rf_get;
+}
+
+# Interrupts
+
+eve_rf_intr {
+    in "\xd9%*04r%*04r%*03r%r";
 }
 
 ################################################################################
@@ -288,11 +319,6 @@ evg_mux_div7RAW_intr{
 
 ################################################################################
 # SEQRAM setting register [49]
-evg_seqramset_get {
-    out "%(\$1:cmd_evg_seqramset_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF1%*02r%(\$1:seqaddrRBV.RVAL)02r%*03r%(\$1:seqcodeRBV.RVAL)r%(\$1:seqtimeRBV)04r";
-}
-
 evg_seqramset_set{
     out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr).2r\x00\x00\x00%(\$1:seqcode).1r%(\$1:seqtime).4r";
 }
@@ -405,51 +431,51 @@ evre_frmversion_get{
 # Configutarion register [63]
 eve_conf_get {
     out "%(\$1:cmd_eve_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFF%*04r%*03r%(\$1:clkmodeRBV)r%*03r%(\$1:funselRBV)r";
+    in "\xFF%*04r%*04r%*04r";
 }
 
 evr_conf_get {
     out "%(\$1:cmd_evr_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFF%*04r%*03r%(\$1:clkmodeRBV)r%*03r%(\$1:funselRBV)r";
+    in "\xFF%*04r%*04r%*04r";
 }
 
 evg_conf_get {
     out "%(\$1:cmd_evg_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFF%*04r%*04r%*03r%(\$1:funselRBV)r";
+    in "\xFF%*04r%*04r%*04r";
 }
 
 evg_conf_funsel_set{
-    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdivRAW).1r\x00\x00\x00\x00\x00%(\$1:funsel).1r";
+    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdivRAW).1r\x00\x00\x00\x00\x00%(\$1:funsel.RVAL).1r";
     evg_conf_get;
 }
 
 evg_conf_rfdiv_set{
-    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1:funselRBV).1r";
+    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1:funselRBV.RVAL).1r";
     evg_conf_get;
 }
 
 evg_conf_set{
-    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1:funsel).1r";
+    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1:funsel.RVAL).1r";
     evg_conf_get;
 }
 
 eve_conf_set{
-    out "%(\$1:cmd_eve_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode).1r\x00\x00\x00\x20";
+    out "%(\$1:cmd_eve_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode.RVAL).1r\x00\x00\x00\x20";
     eve_conf_get;
 }
 
 evr_conf_funsel_set{
-    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmodeRBV).1r\x00\x00\x00%(\$1:funsel).1r";
+    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmodeRBV.RVAL).1r\x00\x00\x00%(\$1:funsel.RVAL).1r";
     evr_conf_get;
 }
 
 evr_conf_clk_set{
-    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode).1r\x00\x00\x00%(\$1:funselRBV).1r";
+    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode).1r\x00\x00\x00%(\$1:funselRBV.RVAL).1r";
     evr_conf_get;
 }
 
 evr_conf_set{
-    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode).1r\x00\x00\x00%(\$1:funsel).1r";
+    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode).1r\x00\x00\x00%(\$1:funsel.RVAL).1r";
     evr_conf_get;
 }
 
@@ -463,8 +489,20 @@ evg_conf_rfdivRAW_intr{
     in "\xFF%*04r%*r%r%*02r%*04r";
 }
 
+evg_conf_funsel_intr{
+    in "\xFF%*04r%*04r%*03r%r";
+}
+
 evre_conf_alive_intr{
     in "\xFF%04r%*04r%*04r";
+}
+
+evre_conf_funsel_intr{
+    in "\xFF%*04r%*04r%*03r%r";
+}
+
+evre_conf_clkmode_intr{
+    in "\xFF%*04r%*03r%r%*04r";
 }
 
 ########################################################################

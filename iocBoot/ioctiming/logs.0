@@ -1,0 +1,3 @@
+2017-01-10 10:15:00.122 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-01-10 10:15:10.622 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-01-10 10:31:36.549 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml

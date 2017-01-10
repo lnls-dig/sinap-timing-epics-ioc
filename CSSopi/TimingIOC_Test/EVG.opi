@@ -929,7 +929,7 @@ $(pv_value)</tooltip>
     <show_confirm_dialog>0</show_confirm_dialog>
     <show_led>true</show_led>
     <square_button>false</square_button>
-    <toggle_button>true</toggle_button>
+    <toggle_button>false</toggle_button>
     <tooltip>$(pv_name)
 $(pv_value)</tooltip>
     <visible>true</visible>
