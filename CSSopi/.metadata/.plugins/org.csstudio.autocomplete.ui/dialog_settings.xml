@@ -2,6 +2,14 @@
 <section name="Workbench">
 	<section name="auto_complete_history">
 		<list key="PV">
+			<item value="$(device):sel7"/>
+			<item value="$(device):sel6"/>
+			<item value="$(device):sel5"/>
+			<item value="$(device):sel4"/>
+			<item value="$(device):sel3"/>
+			<item value="$(device):sel2"/>
+			<item value="$(device):sel1"/>
+			<item value="$(device):sel0"/>
 			<item value="EVE2:subsecondRBV"/>
 			<item value="EVE2:UTCRBV"/>
 			<item value="EVR4:subsecondRBV"/>
@@ -94,14 +102,6 @@
 			<item value="$(device):UTC"/>
 			<item value="$(device):event0"/>
 			<item value="EVG:enableRBV"/>
-			<item value="$(device):EVTRANSM3"/>
-			<item value="$(device):EVDLYMODE3"/>
-			<item value="$(device):EVTIME3"/>
-			<item value="$(device):EVCODE3"/>
-			<item value="$(device):EVTRANSM2"/>
-			<item value="$(device):EVDLYMODE2"/>
-			<item value="$(device):EVTIME2"/>
-			<item value="$(device):EVCODE2"/>
 		</list>
 	</section>
 </section>

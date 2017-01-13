@@ -24,7 +24,7 @@ assign alive to "{device}:alive";
 monitor alive;
 
 int funselRBV;
-assign funselRBV to "{device}:funselRBV";
+assign funselRBV to "{device}:funselRBV.RVAL";
 monitor funselRBV;
 
 int network;
