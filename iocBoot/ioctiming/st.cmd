@@ -88,4 +88,3 @@ seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2"
 
 # Injection System State Machine
 seq sncSeqRAM, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, ev_num=10"
-
