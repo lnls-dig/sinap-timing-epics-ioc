@@ -8,7 +8,7 @@ foreign ssId;
 %%//----------------------------------------
 
 int eventNum;
-char * device;
+char device[40];
 char * evCodeName = "EVCODE";
 char * evTimeName = "EVTIME";
 char * evModeName = "EVDLYMODE";
@@ -22,47 +22,47 @@ int numberOfWrites;
 %%//----------------------------------------
 
 int StateMachineStatus;
-assign StateMachineStatus to "{device}:STATEMACHINE";
+assign StateMachineStatus to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:STATEMACHINE";
 
 %%//----------------------------------------
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
 int network;
-assign network to "{device}:network";
+assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
 monitor network;
 
 int tbl[2000];
-assign tbl to "{device}:ITBL";
+assign tbl to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:ITBL";
 
 int tbl_length;
-assign tbl_length to "{device}:ITBL.NORD";
+assign tbl_length to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:ITBL.NORD";
 
 int seqs;
-assign seqs to "{device}:seqstat";
+assign seqs to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqstat";
 monitor seqs;
 
 int seqen_rbv;
-assign seqen_rbv to "{device}:seqenRBV";
+assign seqen_rbv to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqenRBV";
 monitor seqen_rbv;
 
 int seqen;
-assign seqen to "{device}:seqen";
+assign seqen to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqen";
 int seqsw;
-assign seqsw to "{device}:seqram_switch.PROC";
+assign seqsw to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqram_switch.PROC";
 int seqaddr;
-assign seqaddr to "{device}:seqaddr";
+assign seqaddr to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqaddr";
 int seqcode;
-assign seqcode to "{device}:seqcode";
+assign seqcode to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqcode";
 int seqtime;
-assign seqtime to "{device}:seqtime";
+assign seqtime to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqtime";
 
 int seqcount;
-assign seqcount to "{device}:seqcountRBV";
+assign seqcount to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqcountRBV";
 monitor seqcount;
 
 int seqcount_proc;
-assign seqcount_proc to "{device}:seqcountRBV.PROC";
+assign seqcount_proc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqcountRBV.PROC";
 
 int event_codes[20];
 assign event_codes to {};
@@ -81,23 +81,23 @@ assign event_ctrl to {};
 %%//----------------------------------------
 
 int stop_tg;
-assign stop_tg to "{device}:STOPSEQ";
+assign stop_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:STOPSEQ";
 monitor stop_tg;
 
 int stopinj_tg;
-assign stopinj_tg to "{device}:STOPINJSEQ";
+assign stopinj_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:STOPINJSEQ";
 monitor stopinj_tg;
 
 int run_tg;
-assign run_tg to "{device}:RUNSEQ";
+assign run_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:RUNSEQ";
 monitor run_tg;
 
 int inj_tg;
-assign inj_tg to "{device}:INJSEQ";
+assign inj_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:INJSEQ";
 monitor inj_tg;
 
 int restart_tg;
-assign restart_tg to "{device}:RESTSEQ";
+assign restart_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:RESTSEQ";
 monitor restart_tg;
 
 %%//----------------------------------------
@@ -175,7 +175,7 @@ ss seq {
 
 	  %%// Get macros
 	   eventNum = str2int(macValueGet("ev_num"));
-	   device = macValueGet("device");
+	   sprintf(device, "%s-%s:%s-%s%s", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
 	
 	  %%// Assign events
 	   for (i = 0; i < eventNum; i++) {

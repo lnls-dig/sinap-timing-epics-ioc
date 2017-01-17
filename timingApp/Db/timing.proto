@@ -4,12 +4,12 @@ ExtraInput = Ignore;
 ################################################################################
 # Control and Status Register EVE & EVR [0]
 evre_ctrl_get {
-    out "%(\$1:cmd_evre_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xc0%*04r%*04r%*02r%*r%*r";
 }
 
 evre_ctrl_set {
-    out "%(\$1:cmd_evre_ctrl_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:enable)b";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_ctrl_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:enable)b";
     evre_ctrl_get;
 }
 
@@ -26,17 +26,17 @@ evre_ctrl_linkinhs_intr{
 ################################################################################
 # Control and Status Register EVG [0]
 evg_ctrl_get {
-    out "%(\$1:cmd_evg_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xc0%*04r%*04r%*04r";
 }
 
 evg_ctrl_seq_en_set{
-    out "%(\$1:cmd_evg_ctrl_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:\$2).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_ctrl_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:\$6).1r";
     evg_ctrl_get;
 }
 
 evg_ctrl_set{
-    out "%(\$1:cmd_evg_ctrl_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:SEQEN_ENABLE).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_ctrl_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:SEQEN_ENABLE).1r";
     evg_ctrl_get;
 }
 
@@ -53,37 +53,37 @@ evg_ctrl_seqen_enable_intr{
 ################################################################################
 # OTP Registers [1 - 16]
 evre_otp_get {
-    out "%(\$1:cmd_evre_otp_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses\$2RBV)02r%(\$1:event\$2RBV)0r%(\$1:delay\$2RBV)04r%(\$1:width\$2RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get\$6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses\$6RBV)02r%(\$1-\$2:\$3-\$4\$5:event\$6RBV)0r%(\$1-\$2:\$3-\$4\$5:delay\$6RBV)04r%(\$1-\$2:\$3-\$4\$5:width\$6RBV)04r";
 }
 
 evre_otp_ev_set {
-    out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2)r%(\$1:delay\$2RBV).4r%(\$1:width\$2RBV).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set\$6)r%(\$1-\$2:\$3-\$4\$5:enpoltime\$6RBV.RVAL)r%(\$1-\$2:\$3-\$4\$5:pulses\$6RBV).2r%(\$1-\$2:\$3-\$4\$5:event\$6)r%(\$1-\$2:\$3-\$4\$5:delay\$6RBV).4r%(\$1-\$2:\$3-\$4\$5:width\$6RBV).4r";
     evre_otp_get;
 }
 
 evre_otp_pulses_set{
-    out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2).2r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV).4r%(\$1:width\$2RBV).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set\$6)r%(\$1-\$2:\$3-\$4\$5:enpoltime\$6RBV.RVAL)r%(\$1-\$2:\$3-\$4\$5:pulses\$6).2r%(\$1-\$2:\$3-\$4\$5:event\$6RBV)r%(\$1-\$2:\$3-\$4\$5:delay\$6RBV).4r%(\$1-\$2:\$3-\$4\$5:width\$6RBV).4r";
     evre_otp_get;
 }
 
 evre_otp_width_set {
-    out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV).4r%(\$1:width\$2).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set\$6)r%(\$1-\$2:\$3-\$4\$5:enpoltime\$6RBV.RVAL)r%(\$1-\$2:\$3-\$4\$5:pulses\$6RBV).2r%(\$1-\$2:\$3-\$4\$5:event\$6RBV)r%(\$1-\$2:\$3-\$4\$5:delay\$6RBV).4r%(\$1-\$2:\$3-\$4\$5:width\$6).4r";
     evre_otp_get;
 }
 
 evre_otp_dly_set {
-    out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2RBV.RVAL)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2RBV)r%(\$1:delay\$2).4r%(\$1:width\$2RBV).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set\$6)r%(\$1-\$2:\$3-\$4\$5:enpoltime\$6RBV.RVAL)r%(\$1-\$2:\$3-\$4\$5:pulses\$6RBV).2r%(\$1-\$2:\$3-\$4\$5:event\$6RBV)r%(\$1-\$2:\$3-\$4\$5:delay\$6).4r%(\$1-\$2:\$3-\$4\$5:width\$6RBV).4r";
     evre_otp_get;
 }
 
 evre_otp_en_pol_time_set {
-    out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:\$3\$2)r%(\$1:pulses\$2RBV).2r%(\$1:event\$2RBV)r%(\$1:delay\$2RBV).4r%(\$1:width\$2RBV).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set\$6)r%(\$1-\$2:\$3-\$4\$5:\$7\$6)r%(\$1-\$2:\$3-\$4\$5:pulses\$6RBV).2r%(\$1-\$2:\$3-\$4\$5:event\$6RBV)r%(\$1-\$2:\$3-\$4\$5:delay\$6RBV).4r%(\$1-\$2:\$3-\$4\$5:width\$6RBV).4r";
     evre_otp_get;
 }
 
 evre_otp_set {
-    out "%(\$1:cmd_evre_otp_set\$2)r%(\$1:enpoltime\$2)r%(\$1:pulses\$2).2r%(\$1:event\$2)r%(\$1:delay\$2).4r%(\$1:width\$2).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set\$6)r%(\$1-\$2:\$3-\$4\$5:enpoltime\$6)r%(\$1-\$2:\$3-\$4\$5:pulses\$6).2r%(\$1-\$2:\$3-\$4\$5:event\$6)r%(\$1-\$2:\$3-\$4\$5:delay\$6).4r%(\$1-\$2:\$3-\$4\$5:width\$6).4r";
     evre_otp_get;
 }
 
@@ -141,32 +141,32 @@ evre_otp_enpoltimeFRBV_intr{
 ################################################################################
 # OUT Registers [17 - 24]
 evre_out_get {
-    out "%(\$1:cmd_evre_out_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1:finedly\$2RBV)02r%*03r%(\$1:rfdly\$2RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get\$6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%*r%*02r%(\$1-\$2:\$3-\$4\$5:finedly\$6RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly\$6RBV)r";
 }
 
 evre_out_rfdly_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RAW).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set\$6).1r%(\$1-\$2:\$3-\$4\$5:itl\$6RAW.RVAL).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel\$6RAW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly\$6RBV).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly\$6).1r";
     evre_out_get;
 }
 
 evre_out_finedly_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2RAW).1r\x00\x00%(\$1:finedly\$2).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set\$6).1r%(\$1-\$2:\$3-\$4\$5:itl\$6RAW.RVAL).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel\$6RAW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly\$6).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly\$6RBV).1r";
     evre_out_get;
 }
 
 evre_out_sel_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:itl\$2RAW.RVAL).1r\x00\x00%(\$1:sel\$2toHW).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set\$6).1r%(\$1-\$2:\$3-\$4\$5:itl\$6RAW.RVAL).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel\$6toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly\$6RBV).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly\$6RBV).1r";
     evre_out_get;
 }
 
 evre_out_itl_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:ITL\$2).1r\x00\x00%(\$1:sel\$2RAW).1r\x00\x00%(\$1:finedly\$2RBV).2r\x00\x00\x00%(\$1:rfdly\$2RBV).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set\$6).1r%(\$1-\$2:\$3-\$4\$5:ITL\$6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel\$6RAW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly\$6RBV).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly\$6RBV).1r";
     evre_out_get;
 }
 
 evre_out_set{
-    out "%(\$1:cmd_evre_out_set\$2).1r%(\$1:ITL\$2).1r\x00\x00%(\$1:sel\$2toHW).1r\x00\x00%(\$1:finedly\$2).2r\x00\x00\x00%(\$1:rfdly\$2).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set\$6).1r%(\$1-\$2:\$3-\$4\$5:ITL\$6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel\$6toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly\$6).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly\$6).1r";
     evre_out_get;
 }
 
@@ -230,7 +230,7 @@ eve_rf_get {
 }
 
 eve_rf_set {
-    out "\x59\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:cmsel)r";
+    out "\x59\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:cmsel)r";
     eve_rf_get;
 }
 
@@ -243,22 +243,22 @@ eve_rf_intr {
 ################################################################################
 # AC Line register [40]
 evg_acline_get {
-    out "%(\$1:cmd_evg_acline_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xE8%*03r%(\$1:acenRBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_acline_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xE8%*03r%(\$1-\$2:\$3-\$4\$5:acenRBV)r%*04r%*04r";
 }
 
 evg_acline_acen_set{
-    out "%(\$1:cmd_evg_acline_set).1r\x00\x00\x00%(\$1:acen).1r\x00\x00\x00\x00%(\$1:acdivRAW).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_acline_set).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:acen).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:acdivRAW).4r";
     evg_acline_get;
 }
 
 evg_acline_acdiv_set{
-    out "%(\$1:cmd_evg_acline_set).1r\x00\x00\x00%(\$1:acenRBV).1r\x00\x00\x00\x00%(\$1:acdiv.RVAL).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_acline_set).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:acenRBV).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:acdiv.RVAL).4r";
     evg_acline_get;
 }
 
 evg_acline_set{
-    out "%(\$1:cmd_evg_acline_set).1r\x00\x00\x00%(\$1:acen).1r\x00\x00\x00\x00%(\$1:acdiv.RVAL).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_acline_set).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:acen).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:acdiv.RVAL).4r";
     evg_acline_get;
 }
 
@@ -271,22 +271,22 @@ evg_acline_acdivraw_intr{
 ################################################################################
 # Mux register [41 - 48]
 evg_mux_get {
-    out "%(\$1:cmd_evg_mux_get\$2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen\$2RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get\$6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen\$6RBV)r%*04r%*04r";
 }
 
 evg_mux_en_set{
-    out "%(\$1:cmd_evg_mux_set\$2).1r\x00\x00\x00%(\$1:muxen\$2).1r\x00\x00\x00\x00%(\$1:muxdiv\$2RAW).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set\$6).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen\$6).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv\$6RAW).4r";
     evg_mux_get;
 }
 
 evg_mux_div_set{
-    out "%(\$1:cmd_evg_mux_set\$2).1r\x00\x00\x00%(\$1:muxen\$2RBV).1r\x00\x00\x00\x00%(\$1:muxdiv\$2.RVAL).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set\$6).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen\$6RBV).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv\$6.RVAL).4r";
     evg_mux_get;
 }
 
 evg_mux_set{
-    out "%(\$1:cmd_evg_mux_set\$2).1r\x00\x00\x00%(\$1:muxen\$2).1r\x00\x00\x00\x00%(\$1:muxdiv\$2.RVAL).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set\$6).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen\$6).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv\$6.RVAL).4r";
     evg_mux_get;
 }
 
@@ -320,109 +320,100 @@ evg_mux_div7RAW_intr{
 ################################################################################
 # SEQRAM setting register [49]
 evg_seqramset_set{
-    out "%(\$1:cmd_evg_seqramset_set).1r\x00\x00%(\$1:seqaddr).2r\x00\x00\x00%(\$1:seqcode).1r%(\$1:seqtime).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_seqramset_set).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:seqaddr).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:seqcode).1r%(\$1-\$2:\$3-\$4\$5:seqtime).4r";
 }
 
 ################################################################################
 # SEQRAM switch register [50]
 evg_seqramsw_get {
-    out "%(\$1:cmd_evg_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF2%*04r%*04r%*02r%(\$1:seqcountRBV.RVAL)02r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xF2%*04r%*04r%*02r%(\$1-\$2:\$3-\$4\$5:seqcountRBV.RVAL)02r";
 }
 
 evg_seqramsw_set{
-    out "%(\$1:cmd_evg_seqramsw_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_seqramsw_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     evg_seqramsw_get;
 }
 
 ################################################################################
 # Timestamp register EVG [51]
-evg_timestamp_get{
-    out "%(\$1:cmd_evg_timestamp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF3%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r%*04r";
+evg_tmstmp_get{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xF3%(\$1-\$2:\$3-\$4\$5:UTCRBV)04r%(\$1-\$2:\$3-\$4\$5:subsecondRBV)04r%*04r";
 }
 
-evg_timestamp_utc_set{
-    out "%(\$1:cmd_evg_timestamp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRCRBV.RVAL)r";
-    evg_timestamp_get;
+evg_tmstmp_utc_set{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_tmstmp_set)r%(\$1-\$2:\$3-\$4\$5:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:TIMESRCRBV.RVAL)r";
+    evg_tmstmp_get;
 }
 
 # utc receives 0 causing it to be broadcast
-evg_timestamp_timesrc_set{
-    out "%(\$1:cmd_evg_timestamp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC.RVAL)r";
-    evg_timestamp_get;
+evg_tmstmp_timesrc_set{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_tmstmp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:TIMESRC.RVAL)r";
+    evg_tmstmp_get;
 }
 
-evg_timestamp_set{
-    out "%(\$1:cmd_evg_timestamp_set)r%(\$1:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC.RVAL)r";
-    evg_timestamp_get;
+evg_tmstmp_set{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_tmstmp_set)r%(\$1-\$2:\$3-\$4\$5:UTC).4r\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:TIMESRC.RVAL)r";
+    evg_tmstmp_get;
 }
 
 # Interrupts
 
-evg_timestamp_timesrcRBV_intr{
+evg_tmstmp_timesrcRBV_intr{
     in "\xF3%*04r%*04r%*03r%r";
 }
 
 
 ################################################################################
 # Timestamp register EVE & EVR [51]
-evre_timestamp_get{
-    out "%(\$1:cmd_evre_timestamp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF3%(\$1:UTCRBV)04r%(\$1:subsecondRBV)04r%*04r";
+evre_tmstmp_get{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xF3%(\$1-\$2:\$3-\$4\$5:UTCRBV)04r%(\$1-\$2:\$3-\$4\$5:subsecondRBV)04r%*04r";
 }
 
-evre_timestamp_set{
-    out "%(\$1:cmd_evre_timestamp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:TIMESRC)r";
-    evre_timestamp_get;
+evre_tmstmp_set{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_tmstmp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:TIMESRC)r";
+    evre_tmstmp_get;
 }
 
 # Interrupts
 
-evre_timestamp_timesrcRBV_intr{
+evre_tmstmp_timesrcRBV_intr{
     in "\xF3%*04r%*04r%*03r%r";
 }
 
 ################################################################################
 # Timestamp log register EVE & EVR [52]
 
-evre_tmstmp_log_get{
-    out "%(\$1:cmd_evre_tmstmp_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF4%(\$1:LOGUTC)04r%(\$1:LOGSUBSEC)04r%(\$1:LOGEVENT)r%(\$1:LOGCOUNT)02r%*r";
+evre_log_get{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xF4%(\$1-\$2:\$3-\$4\$5:LOGUTC)04r%(\$1-\$2:\$3-\$4\$5:LOGSUBSEC)04r%(\$1-\$2:\$3-\$4\$5:LOGEVENT)r%(\$1-\$2:\$3-\$4\$5:LOGCOUNT)02r%*r";
     @init{
-	out "%(\$1:cmd_evre_tmstmp_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    	in "\xF4%*04r%*04r%*03r%(\$1:stoplogAUX)r";
+	out "%(\$1-\$2:\$3-\$4\$5:cmd_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    	in "\xF4%*04r%*04r%*03r%(\$1-\$2:\$3-\$4\$5:stoplogAUX)r";
     }
 }
 
-evre_tmstmp_log_set{
-    out "%(\$1:cmd_evre_tmstmp_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1:\$2)r";
+evre_log_set{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:\$6)r";
     # reading of register is made by record "onlyRead" or "readAndUpdate" to assure synchronization
 }
 
 # Interrupts
 
-evre_tmstmp_log_ctrlRBV_intr{
+evre_log_ctrlRBV_intr{
     in "\xF4%*04r%*04r%*03r%r";
 }
 
 ################################################################################
 # Firmware version register EVG, EVR & EVE [62]
 
-evg_frmversion_get{
-    out "%(\$1:cmd_evg_frmversion_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+frmvrs_get{
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xFE%s";
     @init{
-	out "%(\$1:cmd_evg_frmversion_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    	in "\xFE%s";
-    }
-}
-
-evre_frmversion_get{
-    out "%(\$1:cmd_evre_frmversion_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFE%s";
-    @init{
-	out "%(\$1:cmd_evre_frmversion_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+	out "%(\$1-\$2:\$3-\$4\$5:cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     	in "\xFE%s";
     }
 }
@@ -430,52 +421,52 @@ evre_frmversion_get{
 ################################################################################
 # Configutarion register [63]
 eve_conf_get {
-    out "%(\$1:cmd_eve_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xFF%*04r%*04r%*04r";
 }
 
 evr_conf_get {
-    out "%(\$1:cmd_evr_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xFF%*04r%*04r%*04r";
 }
 
 evg_conf_get {
-    out "%(\$1:cmd_evg_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xFF%*04r%*04r%*04r";
 }
 
 evg_conf_funsel_set{
-    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdivRAW).1r\x00\x00\x00\x00\x00%(\$1:funsel.RVAL).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdivRAW).1r\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:funsel.RVAL).1r";
     evg_conf_get;
 }
 
 evg_conf_rfdiv_set{
-    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1:funselRBV.RVAL).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:funselRBV.RVAL).1r";
     evg_conf_get;
 }
 
 evg_conf_set{
-    out "%(\$1:cmd_evg_conf_set).1r\x00\x00\x00\x00\x00%(\$1:rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1:funsel.RVAL).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:funsel.RVAL).1r";
     evg_conf_get;
 }
 
 eve_conf_set{
-    out "%(\$1:cmd_eve_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode.RVAL).1r\x00\x00\x00\x20";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:clkmode.RVAL).1r\x00\x00\x00\x20";
     eve_conf_get;
 }
 
 evr_conf_funsel_set{
-    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmodeRBV.RVAL).1r\x00\x00\x00%(\$1:funsel.RVAL).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:clkmodeRBV.RVAL).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:funsel.RVAL).1r";
     evr_conf_get;
 }
 
 evr_conf_clk_set{
-    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode).1r\x00\x00\x00%(\$1:funselRBV.RVAL).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:clkmode).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:funselRBV.RVAL).1r";
     evr_conf_get;
 }
 
 evr_conf_set{
-    out "%(\$1:cmd_evr_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1:clkmode).1r\x00\x00\x00%(\$1:funsel.RVAL).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:clkmode).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:funsel.RVAL).1r";
     evr_conf_get;
 }
 
@@ -510,274 +501,274 @@ evre_conf_clkmode_intr{
 eve_download{
 	eve_conf_set; # initialize the module
 	eve_rf_set;
-    out "%(\$1:cmd_evre_otp_set0)r%(\$1:enpoltime0)r%(\$1:pulses0).2r%(\$1:event0)r%(\$1:delay0).4r%(\$1:width0).4r";
-    out "%(\$1:cmd_evre_otp_set1)r%(\$1:enpoltime1)r%(\$1:pulses1).2r%(\$1:event1)r%(\$1:delay1).4r%(\$1:width1).4r";
-    out "%(\$1:cmd_evre_otp_set2)r%(\$1:enpoltime2)r%(\$1:pulses2).2r%(\$1:event2)r%(\$1:delay2).4r%(\$1:width2).4r";
-    out "%(\$1:cmd_evre_otp_set3)r%(\$1:enpoltime3)r%(\$1:pulses3).2r%(\$1:event3)r%(\$1:delay3).4r%(\$1:width3).4r";
-    out "%(\$1:cmd_evre_otp_set4)r%(\$1:enpoltime4)r%(\$1:pulses4).2r%(\$1:event4)r%(\$1:delay4).4r%(\$1:width4).4r";
-    out "%(\$1:cmd_evre_otp_set5)r%(\$1:enpoltime5)r%(\$1:pulses5).2r%(\$1:event5)r%(\$1:delay5).4r%(\$1:width5).4r";
-    out "%(\$1:cmd_evre_otp_set6)r%(\$1:enpoltime6)r%(\$1:pulses6).2r%(\$1:event6)r%(\$1:delay6).4r%(\$1:width6).4r";
-    out "%(\$1:cmd_evre_otp_set7)r%(\$1:enpoltime7)r%(\$1:pulses7).2r%(\$1:event7)r%(\$1:delay7).4r%(\$1:width7).4r";
-    out "%(\$1:cmd_evre_otp_set8)r%(\$1:enpoltime8)r%(\$1:pulses8).2r%(\$1:event8)r%(\$1:delay8).4r%(\$1:width8).4r";
-    out "%(\$1:cmd_evre_otp_set9)r%(\$1:enpoltime9)r%(\$1:pulses9).2r%(\$1:event9)r%(\$1:delay9).4r%(\$1:width9).4r";
-    out "%(\$1:cmd_evre_otp_setA)r%(\$1:enpoltimeA)r%(\$1:pulsesA).2r%(\$1:eventA)r%(\$1:delayA).4r%(\$1:widthA).4r";
-    out "%(\$1:cmd_evre_otp_setB)r%(\$1:enpoltimeB)r%(\$1:pulsesB).2r%(\$1:eventB)r%(\$1:delayB).4r%(\$1:widthB).4r";
-    out "%(\$1:cmd_evre_otp_setC)r%(\$1:enpoltimeC)r%(\$1:pulsesC).2r%(\$1:eventC)r%(\$1:delayC).4r%(\$1:widthC).4r";
-    out "%(\$1:cmd_evre_otp_setD)r%(\$1:enpoltimeD)r%(\$1:pulsesD).2r%(\$1:eventD)r%(\$1:delayD).4r%(\$1:widthD).4r";
-    out "%(\$1:cmd_evre_otp_setE)r%(\$1:enpoltimeE)r%(\$1:pulsesE).2r%(\$1:eventE)r%(\$1:delayE).4r%(\$1:widthE).4r";
-    out "%(\$1:cmd_evre_otp_setF)r%(\$1:enpoltimeF)r%(\$1:pulsesF).2r%(\$1:eventF)r%(\$1:delayF).4r%(\$1:widthF).4r";
-    out "%(\$1:cmd_evre_out_set0).1r%(\$1:ITL0).1r\x00\x00%(\$1:sel0).1r\x00\x00%(\$1:finedly0).2r\x00\x00\x00%(\$1:rfdly0).1r";
-    out "%(\$1:cmd_evre_out_set1).1r%(\$1:ITL1).1r\x00\x00%(\$1:sel1).1r\x00\x00%(\$1:finedly1).2r\x00\x00\x00%(\$1:rfdly1).1r";
-    out "%(\$1:cmd_evre_out_set2).1r%(\$1:ITL2).1r\x00\x00%(\$1:sel2).1r\x00\x00%(\$1:finedly2).2r\x00\x00\x00%(\$1:rfdly2).1r";
-    out "%(\$1:cmd_evre_out_set3).1r%(\$1:ITL3).1r\x00\x00%(\$1:sel3).1r\x00\x00%(\$1:finedly3).2r\x00\x00\x00%(\$1:rfdly3).1r";
-    out "%(\$1:cmd_evre_out_set4).1r%(\$1:ITL4).1r\x00\x00%(\$1:sel4).1r\x00\x00%(\$1:finedly4).2r\x00\x00\x00%(\$1:rfdly4).1r";
-    out "%(\$1:cmd_evre_out_set5).1r%(\$1:ITL5).1r\x00\x00%(\$1:sel5).1r\x00\x00%(\$1:finedly5).2r\x00\x00\x00%(\$1:rfdly5).1r";
-    out "%(\$1:cmd_evre_out_set6).1r%(\$1:ITL6).1r\x00\x00%(\$1:sel6).1r\x00\x00%(\$1:finedly6).2r\x00\x00\x00%(\$1:rfdly6).1r";
-    out "%(\$1:cmd_evre_out_set7).1r%(\$1:ITL7).1r\x00\x00%(\$1:sel7).1r\x00\x00%(\$1:finedly7).2r\x00\x00\x00%(\$1:rfdly7).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set0)r%(\$1-\$2:\$3-\$4\$5:enpoltime0)r%(\$1-\$2:\$3-\$4\$5:pulses0).2r%(\$1-\$2:\$3-\$4\$5:event0)r%(\$1-\$2:\$3-\$4\$5:delay0).4r%(\$1-\$2:\$3-\$4\$5:width0).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set1)r%(\$1-\$2:\$3-\$4\$5:enpoltime1)r%(\$1-\$2:\$3-\$4\$5:pulses1).2r%(\$1-\$2:\$3-\$4\$5:event1)r%(\$1-\$2:\$3-\$4\$5:delay1).4r%(\$1-\$2:\$3-\$4\$5:width1).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set2)r%(\$1-\$2:\$3-\$4\$5:enpoltime2)r%(\$1-\$2:\$3-\$4\$5:pulses2).2r%(\$1-\$2:\$3-\$4\$5:event2)r%(\$1-\$2:\$3-\$4\$5:delay2).4r%(\$1-\$2:\$3-\$4\$5:width2).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set3)r%(\$1-\$2:\$3-\$4\$5:enpoltime3)r%(\$1-\$2:\$3-\$4\$5:pulses3).2r%(\$1-\$2:\$3-\$4\$5:event3)r%(\$1-\$2:\$3-\$4\$5:delay3).4r%(\$1-\$2:\$3-\$4\$5:width3).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set4)r%(\$1-\$2:\$3-\$4\$5:enpoltime4)r%(\$1-\$2:\$3-\$4\$5:pulses4).2r%(\$1-\$2:\$3-\$4\$5:event4)r%(\$1-\$2:\$3-\$4\$5:delay4).4r%(\$1-\$2:\$3-\$4\$5:width4).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set5)r%(\$1-\$2:\$3-\$4\$5:enpoltime5)r%(\$1-\$2:\$3-\$4\$5:pulses5).2r%(\$1-\$2:\$3-\$4\$5:event5)r%(\$1-\$2:\$3-\$4\$5:delay5).4r%(\$1-\$2:\$3-\$4\$5:width5).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set6)r%(\$1-\$2:\$3-\$4\$5:enpoltime6)r%(\$1-\$2:\$3-\$4\$5:pulses6).2r%(\$1-\$2:\$3-\$4\$5:event6)r%(\$1-\$2:\$3-\$4\$5:delay6).4r%(\$1-\$2:\$3-\$4\$5:width6).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set7)r%(\$1-\$2:\$3-\$4\$5:enpoltime7)r%(\$1-\$2:\$3-\$4\$5:pulses7).2r%(\$1-\$2:\$3-\$4\$5:event7)r%(\$1-\$2:\$3-\$4\$5:delay7).4r%(\$1-\$2:\$3-\$4\$5:width7).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set8)r%(\$1-\$2:\$3-\$4\$5:enpoltime8)r%(\$1-\$2:\$3-\$4\$5:pulses8).2r%(\$1-\$2:\$3-\$4\$5:event8)r%(\$1-\$2:\$3-\$4\$5:delay8).4r%(\$1-\$2:\$3-\$4\$5:width8).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set9)r%(\$1-\$2:\$3-\$4\$5:enpoltime9)r%(\$1-\$2:\$3-\$4\$5:pulses9).2r%(\$1-\$2:\$3-\$4\$5:event9)r%(\$1-\$2:\$3-\$4\$5:delay9).4r%(\$1-\$2:\$3-\$4\$5:width9).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setA)r%(\$1-\$2:\$3-\$4\$5:enpoltimeA)r%(\$1-\$2:\$3-\$4\$5:pulsesA).2r%(\$1-\$2:\$3-\$4\$5:eventA)r%(\$1-\$2:\$3-\$4\$5:delayA).4r%(\$1-\$2:\$3-\$4\$5:widthA).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setB)r%(\$1-\$2:\$3-\$4\$5:enpoltimeB)r%(\$1-\$2:\$3-\$4\$5:pulsesB).2r%(\$1-\$2:\$3-\$4\$5:eventB)r%(\$1-\$2:\$3-\$4\$5:delayB).4r%(\$1-\$2:\$3-\$4\$5:widthB).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setC)r%(\$1-\$2:\$3-\$4\$5:enpoltimeC)r%(\$1-\$2:\$3-\$4\$5:pulsesC).2r%(\$1-\$2:\$3-\$4\$5:eventC)r%(\$1-\$2:\$3-\$4\$5:delayC).4r%(\$1-\$2:\$3-\$4\$5:widthC).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setD)r%(\$1-\$2:\$3-\$4\$5:enpoltimeD)r%(\$1-\$2:\$3-\$4\$5:pulsesD).2r%(\$1-\$2:\$3-\$4\$5:eventD)r%(\$1-\$2:\$3-\$4\$5:delayD).4r%(\$1-\$2:\$3-\$4\$5:widthD).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setE)r%(\$1-\$2:\$3-\$4\$5:enpoltimeE)r%(\$1-\$2:\$3-\$4\$5:pulsesE).2r%(\$1-\$2:\$3-\$4\$5:eventE)r%(\$1-\$2:\$3-\$4\$5:delayE).4r%(\$1-\$2:\$3-\$4\$5:widthE).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setF)r%(\$1-\$2:\$3-\$4\$5:enpoltimeF)r%(\$1-\$2:\$3-\$4\$5:pulsesF).2r%(\$1-\$2:\$3-\$4\$5:eventF)r%(\$1-\$2:\$3-\$4\$5:delayF).4r%(\$1-\$2:\$3-\$4\$5:widthF).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set0).1r%(\$1-\$2:\$3-\$4\$5:ITL0).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel0).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly0).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly0).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set1).1r%(\$1-\$2:\$3-\$4\$5:ITL1).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel1).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly1).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly1).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set2).1r%(\$1-\$2:\$3-\$4\$5:ITL2).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel2).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly2).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly2).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set3).1r%(\$1-\$2:\$3-\$4\$5:ITL3).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel3).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly3).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly3).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set4).1r%(\$1-\$2:\$3-\$4\$5:ITL4).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel4).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly4).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly4).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set5).1r%(\$1-\$2:\$3-\$4\$5:ITL5).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel5).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly5).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly5).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set6).1r%(\$1-\$2:\$3-\$4\$5:ITL6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly6).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly6).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set7).1r%(\$1-\$2:\$3-\$4\$5:ITL7).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel7).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly7).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly7).1r";
     evre_ctrl_set;
     # Timestamp source
-    evre_timestamp_set;
+    evre_tmstmp_set;
 }
 
 evr_download{
 	evr_conf_set; # initialize the module
-    out "%(\$1:cmd_evre_otp_set0)r%(\$1:enpoltime0)r%(\$1:pulses0).2r%(\$1:event0)r%(\$1:delay0).4r%(\$1:width0).4r";
-    out "%(\$1:cmd_evre_otp_set1)r%(\$1:enpoltime1)r%(\$1:pulses1).2r%(\$1:event1)r%(\$1:delay1).4r%(\$1:width1).4r";
-    out "%(\$1:cmd_evre_otp_set2)r%(\$1:enpoltime2)r%(\$1:pulses2).2r%(\$1:event2)r%(\$1:delay2).4r%(\$1:width2).4r";
-    out "%(\$1:cmd_evre_otp_set3)r%(\$1:enpoltime3)r%(\$1:pulses3).2r%(\$1:event3)r%(\$1:delay3).4r%(\$1:width3).4r";
-    out "%(\$1:cmd_evre_otp_set4)r%(\$1:enpoltime4)r%(\$1:pulses4).2r%(\$1:event4)r%(\$1:delay4).4r%(\$1:width4).4r";
-    out "%(\$1:cmd_evre_otp_set5)r%(\$1:enpoltime5)r%(\$1:pulses5).2r%(\$1:event5)r%(\$1:delay5).4r%(\$1:width5).4r";
-    out "%(\$1:cmd_evre_otp_set6)r%(\$1:enpoltime6)r%(\$1:pulses6).2r%(\$1:event6)r%(\$1:delay6).4r%(\$1:width6).4r";
-    out "%(\$1:cmd_evre_otp_set7)r%(\$1:enpoltime7)r%(\$1:pulses7).2r%(\$1:event7)r%(\$1:delay7).4r%(\$1:width7).4r";
-    out "%(\$1:cmd_evre_otp_set8)r%(\$1:enpoltime8)r%(\$1:pulses8).2r%(\$1:event8)r%(\$1:delay8).4r%(\$1:width8).4r";
-    out "%(\$1:cmd_evre_otp_set9)r%(\$1:enpoltime9)r%(\$1:pulses9).2r%(\$1:event9)r%(\$1:delay9).4r%(\$1:width9).4r";
-    out "%(\$1:cmd_evre_otp_setA)r%(\$1:enpoltimeA)r%(\$1:pulsesA).2r%(\$1:eventA)r%(\$1:delayA).4r%(\$1:widthA).4r";
-    out "%(\$1:cmd_evre_otp_setB)r%(\$1:enpoltimeB)r%(\$1:pulsesB).2r%(\$1:eventB)r%(\$1:delayB).4r%(\$1:widthB).4r";
-    out "%(\$1:cmd_evre_otp_setC)r%(\$1:enpoltimeC)r%(\$1:pulsesC).2r%(\$1:eventC)r%(\$1:delayC).4r%(\$1:widthC).4r";
-    out "%(\$1:cmd_evre_otp_setD)r%(\$1:enpoltimeD)r%(\$1:pulsesD).2r%(\$1:eventD)r%(\$1:delayD).4r%(\$1:widthD).4r";
-    out "%(\$1:cmd_evre_otp_setE)r%(\$1:enpoltimeE)r%(\$1:pulsesE).2r%(\$1:eventE)r%(\$1:delayE).4r%(\$1:widthE).4r";
-    out "%(\$1:cmd_evre_otp_setF)r%(\$1:enpoltimeF)r%(\$1:pulsesF).2r%(\$1:eventF)r%(\$1:delayF).4r%(\$1:widthF).4r";
-    out "%(\$1:cmd_evre_out_set0).1r%(\$1:ITL0).1r\x00\x00%(\$1:sel0).1r\x00\x00%(\$1:finedly0).2r\x00\x00\x00%(\$1:rfdly0).1r";
-    out "%(\$1:cmd_evre_out_set1).1r%(\$1:ITL1).1r\x00\x00%(\$1:sel1).1r\x00\x00%(\$1:finedly1).2r\x00\x00\x00%(\$1:rfdly1).1r";
-    out "%(\$1:cmd_evre_out_set2).1r%(\$1:ITL2).1r\x00\x00%(\$1:sel2).1r\x00\x00%(\$1:finedly2).2r\x00\x00\x00%(\$1:rfdly2).1r";
-    out "%(\$1:cmd_evre_out_set3).1r%(\$1:ITL3).1r\x00\x00%(\$1:sel3).1r\x00\x00%(\$1:finedly3).2r\x00\x00\x00%(\$1:rfdly3).1r";
-    out "%(\$1:cmd_evre_out_set4).1r%(\$1:ITL4).1r\x00\x00%(\$1:sel4).1r\x00\x00%(\$1:finedly4).2r\x00\x00\x00%(\$1:rfdly4).1r";
-    out "%(\$1:cmd_evre_out_set5).1r%(\$1:ITL5).1r\x00\x00%(\$1:sel5).1r\x00\x00%(\$1:finedly5).2r\x00\x00\x00%(\$1:rfdly5).1r";
-    out "%(\$1:cmd_evre_out_set6).1r%(\$1:ITL6).1r\x00\x00%(\$1:sel6).1r\x00\x00%(\$1:finedly6).2r\x00\x00\x00%(\$1:rfdly6).1r";
-    out "%(\$1:cmd_evre_out_set7).1r%(\$1:ITL7).1r\x00\x00%(\$1:sel7).1r\x00\x00%(\$1:finedly7).2r\x00\x00\x00%(\$1:rfdly7).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set0)r%(\$1-\$2:\$3-\$4\$5:enpoltime0)r%(\$1-\$2:\$3-\$4\$5:pulses0).2r%(\$1-\$2:\$3-\$4\$5:event0)r%(\$1-\$2:\$3-\$4\$5:delay0).4r%(\$1-\$2:\$3-\$4\$5:width0).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set1)r%(\$1-\$2:\$3-\$4\$5:enpoltime1)r%(\$1-\$2:\$3-\$4\$5:pulses1).2r%(\$1-\$2:\$3-\$4\$5:event1)r%(\$1-\$2:\$3-\$4\$5:delay1).4r%(\$1-\$2:\$3-\$4\$5:width1).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set2)r%(\$1-\$2:\$3-\$4\$5:enpoltime2)r%(\$1-\$2:\$3-\$4\$5:pulses2).2r%(\$1-\$2:\$3-\$4\$5:event2)r%(\$1-\$2:\$3-\$4\$5:delay2).4r%(\$1-\$2:\$3-\$4\$5:width2).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set3)r%(\$1-\$2:\$3-\$4\$5:enpoltime3)r%(\$1-\$2:\$3-\$4\$5:pulses3).2r%(\$1-\$2:\$3-\$4\$5:event3)r%(\$1-\$2:\$3-\$4\$5:delay3).4r%(\$1-\$2:\$3-\$4\$5:width3).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set4)r%(\$1-\$2:\$3-\$4\$5:enpoltime4)r%(\$1-\$2:\$3-\$4\$5:pulses4).2r%(\$1-\$2:\$3-\$4\$5:event4)r%(\$1-\$2:\$3-\$4\$5:delay4).4r%(\$1-\$2:\$3-\$4\$5:width4).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set5)r%(\$1-\$2:\$3-\$4\$5:enpoltime5)r%(\$1-\$2:\$3-\$4\$5:pulses5).2r%(\$1-\$2:\$3-\$4\$5:event5)r%(\$1-\$2:\$3-\$4\$5:delay5).4r%(\$1-\$2:\$3-\$4\$5:width5).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set6)r%(\$1-\$2:\$3-\$4\$5:enpoltime6)r%(\$1-\$2:\$3-\$4\$5:pulses6).2r%(\$1-\$2:\$3-\$4\$5:event6)r%(\$1-\$2:\$3-\$4\$5:delay6).4r%(\$1-\$2:\$3-\$4\$5:width6).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set7)r%(\$1-\$2:\$3-\$4\$5:enpoltime7)r%(\$1-\$2:\$3-\$4\$5:pulses7).2r%(\$1-\$2:\$3-\$4\$5:event7)r%(\$1-\$2:\$3-\$4\$5:delay7).4r%(\$1-\$2:\$3-\$4\$5:width7).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set8)r%(\$1-\$2:\$3-\$4\$5:enpoltime8)r%(\$1-\$2:\$3-\$4\$5:pulses8).2r%(\$1-\$2:\$3-\$4\$5:event8)r%(\$1-\$2:\$3-\$4\$5:delay8).4r%(\$1-\$2:\$3-\$4\$5:width8).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set9)r%(\$1-\$2:\$3-\$4\$5:enpoltime9)r%(\$1-\$2:\$3-\$4\$5:pulses9).2r%(\$1-\$2:\$3-\$4\$5:event9)r%(\$1-\$2:\$3-\$4\$5:delay9).4r%(\$1-\$2:\$3-\$4\$5:width9).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setA)r%(\$1-\$2:\$3-\$4\$5:enpoltimeA)r%(\$1-\$2:\$3-\$4\$5:pulsesA).2r%(\$1-\$2:\$3-\$4\$5:eventA)r%(\$1-\$2:\$3-\$4\$5:delayA).4r%(\$1-\$2:\$3-\$4\$5:widthA).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setB)r%(\$1-\$2:\$3-\$4\$5:enpoltimeB)r%(\$1-\$2:\$3-\$4\$5:pulsesB).2r%(\$1-\$2:\$3-\$4\$5:eventB)r%(\$1-\$2:\$3-\$4\$5:delayB).4r%(\$1-\$2:\$3-\$4\$5:widthB).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setC)r%(\$1-\$2:\$3-\$4\$5:enpoltimeC)r%(\$1-\$2:\$3-\$4\$5:pulsesC).2r%(\$1-\$2:\$3-\$4\$5:eventC)r%(\$1-\$2:\$3-\$4\$5:delayC).4r%(\$1-\$2:\$3-\$4\$5:widthC).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setD)r%(\$1-\$2:\$3-\$4\$5:enpoltimeD)r%(\$1-\$2:\$3-\$4\$5:pulsesD).2r%(\$1-\$2:\$3-\$4\$5:eventD)r%(\$1-\$2:\$3-\$4\$5:delayD).4r%(\$1-\$2:\$3-\$4\$5:widthD).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setE)r%(\$1-\$2:\$3-\$4\$5:enpoltimeE)r%(\$1-\$2:\$3-\$4\$5:pulsesE).2r%(\$1-\$2:\$3-\$4\$5:eventE)r%(\$1-\$2:\$3-\$4\$5:delayE).4r%(\$1-\$2:\$3-\$4\$5:widthE).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setF)r%(\$1-\$2:\$3-\$4\$5:enpoltimeF)r%(\$1-\$2:\$3-\$4\$5:pulsesF).2r%(\$1-\$2:\$3-\$4\$5:eventF)r%(\$1-\$2:\$3-\$4\$5:delayF).4r%(\$1-\$2:\$3-\$4\$5:widthF).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set0).1r%(\$1-\$2:\$3-\$4\$5:ITL0).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel0).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly0).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly0).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set1).1r%(\$1-\$2:\$3-\$4\$5:ITL1).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel1).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly1).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly1).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set2).1r%(\$1-\$2:\$3-\$4\$5:ITL2).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel2).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly2).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly2).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set3).1r%(\$1-\$2:\$3-\$4\$5:ITL3).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel3).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly3).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly3).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set4).1r%(\$1-\$2:\$3-\$4\$5:ITL4).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel4).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly4).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly4).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set5).1r%(\$1-\$2:\$3-\$4\$5:ITL5).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel5).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly5).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly5).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set6).1r%(\$1-\$2:\$3-\$4\$5:ITL6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly6).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly6).1r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set7).1r%(\$1-\$2:\$3-\$4\$5:ITL7).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel7).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly7).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly7).1r";
     # Timestamp source
-    evre_timestamp_set;
+    evre_tmstmp_set;
     evre_ctrl_set;
 }
 
 evg_download{
 	evg_conf_set; # initialize the module
-    out "%(\$1:cmd_evg_mux_set0).1r\x00\x00\x00%(\$1:muxen0).1r\x00\x00\x00\x00%(\$1:muxdiv0).4r";
-    out "%(\$1:cmd_evg_mux_set1).1r\x00\x00\x00%(\$1:muxen1).1r\x00\x00\x00\x00%(\$1:muxdiv1).4r";
-    out "%(\$1:cmd_evg_mux_set2).1r\x00\x00\x00%(\$1:muxen2).1r\x00\x00\x00\x00%(\$1:muxdiv2).4r";
-    out "%(\$1:cmd_evg_mux_set3).1r\x00\x00\x00%(\$1:muxen3).1r\x00\x00\x00\x00%(\$1:muxdiv3).4r";
-    out "%(\$1:cmd_evg_mux_set4).1r\x00\x00\x00%(\$1:muxen4).1r\x00\x00\x00\x00%(\$1:muxdiv4).4r";
-    out "%(\$1:cmd_evg_mux_set5).1r\x00\x00\x00%(\$1:muxen5).1r\x00\x00\x00\x00%(\$1:muxdiv5).4r";
-    out "%(\$1:cmd_evg_mux_set6).1r\x00\x00\x00%(\$1:muxen6).1r\x00\x00\x00\x00%(\$1:muxdiv6).4r";
-    out "%(\$1:cmd_evg_mux_set7).1r\x00\x00\x00%(\$1:muxen7).1r\x00\x00\x00\x00%(\$1:muxdiv7).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set0).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen0).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv0).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set1).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen1).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv1).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set2).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen2).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv2).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set3).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen3).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv3).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set4).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen4).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv4).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set5).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen5).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv5).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set6).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen6).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv6).4r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set7).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen7).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv7).4r";
     evg_acline_set;
     evg_ctrl_set;
     # Timestamp souce
-    evg_timestamp_timesrc_set;
+    evg_tmstmp_timesrc_set;
 }
 
 ########################################################################
 # Upload commands (From Hardware to IOC)
 eve_upload{
 	# OTPs upload 
-    out "%(\$1:cmd_evre_otp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses0RBV)02r%(\$1:event0RBV)r%(\$1:delay0RBV)04r%(\$1:width0RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses0RBV)02r%(\$1-\$2:\$3-\$4\$5:event0RBV)r%(\$1-\$2:\$3-\$4\$5:delay0RBV)04r%(\$1-\$2:\$3-\$4\$5:width0RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses1RBV)02r%(\$1:event1RBV)r%(\$1:delay1RBV)04r%(\$1:width1RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses1RBV)02r%(\$1-\$2:\$3-\$4\$5:event1RBV)r%(\$1-\$2:\$3-\$4\$5:delay1RBV)04r%(\$1-\$2:\$3-\$4\$5:width1RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses2RBV)02r%(\$1:event2RBV)r%(\$1:delay2RBV)04r%(\$1:width2RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses2RBV)02r%(\$1-\$2:\$3-\$4\$5:event2RBV)r%(\$1-\$2:\$3-\$4\$5:delay2RBV)04r%(\$1-\$2:\$3-\$4\$5:width2RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses3RBV)02r%(\$1:event3RBV)r%(\$1:delay3RBV)04r%(\$1:width3RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses3RBV)02r%(\$1-\$2:\$3-\$4\$5:event3RBV)r%(\$1-\$2:\$3-\$4\$5:delay3RBV)04r%(\$1-\$2:\$3-\$4\$5:width3RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses4RBV)02r%(\$1:event4RBV)r%(\$1:delay4RBV)04r%(\$1:width4RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses4RBV)02r%(\$1-\$2:\$3-\$4\$5:event4RBV)r%(\$1-\$2:\$3-\$4\$5:delay4RBV)04r%(\$1-\$2:\$3-\$4\$5:width4RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses5RBV)02r%(\$1:event5RBV)r%(\$1:delay5RBV)04r%(\$1:width5RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses5RBV)02r%(\$1-\$2:\$3-\$4\$5:event5RBV)r%(\$1-\$2:\$3-\$4\$5:delay5RBV)04r%(\$1-\$2:\$3-\$4\$5:width5RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses6RBV)02r%(\$1:event6RBV)r%(\$1:delay6RBV)04r%(\$1:width6RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses6RBV)02r%(\$1-\$2:\$3-\$4\$5:event6RBV)r%(\$1-\$2:\$3-\$4\$5:delay6RBV)04r%(\$1-\$2:\$3-\$4\$5:width6RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses7RBV)02r%(\$1:event7RBV)r%(\$1:delay7RBV)04r%(\$1:width7RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses7RBV)02r%(\$1-\$2:\$3-\$4\$5:event7RBV)r%(\$1-\$2:\$3-\$4\$5:delay7RBV)04r%(\$1-\$2:\$3-\$4\$5:width7RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get8)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses8RBV)02r%(\$1:event8RBV)r%(\$1:delay8RBV)04r%(\$1:width8RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get8)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses8RBV)02r%(\$1-\$2:\$3-\$4\$5:event8RBV)r%(\$1-\$2:\$3-\$4\$5:delay8RBV)04r%(\$1-\$2:\$3-\$4\$5:width8RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get9)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses9RBV)02r%(\$1:event9RBV)r%(\$1:delay9RBV)04r%(\$1:width9RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get9)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses9RBV)02r%(\$1-\$2:\$3-\$4\$5:event9RBV)r%(\$1-\$2:\$3-\$4\$5:delay9RBV)04r%(\$1-\$2:\$3-\$4\$5:width9RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getA)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesARBV)02r%(\$1:eventARBV)r%(\$1:delayARBV)04r%(\$1:widthARBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getA)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesARBV)02r%(\$1-\$2:\$3-\$4\$5:eventARBV)r%(\$1-\$2:\$3-\$4\$5:delayARBV)04r%(\$1-\$2:\$3-\$4\$5:widthARBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getB)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesBRBV)02r%(\$1:eventBRBV)r%(\$1:delayBRBV)04r%(\$1:widthBRBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getB)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesBRBV)02r%(\$1-\$2:\$3-\$4\$5:eventBRBV)r%(\$1-\$2:\$3-\$4\$5:delayBRBV)04r%(\$1-\$2:\$3-\$4\$5:widthBRBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getC)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesCRBV)02r%(\$1:eventCRBV)r%(\$1:delayCRBV)04r%(\$1:widthCRBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getC)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesCRBV)02r%(\$1-\$2:\$3-\$4\$5:eventCRBV)r%(\$1-\$2:\$3-\$4\$5:delayCRBV)04r%(\$1-\$2:\$3-\$4\$5:widthCRBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getD)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesDRBV)02r%(\$1:eventDRBV)r%(\$1:delayDRBV)04r%(\$1:widthDRBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getD)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesDRBV)02r%(\$1-\$2:\$3-\$4\$5:eventDRBV)r%(\$1-\$2:\$3-\$4\$5:delayDRBV)04r%(\$1-\$2:\$3-\$4\$5:widthDRBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getE)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesERBV)02r%(\$1:eventERBV)r%(\$1:delayERBV)04r%(\$1:widthERBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getE)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesERBV)02r%(\$1-\$2:\$3-\$4\$5:eventERBV)r%(\$1-\$2:\$3-\$4\$5:delayERBV)04r%(\$1-\$2:\$3-\$4\$5:widthERBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getF)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesFRBV)02r%(\$1:eventFRBV)r%(\$1:delayFRBV)04r%(\$1:widthFRBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getF)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesFRBV)02r%(\$1-\$2:\$3-\$4\$5:eventFRBV)r%(\$1-\$2:\$3-\$4\$5:delayFRBV)04r%(\$1-\$2:\$3-\$4\$5:widthFRBV)04r";
     #wait 100;
 	# OUTs upload
-    out "%(\$1:cmd_evre_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel0RBV)r%*02r%(\$1:finedly0RBV)02r%*03r%(\$1:rfdly0RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel0RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly0RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly0RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel1RBV)r%*02r%(\$1:finedly1RBV)02r%*03r%(\$1:rfdly1RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel1RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly1RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly1RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel2RBV)r%*02r%(\$1:finedly2RBV)02r%*03r%(\$1:rfdly2RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel2RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly2RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly2RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel3RBV)r%*02r%(\$1:finedly3RBV)02r%*03r%(\$1:rfdly3RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel3RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly3RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly3RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel4RBV)r%*02r%(\$1:finedly4RBV)02r%*03r%(\$1:rfdly4RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel4RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly4RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly4RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel5RBV)r%*02r%(\$1:finedly5RBV)02r%*03r%(\$1:rfdly5RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel5RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly5RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly5RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel6RBV)r%*02r%(\$1:finedly6RBV)02r%*03r%(\$1:rfdly6RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel6RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly6RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly6RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel7RBV)r%*02r%(\$1:finedly7RBV)02r%*03r%(\$1:rfdly7RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel7RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly7RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly7RBV)r";
     #wait 100;
 	# RF output upload
 	eve_rf_get;
     #wait 100;
     	# Timestamp log
-    evre_tmstmp_log_get;
+    evre_log_get;
 	# Timestamp
-    evre_timestamp_get;
+    evre_tmstmp_get;
 }
 
 evr_upload{
 	# OTPs upload 
-    out "%(\$1:cmd_evre_otp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses0RBV)02r%(\$1:event0RBV)r%(\$1:delay0RBV)04r%(\$1:width0RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses0RBV)02r%(\$1-\$2:\$3-\$4\$5:event0RBV)r%(\$1-\$2:\$3-\$4\$5:delay0RBV)04r%(\$1-\$2:\$3-\$4\$5:width0RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses1RBV)02r%(\$1:event1RBV)r%(\$1:delay1RBV)04r%(\$1:width1RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses1RBV)02r%(\$1-\$2:\$3-\$4\$5:event1RBV)r%(\$1-\$2:\$3-\$4\$5:delay1RBV)04r%(\$1-\$2:\$3-\$4\$5:width1RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses2RBV)02r%(\$1:event2RBV)r%(\$1:delay2RBV)04r%(\$1:width2RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses2RBV)02r%(\$1-\$2:\$3-\$4\$5:event2RBV)r%(\$1-\$2:\$3-\$4\$5:delay2RBV)04r%(\$1-\$2:\$3-\$4\$5:width2RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses3RBV)02r%(\$1:event3RBV)r%(\$1:delay3RBV)04r%(\$1:width3RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses3RBV)02r%(\$1-\$2:\$3-\$4\$5:event3RBV)r%(\$1-\$2:\$3-\$4\$5:delay3RBV)04r%(\$1-\$2:\$3-\$4\$5:width3RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses4RBV)02r%(\$1:event4RBV)r%(\$1:delay4RBV)04r%(\$1:width4RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses4RBV)02r%(\$1-\$2:\$3-\$4\$5:event4RBV)r%(\$1-\$2:\$3-\$4\$5:delay4RBV)04r%(\$1-\$2:\$3-\$4\$5:width4RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses5RBV)02r%(\$1:event5RBV)r%(\$1:delay5RBV)04r%(\$1:width5RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses5RBV)02r%(\$1-\$2:\$3-\$4\$5:event5RBV)r%(\$1-\$2:\$3-\$4\$5:delay5RBV)04r%(\$1-\$2:\$3-\$4\$5:width5RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses6RBV)02r%(\$1:event6RBV)r%(\$1:delay6RBV)04r%(\$1:width6RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses6RBV)02r%(\$1-\$2:\$3-\$4\$5:event6RBV)r%(\$1-\$2:\$3-\$4\$5:delay6RBV)04r%(\$1-\$2:\$3-\$4\$5:width6RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses7RBV)02r%(\$1:event7RBV)r%(\$1:delay7RBV)04r%(\$1:width7RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses7RBV)02r%(\$1-\$2:\$3-\$4\$5:event7RBV)r%(\$1-\$2:\$3-\$4\$5:delay7RBV)04r%(\$1-\$2:\$3-\$4\$5:width7RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get8)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses8RBV)02r%(\$1:event8RBV)r%(\$1:delay8RBV)04r%(\$1:width8RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get8)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses8RBV)02r%(\$1-\$2:\$3-\$4\$5:event8RBV)r%(\$1-\$2:\$3-\$4\$5:delay8RBV)04r%(\$1-\$2:\$3-\$4\$5:width8RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_get9)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulses9RBV)02r%(\$1:event9RBV)r%(\$1:delay9RBV)04r%(\$1:width9RBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_get9)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulses9RBV)02r%(\$1-\$2:\$3-\$4\$5:event9RBV)r%(\$1-\$2:\$3-\$4\$5:delay9RBV)04r%(\$1-\$2:\$3-\$4\$5:width9RBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getA)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesARBV)02r%(\$1:eventARBV)r%(\$1:delayARBV)04r%(\$1:widthARBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getA)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesARBV)02r%(\$1-\$2:\$3-\$4\$5:eventARBV)r%(\$1-\$2:\$3-\$4\$5:delayARBV)04r%(\$1-\$2:\$3-\$4\$5:widthARBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getB)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesBRBV)02r%(\$1:eventBRBV)r%(\$1:delayBRBV)04r%(\$1:widthBRBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getB)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesBRBV)02r%(\$1-\$2:\$3-\$4\$5:eventBRBV)r%(\$1-\$2:\$3-\$4\$5:delayBRBV)04r%(\$1-\$2:\$3-\$4\$5:widthBRBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getC)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesCRBV)02r%(\$1:eventCRBV)r%(\$1:delayCRBV)04r%(\$1:widthCRBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getC)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesCRBV)02r%(\$1-\$2:\$3-\$4\$5:eventCRBV)r%(\$1-\$2:\$3-\$4\$5:delayCRBV)04r%(\$1-\$2:\$3-\$4\$5:widthCRBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getD)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesDRBV)02r%(\$1:eventDRBV)r%(\$1:delayDRBV)04r%(\$1:widthDRBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getD)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesDRBV)02r%(\$1-\$2:\$3-\$4\$5:eventDRBV)r%(\$1-\$2:\$3-\$4\$5:delayDRBV)04r%(\$1-\$2:\$3-\$4\$5:widthDRBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getE)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesERBV)02r%(\$1:eventERBV)r%(\$1:delayERBV)04r%(\$1:widthERBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getE)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesERBV)02r%(\$1-\$2:\$3-\$4\$5:eventERBV)r%(\$1-\$2:\$3-\$4\$5:delayERBV)04r%(\$1-\$2:\$3-\$4\$5:widthERBV)04r";
     #wait 100;
-    out "%(\$1:cmd_evre_otp_getF)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1:pulsesFRBV)02r%(\$1:eventFRBV)r%(\$1:delayFRBV)04r%(\$1:widthFRBV)04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_getF)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%(\$1-\$2:\$3-\$4\$5:pulsesFRBV)02r%(\$1-\$2:\$3-\$4\$5:eventFRBV)r%(\$1-\$2:\$3-\$4\$5:delayFRBV)04r%(\$1-\$2:\$3-\$4\$5:widthFRBV)04r";
     #wait 100;
 	# OUTs upload
-    out "%(\$1:cmd_evre_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel0RBV)r%*02r%(\$1:finedly0RBV)02r%*03r%(\$1:rfdly0RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel0RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly0RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly0RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel1RBV)r%*02r%(\$1:finedly1RBV)02r%*03r%(\$1:rfdly1RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel1RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly1RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly1RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel2RBV)r%*02r%(\$1:finedly2RBV)02r%*03r%(\$1:rfdly2RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel2RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly2RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly2RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel3RBV)r%*02r%(\$1:finedly3RBV)02r%*03r%(\$1:rfdly3RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel3RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly3RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly3RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel4RBV)r%*02r%(\$1:finedly4RBV)02r%*03r%(\$1:rfdly4RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel4RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly4RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly4RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel5RBV)r%*02r%(\$1:finedly5RBV)02r%*03r%(\$1:rfdly5RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel5RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly5RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly5RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel6RBV)r%*02r%(\$1:finedly6RBV)02r%*03r%(\$1:rfdly6RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel6RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly6RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly6RBV)r";
     #wait 100;
-    out "%(\$1:cmd_evre_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%(\$1:sel7RBV)r%*02r%(\$1:finedly7RBV)02r%*03r%(\$1:rfdly7RBV)r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*r%*02r%(\$1-\$2:\$3-\$4\$5:sel7RBV)r%*02r%(\$1-\$2:\$3-\$4\$5:finedly7RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly7RBV)r";
     #wait 100;
     	# Timestamp log
-    evre_tmstmp_log_get;
+    evre_log_get;
 	# Timestamp
-    evre_timestamp_get;
+    evre_tmstmp_get;
 }
 
 evg_upload{
 	# MUXs upload
-    out "%(\$1:cmd_evg_mux_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen0RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen0RBV)r%*04r%*04r";
     #wait 100;
-    out "%(\$1:cmd_evg_mux_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen1RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen1RBV)r%*04r%*04r";
     #wait 100;
-    out "%(\$1:cmd_evg_mux_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen2RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen2RBV)r%*04r%*04r";
     #wait 100;
-    out "%(\$1:cmd_evg_mux_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen3RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen3RBV)r%*04r%*04r";
     #wait 100;
-    out "%(\$1:cmd_evg_mux_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen4RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen4RBV)r%*04r%*04r";
     #wait 100;
-    out "%(\$1:cmd_evg_mux_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen5RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen5RBV)r%*04r%*04r";
     #wait 100;
-    out "%(\$1:cmd_evg_mux_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen6RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen6RBV)r%*04r%*04r";
     #wait 100;
-    out "%(\$1:cmd_evg_mux_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1:muxen7RBV)r%*04r%*04r";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen7RBV)r%*04r%*04r";
     #wait 100;
 	# AC Line
     evg_acline_get;
@@ -785,6 +776,6 @@ evg_upload{
 	# SequenceRAM counter
     evg_seqramsw_get;
 	# Timestamp
-    evg_timestamp_get;
+    evg_tmstmp_get;
 }
 

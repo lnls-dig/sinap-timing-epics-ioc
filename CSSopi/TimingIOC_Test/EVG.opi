@@ -515,7 +515,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):enable</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -572,7 +572,7 @@ $(pv_value)</tooltip>
     <name>Text Input_48</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv0</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -673,7 +673,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):muxen0</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen0</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -814,7 +814,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):download</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):download</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -915,7 +915,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):uploadT</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -967,7 +967,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>$(device)</text>
+    <text>$(Dev)$(Idx)</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
@@ -1195,7 +1195,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):muxen0RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen0RBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1243,7 +1243,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv0RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0RBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -1345,7 +1345,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):enableRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1473,7 +1473,7 @@ $(pv_value)</tooltip>
     <name>Text Update_90</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):alive</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -1565,7 +1565,7 @@ $(pv_value)</tooltip>
     <name>Text Update_92</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):funselRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -1777,7 +1777,7 @@ $(pv_value)</tooltip>
     <name>Text Update_94</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):statdev</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdev</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -1829,7 +1829,7 @@ $(pv_value)</tooltip>
     <name>Text Update_95</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):network</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):network</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -1980,7 +1980,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):seqen</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqen</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -2042,7 +2042,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):seqenRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqenRBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2140,7 +2140,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):rfstat</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfstat</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2228,7 +2228,7 @@ $(pv_value)</tooltip>
     <name>Text Update_96</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):seqstat</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstat</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2325,7 +2325,7 @@ $(pv_value)</tooltip>
     <name>Text Input_157</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):rfdiv</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdiv</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2417,7 +2417,7 @@ $(pv_value)</tooltip>
     <name>Text Update_97</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):rfdivRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdivRBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2598,7 +2598,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):acen</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acen</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -2660,7 +2660,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):acenRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acenRBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2748,7 +2748,7 @@ $(pv_value)</tooltip>
     <name>Text Update_98</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):acdivRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdivRBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2885,7 +2885,7 @@ $(pv_value)</tooltip>
     <name>Text Input_158</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv1</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2946,7 +2946,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):muxen1</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen1</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -3146,7 +3146,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):muxen1RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen1RBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3194,7 +3194,7 @@ $(pv_value)</tooltip>
     <name>Text Update_99</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv1RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1RBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3251,7 +3251,7 @@ $(pv_value)</tooltip>
     <name>Text Input_159</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv2</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3312,7 +3312,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):muxen2</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen2</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -3512,7 +3512,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):muxen2RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen2RBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3560,7 +3560,7 @@ $(pv_value)</tooltip>
     <name>Text Update_100</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv2RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2RBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3617,7 +3617,7 @@ $(pv_value)</tooltip>
     <name>Text Input_160</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv3</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3678,7 +3678,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):muxen3</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen3</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -3878,7 +3878,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):muxen3RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen3RBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3926,7 +3926,7 @@ $(pv_value)</tooltip>
     <name>Text Update_101</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv3RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3RBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3983,7 +3983,7 @@ $(pv_value)</tooltip>
     <name>Text Input_161</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv4</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4044,7 +4044,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):muxen4</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen4</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -4244,7 +4244,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):muxen4RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen4RBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4292,7 +4292,7 @@ $(pv_value)</tooltip>
     <name>Text Update_102</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv4RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4RBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4349,7 +4349,7 @@ $(pv_value)</tooltip>
     <name>Text Input_162</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv5</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4410,7 +4410,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):muxen5</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen5</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -4610,7 +4610,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):muxen5RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen5RBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4658,7 +4658,7 @@ $(pv_value)</tooltip>
     <name>Text Update_103</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv5RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5RBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4715,7 +4715,7 @@ $(pv_value)</tooltip>
     <name>Text Input_163</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv6</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4776,7 +4776,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):muxen6</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen6</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -4976,7 +4976,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):muxen6RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen6RBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5024,7 +5024,7 @@ $(pv_value)</tooltip>
     <name>Text Update_104</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv6RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6RBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5081,7 +5081,7 @@ $(pv_value)</tooltip>
     <name>Text Input_164</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv7</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5142,7 +5142,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):muxen7</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen7</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -5342,7 +5342,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(device):muxen7RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen7RBV</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5390,7 +5390,7 @@ $(pv_value)</tooltip>
     <name>Text Update_105</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):muxdiv7RBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7RBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5447,7 +5447,7 @@ $(pv_value)</tooltip>
     <name>Text Input_165</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):acdiv</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdiv</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5502,7 +5502,7 @@ $(pv_value)</tooltip>
       <color red="255" green="0" blue="0" />
     </foreground_color>
     <gradient>false</gradient>
-    <height>163</height>
+    <height>91</height>
     <horizontal_fill>true</horizontal_fill>
     <line_color>
       <color red="128" green="0" blue="255" />
@@ -5594,286 +5594,10 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <height>20</height>
     <horizontal_alignment>0</horizontal_alignment>
-    <name>Text Update_106</name>
-    <precision>0</precision>
-    <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):seqaddrRBV</pv_name>
-    <pv_value />
-    <rotation_angle>0.0</rotation_angle>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_units>true</show_units>
-    <text>######</text>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <transparent>false</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Text Update</widget_type>
-    <width>94</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:35ed</wuid>
-    <x>235</x>
-    <y>473</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_213</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>Address RBV</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>68</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:35ee</wuid>
-    <x>248</x>
-    <y>452</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <auto_size>false</auto_size>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <format_type>0</format_type>
-    <height>20</height>
-    <horizontal_alignment>0</horizontal_alignment>
-    <name>Text Update_107</name>
-    <precision>0</precision>
-    <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):seqcodeRBV</pv_name>
-    <pv_value />
-    <rotation_angle>0.0</rotation_angle>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_units>true</show_units>
-    <text>######</text>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <transparent>false</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Text Update</widget_type>
-    <width>94</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:35f6</wuid>
-    <x>340</x>
-    <y>473</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_214</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>Code RBV</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>68</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:35f7</wuid>
-    <x>353</x>
-    <y>452</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <auto_size>false</auto_size>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <format_type>0</format_type>
-    <height>20</height>
-    <horizontal_alignment>0</horizontal_alignment>
-    <name>Text Update_108</name>
-    <precision>0</precision>
-    <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):seqtimeRBV</pv_name>
-    <pv_value />
-    <rotation_angle>0.0</rotation_angle>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_units>true</show_units>
-    <text>######</text>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <transparent>false</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Text Update</widget_type>
-    <width>94</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:35ff</wuid>
-    <x>444</x>
-    <y>473</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_215</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>Timestamp RBV</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>81</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:3600</wuid>
-    <x>450</x>
-    <y>452</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <auto_size>false</auto_size>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <format_type>0</format_type>
-    <height>20</height>
-    <horizontal_alignment>0</horizontal_alignment>
     <name>Text Update_109</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):seqcountRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqcountRBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5895,7 +5619,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:3614</wuid>
     <x>235</x>
-    <y>540</y>
+    <y>473</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -5935,7 +5659,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:3615</wuid>
     <x>241</x>
-    <y>519</y>
+    <y>452</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Rectangle" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -5993,7 +5717,7 @@ $(pv_value)</tooltip>
     <width>384</width>
     <wuid>10c4971e:157711e6f06:368f</wuid>
     <x>228</x>
-    <y>581</y>
+    <y>512</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6033,7 +5757,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:3693</wuid>
     <x>235</x>
-    <y>586</y>
+    <y>517</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6072,7 +5796,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):RUNSEQ</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RUNSEQ</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -6094,7 +5818,7 @@ $(pv_value)</tooltip>
     <width>47</width>
     <wuid>10c4971e:157711e6f06:369f</wuid>
     <x>245</x>
-    <y>627</y>
+    <y>558</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6134,7 +5858,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:36a3</wuid>
     <x>248</x>
-    <y>610</y>
+    <y>541</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6173,7 +5897,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):STOPSEQ</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPSEQ</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -6195,7 +5919,7 @@ $(pv_value)</tooltip>
     <width>47</width>
     <wuid>10c4971e:157711e6f06:36aa</wuid>
     <x>314</x>
-    <y>627</y>
+    <y>558</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6235,7 +5959,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:36ab</wuid>
     <x>317</x>
-    <y>610</y>
+    <y>541</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6274,7 +5998,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):INJSEQ</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):INJSEQ</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -6296,7 +6020,7 @@ $(pv_value)</tooltip>
     <width>47</width>
     <wuid>10c4971e:157711e6f06:36b6</wuid>
     <x>245</x>
-    <y>682</y>
+    <y>613</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6336,7 +6060,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:36b7</wuid>
     <x>248</x>
-    <y>665</y>
+    <y>596</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6375,7 +6099,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):STOPINJSEQ</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPINJSEQ</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -6397,7 +6121,7 @@ $(pv_value)</tooltip>
     <width>47</width>
     <wuid>10c4971e:157711e6f06:36bf</wuid>
     <x>314</x>
-    <y>682</y>
+    <y>613</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6437,7 +6161,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:36c0</wuid>
     <x>302</x>
-    <y>665</y>
+    <y>596</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6476,7 +6200,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(device):RESTSEQ</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RESTSEQ</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -6498,7 +6222,7 @@ $(pv_value)</tooltip>
     <width>47</width>
     <wuid>10c4971e:157711e6f06:36d1</wuid>
     <x>245</x>
-    <y>737</y>
+    <y>668</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6538,7 +6262,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:36d2</wuid>
     <x>248</x>
-    <y>720</y>
+    <y>651</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
     <actions hook="false" hook_all="false" />
@@ -6573,7 +6297,7 @@ $(pv_value)</tooltip>
     <name>Text Input</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):ITBL</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITBL</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6595,7 +6319,7 @@ $(pv_value)</tooltip>
     <width>369</width>
     <wuid>10c4971e:157711e6f06:3700</wuid>
     <x>235</x>
-    <y>816</y>
+    <y>747</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6635,7 +6359,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:3704</wuid>
     <x>234</x>
-    <y>790</y>
+    <y>721</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6665,7 +6389,7 @@ $(pv_value)</tooltip>
     <name>Text Update_110</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):STATEMACHINE</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STATEMACHINE</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6687,7 +6411,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:3710</wuid>
     <x>450</x>
-    <y>632</y>
+    <y>563</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6727,7 +6451,7 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:3714</wuid>
     <x>450</x>
-    <y>610</y>
+    <y>541</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Rectangle" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6820,7 +6544,7 @@ $(pv_value)</tooltip>
     <name>Text Input_167</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):EVCODE0</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVCODE0</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7077,7 +6801,7 @@ $(pv_value)</tooltip>
     <name>Text Input_1</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):EVTIME0</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTIME0</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7125,7 +6849,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo</name>
-    <pv_name>$(device):EVDLYMODE0</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVDLYMODE0</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7167,7 +6891,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_1</name>
-    <pv_name>$(device):EVTRANSM0</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTRANSM0</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7276,7 +7000,7 @@ $(pv_value)</tooltip>
     <name>Text Input_169</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):EVCODE1</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVCODE1</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7533,7 +7257,7 @@ $(pv_value)</tooltip>
     <name>Text Input_170</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):EVTIME1</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTIME1</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7581,7 +7305,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_2</name>
-    <pv_name>$(device):EVDLYMODE1</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVDLYMODE1</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7623,7 +7347,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_3</name>
-    <pv_name>$(device):EVTRANSM1</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTRANSM1</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7732,7 +7456,7 @@ $(pv_value)</tooltip>
     <name>Text Input_171</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):EVCODE2</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVCODE2</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7989,7 +7713,7 @@ $(pv_value)</tooltip>
     <name>Text Input_172</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):EVTIME2</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTIME2</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8037,7 +7761,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_4</name>
-    <pv_name>$(device):EVDLYMODE2</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVDLYMODE2</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8079,7 +7803,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_5</name>
-    <pv_name>$(device):EVTRANSM2</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTRANSM2</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8188,7 +7912,7 @@ $(pv_value)</tooltip>
     <name>Text Input_173</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):EVCODE3</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVCODE3</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8445,7 +8169,7 @@ $(pv_value)</tooltip>
     <name>Text Input_174</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):EVTIME3</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTIME3</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8493,7 +8217,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_6</name>
-    <pv_name>$(device):EVDLYMODE3</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVDLYMODE3</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8535,7 +8259,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_7</name>
-    <pv_name>$(device):EVTRANSM3</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTRANSM3</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8617,7 +8341,7 @@ $(pv_value)</tooltip>
     <height>29</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_8</name>
-    <pv_name>$(device):TIMESRC</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8668,7 +8392,7 @@ $(pv_value)</tooltip>
     <name>Text Input_175</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):UTC</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTC</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8760,7 +8484,7 @@ $(pv_value)</tooltip>
     <name>Text Update_111</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):TIMESRCRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRCRBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8852,7 +8576,7 @@ $(pv_value)</tooltip>
     <name>Text Update_112</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):UTCRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCRBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8984,7 +8708,7 @@ $(pv_value)</tooltip>
     <name>Text Update_113</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(device):subsecondRBV</pv_name>
+    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):subsecondRBV</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />

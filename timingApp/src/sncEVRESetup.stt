@@ -5,30 +5,30 @@ program sncEVRESetup
 %%//----------------------------------------
 
 int uploadproc;
-assign uploadproc to "{device}:uploadT.PROC";
+assign uploadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:uploadT.PROC";
 
 int downloadproc;
-assign downloadproc to "{device}:downloadT.PROC";
+assign downloadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:downloadT.PROC";
 
 int download;
-assign download to "{device}:download.VAL";
+assign download to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:download.VAL";
 monitor download;
 
 int statdev;
-assign statdev to "{device}:statdev";
+assign statdev to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:statdev";
 monitor statdev;
 
 int past_alive = -1;
 int alive;
-assign alive to "{device}:alive";
+assign alive to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:alive";
 monitor alive;
 
 int funselRBV;
-assign funselRBV to "{device}:funselRBV.RVAL";
+assign funselRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:funselRBV.RVAL";
 monitor funselRBV;
 
 int network;
-assign network to "{device}:network";
+assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
 
 %%//----------------------------------------
 %%// 	    State Notation Language
@@ -37,7 +37,7 @@ assign network to "{device}:network";
 ss configuration {
     state init {
 		when (delay(1.0)){
-			printf("\n%s state machine initiated\n", macValueGet("device"));
+			printf("\n%s-%s:%s-%s%s state machine initiated\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
 		} state upload
     }
     state upload {
@@ -46,7 +46,7 @@ ss configuration {
 		when (network == 1){
 			uploadproc = 1;
 			pvPut(uploadproc,SYNC);
-			printf("\nConfiguration uploaded from %s.\n", macValueGet("device"));
+			printf("\nConfiguration uploaded from %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
 		} state waiting
 		when (delay(2.0)) {
 		} state upload
@@ -66,7 +66,7 @@ ss configuration {
 		entry {
 			downloadproc = 1;
 			pvPut(downloadproc,SYNC);
-			printf("\nConfiguration downloaded to %s.\n", macValueGet("device"));
+			printf("\nConfiguration downloaded to %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
 			download = 0;
 			pvPut(download,SYNC);
 		} 

@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="auto_complete_history">
 		<list key="PV">
+			<item value="$(device)pol6RBV"/>
+			<item value="$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable"/>
 			<item value="$(device):sel7"/>
 			<item value="$(device):sel6"/>
 			<item value="$(device):sel5"/>
@@ -100,8 +102,6 @@
 			<item value="$(device):pulses0RBV"/>
 			<item value="$(device):pulses0"/>
 			<item value="$(device):UTC"/>
-			<item value="$(device):event0"/>
-			<item value="EVG:enableRBV"/>
 		</list>
 	</section>
 </section>
