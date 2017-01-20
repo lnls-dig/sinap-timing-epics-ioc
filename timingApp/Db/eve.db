@@ -2995,7 +2995,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly0"){
   field(DESC, "EVE OUT0 RF delay")
   field(EGU, "evt_T/20")
   field(DRVL, "0")
-  field(DRVH, "20")
+  field(DRVH, "31")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
 }
@@ -3139,7 +3139,7 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly1RBV") {
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly1"){
   field(DESC, "EVE OUT1 RF delay")
   field(DRVL, "0")
-  field(DRVH, "20")
+  field(DRVH, "31")
   field(EGU, "evt_T/20")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
@@ -3284,7 +3284,7 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly2RBV") {
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly2"){
   field(DESC, "EVE OUT2 RF delay")
   field(DRVL, "0")
-  field(DRVH, "20")
+  field(DRVH, "31")
   field(EGU, "evt_T/20")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
@@ -3429,7 +3429,7 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly3RBV") {
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly3"){
   field(DESC, "EVE OUT3 RF delay")
   field(DRVL, "0")
-  field(DRVH, "20")
+  field(DRVH, "31")
   field(EGU, "evt_T/20")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
@@ -3573,7 +3573,7 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly4RBV") {
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly4"){
   field(DESC, "EVE OUT4 RF delay")
   field(DRVL, "0")
-  field(DRVH, "20")
+  field(DRVH, "31")
   field(EGU, "evt_T/20")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
@@ -3718,7 +3718,7 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly5RBV") {
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly5"){
   field(DESC, "EVE OUT5 RF delay")
   field(DRVL, "0")
-  field(DRVH, "20")
+  field(DRVH, "31")
   field(EGU, "evt_T/20")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
@@ -3863,7 +3863,7 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly6RBV") {
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly6"){
   field(DESC, "EVE OUT6 RF delay")
   field(DRVL, "0")
-  field(DRVH, "20")
+  field(DRVH, "31")
   field(EGU, "evt_T/20")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
@@ -4008,7 +4008,7 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly7RBV") {
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly7"){
   field(DESC, "EVE OUT7 RF delay")
   field(DRVL, "0")
-  field(DRVH, "20")
+  field(DRVH, "31")
   field(EGU, "evt_T/20")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
@@ -4222,8 +4222,8 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstlog"){
 
 record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull"){
   field(DESC, "EVE pull from log command")
-  field(ONAM, "ON")
-  field(ZNAM, "OFF")
+  field(ONAM, "PULL")
+  field(ZNAM, "DO NOTHING")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):checkPull")
 }
 

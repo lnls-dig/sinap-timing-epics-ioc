@@ -75,12 +75,3 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RESTSEQ"){
 	field(DESC, "Set Sequencer Restart Trigger")
 }
 
-#####################################################
-# Update Trigger: Update events from Stopped state
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UPDATEEV"){
-	field(SCAN, "Passive")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
-	field(DESC, "Set Sequencer Update Events Trigger")
-}
-
