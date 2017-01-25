@@ -230,10 +230,6 @@ ss seq {
 	   %{/* STOPPED ENTRY	
 
 		-Status update
-		-Update Event Pointer Array
-		-Make sure SeqRAM is disabled
-		-Reset SequenceRAM Count
-		-Clear numberOfWrites
 	   */}%
 
 	   %%// Status update (stopped)
@@ -349,13 +345,9 @@ ss seq {
 
 	entry{
 
-	    %{/*
-		  -Status Update 
-	    */}%
-
 	    printf("CheckSeq1Write Entry\n");
 
-	    printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
+	    %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
 	}
 
 	when(seqcount == numberOfWrites && seqen_rbv == 0){
@@ -528,13 +520,9 @@ ss seq {
 
 	entry{
 
-	    %{/*
-		  -Status Update 
-	    */}%
-
 	    printf("CheckSeq2Write Entry\n");
 
-	    printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
+	    %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
 	}
 
 	when(tbl_length == 0){
@@ -672,10 +660,6 @@ ss seq {
 	    %{/* RESTARTING ENTRY	
 
 		-Status update
-		-Stop SequenceRAM
-		-Update EventPointerArray
-		-Clear numberOfWrites
-
 	    */}%	 
 
 	   %%// Status update (restarting)

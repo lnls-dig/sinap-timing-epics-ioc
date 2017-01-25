@@ -1,0 +1,40 @@
+# Control and Status
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqen.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acen.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdiv.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdiv.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SEQEN_ENABLE.VAL
+# MUX
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7.RVAL
+# Timestamp
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC.RVAL
+# Configuration
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funsel.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funsel.RVAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdiv.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdiv.RVAL

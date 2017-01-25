@@ -25,7 +25,7 @@ drvAsynIPPortConfigure ("EVR5", "10.0.18.63:50115:50115 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR6", "10.0.18.117:50117:50117 udp",0,0,0)
 
 drvAsynIPPortConfigure ("EVE1", "10.0.18.58:50121:50121 udp",0,0,0)
-drvAsynIPPortConfigure ("EVE2", "10.0.18.54:50122:50122 udp",0,0,0)
+#drvAsynIPPortConfigure ("EVE2", "10.0.18.54:50122:50122 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE3", "10.0.18.123:50123:50123 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE4", "10.0.18.124:50124:50124 udp",0,0,0)
 
@@ -59,9 +59,39 @@ dbLoadRecords("${TOP}/db/evr.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=5, PORT
 
 # EVE
 dbLoadRecords("${TOP}/db/eve.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1, PORT=EVE1, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/eve.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2, PORT=EVE2, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/eve.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2, PORT=EVE2, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/eve.db", "device=EVE3, PORT=EVE3, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/eve.db", "device=EVE4, PORT=EVE4, ADDR=0, TIMEOUT=2")
+
+# Specify save file path
+set_savefile_path("$(TOP)", "autosave/save_files")
+
+# Specify request files directories
+set_requestfile_path("$(TOP)", "autosave/request_files")
+
+# Specify files to be restored, and when
+# EVG
+set_pass0_restoreFile("autosave_evg_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1")
+# ITBL
+set_pass1_restoreFile("autosave_ITBL_PROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1")
+# Events
+set_pass1_restoreFile("autosave_event0_PROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1, num=0")
+set_pass1_restoreFile("autosave_event1_PROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1, num=1")
+set_pass1_restoreFile("autosave_event2_PROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1, num=2")
+set_pass1_restoreFile("autosave_event3_PROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1, num=3")
+# EVR
+#set_pass0_restoreFile("autosave_evr1_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
+#set_pass0_restoreFile("autosave_evr2_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
+# EVE
+set_pass0_restoreFile("autosave_eve1_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
+#set_pass0_restoreFile("autosave_eve2_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
+#set_pass0_restoreFile("autosave_eve3_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=3")
+
+# Enable/Disable backup files (0->Disable, 1->Enable)
+save_restoreSet_DatedBackupFiles(0)
+
+# Number of copies of .sav files to maintain
+save_restoreSet_NumSeqFiles(0)
 
 ## Run this to trace the stages of iocInit
 #traceIocInit
@@ -82,9 +112,42 @@ seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=5"
 #seq sncEVRESetup, "device=EVR6"
 
 seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1"
-seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2"
 #seq sncEVRESetup, "device=EVE3"
 #seq sncEVRESetup, "device=EVE4"
 
 # Injection System State Machine
 seq sncSeqRAM, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, ev_num=10"
+
+# Start Autosave monitor
+# EVG
+create_monitor_set("autosave_evg_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1")
+# ITBL
+create_monitor_set("autosave_ITBL_PROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1")
+# Events
+create_monitor_set("autosave_event0_PROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=0")
+create_monitor_set("autosave_event1_PROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=1")
+create_monitor_set("autosave_event2_PROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=2")
+create_monitor_set("autosave_event3_PROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=3")
+# EVR
+#create_monitor_set("autosave_evr1_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
+#create_monitor_set("autosave_evr2_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
+# EVE
+create_monitor_set("autosave_eve1_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
+#create_monitor_set("autosave_eve2_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
+#create_monitor_set("autosave_eve3_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=3")
+
+# Create manual trigger for Autosave
+create_triggered_set("autosave_evg_NOPROC.req", "AS-Inj:TI-EVG1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1")
+create_triggered_set("autosave_ITBL_PROC.req", "AS-Inj:TI-EVG1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1")
+create_triggered_set("autosave_event0_PROC.req", "AS-Inj:TI-EVG1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=0")
+create_triggered_set("autosave_event1_PROC.req", "AS-Inj:TI-EVG1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=1")
+create_triggered_set("autosave_event2_PROC.req", "AS-Inj:TI-EVG1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=2")
+create_triggered_set("autosave_event3_PROC.req", "AS-Inj:TI-EVG1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=3")
+
+#create_triggered_set("autosave_evr1_NOPROC.req", "AS-Inj:TI-EVR1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=1")
+#create_triggered_set("autosave_evr2_NOPROC.req", "AS-Inj:TI-EVR2:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=2")
+
+create_triggered_set("autosave_eve1_NOPROC.req", "AS-Inj:TI-EVE1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
+#create_triggered_set("autosave_eve2_NOPROC.req", "AS-Inj:TI-EVE2:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
+#create_triggered_set("autosave_eve3_NOPROC.req", "AS-Inj:TI-EVE3:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=3")

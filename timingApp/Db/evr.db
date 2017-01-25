@@ -2982,7 +2982,7 @@ record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0RBV"){
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly0RBV") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT0 fine delay status")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
 }
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly0RBV") {
@@ -3004,7 +3004,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly0"){
   field(DESC, "EVR OUT0 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
 }
@@ -3127,7 +3127,7 @@ record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1RBV"){
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly1RBV") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT1 fine delay status")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
 }
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly1RBV") {
@@ -3149,7 +3149,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly1"){
   field(DESC, "EVR OUT1 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
 }
@@ -3272,7 +3272,7 @@ record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2RBV"){
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly2RBV") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT2 fine delay status")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
 }
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly2RBV") {
@@ -3294,7 +3294,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly2"){
   field(DESC, "EVR OUT2 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
 }
@@ -3417,7 +3417,7 @@ record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3RBV"){
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly3RBV") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT3 fine delay status")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
 }
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly3RBV") {
@@ -3439,7 +3439,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly3"){
   field(DESC, "EVR OUT3 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
 }
@@ -3561,7 +3561,7 @@ record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4RBV"){
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly4RBV") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT4 fine delay status")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
 }
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly4RBV") {
@@ -3583,7 +3583,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly4"){
   field(DESC, "EVR OUT4 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
 }
@@ -3706,7 +3706,7 @@ record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5RBV"){
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly5RBV") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT5 fine delay status")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
 }
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly5RBV") {
@@ -3728,7 +3728,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly5"){
   field(DESC, "EVR OUT5 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
 }
@@ -3851,7 +3851,7 @@ record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6RBV"){
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly6RBV") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT6 fine delay status")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
 }
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly6RBV") {
@@ -3873,7 +3873,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly6"){
   field(DESC, "EVR OUT6 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
 }
@@ -3996,7 +3996,7 @@ record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7RBV"){
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly7RBV") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT7 fine delay status")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
 }
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly7RBV") {
@@ -4018,7 +4018,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly7"){
   field(DESC, "EVR OUT7 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
-  field(EGU, "5 ps")
+  field(EGU, "5ps")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
 }
@@ -4571,3 +4571,16 @@ record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):network") {
   field(ONAM, "ON")
 }
 
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE"){
+  field(DESC, "EVR manual Save settings command")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):save_T")
+}
+
+record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):save_T"){
+  field(DESC, "EVR manual Save trigger")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE.VAL")
+  field(CALC, "(A > 0) ? (VAL+1) : VAL")
+  field(VAL, "0")
+}
