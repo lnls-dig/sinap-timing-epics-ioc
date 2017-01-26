@@ -13,7 +13,7 @@ include $(TOP)/configure/CONFIG
 DB += eve.db
 DB += evg.db
 DB += evr.db
-DB += Eventos.db
+DB += Events.db
 DB += SeqRAM.db
 
 #----------------------------------------------------

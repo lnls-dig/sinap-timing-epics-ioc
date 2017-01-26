@@ -181,7 +181,7 @@ ss seq {
 	   for (i = 0; i < eventNum; i++) {
 	     sprintf (str, "%s:%s%d", device, evCodeName, i);
 	     pvAssign (event_codes[i], str);
-	     printf("%s\n", str);
+	     %%//printf("%s\n", str);
 	   }
 	   for (i = 0; i < eventNum; i++) {
 	     sprintf (str, "%s:%s%d", device, evTimeName, i);
@@ -199,7 +199,7 @@ ss seq {
 	  %%// Initialize Event Pointer Array
 	   init_EventPointerArray(eventNum);
 
-	   printf("Initialization Entry\n");
+	   %%//printf("Initialization Entry\n");
 	}
 
 	when(seqs == 0 && network == 1)
@@ -236,7 +236,7 @@ ss seq {
 	   StateMachineStatus = 1;
 	   pvPut(StateMachineStatus, SYNC);
 
-	   printf("Stopped Entry\n");
+	   %%//printf("Stopped Entry\n");
 	}
 
 	when(seqen_rbv != 0){
@@ -301,7 +301,7 @@ ss seq {
 
 		%{/* Just go to Running state */}%
 
-		printf("Moving to Running State\n");
+		%%//printf("Moving to Running State\n");
 	} state Running
 
 	when(stop_tg){
@@ -345,7 +345,7 @@ ss seq {
 
 	entry{
 
-	    printf("CheckSeq1Write Entry\n");
+	    %%//printf("CheckSeq1Write Entry\n");
 
 	    %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
 	}
@@ -362,28 +362,28 @@ ss seq {
 		seqsw = 1;
 		pvPut(seqsw, SYNC);
 
-		printf("Write succeded: seqen=%d, seqs=%d\n", seqen, seqs);
+		printf("Write to SeqRAM 1 succeded\n");
 
 	} state CheckSeq1Write
 
 	when(seqs == 1){
 
-		printf("Going from CheckSeq1Write to Running State\n");
+		%%//printf("Going from CheckSeq1Write to Running State\n");
 
 		%{/* Just go to Running state */}%
 
-		printf("Moving to Running State\n");
+		%%//printf("Moving to Running State\n");
 	} state Running
 
 	when(delay(5.0) && seqen_rbv == 0){
 
 		%{/* Unsuccessful Write */}%
 
-		printf("CheckSeq1Write: Unseccessful Write to Seq1, going to Stopped State\n");
+		printf("Error: Write to SeqRAM 1 Failed.\n");
 
 		%%// seqcountRBV will be cleared by seqsw in Stopped Entry
 
-		printf("Error: Write to SeqRAM 1 Failed.\n");
+		printf("CheckSeq1Write: Unseccessful Write to Seq1, going to Stopped State\n");
 
 	} state Stopped
     }
@@ -406,7 +406,7 @@ ss seq {
 	   %%// Clear number of writes
 	   numberOfWrites = 0;
 
-	   printf("Running Entry\n");
+	   %%//printf("Running Entry\n");
 	}
 	
 	when(stop_tg){
@@ -428,7 +428,7 @@ ss seq {
 
 		%{/* Just go to Stopped state */}%
 
-	    	printf("Moving to Stopped State\n");
+	    	%%//printf("Moving to Stopped State\n");
 	} state Stopped
 
 	when(inj_tg){
@@ -483,7 +483,7 @@ ss seq {
 
 		%{/* Just go to Injecting state */}%
 
-	    	printf("Moving to Injecting State\n");
+	    	%%//printf("Moving to Injecting State\n");
 	} state Injecting
 
 	when(restart_tg){
@@ -494,7 +494,7 @@ ss seq {
 		restart_tg = 0;
 		pvPut(restart_tg, SYNC);
 
-	   	printf("Moving to Restarting State\n");
+	   	printf("Restart Triggered\n");
 	} state Restarting
 
 	when(run_tg){
@@ -520,7 +520,7 @@ ss seq {
 
 	entry{
 
-	    printf("CheckSeq2Write Entry\n");
+	    %%//printf("CheckSeq2Write Entry\n");
 
 	    %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
 	}
@@ -542,13 +542,15 @@ ss seq {
 		seqsw = 1;
 		pvPut(seqsw, SYNC);
 
+		printf("Write to SeqRAM 2 succeded\n");
+
 	} state CheckSeq2Write
 
 	when(seqs == 2){
 
 		%{/* Just go to Injecting state */}%
 
-		printf("Moving to Injecting State\n");
+		%%//printf("Moving to Injecting State\n");
 	} state Injecting
 
 	when(delay(5.0) && seqs != 2){
@@ -576,14 +578,14 @@ ss seq {
 	   StateMachineStatus = 3;
 	   pvPut(StateMachineStatus, SYNC);
 
-	   printf("Injecting Entry\n");
+	   %%//printf("Injecting Entry\n");
 	}
 
 	when(seqs == 1){
 
 		%{/* Just go to Running state */}%
 
-	   	printf("Moving to Running State\n");
+	   	%%//printf("Moving to Running State\n");
 	} state Running
 
 	when(stopinj_tg){
@@ -622,7 +624,7 @@ ss seq {
 
 		%{/* Just go to Stopped state */}%
 
-		printf("Moving to Stopped State\n");
+		%%//printf("Moving to Stopped State\n");
 	} state Stopped
 
 	when(run_tg){
@@ -666,7 +668,7 @@ ss seq {
 	   StateMachineStatus = 4;
 	   pvPut(StateMachineStatus, SYNC);
 
-	   printf("Restarting Entry\n");
+	   %%//printf("Restarting Entry\n");
 	}
 
 	when(seqen_rbv != 0){

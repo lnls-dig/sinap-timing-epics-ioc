@@ -112,7 +112,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0") {
   field(DESC, "EVR OTP0 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE0")
 }
 
@@ -120,7 +119,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0") {
   field(DESC, "EVR OTP0 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL0")
 }
 
@@ -128,7 +126,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME0")
 }
 
@@ -291,7 +288,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1") {
   field(DESC, "EVR OTP1 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE1")
 }
 
@@ -299,7 +295,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1") {
   field(DESC, "EVR OTP1 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL1")
 }
 
@@ -307,7 +302,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1") {
   field(DESC, "EVR OTP1 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME1")
 }
 
@@ -470,7 +464,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2") {
   field(DESC, "EVR OTP2 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE2")
 }
 
@@ -478,7 +471,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2") {
   field(DESC, "EVR OTP2 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL2")
 }
 
@@ -486,7 +478,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2") {
   field(DESC, "EVR OTP2 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME2")
 }
 
@@ -649,7 +640,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3") {
   field(DESC, "EVR OTP3 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE3")
 }
 
@@ -657,7 +647,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3") {
   field(DESC, "EVR OTP3 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL3")
 }
 
@@ -665,7 +654,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3") {
   field(DESC, "EVR OTP3 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME3")
 }
 
@@ -828,7 +816,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4") {
   field(DESC, "EVR OTP4 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE4")
 }
 
@@ -836,7 +823,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4") {
   field(DESC, "EVR OTP4 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL4")
 }
 
@@ -844,7 +830,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4") {
   field(DESC, "EVR OTP4 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME4")
 }
 
@@ -1007,7 +992,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5") {
   field(DESC, "EVR OTP5 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE5")
 }
 
@@ -1015,7 +999,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5") {
   field(DESC, "EVR OTP5 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL5")
 }
 
@@ -1023,7 +1006,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5") {
   field(DESC, "EVR OTP5 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME5")
 }
 
@@ -1186,7 +1168,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6") {
   field(DESC, "EVR OTP6 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE6")
 }
 
@@ -1194,7 +1175,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6") {
   field(DESC, "EVR OTP6 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL6")
 }
 
@@ -1202,7 +1182,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6") {
   field(DESC, "EVR OTP6 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME6")
 }
 
@@ -1365,7 +1344,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7") {
   field(DESC, "EVR OTP7 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE7")
 }
 
@@ -1373,7 +1351,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7") {
   field(DESC, "EVR OTP7 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL7")
 }
 
@@ -1381,7 +1358,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7") {
   field(DESC, "EVR OTP7 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME7")
 }
 
@@ -1544,7 +1520,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8") {
   field(DESC, "EVR OTP8 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE8")
 }
 
@@ -1552,7 +1527,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8") {
   field(DESC, "EVR OTP8 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL8")
 }
 
@@ -1560,7 +1534,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8") {
   field(DESC, "EVR OTP8 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME8")
 }
 
@@ -1722,7 +1695,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9") {
   field(DESC, "EVR OTP9 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE9")
 }
 
@@ -1730,7 +1702,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9") {
   field(DESC, "EVR OTP9 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL9")
 }
 
@@ -1738,7 +1709,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9") {
   field(DESC, "EVR OTP9 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME9")
 }
 
@@ -1901,7 +1871,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableA") {
   field(DESC, "EVR OTPA enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeA.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEA")
 }
 
@@ -1909,7 +1878,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polA") {
   field(DESC, "EVR OTPB polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeA.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLA")
 }
 
@@ -1917,7 +1885,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeA") {
   field(DESC, "EVR OTPA event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeA.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEA")
 }
 
@@ -2080,7 +2047,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableB") {
   field(DESC, "EVR OTPB enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeB.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEB")
 }
 
@@ -2088,7 +2054,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polB") {
   field(DESC, "EVR OTPB polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeB.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLB")
 }
 
@@ -2096,7 +2061,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeB") {
   field(DESC, "EVR OTPB event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeB.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEB")
 }
 
@@ -2259,7 +2223,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableC") {
   field(DESC, "EVR OTPC enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeC.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEC")
 }
 
@@ -2267,7 +2230,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polC") {
   field(DESC, "EVR OTPC polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeC.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLC")
 }
 
@@ -2275,7 +2237,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeC") {
   field(DESC, "EVR OTPC event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeC.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEC")
 }
 
@@ -2438,7 +2399,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableD") {
   field(DESC, "EVR OTPD enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeD.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLED")
 }
 
@@ -2446,7 +2406,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polD") {
   field(DESC, "EVR OTPD polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeD.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLD")
 }
 
@@ -2454,7 +2413,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeD") {
   field(DESC, "EVR OTPD event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeD.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMED")
 }
 
@@ -2617,7 +2575,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableE") {
   field(DESC, "EVR OTPE enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeE.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEE")
 }
 
@@ -2625,7 +2582,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polE") {
   field(DESC, "EVR OTPE polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeE.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLE")
 }
 
@@ -2633,7 +2589,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeE") {
   field(DESC, "EVR OTPE event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeE.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEE")
 }
 
@@ -2796,7 +2751,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableF") {
   field(DESC, "EVR OTPF enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeF.A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEF")
 }
 
@@ -2804,7 +2758,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polF") {
   field(DESC, "EVR OTPF polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeF.B")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLF")
 }
 
@@ -2812,7 +2765,6 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeF") {
   field(DESC, "EVR OTPF event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeF.C")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEF")
 }
 
@@ -4390,8 +4342,7 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):whileNotEmpty"){
   field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EMPTY")
   field(CALC, "A = 0")
   field(VAL, "0")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull")
+  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull PP")
 }
 
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_log_get"){

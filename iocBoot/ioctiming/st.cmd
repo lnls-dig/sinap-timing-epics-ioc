@@ -36,18 +36,18 @@ dbLoadRecords("${TOP}/db/evg.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, ITBL
 dbLoadRecords "${TOP}/db/SeqRAM.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1"
 
 # Events
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=0, desc='Diagnostic', code=0x02, time=100, mode=0, transm=0"
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=1, desc='Septa LTB', code=0x03, time=150, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=2, desc='Egun Trigger', code=0x04, time=160, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=3, desc='Kicker LTB', code=0x05, time=170, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=0, desc='Diagnostic', code=0x02, time=100, mode=0, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=1, desc='Septa LTB', code=0x03, time=150, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=2, desc='Egun Trigger', code=0x04, time=160, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=3, desc='Kicker LTB', code=0x05, time=170, mode=1, transm=0"
 
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=4, desc='Diagnostic', code=0x06, time=180, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=5, desc='Septa LTB', code=0x07, time=190, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=6, desc='Egun Trigger', code=0x08, time=200, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=7, desc='Kicker LTB', code=0x09, time=210, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=4, desc='Diagnostic', code=0x06, time=180, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=5, desc='Septa LTB', code=0x07, time=190, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=6, desc='Egun Trigger', code=0x08, time=200, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=7, desc='Kicker LTB', code=0x09, time=210, mode=1, transm=0"
 
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=8, desc='Diagnostic', code=0x0A, time=220, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Eventos.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=9, desc='Septa LTB', code=0x0B, time=230, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=8, desc='Diagnostic', code=0x0A, time=220, mode=1, transm=0"
+dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=9, desc='Septa LTB', code=0x0B, time=230, mode=1, transm=0"
 
 # EVR
 #dbLoadRecords("${TOP}/db/evr.db", "device=EVR1, PORT=EVR1, ADDR=0, TIMEOUT=2")
