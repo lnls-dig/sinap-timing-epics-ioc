@@ -202,26 +202,33 @@ ss seq {
 	   %%//printf("Initialization Entry\n");
 	}
 
-	when(seqs == 0 && network == 1)
+	when(seqs == 0 && network == 1 && (pvConnectCount() == pvAssignCount()))
 	{
 		%{/* SeqRAM Stopped */}%
 
 		printf("Moving to Stopped State\n");
 	} state Stopped
 
-	when(seqs == 1 && network == 1)
+	when(seqs == 1 && network == 1 && (pvConnectCount() == pvAssignCount()))
 	{
 		%{/* SeqRAM Running (SeqRAM 1)*/}%
 
 		printf("Moving to Running State\n");
 	} state Running
 
-	when(seqs == 2 && network == 1)
+	when(seqs == 2 && network == 1 && (pvConnectCount() == pvAssignCount()))
 	{
 		%{/* SeqRAM Injecting (SeqRAM 2)*/}%
 
 		printf("Moving to Injecting State\n");
 	} state Injecting
+
+	when (delay(10) && (pvConnectCount() != pvAssignCount())) {
+
+		%{/* Unable to connect to some PV */}%
+
+		printf("Error: Some PVs are still disconnected after 10s\n");
+	} state init
     }
 
     state Stopped {
@@ -560,7 +567,7 @@ ss seq {
 		%%// seqcountRBV will not be cleared
 		%%// System will keep failing if not restarted
 
-		printf("Error: Write to SeqRAM 2 Failed.\n");
+		printf("Error: Failed to switch or to write to SeqRAM 2.\n");
 
 	} state Running
     }

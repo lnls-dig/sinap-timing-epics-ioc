@@ -1,13 +1,13 @@
-# autosave R5.3	Automatically generated - DO NOT MODIFY - 170210-085705
+# autosave R5.3	Automatically generated - DO NOT MODIFY - 170210-155226
 AS-Inj:TI-EVG1:enable.VAL 1
-AS-Inj:TI-EVG1:seqen.VAL 0
+AS-Inj:TI-EVG1:seqen.VAL 1
 AS-Inj:TI-EVG1:acen.VAL 1
-AS-Inj:TI-EVG1:acdiv.VAL 29
-AS-Inj:TI-EVG1:acdiv.RVAL 28
-AS-Inj:TI-EVG1:SEQEN_ENABLE.VAL 1
+AS-Inj:TI-EVG1:acdiv.VAL 30
+AS-Inj:TI-EVG1:acdiv.RVAL 29
+AS-Inj:TI-EVG1:SEQEN_ENABLE.VAL 3
 AS-Inj:TI-EVG1:muxen0.VAL 0
-AS-Inj:TI-EVG1:muxdiv0.VAL 2
-AS-Inj:TI-EVG1:muxdiv0.RVAL 1
+AS-Inj:TI-EVG1:muxdiv0.VAL 1
+AS-Inj:TI-EVG1:muxdiv0.RVAL 0
 AS-Inj:TI-EVG1:muxen1.VAL 0
 AS-Inj:TI-EVG1:muxdiv1.VAL 0
 AS-Inj:TI-EVG1:muxdiv1.RVAL 0
