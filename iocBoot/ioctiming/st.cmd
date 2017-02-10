@@ -15,16 +15,17 @@ timing_registerRecordDeviceDriver pdbbase
 
 asSetFilename("$(TOP)/accessSecurityFile.acf")
 
-drvAsynIPPortConfigure ("EVG1", "10.0.18.64:50114:50114 udp",0,0,0)
+#drvAsynIPPortConfigure ("EVG1", "10.0.18.64:50114:50114 udp",0,0,0)
+drvAsynIPPortConfigure ("EVG1", "10.0.18.55:50116:50116 udp",0,0,0)
 
 #drvAsynIPPortConfigure ("EVR1", "10.0.18.111:50111:50111 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR2", "10.0.18.112:50112:50112 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR3", "10.0.18.113:50113:50113 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR4", "10.0.18.114:50114:50114 udp",0,0,0)
-drvAsynIPPortConfigure ("EVR5", "10.0.18.63:50115:50115 udp",0,0,0)
+#drvAsynIPPortConfigure ("EVR5", "10.0.18.63:50115:50115 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVR6", "10.0.18.117:50117:50117 udp",0,0,0)
 
-drvAsynIPPortConfigure ("EVE1", "10.0.18.58:50121:50121 udp",0,0,0)
+#drvAsynIPPortConfigure ("EVE1", "10.0.18.58:50121:50121 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE2", "10.0.18.54:50122:50122 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE3", "10.0.18.123:50123:50123 udp",0,0,0)
 #drvAsynIPPortConfigure ("EVE4", "10.0.18.124:50124:50124 udp",0,0,0)
@@ -41,27 +42,27 @@ dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, n
 dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=2, desc='Egun Trigger', code=0x04, time=160, mode=1, transm=0"
 dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=3, desc='Kicker LTB', code=0x05, time=170, mode=1, transm=0"
 
-dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=4, desc='Diagnostic', code=0x06, time=180, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=5, desc='Septa LTB', code=0x07, time=190, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=6, desc='Egun Trigger', code=0x08, time=200, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=7, desc='Kicker LTB', code=0x09, time=210, mode=1, transm=0"
+#dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=4, desc='Diagnostic', code=0x06, time=180, mode=1, transm=0"
+#dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=5, desc='Septa LTB', code=0x07, time=190, mode=1, transm=0"
+#dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=6, desc='Egun Trigger', code=0x08, time=200, mode=1, transm=0"
+#dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=7, desc='Kicker LTB', code=0x09, time=210, mode=1, transm=0"
 
-dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=8, desc='Diagnostic', code=0x0A, time=220, mode=1, transm=0"
-dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=9, desc='Septa LTB', code=0x0B, time=230, mode=1, transm=0"
+#dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=8, desc='Diagnostic', code=0x0A, time=220, mode=1, transm=0"
+#dbLoadRecords "${TOP}/db/Events.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, num=9, desc='Septa LTB', code=0x0B, time=230, mode=1, transm=0"
 
 # EVR
-#dbLoadRecords("${TOP}/db/evr.db", "device=EVR1, PORT=EVR1, ADDR=0, TIMEOUT=2")
-#dbLoadRecords("${TOP}/db/evr.db", "device=EVR2, PORT=EVR2, ADDR=0, TIMEOUT=2")
-#dbLoadRecords("${TOP}/db/evr.db", "device=EVR3, PORT=EVR3, ADDR=0, TIMEOUT=2")
-#dbLoadRecords("${TOP}/db/evr.db", "device=EVR4, PORT=EVR4, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evr.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=5, PORT=EVR5, ADDR=0, TIMEOUT=2")
-#dbLoadRecords("${TOP}/db/evr.db", "device=EVR6, PORT=EVR6, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/evr.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=1, PORT=EVR1, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/evr.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=2, PORT=EVR2, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/evr.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=3, PORT=EVR3, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/evr.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=4, PORT=EVR4, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/evr.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=5, PORT=EVR5, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/evr.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=6, PORT=EVR6, ADDR=0, TIMEOUT=2")
 
 # EVE
-dbLoadRecords("${TOP}/db/eve.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1, PORT=EVE1, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/eve.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1, PORT=EVE1, ADDR=0, TIMEOUT=2")
 #dbLoadRecords("${TOP}/db/eve.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2, PORT=EVE2, ADDR=0, TIMEOUT=2")
-#dbLoadRecords("${TOP}/db/eve.db", "device=EVE3, PORT=EVE3, ADDR=0, TIMEOUT=2")
-#dbLoadRecords("${TOP}/db/eve.db", "device=EVE4, PORT=EVE4, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/eve.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=3, PORT=EVE3, ADDR=0, TIMEOUT=2")
+#dbLoadRecords("${TOP}/db/eve.db", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=4, PORT=EVE4, ADDR=0, TIMEOUT=2")
 
 # Specify save file path
 set_savefile_path("$(TOP)", "autosave/save_files")
@@ -83,7 +84,7 @@ set_pass1_restoreFile("autosave_event3_PROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=
 #set_pass0_restoreFile("autosave_evr1_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
 #set_pass0_restoreFile("autosave_evr2_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
 # EVE
-set_pass0_restoreFile("autosave_eve1_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
+#set_pass0_restoreFile("autosave_eve1_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
 #set_pass0_restoreFile("autosave_eve2_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
 #set_pass0_restoreFile("autosave_eve3_NOPROC.sav", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=3")
 
@@ -104,20 +105,20 @@ iocInit
 # Module initialization and network status
 seq sncEVGSetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1"
 
-#seq sncEVRESetup, "device=EVR1"
-#seq sncEVRESetup, "device=EVR2"
-#seq sncEVRESetup, "device=EVR3"
-#seq sncEVRESetup, "device=EVR4"
-seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=5"
-#seq sncEVRESetup, "device=EVR6"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=1"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=2"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=3"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=4"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=5"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=6"
 
-seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1"
 #seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2"
-#seq sncEVRESetup, "device=EVE3"
-#seq sncEVRESetup, "device=EVE4"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=3"
+#seq sncEVRESetup, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=4"
 
 # Injection System State Machine
-seq sncSeqRAM, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, ev_num=10"
+seq sncSeqRAM, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVG, Idx=1, ev_num=4"
 
 # Start Autosave monitor
 # EVG
@@ -133,7 +134,7 @@ create_monitor_set("autosave_event3_PROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev
 #create_monitor_set("autosave_evr1_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
 #create_monitor_set("autosave_evr2_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
 # EVE
-create_monitor_set("autosave_eve1_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
+#create_monitor_set("autosave_eve1_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
 #create_monitor_set("autosave_eve2_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
 #create_monitor_set("autosave_eve3_NOPROC.req", 30, "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=3")
 
@@ -148,6 +149,6 @@ create_triggered_set("autosave_event3_PROC.req", "AS-Inj:TI-EVG1:save_T", "Sec=A
 #create_triggered_set("autosave_evr1_NOPROC.req", "AS-Inj:TI-EVR1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=1")
 #create_triggered_set("autosave_evr2_NOPROC.req", "AS-Inj:TI-EVR2:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVR, Idx=2")
 
-create_triggered_set("autosave_eve1_NOPROC.req", "AS-Inj:TI-EVE1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
+#create_triggered_set("autosave_eve1_NOPROC.req", "AS-Inj:TI-EVE1:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=1")
 #create_triggered_set("autosave_eve2_NOPROC.req", "AS-Inj:TI-EVE2:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=2")
 #create_triggered_set("autosave_eve3_NOPROC.req", "AS-Inj:TI-EVE3:save_T", "Sec=AS, Sub=Inj, Dis=TI, Dev=EVE, Idx=3")
