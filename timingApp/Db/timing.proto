@@ -27,7 +27,7 @@ evre_ctrl_linkinhs_intr{
 # Control and Status Register EVG [0]
 evg_ctrl_get {
     out "%(\$1-\$2:\$3-\$4\$5:cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xc0%*04r%*04r%*04r";
+    in "\xc0%*04r%*04r%*04r"; # waiting for an answer to trigger interrupts before run next command 
 }
 
 evg_ctrl_seq_en_set{
