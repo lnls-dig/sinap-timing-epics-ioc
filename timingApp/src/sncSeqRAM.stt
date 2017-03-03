@@ -346,6 +346,7 @@ ss seq {
 		pvPut(restart_tg, SYNC);
 
 	} state Stopped
+
     }
 
     state CheckSeq1Write{

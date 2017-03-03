@@ -115,11 +115,11 @@
       <tags>categoryTag:General</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_xvDYptZ8EeaUNaq7QT-Y1g" elementId="org.eclipse.ui.editorss" selectedElement="_xvDYp9Z8EeaUNaq7QT-Y1g">
-      <children xsi:type="basic:PartStack" xmi:id="_xvDYp9Z8EeaUNaq7QT-Y1g" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_S11pIO-5EeaXHpTNXSpPoQ">
+      <children xsi:type="basic:PartStack" xmi:id="_xvDYp9Z8EeaUNaq7QT-Y1g" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_4felAAABEeeCdbmP7qmAiQ">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <tags>active</tags>
-        <children xsi:type="basic:Part" xmi:id="_S11pIO-5EeaXHpTNXSpPoQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Main.opi" iconURI="platform:/plugin/org.csstudio.opibuilder.editor/icons/OPIBuilder.png" closeable="true">
+        <children xsi:type="basic:Part" xmi:id="_4felAAABEeeCdbmP7qmAiQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Main.opi" iconURI="platform:/plugin/org.csstudio.opibuilder.editor/icons/OPIBuilder.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.csstudio.opibuilder.OPIEditor&quot; name=&quot;Main.opi&quot; partName=&quot;Main.opi&quot; title=&quot;Main.opi&quot; tooltip=&quot;TimingIOC_Test/Main.opi&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/TimingIOC_Test/Main.opi&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.csstudio.opibuilder.OPIEditor</tags>
@@ -133,6 +133,10 @@
           <tags>org.csstudio.opibuilder.OPIEditor</tags>
           <tags>removeOnHide</tags>
           <menus xsi:type="menu:PopupMenu" xmi:id="_P-C8oO-5EeaXHpTNXSpPoQ" elementId="org.csstudio.opibuilder.OPIEditor">
+            <tags>menuContribution:popup</tags>
+            <tags>popup:org.csstudio.opibuilder.OPIEditor</tags>
+          </menus>
+          <menus xsi:type="menu:PopupMenu" xmi:id="_qkvfAP9-Eea65qbQtOh9Zg" elementId="org.csstudio.opibuilder.OPIEditor">
             <tags>menuContribution:popup</tags>
             <tags>popup:org.csstudio.opibuilder.OPIEditor</tags>
           </menus>

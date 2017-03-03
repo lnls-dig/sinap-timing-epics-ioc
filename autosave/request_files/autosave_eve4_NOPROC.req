@@ -1,0 +1,211 @@
+# Control and Status
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable.VAL
+# OTP 0
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0.VAL
+# OTP 1
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1.VAL
+# OTP 2
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2.VAL
+# OTP 3
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3.VAL
+# OTP 4
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4.VAL
+# OTP 5
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5.VAL
+# OTP 6
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6.VAL
+# OTP 7
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7.VAL
+# OTP 8
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event8.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses8.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width8.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay8.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8.VAL
+# OTP 9
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event9.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses9.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width9.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay9.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9.VAL
+# OTP A
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventA.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesA.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthA.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayA.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableA.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polA.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeA.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeA.VAL
+# OTP B
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventB.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesB.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthB.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayB.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableB.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polB.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeB.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeB.VAL
+# OTP C
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeC.VAL
+# OTP D
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventD.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesD.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthD.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayD.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableD.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polD.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeD.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeD.VAL
+# OTP E
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventE.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesE.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthE.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayE.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableE.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polE.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeE.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeE.VAL
+# OTP F
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventF.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesF.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthF.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayF.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableF.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polF.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeF.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeF.VAL
+# OUT 0
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0toHW.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL0.VAL
+# OUT 1
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1toHW.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL1.VAL
+# OUT 2
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2toHW.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL2.VAL
+# OUT 3
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3toHW.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL3.VAL
+# OUT 4
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4toHW.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL4.VAL
+# OUT 5
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5toHW.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL5.VAL
+# OUT 6
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6toHW.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL6.VAL
+# OUT 7
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7toHW.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL7.VAL
+# RF Output
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmsel.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmsel.RVAL
+# Timestamp
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC.RVAL
+# Configuration
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):clkmode.VAL
+$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):clkmode.RVAL

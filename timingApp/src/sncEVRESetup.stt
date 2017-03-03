@@ -41,7 +41,7 @@ ss configuration {
 		} state upload
     }
     state upload {
-		when (statdev == 0){
+		when (statdev == 0 || (funselRBV != 17 && funselRBV != 32)){
 		} state waiting
 		when (network == 1){
 			uploadproc = 1;
@@ -52,7 +52,7 @@ ss configuration {
 		} state upload
     }
     state waiting {
-		when ((statdev == 0) && (network == 1)) {
+		when ((statdev == 0 || (funselRBV != 17 && funselRBV != 32)) && (network == 1)) {
 			download = 1;
 		} state download
 		when ((download == 1) && (network == 1)) {

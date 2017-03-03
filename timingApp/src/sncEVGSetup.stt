@@ -50,7 +50,7 @@ ss configuration {
 		} state upload
     }
     state upload {
-		when (statdev == 0){
+		when (funselRBV != 18){
 		} state waiting
 		when (network == 1){
 			uploadproc = 1;
@@ -61,7 +61,7 @@ ss configuration {
 		} state upload
     }
     state waiting {
-		when ((statdev == 0) && (network == 1)) {
+		when ((funselRBV != 18) && (network == 1)) {
 			download = 1;
 		} state download
 		when ((download == 1) && (network == 1)) {
@@ -82,9 +82,6 @@ ss configuration {
 			%%// Update UTC to epoch time
 			utc = time(NULL);
 			pvPut(utc, SYNC);
-			%%// Force broadcast
-			%%//utc = 0;
-			%%//pvPut(utc, SYNC);
 		} 
 		when (delay(1)) {
 		}state waiting

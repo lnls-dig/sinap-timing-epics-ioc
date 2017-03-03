@@ -1,19 +1,20 @@
-2017-02-10 15:55:35.727 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-02-10 15:55:36.958 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-02-10 15:55:37.152 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-02-10 15:55:41.128 SEVERE [Thread 31] org.csstudio.logging.PluginLogListener (logging) - Exception in update check thread
-java.lang.IllegalStateException: BundleContext is no longer valid
-	at org.eclipse.osgi.internal.framework.BundleContextImpl.checkValid(BundleContextImpl.java:983)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl.getServiceReference(BundleContextImpl.java:559)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl.getServiceReference(BundleContextImpl.java:1010)
-	at org.eclipse.equinox.internal.p2.core.helpers.ServiceHelper.getService(ServiceHelper.java:27)
-	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.getSharedPreferences(AbstractRepositoryManager.java:512)
-	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.restoreRepositories(AbstractRepositoryManager.java:1016)
-	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.getRepositoryProperty(AbstractRepositoryManager.java:564)
-	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:686)
-	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
-	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
-	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker.getAvailableRepositories(UpdateChecker.java:151)
-	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker.checkForUpdates(UpdateChecker.java:129)
-	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker$UpdateCheckThread.run(UpdateChecker.java:73)
-
+2017-03-03 09:01:53.513 INFO [Thread 45] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVCODE2' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.513 INFO [Thread 45] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVDLYMODE0' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.514 INFO [Thread 45] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTIME2' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.514 INFO [Thread 45] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVDLYMODE2' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.514 INFO [Thread 45] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTRANSM2' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.514 INFO [Thread 45] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVCODE3' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.541 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTIME3' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.546 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVDLYMODE3' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.546 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTRANSM3' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.546 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:TIMESRC' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.547 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTC' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.547 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:TIMESRCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.547 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.547 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:01:53.547 INFO [Thread 44] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:SAVE' detected, additional response from: /10.0.18.78:5064
+2017-03-03 09:14:16.012 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-03 09:26:45.112 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-03 09:41:01.717 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-03 10:06:29.375 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-03 10:14:51.407 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
