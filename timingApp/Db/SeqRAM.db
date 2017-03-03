@@ -75,3 +75,12 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RESTSEQ"){
 	field(DESC, "Set Sequencer Restart Trigger")
 }
 
+#####################################################
+# Repeat Injection Trigger Flag: Repeat the injection while set
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):REPINJSEQ"){
+	field(SCAN, "Passive")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(DESC, "Repeat Injection Flag")
+}
+
