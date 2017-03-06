@@ -4085,9 +4085,9 @@ $(pv_value)</tooltip>
     <src_wuid>38e5eb62:14bffe23471:-7849</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1448</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1486</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:14b4</wuid>
+    <wuid>-62805d77:14c952d5ca2:14b8</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4117,24 +4117,21 @@ $(pv_value)</tooltip>
     <arrows>2</arrows>
     <fill_arrow>true</fill_arrow>
     <line_color>
-      <color red="0" green="180" blue="0" />
+      <color red="0" green="100" blue="255" />
     </line_color>
     <line_style>0</line_style>
     <line_width>3</line_width>
     <name>connection</name>
-    <points>
-      <point x="645" y="518" />
-      <point x="645" y="578" />
-    </points>
+    <points />
     <router>0</router>
     <src_path></src_path>
-    <src_term>RIGHT</src_term>
+    <src_term>TOP</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-1ba</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1aec</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-98</wuid>
+    <wuid>-62805d77:14ce710fbb6:-6c25</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4154,9 +4151,9 @@ $(pv_value)</tooltip>
     <src_wuid>38e5eb62:14bffe23471:-7849</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1486</tgt_wuid>
+    <tgt_wuid>-da3c482:14c09bba37a:-7f90</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:14b8</wuid>
+    <wuid>-62805d77:14c952d5ca2:142d</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4220,9 +4217,9 @@ $(pv_value)</tooltip>
     <src_wuid>38e5eb62:14bffe23471:-7849</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1468</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1448</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:14ba</wuid>
+    <wuid>-62805d77:14c952d5ca2:14b4</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4235,19 +4232,16 @@ $(pv_value)</tooltip>
     <line_style>0</line_style>
     <line_width>3</line_width>
     <name>connection</name>
-    <points>
-      <point x="645" y="518" />
-      <point x="645" y="638" />
-    </points>
+    <points />
     <router>0</router>
     <src_path></src_path>
     <src_term>RIGHT</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-1b9</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-20e</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-96</wuid>
+    <wuid>79c9034e:14d91962859:-a0</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4289,9 +4283,9 @@ $(pv_value)</tooltip>
     <src_wuid>38e5eb62:14bffe23471:-7849</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1496</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1468</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:14b6</wuid>
+    <wuid>-62805d77:14c952d5ca2:14ba</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4311,9 +4305,9 @@ $(pv_value)</tooltip>
     <src_wuid>-da3c482:14c09bba37a:-7f90</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1b32</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1b24</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:1b8c</wuid>
+    <wuid>-62805d77:14c952d5ca2:1b50</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4349,8 +4343,8 @@ $(pv_value)</tooltip>
     <line_width>3</line_width>
     <name>connection</name>
     <points>
-      <point x="644" y="518" />
-      <point x="644" y="818" />
+      <point x="645" y="518" />
+      <point x="645" y="578" />
     </points>
     <router>0</router>
     <src_path></src_path>
@@ -4358,9 +4352,9 @@ $(pv_value)</tooltip>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-1b6</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-1ba</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-90</wuid>
+    <wuid>79c9034e:14d91962859:-98</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4412,7 +4406,7 @@ $(pv_value)</tooltip>
     <arrows>2</arrows>
     <fill_arrow>true</fill_arrow>
     <line_color>
-      <color red="0" green="100" blue="255" />
+      <color red="0" green="180" blue="0" />
     </line_color>
     <line_style>0</line_style>
     <line_width>3</line_width>
@@ -4420,13 +4414,13 @@ $(pv_value)</tooltip>
     <points />
     <router>0</router>
     <src_path></src_path>
-    <src_term>TOP</src_term>
+    <src_term>RIGHT</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1ade</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-234</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14ce710fbb6:-6c29</wuid>
+    <wuid>79c9034e:14d91962859:-c0</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4468,9 +4462,9 @@ $(pv_value)</tooltip>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-234</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-218</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-c0</wuid>
+    <wuid>79c9034e:14d91962859:-a2</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4569,7 +4563,7 @@ $(pv_value)</tooltip>
     <arrows>2</arrows>
     <fill_arrow>true</fill_arrow>
     <line_color>
-      <color red="0" green="100" blue="255" />
+      <color red="0" green="180" blue="0" />
     </line_color>
     <line_style>0</line_style>
     <line_width>3</line_width>
@@ -4577,35 +4571,13 @@ $(pv_value)</tooltip>
     <points />
     <router>0</router>
     <src_path></src_path>
-    <src_term>TOP</src_term>
+    <src_term>RIGHT</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1ace</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-1bb</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14ce710fbb6:-6c2b</wuid>
-  </connection>
-  <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
-    <anti_alias>true</anti_alias>
-    <arrow_length>15</arrow_length>
-    <arrows>2</arrows>
-    <fill_arrow>true</fill_arrow>
-    <line_color>
-      <color red="0" green="100" blue="255" />
-    </line_color>
-    <line_style>0</line_style>
-    <line_width>3</line_width>
-    <name>connection</name>
-    <points />
-    <router>0</router>
-    <src_path></src_path>
-    <src_term>TOP</src_term>
-    <src_wuid>-da3c482:14c09bba37a:-7f90</src_wuid>
-    <tgt_path></tgt_path>
-    <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1ab2</tgt_wuid>
-    <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:1b06</wuid>
+    <wuid>79c9034e:14d91962859:-9a</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4622,12 +4594,37 @@ $(pv_value)</tooltip>
     <router>0</router>
     <src_path></src_path>
     <src_term>RIGHT</src_term>
+    <src_wuid>-da3c482:14c09bba37a:-7f90</src_wuid>
+    <tgt_path></tgt_path>
+    <tgt_term>LEFT</tgt_term>
+    <tgt_wuid>-62805d77:14c952d5ca2:1b32</tgt_wuid>
+    <widget_type>connection</widget_type>
+    <wuid>-62805d77:14c952d5ca2:1b8c</wuid>
+  </connection>
+  <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
+    <anti_alias>true</anti_alias>
+    <arrow_length>15</arrow_length>
+    <arrows>2</arrows>
+    <fill_arrow>true</fill_arrow>
+    <line_color>
+      <color red="0" green="180" blue="0" />
+    </line_color>
+    <line_style>0</line_style>
+    <line_width>3</line_width>
+    <name>connection</name>
+    <points>
+      <point x="645" y="518" />
+      <point x="645" y="638" />
+    </points>
+    <router>0</router>
+    <src_path></src_path>
+    <src_term>RIGHT</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-218</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-1b9</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-a2</wuid>
+    <wuid>79c9034e:14d91962859:-96</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4657,7 +4654,7 @@ $(pv_value)</tooltip>
     <arrows>2</arrows>
     <fill_arrow>true</fill_arrow>
     <line_color>
-      <color red="0" green="100" blue="255" />
+      <color red="0" green="180" blue="0" />
     </line_color>
     <line_style>0</line_style>
     <line_width>3</line_width>
@@ -4665,13 +4662,13 @@ $(pv_value)</tooltip>
     <points />
     <router>0</router>
     <src_path></src_path>
-    <src_term>TOP</src_term>
+    <src_term>RIGHT</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1aec</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-1f2</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14ce710fbb6:-6c25</wuid>
+    <wuid>79c9034e:14d91962859:-9c</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4723,7 +4720,7 @@ $(pv_value)</tooltip>
     <arrows>2</arrows>
     <fill_arrow>true</fill_arrow>
     <line_color>
-      <color red="0" green="180" blue="0" />
+      <color red="0" green="100" blue="255" />
     </line_color>
     <line_style>0</line_style>
     <line_width>3</line_width>
@@ -4731,13 +4728,13 @@ $(pv_value)</tooltip>
     <points />
     <router>0</router>
     <src_path></src_path>
-    <src_term>RIGHT</src_term>
+    <src_term>TOP</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-204</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1ace</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-9e</wuid>
+    <wuid>-62805d77:14ce710fbb6:-6c2b</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4823,9 +4820,9 @@ $(pv_value)</tooltip>
     <src_wuid>-62805d77:14c952d5ca2:1b32</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-68fe6df6:14e63326588:-7ebb</tgt_wuid>
+    <tgt_wuid>-68fe6df6:14e63326588:-7ebf</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-68fe6df6:14e63326588:-7ea7</wuid>
+    <wuid>-68fe6df6:14e63326588:-7ea9</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -4867,9 +4864,9 @@ $(pv_value)</tooltip>
     <src_wuid>38e5eb62:14bffe23471:-7849</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-da3c482:14c09bba37a:-7e5b</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1496</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:143a</wuid>
+    <wuid>-62805d77:14c952d5ca2:14b6</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -5043,9 +5040,9 @@ $(pv_value)</tooltip>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-1bb</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-204</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-9a</wuid>
+    <wuid>79c9034e:14d91962859:-9e</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -5065,9 +5062,9 @@ $(pv_value)</tooltip>
     <src_wuid>-62805d77:14c952d5ca2:1b32</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-68fe6df6:14e63326588:-7ebf</tgt_wuid>
+    <tgt_wuid>-68fe6df6:14e63326588:-7ebb</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-68fe6df6:14e63326588:-7ea9</wuid>
+    <wuid>-68fe6df6:14e63326588:-7ea7</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -5166,7 +5163,7 @@ $(pv_value)</tooltip>
     <arrows>2</arrows>
     <fill_arrow>true</fill_arrow>
     <line_color>
-      <color red="0" green="180" blue="0" />
+      <color red="0" green="100" blue="255" />
     </line_color>
     <line_style>0</line_style>
     <line_width>3</line_width>
@@ -5174,13 +5171,13 @@ $(pv_value)</tooltip>
     <points />
     <router>0</router>
     <src_path></src_path>
-    <src_term>RIGHT</src_term>
+    <src_term>TOP</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7f90</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-62805d77:14c952d5ca2:1b24</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1ab2</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:1b50</wuid>
+    <wuid>-62805d77:14c952d5ca2:1b06</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -5215,16 +5212,19 @@ $(pv_value)</tooltip>
     <line_style>0</line_style>
     <line_width>3</line_width>
     <name>connection</name>
-    <points />
+    <points>
+      <point x="644" y="518" />
+      <point x="644" y="758" />
+    </points>
     <router>0</router>
     <src_path></src_path>
     <src_term>RIGHT</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-1f2</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-1b7</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-9c</wuid>
+    <wuid>79c9034e:14d91962859:-92</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -5237,16 +5237,19 @@ $(pv_value)</tooltip>
     <line_style>0</line_style>
     <line_width>3</line_width>
     <name>connection</name>
-    <points />
+    <points>
+      <point x="644" y="518" />
+      <point x="644" y="818" />
+    </points>
     <router>0</router>
     <src_path></src_path>
     <src_term>RIGHT</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-20e</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-1b6</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-a0</wuid>
+    <wuid>79c9034e:14d91962859:-90</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -5266,9 +5269,9 @@ $(pv_value)</tooltip>
     <src_wuid>38e5eb62:14bffe23471:-7849</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>-da3c482:14c09bba37a:-7f90</tgt_wuid>
+    <tgt_wuid>-da3c482:14c09bba37a:-7e5b</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>-62805d77:14c952d5ca2:142d</wuid>
+    <wuid>-62805d77:14c952d5ca2:143a</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -5303,19 +5306,16 @@ $(pv_value)</tooltip>
     <line_style>0</line_style>
     <line_width>3</line_width>
     <name>connection</name>
-    <points>
-      <point x="644" y="518" />
-      <point x="644" y="758" />
-    </points>
+    <points />
     <router>0</router>
     <src_path></src_path>
     <src_term>RIGHT</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-1b7</tgt_wuid>
+    <tgt_wuid>79c9034e:14d91962859:-222</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-92</wuid>
+    <wuid>79c9034e:14d91962859:-a4</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
@@ -5565,7 +5565,7 @@ $(pv_value)</tooltip>
     <arrows>2</arrows>
     <fill_arrow>true</fill_arrow>
     <line_color>
-      <color red="0" green="180" blue="0" />
+      <color red="0" green="100" blue="255" />
     </line_color>
     <line_style>0</line_style>
     <line_width>3</line_width>
@@ -5573,13 +5573,13 @@ $(pv_value)</tooltip>
     <points />
     <router>0</router>
     <src_path></src_path>
-    <src_term>RIGHT</src_term>
+    <src_term>TOP</src_term>
     <src_wuid>-da3c482:14c09bba37a:-7ebe</src_wuid>
     <tgt_path></tgt_path>
     <tgt_term>LEFT</tgt_term>
-    <tgt_wuid>79c9034e:14d91962859:-222</tgt_wuid>
+    <tgt_wuid>-62805d77:14c952d5ca2:1ade</tgt_wuid>
     <widget_type>connection</widget_type>
-    <wuid>79c9034e:14d91962859:-a4</wuid>
+    <wuid>-62805d77:14ce710fbb6:-6c29</wuid>
   </connection>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>

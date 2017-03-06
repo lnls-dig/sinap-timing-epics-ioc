@@ -30,3 +30,11 @@
 2017-03-06 09:30:34.010 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
 2017-03-06 09:30:34.351 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
 2017-03-06 09:30:34.351 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 09:48:28.115 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-06 09:48:29.306 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-06 09:48:29.480 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-06 09:48:32.921 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-06 09:48:33.405 INFO [Thread 34] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-06 09:52:04.540 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-06 09:52:28.337 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-06 12:43:29.322 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml

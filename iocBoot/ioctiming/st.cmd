@@ -67,25 +67,25 @@ ${EVG1_line}dbLoadRecords("${TOP}/db/evg.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS
 ${EVG1_line}dbLoadRecords "${TOP}/db/SeqRAM.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1"
 
 # Events
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=0, desc='Li Inj event', code=0x02, time=100, mode=0, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=1, desc='BO Inj event', code=0x03, time=150, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=2, desc='BO ramp event', code=0x04, time=160, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=3, desc='SI Inj event', code=0x05, time=170, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=0, desc='Li Inj event', code=0x01, time=100, mode=0, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=1, desc='BO Inj event', code=0x02, time=150, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=2, desc='BO ramp event', code=0x03, time=160, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=3, desc='SI Inj event', code=0x04, time=170, mode=1, transm=0"
 
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=4, desc='Diagnostic', code=0x06, time=180, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=5, desc='Undefined', code=0x07, time=190, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=6, desc='Undefined', code=0x08, time=200, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=7, desc='Undefined', code=0x09, time=210, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=4, desc='Diagnostic', code=0x05, time=180, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=5, desc='Undefined', code=0x06, time=190, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=6, desc='Undefined', code=0x07, time=200, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=7, desc='Undefined', code=0x08, time=210, mode=1, transm=0"
 
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=8, desc='Undefined', code=0x0A, time=220, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=9, desc='Undefined', code=0x0B, time=230, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=10, desc='Undefined', code=0x0A, time=220, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=11, desc='Undefined', code=0x0B, time=230, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=8, desc='Undefined', code=0x09, time=220, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=9, desc='Undefined', code=0x0A, time=230, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=10, desc='Undefined', code=0x0B, time=240, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=11, desc='Undefined', code=0x0C, time=250, mode=1, transm=0"
 
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=12, desc='Undefined', code=0x0A, time=220, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=13, desc='Undefined', code=0x0B, time=230, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=14, desc='Undefined', code=0x0A, time=220, mode=1, transm=0"
-${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=15, desc='Undefined', code=0x0B, time=230, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=12, desc='Undefined', code=0x0D, time=260, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=13, desc='Undefined', code=0x0E, time=270, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=14, desc='Undefined', code=0x0F, time=280, mode=1, transm=0"
+${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVGDEV}, Idx=1, num=15, desc='Undefined', code=0x10, time=290, mode=1, transm=0"
 
 # EVR
 ${EVR1_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EVRDEV}, Idx=1, PORT=EVR1, ADDR=0, TIMEOUT=2")

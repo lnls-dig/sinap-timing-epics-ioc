@@ -453,6 +453,17 @@ ss seq {
 	    	%%//printf("Moving to Stopped State\n");
 	} state Stopped
 
+	when(restart_tg){
+
+		%{/* Just go to Restarting state */}%
+
+		%%// Reset trigger
+		restart_tg = 0;
+		pvPut(restart_tg, SYNC);
+
+	   	printf("Restart Triggered\n");
+	} state Restarting
+
 	when(inj_tg || repeatinj_tg){
 
 		%{/* 
@@ -508,17 +519,6 @@ ss seq {
 	    	%%//printf("Moving to Injecting State\n");
 	} state Injecting
 
-	when(restart_tg){
-
-		%{/* Just go to Restarting state */}%
-
-		%%// Reset trigger
-		restart_tg = 0;
-		pvPut(restart_tg, SYNC);
-
-	   	printf("Restart Triggered\n");
-	} state Restarting
-
 	when(run_tg){
 
 		%{/* Reset trigger */}%
@@ -547,7 +547,7 @@ ss seq {
 	    %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
 	}
 
-	when(tbl_length == 0){
+	when(tbl_length == 0 || numberOfWrites == 0){
 
 		%{/* Just go to Running state */}%
 
@@ -593,12 +593,16 @@ ss seq {
 	    %{/* INJECTING ENTRY	
 
 		-Status update
+		-Seq switch reset
 
 	    */}%
 
 	   %%// Status update (injecting)
 	   StateMachineStatus = 3;
 	   pvPut(StateMachineStatus, SYNC);
+
+	   %%// Seq switch reset (switching condition is only satisfied once)
+	   seqsw = 0;
 
 	   %%//printf("Injecting Entry\n");
 	}
@@ -610,7 +614,7 @@ ss seq {
 	   	%%//printf("Moving to Running State\n");
 	} state Running
 
-	when(stopinj_tg){
+	when(stopinj_tg && seqsw == 0){
 
 		%{/* Return to SeqRAM 1 */}%
 
@@ -671,14 +675,6 @@ ss seq {
 
 	} state Injecting
 
-	when(restart_tg){
-
-		%{/* Reset trigger */}%
-
-		restart_tg = 0;
-		pvPut(restart_tg, SYNC);
-
-	} state Injecting
     }
 
     state Restarting{
@@ -1093,6 +1089,14 @@ ss seq {
 		// for each bucket
 		for(i = 0; i < length; i++){
 
+			// Ignore bucket numbers greater than 864 (storage ring number of buckets).
+			// Ignore bucket numbers smaller than 1.
+			if(TBL[i] > 864 || TBL[i] < 1){
+			
+				printf("ERROR: Invalid bucket number provided by bucket list. Bucket number was ignored.\n");			
+				continue;
+			}
+
 			// Send appropriate RF delay for modules
 			seqdly = TBL[i] / 4;
 			rfdly = TBL[i] % 4;
@@ -1124,7 +1128,7 @@ ss seq {
 			for(j = 0; j < evnum; j++){
 
 				// NEVER
-				if(EventPointerArray[i]->ctrl == NEVER)
+				if(EventPointerArray[j]->ctrl == NEVER)
 					continue;
 
 				// INJECTION AND ALWAYS
@@ -1190,30 +1194,34 @@ ss seq {
 				// point to next address
 				address++;		
 			}	
-		}    
+		}
 
-		// SequenceRAM Switch RAM code 
-		*pseqcode = 0x7E; // Send 0x7E code
+		// Check if bucket list provided valid bucket numbers
+		if(address != 0){
+
+			// SequenceRAM Switch RAM code 
+			*pseqcode = 0x7E; // Send 0x7E code
 		
-		// define address and timestamp
-		*pseqaddr = address;
-		*pseqtime = maxdelay + offSetEndCode;
+			// define address and timestamp
+			*pseqaddr = address;
+			*pseqtime = maxdelay + offSetEndCode;
 	
-		// write event info to seqRAM records
-		seq_pvPut(ssId, seqaddr_id, SYNC);
-		seq_pvPut(ssId, seqcode_id, SYNC);
+			// write event info to seqRAM records
+			seq_pvPut(ssId, seqaddr_id, SYNC);
+			seq_pvPut(ssId, seqcode_id, SYNC);
 
-		// write timestamp (wich also triggers write to seqRAM)
-		seq_pvPut(ssId, seqtime_id, SYNC);
+			// write timestamp (wich also triggers write to seqRAM)
+			seq_pvPut(ssId, seqtime_id, SYNC);
 
-		////////////// D E B U G G I N G //////////////////////////////////////////
+			////////////// D E B U G G I N G //////////////////////////////////////////
 
-		printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+			printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
-		///////////////////////////////////////////////////////////////////////////
+			///////////////////////////////////////////////////////////////////////////
 
-		// point to next address
-		address++;
+			// point to next address
+			address++;
+		}
 
 		// return number of writes to SeqRAM
 	        return address;
