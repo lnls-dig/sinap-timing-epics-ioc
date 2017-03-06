@@ -1,21 +1,21 @@
-# autosave R5.3	Automatically generated - DO NOT MODIFY - 170303-131945
-AS-Inj:TI-EVE2:enable.VAL 0
-AS-Inj:TI-EVE2:event0.VAL 0
+# autosave R5.3	Automatically generated - DO NOT MODIFY - 170306-083009
+AS-Inj:TI-EVE2:enable.VAL 1
+AS-Inj:TI-EVE2:event0.VAL 1
 AS-Inj:TI-EVE2:pulses0.VAL 1
-AS-Inj:TI-EVE2:width0.VAL 0
-AS-Inj:TI-EVE2:delay0.VAL 0
+AS-Inj:TI-EVE2:width0.VAL 5
+AS-Inj:TI-EVE2:delay0.VAL 10
 AS-Inj:TI-EVE2:enable0.VAL 0
 AS-Inj:TI-EVE2:pol0.VAL 0
 AS-Inj:TI-EVE2:time0.VAL 0
 AS-Inj:TI-EVE2:enpoltime0.VAL 0
-AS-Inj:TI-EVE2:event1.VAL 0
-AS-Inj:TI-EVE2:pulses1.VAL 0
-AS-Inj:TI-EVE2:width1.VAL 0
-AS-Inj:TI-EVE2:delay1.VAL 0
-AS-Inj:TI-EVE2:enable1.VAL 0
-AS-Inj:TI-EVE2:pol1.VAL 0
-AS-Inj:TI-EVE2:time1.VAL 0
-AS-Inj:TI-EVE2:enpoltime1.VAL 0
+AS-Inj:TI-EVE2:event1.VAL 2
+AS-Inj:TI-EVE2:pulses1.VAL 2
+AS-Inj:TI-EVE2:width1.VAL 10
+AS-Inj:TI-EVE2:delay1.VAL 20
+AS-Inj:TI-EVE2:enable1.VAL 1
+AS-Inj:TI-EVE2:pol1.VAL 1
+AS-Inj:TI-EVE2:time1.VAL 1
+AS-Inj:TI-EVE2:enpoltime1.VAL 224
 AS-Inj:TI-EVE2:event2.VAL 0
 AS-Inj:TI-EVE2:pulses2.VAL 0
 AS-Inj:TI-EVE2:width2.VAL 0
@@ -128,16 +128,16 @@ AS-Inj:TI-EVE2:enableF.VAL 0
 AS-Inj:TI-EVE2:polF.VAL 0
 AS-Inj:TI-EVE2:timeF.VAL 0
 AS-Inj:TI-EVE2:enpoltimeF.VAL 0
-AS-Inj:TI-EVE2:rfdly0.VAL 0
-AS-Inj:TI-EVE2:finedly0.VAL 0
-AS-Inj:TI-EVE2:sel0.VAL 
-AS-Inj:TI-EVE2:sel0toHW.VAL 0
+AS-Inj:TI-EVE2:rfdly0.VAL 4
+AS-Inj:TI-EVE2:finedly0.VAL 2
+AS-Inj:TI-EVE2:sel0.VAL OTP0
+AS-Inj:TI-EVE2:sel0toHW.VAL 16
 AS-Inj:TI-EVE2:itl0.VAL 0
 AS-Inj:TI-EVE2:ITL0.VAL 0
-AS-Inj:TI-EVE2:rfdly1.VAL 0
-AS-Inj:TI-EVE2:finedly1.VAL 0
-AS-Inj:TI-EVE2:sel1.VAL OTP0
-AS-Inj:TI-EVE2:sel1toHW.VAL 16
+AS-Inj:TI-EVE2:rfdly1.VAL 8
+AS-Inj:TI-EVE2:finedly1.VAL 4
+AS-Inj:TI-EVE2:sel1.VAL OTP1
+AS-Inj:TI-EVE2:sel1toHW.VAL 17
 AS-Inj:TI-EVE2:itl1.VAL 0
 AS-Inj:TI-EVE2:ITL1.VAL 0
 AS-Inj:TI-EVE2:rfdly2.VAL 0
@@ -178,8 +178,8 @@ AS-Inj:TI-EVE2:itl7.VAL 0
 AS-Inj:TI-EVE2:ITL7.VAL 0
 AS-Inj:TI-EVE2:cmsel.VAL 0
 AS-Inj:TI-EVE2:cmsel.RVAL 0
-AS-Inj:TI-EVE2:TIMESRC.VAL 0
-AS-Inj:TI-EVE2:TIMESRC.RVAL 0
+AS-Inj:TI-EVE2:TIMESRC.VAL 2
+AS-Inj:TI-EVE2:TIMESRC.RVAL 2
 AS-Inj:TI-EVE2:clkmode.VAL 1
 AS-Inj:TI-EVE2:clkmode.RVAL 16
 <END>

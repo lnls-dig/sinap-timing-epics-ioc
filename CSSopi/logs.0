@@ -1,32 +1,22 @@
-2017-03-03 12:45:01.689 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:INJSEQ' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.689 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:STOPINJSEQ' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.689 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:RESTSEQ' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.689 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:ITBL' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.689 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:STATEMACHINE' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.689 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVCODE0' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.690 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTIME0' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.696 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVDLYMODE0' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.697 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTRANSM0' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.697 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVCODE1' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.697 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTIME1' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.697 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVDLYMODE1' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.698 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTRANSM1' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.698 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVCODE2' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.698 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTIME2' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.698 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVDLYMODE2' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.698 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTRANSM2' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.698 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVCODE3' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.698 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTIME3' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.698 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVDLYMODE3' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.700 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:EVTRANSM3' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.700 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:TIMESRC' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.700 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTC' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.700 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:TIMESRCRBV' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.700 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.700 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.53:5064
-2017-03-03 12:45:01.701 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:SAVE' detected, additional response from: /10.0.18.53:5064
-2017-03-03 13:15:44.264 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-03-03 13:15:47.491 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-03 13:15:49.350 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-03 13:15:55.328 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-03 13:15:56.061 INFO [Thread 34] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-06 08:09:09.967 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:muxdiv5' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:09:11.002 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:muxdiv5' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:09:13.059 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:muxdiv5' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:09:17.166 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:muxdiv5' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:09:39.188 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-06 08:09:39.556 INFO [Thread 40] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:09:39.571 INFO [Thread 40] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:10:58.967 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:10:58.967 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:15:34.932 INFO [Thread 40] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:15:34.933 INFO [Thread 40] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:15:47.764 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:15:47.765 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:16:05.495 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:16:05.496 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:16:17.059 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:16:17.060 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:16:27.604 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:16:27.604 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:18:16.463 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-06 08:18:16.747 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
+2017-03-06 08:18:16.747 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064

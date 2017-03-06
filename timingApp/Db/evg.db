@@ -866,9 +866,12 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_set") {
 ########################################################################
 # Injection Table
 
+# !ITBL.NELM MUST NOT BE MODIFIED!, since it affects the 
+# event table length
+
 record(waveform, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITBL") {
   field(DESC, "Injection table")
-  field(NELM, "$(ITBL_LEN)")
+  field(NELM, "864")
   field(FTVL, "USHORT")
 }
 

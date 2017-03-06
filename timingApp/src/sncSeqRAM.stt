@@ -32,7 +32,8 @@ int network;
 assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
 monitor network;
 
-int tbl[2000];
+%%// tbl MUST HAVE, at least, the same length of ITBL
+int tbl[864];
 assign tbl to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:ITBL";
 
 int tbl_length;
@@ -615,6 +616,10 @@ ss seq {
 		%%// Reset trigger
 		stopinj_tg = 0;
 		pvPut(stopinj_tg, SYNC);
+
+		%%// Reset repeat injection PV
+		repeatinj_tg = 0;
+		pvPut(repeatinj_tg, SYNC);
 
 		%%// Switch seqRAM
 		if(seqs == 2){
