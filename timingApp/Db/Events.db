@@ -25,10 +25,14 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVDLYMODE$(num)"){
 	field(ONAM, "INCR")
 	field(VAL, "$(mode)")
 }
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTRANSM$(num)"){
+record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTRANSM$(num)"){
 	field(DESC, "Transmission mode (ALWAYS | INJECTION)")
-	field(ZNAM, "ALWAYS")
-	field(ONAM, "INJECTION")
+	field(ZRVL, "0")
+	field(ZRST, "NEVER")
+	field(ONVL, "1")
+	field(ONST, "ALWAYS")
+	field(TWVL, "2")
+	field(TWST, "INJECTION")
 	field(VAL, "$(transm)")
 }
 #####################################################

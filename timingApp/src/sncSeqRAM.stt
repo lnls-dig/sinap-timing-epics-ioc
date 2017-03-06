@@ -122,8 +122,9 @@ monitor repeatinj_tg;
 
     // Event Ctrl ENUM
     typedef enum{
-	ALWAYS = 0,
-	INJECTION = 1
+	NEVER = 0,
+	ALWAYS = 1,
+	INJECTION = 2
     } evctrl;
 
     // Event Struct
@@ -1122,7 +1123,11 @@ ss seq {
 			// write events
 			for(j = 0; j < evnum; j++){
 
-				// INJECTION
+				// NEVER
+				if(EventPointerArray[i]->ctrl == NEVER)
+					continue;
+
+				// INJECTION AND ALWAYS
 				if(EventPointerArray[j]->mode == INCR){			
 
 					// Set timestamp WITH seqdly
