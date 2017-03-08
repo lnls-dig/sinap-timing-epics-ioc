@@ -1,40 +1,63 @@
-2017-03-06 08:09:09.967 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:muxdiv5' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:09:11.002 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:muxdiv5' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:09:13.059 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:muxdiv5' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:09:17.166 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:muxdiv5' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:09:39.188 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 08:09:39.556 INFO [Thread 40] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:09:39.571 INFO [Thread 40] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:10:58.967 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:10:58.967 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:15:34.932 INFO [Thread 40] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:15:34.933 INFO [Thread 40] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:15:47.764 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:15:47.765 INFO [Thread 43] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:16:05.495 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:16:05.496 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:16:17.059 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:16:17.060 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:16:27.604 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:16:27.604 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:18:16.463 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 08:18:16.747 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 08:18:16.747 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 09:28:02.435 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-03-06 09:28:03.651 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 09:28:03.817 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 09:28:07.176 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 09:28:07.664 INFO [Thread 35] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-03-06 09:28:08.065 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 09:28:08.065 INFO [Thread 42] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 09:30:34.010 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 09:30:34.351 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:UTCRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 09:30:34.351 INFO [Thread 41] com.cosylab.epics.caj.CAJContext (searchResponse) - More than one PVs with name 'AS-Inj:TI-EVG1:subsecondRBV' detected, additional response from: /10.0.18.78:5064
-2017-03-06 09:48:28.115 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-03-06 09:48:29.306 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 09:48:29.480 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 09:48:32.921 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 09:48:33.405 INFO [Thread 34] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-03-06 09:52:04.540 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 09:52:28.337 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-06 12:43:29.322 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 09:22:07.844 SEVERE [Thread 30] org.csstudio.logging.PluginLogListener (logging) - Exception in update check thread
+org.eclipse.core.runtime.OperationCanceledException
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:125)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:156)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadIndexFile(AbstractRepositoryManager.java:735)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:657)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository.addChild(CompositeMetadataRepository.java:166)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository.<init>(CompositeMetadataRepository.java:106)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepositoryFactory.load(CompositeMetadataRepositoryFactory.java:122)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:768)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:668)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker.getAvailableRepositories(UpdateChecker.java:151)
+	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker.checkForUpdates(UpdateChecker.java:129)
+	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker$UpdateCheckThread.run(UpdateChecker.java:73)
+
+2017-03-07 09:22:12.448 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-07 09:22:13.649 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 09:22:13.816 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 09:35:18.445 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 09:35:18.785 INFO [Thread 119] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-07 12:36:28.828 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 12:41:26.341 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 13:17:41.966 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 15:17:41.452 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-07 15:17:42.648 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 15:17:42.824 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 15:17:43.553 INFO [Thread 29] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-07 15:17:43.823 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 15:17:50.008 SEVERE [Thread 44] org.csstudio.logging.PluginLogListener (logging) - Exception in update check thread
+org.eclipse.core.runtime.OperationCanceledException
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:125)
+	at org.eclipse.equinox.internal.p2.transport.ecf.RepositoryTransport.download(RepositoryTransport.java:156)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadIndexFile(AbstractRepositoryManager.java:735)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:657)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository.addChild(CompositeMetadataRepository.java:166)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepository.<init>(CompositeMetadataRepository.java:106)
+	at org.eclipse.equinox.internal.p2.metadata.repository.CompositeMetadataRepositoryFactory.load(CompositeMetadataRepositoryFactory.java:122)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.factoryLoad(MetadataRepositoryManager.java:57)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:768)
+	at org.eclipse.equinox.internal.p2.repository.helpers.AbstractRepositoryManager.loadRepository(AbstractRepositoryManager.java:668)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:96)
+	at org.eclipse.equinox.internal.p2.metadata.repository.MetadataRepositoryManager.loadRepository(MetadataRepositoryManager.java:92)
+	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker.getAvailableRepositories(UpdateChecker.java:151)
+	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker.checkForUpdates(UpdateChecker.java:129)
+	at org.eclipse.equinox.internal.p2.updatechecker.UpdateChecker$UpdateCheckThread.run(UpdateChecker.java:73)
+
+2017-03-07 15:17:54.966 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-07 15:17:56.142 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 15:17:56.331 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 15:17:56.987 INFO [Thread 30] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-07 15:18:09.539 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-07 15:18:10.774 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 15:18:10.948 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-07 15:18:56.811 INFO [Thread 37] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-07 15:19:14.771 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-08 09:00:00.785 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml

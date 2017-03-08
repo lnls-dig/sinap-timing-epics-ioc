@@ -73,20 +73,6 @@ ifneq ($(SNCSEQ),)
     sncSeqRAMProgram_LIBS += seq pv
     sncSeqRAMProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
 
-    # Build sncTimestamp into timingSupport
-    sncTimestamp_SNCFLAGS += +r
-    timing_DBD += sncTimestamp.dbd
-    timingSupport_SRCS += sncTimestamp.stt
-    timingSupport_LIBS += seq pv
-    timing_LIBS += seq pv
-
-    # Build sncTimestampProgram as a standalone program
-    PROD_HOST += sncTimestampProgram
-    sncTimestampProgram_SNCFLAGS += +m
-    sncTimestampProgram_SRCS += sncTimestampProgram.st
-    sncTimestampProgram_LIBS += seq pv
-    sncTimestampProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
-
     # Build sncEVGSetup into timingSupport
     sncEVGSetup_SNCFLAGS += +r
     timing_DBD += sncEVGSetup.dbd
@@ -100,6 +86,20 @@ ifneq ($(SNCSEQ),)
     sncEVGSetupProgram_SRCS += sncEVGSetupProgram.st
     sncEVGSetupProgram_LIBS += seq pv
     sncEVGSetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    # Build sncFOUTSetup into timingSupport
+    sncFOUTSetup_SNCFLAGS += +r
+    timing_DBD += sncFOUTSetup.dbd
+    timingSupport_SRCS += sncFOUTSetup.stt
+    timingSupport_LIBS += seq pv
+    timing_LIBS += seq pv
+
+    # Build sncFOUTSetupProgram as a standalone program
+    PROD_HOST += sncFOUTSetupProgram
+    sncFOUTSetupProgram_SNCFLAGS += +m
+    sncFOUTSetupProgram_SRCS += sncFOUTSetupProgram.st
+    sncFOUTSetupProgram_LIBS += seq pv
+    sncFOUTSetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
 endif
 
 # Finally link to the EPICS Base libraries

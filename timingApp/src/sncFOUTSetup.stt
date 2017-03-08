@@ -1,0 +1,138 @@
+program sncFOUTSetup
+
+%%//----------------------------------------
+%%// 	      Monitored PVs
+%%//----------------------------------------
+
+int downloadproc;
+assign downloadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:downloadT.PROC";
+
+int download;
+assign download to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:download.VAL";
+monitor download;
+
+int statdev;
+assign statdev to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:statdev";
+monitor statdev;
+
+int past_alive = -1;
+int alive;
+assign alive to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:alive";
+monitor alive;
+
+int funselRBV;
+assign funselRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:funselRBV.RVAL";
+monitor funselRBV;
+
+int network;
+assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
+monitor network;
+
+%%//----------------------------------------
+%%// 	    State Notation Language
+%%//----------------------------------------
+
+ss configuration {
+    state init {
+
+	when (delay(1.0)){
+
+		%{/* Wait 1 sec while module starts up */}%
+
+		%%// Init message
+		printf("\n%s-%s:%s-%s%s state machine initiated\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+
+		%%// If the module is configured, print message
+		if(statdev != 0 && funselRBV == 16){
+		
+			printf("%s-%s:%s-%s%s is already configured.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		}
+
+	} state monitoring
+    }
+
+    state monitoring {
+
+	when ((statdev == 0 || funselRBV != 16) && (network == 1)) {
+			
+		%{/* If STD-EVO is not correctly configured, download! */}%
+
+		download = 1;
+
+	} state download
+
+	when ((download == 1) && (network == 1)) {
+
+		%{/* If download requested, download! */}%
+
+		download = 1;
+
+	} state download
+
+    }
+	
+    state download {
+
+	entry {
+
+		%{/* -Trigger the download operation
+		     -Print download message
+		     -Clear download PV 
+		 */}%
+
+		%%// Download!
+		downloadproc = 1;
+		pvPut(downloadproc,SYNC);
+
+		%%// Print message
+		printf("\nConfiguration downloaded to %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+
+		%%// Clear PV
+		download = 0;
+		pvPut(download,SYNC);
+	}
+
+	when (delay(1)) {
+
+		%{/* Wait until download is completed */}%
+
+	}state monitoring
+
+    }
+}
+
+ss networkStatus {
+
+	state networkCheck {
+
+		when (delay(2.0)) {
+
+			%{/* Check main status PVs */}%
+
+			if (funselRBV == 0) {
+
+				past_alive = -1;
+				network = 0;
+				pvPut(network,SYNC);
+			}
+			else if (statdev == 0) {
+
+				past_alive = -1;
+				network = 1;
+				pvPut(network,SYNC);
+			}
+			else if (alive > past_alive) {
+
+				past_alive = alive;
+				network = 1;
+				pvPut(network,SYNC);
+			}
+			else {
+				past_alive = alive;
+				network = 0;
+				pvPut(network,SYNC);
+			}
+
+		} state networkCheck
+	}
+}
