@@ -1,4 +1,12 @@
-2017-03-07 09:22:07.573 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - 
+2017-03-08 13:53:00.075 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.eclipse.ui.edit.paste: {ActionHandler(org.csstudio.opibuilder.actions.PasteWidgetsAction@53d2f0ec)} vs {ActionHandler(org.csstudio.opibuilder.actions.PasteWidgetsAction@560be8c0)}
+2017-03-08 13:53:00.081 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.eclipse.ui.edit.delete: {ActionHandler(org.eclipse.gef.ui.actions.DeleteAction@19e5e110)} vs {ActionHandler(org.eclipse.gef.ui.actions.DeleteAction@1e295f7f)}
+2017-03-08 13:53:00.081 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.eclipse.ui.edit.copy: {ActionHandler(org.csstudio.opibuilder.actions.CopyWidgetsAction@8e77c5b)} vs {ActionHandler(org.csstudio.opibuilder.actions.CopyWidgetsAction@5b6f3d0b)}
+2017-03-08 13:53:00.082 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.eclipse.ui.edit.cut: {ActionHandler(org.csstudio.opibuilder.actions.CutWidgetsAction@3bc18fec)} vs {ActionHandler(org.csstudio.opibuilder.actions.CutWidgetsAction@1d167630)}
+2017-03-08 13:53:00.083 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.csstudio.opibuilder.actions.TO_FRONT: {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@45295cfd)} vs {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@2ff62720)}
+2017-03-08 13:53:00.084 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.csstudio.opibuilder.actions.TO_BACK: {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@306cfb8a)} vs {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@3fad8636)}
+2017-03-08 13:53:00.085 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.csstudio.opibuilder.actions.STEP_BACK: {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@79636080)} vs {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@6d87253e)}
+2017-03-08 13:53:00.086 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.csstudio.opibuilder.actions.STEP_FRONT: {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@75345e47)} vs {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@36f40d72)}
+2017-03-08 13:53:01.164 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - 
 org.eclipse.e4.core.di.InjectionException: java.lang.NullPointerException
 	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:68)
 	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:898)
@@ -14,7 +22,7 @@ org.eclipse.e4.core.di.InjectionException: java.lang.NullPointerException
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:869)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
 	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
 	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)

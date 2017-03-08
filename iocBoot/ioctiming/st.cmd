@@ -33,7 +33,7 @@ epicsEnvSet EVR5_line "#"
 epicsEnvSet EVR6_line "#"
 
 epicsEnvSet EVE1_line "#"
-epicsEnvSet EVE2_line ""
+epicsEnvSet EVE2_line "#"
 epicsEnvSet EVE3_line "#"
 epicsEnvSet EVE4_line "#"
 
