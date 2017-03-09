@@ -1,5 +1,5 @@
-# autosave R5.3	Automatically generated - DO NOT MODIFY - 170308-132245
-AS-Inj:TI-EVR1:enable.VAL 1
+# autosave R5.3	Automatically generated - DO NOT MODIFY - 170308-132407
+AS-Inj:TI-EVR1:enable.VAL 0
 AS-Inj:TI-EVR1:event0.VAL 0
 AS-Inj:TI-EVR1:pulses0.VAL 0
 AS-Inj:TI-EVR1:width0.VAL 0
@@ -8,14 +8,14 @@ AS-Inj:TI-EVR1:enable0.VAL 0
 AS-Inj:TI-EVR1:pol0.VAL 0
 AS-Inj:TI-EVR1:time0.VAL 0
 AS-Inj:TI-EVR1:enpoltime0.VAL 0
-AS-Inj:TI-EVR1:event1.VAL 4
-AS-Inj:TI-EVR1:pulses1.VAL 79
-AS-Inj:TI-EVR1:width1.VAL 4
-AS-Inj:TI-EVR1:delay1.VAL 5
-AS-Inj:TI-EVR1:enable1.VAL 1
-AS-Inj:TI-EVR1:pol1.VAL 1
-AS-Inj:TI-EVR1:time1.VAL 1
-AS-Inj:TI-EVR1:enpoltime1.VAL 224
+AS-Inj:TI-EVR1:event1.VAL 0
+AS-Inj:TI-EVR1:pulses1.VAL 1
+AS-Inj:TI-EVR1:width1.VAL 0
+AS-Inj:TI-EVR1:delay1.VAL 0
+AS-Inj:TI-EVR1:enable1.VAL 0
+AS-Inj:TI-EVR1:pol1.VAL 0
+AS-Inj:TI-EVR1:time1.VAL 0
+AS-Inj:TI-EVR1:enpoltime1.VAL 0
 AS-Inj:TI-EVR1:event2.VAL 0
 AS-Inj:TI-EVR1:pulses2.VAL 0
 AS-Inj:TI-EVR1:width2.VAL 0
@@ -134,10 +134,10 @@ AS-Inj:TI-EVR1:sel0.VAL
 AS-Inj:TI-EVR1:sel0toHW.VAL 0
 AS-Inj:TI-EVR1:itl0.VAL 0
 AS-Inj:TI-EVR1:ITL0.VAL 0
-AS-Inj:TI-EVR1:rfdly1.VAL 6
-AS-Inj:TI-EVR1:finedly1.VAL 8
-AS-Inj:TI-EVR1:sel1.VAL Dbus2
-AS-Inj:TI-EVR1:sel1toHW.VAL 34
+AS-Inj:TI-EVR1:rfdly1.VAL 0
+AS-Inj:TI-EVR1:finedly1.VAL 0
+AS-Inj:TI-EVR1:sel1.VAL OTP0
+AS-Inj:TI-EVR1:sel1toHW.VAL 16
 AS-Inj:TI-EVR1:itl1.VAL 0
 AS-Inj:TI-EVR1:ITL1.VAL 0
 AS-Inj:TI-EVR1:rfdly2.VAL 0

@@ -1,13 +1,13 @@
-# autosave R5.3	Automatically generated - DO NOT MODIFY - 170308-091956
+# autosave R5.3	Automatically generated - DO NOT MODIFY - 170309-152329
 AS-Inj:TI-EVR6:enable.VAL 1
-AS-Inj:TI-EVR6:event0.VAL 0
-AS-Inj:TI-EVR6:pulses0.VAL 0
-AS-Inj:TI-EVR6:width0.VAL 0
+AS-Inj:TI-EVR6:event0.VAL 1
+AS-Inj:TI-EVR6:pulses0.VAL 1
+AS-Inj:TI-EVR6:width0.VAL 3000
 AS-Inj:TI-EVR6:delay0.VAL 0
-AS-Inj:TI-EVR6:enable0.VAL 0
+AS-Inj:TI-EVR6:enable0.VAL 1
 AS-Inj:TI-EVR6:pol0.VAL 0
 AS-Inj:TI-EVR6:time0.VAL 0
-AS-Inj:TI-EVR6:enpoltime0.VAL 0
+AS-Inj:TI-EVR6:enpoltime0.VAL 128
 AS-Inj:TI-EVR6:event1.VAL 0
 AS-Inj:TI-EVR6:pulses1.VAL 0
 AS-Inj:TI-EVR6:width1.VAL 0
@@ -130,14 +130,14 @@ AS-Inj:TI-EVR6:timeF.VAL 0
 AS-Inj:TI-EVR6:enpoltimeF.VAL 0
 AS-Inj:TI-EVR6:rfdly0.VAL 0
 AS-Inj:TI-EVR6:finedly0.VAL 0
-AS-Inj:TI-EVR6:sel0.VAL 
-AS-Inj:TI-EVR6:sel0toHW.VAL 0
+AS-Inj:TI-EVR6:sel0.VAL OTP0
+AS-Inj:TI-EVR6:sel0toHW.VAL 16
 AS-Inj:TI-EVR6:itl0.VAL 0
 AS-Inj:TI-EVR6:ITL0.VAL 0
 AS-Inj:TI-EVR6:rfdly1.VAL 0
 AS-Inj:TI-EVR6:finedly1.VAL 0
-AS-Inj:TI-EVR6:sel1.VAL 
-AS-Inj:TI-EVR6:sel1toHW.VAL 0
+AS-Inj:TI-EVR6:sel1.VAL OTP0
+AS-Inj:TI-EVR6:sel1toHW.VAL 16
 AS-Inj:TI-EVR6:itl1.VAL 0
 AS-Inj:TI-EVR6:ITL1.VAL 0
 AS-Inj:TI-EVR6:rfdly2.VAL 0

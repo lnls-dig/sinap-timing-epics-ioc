@@ -10,9 +10,9 @@ WAIT = 0.005
 
 ipsub = '10.0.18.'
 port_ini = 50111
-port_end = 50124
+port_end = 50128
 ip_ini = 2
-ip_end = 254
+ip_end = 150
 
 def FindMod(UDP_IP, UDP_PORT):
 	# Read

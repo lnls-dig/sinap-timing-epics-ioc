@@ -23,7 +23,7 @@ epicsEnvSet FDEV FOUT
 epicsEnvSet EVENT_NUM 16
 
 # Enable/disable module lines
-epicsEnvSet EVG1_line ""
+epicsEnvSet EVG1_line "#"
 
 epicsEnvSet EVR1_line "#"
 epicsEnvSet EVR2_line "#"
@@ -60,15 +60,15 @@ ${EVR2_line}drvAsynIPPortConfigure ("EVR2", "10.0.18.112:50112:50112 udp",0,0,0)
 ${EVR3_line}drvAsynIPPortConfigure ("EVR3", "10.0.18.113:50113:50113 udp",0,0,0)
 ${EVR4_line}drvAsynIPPortConfigure ("EVR4", "10.0.18.114:50114:50114 udp",0,0,0)
 ${EVR5_line}drvAsynIPPortConfigure ("EVR5", "10.0.18.65:50115:50115 udp",0,0,0)
-${EVR6_line}drvAsynIPPortConfigure ("EVR6", "10.0.18.65:50116:50116 udp",0,0,0)
+${EVR6_line}drvAsynIPPortConfigure ("EVR6", "10.0.18.43:50116:50116 udp",0,0,0)
 
-${EVE1_line}drvAsynIPPortConfigure ("EVE1", "10.0.18.58:50121:50121 udp",0,0,0)
+${EVE1_line}drvAsynIPPortConfigure ("EVE1", "10.0.18.48:50121:50121 udp",0,0,0)
 ${EVE2_line}drvAsynIPPortConfigure ("EVE2", "10.0.18.32:50122:50122 udp",0,0,0)
 ${EVE3_line}drvAsynIPPortConfigure ("EVE3", "10.0.18.123:50123:50123 udp",0,0,0)
 ${EVE4_line}drvAsynIPPortConfigure ("EVE4", "10.0.18.124:50124:50124 udp",0,0,0)
 
 ${FOUT1_line}drvAsynIPPortConfigure ("FOUT1", "10.0.18.65:50118:50118 udp",0,0,0)
-${FOUT2_line}drvAsynIPPortConfigure ("FOUT2", "10.0.18.65:50118:50118 udp",0,0,0)
+${FOUT2_line}drvAsynIPPortConfigure ("FOUT2", "10.0.18.43:50117:50117 udp",0,0,0)
 ${FOUT3_line}drvAsynIPPortConfigure ("FOUT3", "10.0.18.65:50118:50118 udp",0,0,0)
 ${FOUT4_line}drvAsynIPPortConfigure ("FOUT4", "10.0.18.65:50118:50118 udp",0,0,0)
 ${FOUT5_line}drvAsynIPPortConfigure ("FOUT5", "10.0.18.65:50118:50118 udp",0,0,0)
