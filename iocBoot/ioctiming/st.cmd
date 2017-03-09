@@ -13,7 +13,7 @@ cd ${TOP}
 epicsEnvSet SEC AS
 epicsEnvSet SUB Inj
 epicsEnvSet DIS TI
-epicsEnvSet GDEV EVK
+epicsEnvSet GDEV EVG
 epicsEnvSet RDEV EVR
 epicsEnvSet EDEV EVE
 epicsEnvSet FDEV FOUT
@@ -23,7 +23,7 @@ epicsEnvSet FDEV FOUT
 epicsEnvSet EVENT_NUM 16
 
 # Enable/disable module lines
-epicsEnvSet EVG1_line "#"
+epicsEnvSet EVG1_line ""
 
 epicsEnvSet EVR1_line "#"
 epicsEnvSet EVR2_line "#"

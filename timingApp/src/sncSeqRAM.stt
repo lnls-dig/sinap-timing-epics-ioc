@@ -397,15 +397,13 @@ ss seq {
 		%%//printf("Moving to Running State\n");
 	} state Running
 
-	when(delay(5.0) && seqen_rbv == 0){
+	when(delay(5.0) && seqs != 1){
 
 		%{/* Unsuccessful Write */}%
 
-		printf("Error: Write to SeqRAM 1 Failed.\n");
-
 		%%// seqcountRBV will be cleared by seqsw in Stopped Entry
 
-		printf("CheckSeq1Write: Unseccessful Write to Seq1, going to Stopped State\n");
+		printf("Error: Failed to switch or to write to SeqRAM 1.\n");
 
 	} state Stopped
     }
