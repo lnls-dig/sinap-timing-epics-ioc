@@ -2,7 +2,7 @@
 # Control and Status Register [0]
 
 record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):foutenRAW"){
-  field(DESC, "Enable/Disable FANOUT RBV")
+  field(DESC, "Enable/Disable FANOUT RAW")
   field(NOBT, "1")
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
@@ -45,9 +45,12 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW") {
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINVCALC")
 }
 
+# The downlink status bits are inverted in the FOUT module
+# Correct this by inverting the logic
+
 record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINVCALC"){
   field(ASG, "Reserved")
-  field(DESC, "Invert downlink status bits")
+  field(DESC, "Invert downlink status bits calc")
   field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.VAL")
   field(CALC, "~A")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV")
@@ -55,7 +58,7 @@ record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINVCALC"){
 
 record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV") {
   field(ASG, "Reserved")
-  field(DESC, "Downlink status in OUT0-OUT7 inverted")
+  field(DESC, "Inverted downlink status bits")
   field(NOBT, "8")
   field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINVCALC.VAL")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los0RBV")
@@ -169,7 +172,7 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive") {
 
 record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV") {
 #  field(ASG, "Reserved")
-  field(DESC, "FOUT function select status")
+  field(DESC, "STD-EVO function select status")
   field(NOBT, "6")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
