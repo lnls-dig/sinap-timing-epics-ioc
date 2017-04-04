@@ -42,97 +42,78 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW") {
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto fout_ctrl_los_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINVCALC")
-}
-
-# The downlink status bits are inverted in the FOUT module
-# Correct this by inverting the logic
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINVCALC"){
-  field(ASG, "Reserved")
-  field(DESC, "Invert downlink status bits calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.VAL")
-  field(CALC, "~A")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV") {
-  field(ASG, "Reserved")
-  field(DESC, "Inverted downlink status bits")
-  field(NOBT, "8")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINVCALC.VAL")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los0RBV")
 }
 
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los0RBV"){
   field(ASG, "Reserved")
   field(DESC, "OUT0 downlink status RBV")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV.B7")
+  field(ZNAM, "LINK")
+  field(ONAM, "LOSS")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B0")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los1RBV")
 }
 
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los1RBV"){
   field(ASG, "Reserved")
   field(DESC, "OUT1 downlink status RBV")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV.B6")
+  field(ZNAM, "LINK")
+  field(ONAM, "LOSS")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B1")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los2RBV")
 }
 
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los2RBV"){
   field(ASG, "Reserved")
   field(DESC, "OUT2 downlink status RBV")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV.B5")
+  field(ZNAM, "LINK")
+  field(ONAM, "LOSS")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B2")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los3RBV")
 }
 
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los3RBV"){
   field(ASG, "Reserved")
   field(DESC, "OUT3 downlink status RBV")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV.B4")
+  field(ZNAM, "LINK")
+  field(ONAM, "LOSS")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B3")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los4RBV")
 }
 
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los4RBV"){
   field(ASG, "Reserved")
   field(DESC, "OUT4 downlink status RBV")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV.B3")
+  field(ZNAM, "LINK")
+  field(ONAM, "LOSS")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B4")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los5RBV")
 }
 
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los5RBV"){
   field(ASG, "Reserved")
   field(DESC, "OUT5 downlink status RBV")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV.B2")
+  field(ZNAM, "LINK")
+  field(ONAM, "LOSS")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B5")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los6RBV")
 }
 
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los6RBV"){
   field(ASG, "Reserved")
   field(DESC, "OUT6 downlink status RBV")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV.B1")
+  field(ZNAM, "LINK")
+  field(ONAM, "LOSS")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B6")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los7RBV")
 }
 
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los7RBV"){
   field(ASG, "Reserved")
   field(DESC, "OUT7 downlink status RBV")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSINV.B0")
+  field(ZNAM, "LINK")
+  field(ONAM, "LOSS")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B7")
 }
 
 record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):fouten"){
