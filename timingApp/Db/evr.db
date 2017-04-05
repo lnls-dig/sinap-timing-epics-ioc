@@ -4128,6 +4128,7 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstlog"){
   field(DESC, "EVR reset log command")
   field(ONAM, "ON")
   field(ZNAM, "OFF")
+  field(HIGH, "0.5")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RSTLOG")
 }
 
@@ -4495,6 +4496,16 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT") {
   field(DESC, "EVR upload trigger")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadCalc")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "EVR upload trigger calc")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evr_upload($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
 }

@@ -895,6 +895,16 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT") {
   field(DESC, "EVG upload trigger")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
+  field(HIGH, "0.5")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadCalc")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "EVG upload trigger calc")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT.VAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_upload($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
 }
