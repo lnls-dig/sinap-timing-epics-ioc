@@ -694,6 +694,25 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramsw_set") {
 ########################################################################
 # Timestamp register [51]
 
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCSRC"){
+  field(DESC, "EVG UTC value source")
+  field(ZNAM, "PC")
+  field(ONAM, "Control Room")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCMismatch"){
+  field(ASG, "Reserved")
+  field(DESC, "UTC mismatch between ref. and EVG")
+  field(ZNAM, "Match")
+  field(ONAM, "Mismatch")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):GetUTC"){
+  field(DESC, "Get UTC from reference")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+
 # Note: Setting $(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTC.VAL to 0 causes EVG to broadcast
 # 	the timestamp to the EVEs and EVRs.
 
