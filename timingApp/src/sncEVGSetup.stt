@@ -143,13 +143,13 @@ ss configuration {
 
 		%{/* On Timing UTCRBV change, compare it to reference */}%
 
-		if(utcsrc == 1 && (utcRBV < time(NULL) - 1 || utcRBV > time(NULL))){
+		if(utcsrc == 1 && (utcRBV < time(NULL) || utcRBV > time(NULL))){
 
 			%%// set UTC mismatch PV
 			utcMismatch = 1;
 			pvPut(utcMismatch, SYNC);
 		} 
-		else if(utcsrc == 1 && (utcRBV < utcRefVal - 1 || utcRBV > utcRefVal)){
+		else if(utcsrc == 1 && (utcRBV < utcRefVal || utcRBV > utcRefVal)){
 
 			%%// set UTC mismatch PV
 			utcMismatch = 1;
