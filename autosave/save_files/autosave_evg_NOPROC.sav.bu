@@ -1,4 +1,4 @@
-# autosave R5.3	Automatically generated - DO NOT MODIFY - 170309-160900
+# autosave R5.3	Automatically generated - DO NOT MODIFY - 170412-160552
 AS-Inj:TI-EVG1:enable.VAL 1
 AS-Inj:TI-EVG1:seqen.VAL 0
 AS-Inj:TI-EVG1:acen.VAL 1
@@ -29,6 +29,7 @@ AS-Inj:TI-EVG1:muxdiv6.RVAL 0
 AS-Inj:TI-EVG1:muxen7.VAL 0
 AS-Inj:TI-EVG1:muxdiv7.VAL 0
 AS-Inj:TI-EVG1:muxdiv7.RVAL 0
+AS-Inj:TI-EVG1:UTCSRC.VAL 0
 AS-Inj:TI-EVG1:TIMESRC.VAL 0
 AS-Inj:TI-EVG1:TIMESRC.RVAL 0
 AS-Inj:TI-EVG1:funsel.VAL 2

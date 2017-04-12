@@ -23,7 +23,7 @@ epicsEnvSet FDEV FOUT
 epicsEnvSet EVENT_NUM 16
 
 # Enable/disable module lines
-epicsEnvSet EVG1_line "#"
+epicsEnvSet EVG1_line ""
 
 epicsEnvSet EVR1_line "#"
 epicsEnvSet EVR2_line "#"
@@ -32,12 +32,12 @@ epicsEnvSet EVR4_line "#"
 epicsEnvSet EVR5_line "#"
 epicsEnvSet EVR6_line "#"
 
-epicsEnvSet EVE1_line "#"
+epicsEnvSet EVE1_line ""
 epicsEnvSet EVE2_line "#"
 epicsEnvSet EVE3_line "#"
 epicsEnvSet EVE4_line "#"
 
-epicsEnvSet FOUT1_line "#"
+epicsEnvSet FOUT1_line ""
 epicsEnvSet FOUT2_line "#"
 epicsEnvSet FOUT3_line "#"
 epicsEnvSet FOUT4_line "#"
@@ -53,7 +53,7 @@ timing_registerRecordDeviceDriver pdbbase
 
 asSetFilename("$(TOP)/accessSecurityFile.acf")
 
-${EVG1_line}drvAsynIPPortConfigure ("EVG1", "10.0.18.65:50118:50118 udp",0,0,0)
+${EVG1_line}drvAsynIPPortConfigure ("EVG1", "10.0.18.32:50111:50111 udp",0,0,0)
 
 ${EVR1_line}drvAsynIPPortConfigure ("EVR1", "10.0.18.65:50111:50111 udp",0,0,0)
 ${EVR2_line}drvAsynIPPortConfigure ("EVR2", "10.0.18.112:50112:50112 udp",0,0,0)
@@ -76,7 +76,7 @@ ${FOUT5_line}drvAsynIPPortConfigure ("FOUT5", "10.0.18.65:50118:50118 udp",0,0,0
 ## Load record instances
 
 # EVG
-${EVG1_line}dbLoadRecords("${TOP}/db/evg.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, PORT=EVG1")
+${EVG1_line}dbLoadRecords("${TOP}/db/evg.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, PORT=EVG1, ADDR=0, TIMEOUT=2")
 ${EVG1_line}dbLoadRecords "${TOP}/db/SeqRAM.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1"
 
 # Events
@@ -101,25 +101,25 @@ ${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${
 ${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=15, desc='Undefined', code=0x10, time=290, mode=1, transm=0"
 
 # EVR
-${EVR1_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=1, PORT=EVR1")
-${EVR2_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=2, PORT=EVR2")
-${EVR3_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=3, PORT=EVR3")
-${EVR4_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=4, PORT=EVR4")
-${EVR5_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=5, PORT=EVR5")
-${EVR6_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=6, PORT=EVR6")
+${EVR1_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=1, PORT=EVR1, ADDR=0, TIMEOUT=2")
+${EVR2_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=2, PORT=EVR2, ADDR=0, TIMEOUT=2")
+${EVR3_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=3, PORT=EVR3, ADDR=0, TIMEOUT=2")
+${EVR4_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=4, PORT=EVR4, ADDR=0, TIMEOUT=2")
+${EVR5_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=5, PORT=EVR5, ADDR=0, TIMEOUT=2")
+${EVR6_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=6, PORT=EVR6, ADDR=0, TIMEOUT=2")
 
 # EVE
-${EVE1_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=1, PORT=EVE1")
-${EVE2_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=2, PORT=EVE2")
-${EVE3_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=3, PORT=EVE3")
-${EVE4_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=4, PORT=EVE4")
+${EVE1_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=1, PORT=EVE1, ADDR=0, TIMEOUT=2")
+${EVE2_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=2, PORT=EVE2, ADDR=0, TIMEOUT=2")
+${EVE3_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=3, PORT=EVE3, ADDR=0, TIMEOUT=2")
+${EVE4_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=4, PORT=EVE4, ADDR=0, TIMEOUT=2")
 
 # FOUT
-${FOUT1_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=1, PORT=FOUT1")
-${FOUT2_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=2, PORT=FOUT2")
-${FOUT3_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=3, PORT=FOUT3")
-${FOUT4_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=4, PORT=FOUT4")
-${FOUT5_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=5, PORT=FOUT5")
+${FOUT1_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=1, PORT=FOUT1, ADDR=0, TIMEOUT=2")
+${FOUT2_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=2, PORT=FOUT2, ADDR=0, TIMEOUT=2")
+${FOUT3_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=3, PORT=FOUT3, ADDR=0, TIMEOUT=2")
+${FOUT4_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=4, PORT=FOUT4, ADDR=0, TIMEOUT=2")
+${FOUT5_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=5, PORT=FOUT5, ADDR=0, TIMEOUT=2")
 
 # Specify save file path
 set_savefile_path("$(TOP)", "autosave/save_files")

@@ -1,46 +1,5 @@
-2017-03-08 13:53:05.357 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-03-08 13:53:06.554 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-08 13:53:06.768 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-08 13:53:12.026 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-08 13:53:12.776 INFO [Thread 36] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-03-08 15:42:39.352 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-03-08 15:42:42.737 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-08 15:42:44.520 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-08 15:42:56.490 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-08 15:42:57.188 INFO [Thread 35] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-03-09 09:55:32.625 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-03-09 09:55:33.839 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 09:55:34.025 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 09:55:37.931 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 09:55:38.396 INFO [Thread 34] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-03-09 09:55:54.250 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 13:41:12.673 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-03-09 13:41:13.938 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 13:41:14.126 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 13:41:14.992 INFO [Thread 30] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-03-09 13:41:15.528 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 13:41:19.658 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 15:19:03.611 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 15:23:33.614 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 15:25:23.968 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-03-09 16:37:32.944 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-07 08:23:37.179 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-04-07 08:23:40.379 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-07 08:23:42.346 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-07 12:40:38.541 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-04-07 12:40:39.765 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-07 12:40:39.945 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-07 12:55:09.113 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-07 12:55:09.646 INFO [Thread 90] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-04-11 13:49:58.575 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
-2017-04-11 13:49:59.827 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 13:50:00.042 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 13:53:19.108 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 13:53:19.681 INFO [Thread 56] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-04-11 14:13:34.630 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 14:20:42.892 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 14:22:20.884 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 14:24:01.630 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 14:35:59.848 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 14:36:23.256 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-11 14:36:29.405 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-12 16:35:01.133 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-12 16:35:01.301 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-12 16:35:05.060 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-12 16:35:05.567 INFO [Thread 36] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-04-12 16:48:28.390 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml

@@ -694,12 +694,14 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramsw_set") {
 ########################################################################
 # Timestamp register [51]
 
+# This record value is read by the Sequencer program sncEVGSetup
 record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCSRC"){
   field(DESC, "EVG UTC value source")
   field(ZNAM, "PC")
   field(ONAM, "Control Room")
 }
 
+# This record value is written by the Sequencer program sncEVGSetup
 record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCMismatch"){
   field(ASG, "Reserved")
   field(DESC, "UTC mismatch between ref. and EVG")
@@ -707,6 +709,7 @@ record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCMismatch"){
   field(ONAM, "Mismatch")
 }
 
+# This record value is read by the Sequencer program sncEVGSetup
 record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):GetUTC"){
   field(DESC, "Get UTC from reference")
   field(ZNAM, "OFF")
@@ -789,7 +792,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev0") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evgre_digital_inp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
 }
 
 record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0") {
@@ -821,7 +824,7 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN0") {
   field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV.VAL")
   field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_digital_inp_e_p_t_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGEN) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGEN) $(PORT)")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
 }
 
@@ -833,7 +836,7 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL0") {
   field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0.VAL")
   field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_digital_inp_e_p_t_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGPOL) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGPOL) $(PORT)")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
 }
 
@@ -845,7 +848,7 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME0") {
   field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV.VAL")
   field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_digital_inp_e_p_t_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGTIME) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGTIME) $(PORT)")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
 }
 
@@ -865,7 +868,7 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV") {
   field(SHFT, "5")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evgre_digital_inp_0_intr $(PORT)")
+  field(INP, "@timing.proto evgre_diginp0_intr $(PORT)")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV")
 }
 
@@ -900,13 +903,13 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev0RBV") {
   field(DESC, "EVG digital input 0 event RBV")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_digital_inp_set0") {
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set0") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to DIGINP0")
   field(VAL, "0x75") # (0x40 | reg number=1)
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_digital_inp_get0") {
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get0") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read DIGINP0")
   field(VAL, "0xB5") # (0x80 | reg number=1)
@@ -920,7 +923,7 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev1") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evgre_digital_inp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
 }
 
 record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1") {
@@ -952,7 +955,7 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN1") {
   field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV.VAL")
   field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_digital_inp_e_p_t_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGEN) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGEN) $(PORT)")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
 }
 
@@ -964,7 +967,7 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL1") {
   field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1.VAL")
   field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_digital_inp_e_p_t_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGPOL) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGPOL) $(PORT)")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
 }
 
@@ -976,7 +979,7 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME1") {
   field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV.VAL")
   field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_digital_inp_e_p_t_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGTIME) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGTIME) $(PORT)")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
 }
 
@@ -996,7 +999,7 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV") {
   field(SHFT, "5")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evgre_digital_inp_1_intr $(PORT)")
+  field(INP, "@timing.proto evgre_diginp1_intr $(PORT)")
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV")
 }
 
@@ -1031,13 +1034,13 @@ record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev1RBV") {
   field(DESC, "EVG digital input 1 event RBV")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_digital_inp_set1") {
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set1") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to DIGINP1")
   field(VAL, "0x76") # (0x40 | reg number=1)
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_digital_inp_get1") {
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get1") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read DIGINP1")
   field(VAL, "0xB6") # (0x80 | reg number=1)

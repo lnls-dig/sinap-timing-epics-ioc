@@ -1,153 +1,58 @@
-2017-03-08 13:53:00.075 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.eclipse.ui.edit.paste: {ActionHandler(org.csstudio.opibuilder.actions.PasteWidgetsAction@53d2f0ec)} vs {ActionHandler(org.csstudio.opibuilder.actions.PasteWidgetsAction@560be8c0)}
-2017-03-08 13:53:00.081 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.eclipse.ui.edit.delete: {ActionHandler(org.eclipse.gef.ui.actions.DeleteAction@19e5e110)} vs {ActionHandler(org.eclipse.gef.ui.actions.DeleteAction@1e295f7f)}
-2017-03-08 13:53:00.081 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.eclipse.ui.edit.copy: {ActionHandler(org.csstudio.opibuilder.actions.CopyWidgetsAction@8e77c5b)} vs {ActionHandler(org.csstudio.opibuilder.actions.CopyWidgetsAction@5b6f3d0b)}
-2017-03-08 13:53:00.082 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.eclipse.ui.edit.cut: {ActionHandler(org.csstudio.opibuilder.actions.CutWidgetsAction@3bc18fec)} vs {ActionHandler(org.csstudio.opibuilder.actions.CutWidgetsAction@1d167630)}
-2017-03-08 13:53:00.083 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.csstudio.opibuilder.actions.TO_FRONT: {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@45295cfd)} vs {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@2ff62720)}
-2017-03-08 13:53:00.084 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.csstudio.opibuilder.actions.TO_BACK: {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@306cfb8a)} vs {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@3fad8636)}
-2017-03-08 13:53:00.085 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.csstudio.opibuilder.actions.STEP_BACK: {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@79636080)} vs {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@6d87253e)}
-2017-03-08 13:53:00.086 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - Conflicting handlers for org.csstudio.opibuilder.actions.STEP_FRONT: {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@75345e47)} vs {ActionHandler(org.csstudio.opibuilder.actions.ChangeOrderAction@36f40d72)}
-2017-03-08 13:53:01.164 SEVERE [Thread 1] org.csstudio.logging.PluginLogListener (logging) - 
-org.eclipse.e4.core.di.InjectionException: java.lang.NullPointerException
-	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:68)
-	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:898)
-	at org.eclipse.e4.core.internal.di.InjectorImpl.processAnnotated(InjectorImpl.java:879)
-	at org.eclipse.e4.core.internal.di.InjectorImpl.uninject(InjectorImpl.java:182)
-	at org.eclipse.e4.core.internal.di.Requestor.uninject(Requestor.java:164)
-	at org.eclipse.e4.core.internal.contexts.ContextObjectSupplier$ContextInjectionListener.update(ContextObjectSupplier.java:84)
-	at org.eclipse.e4.core.internal.contexts.TrackableComputationExt.update(TrackableComputationExt.java:111)
-	at org.eclipse.e4.core.internal.contexts.EclipseContext.removeListenersTo(EclipseContext.java:473)
-	at org.eclipse.e4.core.contexts.ContextInjectionFactory.uninject(ContextInjectionFactory.java:144)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:923)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:869)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.workbench.renderers.swt.ElementReferenceRenderer.disposeWidget(ElementReferenceRenderer.java:111)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:914)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.safeRemoveGui(PartRenderingEngine.java:876)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.access$1(PartRenderingEngine.java:842)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$3.run(PartRenderingEngine.java:837)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.removeGui(PartRenderingEngine.java:821)
-	at org.eclipse.ui.internal.WorkbenchWindow.hardClose(WorkbenchWindow.java:1973)
-	at org.eclipse.ui.internal.WorkbenchWindow.busyClose(WorkbenchWindow.java:1600)
-	at org.eclipse.ui.internal.WorkbenchWindow.access$16(WorkbenchWindow.java:1542)
-	at org.eclipse.ui.internal.WorkbenchWindow$11.run(WorkbenchWindow.java:1628)
-	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
-	at org.eclipse.ui.internal.WorkbenchWindow.close(WorkbenchWindow.java:1625)
-	at org.eclipse.ui.internal.Workbench$14.run(Workbench.java:1189)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
-	at org.eclipse.ui.internal.Workbench.busyClose(Workbench.java:1171)
-	at org.eclipse.ui.internal.Workbench.access$22(Workbench.java:1113)
-	at org.eclipse.ui.internal.Workbench$19.run(Workbench.java:1454)
-	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
-	at org.eclipse.ui.internal.Workbench.close(Workbench.java:1451)
-	at org.eclipse.ui.internal.Workbench.close(Workbench.java:1424)
-	at org.eclipse.ui.internal.WorkbenchWindow.busyClose(WorkbenchWindow.java:1596)
-	at org.eclipse.ui.internal.WorkbenchWindow.access$16(WorkbenchWindow.java:1542)
-	at org.eclipse.ui.internal.WorkbenchWindow$11.run(WorkbenchWindow.java:1628)
-	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
-	at org.eclipse.ui.internal.WorkbenchWindow.close(WorkbenchWindow.java:1625)
-	at org.eclipse.ui.internal.WorkbenchWindow.close(WorkbenchWindow.java:1639)
-	at org.eclipse.ui.internal.WorkbenchWindow$6.close(WorkbenchWindow.java:527)
-	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer$7.shellClosed(WBWRenderer.java:518)
-	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:98)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4481)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1329)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1353)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1338)
-	at org.eclipse.swt.widgets.Shell.closeWidget(Shell.java:654)
-	at org.eclipse.swt.widgets.Shell.gtk_delete_event(Shell.java:1276)
-	at org.eclipse.swt.widgets.Widget.windowProc(Widget.java:1963)
-	at org.eclipse.swt.widgets.Control.windowProc(Control.java:5685)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4717)
-	at org.eclipse.swt.internal.gtk.OS._gtk_main_do_event(Native Method)
-	at org.eclipse.swt.internal.gtk.OS.gtk_main_do_event(OS.java:9326)
-	at org.eclipse.swt.widgets.Display.eventProc(Display.java:1225)
-	at org.eclipse.swt.internal.gtk.OS._g_main_context_iteration(Native Method)
-	at org.eclipse.swt.internal.gtk.OS.g_main_context_iteration(OS.java:2435)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3428)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1127)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1018)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
-	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:694)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:606)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
-	at org.csstudio.utility.product.Workbench.runWorkbench(Workbench.java:103)
-	at org.csstudio.startup.application.Application.startApplication(Application.java:265)
-	at org.csstudio.startup.application.Application.start(Application.java:119)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
-	at org.eclipse.equinox.launcher.Main.main(Main.java:1488)
-Caused by: java.lang.NullPointerException
-	at org.eclipse.gef.ui.actions.ActionBarContributor.dispose(ActionBarContributor.java:108)
-	at org.eclipse.ui.internal.EditorActionBars.dispose(EditorActionBars.java:160)
-	at org.eclipse.ui.internal.EditorReference.disposeEditorActionBars(EditorReference.java:473)
-	at org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor.disposeSite(CompatibilityEditor.java:143)
-	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.internalDisposeSite(CompatibilityPart.java:407)
-	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.invalidate(CompatibilityPart.java:246)
-	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.destroy(CompatibilityPart.java:394)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:56)
-	... 127 more
-
+2017-03-08 13:53:05.357 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-08 13:53:06.554 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-08 13:53:06.768 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-08 13:53:12.026 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-08 13:53:12.776 INFO [Thread 36] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-08 15:42:39.352 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-08 15:42:42.737 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-08 15:42:44.520 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-08 15:42:56.490 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-08 15:42:57.188 INFO [Thread 35] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-09 09:55:32.625 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-09 09:55:33.839 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 09:55:34.025 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 09:55:37.931 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 09:55:38.396 INFO [Thread 34] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-09 09:55:54.250 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 13:41:12.673 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-03-09 13:41:13.938 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 13:41:14.126 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 13:41:14.992 INFO [Thread 30] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-03-09 13:41:15.528 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 13:41:19.658 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 15:19:03.611 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 15:23:33.614 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 15:25:23.968 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-03-09 16:37:32.944 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-07 08:23:37.179 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-04-07 08:23:40.379 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-07 08:23:42.346 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-07 12:40:38.541 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-04-07 12:40:39.765 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-07 12:40:39.945 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-07 12:55:09.113 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-07 12:55:09.646 INFO [Thread 90] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-04-11 13:49:58.575 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-04-11 13:49:59.827 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 13:50:00.042 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 13:53:19.108 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 13:53:19.681 INFO [Thread 56] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-04-11 14:13:34.630 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 14:20:42.892 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 14:22:20.884 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 14:24:01.630 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 14:35:59.848 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 14:36:23.256 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 14:36:29.405 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 15:05:12.002 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-04-11 15:05:13.191 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 15:05:13.409 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 15:06:12.120 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-11 15:06:12.597 INFO [Thread 36] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-04-11 15:06:40.865 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-12 13:47:35.686 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK
+2017-04-12 13:47:36.924 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-12 13:47:37.097 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-12 13:47:48.420 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
+2017-04-12 13:47:48.804 INFO [Thread 36] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
+2017-04-12 16:34:59.894 INFO [Thread 21] org.csstudio.security.authentication.UnattendedCallbackHandler (handleText) - OK

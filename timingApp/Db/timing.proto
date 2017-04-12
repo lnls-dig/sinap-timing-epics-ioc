@@ -437,35 +437,35 @@ evre_log_ctrlRBV_intr{
 # Digital input	EVG		[53-54]
 #		EVE & EVR 	[53-55]
 
-evgre_digital_inp_get {
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get\$6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+evgre_diginp_get {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get\$6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev\$6RBV)0r%*04r%*04r";
 }
 
-evgre_digital_inp_ev_set {
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set\$6)r%(\$1-\$2:\$3-\$4\$5:digept\$6RBV.RVAL)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    evgre_digital_inp_get;
+evgre_diginp_ev_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set\$6)r%(\$1-\$2:\$3-\$4\$5:digept\$6RBV.RVAL)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    evgre_diginp_get;
 }
 
-evgre_digital_inp_e_p_t_set {
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set\$6)r%(\$1-\$2:\$3-\$4\$5:\$7\$6)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6RBV)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    evgre_digital_inp_get;
+evgre_diginp_ept_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set\$6)r%(\$1-\$2:\$3-\$4\$5:\$7\$6)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6RBV)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    evgre_diginp_get;
 }
 
-evgre_digital_inp_set {
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set\$6)r%(\$1-\$2:\$3-\$4\$5:digept\$6)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    evgre_digital_inp_get;
+evgre_diginp_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set\$6)r%(\$1-\$2:\$3-\$4\$5:digept\$6)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    evgre_diginp_get;
 }
 
 # Interrupts
 
-evgre_digital_inp_0_intr{
+evgre_diginp0_intr{
     in "\xF5%r%*03r%*04r%*04r";
 }
-evgre_digital_inp_1_intr{
+evgre_diginp1_intr{
     in "\xF6%r%*03r%*04r%*04r";
 }
-evgre_digital_inp_2_intr{
+evgre_diginp2_intr{
     in "\xF7%r%*03r%*04r%*04r";
 }
 
@@ -672,13 +672,13 @@ eve_upload{
 
     # Digital inputs upload
     # digin0
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev0RBV)0r%*04r%*04r";    
     # digin1
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev1RBV)0r%*04r%*04r";    
     # digin2
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev2RBV)0r%*04r%*04r";    
 
     # RF output upload
@@ -768,13 +768,13 @@ evr_upload{
 
     # Digital inputs upload
     # digin0
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev0RBV)0r%*04r%*04r";    
     # digin1
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev1RBV)0r%*04r%*04r";    
     # digin2
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev2RBV)0r%*04r%*04r";
 
     # Timestamp log
@@ -812,10 +812,10 @@ evg_upload{
 
     # Digital inputs upload
     # digin0
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev0RBV)0r%*04r%*04r";    
     # digin1
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev1RBV)0r%*04r%*04r";    
 
     # AC Line
@@ -861,9 +861,9 @@ eve_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set6).1r%(\$1-\$2:\$3-\$4\$5:ITL6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel6toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly6).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly6).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set7).1r%(\$1-\$2:\$3-\$4\$5:ITL7).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel7toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly7).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly7).1r";
     # digital inputs
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set2)r%(\$1-\$2:\$3-\$4\$5:digept2)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev2)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set2)r%(\$1-\$2:\$3-\$4\$5:digept2)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev2)r\x00\x00\x00\x00\x00\x00\x00\x00";
     # control settings
 	evre_ctrl_set;
     # Timestamp source
@@ -903,9 +903,9 @@ evr_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set6).1r%(\$1-\$2:\$3-\$4\$5:ITL6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel6toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly6).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly6).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set7).1r%(\$1-\$2:\$3-\$4\$5:ITL7).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel7toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly7).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly7).1r";
     # digital inputs
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set2)r%(\$1-\$2:\$3-\$4\$5:digept2)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev2)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set2)r%(\$1-\$2:\$3-\$4\$5:digept2)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev2)r\x00\x00\x00\x00\x00\x00\x00\x00";
     # control settings
 	evre_ctrl_set;
     # Timestamp source
@@ -929,8 +929,8 @@ evg_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set7).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen7).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv7.RVAL).4r";
 
     # digital inputs
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1-\$2:\$3-\$4\$5:cmd_digital_inp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
 
     # ac line settings
 	evg_acline_set;

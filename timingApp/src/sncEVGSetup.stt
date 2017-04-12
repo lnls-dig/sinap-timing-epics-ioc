@@ -12,8 +12,8 @@ int wrongUTCflg;
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
-int uploadproc;
-assign uploadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:uploadT.PROC";
+int uploadtrig;
+assign uploadtrig to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:uploadT.VAL";
 
 int downloadproc;
 assign downloadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:downloadT.PROC";
@@ -55,11 +55,11 @@ int utcsrc;
 assign utcsrc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCSRC";
 monitor utcsrc;
 
-int utcRefVal;
-assign utcRefVal to "Cont:LNLS191:NTP:Timestamp";
-monitor utcRefVal;
-evflag utcRefFlag;
-sync utcRefVal utcRefFlag;
+%%//int utcRefVal;
+%%//assign utcRefVal to "Cont:LNLS191:NTP:Timestamp";
+%%//monitor utcRefVal;
+%%//evflag utcRefFlag;
+%%//sync utcRefVal utcRefFlag;
 
 int utcMismatch;
 assign utcMismatch to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCMismatch";
@@ -105,8 +105,8 @@ ss configuration {
 		%{/* If network is ON, upload parameters! */}%
 
 		%%// trigger upload
-		uploadproc = 1;
-		pvPut(uploadproc,SYNC);
+		uploadtrig = 1;
+		pvPut(uploadtrig,SYNC);
 
 		%%// upload message
 		printf("\nConfiguration uploaded from %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
@@ -149,17 +149,17 @@ ss configuration {
 			utcMismatch = 1;
 			pvPut(utcMismatch, SYNC);
 		} 
-		else if(utcsrc == 1 && (utcRBV < utcRefVal || utcRBV > utcRefVal)){
-
+		%%//else if(utcsrc == 1 && (utcRBV < utcRefVal || utcRBV > utcRefVal)){
+		%%//
 			%%// set UTC mismatch PV
-			utcMismatch = 1;
-			pvPut(utcMismatch, SYNC);
-		}
-		else{
+		%%//	utcMismatch = 1;
+		%%//	pvPut(utcMismatch, SYNC);
+		%%//}
+		%%//else{
 			%%// clear UTC mismatch PV
-			utcMismatch = 0;
-			pvPut(utcMismatch, SYNC);			
-		}
+		%%//	utcMismatch = 0;
+		%%//	pvPut(utcMismatch, SYNC);			
+		%%//}
 
 	} state waiting
 
@@ -212,7 +212,7 @@ ss configuration {
 		}
 
 		%%// Clear reference UTC update flag
-		efClear(utcRefFlag);
+		%%//efClear(utcRefFlag);
 	}
 	
 	when(utcsrc == 0 && delay(0.01)){
@@ -232,12 +232,13 @@ ss configuration {
 
 	} state waiting
 
-	when (utcsrc == 1 && efTestAndClear(utcRefFlag)) {
+	when(){
+	%%//when (utcsrc == 1 && efTestAndClear(utcRefFlag)) {
 
 		%{/* Update UTC as soon as reference changes value */}%
 
-		utc = utcRefVal;
-		pvPut(utc, SYNC);
+	%%//	utc = utcRefVal;
+	%%//	pvPut(utc, SYNC);
 
 	}state waiting
     }
