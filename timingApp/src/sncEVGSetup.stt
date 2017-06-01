@@ -4,8 +4,8 @@ program sncEVGSetup
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
-int uploadproc;
-assign uploadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:uploadT.PROC";
+int uploadtrig;
+assign uploadtrig to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:uploadT.VAL";
 
 int downloadproc;
 assign downloadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:downloadT.PROC";
@@ -74,8 +74,8 @@ ss configuration {
 		%{/* If network is ON, upload parameters! */}%
 
 		%%// trigger upload
-		uploadproc = 1;
-		pvPut(uploadproc,SYNC);
+		uploadtrig = 1;
+		pvPut(uploadtrig,SYNC);
 
 		%%// upload message
 		printf("\nConfiguration uploaded from %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
