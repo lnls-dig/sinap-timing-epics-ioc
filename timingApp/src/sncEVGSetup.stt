@@ -157,9 +157,6 @@ ss configuration {
 				utcMismatch = 0;
 			}
 			else{
-				%%//%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEBUG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-				printf("Mismatch: UTCRBV=%u, PC_time=%u\n", utcRBV, (unsigned int)time(NULL));
-				%%//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 				%%// set UTC mismatch PV
 				utcMismatch = 1;
 			}
@@ -172,10 +169,6 @@ ss configuration {
 				utcMismatch = 0;
 			}
 			else{
-				%%//%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEBUG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-				printf("Mismatch: UTCRBV=%u, Control_room_time=%u\n", utcRBV, utcCtrlRoom);
-				%%//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 				%%// set UTC mismatch PV
 				utcMismatch = 1;
 			}
