@@ -7,6 +7,7 @@ program sncEVGSetup
 int currTime;
 int prevTime;
 int wrongUTCflg;
+int utcSrcCopy;
 
 %%//----------------------------------------
 %%// 	      Monitored PVs
@@ -42,24 +43,24 @@ int network;
 assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
 monitor network;
 
-int utc;
+unsigned int utc;
 assign utc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTC";
 
-int utcRBV;
+unsigned int utcRBV;
 assign utcRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCRBV";
 monitor utcRBV;
 evflag utcRBVFlag;
 sync utcRBV utcRBVFlag;
 
 int utcsrc;
-assign utcsrc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCSRC";
+assign utcsrc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCRef";
 monitor utcsrc;
 
-%%//int utcRefVal;
-%%//assign utcRefVal to "Cont:LNLS191:NTP:Timestamp";
-%%//monitor utcRefVal;
-%%//evflag utcRefFlag;
-%%//sync utcRefVal utcRefFlag;
+unsigned int utcCtrlRoom;
+assign utcCtrlRoom to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:CtrlRoomUTC";
+monitor utcCtrlRoom;
+evflag utcCtrlRoomFlag;
+sync utcCtrlRoom utcCtrlRoomFlag;
 
 int utcMismatch;
 assign utcMismatch to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCMismatch";
@@ -121,6 +122,9 @@ ss configuration {
 
 		%%// Clear wrong UTC flag
 		wrongUTCflg = 0;
+	
+		%%// Clear control room flag
+		efClear(utcRBVFlag);
 	}
 
 	when ((funselRBV != 18) && (network == 1)) {
@@ -141,25 +145,44 @@ ss configuration {
 
 	when (efTestAndClear(utcRBVFlag)) {
 
-		%{/* On Timing UTCRBV change, compare it to reference */}%
+		%{/* On Timing UTCRBV change, compare it to the reference */}%
 
-		if(utcsrc == 1 && (utcRBV < time(NULL) || utcRBV > time(NULL))){
+		utcSrcCopy = utcsrc; %%// Copy UTC source to protect it against change
 
-			%%// set UTC mismatch PV
-			utcMismatch = 1;
-			pvPut(utcMismatch, SYNC);
-		} 
-		%%//else if(utcsrc == 1 && (utcRBV < utcRefVal || utcRBV > utcRefVal)){
-		%%//
-			%%// set UTC mismatch PV
-		%%//	utcMismatch = 1;
-		%%//	pvPut(utcMismatch, SYNC);
-		%%//}
-		%%//else{
-			%%// clear UTC mismatch PV
-		%%//	utcMismatch = 0;
-		%%//	pvPut(utcMismatch, SYNC);			
-		%%//}
+		if(utcSrcCopy == 0){ %%// UTC source comes from PC
+
+			if(utcRBV == time(NULL)){
+
+				%%// clear UTC mismatch PV
+				utcMismatch = 0;
+			}
+			else{
+				%%//%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEBUG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				printf("Mismatch: UTCRBV=%u, PC_time=%u\n", utcRBV, (unsigned int)time(NULL));
+				%%//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				%%// set UTC mismatch PV
+				utcMismatch = 1;
+			}
+		}
+		else { %%// UTC source comes from Control Room PV
+		
+			if(utcRBV == utcCtrlRoom){
+
+				%%// clear UTC mismatch PV
+				utcMismatch = 0;
+			}
+			else{
+				%%//%%%%%%%%%%%%%%%%%%%%%%%%%%%% DEBUG %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+				printf("Mismatch: UTCRBV=%u, Control_room_time=%u\n", utcRBV, utcCtrlRoom);
+				%%//%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+				%%// set UTC mismatch PV
+				utcMismatch = 1;
+			}
+		}
+
+		%%// put result	in PV		
+		pvPut(utcMismatch, SYNC);
 
 	} state waiting
 
@@ -205,17 +228,23 @@ ss configuration {
 
 	entry{
 
-		%%// Get computer time
-		if(utcsrc == 0){
+		%%// Copy UTC source to protect it against change
+		utcSrcCopy = utcsrc;
+
+		if(utcSrcCopy == 0){
+
+			%%// Get computer time				
 			currTime = time(NULL);
 			prevTime = currTime;
 		}
+		else{
 
-		%%// Clear reference UTC update flag
-		%%//efClear(utcRefFlag);
+			%%// Clear Control Room UTC flag
+			efClear(utcCtrlRoomFlag);
+		}
 	}
-	
-	when(utcsrc == 0 && delay(0.01)){
+
+	when(utcSrcCopy == 0 && delay(0.01)){
 
 		%{/* Read UTC value from computer */}%
 
@@ -223,7 +252,7 @@ ss configuration {
 
 	} state updateUTC
 
-	when(utcsrc == 0 && prevTime != currTime){
+	when(utcSrcCopy == 0 && prevTime != currTime){
 
 		%{/* Update UTC as soon as PC time changes value */}%
 
@@ -232,13 +261,12 @@ ss configuration {
 
 	} state waiting
 
-	when(){
-	%%//when (utcsrc == 1 && efTestAndClear(utcRefFlag)) {
+	when (utcSrcCopy == 1 && efTestAndClear(utcCtrlRoomFlag)) {
 
 		%{/* Update UTC as soon as reference changes value */}%
 
-	%%//	utc = utcRefVal;
-	%%//	pvPut(utc, SYNC);
+		utc = utcCtrlRoom;
+		pvPut(utc, SYNC);
 
 	}state waiting
     }

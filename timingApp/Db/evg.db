@@ -695,8 +695,8 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramsw_set") {
 # Timestamp register [51]
 
 # This record value is read by the Sequencer program sncEVGSetup
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCSRC"){
-  field(DESC, "EVG UTC value source")
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCRef"){
+  field(DESC, "EVG UTC reference")
   field(ZNAM, "PC")
   field(ONAM, "Control Room")
 }
@@ -711,9 +711,17 @@ record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCMismatch"){
 
 # This record value is read by the Sequencer program sncEVGSetup
 record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):GetUTC"){
-  field(DESC, "Get UTC from reference")
+  field(DESC, "Get UTC from configured reference cmd")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
+}
+
+# This record monitors the control room timestamp
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):CtrlRoomUTC"){
+  field(ASG, "Reserved")
+  field(DESC, "Control room UTC monitor")
+  field(INP, "Cont:LNLS191:NTP:Timestamp CPP")
+  field(EGU, "seconds")
 }
 
 # Note: Setting $(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTC.VAL to 0 causes EVG to broadcast
