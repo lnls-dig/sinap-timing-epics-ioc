@@ -8,7 +8,7 @@ import socket
 
 WAIT = 0.005
 
-ipsub = '10.0.18.'
+ipsub = '10.2.118.'
 port_ini = 50111
 port_end = 50128
 ip_ini = 2

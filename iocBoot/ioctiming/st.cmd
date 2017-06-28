@@ -32,7 +32,7 @@ epicsEnvSet EVR4_line "#"
 epicsEnvSet EVR5_line "#"
 epicsEnvSet EVR6_line "#"
 
-epicsEnvSet EVE1_line ""
+epicsEnvSet EVE1_line "#"
 epicsEnvSet EVE2_line "#"
 epicsEnvSet EVE3_line "#"
 epicsEnvSet EVE4_line "#"
@@ -67,7 +67,7 @@ ${EVE2_line}drvAsynIPPortConfigure ("EVE2", "10.0.18.32:50122:50122 udp",0,0,0)
 ${EVE3_line}drvAsynIPPortConfigure ("EVE3", "10.0.18.123:50123:50123 udp",0,0,0)
 ${EVE4_line}drvAsynIPPortConfigure ("EVE4", "10.0.18.124:50124:50124 udp",0,0,0)
 
-${FOUT1_line}drvAsynIPPortConfigure ("FOUT1", "10.0.18.65:50118:50118 udp",0,0,0)
+${FOUT1_line}drvAsynIPPortConfigure ("FOUT1", "10.2.118.35:50116:50116 udp",0,0,0)
 ${FOUT2_line}drvAsynIPPortConfigure ("FOUT2", "10.0.18.43:50117:50117 udp",0,0,0)
 ${FOUT3_line}drvAsynIPPortConfigure ("FOUT3", "10.0.18.65:50118:50118 udp",0,0,0)
 ${FOUT4_line}drvAsynIPPortConfigure ("FOUT4", "10.0.18.65:50118:50118 udp",0,0,0)
