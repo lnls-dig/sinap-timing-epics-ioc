@@ -1002,12 +1002,10 @@ the device. The format is "\textless host\textgreater:\textless port\textgreater
 		\item If the number of events provided to the Injection State Machine is smaller than the actual number of events created, only the events with smaller indexes will be recognized by the state machine.
 		\end{itemize}
 
-	\subsection{Communication timout}
-
-		\paragraph{} Error message: \emph{"\textless date\textgreater \textless time\textgreater \textless port name\textgreater \textless record name\textgreater: No reply from device within \textless timeout\textgreater ms"}
+	\subsection{Network status OFF}
 
 		\begin{itemize}
-		\item StreamDevice generates an error message when a reply timout happens. Common communication problems causes are incorrect device address specification in the st.cmd file, and device physical disconnection.
+		\item If the network status PV remains OFF, the IOC is not being able to communicate with the device. That might happen due to device IP and/or port misconfiguration in the \hyperref[sec:startup-script]{startup script}, network misconfiguration, or physical disconnection. Since \emph{StreamDevice 2-7-7}, there are NO error messages when a reply timout happens.
 		\end{itemize}
 
 	\subsection{IOC State Machines present strange behavior}
@@ -1029,6 +1027,4 @@ the device. The format is "\textless host\textgreater:\textless port\textgreater
 		\end{itemize}
 
 \end{document}
-\grid
-\grid
 \grid
