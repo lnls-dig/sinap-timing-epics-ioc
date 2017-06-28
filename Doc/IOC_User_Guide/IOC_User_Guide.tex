@@ -291,6 +291,12 @@ Receivers}. The EVR and EVE modules monitor some configured events, that, when r
 		% describe the configuration steps in order for the EVE module to output a clock signal with frequency multiple of the event clock frequency.
 		\paragraph{} The EVE module is capable of outputting a square waveform with frequency multiple of the \emph{event clock}. The clock output is configured by the \hyperref[pvgroup:eve-rf-output]{cmsel} PV.
 
+	\subsection{Digital input configuration}
+
+		\paragraph{} Some EVO and EVE modules have digital inputs on their rear panel. When the EVO is configured as EVG, the first digital input is a PPS external input, while the other two are normal configurable digital inputs. Each digital input can generate an event in response to a trigger reception. For input \{idx\}, the \hyperref[pvgroup:evg-digital-input]{digev\{idx\}} PV specifies the event to generate, \hyperref[pvgroup:evg-digital-input]{digen\{idx\}} enables/disables the digital input, \hyperref[pvgroup:evg-digital-input]{digpol\{idx\}} specifies the trigger polarity, and \hyperref[pvgroup:evg-digital-input]{digtime\{idx\}} determines whether event timestamping is enabled for the input.
+
+		\paragraph{} In the case of the EVE, all three inputs are configurable digital inputs. For input \{idx\}, the \hyperref[pvgroup:evre-digital-input]{digev\{idx\}} PV specifies the event to generate, \hyperref[pvgroup:evre-digital-input]{digen\{idx\}} enables/disables the digital input, \hyperref[pvgroup:evre-digital-input]{digpol\{idx\}} specifies the trigger polarity, and \hyperref[pvgroup:evre-digital-input]{digtime\{idx\}} determines whether event timestamping is enabled for the input.
+
 %--- Section: Timing System Process Variables ---
 \section{Timing System Process Variables}\label{sec:process-variables}
 
@@ -494,6 +500,26 @@ Receivers}. The EVR and EVE modules monitor some configured events, that, when r
 			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and show the network connection status (ON/OFF).
 			\par The \emph{SAVE} PV triggers the IOC save when set to 1.
 
+		\subsubsection{Digital input\{idx\} \{idx\}=0...1}\label{pvgroup:evg-digital-input}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    digev\{idx\} & Digital input \{idx\} event code & long (min=0, max=255) \\ \hline
+			    digev\{idx\}RBV & "digev\{idx\}" PV Read Back Value & long (min=0, max=255) \\ \hline
+			    digen\{idx\} & Digital input \{idx\} enable & bool [0: "OFF"][1: "ON"] \\ \hline
+			    digen\{idx\}RBV & "digen\{idx\}" PV Read Back Value & bool [0: "OFF"][1: "ON"] \\ \hline
+			    digpol\{idx\} & Digital input \{idx\} polarity & bool [0: "NORMAL"][1: "INVERTED"] \\ \hline
+			    digpol\{idx\}RBV & "digpol\{idx\}" PV Read Back Value & bool [0: "NORMAL"][1: "INVERTED"] \\ \hline
+			    digtime\{idx\} & Digital input \{idx\} event timestamping enable & bool [0: "NOT TIMESTAMPED"][1: "TIMESTAMPED"] \\ \hline
+			    digtime\{idx\}RBV & "digtime\{idx\}" PV Read Back Value & bool [0: "NOT TIMESTAMPED"][1: "TIMESTAMPED"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{digev\{idx\}} PV selects the event which is generated when digital input \{idx\} receives a trigger. The polarity of the trigger pulse is specified by \emph{digpol\{idx\}}.
+			\par The \emph{digtime\{idx\}} PV specifies if the generated event and corresponding timestamp should be stored when the digital input receives a trigger.
+			\par The \emph{digen\{idx\}} PV enables/disables digital input \{idx\}.
+
 	\subsection{EVR/EVE}
 
 	%--- Section table of contents ---
@@ -692,6 +718,26 @@ the commit hash.
 			\par The \emph{statdev} PV is updated based on the module's \emph{alive} status. Whenever the module is configured, \emph{statdev} value is \emph{RUNNING}. Otherwise, it is \emph{WAITING}.
 			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and show the network connection status (ON/OFF).
 			\par The \emph{SAVE} PV triggers the IOC save when set to 1.
+
+		\subsubsection{Digital input\{idx\} \{idx\}=0...2}\label{pvgroup:evre-digital-input}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    digev\{idx\} & Digital input \{idx\} event code & long (min=0, max=255) \\ \hline
+			    digev\{idx\}RBV & "digev\{idx\}" PV Read Back Value & long (min=0, max=255) \\ \hline
+			    digen\{idx\} & Digital input \{idx\} enable & bool [0: "OFF"][1: "ON"] \\ \hline
+			    digen\{idx\}RBV & "digen\{idx\}" PV Read Back Value & bool [0: "OFF"][1: "ON"] \\ \hline
+			    digpol\{idx\} & Digital input \{idx\} polarity & bool [0: "NORMAL"][1: "INVERTED"] \\ \hline
+			    digpol\{idx\}RBV & "digpol\{idx\}" PV Read Back Value & bool [0: "NORMAL"][1: "INVERTED"] \\ \hline
+			    digtime\{idx\} & Digital input \{idx\} event timestamping enable & bool [0: "NOT TIMESTAMPED"][1: "TIMESTAMPED"] \\ \hline
+			    digtime\{idx\}RBV & "digtime\{idx\}" PV Read Back Value & bool [0: "NOT TIMESTAMPED"][1: "TIMESTAMPED"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{digev\{idx\}} PV selects the event which is generated when digital input \{idx\} receives a trigger. The polarity of the trigger pulse is specified by \emph{digpol\{idx\}}.
+			\par The \emph{digtime\{idx\}} PV specifies if the generated event and corresponding timestamp should be stored when the digital input receives a trigger.
+			\par The \emph{digen\{idx\}} PV enables/disables digital input \{idx\}.
 
 %--- Section: Startup Script ---
 \section{Startup Script}\label{sec:startup-script}
