@@ -235,6 +235,10 @@ correctly configured by the EVG Setup sequencer program on IOC startup. The \hyp
 			\paragraph{} Another important variable is the interlock input status, which is displayed by the \hyperref[pvgroup:evre-control-status]{inhs} PV. The interlock input only affects the module's outputs whose interlock function is enabled.
 			\paragraph{} The EVR and EVE modules do not output any trigger or clock until the module is enabled. Enable/disable of the module is done through the \hyperref[pvgroup:evg-control-status]{enable} PV.
 
+		\subsubsection{FOUT}
+
+			\paragraph{} The Fanout configuration consists of enabling or disabling the module's outputs by using the \hyperref[pvgroup:fout-control-status]{fouten} PV. The \hyperref[pvgroup:fout-control-status]{foutenRBV} PV displays the enable status of the module's outputs. The \hyperref[pvgroup:fout-control-status]{link} PV indicates the UPLINK connection status. The PVs \hyperref[pvgroup:fout-control-status]{los0 ... los7} indicate the Fanout outputs connection status.
+
 	\subsection{Saving the IOC parameters}
 		% how to save the IOC parameters settings
 		\paragraph{} The save function saves all select and set point PVs so that the user is able to use the download command to configure the module in a single step. In order to save the IOC current settings, it is necessary to set the corresponding module's \hyperref[pvgroup:evg-module-support]{SAVE} PV to 1.
@@ -486,19 +490,19 @@ Receivers}. The EVR and EVE modules monitor some configured events, that, when r
 			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
 			    \hline
 			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
-			    download & Download all PV values to module parameters & bool [0: "OFF"][1: "ON"] \\ \hline
+			    download & Download all PV values to module & bool [0: "OFF"][1: "ON"] \\ \hline
 			    uploadT & Upload all module parameters to status and RBV PVs & bool [0: "OFF"][1: "ON"] \\ \hline
 			    statdev & Device configuration status & bool [0: "WAITING"][1: "RUNNING"] \\ \hline
 			    network & Network connection status & bool [0: "OFF"][1: "ON"] \\ \hline
-			    SAVE & Trigger for the IOC save & bool [0: "OFF"][1: "ON"] \\ \hline
+			    SAVE & Trigger save function & bool [0: "OFF"][1: "ON"] \\ \hline
 			\end{tabular}
 			\end{center}
 
-			\paragraph{} The \emph{download} trigger causes all set point, select, or command PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
+			\paragraph{} The \emph{download} trigger causes all set point and select PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
 			\par The \emph{uploadT} trigger causes all status and read-back value PVs to upload their values from the hardware. On IOC startup, an upload will automatically happen for any module that is already configured.
 			\par The \emph{statdev} PV is updated based on the module's \emph{alive} status. Whenever the module is configured, \emph{statdev} value is \emph{RUNNING}. Otherwise, it is \emph{WAITING}.
-			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and show the network connection status (ON/OFF).
-			\par The \emph{SAVE} PV triggers the IOC save when set to 1.
+			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and shows the network connection status.
+			\par The \emph{SAVE} PV triggers the EVG save function when set to 1.
 
 		\subsubsection{Digital input\{idx\} \{idx\}=0...1}\label{pvgroup:evg-digital-input}
 			\begin{center}
@@ -705,19 +709,19 @@ the commit hash.
 			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
 			    \hline
 			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
-			    download & Download all PV values to module parameters & bool [0: "OFF"][1: "ON"] \\ \hline
+			    download & Download all PV values to module & bool [0: "OFF"][1: "ON"] \\ \hline
 			    uploadT & Upload all module parameters to status and RBV PVs & bool [0: "OFF"][1: "ON"] \\ \hline
 			    statdev & Device configuration status & bool [0: "WAITING"][1: "RUNNING"] \\ \hline
 			    network & Network connection status & bool [0: "OFF"][1: "ON"] \\ \hline
-			    SAVE & Trigger for the IOC save & bool [0: "OFF"][1: "ON"] \\ \hline
+			    SAVE & Trigger save function & bool [0: "OFF"][1: "ON"] \\ \hline
 			\end{tabular}
 			\end{center}
 
-			\paragraph{} The \emph{download} trigger causes all set point, select, or command PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
+			\paragraph{} The \emph{download} trigger causes all set point and select PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
 			\par The \emph{uploadT} trigger causes all status and read-back value PVs to upload their values from the hardware. On IOC startup, an upload will automatically happen for any module that is already configured.
 			\par The \emph{statdev} PV is updated based on the module's \emph{alive} status. Whenever the module is configured, \emph{statdev} value is \emph{RUNNING}. Otherwise, it is \emph{WAITING}.
-			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and show the network connection status (ON/OFF).
-			\par The \emph{SAVE} PV triggers the IOC save when set to 1.
+			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and shows the network connection status.
+			\par The \emph{SAVE} PV triggers the EVR/EVE save function when set to 1.
 
 		\subsubsection{Digital input\{idx\} \{idx\}=0...2}\label{pvgroup:evre-digital-input}
 			\begin{center}
@@ -738,6 +742,66 @@ the commit hash.
 			\paragraph{} The \emph{digev\{idx\}} PV selects the event which is generated when digital input \{idx\} receives a trigger. The polarity of the trigger pulse is specified by \emph{digpol\{idx\}}.
 			\par The \emph{digtime\{idx\}} PV specifies if the generated event and corresponding timestamp should be stored when the digital input receives a trigger.
 			\par The \emph{digen\{idx\}} PV enables/disables digital input \{idx\}.
+
+	\subsection{FOUT}
+
+	%--- Section table of contents ---
+	\etoclocalframed[1]{}
+
+		\subsubsection{Control and Status}\label{pvgroup:fout-control-status}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    fouten & Enable/Disable FOUT & bool [0: "OFF"][1: "ON"] \\ \hline
+			    foutenRBV & "fouten" PV Read Back Value & bool [0: "OFF"][1: "ON"] \\ \hline
+			    link & Uplink status & [0: "UNLINK"][1: "LINK"] \\ \hline
+			    los0 & Downlink 0 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los1 & Downlink 1 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los2 & Downlink 2 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los3 & Downlink 3 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los4 & Downlink 4 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los5 & Downlink 5 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los6 & Downlink 6 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los7 & Downlink 7 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{fouten} PV enables/disables the FOUT outputs.
+			\par The \emph{link} PV displays the uplink status. If the Event Generator is enabled and the uplink connection is working, the \emph{link} status is \emph{LINK}, otherwise it is \emph{UNLINK}.
+			\par The PVs \emph{los0} to \emph{los7} indicate the status of each fiber output connection.
+
+		\subsubsection{Configuration}\label{pvgroup:fout-configuration}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    alive & Alive counter & ulong (32-bit) \\ \hline
+			    funsel & STD-EVO configuration & enum [16: "FOUT"][17: "EVR"][18: "EVG"][32: "EVE"] \\ \hline
+			    funselRBV & "funsel" PV Read Back Value & enum [16: "FOUT"][17: "EVR"][18: "EVG"][32: "EVE"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{Configuration} parameters define the STD-EVO module basic functionality. The \emph{funsel} parameter is used to configure the module as EVG, EVR, or FOUT. 
+			\par The \emph{alive} counter works as a heartbeat, and starts to count as soon as the module receives one of the possible configuration options: EVG, EVR, or FOUT. The \emph{FOUT Setup state machine} uses the \emph{alive} information to determine the status of the network connection.
+			\par On startup, the \emph{FOUT Setup state machine} will set the \emph{funsel} parameter in the case of the module being disconfigured.
+
+		\subsubsection{Module Support}\label{pvgroup:fout-module-support}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    download & Download all PV values to module & bool [0: "OFF"][1: "ON"] \\ \hline
+			    statdev & Device configuration status & bool [0: "WAITING"][1: "RUNNING"] \\ \hline
+			    network & Network connection status & bool [0: "OFF"][1: "ON"] \\ \hline
+			    SAVE & Trigger save function & bool [0: "OFF"][1: "ON"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{download} trigger causes all set point and select PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
+			\par The \emph{statdev} PV is updated based on the module's \emph{alive} status. Whenever the module is configured, \emph{statdev} value is \emph{RUNNING}. Otherwise, it is \emph{WAITING}.
+			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and shows the network connection status.
+			\par The \emph{SAVE} PV triggers the FOUT save function when set to 1.
 
 %--- Section: Startup Script ---
 \section{Startup Script}\label{sec:startup-script}
