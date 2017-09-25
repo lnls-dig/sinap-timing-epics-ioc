@@ -4346,6 +4346,49 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):whileNotEmpty"){
   field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull PP")
 }
 
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstSoftBuff"){
+  field(DESC, "Reset software buffers")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "1")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstSoftBuffCalc")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstSoftBuffCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Reset software buffers calc")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstSoftBuff")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstSoftBuffSeq.PROC")
+}
+
+record(sseq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstSoftBuffSeq"){
+  field(ASG, "Reserved")
+  field(DESC, "Reset software buffers sequence")
+  field(SELM, "All")
+  field(DO1, "1")
+  field(DO2, "1")
+  field(DO3, "1")
+  field(DO4, "0")
+  field(DO5, "1")
+  field(DO6, "1")
+  field(DO7, "1")
+  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCbuffer.RES PP")	# Reset and process UTC buffer. It will pull a -1 when processed.
+  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SUBSECbuffer.RES PP")	# Reset and process SUBSEC buffer. It will pull a -1 when processed.
+  field(LNK3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVENTbuffer.RES PP")	# Reset and process EVENT buffer. It will pull a -1 when processed.
+  field(LNK4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGSOFTCNT")		# Zero soft log count
+  field(LNK5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
+  field(LNK6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SUBSECbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
+  field(LNK7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVENTbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
+  field(WAIT1, "Wait")
+  field(WAIT2, "Wait")
+  field(WAIT3, "Wait")
+  field(WAIT4, "Wait")
+  field(WAIT5, "Wait")
+  field(Wait6, "Wait")
+}
+
 record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_log_get"){
   field(ASG, "Reserved")
   field(DESC, "Timestamp log reg read command code")
