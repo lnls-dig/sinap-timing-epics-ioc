@@ -23,7 +23,7 @@ epicsEnvSet FDEV FOUT
 epicsEnvSet EVENT_NUM 16
 
 # Enable/disable module lines
-epicsEnvSet EVG1_line "#"
+epicsEnvSet EVG1_line ""
 
 epicsEnvSet EVR1_line "#"
 epicsEnvSet EVR2_line "#"
@@ -37,7 +37,7 @@ epicsEnvSet EVE2_line "#"
 epicsEnvSet EVE3_line "#"
 epicsEnvSet EVE4_line "#"
 
-epicsEnvSet FOUT1_line "#"
+epicsEnvSet FOUT1_line ""
 epicsEnvSet FOUT2_line "#"
 epicsEnvSet FOUT3_line "#"
 epicsEnvSet FOUT4_line "#"
@@ -53,7 +53,7 @@ timing_registerRecordDeviceDriver pdbbase
 
 asSetFilename("$(TOP)/accessSecurityFile.acf")
 
-${EVG1_line}drvAsynIPPortConfigure ("EVG1", "10.0.18.65:50118:50118 udp",0,0,0)
+${EVG1_line}drvAsynIPPortConfigure ("EVG1", "10.0.18.32:50111:50111 udp",0,0,0)
 
 ${EVR1_line}drvAsynIPPortConfigure ("EVR1", "10.0.18.65:50111:50111 udp",0,0,0)
 ${EVR2_line}drvAsynIPPortConfigure ("EVR2", "10.0.18.112:50112:50112 udp",0,0,0)
@@ -67,7 +67,7 @@ ${EVE2_line}drvAsynIPPortConfigure ("EVE2", "10.0.18.32:50122:50122 udp",0,0,0)
 ${EVE3_line}drvAsynIPPortConfigure ("EVE3", "10.0.18.123:50123:50123 udp",0,0,0)
 ${EVE4_line}drvAsynIPPortConfigure ("EVE4", "10.0.18.124:50124:50124 udp",0,0,0)
 
-${FOUT1_line}drvAsynIPPortConfigure ("FOUT1", "10.0.18.65:50118:50118 udp",0,0,0)
+${FOUT1_line}drvAsynIPPortConfigure ("FOUT1", "10.2.118.35:50116:50116 udp",0,0,0)
 ${FOUT2_line}drvAsynIPPortConfigure ("FOUT2", "10.0.18.43:50117:50117 udp",0,0,0)
 ${FOUT3_line}drvAsynIPPortConfigure ("FOUT3", "10.0.18.65:50118:50118 udp",0,0,0)
 ${FOUT4_line}drvAsynIPPortConfigure ("FOUT4", "10.0.18.65:50118:50118 udp",0,0,0)
@@ -76,7 +76,7 @@ ${FOUT5_line}drvAsynIPPortConfigure ("FOUT5", "10.0.18.65:50118:50118 udp",0,0,0
 ## Load record instances
 
 # EVG
-${EVG1_line}dbLoadRecords("${TOP}/db/evg.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, PORT=EVG1")
+${EVG1_line}dbLoadRecords("${TOP}/db/evg.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, PORT=EVG1, ADDR=0, TIMEOUT=2")
 ${EVG1_line}dbLoadRecords "${TOP}/db/SeqRAM.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1"
 
 # Events
@@ -101,25 +101,25 @@ ${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${
 ${EVG1_line}dbLoadRecords "${TOP}/db/Events.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=15, desc='Undefined', code=0x10, time=290, mode=1, transm=0"
 
 # EVR
-${EVR1_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=1, PORT=EVR1")
-${EVR2_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=2, PORT=EVR2")
-${EVR3_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=3, PORT=EVR3")
-${EVR4_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=4, PORT=EVR4")
-${EVR5_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=5, PORT=EVR5")
-${EVR6_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=6, PORT=EVR6")
+${EVR1_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=1, PORT=EVR1, ADDR=0, TIMEOUT=2")
+${EVR2_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=2, PORT=EVR2, ADDR=0, TIMEOUT=2")
+${EVR3_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=3, PORT=EVR3, ADDR=0, TIMEOUT=2")
+${EVR4_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=4, PORT=EVR4, ADDR=0, TIMEOUT=2")
+${EVR5_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=5, PORT=EVR5, ADDR=0, TIMEOUT=2")
+${EVR6_line}dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=6, PORT=EVR6, ADDR=0, TIMEOUT=2")
 
 # EVE
-${EVE1_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=1, PORT=EVE1")
-${EVE2_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=2, PORT=EVE2")
-${EVE3_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=3, PORT=EVE3")
-${EVE4_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=4, PORT=EVE4")
+${EVE1_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=1, PORT=EVE1, ADDR=0, TIMEOUT=2")
+${EVE2_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=2, PORT=EVE2, ADDR=0, TIMEOUT=2")
+${EVE3_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=3, PORT=EVE3, ADDR=0, TIMEOUT=2")
+${EVE4_line}dbLoadRecords("${TOP}/db/eve.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=4, PORT=EVE4, ADDR=0, TIMEOUT=2")
 
 # FOUT
-${FOUT1_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=1, PORT=FOUT1")
-${FOUT2_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=2, PORT=FOUT2")
-${FOUT3_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=3, PORT=FOUT3")
-${FOUT4_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=4, PORT=FOUT4")
-${FOUT5_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=5, PORT=FOUT5")
+${FOUT1_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=1, PORT=FOUT1, ADDR=0, TIMEOUT=2")
+${FOUT2_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=2, PORT=FOUT2, ADDR=0, TIMEOUT=2")
+${FOUT3_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=3, PORT=FOUT3, ADDR=0, TIMEOUT=2")
+${FOUT4_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=4, PORT=FOUT4, ADDR=0, TIMEOUT=2")
+${FOUT5_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=5, PORT=FOUT5, ADDR=0, TIMEOUT=2")
 
 # Specify save file path
 set_savefile_path("$(TOP)", "autosave/save_files")
@@ -129,38 +129,38 @@ set_requestfile_path("$(TOP)", "autosave/request_files")
 
 # Specify files to be restored, and when
 # EVG
-${EVG1_line}set_pass0_restoreFile("autosave_evg_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1")
+${EVG1_line}set_pass0_restoreFile("autosave_evg_NOPROC.sav")
 # ITBL
-${EVG1_line}set_pass1_restoreFile("autosave_ITBL_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1")
+${EVG1_line}set_pass1_restoreFile("autosave_ITBL_PROC.sav")
 # Events
-${EVG1_line}set_pass1_restoreFile("autosave_event0_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=0")
-${EVG1_line}set_pass1_restoreFile("autosave_event1_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=1")
-${EVG1_line}set_pass1_restoreFile("autosave_event2_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=2")
-${EVG1_line}set_pass1_restoreFile("autosave_event3_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=3")
-${EVG1_line}set_pass1_restoreFile("autosave_event4_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=4")
-${EVG1_line}set_pass1_restoreFile("autosave_event5_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=5")
-${EVG1_line}set_pass1_restoreFile("autosave_event6_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=6")
-${EVG1_line}set_pass1_restoreFile("autosave_event7_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=7")
-${EVG1_line}set_pass1_restoreFile("autosave_event8_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=8")
-${EVG1_line}set_pass1_restoreFile("autosave_event9_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=9")
-${EVG1_line}set_pass1_restoreFile("autosave_event10_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=10")
-${EVG1_line}set_pass1_restoreFile("autosave_event11_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=11")
-${EVG1_line}set_pass1_restoreFile("autosave_event12_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=12")
-${EVG1_line}set_pass1_restoreFile("autosave_event13_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=13")
-${EVG1_line}set_pass1_restoreFile("autosave_event14_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=14")
-${EVG1_line}set_pass1_restoreFile("autosave_event15_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=15")
+${EVG1_line}set_pass1_restoreFile("autosave_event0_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event1_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event2_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event3_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event4_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event5_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event6_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event7_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event8_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event9_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event10_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event11_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event12_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event13_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event14_PROC.sav")
+${EVG1_line}set_pass1_restoreFile("autosave_event15_PROC.sav")
 # EVR
-${EVR1_line}set_pass0_restoreFile("autosave_evr1_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=1")
-${EVR2_line}set_pass0_restoreFile("autosave_evr2_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=2")
-${EVR3_line}set_pass0_restoreFile("autosave_evr3_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=3")
-${EVR4_line}set_pass0_restoreFile("autosave_evr4_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=4")
-${EVR5_line}set_pass0_restoreFile("autosave_evr5_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=5")
-${EVR6_line}set_pass0_restoreFile("autosave_evr6_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=6")
+${EVR1_line}set_pass0_restoreFile("autosave_evr1_NOPROC.sav")
+${EVR2_line}set_pass0_restoreFile("autosave_evr2_NOPROC.sav")
+${EVR3_line}set_pass0_restoreFile("autosave_evr3_NOPROC.sav")
+${EVR4_line}set_pass0_restoreFile("autosave_evr4_NOPROC.sav")
+${EVR5_line}set_pass0_restoreFile("autosave_evr5_NOPROC.sav")
+${EVR6_line}set_pass0_restoreFile("autosave_evr6_NOPROC.sav")
 # EVE
-${EVE1_line}set_pass0_restoreFile("autosave_eve1_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=1")
-${EVE2_line}set_pass0_restoreFile("autosave_eve2_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=2")
-${EVE3_line}set_pass0_restoreFile("autosave_eve3_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=3")
-${EVE4_line}set_pass0_restoreFile("autosave_eve4_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=4")
+${EVE1_line}set_pass0_restoreFile("autosave_eve1_NOPROC.sav")
+${EVE2_line}set_pass0_restoreFile("autosave_eve2_NOPROC.sav")
+${EVE3_line}set_pass0_restoreFile("autosave_eve3_NOPROC.sav")
+${EVE4_line}set_pass0_restoreFile("autosave_eve4_NOPROC.sav")
 # FOUT
 ${FOUT1_line}set_pass0_restoreFile("autosave_fout1_NOPROC.sav")
 ${FOUT2_line}set_pass0_restoreFile("autosave_fout2_NOPROC.sav")

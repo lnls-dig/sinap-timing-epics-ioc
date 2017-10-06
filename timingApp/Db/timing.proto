@@ -434,6 +434,42 @@ evre_log_ctrlRBV_intr{
 }
 
 ################################################################################
+# Digital input	EVG		[53-54]
+#		EVE & EVR 	[53-55]
+
+evgre_diginp_get {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get\$6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev\$6RBV)0r%*04r%*04r";
+}
+
+evgre_diginp_ev_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set\$6)r%(\$1-\$2:\$3-\$4\$5:digept\$6RBV.RVAL)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    evgre_diginp_get;
+}
+
+evgre_diginp_ept_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set\$6)r%(\$1-\$2:\$3-\$4\$5:\$7\$6)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6RBV)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    evgre_diginp_get;
+}
+
+evgre_diginp_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set\$6)r%(\$1-\$2:\$3-\$4\$5:digept\$6)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev\$6)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    evgre_diginp_get;
+}
+
+# Interrupts
+
+evgre_diginp0_intr{
+    in "\xF5%r%*03r%*04r%*04r";
+}
+evgre_diginp1_intr{
+    in "\xF6%r%*03r%*04r%*04r";
+}
+evgre_diginp2_intr{
+    in "\xF7%r%*03r%*04r%*04r";
+}
+
+################################################################################
 # Firmware version register EVG, EVR & EVE [62]
 
 frmvrs_get{
@@ -633,6 +669,18 @@ eve_upload{
     # out7
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*r%*02r%*r%*02r%(\$1-\$2:\$3-\$4\$5:finedly7RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly7RBV)r";
+
+    # Digital inputs upload
+    # digin0
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev0RBV)0r%*04r%*04r";    
+    # digin1
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev1RBV)0r%*04r%*04r";    
+    # digin2
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev2RBV)0r%*04r%*04r";    
+
     # RF output upload
 	eve_rf_get;
     # Timestamp log
@@ -717,6 +765,18 @@ evr_upload{
     # out7
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*r%*02r%*r%*02r%(\$1-\$2:\$3-\$4\$5:finedly7RBV)02r%*03r%(\$1-\$2:\$3-\$4\$5:rfdly7RBV)r";
+
+    # Digital inputs upload
+    # digin0
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev0RBV)0r%*04r%*04r";    
+    # digin1
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev1RBV)0r%*04r%*04r";    
+    # digin2
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev2RBV)0r%*04r%*04r";
+
     # Timestamp log
 	evre_log_get;
     # Timestamp
@@ -749,6 +809,15 @@ evg_upload{
     # mux7
     out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:muxen7RBV)r%*04r%*04r";
+
+    # Digital inputs upload
+    # digin0
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev0RBV)0r%*04r%*04r";    
+    # digin1
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*03r%(\$1-\$2:\$3-\$4\$5:digev1RBV)0r%*04r%*04r";    
+
     # AC Line
 	evg_acline_get;
     # SequenceRAM counter
@@ -765,6 +834,7 @@ eve_download{
 	eve_conf_set;
     # RF output settings
 	eve_rf_set;
+    # otp
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set0)r%(\$1-\$2:\$3-\$4\$5:enpoltime0)r%(\$1-\$2:\$3-\$4\$5:pulses0).2r%(\$1-\$2:\$3-\$4\$5:event0)r%(\$1-\$2:\$3-\$4\$5:delay0).4r%(\$1-\$2:\$3-\$4\$5:width0).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set1)r%(\$1-\$2:\$3-\$4\$5:enpoltime1)r%(\$1-\$2:\$3-\$4\$5:pulses1).2r%(\$1-\$2:\$3-\$4\$5:event1)r%(\$1-\$2:\$3-\$4\$5:delay1).4r%(\$1-\$2:\$3-\$4\$5:width1).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set2)r%(\$1-\$2:\$3-\$4\$5:enpoltime2)r%(\$1-\$2:\$3-\$4\$5:pulses2).2r%(\$1-\$2:\$3-\$4\$5:event2)r%(\$1-\$2:\$3-\$4\$5:delay2).4r%(\$1-\$2:\$3-\$4\$5:width2).4r";
@@ -781,6 +851,7 @@ eve_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setD)r%(\$1-\$2:\$3-\$4\$5:enpoltimeD)r%(\$1-\$2:\$3-\$4\$5:pulsesD).2r%(\$1-\$2:\$3-\$4\$5:eventD)r%(\$1-\$2:\$3-\$4\$5:delayD).4r%(\$1-\$2:\$3-\$4\$5:widthD).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setE)r%(\$1-\$2:\$3-\$4\$5:enpoltimeE)r%(\$1-\$2:\$3-\$4\$5:pulsesE).2r%(\$1-\$2:\$3-\$4\$5:eventE)r%(\$1-\$2:\$3-\$4\$5:delayE).4r%(\$1-\$2:\$3-\$4\$5:widthE).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setF)r%(\$1-\$2:\$3-\$4\$5:enpoltimeF)r%(\$1-\$2:\$3-\$4\$5:pulsesF).2r%(\$1-\$2:\$3-\$4\$5:eventF)r%(\$1-\$2:\$3-\$4\$5:delayF).4r%(\$1-\$2:\$3-\$4\$5:widthF).4r";
+    # out
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set0).1r%(\$1-\$2:\$3-\$4\$5:ITL0).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel0toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly0).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly0).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set1).1r%(\$1-\$2:\$3-\$4\$5:ITL1).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel1toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly1).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly1).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set2).1r%(\$1-\$2:\$3-\$4\$5:ITL2).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel2toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly2).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly2).1r";
@@ -789,6 +860,10 @@ eve_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set5).1r%(\$1-\$2:\$3-\$4\$5:ITL5).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel5toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly5).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly5).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set6).1r%(\$1-\$2:\$3-\$4\$5:ITL6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel6toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly6).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly6).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set7).1r%(\$1-\$2:\$3-\$4\$5:ITL7).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel7toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly7).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly7).1r";
+    # digital inputs
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set2)r%(\$1-\$2:\$3-\$4\$5:digept2)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev2)r\x00\x00\x00\x00\x00\x00\x00\x00";
     # control settings
 	evre_ctrl_set;
     # Timestamp source
@@ -801,6 +876,7 @@ eve_download{
 evr_download{
     # initialize the module
 	evr_conf_set;
+    # otp
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set0)r%(\$1-\$2:\$3-\$4\$5:enpoltime0)r%(\$1-\$2:\$3-\$4\$5:pulses0).2r%(\$1-\$2:\$3-\$4\$5:event0)r%(\$1-\$2:\$3-\$4\$5:delay0).4r%(\$1-\$2:\$3-\$4\$5:width0).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set1)r%(\$1-\$2:\$3-\$4\$5:enpoltime1)r%(\$1-\$2:\$3-\$4\$5:pulses1).2r%(\$1-\$2:\$3-\$4\$5:event1)r%(\$1-\$2:\$3-\$4\$5:delay1).4r%(\$1-\$2:\$3-\$4\$5:width1).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_set2)r%(\$1-\$2:\$3-\$4\$5:enpoltime2)r%(\$1-\$2:\$3-\$4\$5:pulses2).2r%(\$1-\$2:\$3-\$4\$5:event2)r%(\$1-\$2:\$3-\$4\$5:delay2).4r%(\$1-\$2:\$3-\$4\$5:width2).4r";
@@ -817,6 +893,7 @@ evr_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setD)r%(\$1-\$2:\$3-\$4\$5:enpoltimeD)r%(\$1-\$2:\$3-\$4\$5:pulsesD).2r%(\$1-\$2:\$3-\$4\$5:eventD)r%(\$1-\$2:\$3-\$4\$5:delayD).4r%(\$1-\$2:\$3-\$4\$5:widthD).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setE)r%(\$1-\$2:\$3-\$4\$5:enpoltimeE)r%(\$1-\$2:\$3-\$4\$5:pulsesE).2r%(\$1-\$2:\$3-\$4\$5:eventE)r%(\$1-\$2:\$3-\$4\$5:delayE).4r%(\$1-\$2:\$3-\$4\$5:widthE).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_otp_setF)r%(\$1-\$2:\$3-\$4\$5:enpoltimeF)r%(\$1-\$2:\$3-\$4\$5:pulsesF).2r%(\$1-\$2:\$3-\$4\$5:eventF)r%(\$1-\$2:\$3-\$4\$5:delayF).4r%(\$1-\$2:\$3-\$4\$5:widthF).4r";
+    # out
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set0).1r%(\$1-\$2:\$3-\$4\$5:ITL0).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel0toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly0).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly0).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set1).1r%(\$1-\$2:\$3-\$4\$5:ITL1).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel1toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly1).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly1).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set2).1r%(\$1-\$2:\$3-\$4\$5:ITL2).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel2toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly2).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly2).1r";
@@ -825,6 +902,10 @@ evr_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set5).1r%(\$1-\$2:\$3-\$4\$5:ITL5).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel5toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly5).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly5).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set6).1r%(\$1-\$2:\$3-\$4\$5:ITL6).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel6toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly6).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly6).1r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_out_set7).1r%(\$1-\$2:\$3-\$4\$5:ITL7).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:sel7toHW).1r\x00\x00%(\$1-\$2:\$3-\$4\$5:finedly7).2r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:rfdly7).1r";
+    # digital inputs
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set2)r%(\$1-\$2:\$3-\$4\$5:digept2)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev2)r\x00\x00\x00\x00\x00\x00\x00\x00";
     # control settings
 	evre_ctrl_set;
     # Timestamp source
@@ -837,6 +918,7 @@ evr_download{
 evg_download{
     # initialize the module
 	evg_conf_set;
+    # mux
     out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set0).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen0).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv0.RVAL).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set1).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen1).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv1.RVAL).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set2).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen2).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv2.RVAL).4r";
@@ -845,6 +927,11 @@ evg_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set5).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen5).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv5.RVAL).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set6).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen6).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv6.RVAL).4r";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_mux_set7).1r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxen7).1r\x00\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:muxdiv7.RVAL).4r";
+
+    # digital inputs
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
+
     # ac line settings
 	evg_acline_set;
     # control settings

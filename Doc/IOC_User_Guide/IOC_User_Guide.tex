@@ -12,6 +12,9 @@
 \usepackage{etoc} % used for generation of section local table of contents
 \usepackage{placeins} % allows the use of float barriers, preventing figures and tables to be placed in inconvenient places
 
+% Define graphics path
+\graphicspath{{figs/}}
+
 % Configure the cross reference hyper links color
 \hypersetup{
     colorlinks=true,
@@ -87,11 +90,11 @@
 
 	\subsection{Installation}
 
-		\paragraph{} The Timing System IOC requires EPICS base 3.14 and synApps 5.8 installed. Make sure to install both and provide their intallation paths to the IOC (\hyperref[sec:release-file]{RELEASE file}) before building it.
+		\paragraph{} The Timing System IOC requires EPICS base 3.14, synApps 5.8, and StreamDevice 2-7-7 installed. Make sure to provide their intallation paths to the IOC (\hyperref[sec:release-file]{RELEASE file}) before building the IOC.
 
 	\subsection{Editing the RELEASE file}\label{sec:release-file}
 
-		\paragraph{} The RELEASE file, located at /\textless IOC directory\textgreater/configure/RELEASE, contains the paths for external applications, e.g., the synApps tools. Generally, this is the only file that requires modification when running the IOC in a new machine. Make sure that the paths specified in the file agree with the applications installation locations.
+		\paragraph{} The RELEASE file, located at /\textless IOC directory\textgreater/configure/RELEASE, contains the paths for external applications. Generally, this is the only file that requires modification to build the IOC in a new machine. Make sure that the paths specified in the file agree with the applications installation locations.
 
 	\subsection{Building the IOC}
 
@@ -232,6 +235,10 @@ correctly configured by the EVG Setup sequencer program on IOC startup. The \hyp
 			\paragraph{} Another important variable is the interlock input status, which is displayed by the \hyperref[pvgroup:evre-control-status]{inhs} PV. The interlock input only affects the module's outputs whose interlock function is enabled.
 			\paragraph{} The EVR and EVE modules do not output any trigger or clock until the module is enabled. Enable/disable of the module is done through the \hyperref[pvgroup:evg-control-status]{enable} PV.
 
+		\subsubsection{FOUT}
+
+			\paragraph{} The Fanout configuration consists of enabling or disabling the module's outputs by using the \hyperref[pvgroup:fout-control-status]{fouten} PV. The \hyperref[pvgroup:fout-control-status]{foutenRBV} PV displays the enable status of the module's outputs. The \hyperref[pvgroup:fout-control-status]{link} PV indicates the UPLINK connection status. The PVs \hyperref[pvgroup:fout-control-status]{los0 ... los7} indicate the Fanout outputs connection status.
+
 	\subsection{Saving the IOC parameters}
 		% how to save the IOC parameters settings
 		\paragraph{} The save function saves all select and set point PVs so that the user is able to use the download command to configure the module in a single step. In order to save the IOC current settings, it is necessary to set the corresponding module's \hyperref[pvgroup:evg-module-support]{SAVE} PV to 1.
@@ -270,7 +277,7 @@ Receivers}. The EVR and EVE modules monitor some configured events, that, when r
 	\subsection{Timestamping function}
 		% describe the configuration steps for timestamp distribution, synchronization of event receivers to the event generator timestamp, event reception timestamping, and how to read the stored timestamp items (must include details on how to guarantee a safe read).
 		\paragraph{} The timestamping function of the Timing System is configured in many levels. First, all the modules need to be synchronized with the same timestamp. In order for that to happen, the first step is to configure the EVG timestamp settings.
-		\paragraph{} The EVG UTC timestamp is set using the \hyperref[pvgroup:evre-timestamp]{UTC} PV. Modifying the UTC timestamp causes the EVG to broadcast the UTC timestamp to the Timing System. By default, the EVG UTC timestamp is initialized by the \emph{EVGSetup} sequencer program with the linux UTC time. The EVG subsecond timestamp is incremented by the \emph{event clock} and reset whenever the EVG receives a PPS signal. The \hyperref[pvgroup:evre-timestamp]{subsecondRBV} PV displays the timestamp subsecond count. The PPS (Pulse-per-second) is the signal responsible for updating the UTC timestamp. The source for the PPS can be configured using the \hyperref[pvgroup:evre-timestamp]{TIMESRC} PV. Modifying the PPS source causes the EVG to broadcast the UTC timestamp to the Timing System. Whenever desired, the UTC timestamp broadcast can be forced by writing 0 (zero) to the \hyperref[pvgroup:evre-timestamp]{UTC} PV. The PV value is not modified by a 0 write.
+		\paragraph{} The EVG UTC timestamp is set using the \hyperref[pvgroup:evg-timestamp]{UTC} PV. Modifying the UTC timestamp causes the EVG to broadcast the UTC timestamp to the Timing System. Although the EVG UTC can be set directly, a more adequate method is to update it using a reliable reference value. The \hyperref[pvgroup:evg-timestamp]{UTCRef} PV provides two reference options: the PC, and the control room UTC PV. In order to update the EVG UTC with the reference UTC, the \hyperref[pvgroup:evg-timestamp]{GetUTC} PV must be set. When the EVG UTC readback value differs from the UTC of the specified reference, \hyperref[pvgroup:evg-timestamp]{UTCMismatch} is set. The EVG subsecond timestamp is incremented by the \emph{event clock} and reset whenever the EVG receives a PPS signal. The \hyperref[pvgroup:evg-timestamp]{subsecondRBV} PV displays the timestamp subsecond count. The PPS (Pulse-per-second) is the signal responsible for updating the UTC timestamp. The source for the PPS can be configured using the \hyperref[pvgroup:evg-timestamp]{TIMESRC} PV. Modifying the PPS source causes the EVG to broadcast the UTC timestamp to the Timing System. Whenever desired, the UTC timestamp broadcast can be forced by writing 0 (zero) to the \hyperref[pvgroup:evg-timestamp]{UTC} PV. The PV value is not modified by a 0 write.
 		\paragraph{} After the EVG timestamp settings are configured, the \emph{Event Generator} is able to update the Timing System timestamps and the next step is to configure the \emph{Event Receivers} timestamp options.
 		\paragraph{} The EVR and EVE UTC timestamps are displayed by the \hyperref[pvgroup:evre-timestamp]{UTCRBV} PV. The subsecond counter value can be read from the \hyperref[pvgroup:evre-timestamp]{subsecondRBV} PV. The UTC timestamp of the event receivers is set when the EVG executes a timestamp broadcast and updated by a PPS. The PPS source for the EVR or EVE is configured by the \hyperref[pvgroup:evre-timestamp]{TIMESRC} PV.
 		\paragraph{} After the EVR and EVE timestamp options are configured and the modules are synchronized with the EVG, it is desirable to configure the \emph{Event Receivers} to store the timestamp in which monitored events are received.
@@ -287,6 +294,12 @@ Receivers}. The EVR and EVE modules monitor some configured events, that, when r
 	\subsection{Providing clock multiple of event clock (EVE)}
 		% describe the configuration steps in order for the EVE module to output a clock signal with frequency multiple of the event clock frequency.
 		\paragraph{} The EVE module is capable of outputting a square waveform with frequency multiple of the \emph{event clock}. The clock output is configured by the \hyperref[pvgroup:eve-rf-output]{cmsel} PV.
+
+	\subsection{Digital input configuration}
+
+		\paragraph{} Some EVO and EVE modules have digital inputs on their rear panel. When the EVO is configured as EVG, the first digital input is a PPS external input, while the other two are normal configurable digital inputs. Each digital input can generate an event in response to a trigger reception. For input \{idx\}, the \hyperref[pvgroup:evg-digital-input]{digev\{idx\}} PV specifies the event to generate, \hyperref[pvgroup:evg-digital-input]{digen\{idx\}} enables/disables the digital input, \hyperref[pvgroup:evg-digital-input]{digpol\{idx\}} specifies the trigger polarity, and \hyperref[pvgroup:evg-digital-input]{digtime\{idx\}} determines whether event timestamping is enabled for the input.
+
+		\paragraph{} In the case of the EVE, all three inputs are configurable digital inputs. For input \{idx\}, the \hyperref[pvgroup:evre-digital-input]{digev\{idx\}} PV specifies the event to generate, \hyperref[pvgroup:evre-digital-input]{digen\{idx\}} enables/disables the digital input, \hyperref[pvgroup:evre-digital-input]{digpol\{idx\}} specifies the trigger polarity, and \hyperref[pvgroup:evre-digital-input]{digtime\{idx\}} determines whether event timestamping is enabled for the input.
 
 %--- Section: Timing System Process Variables ---
 \section{Timing System Process Variables}\label{sec:process-variables}
@@ -406,12 +419,17 @@ Receivers}. The EVR and EVE modules monitor some configured events, that, when r
 			    UTC & Timestamp seconds counter & ulong (32-bit) \\ \hline
 			    UTCRBV & "UTC" PV Read Back Value & ulong (32-bit) \\ \hline
 			    subsecondRBV & Timestamp subsecond counter (event clock period resolution) & ulong (32-bit) \\ \hline
+			    UTCRef & UTC reference & bool [0: "PC"][1: "Control Room"] \\ \hline
+			    GetUTC & Get UTC from specified reference command & bool [0: "OFF"][1: "ON"] \\ \hline
+			    UTCMismatch & UTC mismatch between reference and EVG & bool [0: "Match"][1: "Mismatch"] \\ \hline
+			    CtrlRoomUTC & Control Room UTC & ulong (32-bit) \\ \hline
 			\end{tabular}
 			\end{center}
 
 			\paragraph{} The \emph{TIMESRC} PV defines the PPS signal source for the EVG module. When configured as \emph{IDLE}, the UTC timestamp is not incremented and no \emph{update UTC} event is sent by the EVG. When configured as \emph{DBUS}, the EVG UTC is incremented by the \emph{MUX6} divider output (\emph{DBUS6}). When configured as \emph{EXTERNAL}, the PPS signal comes from the corresponding external input in the EVG rear panel. When configured as \emph{INTERNAL}, the PPS is obtained from the internal oscillator clock.
 			\paragraph{} The \emph{UTC} PV sets the module timestamp UTC, which is the number of seconds passed since some epoch.
 			\paragraph{} The \emph{subsecondRBV} PV holds the value of the timestamp subsecond counter, which is updated by the event clock.
+			\paragraph{} The \emph{UTCRef} PV selects the UTC refence to be either the UTC from the computer running the IOC, or the Control Room UTC PV. Setting \emph{GetUTC} to \emph{ON} updates the EVG UTC using the reference time. When a mismatch between the EVG and reference UTC happens, the \emph{UTCMismatch} PV is asserted. The \emph{CtrlRoomUTC} PV monitors the Control Room UTC.
 
 			\bigskip
 			\setlength{\fboxsep}{8pt}
@@ -472,19 +490,39 @@ Receivers}. The EVR and EVE modules monitor some configured events, that, when r
 			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
 			    \hline
 			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
-			    download & Download all PV values to module parameters & bool [0: "OFF"][1: "ON"] \\ \hline
+			    download & Download all PV values to module & bool [0: "OFF"][1: "ON"] \\ \hline
 			    uploadT & Upload all module parameters to status and RBV PVs & bool [0: "OFF"][1: "ON"] \\ \hline
 			    statdev & Device configuration status & bool [0: "WAITING"][1: "RUNNING"] \\ \hline
 			    network & Network connection status & bool [0: "OFF"][1: "ON"] \\ \hline
-			    SAVE & Trigger for the IOC save & bool [0: "OFF"][1: "ON"] \\ \hline
+			    SAVE & Trigger save function & bool [0: "OFF"][1: "ON"] \\ \hline
 			\end{tabular}
 			\end{center}
 
-			\paragraph{} The \emph{download} trigger causes all set point, select, or command PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
+			\paragraph{} The \emph{download} trigger causes all set point and select PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
 			\par The \emph{uploadT} trigger causes all status and read-back value PVs to upload their values from the hardware. On IOC startup, an upload will automatically happen for any module that is already configured.
 			\par The \emph{statdev} PV is updated based on the module's \emph{alive} status. Whenever the module is configured, \emph{statdev} value is \emph{RUNNING}. Otherwise, it is \emph{WAITING}.
-			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and show the network connection status (ON/OFF).
-			\par The \emph{SAVE} PV triggers the IOC save when set to 1.
+			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and shows the network connection status.
+			\par The \emph{SAVE} PV triggers the EVG save function when set to 1.
+
+		\subsubsection{Digital input\{idx\} \{idx\}=0...1}\label{pvgroup:evg-digital-input}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    digev\{idx\} & Digital input \{idx\} event code & long (min=0, max=255) \\ \hline
+			    digev\{idx\}RBV & "digev\{idx\}" PV Read Back Value & long (min=0, max=255) \\ \hline
+			    digen\{idx\} & Digital input \{idx\} enable & bool [0: "OFF"][1: "ON"] \\ \hline
+			    digen\{idx\}RBV & "digen\{idx\}" PV Read Back Value & bool [0: "OFF"][1: "ON"] \\ \hline
+			    digpol\{idx\} & Digital input \{idx\} polarity & bool [0: "NORMAL"][1: "INVERTED"] \\ \hline
+			    digpol\{idx\}RBV & "digpol\{idx\}" PV Read Back Value & bool [0: "NORMAL"][1: "INVERTED"] \\ \hline
+			    digtime\{idx\} & Digital input \{idx\} event timestamping enable & bool [0: "NOT TIMESTAMPED"][1: "TIMESTAMPED"] \\ \hline
+			    digtime\{idx\}RBV & "digtime\{idx\}" PV Read Back Value & bool [0: "NOT TIMESTAMPED"][1: "TIMESTAMPED"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{digev\{idx\}} PV selects the event which is generated when digital input \{idx\} receives a trigger. The polarity of the trigger pulse is specified by \emph{digpol\{idx\}}.
+			\par The \emph{digtime\{idx\}} PV specifies if the generated event and corresponding timestamp should be stored when the digital input receives a trigger.
+			\par The \emph{digen\{idx\}} PV enables/disables digital input \{idx\}.
 
 	\subsection{EVR/EVE}
 
@@ -671,19 +709,99 @@ the commit hash.
 			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
 			    \hline
 			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
-			    download & Download all PV values to module parameters & bool [0: "OFF"][1: "ON"] \\ \hline
+			    download & Download all PV values to module & bool [0: "OFF"][1: "ON"] \\ \hline
 			    uploadT & Upload all module parameters to status and RBV PVs & bool [0: "OFF"][1: "ON"] \\ \hline
 			    statdev & Device configuration status & bool [0: "WAITING"][1: "RUNNING"] \\ \hline
 			    network & Network connection status & bool [0: "OFF"][1: "ON"] \\ \hline
-			    SAVE & Trigger for the IOC save & bool [0: "OFF"][1: "ON"] \\ \hline
+			    SAVE & Trigger save function & bool [0: "OFF"][1: "ON"] \\ \hline
 			\end{tabular}
 			\end{center}
 
-			\paragraph{} The \emph{download} trigger causes all set point, select, or command PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
+			\paragraph{} The \emph{download} trigger causes all set point and select PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
 			\par The \emph{uploadT} trigger causes all status and read-back value PVs to upload their values from the hardware. On IOC startup, an upload will automatically happen for any module that is already configured.
 			\par The \emph{statdev} PV is updated based on the module's \emph{alive} status. Whenever the module is configured, \emph{statdev} value is \emph{RUNNING}. Otherwise, it is \emph{WAITING}.
-			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and show the network connection status (ON/OFF).
-			\par The \emph{SAVE} PV triggers the IOC save when set to 1.
+			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and shows the network connection status.
+			\par The \emph{SAVE} PV triggers the EVR/EVE save function when set to 1.
+
+		\subsubsection{Digital input\{idx\} \{idx\}=0...2}\label{pvgroup:evre-digital-input}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    digev\{idx\} & Digital input \{idx\} event code & long (min=0, max=255) \\ \hline
+			    digev\{idx\}RBV & "digev\{idx\}" PV Read Back Value & long (min=0, max=255) \\ \hline
+			    digen\{idx\} & Digital input \{idx\} enable & bool [0: "OFF"][1: "ON"] \\ \hline
+			    digen\{idx\}RBV & "digen\{idx\}" PV Read Back Value & bool [0: "OFF"][1: "ON"] \\ \hline
+			    digpol\{idx\} & Digital input \{idx\} polarity & bool [0: "NORMAL"][1: "INVERTED"] \\ \hline
+			    digpol\{idx\}RBV & "digpol\{idx\}" PV Read Back Value & bool [0: "NORMAL"][1: "INVERTED"] \\ \hline
+			    digtime\{idx\} & Digital input \{idx\} event timestamping enable & bool [0: "NOT TIMESTAMPED"][1: "TIMESTAMPED"] \\ \hline
+			    digtime\{idx\}RBV & "digtime\{idx\}" PV Read Back Value & bool [0: "NOT TIMESTAMPED"][1: "TIMESTAMPED"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{digev\{idx\}} PV selects the event which is generated when digital input \{idx\} receives a trigger. The polarity of the trigger pulse is specified by \emph{digpol\{idx\}}.
+			\par The \emph{digtime\{idx\}} PV specifies if the generated event and corresponding timestamp should be stored when the digital input receives a trigger.
+			\par The \emph{digen\{idx\}} PV enables/disables digital input \{idx\}.
+
+	\subsection{FOUT}
+
+	%--- Section table of contents ---
+	\etoclocalframed[1]{}
+
+		\subsubsection{Control and Status}\label{pvgroup:fout-control-status}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    fouten & Enable/Disable FOUT & bool [0: "OFF"][1: "ON"] \\ \hline
+			    foutenRBV & "fouten" PV Read Back Value & bool [0: "OFF"][1: "ON"] \\ \hline
+			    link & Uplink status & [0: "UNLINK"][1: "LINK"] \\ \hline
+			    los0 & Downlink 0 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los1 & Downlink 1 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los2 & Downlink 2 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los3 & Downlink 3 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los4 & Downlink 4 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los5 & Downlink 5 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los6 & Downlink 6 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			    los7 & Downlink 7 status & [0: "LINK"][1: "LOSS"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{fouten} PV enables/disables the FOUT outputs.
+			\par The \emph{link} PV displays the uplink status. If the Event Generator is enabled and the uplink connection is working, the \emph{link} status is \emph{LINK}, otherwise it is \emph{UNLINK}.
+			\par The PVs \emph{los0} to \emph{los7} indicate the status of each fiber output connection.
+
+		\subsubsection{Configuration}\label{pvgroup:fout-configuration}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    alive & Alive counter & ulong (32-bit) \\ \hline
+			    funsel & STD-EVO configuration & enum [16: "FOUT"][17: "EVR"][18: "EVG"][32: "EVE"] \\ \hline
+			    funselRBV & "funsel" PV Read Back Value & enum [16: "FOUT"][17: "EVR"][18: "EVG"][32: "EVE"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{Configuration} parameters define the STD-EVO module basic functionality. The \emph{funsel} parameter is used to configure the module as EVG, EVR, or FOUT. 
+			\par The \emph{alive} counter works as a heartbeat, and starts to count as soon as the module receives one of the possible configuration options: EVG, EVR, or FOUT. The \emph{FOUT Setup state machine} uses the \emph{alive} information to determine the status of the network connection.
+			\par On startup, the \emph{FOUT Setup state machine} will set the \emph{funsel} parameter in the case of the module being disconfigured.
+
+		\subsubsection{Module Support}\label{pvgroup:fout-module-support}
+			\begin{center}
+			\begin{tabular}{| m{2.8cm} m{6cm} m{6cm} |}
+			    \hline
+			    \bfseries PV name & \bfseries Description & \bfseries Data Type \\ \hline
+			    download & Download all PV values to module & bool [0: "OFF"][1: "ON"] \\ \hline
+			    statdev & Device configuration status & bool [0: "WAITING"][1: "RUNNING"] \\ \hline
+			    network & Network connection status & bool [0: "OFF"][1: "ON"] \\ \hline
+			    SAVE & Trigger save function & bool [0: "OFF"][1: "ON"] \\ \hline
+			\end{tabular}
+			\end{center}
+
+			\paragraph{} The \emph{download} trigger causes all set point and select PVs to be downloaded to the hardware. This feature is useful when configuring modules with saved parameters. On startup, the IOC will automatically download the saved parameters in the case that the module is disconfigured.
+			\par The \emph{statdev} PV is updated based on the module's \emph{alive} status. Whenever the module is configured, \emph{statdev} value is \emph{RUNNING}. Otherwise, it is \emph{WAITING}.
+			\par The \emph{network} PV is set by the \emph{EVG Setup state machine} and shows the network connection status.
+			\par The \emph{SAVE} PV triggers the FOUT save function when set to 1.
 
 %--- Section: Startup Script ---
 \section{Startup Script}\label{sec:startup-script}
@@ -999,12 +1117,10 @@ the device. The format is "\textless host\textgreater:\textless port\textgreater
 		\item If the number of events provided to the Injection State Machine is smaller than the actual number of events created, only the events with smaller indexes will be recognized by the state machine.
 		\end{itemize}
 
-	\subsection{Communication timout}
-
-		\paragraph{} Error message: \emph{"\textless date\textgreater \textless time\textgreater \textless port name\textgreater \textless record name\textgreater: No reply from device within \textless timeout\textgreater ms"}
+	\subsection{Network status OFF}
 
 		\begin{itemize}
-		\item StreamDevice generates an error message when a reply timout happens. Common communication problems causes are incorrect device address specification in the st.cmd file, and device physical disconnection.
+		\item If the network status PV remains OFF, the IOC is not being able to communicate with the device. That might happen due to device IP and/or port misconfiguration in the \hyperref[sec:startup-script]{startup script}, network misconfiguration, or physical disconnection. Since \emph{StreamDevice 2-7-7}, there are NO error messages when a reply timout happens.
 		\end{itemize}
 
 	\subsection{IOC State Machines present strange behavior}
@@ -1015,6 +1131,8 @@ the device. The format is "\textless host\textgreater:\textless port\textgreater
 
 	\subsection{IOC crash at initialization}
 
+		\paragraph{\color{red} Using \emph{StreamDevice 2-7-7} fixes this problem}
+
 		\begin{itemize}
 		\item When initializing the autosave tool in the st.cmd file, and setting the file restore configuration, if the command \emph{set\_pass0\_restoreFile} or \emph{set\_pass1\_restoreFile} receives too large macro substitution strings, the IOC can crash. Since the save files can be restored without passing any macro substitution string to the function, the problem can be avoided by do not using substitution strings in these commands. 
 		\end{itemize}
@@ -1024,6 +1142,4 @@ the device. The format is "\textless host\textgreater:\textless port\textgreater
 		\end{itemize}
 
 \end{document}
-\grid
-\grid
 \grid

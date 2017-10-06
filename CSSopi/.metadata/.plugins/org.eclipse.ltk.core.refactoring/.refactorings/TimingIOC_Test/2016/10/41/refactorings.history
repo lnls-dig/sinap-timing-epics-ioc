@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;TimingIOC_Test/EVG2.opi&apos; to &apos;EVG.opi&apos;" description="Rename resource &apos;EVG2.opi&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="EVG2.opi" name="EVG.opi" stamp="1475513671794" updateReferences="true"/>
-</session>

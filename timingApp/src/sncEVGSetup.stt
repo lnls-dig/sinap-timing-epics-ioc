@@ -1,6 +1,15 @@
 program sncEVGSetup
 
 %%//----------------------------------------
+%%// 	      Variables
+%%//----------------------------------------
+
+int currTime;
+int prevTime;
+int wrongUTCflg;
+int utcSrcCopy;
+
+%%//----------------------------------------
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
@@ -34,8 +43,31 @@ int network;
 assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
 monitor network;
 
-int utc;
+unsigned int utc;
 assign utc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTC";
+
+unsigned int utcRBV;
+assign utcRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCRBV";
+monitor utcRBV;
+evflag utcRBVFlag;
+sync utcRBV utcRBVFlag;
+
+int utcsrc;
+assign utcsrc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCRef";
+monitor utcsrc;
+
+unsigned int utcCtrlRoom;
+assign utcCtrlRoom to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:CtrlRoomUTC";
+monitor utcCtrlRoom;
+evflag utcCtrlRoomFlag;
+sync utcCtrlRoom utcCtrlRoomFlag;
+
+int utcMismatch;
+assign utcMismatch to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCMismatch";
+
+int getutc;
+assign getutc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:GetUTC";
+monitor getutc;
 
 %%//----------------------------------------
 %%// 	  Escaped C Code Declaration
@@ -86,6 +118,15 @@ ss configuration {
 
     state waiting {
 
+	entry{
+
+		%%// Clear wrong UTC flag
+		wrongUTCflg = 0;
+	
+		%%// Clear control room flag
+		efClear(utcRBVFlag);
+	}
+
 	when ((funselRBV != 18) && (network == 1)) {
 
 		%{/* If STD-EVO is not correctly configured, download! */}%
@@ -102,6 +143,51 @@ ss configuration {
 
 	} state download
 
+	when (efTestAndClear(utcRBVFlag)) {
+
+		%{/* On Timing UTCRBV change, compare it to the reference */}%
+
+		utcSrcCopy = utcsrc; %%// Copy UTC source to protect it against change
+
+		if(utcSrcCopy == 0){ %%// UTC source comes from PC
+
+			if(utcRBV == time(NULL)){
+
+				%%// clear UTC mismatch PV
+				utcMismatch = 0;
+			}
+			else{
+				%%// set UTC mismatch PV
+				utcMismatch = 1;
+			}
+		}
+		else { %%// UTC source comes from Control Room PV
+		
+			if(utcRBV == utcCtrlRoom){
+
+				%%// clear UTC mismatch PV
+				utcMismatch = 0;
+			}
+			else{
+				%%// set UTC mismatch PV
+				utcMismatch = 1;
+			}
+		}
+
+		%%// put result	in PV		
+		pvPut(utcMismatch, SYNC);
+
+	} state waiting
+
+	when (getutc) {
+
+		%{/* UTC update requested, update it! */}%
+
+		%%// Clear update UTC PV
+		getutc = 0;
+		pvPut(getutc, SYNC);
+	
+	} state updateUTC
     }
 	
     state download {
@@ -122,15 +208,58 @@ ss configuration {
 		%%// clear download PV
 		download = 0;
 		pvPut(download,SYNC);
-
-		%%// Update UTC to epoch time
-		utc = time(NULL);
-		pvPut(utc, SYNC);
 	} 
 
 	when (delay(1)) {
 
 		%{/* Wait until download is completed */}%
+
+	}state updateUTC
+    }
+
+    state updateUTC {
+
+	entry{
+
+		%%// Copy UTC source to protect it against change
+		utcSrcCopy = utcsrc;
+
+		if(utcSrcCopy == 0){
+
+			%%// Get computer time				
+			currTime = time(NULL);
+			prevTime = currTime;
+		}
+		else{
+
+			%%// Clear Control Room UTC flag
+			efClear(utcCtrlRoomFlag);
+		}
+	}
+
+	when(utcSrcCopy == 0 && delay(0.01)){
+
+		%{/* Read UTC value from computer */}%
+
+		currTime = time(NULL);
+
+	} state updateUTC
+
+	when(utcSrcCopy == 0 && prevTime != currTime){
+
+		%{/* Update UTC as soon as PC time changes value */}%
+
+		utc = currTime;
+		pvPut(utc, SYNC);
+
+	} state waiting
+
+	when (utcSrcCopy == 1 && efTestAndClear(utcCtrlRoomFlag)) {
+
+		%{/* Update UTC as soon as reference changes value */}%
+
+		utc = utcCtrlRoom;
+		pvPut(utc, SYNC);
 
 	}state waiting
     }

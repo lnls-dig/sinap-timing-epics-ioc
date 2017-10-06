@@ -694,6 +694,36 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramsw_set") {
 ########################################################################
 # Timestamp register [51]
 
+# This record value is read by the Sequencer program sncEVGSetup
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCRef"){
+  field(DESC, "EVG UTC reference")
+  field(ZNAM, "PC")
+  field(ONAM, "Control Room")
+}
+
+# This record value is written by the Sequencer program sncEVGSetup
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCMismatch"){
+  field(ASG, "Reserved")
+  field(DESC, "UTC mismatch between ref. and EVG")
+  field(ZNAM, "Match")
+  field(ONAM, "Mismatch")
+}
+
+# This record value is read by the Sequencer program sncEVGSetup
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):GetUTC"){
+  field(DESC, "Get UTC from configured reference cmd")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+}
+
+# This record monitors the control room timestamp
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):CtrlRoomUTC"){
+  field(ASG, "Reserved")
+  field(DESC, "Control room UTC monitor")
+  field(INP, "Cont:LNLS191:NTP:Timestamp CPP")
+  field(EGU, "seconds")
+}
+
 # Note: Setting $(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTC.VAL to 0 causes EVG to broadcast
 # 	the timestamp to the EVEs and EVRs.
 
@@ -760,6 +790,268 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_tmstmp_set"){
   field(ASG, "Reserved")
   field(DESC, "Timestamp reg write command code")
   field(VAL, "0x73")
+}
+
+########################################################################
+# Digital input 0 [53]
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev0") {
+  field(DESC, "EVG digital input 0 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0") {
+  field(DESC, "EVG digital input 0 enable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN0")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0") {
+  field(DESC, "EVG digital input 0 polarity")
+  field(ZNAM, "NORMAL")
+  field(ONAM, "INVERTED")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL0")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0") {
+  field(DESC, "EVG dig. input 0 event timestamp enable")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME0")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN0") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 0 set enable calc")
+  field(DTYP, "stream")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0.VAL")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV.VAL")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGEN) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL0") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 0 set polarity calc")
+  field(DTYP, "stream")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV.VAL")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0.VAL")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGPOL) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME0") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 0 set timestamp calc")
+  field(DTYP, "stream")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV.VAL")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV.VAL")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGTIME) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG dig.inp. 0 download en, pol and time")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0.VAL")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0.VAL")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+}
+
+record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "DIGINP0 en, pol, and timestamp RBV")
+  field(NOBT, "8")
+  field(SHFT, "5")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evgre_diginp0_intr $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 0 timestamping sts")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B0")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 0 polarity status")
+  field(ZNAM, "NORMAL")
+  field(ONAM, "INVERTED")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B1")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 0 enable status")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B2")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev0RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 0 event RBV")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set0") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to DIGINP0")
+  field(VAL, "0x75") # (0x40 | reg number=1)
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get0") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read DIGINP0")
+  field(VAL, "0xB5") # (0x80 | reg number=1)
+}
+
+########################################################################
+# Digital input 1 [54]
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev1") {
+  field(DESC, "EVG digital input 1 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1") {
+  field(DESC, "EVG digital input 1 enable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN1")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1") {
+  field(DESC, "EVG digital input 1 polarity")
+  field(ZNAM, "NORMAL")
+  field(ONAM, "INVERTED")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL1")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1") {
+  field(DESC, "EVG dig. input 1 event timestamp enable")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME1")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN1") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 1 set enable calc")
+  field(DTYP, "stream")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1.VAL")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV.VAL")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGEN) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL1") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 1 set polarity calc")
+  field(DTYP, "stream")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV.VAL")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1.VAL")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGPOL) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME1") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 1 set timestamp calc")
+  field(DTYP, "stream")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV.VAL")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV.VAL")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGTIME) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG dig.inp. 1 download en, pol and time")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1.VAL")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1.VAL")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+}
+
+record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "DIGINP1 en, pol, and timestamp RBV")
+  field(NOBT, "8")
+  field(SHFT, "5")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evgre_diginp1_intr $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 1 timestamping sts")
+  field(ZNAM, "NOT TIMESTAMPED")
+  field(ONAM, "TIMESTAMPED")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B0")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 1 polarity status")
+  field(ZNAM, "NORMAL")
+  field(ONAM, "INVERTED")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B1")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 1 enable status")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B2")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev1RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG digital input 1 event RBV")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set1") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to DIGINP1")
+  field(VAL, "0x76") # (0x40 | reg number=1)
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get1") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read DIGINP1")
+  field(VAL, "0xB6") # (0x80 | reg number=1)
 }
 
 ########################################################################
