@@ -1055,6 +1055,381 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get1") {
 }
 
 ########################################################################
+# Interlock map [56]
+
+record(mbboDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_mbbo") {
+  field(DESC, "EVG interlock input to output map")
+}
+
+record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_mbbi") {
+  field(DESC, "EVG interlock input to output map")
+  field(VAL, "1")
+}
+
+record(seq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq1") {
+  field(DESC, "EVG interlock input to output map")
+  field(DOL1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B0")
+  field(DOL2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B1")
+  field(DOL3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B2")
+  field(DOL4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B3")
+  field(DOL5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B4")
+  field(DOL6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B5")
+  field(DOL7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B6")
+  field(DOL8, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B7")
+  field(DOL9, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B8")
+  field(DOLA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B9")
+  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B0")
+  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B1")
+  field(LNK3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B2")
+  field(LNK4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B3")
+  field(LNK5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B4")
+  field(LNK6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B5")
+  field(LNK7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B6")
+  field(LNK8, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B7")
+  field(LNK9, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B8")
+  field(LNKA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B9")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq2")
+}
+
+record(seq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq2") {
+  field(DESC, "EVG interlock input to output map")
+  field(DOL1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BA")
+  field(DOL2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BB")
+  field(DOL3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BC")
+  field(DOL4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BD")
+  field(DOL5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BE")
+  field(DOL6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BF")
+  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BA")
+  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BB")
+  field(LNK3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BC")
+  field(LNK4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BD")
+  field(LNK5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BE")
+  field(LNK6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BF")
+}
+
+record(seq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq3") {
+  field(DESC, "EVG interlock input to output map")
+  field(DOL1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B0")
+  field(DOL2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B1")
+  field(DOL3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B2")
+  field(DOL4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B3")
+  field(DOL5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B4")
+  field(DOL6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B5")
+  field(DOL7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B6")
+  field(DOL8, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B7")
+  field(DOL9, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B8")
+  field(DOLA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B9")
+  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B0")
+  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B1")
+  field(LNK3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B2")
+  field(LNK4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B3")
+  field(LNK5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B4")
+  field(LNK6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B5")
+  field(LNK7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B6")
+  field(LNK8, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B7")
+  field(LNK9, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B8")
+  field(LNKA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B9")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq4")
+}
+
+record(seq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq4") {
+  field(DESC, "EVG interlock input to output map")
+  field(DOL1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.BA")
+  field(DOL2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.BB")
+  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.BA")
+  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.BB")
+}
+
+record(mbboDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15") {
+  field(DESC, "EVG interlock input to output map")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map")
+}
+
+record(mbboDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27") {
+  field(DESC, "EVG interlock input to output map")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map") {
+  #field(ASG, "Reserved")
+  field(DESC, "EVG interlock map calc")
+  field(DTYP, "stream")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15")
+  field(CALC, "(A<<16)+B")
+  field(OUT, "@timing.proto evg_ilockmap_map_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in0") {
+  field(DESC, "EVG interlock input 0 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_ev0_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in1") {
+  field(DESC, "EVG interlock input 1 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_ev1_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in2") {
+  field(DESC, "EVG interlock input 2 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_ev2_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in3") {
+  field(DESC, "EVG interlock input 3 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_ev3_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in4") {
+  field(DESC, "EVG interlock input 4 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_ev4_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in5") {
+  field(DESC, "EVG interlock input 5 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_ev5_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in6") {
+  field(DESC, "EVG interlock input 6 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_ev6_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_out") {
+  field(DESC, "EVG interlock output event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_evout_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_evg_ilockmap_set") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to Interlock Map")
+  field(VAL, "0x78")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_evg_ilockmap_get") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read Interlock Map")
+  field(VAL, "0xB8")
+}
+
+record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV") {
+  field(DESC, "EVG interlock input to output map RBV")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq1")
+}
+
+record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV") {
+  field(DESC, "EVG interlock input to output map RBV")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq3")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in0RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG interlock input 0 event code RBV")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in1RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG interlock input 1 event code RBV")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in2RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG interlock input 2 event code RBV")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in3RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG interlock input 3 event code RBV")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in4RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG interlock input 4 event code RBV")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in5RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG interlock input 5 event code RBV")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in6RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG interlock input 6 event code RBV")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_outRBV") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG interlock output event code RBV")
+}
+
+########################################################################
+# Interlock Control and Status [57]
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_evg_ilockcontrol_set") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to Interlock Control")
+  field(VAL, "0x79")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_evg_ilockcontrol_get") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read Interlock Control")
+  field(SCAN, "1 second")
+  field(VAL, "0xB9")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_en") {
+  field(DESC, "Interlock map enable")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_EN")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rst") {
+  field(DESC, "Interlock map reset")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(HIGH, "1")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_RST")
+}
+
+record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeat") {
+  field(DESC, "Interlock map enable continuous mode")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_REPEAT")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_EN") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG Interlock control. Enable, reset and continuous send mode.")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_en")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rstRBV")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeatRBV")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),EN) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_RST") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG Interlock control. Enable, reset and continuous send mode.")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_enRBV")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rst")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeatRBV")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),RST) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_REPEAT") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG Interlock control. Enable, reset and continuous send mode.")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_enRBV")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rstRBV")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeat")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),REPEAT) $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control") {
+  field(ASG, "Reserved")
+  field(DESC, "EVG Interlock control. Enable, reset and continuous send mode.")
+  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_en")
+  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rst")
+  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeat")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+}
+
+record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_repeat_time") {
+  field(DESC, "EVG Interlock event output repeat time")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockrepeat_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_repeat_timeRBV") {
+  #field(ASG, "Reserved")
+  field(DESC, "EVG Interlock event output repeat time RBV")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_ilock_repeat_time_intr $(PORT)")
+}
+
+record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_controlRBV") {
+  #field(ASG, "Reserved")
+  field(DESC, "EVG Interlock control RBV. Enable, reset and continuous send mode.")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_ilock_control_intr $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_enRBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_enRBV") {
+  field(DESC, "Interlock map enable RBV")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_controlRBV.B7")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rstRBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rstRBV") {
+  field(DESC, "Interlock map reset RBV")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_controlRBV.B6")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeatRBV")
+}
+
+record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeatRBV") {
+  field(DESC, "Interlock map enable continuous mode RBV")
+  field(ZNAM, "OFF")
+  field(ONAM, "ON")
+  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_controlRBV.B5")
+}
+
+record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_status") {
+  #field(ASG, "Reserved")
+  field(DESC, "Interlock event status")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_ilock_status_intr $(PORT)")
+}
+
+########################################################################
 # Firmware Version [62]
 
 record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSION"){

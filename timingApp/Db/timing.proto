@@ -470,6 +470,105 @@ evgre_diginp2_intr{
 }
 
 ################################################################################
+# Interlock map	EVG		[56]
+
+evg_ilockmap_get {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV)02r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV)02r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)0r";
+}
+
+evg_ilockmap_upload {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27)02r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15)02r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)0r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)0r";
+}
+
+evg_ilockmap_map_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map).4r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)r";
+    evg_ilockmap_get;
+}
+
+evg_ilockmap_ev0_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0)r";
+    evg_ilockmap_get;
+}
+
+evg_ilockmap_ev1_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)r";
+    evg_ilockmap_get;
+}
+
+evg_ilockmap_ev2_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)r";
+    evg_ilockmap_get;
+}
+
+evg_ilockmap_ev3_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)r";
+    evg_ilockmap_get;
+}
+
+evg_ilockmap_ev4_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)r";
+    evg_ilockmap_get;
+}
+
+evg_ilockmap_ev5_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)r";
+    evg_ilockmap_get;
+}
+
+evg_ilockmap_ev6_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_outRBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)r";
+    evg_ilockmap_get;
+}
+
+evg_ilockmap_evout_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15RBV).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_out)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1RBV)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0RBV)r";
+    evg_ilockmap_get;
+}
+
+# Interrupts
+
+#evgre_diginp_intr{
+#    in "\xF8%r%*03r%*04r%*04r";
+#}
+
+################################################################################
+# Interlock Status	EVG		[57]
+
+evg_ilockcontrol_get {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockcontrol_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%(\$1-\$2:\$3-\$4\$5:ilock_controlRBV)r%*03r%*04r%*03r%*r";
+}
+
+evg_ilockcontrol_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockcontrol_set)r%(\$1-\$2:\$3-\$4\$5:ilock_control_\$6)r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:ilock_repeat_timeRBV).4r\x00\x00\x00\x00";
+    evg_ilockcontrol_get;
+}
+
+evg_ilockrepeat_time_set {
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockcontrol_set)r%(\$1-\$2:\$3-\$4\$5:ilock_controlRBV)r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:ilock_repeat_time).4r\x00\x00\x00\x00";
+    evg_ilockcontrol_get;
+}
+
+evg_ilock_status_intr {
+    in "\xF9%*04r%*04r%*03r%r";
+}
+
+evg_ilock_control_intr {
+    in "\xF9%r%*04r%*04r%*03r";
+}
+
+evg_ilock_repeat_time_intr {
+    in "\xF9%*04r%04r%*04r";
+}
+
+#evg_ilock_status {
+#    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockcontrol_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+#    in "\xF9%(\$1-\$2:\$3-\$4\$5:ilock_controlRBV)r%*03r%*04r%*03r%(\$1-\$2:\$3-\$4\$5:ilock_status)r";
+#}
+
+################################################################################
 # Firmware version register EVG, EVR & EVE [62]
 
 frmvrs_get{
@@ -824,6 +923,10 @@ evg_upload{
 	evg_seqramsw_get;
     # Timestamp
 	evg_tmstmp_get;
+	# Interlock Map and Control
+	evg_ilockmap_get;
+	#evg_ilockmap_upload;
+	evg_ilockcontrol_get;
 }
 
 ########################################################################
@@ -932,6 +1035,12 @@ evg_download{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set0)r%(\$1-\$2:\$3-\$4\$5:digept0)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev0)r\x00\x00\x00\x00\x00\x00\x00\x00";
     out "%(\$1-\$2:\$3-\$4\$5:cmd_diginp_set1)r%(\$1-\$2:\$3-\$4\$5:digept1)r\x00\x00%(\$1-\$2:\$3-\$4\$5:digev1)r\x00\x00\x00\x00\x00\x00\x00\x00";
 
+	# interlock map
+    out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockmap_set)r%(\$1-\$2:\$3-\$4\$5:ilock_map16to27).2r%(\$1-\$2:\$3-\$4\$5:ilock_map0to15).2r%(\$1-\$2:\$3-\$4\$5:ilock_evt_out)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in6)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in5)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in4)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in3)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in2)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in1)r%(\$1-\$2:\$3-\$4\$5:ilock_evt_in0)r";
+
+	# interlock control
+	out "%(\$1-\$2:\$3-\$4\$5:cmd_evg_ilockcontrol_set)r%(\$1-\$2:\$3-\$4\$5:ilock_control)r\x00\x00\x00%(\$1-\$2:\$3-\$4\$5:ilock_repeat_time).4r\x00\x00\x00\x00";
+	
     # ac line settings
 	evg_acline_set;
     # control settings
