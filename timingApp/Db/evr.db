@@ -4800,16 +4800,30 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get2") {
 ########################################################################
 # Firmware Version [62]
 
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSION"){
-  field(ASG, "Reserved")
-  field(DESC, "EVR firmware version")
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONA"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONB"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONC"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
   field(DTYP, "stream")
   field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
 }
 
 record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_frmvrs_get"){
   field(ASG, "Reserved")
-  field(DESC, "EVR firmware version read command code")
+  field(DESC, "Firmware version read command code")
   field(VAL, "0xBE")
 }
 

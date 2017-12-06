@@ -48,6 +48,15 @@ record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfstat") {
   field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstatCalc")
 }
 
+record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOS") {
+  field(DESC, "Downlink status in OUT0-OUT7 RAW")
+  field(NOBT, "8")
+  field(DTYP, "stream")
+  field(SCAN, "I/O Intr")
+  field(INP, "@timing.proto evg_ctrl_los_intr $(PORT)")
+  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los0RBV")
+}
+
 record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstatCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVG SEQRAM status calculation")
@@ -1432,9 +1441,23 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_status") {
 ########################################################################
 # Firmware Version [62]
 
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSION"){
-  field(ASG, "Reserved")
-  field(DESC, "EVG firmware version")
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONA"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONB"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONC"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
   field(DTYP, "stream")
   field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
 }

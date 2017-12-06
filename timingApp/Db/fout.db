@@ -140,6 +140,36 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_set") {
 }
 
 ########################################################################
+# Firmware Version [62]
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONA"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONB"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONC"){
+  #field(ASG, "Reserved")
+  field(DESC, "EVO firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+}
+
+record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_frmvrs_get"){
+  field(ASG, "Reserved")
+  field(DESC, "Firmware version read command code")
+  field(VAL, "0xBE")
+}
+
+########################################################################
 # Configuration Register [63]
 
 record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive") {

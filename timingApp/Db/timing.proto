@@ -69,6 +69,10 @@ evg_ctrl_set{
 
 # Interrupts
 
+evg_ctrl_los_intr{
+    in "\xc0%*04r%*04r%r%*02r%*r";
+}
+
 evg_ctrl_seqstat_rfstat_intr{
     in "\xc0%*04r%*04r%*02r%r%*r";
 }
@@ -569,14 +573,14 @@ evg_ilock_repeat_time_intr {
 #}
 
 ################################################################################
-# Firmware version register EVG, EVR & EVE [62]
+# Firmware version register EVG, Fanout, EVR & EVE [62]
 
 frmvrs_get{
     out "%(\$1-\$2:\$3-\$4\$5:cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFE%s";
+    in "\xFE%(\$1-\$2:\$3-\$4\$5:FRMVERSIONA)04r%(\$1-\$2:\$3-\$4\$5:FRMVERSIONB)04r%(\$1-\$2:\$3-\$4\$5:FRMVERSIONC)04r";
     @init{
 	out "%(\$1-\$2:\$3-\$4\$5:cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    	in "\xFE%s";
+    	in "\xFE%(\$1-\$2:\$3-\$4\$5:FRMVERSIONA)04r%(\$1-\$2:\$3-\$4\$5:FRMVERSIONB)04r%(\$1-\$2:\$3-\$4\$5:FRMVERSIONC)04r";
     }
 }
 

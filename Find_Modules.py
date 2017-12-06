@@ -8,11 +8,11 @@ import socket
 
 WAIT = 0.005
 
-ipsub = '10.2.118.'
+ipsub = '10.0.18.'
 port_ini = 50111
 port_end = 50128
 ip_ini = 2
-ip_end = 150
+ip_end = 254
 
 def FindMod(UDP_IP, UDP_PORT):
 	# Read
