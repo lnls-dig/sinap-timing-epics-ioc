@@ -1,0 +1,15 @@
+INPUT = IOC_User_Guide.tex
+
+PDF  = $(INPUT:.tex=.pdf)
+ALL  = $(PDF)
+
+all: $(ALL)
+
+%.pdf: %.tex
+	pdflatex -dSubsetFonts=true -dEmbedAllFonts=true $^
+	pdflatex -dSubsetFonts=true -dEmbedAllFonts=true $^
+
+.PHONY: clean
+
+clean :
+	rm -f *.eps *.pdf *.dat *.log *.out *.aux *.dvi *.ps *.toc version.tex
