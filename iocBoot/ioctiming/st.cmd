@@ -51,7 +51,7 @@ epicsEnvSet("STREAM_PROTOCOL_PATH", "$(TOP)/timingApp/Db")
 dbLoadDatabase "dbd/timing.dbd"
 timing_registerRecordDeviceDriver pdbbase
 
-asSetFilename("$(TOP)/accessSecurityFile.acf")
+asSetFilename("$(TOP)/timingApp/Db/accessSecurityFile.acf")
 
 ${EVG1_line}drvAsynIPPortConfigure ("EVG1", "10.0.18.32:50111:50111 udp",0,0,0)
 
