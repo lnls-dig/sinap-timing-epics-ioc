@@ -28,9 +28,6 @@ O.*/
 op/opi/logs.*
 op/opi/.metadata
 
-# Autosave files
-iocBoot/ioctiming/autosave/*
-
 # Documentation files
 documentation/*/*.aux
 documentation/*/*.log
