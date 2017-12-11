@@ -5,8 +5,6 @@
 
 < envPaths
 
-cd ${TOP}
-
 # ###### MACRO SUBSTITUTION ###### 
 
 ## Naming Convention
@@ -48,7 +46,7 @@ epicsEnvSet FOUT5_line "#"
 epicsEnvSet("STREAM_PROTOCOL_PATH", "$(TOP)/timingApp/Db")
 
 ## Register all support components
-dbLoadDatabase "dbd/timing.dbd"
+dbLoadDatabase("${TOP}/dbd/timing.dbd")
 timing_registerRecordDeviceDriver pdbbase
 
 asSetFilename("$(TOP)/timingApp/Db/accessSecurityFile.acf")
@@ -121,12 +119,11 @@ ${FOUT3_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${D
 ${FOUT4_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=4, PORT=FOUT4, ADDR=0, TIMEOUT=2")
 ${FOUT5_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=5, PORT=FOUT5, ADDR=0, TIMEOUT=2")
 
-< save_restore.cmd
+# < save_restore.cmd
 
 ## Run this to trace the stages of iocInit
 #traceIocInit
 
-cd ${TOP}/iocBoot/${IOC}
 iocInit
 
 ## Start any sequence programs
