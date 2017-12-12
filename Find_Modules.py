@@ -5,50 +5,70 @@
 import numpy as np
 import time
 import socket
+import sys
+import subprocess
 
-WAIT = 0.005
+WAIT = 0.01
 
-ipsub = '10.0.18.'
+if (len(sys.argv) == 1):
+  ipsub_list = ['10.0.18']
+else:
+  ipsub_list = sys.argv[1:]
+  
 port_ini = 50111
 port_end = 50128
 ip_ini = 2
 ip_end = 254
 
+f = open('Find_Modules.log','w')
+
 def FindMod(UDP_IP, UDP_PORT):
-	# Read
-	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	sock.settimeout(WAIT)
-	sock.bind(('', UDP_PORT))
-	add = 63
-	ok = 0
-	cmd = chr(0x80|add)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)
-	sock.sendto(cmd, (UDP_IP, UDP_PORT))
-	time.sleep(WAIT)
-	try: 
-		data, addr = sock.recvfrom(13) # buffer size is 13 bytes
-		regA = [(ord(data[1])),(ord(data[2])),(ord(data[3])),(ord(data[4]))]
-		regB = [(ord(data[5])),(ord(data[6])),(ord(data[7])),(ord(data[8]))]
-		regC = [(ord(data[9])),(ord(data[10])),(ord(data[11])),(ord(data[12]))]
-		if ((regC[3]&0b11) in range(0,3)):
-			ok = 1
-	except:
-		ok = 0
-		addr = 0
-		regA = regB = regC = [0, 0, 0, 0]
-	return ok, regA, regB, regC, addr
-	
+  # Read
+  funsel = [16, 17, 18, 32]
+  sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  sock.settimeout(WAIT)
+  sock.bind(('', UDP_PORT))
+  add = 63
+  ok = 0
+  cmd = chr(0x80|add)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)
+  sock.sendto(cmd, (UDP_IP, UDP_PORT))
+  time.sleep(WAIT)
+  try: 
+    data, addr = sock.recvfrom(13) # buffer size is 13 bytes
+    regA = [(ord(data[1])),(ord(data[2])),(ord(data[3])),(ord(data[4]))]
+    regB = [(ord(data[5])),(ord(data[6])),(ord(data[7])),(ord(data[8]))]
+    regC = [(ord(data[9])),(ord(data[10])),(ord(data[11])),(ord(data[12]))]
+    if (regC[3] in funsel):
+      ok = 1
+  except:
+    ok = 0
+    addr = ['0.0.0.0', 0]
+    regA = regB = regC = [0, 0, 0, 0]
+  return ok, regA, regB, regC, addr
+  
 ok = 0
-for port in range(port_ini,port_end+1):
-	for ipend in range(ip_ini,ip_end+1):
-		ip = ipsub+str(ipend)
-		ok, a, b, c, addr = FindMod(ip, port)
-		if ((ok==1) & (c[3]!=0)):
-			if (c[3]==32):
-				print('EVE ip ', addr)
-			elif (c[3]==16):
-				print('EVO/FOUT ip ', addr)
-			elif (c[3]==17):
-				print('EVO/EVR ip ', addr)
-			elif (c[3]==18):
-				print('EVO/EVG ip ', addr)
-			break
+port_list = range(port_ini,port_end+1)
+ipaddr_list = range(ip_ini,ip_end+1)
+for ipsub in ipsub_list:
+  print 'Searching for timing modules in subnet', ipsub
+  for ipaddr in ipaddr_list:
+    for port in port_list:
+      ip = ipsub+'.'+str(ipaddr)
+      ok, a, b, c, addr = FindMod(ip, port)
+      if ((ok==1) & (c[3]!=0)):
+        port_list.remove(port)
+        if (c[3]==32):
+          print 'EVE ip:', addr[0], 'port:', addr[1]
+          f.write('EVE ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
+        elif (c[3]==16):
+          print 'FOUT ip:', addr[0], 'port:', addr[1]
+          f.write('FOUT ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
+        elif (c[3]==17):
+          print 'EVR ip:', addr[0], 'port:', addr[1]
+          f.write('EVR ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
+        elif (c[3]==18):
+          print 'EVG ip:', addr[0], 'port:', addr[1]
+          f.write('EVG ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
+        break
+  
+f.close()

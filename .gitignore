@@ -5,6 +5,7 @@
 *.bak
 *.backup
 *.swp
+*.log
 
 # EPICS generated
 bin
