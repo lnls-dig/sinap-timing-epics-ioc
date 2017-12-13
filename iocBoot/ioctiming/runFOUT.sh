@@ -22,11 +22,6 @@ if [ -z "$IPPORT" ]; then
     exit 4
 fi
 
-if [ -z "$IDX" ]; then
-    echo "IDX number not set. Please use -x option or set \$IDX environment variable" >&2
-    exit 5
-fi
-
 cd "$IOC_BOOT_DIR"
 
-IPADDR="$IPADDR" IPPORT="$IPPORT" PORT="$PORT" IDX="$IDX" "$IOC_BIN" stFOUT.cmd
+IPADDR="$IPADDR" IPPORT="$IPPORT" PORT="$PORT" P="$P" R="$R" "$IOC_BIN" stFOUT.cmd

@@ -14,59 +14,59 @@ int utcSrcCopy;
 %%//----------------------------------------
 
 int uploadtrig;
-assign uploadtrig to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:uploadT.VAL";
+assign uploadtrig to "{P}{R}uploadT.VAL";
 
 int downloadproc;
-assign downloadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:downloadT.PROC";
+assign downloadproc to "{P}{R}downloadT.PROC";
 
 int download;
-assign download to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:download.VAL";
+assign download to "{P}{R}download.VAL";
 monitor download;
 
 int statdev;
-assign statdev to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:statdev";
+assign statdev to "{P}{R}statdev";
 monitor statdev;
 
 int past_alive = -1;
 int alive;
-assign alive to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:alive";
+assign alive to "{P}{R}alive";
 monitor alive;
 
 int funsel;
-assign funsel to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:funsel.VAL";
+assign funsel to "{P}{R}funsel.VAL";
 
 int funselRBV;
-assign funselRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:funselRBV.RVAL";
+assign funselRBV to "{P}{R}funselRBV.RVAL";
 monitor funselRBV;
 
 int network;
-assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
+assign network to "{P}{R}network";
 monitor network;
 
 unsigned int utc;
-assign utc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTC";
+assign utc to "{P}{R}UTC";
 
 unsigned int utcRBV;
-assign utcRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCRBV";
+assign utcRBV to "{P}{R}UTCRBV";
 monitor utcRBV;
 evflag utcRBVFlag;
 sync utcRBV utcRBVFlag;
 
 int utcsrc;
-assign utcsrc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCRef";
+assign utcsrc to "{P}{R}UTCRef";
 monitor utcsrc;
 
 unsigned int utcCtrlRoom;
-assign utcCtrlRoom to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:CtrlRoomUTC";
+assign utcCtrlRoom to "{P}{R}CtrlRoomUTC";
 monitor utcCtrlRoom;
 evflag utcCtrlRoomFlag;
 sync utcCtrlRoom utcCtrlRoomFlag;
 
 int utcMismatch;
-assign utcMismatch to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCMismatch";
+assign utcMismatch to "{P}{R}UTCMismatch";
 
 int getutc;
-assign getutc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:GetUTC";
+assign getutc to "{P}{R}GetUTC";
 monitor getutc;
 
 %%//----------------------------------------
@@ -88,7 +88,7 @@ ss configuration {
 		%{/* Wait 1 sec while module starts up */}%
 
 		%%// Init message
-		printf("\n%s-%s:%s-%s%s state machine initiated\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\n%s%s state machine initiated\n", macValueGet("P"), macValueGet("R"));
 
 	} state upload
     }
@@ -110,7 +110,7 @@ ss configuration {
 		pvPut(uploadtrig,SYNC);
 
 		%%// upload message
-		printf("\nConfiguration uploaded from %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\nConfiguration uploaded from %s%s.\n", macValueGet("P"), macValueGet("R"));
 
 	} state waiting
 
@@ -203,7 +203,7 @@ ss configuration {
 		pvPut(downloadproc,SYNC);
 
 		%%// download message
-		printf("\nConfiguration downloaded to %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\nConfiguration downloaded to %s%s.\n", macValueGet("P"), macValueGet("R"));
 
 		%%// clear download PV
 		download = 0;

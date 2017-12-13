@@ -19,7 +19,7 @@ asSetFilename("$(TOP)/timingApp/Db/accessSecurityFile.acf")
 drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT}:${IPPORT} udp",0,0,0)
 
 ## Load record instances
-dbLoadRecords("${TOP}/db/evr.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${DEV}, Idx=${IDX}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evr.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
 # < save_restore.cmd
 
@@ -31,5 +31,5 @@ iocInit
 ## Start any sequence programs
 
 # Module initialization and network status state machine
-seq sncEVRESetup, "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${DEV}, Idx=${IDX}"
+seq sncEVRESetup, "P=${P}, R=${R}"
 

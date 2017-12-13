@@ -22,48 +22,48 @@ int numberOfWrites;
 %%//----------------------------------------
 
 int StateMachineStatus;
-assign StateMachineStatus to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:STATEMACHINE";
+assign StateMachineStatus to "{P}{R}STATEMACHINE";
 
 %%//----------------------------------------
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
 int network;
-assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
+assign network to "{P}{R}network";
 monitor network;
 
 %%// tbl MUST HAVE, at least, the same length of ITBL
 int tbl[864];
-assign tbl to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:ITBL";
+assign tbl to "{P}{R}ITBL";
 
 int tbl_length;
-assign tbl_length to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:ITBL.NORD";
+assign tbl_length to "{P}{R}ITBL.NORD";
 
 int seqs;
-assign seqs to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqstat";
+assign seqs to "{P}{R}seqstat";
 monitor seqs;
 
 int seqen_rbv;
-assign seqen_rbv to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqenRBV";
+assign seqen_rbv to "{P}{R}seqenRBV";
 monitor seqen_rbv;
 
 int seqen;
-assign seqen to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqen";
+assign seqen to "{P}{R}seqen";
 int seqsw;
-assign seqsw to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqram_switch.PROC";
+assign seqsw to "{P}{R}seqram_switch.PROC";
 int seqaddr;
-assign seqaddr to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqaddr";
+assign seqaddr to "{P}{R}seqaddr";
 int seqcode;
-assign seqcode to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqcode";
+assign seqcode to "{P}{R}seqcode";
 int seqtime;
-assign seqtime to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqtime";
+assign seqtime to "{P}{R}seqtime";
 
 int seqcount;
-assign seqcount to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqcountRBV";
+assign seqcount to "{P}{R}seqcountRBV";
 monitor seqcount;
 
 int seqcount_proc;
-assign seqcount_proc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:seqcountRBV.PROC";
+assign seqcount_proc to "{P}{R}seqcountRBV.PROC";
 
 int event_codes[20];
 assign event_codes to {};
@@ -82,27 +82,27 @@ assign event_ctrl to {};
 %%//----------------------------------------
 
 int stop_tg;
-assign stop_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:STOPSEQ";
+assign stop_tg to "{P}{R}STOPSEQ";
 monitor stop_tg;
 
 int stopinj_tg;
-assign stopinj_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:STOPINJSEQ";
+assign stopinj_tg to "{P}{R}STOPINJSEQ";
 monitor stopinj_tg;
 
 int run_tg;
-assign run_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:RUNSEQ";
+assign run_tg to "{P}{R}RUNSEQ";
 monitor run_tg;
 
 int inj_tg;
-assign inj_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:INJSEQ";
+assign inj_tg to "{P}{R}INJSEQ";
 monitor inj_tg;
 
 int restart_tg;
-assign restart_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:RESTSEQ";
+assign restart_tg to "{P}{R}RESTSEQ";
 monitor restart_tg;
 
 int repeatinj_tg;
-assign repeatinj_tg to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:REPINJSEQ";
+assign repeatinj_tg to "{P}{R}REPINJSEQ";
 monitor repeatinj_tg;
 
 %%//----------------------------------------
@@ -181,24 +181,24 @@ ss seq {
 
 	  %%// Get macros
 	   eventNum = str2int(macValueGet("ev_num"));
-	   sprintf(device, "%s-%s:%s-%s%s", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+	   sprintf(device, "%s%s", macValueGet("P"), macValueGet("R"));
 	
 	  %%// Assign events
 	   for (i = 0; i < eventNum; i++) {
-	     sprintf (str, "%s:%s%d", device, evCodeName, i);
+	     sprintf (str, "%s%s%d", device, evCodeName, i);
 	     pvAssign (event_codes[i], str);
 	     %%//printf("%s\n", str);
 	   }
 	   for (i = 0; i < eventNum; i++) {
-	     sprintf (str, "%s:%s%d", device, evTimeName, i);
+	     sprintf (str, "%s%s%d", device, evTimeName, i);
 	     pvAssign (event_timestamps[i], str);
 	   }
 	   for (i = 0; i < eventNum; i++) {
-	     sprintf (str, "%s:%s%d", device, evModeName, i);
+	     sprintf (str, "%s%s%d", device, evModeName, i);
 	     pvAssign (event_modes[i], str);
 	   }
 	   for (i = 0; i < eventNum; i++) {
-	     sprintf (str, "%s:%s%d", device, evCtrlName, i);
+	     sprintf (str, "%s%s%d", device, evCtrlName, i);
 	     pvAssign (event_ctrl[i], str);
 	   }
 

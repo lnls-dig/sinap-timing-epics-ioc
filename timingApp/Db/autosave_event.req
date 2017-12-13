@@ -1,6 +1,6 @@
 # Events
-$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVDESC$(num).VAL
-$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVCODE$(num).VAL
-$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTIME$(num).VAL
-$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVDLYMODE$(num).VAL
-$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVTRANSM$(num).VAL
+$(P)$(R)EVDESC$(num).VAL
+$(P)$(R)EVCODE$(num).VAL
+$(P)$(R)EVTIME$(num).VAL
+$(P)$(R)EVDLYMODE$(num).VAL
+$(P)$(R)EVTRANSM$(num).VAL
