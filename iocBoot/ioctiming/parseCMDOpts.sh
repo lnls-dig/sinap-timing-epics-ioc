@@ -13,7 +13,7 @@ while [ "$#" -gt 0 ]; do
             echo " Options:" >&2
             echo "  -i or --ip-addr     Configure IP address to connect to device" >&2
             echo "  -p or --ip-port     Configure IP port number to connect to device" >&2
-            echo "  -d or --device      Configure DMM device type [DCCT<number>|ICT<number>|DMM<number>]" >&2
+            echo "  -d or --device      Configure DMM device type [EVG<number>|EVR<number>|EVE<number>|FOUT<number>]" >&2
             echo "  -P                  Configure value of \$(P) macro" >&2
             echo "  -R                  Configure value of \$(R) macro" >&2
             exit 2
