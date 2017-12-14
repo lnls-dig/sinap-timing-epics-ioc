@@ -1,0 +1,30 @@
+[Unit]
+Description=TIMING IOC %p%I
+After=rc-local.service
+Wants=rc-local.service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# Source environment
+EnvironmentFile=/etc/sysconfig/timing-epics-ioc
+EnvironmentFile=/etc/sysconfig/timing-epics-ioc-mapping
+# Execute pre with root
+PermissionsStartOnly=true
+Environment=TIMING_INSTANCE=%i
+ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
+ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
+#WorkingDirectory=${TIMING_IOC_STARTUP}
+WorkingDirectory=/opt/epics/startup/ioc/sirius-timing-ioc/iocBoot/ioctiming
+# Run procServ with IOC
+ExecStart=/bin/bash -c "\
+    export TIMING_DEVICE_TELNET_PORT_SUFFIX=TIMING_$${TIMING_INSTANCE}_PORT_SUFFIX && \
+    /usr/local/bin/procServ \
+    -f \
+    -n %p%i \
+    -i ^C^D \
+    $${PROCSERV_TIMING_PORT_PREFIX}$${!TIMING_DEVICE_TELNET_PORT_SUFFIX} \
+    ./runGenericCT.sh"
+
+[Install]
+WantedBy=multi-user.target
