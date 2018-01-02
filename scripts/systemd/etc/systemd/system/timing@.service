@@ -24,7 +24,7 @@ ExecStart=/bin/bash -c "\
     -n %p%i \
     -i ^C^D \
     $${PROCSERV_TIMING_PORT_PREFIX}$${!TIMING_DEVICE_TELNET_PORT_SUFFIX} \
-    ./runGenericCT.sh"
+    ./runGenericModule.sh"
 
 [Install]
 WantedBy=multi-user.target
