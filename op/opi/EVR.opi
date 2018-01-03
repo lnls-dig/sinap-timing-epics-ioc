@@ -494,7 +494,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable</pv_name>
+    <pv_name>$(P)$(R).enable</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -594,7 +594,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0</pv_name>
+    <pv_name>$(P)$(R).enable0</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -764,7 +764,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0</pv_name>
+    <pv_name>$(P)$(R).pol0</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -855,7 +855,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1</pv_name>
+    <pv_name>$(P)$(R).enable1</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -905,7 +905,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1</pv_name>
+    <pv_name>$(P)$(R).pol1</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -951,7 +951,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width0</pv_name>
+    <pv_name>$(P)$(R).width0</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1004,7 +1004,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay0</pv_name>
+    <pv_name>$(P)$(R).delay0</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1102,7 +1102,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0</pv_name>
+    <pv_name>$(P)$(R).itl0</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1201,7 +1201,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):link</pv_name>
+    <pv_name>$(P)$(R).link</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1335,7 +1335,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):download</pv_name>
+    <pv_name>$(P)$(R).download</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1435,7 +1435,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT</pv_name>
+    <pv_name>$(P)$(R).uploadT</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1610,7 +1610,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly0</pv_name>
+    <pv_name>$(P)$(R).finedly0</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1663,7 +1663,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly0</pv_name>
+    <pv_name>$(P)$(R).rfdly0</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1876,7 +1876,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width1</pv_name>
+    <pv_name>$(P)$(R).width1</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1929,7 +1929,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay1</pv_name>
+    <pv_name>$(P)$(R).delay1</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1984,7 +1984,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width0RBV</pv_name>
+    <pv_name>$(P)$(R).width0RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2035,7 +2035,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay0RBV</pv_name>
+    <pv_name>$(P)$(R).delay0RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2086,7 +2086,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0RBV</pv_name>
+    <pv_name>$(P)$(R).pol0RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2137,7 +2137,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event0RBV</pv_name>
+    <pv_name>$(P)$(R).event0RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2190,7 +2190,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0RBV</pv_name>
+    <pv_name>$(P)$(R).enable0RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2338,7 +2338,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width1RBV</pv_name>
+    <pv_name>$(P)$(R).width1RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2389,7 +2389,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay1RBV</pv_name>
+    <pv_name>$(P)$(R).delay1RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2440,7 +2440,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1RBV</pv_name>
+    <pv_name>$(P)$(R).pol1RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2491,7 +2491,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event1RBV</pv_name>
+    <pv_name>$(P)$(R).event1RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2544,7 +2544,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1RBV</pv_name>
+    <pv_name>$(P)$(R).enable1RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2735,7 +2735,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2</pv_name>
+    <pv_name>$(P)$(R).enable2</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2785,7 +2785,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2</pv_name>
+    <pv_name>$(P)$(R).pol2</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2836,7 +2836,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3</pv_name>
+    <pv_name>$(P)$(R).enable3</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2886,7 +2886,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3</pv_name>
+    <pv_name>$(P)$(R).pol3</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2932,7 +2932,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width2</pv_name>
+    <pv_name>$(P)$(R).width2</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -2985,7 +2985,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay2</pv_name>
+    <pv_name>$(P)$(R).delay2</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -3078,7 +3078,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width3</pv_name>
+    <pv_name>$(P)$(R).width3</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -3131,7 +3131,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay3</pv_name>
+    <pv_name>$(P)$(R).delay3</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -3186,7 +3186,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width2RBV</pv_name>
+    <pv_name>$(P)$(R).width2RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3237,7 +3237,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay2RBV</pv_name>
+    <pv_name>$(P)$(R).delay2RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3288,7 +3288,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2RBV</pv_name>
+    <pv_name>$(P)$(R).pol2RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3339,7 +3339,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event2RBV</pv_name>
+    <pv_name>$(P)$(R).event2RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3392,7 +3392,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2RBV</pv_name>
+    <pv_name>$(P)$(R).enable2RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3540,7 +3540,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width3RBV</pv_name>
+    <pv_name>$(P)$(R).width3RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3591,7 +3591,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay3RBV</pv_name>
+    <pv_name>$(P)$(R).delay3RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3642,7 +3642,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3RBV</pv_name>
+    <pv_name>$(P)$(R).pol3RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3693,7 +3693,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event3RBV</pv_name>
+    <pv_name>$(P)$(R).event3RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3746,7 +3746,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3RBV</pv_name>
+    <pv_name>$(P)$(R).enable3RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3937,7 +3937,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4</pv_name>
+    <pv_name>$(P)$(R).enable4</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3987,7 +3987,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4</pv_name>
+    <pv_name>$(P)$(R).pol4</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4038,7 +4038,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5</pv_name>
+    <pv_name>$(P)$(R).enable5</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4088,7 +4088,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5</pv_name>
+    <pv_name>$(P)$(R).pol5</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4134,7 +4134,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width4</pv_name>
+    <pv_name>$(P)$(R).width4</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -4187,7 +4187,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay4</pv_name>
+    <pv_name>$(P)$(R).delay4</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -4280,7 +4280,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width5</pv_name>
+    <pv_name>$(P)$(R).width5</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -4333,7 +4333,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay5</pv_name>
+    <pv_name>$(P)$(R).delay5</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -4388,7 +4388,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width4RBV</pv_name>
+    <pv_name>$(P)$(R).width4RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4439,7 +4439,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay4RBV</pv_name>
+    <pv_name>$(P)$(R).delay4RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4490,7 +4490,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4RBV</pv_name>
+    <pv_name>$(P)$(R).pol4RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4541,7 +4541,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event4RBV</pv_name>
+    <pv_name>$(P)$(R).event4RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4594,7 +4594,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4RBV</pv_name>
+    <pv_name>$(P)$(R).enable4RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4742,7 +4742,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width5RBV</pv_name>
+    <pv_name>$(P)$(R).width5RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4793,7 +4793,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay5RBV</pv_name>
+    <pv_name>$(P)$(R).delay5RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4844,7 +4844,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5RBV</pv_name>
+    <pv_name>$(P)$(R).pol5RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4895,7 +4895,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event5RBV</pv_name>
+    <pv_name>$(P)$(R).event5RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4948,7 +4948,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5RBV</pv_name>
+    <pv_name>$(P)$(R).enable5RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5139,7 +5139,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6</pv_name>
+    <pv_name>$(P)$(R).enable6</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5229,7 +5229,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6</pv_name>
+    <pv_name>$(P)$(R).pol6</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5280,7 +5280,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7</pv_name>
+    <pv_name>$(P)$(R).enable7</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5330,7 +5330,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7</pv_name>
+    <pv_name>$(P)$(R).pol7</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5376,7 +5376,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width6</pv_name>
+    <pv_name>$(P)$(R).width6</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -5429,7 +5429,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay6</pv_name>
+    <pv_name>$(P)$(R).delay6</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -5522,7 +5522,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width7</pv_name>
+    <pv_name>$(P)$(R).width7</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -5575,7 +5575,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay7</pv_name>
+    <pv_name>$(P)$(R).delay7</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -5630,7 +5630,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width6RBV</pv_name>
+    <pv_name>$(P)$(R).width6RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5681,7 +5681,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay6RBV</pv_name>
+    <pv_name>$(P)$(R).delay6RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5732,7 +5732,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6RBV</pv_name>
+    <pv_name>$(P)$(R).pol6RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5783,7 +5783,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event6RBV</pv_name>
+    <pv_name>$(P)$(R).event6RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5836,7 +5836,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6RBV</pv_name>
+    <pv_name>$(P)$(R).enable6RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5984,7 +5984,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width7RBV</pv_name>
+    <pv_name>$(P)$(R).width7RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6035,7 +6035,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay7RBV</pv_name>
+    <pv_name>$(P)$(R).delay7RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6086,7 +6086,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7RBV</pv_name>
+    <pv_name>$(P)$(R).pol7RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6137,7 +6137,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event7RBV</pv_name>
+    <pv_name>$(P)$(R).event7RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6190,7 +6190,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7RBV</pv_name>
+    <pv_name>$(P)$(R).enable7RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -6381,7 +6381,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8</pv_name>
+    <pv_name>$(P)$(R).enable8</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -6431,7 +6431,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8</pv_name>
+    <pv_name>$(P)$(R).pol8</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6482,7 +6482,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9</pv_name>
+    <pv_name>$(P)$(R).enable9</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -6532,7 +6532,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9</pv_name>
+    <pv_name>$(P)$(R).pol9</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6578,7 +6578,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width8</pv_name>
+    <pv_name>$(P)$(R).width8</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -6631,7 +6631,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay8</pv_name>
+    <pv_name>$(P)$(R).delay8</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -6724,7 +6724,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width9</pv_name>
+    <pv_name>$(P)$(R).width9</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -6777,7 +6777,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay9</pv_name>
+    <pv_name>$(P)$(R).delay9</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -6832,7 +6832,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width8RBV</pv_name>
+    <pv_name>$(P)$(R).width8RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6883,7 +6883,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay8RBV</pv_name>
+    <pv_name>$(P)$(R).delay8RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6934,7 +6934,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8RBV</pv_name>
+    <pv_name>$(P)$(R).pol8RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6985,7 +6985,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event8RBV</pv_name>
+    <pv_name>$(P)$(R).event8RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7038,7 +7038,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8RBV</pv_name>
+    <pv_name>$(P)$(R).enable8RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -7186,7 +7186,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width9RBV</pv_name>
+    <pv_name>$(P)$(R).width9RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7237,7 +7237,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay9RBV</pv_name>
+    <pv_name>$(P)$(R).delay9RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7288,7 +7288,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9RBV</pv_name>
+    <pv_name>$(P)$(R).pol9RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7339,7 +7339,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event9RBV</pv_name>
+    <pv_name>$(P)$(R).event9RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7392,7 +7392,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9RBV</pv_name>
+    <pv_name>$(P)$(R).enable9RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -7583,7 +7583,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableA</pv_name>
+    <pv_name>$(P)$(R).enableA</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -7633,7 +7633,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polA</pv_name>
+    <pv_name>$(P)$(R).polA</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7684,7 +7684,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableB</pv_name>
+    <pv_name>$(P)$(R).enableB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -7734,7 +7734,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polB</pv_name>
+    <pv_name>$(P)$(R).polB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7780,7 +7780,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthA</pv_name>
+    <pv_name>$(P)$(R).widthA</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -7833,7 +7833,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayA</pv_name>
+    <pv_name>$(P)$(R).delayA</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -7926,7 +7926,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthB</pv_name>
+    <pv_name>$(P)$(R).widthB</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -7979,7 +7979,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayB</pv_name>
+    <pv_name>$(P)$(R).delayB</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -8034,7 +8034,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthARBV</pv_name>
+    <pv_name>$(P)$(R).widthARBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8085,7 +8085,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayARBV</pv_name>
+    <pv_name>$(P)$(R).delayARBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8136,7 +8136,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polARBV</pv_name>
+    <pv_name>$(P)$(R).polARBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8187,7 +8187,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventARBV</pv_name>
+    <pv_name>$(P)$(R).eventARBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8240,7 +8240,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableARBV</pv_name>
+    <pv_name>$(P)$(R).enableARBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8388,7 +8388,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthBRBV</pv_name>
+    <pv_name>$(P)$(R).widthBRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8439,7 +8439,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayBRBV</pv_name>
+    <pv_name>$(P)$(R).delayBRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8490,7 +8490,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polBRBV</pv_name>
+    <pv_name>$(P)$(R).polBRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8541,7 +8541,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventBRBV</pv_name>
+    <pv_name>$(P)$(R).eventBRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8594,7 +8594,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableBRBV</pv_name>
+    <pv_name>$(P)$(R).enableBRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8785,7 +8785,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableC</pv_name>
+    <pv_name>$(P)$(R).enableC</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8835,7 +8835,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polC</pv_name>
+    <pv_name>$(P)$(R).polC</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8886,7 +8886,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableD</pv_name>
+    <pv_name>$(P)$(R).enableD</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8936,7 +8936,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polD</pv_name>
+    <pv_name>$(P)$(R).polD</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8982,7 +8982,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthC</pv_name>
+    <pv_name>$(P)$(R).widthC</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -9035,7 +9035,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayC</pv_name>
+    <pv_name>$(P)$(R).delayC</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -9128,7 +9128,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthD</pv_name>
+    <pv_name>$(P)$(R).widthD</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -9181,7 +9181,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayD</pv_name>
+    <pv_name>$(P)$(R).delayD</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -9236,7 +9236,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthCRBV</pv_name>
+    <pv_name>$(P)$(R).widthCRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9287,7 +9287,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayCRBV</pv_name>
+    <pv_name>$(P)$(R).delayCRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9338,7 +9338,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polCRBV</pv_name>
+    <pv_name>$(P)$(R).polCRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9389,7 +9389,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventCRBV</pv_name>
+    <pv_name>$(P)$(R).eventCRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9442,7 +9442,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableCRBV</pv_name>
+    <pv_name>$(P)$(R).enableCRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -9590,7 +9590,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthDRBV</pv_name>
+    <pv_name>$(P)$(R).widthDRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9641,7 +9641,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayDRBV</pv_name>
+    <pv_name>$(P)$(R).delayDRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9692,7 +9692,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polDRBV</pv_name>
+    <pv_name>$(P)$(R).polDRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9743,7 +9743,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventDRBV</pv_name>
+    <pv_name>$(P)$(R).eventDRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9796,7 +9796,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableDRBV</pv_name>
+    <pv_name>$(P)$(R).enableDRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -9987,7 +9987,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableE</pv_name>
+    <pv_name>$(P)$(R).enableE</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -10037,7 +10037,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polE</pv_name>
+    <pv_name>$(P)$(R).polE</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10088,7 +10088,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableF</pv_name>
+    <pv_name>$(P)$(R).enableF</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -10138,7 +10138,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polF</pv_name>
+    <pv_name>$(P)$(R).polF</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10184,7 +10184,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthE</pv_name>
+    <pv_name>$(P)$(R).widthE</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -10237,7 +10237,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayE</pv_name>
+    <pv_name>$(P)$(R).delayE</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -10330,7 +10330,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthF</pv_name>
+    <pv_name>$(P)$(R).widthF</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -10383,7 +10383,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayF</pv_name>
+    <pv_name>$(P)$(R).delayF</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -10438,7 +10438,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthERBV</pv_name>
+    <pv_name>$(P)$(R).widthERBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10489,7 +10489,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayERBV</pv_name>
+    <pv_name>$(P)$(R).delayERBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10540,7 +10540,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polERBV</pv_name>
+    <pv_name>$(P)$(R).polERBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10591,7 +10591,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventERBV</pv_name>
+    <pv_name>$(P)$(R).eventERBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10644,7 +10644,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableERBV</pv_name>
+    <pv_name>$(P)$(R).enableERBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -10792,7 +10792,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthFRBV</pv_name>
+    <pv_name>$(P)$(R).widthFRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10843,7 +10843,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayFRBV</pv_name>
+    <pv_name>$(P)$(R).delayFRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10894,7 +10894,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polFRBV</pv_name>
+    <pv_name>$(P)$(R).polFRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10945,7 +10945,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventFRBV</pv_name>
+    <pv_name>$(P)$(R).eventFRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10998,7 +10998,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableFRBV</pv_name>
+    <pv_name>$(P)$(R).enableFRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -11188,7 +11188,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0RBV</pv_name>
+    <pv_name>$(P)$(R).itl0RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -11239,7 +11239,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0RBV</pv_name>
+    <pv_name>$(P)$(R).sel0RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11290,7 +11290,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly0RBV</pv_name>
+    <pv_name>$(P)$(R).finedly0RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11341,7 +11341,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly0RBV</pv_name>
+    <pv_name>$(P)$(R).rfdly0RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11395,7 +11395,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1</pv_name>
+    <pv_name>$(P)$(R).itl1</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -11450,7 +11450,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly1</pv_name>
+    <pv_name>$(P)$(R).finedly1</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -11503,7 +11503,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly1</pv_name>
+    <pv_name>$(P)$(R).rfdly1</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -11697,7 +11697,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1RBV</pv_name>
+    <pv_name>$(P)$(R).itl1RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -11748,7 +11748,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1RBV</pv_name>
+    <pv_name>$(P)$(R).sel1RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11799,7 +11799,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly1RBV</pv_name>
+    <pv_name>$(P)$(R).finedly1RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11850,7 +11850,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly1RBV</pv_name>
+    <pv_name>$(P)$(R).rfdly1RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11904,7 +11904,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2</pv_name>
+    <pv_name>$(P)$(R).itl2</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -11959,7 +11959,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly2</pv_name>
+    <pv_name>$(P)$(R).finedly2</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -12012,7 +12012,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly2</pv_name>
+    <pv_name>$(P)$(R).rfdly2</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -12206,7 +12206,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2RBV</pv_name>
+    <pv_name>$(P)$(R).itl2RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12257,7 +12257,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2RBV</pv_name>
+    <pv_name>$(P)$(R).sel2RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12308,7 +12308,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly2RBV</pv_name>
+    <pv_name>$(P)$(R).finedly2RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12359,7 +12359,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly2RBV</pv_name>
+    <pv_name>$(P)$(R).rfdly2RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12413,7 +12413,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3</pv_name>
+    <pv_name>$(P)$(R).itl3</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12468,7 +12468,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly3</pv_name>
+    <pv_name>$(P)$(R).finedly3</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -12521,7 +12521,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly3</pv_name>
+    <pv_name>$(P)$(R).rfdly3</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -12715,7 +12715,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3RBV</pv_name>
+    <pv_name>$(P)$(R).itl3RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12766,7 +12766,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3RBV</pv_name>
+    <pv_name>$(P)$(R).sel3RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12817,7 +12817,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly3RBV</pv_name>
+    <pv_name>$(P)$(R).finedly3RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12868,7 +12868,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly3RBV</pv_name>
+    <pv_name>$(P)$(R).rfdly3RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12922,7 +12922,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4</pv_name>
+    <pv_name>$(P)$(R).itl4</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12977,7 +12977,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly4</pv_name>
+    <pv_name>$(P)$(R).finedly4</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -13030,7 +13030,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly4</pv_name>
+    <pv_name>$(P)$(R).rfdly4</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -13224,7 +13224,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4RBV</pv_name>
+    <pv_name>$(P)$(R).itl4RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13275,7 +13275,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4RBV</pv_name>
+    <pv_name>$(P)$(R).sel4RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13326,7 +13326,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly4RBV</pv_name>
+    <pv_name>$(P)$(R).finedly4RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13377,7 +13377,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly4RBV</pv_name>
+    <pv_name>$(P)$(R).rfdly4RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13431,7 +13431,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5</pv_name>
+    <pv_name>$(P)$(R).itl5</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13486,7 +13486,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly5</pv_name>
+    <pv_name>$(P)$(R).finedly5</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -13539,7 +13539,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly5</pv_name>
+    <pv_name>$(P)$(R).rfdly5</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -13733,7 +13733,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5RBV</pv_name>
+    <pv_name>$(P)$(R).itl5RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13784,7 +13784,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5RBV</pv_name>
+    <pv_name>$(P)$(R).sel5RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13835,7 +13835,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly5RBV</pv_name>
+    <pv_name>$(P)$(R).finedly5RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13886,7 +13886,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly5RBV</pv_name>
+    <pv_name>$(P)$(R).rfdly5RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13940,7 +13940,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6</pv_name>
+    <pv_name>$(P)$(R).itl6</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13995,7 +13995,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly6</pv_name>
+    <pv_name>$(P)$(R).finedly6</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -14048,7 +14048,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly6</pv_name>
+    <pv_name>$(P)$(R).rfdly6</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -14242,7 +14242,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6RBV</pv_name>
+    <pv_name>$(P)$(R).itl6RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -14293,7 +14293,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6RBV</pv_name>
+    <pv_name>$(P)$(R).sel6RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14344,7 +14344,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly6RBV</pv_name>
+    <pv_name>$(P)$(R).finedly6RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14395,7 +14395,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly6RBV</pv_name>
+    <pv_name>$(P)$(R).rfdly6RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14449,7 +14449,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7</pv_name>
+    <pv_name>$(P)$(R).itl7</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -14504,7 +14504,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly7</pv_name>
+    <pv_name>$(P)$(R).finedly7</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -14557,7 +14557,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly7</pv_name>
+    <pv_name>$(P)$(R).rfdly7</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -14751,7 +14751,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7RBV</pv_name>
+    <pv_name>$(P)$(R).itl7RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -14802,7 +14802,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7RBV</pv_name>
+    <pv_name>$(P)$(R).sel7RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14853,7 +14853,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly7RBV</pv_name>
+    <pv_name>$(P)$(R).finedly7RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14904,7 +14904,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly7RBV</pv_name>
+    <pv_name>$(P)$(R).rfdly7RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14997,7 +14997,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRBV</pv_name>
+    <pv_name>$(P)$(R).enableRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -15090,7 +15090,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="106" green="60" blue="54" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):inhs</pv_name>
+    <pv_name>$(P)$(R).inhs</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -15221,7 +15221,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive</pv_name>
+    <pv_name>$(P)$(R).alive</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15312,7 +15312,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):clkmodeRBV</pv_name>
+    <pv_name>$(P)$(R).clkmodeRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15403,7 +15403,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV</pv_name>
+    <pv_name>$(P)$(R).funselRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15511,7 +15511,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):clkmode</pv_name>
+    <pv_name>$(P)$(R).clkmode</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15710,7 +15710,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdev</pv_name>
+    <pv_name>$(P)$(R).statdev</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15761,7 +15761,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):network</pv_name>
+    <pv_name>$(P)$(R).network</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15879,7 +15879,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event1</pv_name>
+    <pv_name>$(P)$(R).event1</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15935,7 +15935,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event2</pv_name>
+    <pv_name>$(P)$(R).event2</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -15991,7 +15991,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event3</pv_name>
+    <pv_name>$(P)$(R).event3</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16047,7 +16047,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event4</pv_name>
+    <pv_name>$(P)$(R).event4</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16103,7 +16103,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event5</pv_name>
+    <pv_name>$(P)$(R).event5</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16159,7 +16159,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event6</pv_name>
+    <pv_name>$(P)$(R).event6</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16215,7 +16215,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event7</pv_name>
+    <pv_name>$(P)$(R).event7</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16271,7 +16271,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event8</pv_name>
+    <pv_name>$(P)$(R).event8</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16327,7 +16327,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event9</pv_name>
+    <pv_name>$(P)$(R).event9</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16383,7 +16383,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventA</pv_name>
+    <pv_name>$(P)$(R).eventA</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16439,7 +16439,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventB</pv_name>
+    <pv_name>$(P)$(R).eventB</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16495,7 +16495,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventC</pv_name>
+    <pv_name>$(P)$(R).eventC</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16551,7 +16551,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventD</pv_name>
+    <pv_name>$(P)$(R).eventD</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16607,7 +16607,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventE</pv_name>
+    <pv_name>$(P)$(R).eventE</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16663,7 +16663,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventF</pv_name>
+    <pv_name>$(P)$(R).eventF</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16719,7 +16719,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event0</pv_name>
+    <pv_name>$(P)$(R).event0</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16775,7 +16775,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses0</pv_name>
+    <pv_name>$(P)$(R).pulses0</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16854,7 +16854,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses0RBV</pv_name>
+    <pv_name>$(P)$(R).pulses0RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16922,7 +16922,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses1</pv_name>
+    <pv_name>$(P)$(R).pulses1</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16961,7 +16961,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses1RBV</pv_name>
+    <pv_name>$(P)$(R).pulses1RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17029,7 +17029,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses2</pv_name>
+    <pv_name>$(P)$(R).pulses2</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17068,7 +17068,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses2RBV</pv_name>
+    <pv_name>$(P)$(R).pulses2RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17136,7 +17136,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses3</pv_name>
+    <pv_name>$(P)$(R).pulses3</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17175,7 +17175,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses3RBV</pv_name>
+    <pv_name>$(P)$(R).pulses3RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17243,7 +17243,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses4</pv_name>
+    <pv_name>$(P)$(R).pulses4</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17282,7 +17282,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses4RBV</pv_name>
+    <pv_name>$(P)$(R).pulses4RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17350,7 +17350,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses5</pv_name>
+    <pv_name>$(P)$(R).pulses5</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17389,7 +17389,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses5RBV</pv_name>
+    <pv_name>$(P)$(R).pulses5RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17457,7 +17457,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses6</pv_name>
+    <pv_name>$(P)$(R).pulses6</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17496,7 +17496,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses6RBV</pv_name>
+    <pv_name>$(P)$(R).pulses6RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17564,7 +17564,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses7</pv_name>
+    <pv_name>$(P)$(R).pulses7</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17603,7 +17603,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses7RBV</pv_name>
+    <pv_name>$(P)$(R).pulses7RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17671,7 +17671,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses8</pv_name>
+    <pv_name>$(P)$(R).pulses8</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17710,7 +17710,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses8RBV</pv_name>
+    <pv_name>$(P)$(R).pulses8RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17778,7 +17778,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses9</pv_name>
+    <pv_name>$(P)$(R).pulses9</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17817,7 +17817,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses9RBV</pv_name>
+    <pv_name>$(P)$(R).pulses9RBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17885,7 +17885,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesA</pv_name>
+    <pv_name>$(P)$(R).pulsesA</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17924,7 +17924,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesARBV</pv_name>
+    <pv_name>$(P)$(R).pulsesARBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17992,7 +17992,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesB</pv_name>
+    <pv_name>$(P)$(R).pulsesB</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18031,7 +18031,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesBRBV</pv_name>
+    <pv_name>$(P)$(R).pulsesBRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18099,7 +18099,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesC</pv_name>
+    <pv_name>$(P)$(R).pulsesC</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18138,7 +18138,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesCRBV</pv_name>
+    <pv_name>$(P)$(R).pulsesCRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18206,7 +18206,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesD</pv_name>
+    <pv_name>$(P)$(R).pulsesD</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18245,7 +18245,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesDRBV</pv_name>
+    <pv_name>$(P)$(R).pulsesDRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18313,7 +18313,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesE</pv_name>
+    <pv_name>$(P)$(R).pulsesE</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18352,7 +18352,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesERBV</pv_name>
+    <pv_name>$(P)$(R).pulsesERBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18420,7 +18420,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesF</pv_name>
+    <pv_name>$(P)$(R).pulsesF</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18459,7 +18459,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesFRBV</pv_name>
+    <pv_name>$(P)$(R).pulsesFRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18553,7 +18553,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0</pv_name>
+    <pv_name>$(P)$(R).time0</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18613,7 +18613,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1</pv_name>
+    <pv_name>$(P)$(R).time1</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18672,7 +18672,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0RBV</pv_name>
+    <pv_name>$(P)$(R).time0RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18725,7 +18725,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1RBV</pv_name>
+    <pv_name>$(P)$(R).time1RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18779,7 +18779,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2</pv_name>
+    <pv_name>$(P)$(R).time2</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18838,7 +18838,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2RBV</pv_name>
+    <pv_name>$(P)$(R).time2RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18892,7 +18892,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3</pv_name>
+    <pv_name>$(P)$(R).time3</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18951,7 +18951,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3RBV</pv_name>
+    <pv_name>$(P)$(R).time3RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19005,7 +19005,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4</pv_name>
+    <pv_name>$(P)$(R).time4</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19064,7 +19064,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4RBV</pv_name>
+    <pv_name>$(P)$(R).time4RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19118,7 +19118,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5</pv_name>
+    <pv_name>$(P)$(R).time5</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19177,7 +19177,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5RBV</pv_name>
+    <pv_name>$(P)$(R).time5RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19231,7 +19231,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6</pv_name>
+    <pv_name>$(P)$(R).time6</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19290,7 +19290,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6RBV</pv_name>
+    <pv_name>$(P)$(R).time6RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19344,7 +19344,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7</pv_name>
+    <pv_name>$(P)$(R).time7</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19403,7 +19403,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7RBV</pv_name>
+    <pv_name>$(P)$(R).time7RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19457,7 +19457,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8</pv_name>
+    <pv_name>$(P)$(R).time8</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19516,7 +19516,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8RBV</pv_name>
+    <pv_name>$(P)$(R).time8RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19570,7 +19570,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9</pv_name>
+    <pv_name>$(P)$(R).time9</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19629,7 +19629,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9RBV</pv_name>
+    <pv_name>$(P)$(R).time9RBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19683,7 +19683,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeA</pv_name>
+    <pv_name>$(P)$(R).timeA</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19742,7 +19742,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeARBV</pv_name>
+    <pv_name>$(P)$(R).timeARBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19796,7 +19796,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeB</pv_name>
+    <pv_name>$(P)$(R).timeB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19855,7 +19855,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeBRBV</pv_name>
+    <pv_name>$(P)$(R).timeBRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19909,7 +19909,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeC</pv_name>
+    <pv_name>$(P)$(R).timeC</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19968,7 +19968,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeCRBV</pv_name>
+    <pv_name>$(P)$(R).timeCRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20022,7 +20022,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeD</pv_name>
+    <pv_name>$(P)$(R).timeD</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20081,7 +20081,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeDRBV</pv_name>
+    <pv_name>$(P)$(R).timeDRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20135,7 +20135,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeE</pv_name>
+    <pv_name>$(P)$(R).timeE</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20194,7 +20194,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeERBV</pv_name>
+    <pv_name>$(P)$(R).timeERBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20248,7 +20248,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeF</pv_name>
+    <pv_name>$(P)$(R).timeF</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20307,7 +20307,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeFRBV</pv_name>
+    <pv_name>$(P)$(R).timeFRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20391,7 +20391,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC</pv_name>
+    <pv_name>$(P)$(R).TIMESRC</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -20479,7 +20479,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRCRBV</pv_name>
+    <pv_name>$(P)$(R).TIMESRCRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -20570,7 +20570,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCRBV</pv_name>
+    <pv_name>$(P)$(R).UTCRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -20661,7 +20661,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):subsecondRBV</pv_name>
+    <pv_name>$(P)$(R).subsecondRBV</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -20852,7 +20852,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplog</pv_name>
+    <pv_name>$(P)$(R).stoplog</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20952,7 +20952,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstlog</pv_name>
+    <pv_name>$(P)$(R).rstlog</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -21052,7 +21052,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull</pv_name>
+    <pv_name>$(P)$(R).pull</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -21151,7 +21151,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPLOGRBV</pv_name>
+    <pv_name>$(P)$(R).STOPLOGRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -21204,7 +21204,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RSTLOGRBV</pv_name>
+    <pv_name>$(P)$(R).RSTLOGRBV</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -21337,7 +21337,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FULL</pv_name>
+    <pv_name>$(P)$(R).FULL</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -21390,7 +21390,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EMPTY</pv_name>
+    <pv_name>$(P)$(R).EMPTY</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -21481,7 +21481,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCOUNT</pv_name>
+    <pv_name>$(P)$(R).LOGCOUNT</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -21532,7 +21532,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGEVENT</pv_name>
+    <pv_name>$(P)$(R).LOGEVENT</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -21583,7 +21583,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGUTC</pv_name>
+    <pv_name>$(P)$(R).LOGUTC</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -21634,7 +21634,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGSUBSEC</pv_name>
+    <pv_name>$(P)$(R).LOGSUBSEC</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22022,7 +22022,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGSOFTCNT</pv_name>
+    <pv_name>$(P)$(R).LOGSOFTCNT</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22066,7 +22066,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0</pv_name>
+    <pv_name>$(P)$(R).sel0</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22133,7 +22133,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1</pv_name>
+    <pv_name>$(P)$(R).sel1</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22200,7 +22200,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2</pv_name>
+    <pv_name>$(P)$(R).sel2</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22267,7 +22267,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3</pv_name>
+    <pv_name>$(P)$(R).sel3</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22334,7 +22334,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4</pv_name>
+    <pv_name>$(P)$(R).sel4</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22401,7 +22401,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5</pv_name>
+    <pv_name>$(P)$(R).sel5</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22468,7 +22468,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6</pv_name>
+    <pv_name>$(P)$(R).sel6</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22535,7 +22535,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7</pv_name>
+    <pv_name>$(P)$(R).sel7</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22652,7 +22652,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE</pv_name>
+    <pv_name>$(P)$(R).SAVE</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -22786,7 +22786,7 @@ $(pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCbuffer</pv_name>
+    <pv_name>$(P)$(R).UTCbuffer</pv_name>
     <show_scrollbar>true</show_scrollbar>
     <background_color>
       <color red="240" green="240" blue="240" />
@@ -22885,7 +22885,7 @@ $(pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SUBSECbuffer</pv_name>
+    <pv_name>$(P)$(R).SUBSECbuffer</pv_name>
     <show_scrollbar>true</show_scrollbar>
     <background_color>
       <color red="240" green="240" blue="240" />
@@ -22984,7 +22984,7 @@ $(pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVENTbuffer</pv_name>
+    <pv_name>$(P)$(R).EVENTbuffer</pv_name>
     <show_scrollbar>true</show_scrollbar>
     <background_color>
       <color red="240" green="240" blue="240" />
@@ -23089,7 +23089,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="107" green="108" blue="58" />
     </off_color>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstSoftBuff</pv_name>
+    <pv_name>$(P)$(R).rstSoftBuff</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -23186,7 +23186,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONA</pv_name>
+    <pv_name>$(P)$(R).FRMVERSIONA</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -23277,7 +23277,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONB</pv_name>
+    <pv_name>$(P)$(R).FRMVERSIONB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -23328,7 +23328,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONC</pv_name>
+    <pv_name>$(P)$(R).FRMVERSIONC</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
