@@ -14,17 +14,24 @@ PermissionsStartOnly=true
 Environment=TIMING_INSTANCE=%i
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
-#WorkingDirectory=${TIMING_IOC_STARTUP}
 WorkingDirectory=/opt/epics/startup/ioc/sirius-timing-ioc/iocBoot/ioctiming
 # Run procServ with IOC
 ExecStart=/bin/bash -c "\
-    export TIMING_DEVICE_TELNET_PORT_SUFFIX=TIMING_$${TIMING_INSTANCE}_PORT_SUFFIX && \
+    TIMING_CURRENT_PV_AREA_PREFIX=TIMING_${TIMING_INSTANCE}_PV_AREA_PREFIX && \
+    TIMING_CURRENT_PV_DEVICE_PREFIX=TIMING_${TIMING_INSTANCE}_PV_DEVICE_PREFIX && \
+    TIMING_CURRENT_DEVICE_IP=TIMING_${TIMING_INSTANCE}_DEVICE_IP && \
+    TIMING_CURRENT_DEVICE_PORT=TIMING_${TIMING_INSTANCE}_DEVICE_PORT && \
+    TIMING_CURRENT_DEVICE_TELNET_PORT_SUFFIX=TIMING_$${TIMING_INSTANCE}_TELNET_PORT_SUFFIX && \
+    PV_AREA_PREFIX=${!TIMING_CURRENT_PV_AREA_PREFIX} && \
+    PV_DEVICE_PREFIX=${!TIMING_CURRENT_PV_DEVICE_PREFIX} && \
+    DEVICE_IP=${!TIMING_CURRENT_DEVICE_IP} && \
+    DEVICE_PORT=${!TIMING_CURRENT_DEVICE_PORT} && \
     /usr/local/bin/procServ \
     -f \
     -n %p%i \
     -i ^C^D \
-    $${PROCSERV_TIMING_PORT_PREFIX}$${!TIMING_DEVICE_TELNET_PORT_SUFFIX} \
-    ./runGenericModule.sh"
+    $${PROCSERV_TIMING_PORT_PREFIX}$${!TIMING_CURRENT_DEVICE_TELNET_PORT_SUFFIX} \
+    ./runGenericModule.sh -P ${PV_AREA_PREFIX} -R ${PV_DEVICE_PREFIX} -i ${DEVICE_IP} -p ${DEVICE_PORT} -d ${TIMING_INSTANCE}"
 
 [Install]
 WantedBy=multi-user.target
