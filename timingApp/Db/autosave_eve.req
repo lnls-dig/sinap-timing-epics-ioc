@@ -1,0 +1,211 @@
+# Control and Status
+$(P)$(R)enable.VAL
+# OTP 0
+$(P)$(R)event0.VAL
+$(P)$(R)pulses0.VAL
+$(P)$(R)width0.VAL
+$(P)$(R)delay0.VAL
+$(P)$(R)enable0.VAL
+$(P)$(R)pol0.VAL
+$(P)$(R)time0.VAL
+$(P)$(R)enpoltime0.VAL
+# OTP 1
+$(P)$(R)event1.VAL
+$(P)$(R)pulses1.VAL
+$(P)$(R)width1.VAL
+$(P)$(R)delay1.VAL
+$(P)$(R)enable1.VAL
+$(P)$(R)pol1.VAL
+$(P)$(R)time1.VAL
+$(P)$(R)enpoltime1.VAL
+# OTP 2
+$(P)$(R)event2.VAL
+$(P)$(R)pulses2.VAL
+$(P)$(R)width2.VAL
+$(P)$(R)delay2.VAL
+$(P)$(R)enable2.VAL
+$(P)$(R)pol2.VAL
+$(P)$(R)time2.VAL
+$(P)$(R)enpoltime2.VAL
+# OTP 3
+$(P)$(R)event3.VAL
+$(P)$(R)pulses3.VAL
+$(P)$(R)width3.VAL
+$(P)$(R)delay3.VAL
+$(P)$(R)enable3.VAL
+$(P)$(R)pol3.VAL
+$(P)$(R)time3.VAL
+$(P)$(R)enpoltime3.VAL
+# OTP 4
+$(P)$(R)event4.VAL
+$(P)$(R)pulses4.VAL
+$(P)$(R)width4.VAL
+$(P)$(R)delay4.VAL
+$(P)$(R)enable4.VAL
+$(P)$(R)pol4.VAL
+$(P)$(R)time4.VAL
+$(P)$(R)enpoltime4.VAL
+# OTP 5
+$(P)$(R)event5.VAL
+$(P)$(R)pulses5.VAL
+$(P)$(R)width5.VAL
+$(P)$(R)delay5.VAL
+$(P)$(R)enable5.VAL
+$(P)$(R)pol5.VAL
+$(P)$(R)time5.VAL
+$(P)$(R)enpoltime5.VAL
+# OTP 6
+$(P)$(R)event6.VAL
+$(P)$(R)pulses6.VAL
+$(P)$(R)width6.VAL
+$(P)$(R)delay6.VAL
+$(P)$(R)enable6.VAL
+$(P)$(R)pol6.VAL
+$(P)$(R)time6.VAL
+$(P)$(R)enpoltime6.VAL
+# OTP 7
+$(P)$(R)event7.VAL
+$(P)$(R)pulses7.VAL
+$(P)$(R)width7.VAL
+$(P)$(R)delay7.VAL
+$(P)$(R)enable7.VAL
+$(P)$(R)pol7.VAL
+$(P)$(R)time7.VAL
+$(P)$(R)enpoltime7.VAL
+# OTP 8
+$(P)$(R)event8.VAL
+$(P)$(R)pulses8.VAL
+$(P)$(R)width8.VAL
+$(P)$(R)delay8.VAL
+$(P)$(R)enable8.VAL
+$(P)$(R)pol8.VAL
+$(P)$(R)time8.VAL
+$(P)$(R)enpoltime8.VAL
+# OTP 9
+$(P)$(R)event9.VAL
+$(P)$(R)pulses9.VAL
+$(P)$(R)width9.VAL
+$(P)$(R)delay9.VAL
+$(P)$(R)enable9.VAL
+$(P)$(R)pol9.VAL
+$(P)$(R)time9.VAL
+$(P)$(R)enpoltime9.VAL
+# OTP A
+$(P)$(R)eventA.VAL
+$(P)$(R)pulsesA.VAL
+$(P)$(R)widthA.VAL
+$(P)$(R)delayA.VAL
+$(P)$(R)enableA.VAL
+$(P)$(R)polA.VAL
+$(P)$(R)timeA.VAL
+$(P)$(R)enpoltimeA.VAL
+# OTP B
+$(P)$(R)eventB.VAL
+$(P)$(R)pulsesB.VAL
+$(P)$(R)widthB.VAL
+$(P)$(R)delayB.VAL
+$(P)$(R)enableB.VAL
+$(P)$(R)polB.VAL
+$(P)$(R)timeB.VAL
+$(P)$(R)enpoltimeB.VAL
+# OTP C
+$(P)$(R)eventC.VAL
+$(P)$(R)pulsesC.VAL
+$(P)$(R)widthC.VAL
+$(P)$(R)delayC.VAL
+$(P)$(R)enableC.VAL
+$(P)$(R)polC.VAL
+$(P)$(R)timeC.VAL
+$(P)$(R)enpoltimeC.VAL
+# OTP D
+$(P)$(R)eventD.VAL
+$(P)$(R)pulsesD.VAL
+$(P)$(R)widthD.VAL
+$(P)$(R)delayD.VAL
+$(P)$(R)enableD.VAL
+$(P)$(R)polD.VAL
+$(P)$(R)timeD.VAL
+$(P)$(R)enpoltimeD.VAL
+# OTP E
+$(P)$(R)eventE.VAL
+$(P)$(R)pulsesE.VAL
+$(P)$(R)widthE.VAL
+$(P)$(R)delayE.VAL
+$(P)$(R)enableE.VAL
+$(P)$(R)polE.VAL
+$(P)$(R)timeE.VAL
+$(P)$(R)enpoltimeE.VAL
+# OTP F
+$(P)$(R)eventF.VAL
+$(P)$(R)pulsesF.VAL
+$(P)$(R)widthF.VAL
+$(P)$(R)delayF.VAL
+$(P)$(R)enableF.VAL
+$(P)$(R)polF.VAL
+$(P)$(R)timeF.VAL
+$(P)$(R)enpoltimeF.VAL
+# OUT 0
+$(P)$(R)rfdly0.VAL
+$(P)$(R)finedly0.VAL
+$(P)$(R)sel0.VAL
+$(P)$(R)sel0toHW.VAL
+$(P)$(R)itl0.VAL
+$(P)$(R)ITL0.VAL
+# OUT 1
+$(P)$(R)rfdly1.VAL
+$(P)$(R)finedly1.VAL
+$(P)$(R)sel1.VAL
+$(P)$(R)sel1toHW.VAL
+$(P)$(R)itl1.VAL
+$(P)$(R)ITL1.VAL
+# OUT 2
+$(P)$(R)rfdly2.VAL
+$(P)$(R)finedly2.VAL
+$(P)$(R)sel2.VAL
+$(P)$(R)sel2toHW.VAL
+$(P)$(R)itl2.VAL
+$(P)$(R)ITL2.VAL
+# OUT 3
+$(P)$(R)rfdly3.VAL
+$(P)$(R)finedly3.VAL
+$(P)$(R)sel3.VAL
+$(P)$(R)sel3toHW.VAL
+$(P)$(R)itl3.VAL
+$(P)$(R)ITL3.VAL
+# OUT 4
+$(P)$(R)rfdly4.VAL
+$(P)$(R)finedly4.VAL
+$(P)$(R)sel4.VAL
+$(P)$(R)sel4toHW.VAL
+$(P)$(R)itl4.VAL
+$(P)$(R)ITL4.VAL
+# OUT 5
+$(P)$(R)rfdly5.VAL
+$(P)$(R)finedly5.VAL
+$(P)$(R)sel5.VAL
+$(P)$(R)sel5toHW.VAL
+$(P)$(R)itl5.VAL
+$(P)$(R)ITL5.VAL
+# OUT 6
+$(P)$(R)rfdly6.VAL
+$(P)$(R)finedly6.VAL
+$(P)$(R)sel6.VAL
+$(P)$(R)sel6toHW.VAL
+$(P)$(R)itl6.VAL
+$(P)$(R)ITL6.VAL
+# OUT 7
+$(P)$(R)rfdly7.VAL
+$(P)$(R)finedly7.VAL
+$(P)$(R)sel7.VAL
+$(P)$(R)sel7toHW.VAL
+$(P)$(R)itl7.VAL
+$(P)$(R)ITL7.VAL
+# RF Output
+$(P)$(R)cmsel.VAL
+$(P)$(R)cmsel.RVAL
+# Timestamp
+$(P)$(R)TIMESRC.VAL
+$(P)$(R)TIMESRC.RVAL
+# Configuration
+$(P)$(R)clkmode.VAL
+$(P)$(R)clkmode.RVAL

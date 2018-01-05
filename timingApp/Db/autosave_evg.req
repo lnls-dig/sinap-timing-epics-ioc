@@ -1,0 +1,43 @@
+# Control and Status
+$(P)$(R)enable.VAL
+$(P)$(R)seqen.VAL
+$(P)$(R)acen.VAL
+$(P)$(R)acdiv.VAL
+$(P)$(R)acdiv.RVAL
+$(P)$(R)SEQEN_ENABLE.VAL
+# MUX
+$(P)$(R)muxen0.VAL
+$(P)$(R)muxdiv0.VAL
+$(P)$(R)muxdiv0.RVAL
+$(P)$(R)muxen1.VAL
+$(P)$(R)muxdiv1.VAL
+$(P)$(R)muxdiv1.RVAL
+$(P)$(R)muxen2.VAL
+$(P)$(R)muxdiv2.VAL
+$(P)$(R)muxdiv2.RVAL
+$(P)$(R)muxen3.VAL
+$(P)$(R)muxdiv3.VAL
+$(P)$(R)muxdiv3.RVAL
+$(P)$(R)muxen4.VAL
+$(P)$(R)muxdiv4.VAL
+$(P)$(R)muxdiv4.RVAL
+$(P)$(R)muxen5.VAL
+$(P)$(R)muxdiv5.VAL
+$(P)$(R)muxdiv5.RVAL
+$(P)$(R)muxen6.VAL
+$(P)$(R)muxdiv6.VAL
+$(P)$(R)muxdiv6.RVAL
+$(P)$(R)muxen7.VAL
+$(P)$(R)muxdiv7.VAL
+$(P)$(R)muxdiv7.RVAL
+# Timestamp
+$(P)$(R)UTCRef.VAL
+$(P)$(R)TIMESRC.VAL
+$(P)$(R)TIMESRC.RVAL
+# Configuration
+$(P)$(R)funsel.VAL
+$(P)$(R)funsel.RVAL
+$(P)$(R)rfdiv.VAL
+$(P)$(R)rfdiv.RVAL
+# ITBL
+$(P)$(R)ITBL.VAL

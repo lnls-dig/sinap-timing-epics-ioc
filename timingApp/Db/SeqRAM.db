@@ -10,7 +10,7 @@
 
 #####################################################
 # State Machine Status (read only)
-record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STATEMACHINE"){
+record(mbbo, "$(P)$(R)STATEMACHINE"){
 	field(SCAN, "Passive")	
 	field(ZRST, "Initializing")
 	field(ZRVL, "0")
@@ -33,7 +33,7 @@ record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STATEMACHINE"){
 #####################################################
 # Stop Trigger: Return SeqRAM to STOPPED state
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPSEQ"){
+record(bo, "$(P)$(R)STOPSEQ"){
 	field(SCAN, "Passive")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
@@ -41,7 +41,7 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPSEQ"){
 }
 #####################################################
 # Stop Injection Trigger: Return from SeqRAM 2 to SeqRAM 1
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPINJSEQ"){
+record(bo, "$(P)$(R)STOPINJSEQ"){
 	field(SCAN, "Passive")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
@@ -50,7 +50,7 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPINJSEQ"){
 
 #####################################################
 # Run Trigger: Run SeqRAM 1
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RUNSEQ"){
+record(bo, "$(P)$(R)RUNSEQ"){
 	field(SCAN, "Passive")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
@@ -59,7 +59,7 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RUNSEQ"){
 
 #####################################################
 # Injection Trigger: Run SeqRAM 2
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):INJSEQ"){
+record(bo, "$(P)$(R)INJSEQ"){
 	field(SCAN, "Passive")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
@@ -68,7 +68,7 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):INJSEQ"){
 
 #####################################################
 # Restart Trigger: Reload events and restart SeqRAM 1
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RESTSEQ"){
+record(bo, "$(P)$(R)RESTSEQ"){
 	field(SCAN, "Passive")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
@@ -77,7 +77,7 @@ record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RESTSEQ"){
 
 #####################################################
 # Repeat Injection Trigger Flag: Repeat the injection while set
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):REPINJSEQ"){
+record(bo, "$(P)$(R)REPINJSEQ"){
 	field(SCAN, "Passive")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")

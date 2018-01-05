@@ -5,27 +5,27 @@ program sncFOUTSetup
 %%//----------------------------------------
 
 int downloadproc;
-assign downloadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:downloadT.PROC";
+assign downloadproc to "{P}{R}downloadT.PROC";
 
 int download;
-assign download to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:download.VAL";
+assign download to "{P}{R}download.VAL";
 monitor download;
 
 int statdev;
-assign statdev to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:statdev";
+assign statdev to "{P}{R}statdev";
 monitor statdev;
 
 int past_alive = -1;
 int alive;
-assign alive to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:alive";
+assign alive to "{P}{R}alive";
 monitor alive;
 
 int funselRBV;
-assign funselRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:funselRBV.RVAL";
+assign funselRBV to "{P}{R}funselRBV.RVAL";
 monitor funselRBV;
 
 int network;
-assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
+assign network to "{P}{R}network";
 monitor network;
 
 %%//----------------------------------------
@@ -40,12 +40,12 @@ ss configuration {
 		%{/* Wait 1 sec while module starts up */}%
 
 		%%// Init message
-		printf("\n%s-%s:%s-%s%s state machine initiated\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\n%s%s state machine initiated\n", macValueGet("P"), macValueGet("R"));
 
 		%%// If the module is configured, print message
 		if(statdev != 0 && funselRBV == 16){
 		
-			printf("%s-%s:%s-%s%s is already configured.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+			printf("%s%s is already configured.\n", macValueGet("P"), macValueGet("R"));
 		}
 
 	} state monitoring
@@ -85,7 +85,7 @@ ss configuration {
 		pvPut(downloadproc,SYNC);
 
 		%%// Print message
-		printf("\nConfiguration downloaded to %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\nConfiguration downloaded to %s%s.\n", macValueGet("P"), macValueGet("R"));
 
 		%%// Clear PV
 		download = 0;

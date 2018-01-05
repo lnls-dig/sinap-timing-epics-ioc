@@ -1,0 +1,6 @@
+# Events
+$(P)$(R)EVDESC$(num).VAL
+$(P)$(R)EVCODE$(num).VAL
+$(P)$(R)EVTIME$(num).VAL
+$(P)$(R)EVDLYMODE$(num).VAL
+$(P)$(R)EVTRANSM$(num).VAL
