@@ -8,10 +8,10 @@ import socket
 import sys
 import subprocess
 
-WAIT = 0.01
+WAIT = 0.005
 
 if (len(sys.argv) == 1):
-  ipsub_list = ['10.0.18']
+  ipsub_list = ['10.0.18','10.0.17','10.2.118','10.2.117']
 else:
   ipsub_list = sys.argv[1:]
   
@@ -49,10 +49,11 @@ def FindMod(UDP_IP, UDP_PORT):
 ok = 0
 port_list = range(port_ini,port_end+1)
 ipaddr_list = range(ip_ini,ip_end+1)
+start_time = time.time()
 for ipsub in ipsub_list:
   print 'Searching for timing modules in subnet', ipsub
-  for ipaddr in ipaddr_list:
-    for port in port_list:
+  for port in port_list:
+    for ipaddr in ipaddr_list:
       ip = ipsub+'.'+str(ipaddr)
       ok, a, b, c, addr = FindMod(ip, port)
       if ((ok==1) & (c[3]!=0)):
@@ -70,5 +71,8 @@ for ipsub in ipsub_list:
           print 'EVG ip:', addr[0], 'port:', addr[1]
           f.write('EVG ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
         break
+
+elapsed_time = time.time() - start_time
+print 'Elapsed time:', elapsed_time, 'sec'
   
 f.close()
