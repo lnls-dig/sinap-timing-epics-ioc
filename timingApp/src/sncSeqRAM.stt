@@ -29,41 +29,41 @@ assign StateMachineStatus to "{P}{R}STATEMACHINE";
 %%//----------------------------------------
 
 int network;
-assign network to "{P}{R}network";
+assign network to "{P}{R}Network-Mon";
 monitor network;
 
 %%// tbl MUST HAVE, at least, the same length of ITBL
 int tbl[864];
-assign tbl to "{P}{R}ITBL";
+assign tbl to "{P}{R}BucketList-SP";
 
 int tbl_length;
-assign tbl_length to "{P}{R}ITBL.NORD";
+assign tbl_length to "{P}{R}BucketList-SP.NORD";
 
 int seqs;
-assign seqs to "{P}{R}seqstat";
+assign seqs to "{P}{R}SeqStatus-Mon";
 monitor seqs;
 
 int seqen_rbv;
-assign seqen_rbv to "{P}{R}seqenRBV";
+assign seqen_rbv to "{P}{R}SeqEnbl-Sts";
 monitor seqen_rbv;
 
 int seqen;
-assign seqen to "{P}{R}seqen";
+assign seqen to "{P}{R}SeqEnbl-Sel";
 int seqsw;
-assign seqsw to "{P}{R}seqram_switch.PROC";
+assign seqsw to "{P}{R}SeqSw-Cmd.PROC";
 int seqaddr;
-assign seqaddr to "{P}{R}seqaddr";
+assign seqaddr to "{P}{R}SeqAddr-SP";
 int seqcode;
-assign seqcode to "{P}{R}seqcode";
+assign seqcode to "{P}{R}SeqCode-SP";
 int seqtime;
-assign seqtime to "{P}{R}seqtime";
+assign seqtime to "{P}{R}SeqTime-SP";
 
 int seqcount;
-assign seqcount to "{P}{R}seqcountRBV";
+assign seqcount to "{P}{R}SeqCount-SP";
 monitor seqcount;
 
 int seqcount_proc;
-assign seqcount_proc to "{P}{R}seqcountRBV.PROC";
+assign seqcount_proc to "{P}{R}SeqCount-SP.PROC";
 
 int event_codes[20];
 assign event_codes to {};

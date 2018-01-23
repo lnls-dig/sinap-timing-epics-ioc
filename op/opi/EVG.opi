@@ -494,7 +494,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable</pv_name>
+    <pv_name>$(P)$(R)DevEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -568,7 +568,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv0</pv_name>
+    <pv_name>$(P)$(R)Clk0MuxDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -650,7 +650,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen0</pv_name>
+    <pv_name>$(P)$(R)Clk0MuxEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -790,7 +790,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)download</pv_name>
+    <pv_name>$(P)$(R)Download-Cmd</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -890,7 +890,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)uploadT</pv_name>
+    <pv_name>$(P)$(R)Upload-Trig</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1166,7 +1166,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen0RBV</pv_name>
+    <pv_name>$(P)$(R)Clk0MuxEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1217,7 +1217,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv0RBV</pv_name>
+    <pv_name>$(P)$(R)Clk0MuxDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1310,7 +1310,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableRBV</pv_name>
+    <pv_name>$(P)$(R)DevEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1441,7 +1441,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)alive</pv_name>
+    <pv_name>$(P)$(R)Alive-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1532,7 +1532,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)funselRBV</pv_name>
+    <pv_name>$(P)$(R)DevFun-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1743,7 +1743,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)statdev</pv_name>
+    <pv_name>$(P)$(R)DevStatus-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1794,7 +1794,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)network</pv_name>
+    <pv_name>$(P)$(R)Network-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1938,7 +1938,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)seqen</pv_name>
+    <pv_name>$(P)$(R)SeqEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1997,7 +1997,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)seqenRBV</pv_name>
+    <pv_name>$(P)$(R)SeqEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2090,7 +2090,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)rfstat</pv_name>
+    <pv_name>$(P)$(R)RFStatus-Mon</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2181,7 +2181,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)seqstat</pv_name>
+    <pv_name>$(P)$(R)SeqStatus-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2289,7 +2289,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdiv</pv_name>
+    <pv_name>$(P)$(R)RFDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2368,7 +2368,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdivRBV</pv_name>
+    <pv_name>$(P)$(R)RFDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2542,7 +2542,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)acen</pv_name>
+    <pv_name>$(P)$(R)ACEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2601,7 +2601,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)acenRBV</pv_name>
+    <pv_name>$(P)$(R)ACEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2692,7 +2692,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)acdivRBV</pv_name>
+    <pv_name>$(P)$(R)ACDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2840,7 +2840,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv1</pv_name>
+    <pv_name>$(P)$(R)Clk1MuxDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -2882,7 +2882,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen1</pv_name>
+    <pv_name>$(P)$(R)Clk1MuxEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3078,7 +3078,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen1RBV</pv_name>
+    <pv_name>$(P)$(R)Clk1MuxEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3129,7 +3129,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv1RBV</pv_name>
+    <pv_name>$(P)$(R)Clk1MuxDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3197,7 +3197,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv2</pv_name>
+    <pv_name>$(P)$(R)Clk2MuxDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3239,7 +3239,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen2</pv_name>
+    <pv_name>$(P)$(R)Clk2MuxEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3435,7 +3435,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen2RBV</pv_name>
+    <pv_name>$(P)$(R)Clk2MuxEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3486,7 +3486,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv2RBV</pv_name>
+    <pv_name>$(P)$(R)Clk2MuxDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3554,7 +3554,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv3</pv_name>
+    <pv_name>$(P)$(R)Clk3MuxDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3596,7 +3596,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen3</pv_name>
+    <pv_name>$(P)$(R)Clk3MuxEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3792,7 +3792,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen3RBV</pv_name>
+    <pv_name>$(P)$(R)Clk3MuxEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3843,7 +3843,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv3RBV</pv_name>
+    <pv_name>$(P)$(R)Clk3MuxDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3911,7 +3911,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv4</pv_name>
+    <pv_name>$(P)$(R)Clk4MuxDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3953,7 +3953,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen4</pv_name>
+    <pv_name>$(P)$(R)Clk4MuxEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4149,7 +4149,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen4RBV</pv_name>
+    <pv_name>$(P)$(R)Clk4MuxEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4200,7 +4200,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv4RBV</pv_name>
+    <pv_name>$(P)$(R)Clk4MuxDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4268,7 +4268,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv5</pv_name>
+    <pv_name>$(P)$(R)Clk5MuxDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -4310,7 +4310,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen5</pv_name>
+    <pv_name>$(P)$(R)Clk5MuxEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4506,7 +4506,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen5RBV</pv_name>
+    <pv_name>$(P)$(R)Clk5MuxEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4557,7 +4557,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv5RBV</pv_name>
+    <pv_name>$(P)$(R)Clk5MuxDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4625,7 +4625,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv6</pv_name>
+    <pv_name>$(P)$(R)Clk6MuxDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -4667,7 +4667,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen6</pv_name>
+    <pv_name>$(P)$(R)Clk6MuxEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4863,7 +4863,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen6RBV</pv_name>
+    <pv_name>$(P)$(R)Clk6MuxEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4914,7 +4914,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv6RBV</pv_name>
+    <pv_name>$(P)$(R)Clk6MuxDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4982,7 +4982,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv7</pv_name>
+    <pv_name>$(P)$(R)Clk7MuxDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -5024,7 +5024,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen7</pv_name>
+    <pv_name>$(P)$(R)Clk7MuxEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5220,7 +5220,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)muxen7RBV</pv_name>
+    <pv_name>$(P)$(R)Clk7MuxEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5271,7 +5271,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)muxdiv7RBV</pv_name>
+    <pv_name>$(P)$(R)Clk7MuxDiv-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5339,7 +5339,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)acdiv</pv_name>
+    <pv_name>$(P)$(R)ACDiv-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -5475,7 +5475,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)seqcountRBV</pv_name>
+    <pv_name>$(P)$(R)SeqCount-SP</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6180,7 +6180,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ITBL</pv_name>
+    <pv_name>$(P)$(R)BucketList-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -8187,7 +8187,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)TIMESRC</pv_name>
+    <pv_name>$(P)$(R)TimestampSrc-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8252,7 +8252,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)UTC</pv_name>
+    <pv_name>$(P)$(R)UTC-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -8331,7 +8331,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)TIMESRCRBV</pv_name>
+    <pv_name>$(P)$(R)TimestampSrc-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8422,7 +8422,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)UTCRBV</pv_name>
+    <pv_name>$(P)$(R)UTC-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8553,7 +8553,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)subsecondRBV</pv_name>
+    <pv_name>$(P)$(R)SubSecond-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8687,7 +8687,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)SAVE</pv_name>
+    <pv_name>$(P)$(R)Save-Cmd</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8837,7 +8837,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)UTCRef</pv_name>
+    <pv_name>$(P)$(R)UTCRefSrc-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8928,7 +8928,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)GetUTC</pv_name>
+    <pv_name>$(P)$(R)GetUTC-Cmd</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -9027,7 +9027,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="110" green="86" blue="86" />
     </off_color>
-    <pv_name>$(P)$(R)UTCMismatch</pv_name>
+    <pv_name>$(P)$(R)UTCMismatch-Mon</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -9426,7 +9426,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in0</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn0-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -9528,7 +9528,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in1</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn1-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -9630,7 +9630,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in2</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn2-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -9732,7 +9732,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in3</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn3-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -9834,7 +9834,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in4</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn4-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -9936,7 +9936,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in5</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn5-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -10038,7 +10038,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in6</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn6-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -10968,7 +10968,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_out</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtOut-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -11327,7 +11327,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_outRBV</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtOut-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11378,7 +11378,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in0RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn0-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11429,7 +11429,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in1RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn1-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11480,7 +11480,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in2RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn2-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11531,7 +11531,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in3RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn3-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11582,7 +11582,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in4RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn4-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11633,7 +11633,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in5RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn5-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11684,7 +11684,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_evt_in6RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtIn6-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11824,7 +11824,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_control_en</pv_name>
+    <pv_name>$(P)$(R)IntlkCtrlEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -11924,7 +11924,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_control_rst</pv_name>
+    <pv_name>$(P)$(R)IntlkCtrlRst-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12024,7 +12024,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_control_repeat</pv_name>
+    <pv_name>$(P)$(R)IntlkCtrlRepeat-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12083,7 +12083,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_control_enRBV</pv_name>
+    <pv_name>$(P)$(R)IntlkCtrlEnbl-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12136,7 +12136,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_control_rstRBV</pv_name>
+    <pv_name>$(P)$(R)IntlkCtrlRst-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12189,7 +12189,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_control_repeatRBV</pv_name>
+    <pv_name>$(P)$(R)IntlkCtrlRepeat-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12242,7 +12242,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_status</pv_name>
+    <pv_name>$(P)$(R)IntlkEvtStatus-Mon</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12295,7 +12295,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_map0to15RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkTbl0to15-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12348,7 +12348,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)ilock_map16to27RBV</pv_name>
+    <pv_name>$(P)$(R)IntlkTbl16to27-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12456,7 +12456,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_repeat_time</pv_name>
+    <pv_name>$(P)$(R)IntlkCtrlRepeatTime-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -12552,7 +12552,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)ilock_repeat_timeRBV</pv_name>
+    <pv_name>$(P)$(R)IntlkCtrlRepeatTime-RB</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -12919,7 +12919,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)LOS</pv_name>
+    <pv_name>$(P)$(R)Los-Mon</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13010,7 +13010,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)FRMVERSIONA</pv_name>
+    <pv_name>$(P)$(R)FrmVersionA-Cte</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13101,7 +13101,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)FRMVERSIONB</pv_name>
+    <pv_name>$(P)$(R)FrmVersionB-Cte</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13152,7 +13152,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)FRMVERSIONC</pv_name>
+    <pv_name>$(P)$(R)FrmVersionC-Cte</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
