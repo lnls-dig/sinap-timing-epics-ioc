@@ -10,7 +10,7 @@ fout_ctrl_get{
 }
 
 fout_ctrl_set{
-	out "%(\$1\$2cmd_ctrl_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2fouten)r";
+	out "%(\$1\$2cmd_ctrl_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel)r";
 	fout_ctrl_get;
 }
 
@@ -577,10 +577,10 @@ evg_ilock_repeat_time_intr {
 
 frmvrs_get{
     out "%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFE%(\$1\$2FRMVERSIONA)04r%(\$1\$2FRMVERSIONB)04r%(\$1\$2FRMVERSIONC)04r";
+    in "\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
     @init{
 	out "%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    	in "\xFE%(\$1\$2FRMVERSIONA)04r%(\$1\$2FRMVERSIONB)04r%(\$1\$2FRMVERSIONC)04r";
+    	in "\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
     }
 }
 
@@ -593,17 +593,17 @@ evg_conf_get {
 }
 
 evg_conf_funsel_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2rfdivRAW).1r\x00\x00\x00\x00\x00%(\$1\$2funsel.RVAL).1r";
+    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2rfdivRAW).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evg_conf_get;
 }
 
 evg_conf_rfdiv_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2funselRBV.RVAL).1r";
+    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sts.RVAL).1r";
     evg_conf_get;
 }
 
 evg_conf_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2funsel.RVAL).1r";
+    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2rfdiv.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evg_conf_get;
 }
 
@@ -630,17 +630,17 @@ evr_conf_get {
 }
 
 evr_conf_funsel_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2clkmodeRBV.RVAL).1r\x00\x00\x00%(\$1\$2funsel.RVAL).1r";
+    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2clkmodeRBV.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evr_conf_get;
 }
 
 evr_conf_clk_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2clkmode.RVAL).1r\x00\x00\x00%(\$1\$2funselRBV.RVAL).1r";
+    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2clkmode.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sts.RVAL).1r";
     evr_conf_get;
 }
 
 evr_conf_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2clkmode.RVAL).1r\x00\x00\x00%(\$1\$2funsel.RVAL).1r";
+    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2clkmode.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evr_conf_get;
 }
 
@@ -679,7 +679,7 @@ fout_conf_get{
 }
 
 fout_conf_set{
-	out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2funsel.RVAL).1r";
+	out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     fout_conf_get;
 }
 
