@@ -841,7 +841,7 @@ record(calcout, "$(P)$(R)DIEnblCalc0") {
   field(INPB, "$(P)$(R)DIPol0-Sts.VAL")
   field(INPC, "$(P)$(R)DILog0-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DIEnblCalc0) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DIEnblCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI0Calc")
 }
 
@@ -853,7 +853,7 @@ record(calcout, "$(P)$(R)DIPolCalc0") {
   field(INPB, "$(P)$(R)DIPol0-Sel.VAL")
   field(INPC, "$(P)$(R)DILog0-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DIPolCalc0) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DIPolCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI0Calc")
 }
 
@@ -865,7 +865,7 @@ record(calcout, "$(P)$(R)DILogCalc0") {
   field(INPB, "$(P)$(R)DIPol0-Sts.VAL")
   field(INPC, "$(P)$(R)DILog0-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DILogCalc0) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DILogCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI0Calc")
 }
 
@@ -972,7 +972,7 @@ record(calcout, "$(P)$(R)DIEnblCalc1") {
   field(INPB, "$(P)$(R)DIPol1-Sts.VAL")
   field(INPC, "$(P)$(R)DILog1-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DIEnblCalc1) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DIEnblCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI1Calc")
 }
 
@@ -984,7 +984,7 @@ record(calcout, "$(P)$(R)DIPolCalc1") {
   field(INPB, "$(P)$(R)DIPol1-Sel.VAL")
   field(INPC, "$(P)$(R)DILog1-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DIPolCalc1) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DIPolCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI1Calc")
 }
 
@@ -996,7 +996,7 @@ record(calcout, "$(P)$(R)DILogCalc1") {
   field(INPB, "$(P)$(R)DIPol1-Sts.VAL")
   field(INPC, "$(P)$(R)DILog1-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DILogCalc1) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DILogCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI1Calc")
 }
 
