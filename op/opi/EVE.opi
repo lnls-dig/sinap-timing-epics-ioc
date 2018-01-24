@@ -380,7 +380,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable</pv_name>
+    <pv_name>$(P)$(R)DevEnbl-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -480,7 +480,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable0</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -650,7 +650,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol0</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -741,7 +741,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable1</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -791,7 +791,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol1</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -837,7 +837,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width0</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -890,7 +890,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay0</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -962,7 +962,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event0</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1018,7 +1018,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event1</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -1100,7 +1100,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl0</pv_name>
+    <pv_name>$(P)$(R)Out0Intlk-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1199,7 +1199,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)link</pv_name>
+    <pv_name>$(P)$(R)Link-Mon</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1333,7 +1333,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)download</pv_name>
+    <pv_name>$(P)$(R)Download-Cmd</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1433,7 +1433,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)uploadT</pv_name>
+    <pv_name>$(P)$(R)Upload-Trig</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -1608,7 +1608,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly0</pv_name>
+    <pv_name>$(P)$(R)Out0FineDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1661,7 +1661,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly0</pv_name>
+    <pv_name>$(P)$(R)Out0RFDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1874,7 +1874,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width1</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1927,7 +1927,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay1</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -1982,7 +1982,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width0RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2033,7 +2033,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay0RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2084,7 +2084,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol0RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2135,7 +2135,7 @@ $(pv_value)</tooltip>
     <format_type>1</format_type>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event0RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2188,7 +2188,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable0RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2336,7 +2336,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width1RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2387,7 +2387,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay1RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2438,7 +2438,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol1RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2489,7 +2489,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event1RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2542,7 +2542,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable1RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2733,7 +2733,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable2</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2783,7 +2783,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol2</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2834,7 +2834,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable3</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -2884,7 +2884,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol3</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -2930,7 +2930,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width2</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -2983,7 +2983,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay2</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -3055,7 +3055,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event2</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3111,7 +3111,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event3</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -3188,7 +3188,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width3</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -3241,7 +3241,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay3</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -3296,7 +3296,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width2RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3347,7 +3347,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay2RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3398,7 +3398,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol2RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3449,7 +3449,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event2RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3502,7 +3502,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable2RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -3650,7 +3650,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width3RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3701,7 +3701,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay3RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3752,7 +3752,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol3RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3803,7 +3803,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event3RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -3856,7 +3856,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable3RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4047,7 +4047,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable4</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4097,7 +4097,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol4</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4148,7 +4148,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable5</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4198,7 +4198,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol5</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4244,7 +4244,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width4</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -4297,7 +4297,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay4</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -4369,7 +4369,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event4</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -4425,7 +4425,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event5</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -4502,7 +4502,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width5</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -4555,7 +4555,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay5</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -4610,7 +4610,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width4RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4661,7 +4661,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay4RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4712,7 +4712,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol4RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4763,7 +4763,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event4RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -4816,7 +4816,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable4RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -4964,7 +4964,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width5RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5015,7 +5015,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay5RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5066,7 +5066,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol5RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5117,7 +5117,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event5RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5170,7 +5170,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable5RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5361,7 +5361,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable6</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5451,7 +5451,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol6</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5502,7 +5502,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable7</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -5552,7 +5552,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol7</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -5598,7 +5598,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width6</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -5651,7 +5651,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay6</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -5723,7 +5723,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event6</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -5779,7 +5779,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event7</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -5856,7 +5856,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width7</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -5909,7 +5909,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay7</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -5964,7 +5964,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width6RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6015,7 +6015,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay6RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6066,7 +6066,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol6RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6117,7 +6117,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event6RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6170,7 +6170,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable6RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -6318,7 +6318,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width7RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6369,7 +6369,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay7RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6420,7 +6420,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol7RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6471,7 +6471,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event7RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6524,7 +6524,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable7RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -6715,7 +6715,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable8</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -6765,7 +6765,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol8</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6816,7 +6816,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable9</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -6866,7 +6866,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)pol9</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -6912,7 +6912,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width8</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -6965,7 +6965,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay8</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -7037,7 +7037,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event8</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -7093,7 +7093,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event9</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -7170,7 +7170,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width9</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -7223,7 +7223,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay9</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -7278,7 +7278,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width8RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7329,7 +7329,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay8RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7380,7 +7380,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol8RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7431,7 +7431,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event8RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7484,7 +7484,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable8RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -7632,7 +7632,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)width9RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7683,7 +7683,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delay9RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7734,7 +7734,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pol9RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7785,7 +7785,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)event9RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -7838,7 +7838,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enable9RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8029,7 +8029,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableA</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8079,7 +8079,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)polA</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8130,7 +8130,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableB</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8180,7 +8180,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)polB</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8226,7 +8226,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthA</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -8279,7 +8279,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayA</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -8351,7 +8351,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventA</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -8407,7 +8407,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventB</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -8484,7 +8484,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthB</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -8537,7 +8537,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayB</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -8592,7 +8592,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthARBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8643,7 +8643,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayARBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8694,7 +8694,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)polARBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8745,7 +8745,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventARBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8798,7 +8798,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableARBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -8946,7 +8946,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthBRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -8997,7 +8997,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayBRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9048,7 +9048,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)polBRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9099,7 +9099,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventBRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9152,7 +9152,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableBRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -9343,7 +9343,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableC</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -9393,7 +9393,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)polC</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9444,7 +9444,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableD</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -9494,7 +9494,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)polD</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9540,7 +9540,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthC</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -9593,7 +9593,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayC</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -9665,7 +9665,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventC</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -9721,7 +9721,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventD</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -9798,7 +9798,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthD</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -9851,7 +9851,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayD</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -9906,7 +9906,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthCRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -9957,7 +9957,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayCRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10008,7 +10008,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)polCRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10059,7 +10059,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventCRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10112,7 +10112,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableCRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -10260,7 +10260,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthDRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10311,7 +10311,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayDRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10362,7 +10362,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)polDRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10413,7 +10413,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventDRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10466,7 +10466,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableDRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -10657,7 +10657,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableE</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -10707,7 +10707,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)polE</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10758,7 +10758,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableF</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Enbl-SP</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -10808,7 +10808,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)polF</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Pol-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -10854,7 +10854,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthE</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -10907,7 +10907,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayE</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -10979,7 +10979,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventE</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -11035,7 +11035,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventF</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Evt-Sel</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -11112,7 +11112,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthF</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Width-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -11165,7 +11165,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayF</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Delay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -11220,7 +11220,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthERBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11271,7 +11271,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayERBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11322,7 +11322,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)polERBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11373,7 +11373,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventERBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11426,7 +11426,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableERBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -11574,7 +11574,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)widthFRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Width-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11625,7 +11625,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)delayFRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Delay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11676,7 +11676,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)polFRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Pol-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11727,7 +11727,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)eventFRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Evt-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -11780,7 +11780,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableFRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Enbl-RB</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -11970,7 +11970,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl0RBV</pv_name>
+    <pv_name>$(P)$(R)Out0Intlk-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12021,7 +12021,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)sel0RBV</pv_name>
+    <pv_name>$(P)$(R)Out0IntChan-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12072,7 +12072,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly0RBV</pv_name>
+    <pv_name>$(P)$(R)Out0FineDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12123,7 +12123,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly0RBV</pv_name>
+    <pv_name>$(P)$(R)Out0RFDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12177,7 +12177,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl1</pv_name>
+    <pv_name>$(P)$(R)Out1Intlk-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12232,7 +12232,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly1</pv_name>
+    <pv_name>$(P)$(R)Out1FineDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -12285,7 +12285,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly1</pv_name>
+    <pv_name>$(P)$(R)Out1RFDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -12479,7 +12479,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl1RBV</pv_name>
+    <pv_name>$(P)$(R)Out1Intlk-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12530,7 +12530,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)sel1RBV</pv_name>
+    <pv_name>$(P)$(R)Out1IntChan-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12581,7 +12581,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly1RBV</pv_name>
+    <pv_name>$(P)$(R)Out1FineDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12632,7 +12632,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly1RBV</pv_name>
+    <pv_name>$(P)$(R)Out1RFDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -12686,7 +12686,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl2</pv_name>
+    <pv_name>$(P)$(R)Out2Intlk-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -12741,7 +12741,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly2</pv_name>
+    <pv_name>$(P)$(R)Out2FineDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -12794,7 +12794,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly2</pv_name>
+    <pv_name>$(P)$(R)Out2RFDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -12988,7 +12988,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl2RBV</pv_name>
+    <pv_name>$(P)$(R)Out2Intlk-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13039,7 +13039,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)sel2RBV</pv_name>
+    <pv_name>$(P)$(R)Out2IntChan-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13090,7 +13090,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly2RBV</pv_name>
+    <pv_name>$(P)$(R)Out2FineDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13141,7 +13141,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly2RBV</pv_name>
+    <pv_name>$(P)$(R)Out2RFDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13195,7 +13195,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl3</pv_name>
+    <pv_name>$(P)$(R)Out3Intlk-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13250,7 +13250,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly3</pv_name>
+    <pv_name>$(P)$(R)Out3FineDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -13303,7 +13303,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly3</pv_name>
+    <pv_name>$(P)$(R)Out3RFDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -13497,7 +13497,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl3RBV</pv_name>
+    <pv_name>$(P)$(R)Out3Intlk-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13548,7 +13548,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)sel3RBV</pv_name>
+    <pv_name>$(P)$(R)Out3IntChan-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13599,7 +13599,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly3RBV</pv_name>
+    <pv_name>$(P)$(R)Out3FineDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13650,7 +13650,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly3RBV</pv_name>
+    <pv_name>$(P)$(R)Out3RFDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -13704,7 +13704,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl4</pv_name>
+    <pv_name>$(P)$(R)Out4Intlk-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -13759,7 +13759,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly4</pv_name>
+    <pv_name>$(P)$(R)Out4FineDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -13812,7 +13812,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly4</pv_name>
+    <pv_name>$(P)$(R)Out4RFDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -14006,7 +14006,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl4RBV</pv_name>
+    <pv_name>$(P)$(R)Out4Intlk-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -14057,7 +14057,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)sel4RBV</pv_name>
+    <pv_name>$(P)$(R)Out4IntChan-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14108,7 +14108,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly4RBV</pv_name>
+    <pv_name>$(P)$(R)Out4FineDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14159,7 +14159,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly4RBV</pv_name>
+    <pv_name>$(P)$(R)Out4RFDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14213,7 +14213,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl5</pv_name>
+    <pv_name>$(P)$(R)Out5Intlk-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -14268,7 +14268,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly5</pv_name>
+    <pv_name>$(P)$(R)Out5FineDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -14321,7 +14321,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly5</pv_name>
+    <pv_name>$(P)$(R)Out5RFDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -14515,7 +14515,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl5RBV</pv_name>
+    <pv_name>$(P)$(R)Out5Intlk-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -14566,7 +14566,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)sel5RBV</pv_name>
+    <pv_name>$(P)$(R)Out5IntChan-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14617,7 +14617,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly5RBV</pv_name>
+    <pv_name>$(P)$(R)Out5FineDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14668,7 +14668,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly5RBV</pv_name>
+    <pv_name>$(P)$(R)Out5RFDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -14722,7 +14722,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl6</pv_name>
+    <pv_name>$(P)$(R)Out6Intlk-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -14777,7 +14777,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly6</pv_name>
+    <pv_name>$(P)$(R)Out6FineDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -14830,7 +14830,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly6</pv_name>
+    <pv_name>$(P)$(R)Out6RFDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -15024,7 +15024,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl6RBV</pv_name>
+    <pv_name>$(P)$(R)Out6Intlk-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -15075,7 +15075,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)sel6RBV</pv_name>
+    <pv_name>$(P)$(R)Out6IntChan-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15126,7 +15126,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly6RBV</pv_name>
+    <pv_name>$(P)$(R)Out6FineDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15177,7 +15177,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly6RBV</pv_name>
+    <pv_name>$(P)$(R)Out6RFDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15231,7 +15231,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl7</pv_name>
+    <pv_name>$(P)$(R)Out7Intlk-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -15286,7 +15286,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly7</pv_name>
+    <pv_name>$(P)$(R)Out7FineDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -15339,7 +15339,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision_from_pv>false</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly7</pv_name>
+    <pv_name>$(P)$(R)Out7RFDelay-SP</pv_name>
     <buttons_on_left>false</buttons_on_left>
     <background_color>
       <color red="255" green="255" blue="255" />
@@ -15533,7 +15533,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)itl7RBV</pv_name>
+    <pv_name>$(P)$(R)Out7Intlk-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -15584,7 +15584,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)sel7RBV</pv_name>
+    <pv_name>$(P)$(R)Out7IntChan-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15635,7 +15635,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)finedly7RBV</pv_name>
+    <pv_name>$(P)$(R)Out7FineDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15686,7 +15686,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)rfdly7RBV</pv_name>
+    <pv_name>$(P)$(R)Out7RFDelay-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15779,7 +15779,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)enableRBV</pv_name>
+    <pv_name>$(P)$(R)DevEnbl-Sta</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -15872,7 +15872,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="106" green="60" blue="54" />
     </off_color>
-    <pv_name>$(P)$(R)inhs</pv_name>
+    <pv_name>$(P)$(R)Intlk-Mon</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -16043,7 +16043,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)alive</pv_name>
+    <pv_name>$(P)$(R)Alive-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16134,7 +16134,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)clkmodeRBV</pv_name>
+    <pv_name>$(P)$(R)ClkMode-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16225,7 +16225,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)funselRBV</pv_name>
+    <pv_name>$(P)$(R)DevFun-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16333,7 +16333,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)clkmode</pv_name>
+    <pv_name>$(P)$(R)ClkMode-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16405,7 +16405,7 @@ $(pv_value)</tooltip>
       <height_scalable>true</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)cmsel</pv_name>
+    <pv_name>$(P)$(R)RFOut-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16493,7 +16493,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)cmselRBV</pv_name>
+    <pv_name>$(P)$(R)RFOut-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16704,7 +16704,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)statdev</pv_name>
+    <pv_name>$(P)$(R)DevStatus-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16755,7 +16755,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)network</pv_name>
+    <pv_name>$(P)$(R)Network-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16873,7 +16873,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses0</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -16912,7 +16912,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses0RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16980,7 +16980,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses1</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17019,7 +17019,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses1RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17087,7 +17087,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses2</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17126,7 +17126,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses2RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17194,7 +17194,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses3</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17233,7 +17233,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses3RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17301,7 +17301,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses4</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17340,7 +17340,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses4RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17408,7 +17408,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses5</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17447,7 +17447,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses5RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17515,7 +17515,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses6</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17554,7 +17554,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses6RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17622,7 +17622,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses7</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17661,7 +17661,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses7RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17729,7 +17729,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses8</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17768,7 +17768,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses8RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17836,7 +17836,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses9</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17875,7 +17875,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulses9RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -17943,7 +17943,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesA</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -17982,7 +17982,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesARBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18050,7 +18050,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesB</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18089,7 +18089,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesBRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18157,7 +18157,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesC</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18196,7 +18196,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesCRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18264,7 +18264,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesD</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18303,7 +18303,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesDRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18371,7 +18371,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesE</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18410,7 +18410,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesERBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18478,7 +18478,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesF</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Pulses-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -18517,7 +18517,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)pulsesFRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Pulses-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -18651,7 +18651,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time0</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18711,7 +18711,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time1</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18770,7 +18770,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time0RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig00Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18823,7 +18823,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time1RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig01Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18877,7 +18877,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time2</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18936,7 +18936,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time2RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig02Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -18990,7 +18990,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time3</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19049,7 +19049,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time3RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig03Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19103,7 +19103,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time4</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19162,7 +19162,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time4RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig04Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19216,7 +19216,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time5</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19275,7 +19275,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time5RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig05Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19329,7 +19329,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time6</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19388,7 +19388,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time6RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig06Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19442,7 +19442,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time7</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19501,7 +19501,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time7RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig07Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19555,7 +19555,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time8</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19614,7 +19614,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time8RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig08Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19668,7 +19668,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time9</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19727,7 +19727,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)time9RBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig09Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19781,7 +19781,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeA</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19840,7 +19840,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeARBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig10Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19894,7 +19894,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeB</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -19953,7 +19953,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeBRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig11Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20007,7 +20007,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeC</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20066,7 +20066,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeCRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig12Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20120,7 +20120,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeD</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20179,7 +20179,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeDRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig13Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20233,7 +20233,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeE</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20292,7 +20292,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeERBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig14Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20346,7 +20346,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeF</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Log-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20405,7 +20405,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)timeFRBV</pv_name>
+    <pv_name>$(P)$(R)IntTrig15Log-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -20603,7 +20603,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)TIMESRC</pv_name>
+    <pv_name>$(P)$(R)TimestampSrc-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -20691,7 +20691,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)TIMESRCRBV</pv_name>
+    <pv_name>$(P)$(R)TimestampSrc-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -20782,7 +20782,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)UTCRBV</pv_name>
+    <pv_name>$(P)$(R)UTC-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -20873,7 +20873,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)subsecondRBV</pv_name>
+    <pv_name>$(P)$(R)SubSecond-Mon</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22010,7 +22010,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)sel0</pv_name>
+    <pv_name>$(P)$(R)Out0IntChan-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22077,7 +22077,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)sel1</pv_name>
+    <pv_name>$(P)$(R)Out1IntChan-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22144,7 +22144,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)sel2</pv_name>
+    <pv_name>$(P)$(R)Out2IntChan-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22211,7 +22211,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)sel3</pv_name>
+    <pv_name>$(P)$(R)Out3IntChan-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22278,7 +22278,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)sel4</pv_name>
+    <pv_name>$(P)$(R)Out4IntChan-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22345,7 +22345,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)sel5</pv_name>
+    <pv_name>$(P)$(R)Out5IntChan-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22412,7 +22412,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)sel6</pv_name>
+    <pv_name>$(P)$(R)Out6IntChan-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22479,7 +22479,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)sel7</pv_name>
+    <pv_name>$(P)$(R)Out7IntChan-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22596,7 +22596,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)SAVE</pv_name>
+    <pv_name>$(P)$(R)Save-Cmd</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -22753,7 +22753,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digen0</pv_name>
+    <pv_name>$(P)$(R)DIEnbl0-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -22803,7 +22803,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)digpol0</pv_name>
+    <pv_name>$(P)$(R)DIPol0-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22948,7 +22948,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digpol0RBV</pv_name>
+    <pv_name>$(P)$(R)DIPol0-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22999,7 +22999,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digev0RBV</pv_name>
+    <pv_name>$(P)$(R)DIEvent0-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -23052,7 +23052,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digen0RBV</pv_name>
+    <pv_name>$(P)$(R)DIEnbl0-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -23160,7 +23160,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digev0</pv_name>
+    <pv_name>$(P)$(R)DIEvent0-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -23202,7 +23202,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digtime0</pv_name>
+    <pv_name>$(P)$(R)DILog0-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -23261,7 +23261,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digtime0RBV</pv_name>
+    <pv_name>$(P)$(R)DILog0-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -23515,7 +23515,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digen1</pv_name>
+    <pv_name>$(P)$(R)DIEnbl1-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -23565,7 +23565,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)digpol1</pv_name>
+    <pv_name>$(P)$(R)DIPol1-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -23710,7 +23710,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digpol1RBV</pv_name>
+    <pv_name>$(P)$(R)DIPol1-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -23761,7 +23761,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digev1RBV</pv_name>
+    <pv_name>$(P)$(R)DIEvent1-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -23814,7 +23814,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digen1RBV</pv_name>
+    <pv_name>$(P)$(R)DIEnbl1-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -23922,7 +23922,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digev1</pv_name>
+    <pv_name>$(P)$(R)DIEvent1-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -23964,7 +23964,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digtime1</pv_name>
+    <pv_name>$(P)$(R)DILog1-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -24023,7 +24023,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digtime1RBV</pv_name>
+    <pv_name>$(P)$(R)DILog1-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -24077,7 +24077,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digen2</pv_name>
+    <pv_name>$(P)$(R)DIEnbl2-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -24127,7 +24127,7 @@ $(pv_value)</tooltip>
       <height_scalable>false</height_scalable>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
-    <pv_name>$(P)$(R)digpol2</pv_name>
+    <pv_name>$(P)$(R)DIPol2-Sel</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -24272,7 +24272,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digpol2RBV</pv_name>
+    <pv_name>$(P)$(R)DIPol2-Sts</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -24323,7 +24323,7 @@ $(pv_value)</tooltip>
     <format_type>0</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digev2RBV</pv_name>
+    <pv_name>$(P)$(R)DIEvent2-RB</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -24376,7 +24376,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digen2RBV</pv_name>
+    <pv_name>$(P)$(R)DIEnbl2-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -24484,7 +24484,7 @@ $(pv_value)</tooltip>
     </scale_options>
     <selector_type>0</selector_type>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)digev2</pv_name>
+    <pv_name>$(P)$(R)DIEvent2-SP</pv_name>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
@@ -24526,7 +24526,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digtime2</pv_name>
+    <pv_name>$(P)$(R)DILog2-Sel</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -24585,7 +24585,7 @@ $(pv_value)</tooltip>
     <off_color>
       <color red="0" green="100" blue="0" />
     </off_color>
-    <pv_name>$(P)$(R)digtime2RBV</pv_name>
+    <pv_name>$(P)$(R)DILog2-Sts</pv_name>
     <background_color>
       <color red="240" green="240" blue="240" />
     </background_color>
@@ -25341,7 +25341,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)FRMVERSIONA</pv_name>
+    <pv_name>$(P)$(R)FrmVersionA-Cte</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -25432,7 +25432,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)FRMVERSIONB</pv_name>
+    <pv_name>$(P)$(R)FrmVersionB-Cte</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -25483,7 +25483,7 @@ $(pv_value)</tooltip>
     <format_type>3</format_type>
     <precision_from_pv>true</precision_from_pv>
     <transparent>false</transparent>
-    <pv_name>$(P)$(R)FRMVERSIONC</pv_name>
+    <pv_name>$(P)$(R)FrmVersionC-Cte</pv_name>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>

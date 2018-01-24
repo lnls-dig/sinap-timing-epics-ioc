@@ -1,7 +1,7 @@
 ########################################################################
 # Control and Status Register [0]
 
-record(mbbiDirect, "$(P)$(R)SeqEnblDevEnbl-Raw") {
+record(mbbiDirect, "$(P)$(R)SeqEnblDevEnblRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG seqen and enable status")
   field(NOBT, "8")
@@ -16,7 +16,7 @@ record(bi, "$(P)$(R)DevEnbl-Sts") {
   field(DESC, "EVG enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)SeqEnblDevEnbl-Raw.B0")
+  field(INP, "$(P)$(R)SeqEnblDevEnblRaw.B0")
   field(FLNK, "$(P)$(R)SeqEnbl-Sts")
 }
 
@@ -25,10 +25,10 @@ record(bi, "$(P)$(R)SeqEnbl-Sts") {
   field(DESC, "EVG SEQRAM enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)SeqEnblDevEnbl-Raw.B1")
+  field(INP, "$(P)$(R)SeqEnblDevEnblRaw.B1")
 }
 
-record(mbbiDirect, "$(P)$(R)SeqStatusRFStatus-Raw") {
+record(mbbiDirect, "$(P)$(R)SeqStatusRFStatusRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG SEQRAM and RF input status")
   field(NOBT, "6")
@@ -44,7 +44,7 @@ record(bi, "$(P)$(R)RFStatus-Mon") {
   field(DESC, "EVG RF input status")
   field(ZNAM, "LOSS OR OUT OF RANGE")
   field(ONAM, "NORMAL")
-  field(INP, "$(P)$(R)SeqStatusRFStatus-Raw.B2")
+  field(INP, "$(P)$(R)SeqStatusRFStatusRaw.B2")
   field(FLNK, "$(P)$(R)SeqStatusCalc")
 }
 
@@ -60,7 +60,7 @@ record(mbbiDirect, "$(P)$(R)Los-Mon") {
 record(calc, "$(P)$(R)SeqStatusCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVG SEQRAM status calculation")
-  field(INPA, "$(P)$(R)SeqStatusRFStatus-Raw")
+  field(INPA, "$(P)$(R)SeqStatusRFStatusRaw")
   field(CALC, "A&3")
   field(FLNK, "$(P)$(R)SeqStatus-Mon")
 }
@@ -147,7 +147,7 @@ record(bi, "$(P)$(R)ACEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)ACDiv-Raw") {
+record(longin, "$(P)$(R)ACDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG AC line RAW frequency divider")
   field(SCAN, "I/O Intr")
@@ -159,7 +159,7 @@ record(longin, "$(P)$(R)ACDiv-Raw") {
 record(calc, "$(P)$(R)ACDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG AC line frequency divider RBV")
-  field(INPA, "$(P)$(R)ACDiv-Raw")
+  field(INPA, "$(P)$(R)ACDivRaw")
   field(CALC, "A+1")
 }
 
@@ -203,7 +203,7 @@ record(bi, "$(P)$(R)Clk0MuxEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)Clk0MuxDiv-Raw") {
+record(longin, "$(P)$(R)Clk0MuxDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux0 frequency divider RAW")
   field(SCAN, "I/O Intr")
@@ -215,7 +215,7 @@ record(longin, "$(P)$(R)Clk0MuxDiv-Raw") {
 record(calc, "$(P)$(R)Clk0MuxDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux0 frequency divider RBV")
-  field(INPA, "$(P)$(R)Clk0MuxDiv-Raw")
+  field(INPA, "$(P)$(R)Clk0MuxDivRaw")
   field(CALC, "A+1")
 }
 
@@ -261,7 +261,7 @@ record(bi, "$(P)$(R)Clk1MuxEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)Clk1MuxDiv-Raw") {
+record(longin, "$(P)$(R)Clk1MuxDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux1 frequency divider RAW")
   field(SCAN, "I/O Intr")
@@ -273,7 +273,7 @@ record(longin, "$(P)$(R)Clk1MuxDiv-Raw") {
 record(calc, "$(P)$(R)Clk1MuxDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux1 frequency divider RBV")
-  field(INPA, "$(P)$(R)Clk1MuxDiv-Raw")
+  field(INPA, "$(P)$(R)Clk1MuxDivRaw")
   field(CALC, "A+1")
 }
 
@@ -317,7 +317,7 @@ record(bi, "$(P)$(R)Clk2MuxEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)Clk2MuxDiv-Raw") {
+record(longin, "$(P)$(R)Clk2MuxDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux2 frequency divider RAW")
   field(SCAN, "I/O Intr")
@@ -329,7 +329,7 @@ record(longin, "$(P)$(R)Clk2MuxDiv-Raw") {
 record(calc, "$(P)$(R)Clk2MuxDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux2 frequency divider RBV")
-  field(INPA, "$(P)$(R)Clk2MuxDiv-Raw")
+  field(INPA, "$(P)$(R)Clk2MuxDivRaw")
   field(CALC, "A+1")
 }
 
@@ -373,7 +373,7 @@ record(bi, "$(P)$(R)Clk3MuxEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)Clk3MuxDiv-Raw") {
+record(longin, "$(P)$(R)Clk3MuxDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux3 frequency divider RAW")
   field(SCAN, "I/O Intr")
@@ -385,7 +385,7 @@ record(longin, "$(P)$(R)Clk3MuxDiv-Raw") {
 record(calc, "$(P)$(R)Clk3MuxDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux3 frequency divider RBV")
-  field(INPA, "$(P)$(R)Clk3MuxDiv-Raw")
+  field(INPA, "$(P)$(R)Clk3MuxDivRaw")
   field(CALC, "A+1")
 }
 
@@ -429,7 +429,7 @@ record(bi, "$(P)$(R)Clk4MuxEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)Clk4MuxDiv-Raw") {
+record(longin, "$(P)$(R)Clk4MuxDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux4 frequency divider RAW")
   field(SCAN, "I/O Intr")
@@ -441,7 +441,7 @@ record(longin, "$(P)$(R)Clk4MuxDiv-Raw") {
 record(calc, "$(P)$(R)Clk4MuxDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux4 frequency divider RBV")
-  field(INPA, "$(P)$(R)Clk4MuxDiv-Raw")
+  field(INPA, "$(P)$(R)Clk4MuxDivRaw")
   field(CALC, "A+1")
 }
 
@@ -485,7 +485,7 @@ record(bi, "$(P)$(R)Clk5MuxEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)Clk5MuxDiv-Raw") {
+record(longin, "$(P)$(R)Clk5MuxDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux5 frequency divider RAW")
   field(SCAN, "I/O Intr")
@@ -497,7 +497,7 @@ record(longin, "$(P)$(R)Clk5MuxDiv-Raw") {
 record(calc, "$(P)$(R)Clk5MuxDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux5 frequency divider RBV")
-  field(INPA, "$(P)$(R)Clk5MuxDiv-Raw")
+  field(INPA, "$(P)$(R)Clk5MuxDivRaw")
   field(CALC, "A+1")
 }
 
@@ -542,7 +542,7 @@ record(bi, "$(P)$(R)Clk6MuxEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)Clk6MuxDiv-Raw") {
+record(longin, "$(P)$(R)Clk6MuxDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux6 frequency divider RAW")
   field(SCAN, "I/O Intr")
@@ -554,7 +554,7 @@ record(longin, "$(P)$(R)Clk6MuxDiv-Raw") {
 record(calc, "$(P)$(R)Clk6MuxDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux6 frequency divider RBV")
-  field(INPA, "$(P)$(R)Clk6MuxDiv-Raw")
+  field(INPA, "$(P)$(R)Clk6MuxDivRaw")
   field(CALC, "A+1")
 }
 
@@ -598,7 +598,7 @@ record(bi, "$(P)$(R)Clk7MuxEnbl-Sts") {
   field(ONAM, "ON")
 }
 
-record(longin, "$(P)$(R)Clk7MuxDiv-Raw") {
+record(longin, "$(P)$(R)Clk7MuxDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux7 frequency divider RAW")
   field(SCAN, "I/O Intr")
@@ -610,7 +610,7 @@ record(longin, "$(P)$(R)Clk7MuxDiv-Raw") {
 record(calc, "$(P)$(R)Clk7MuxDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG Mux7 frequency divider RBV")
-  field(INPA, "$(P)$(R)Clk7MuxDiv-Raw")
+  field(INPA, "$(P)$(R)Clk7MuxDivRaw")
   field(CALC, "A+1")
 }
 
@@ -878,7 +878,7 @@ record(calcout, "$(P)$(R)DI0Calc") {
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)DI0-Raw") {
+record(mbbiDirect, "$(P)$(R)DI0Raw") {
   field(ASG, "Reserved")
   field(DESC, "DIGINP0 en, pol, and timestamp RBV")
   field(NOBT, "8")
@@ -894,7 +894,7 @@ record(bi, "$(P)$(R)DILog0-Sts") {
   field(DESC, "EVG digital input 0 timestamping sts")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)DI0-Raw.B0")
+  field(INP, "$(P)$(R)DI0Raw.B0")
   field(FLNK, "$(P)$(R)DIPol0-Sts")
 }
 
@@ -903,7 +903,7 @@ record(bi, "$(P)$(R)DIPol0-Sts") {
   field(DESC, "EVG digital input 0 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)DI0-Raw.B1")
+  field(INP, "$(P)$(R)DI0Raw.B1")
   field(FLNK, "$(P)$(R)DIEnbl0-Sts")
 }
 
@@ -912,7 +912,7 @@ record(bi, "$(P)$(R)DIEnbl0-Sts") {
   field(DESC, "EVG digital input 0 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)DI0-Raw.B2")
+  field(INP, "$(P)$(R)DI0Raw.B2")
 }
 
 record(longin, "$(P)$(R)DIEvent0-RB") {
@@ -1009,7 +1009,7 @@ record(calcout, "$(P)$(R)DI1Calc") {
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)DI1-Raw") {
+record(mbbiDirect, "$(P)$(R)DI1Raw") {
   field(ASG, "Reserved")
   field(DESC, "DIGINP1 en, pol, and timestamp RBV")
   field(NOBT, "8")
@@ -1025,7 +1025,7 @@ record(bi, "$(P)$(R)DILog1-Sts") {
   field(DESC, "EVG digital input 1 timestamping sts")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)DI1-Raw.B0")
+  field(INP, "$(P)$(R)DI1Raw.B0")
   field(FLNK, "$(P)$(R)DIPol1-Sts")
 }
 
@@ -1034,7 +1034,7 @@ record(bi, "$(P)$(R)DIPol1-Sts") {
   field(DESC, "EVG digital input 1 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)DI1-Raw.B1")
+  field(INP, "$(P)$(R)DI1Raw.B1")
   field(FLNK, "$(P)$(R)DIEnbl1-Sts")
 }
 
@@ -1043,7 +1043,7 @@ record(bi, "$(P)$(R)DIEnbl1-Sts") {
   field(DESC, "EVG digital input 1 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)DI1-Raw.B2")
+  field(INP, "$(P)$(R)DI1Raw.B2")
 }
 
 record(longin, "$(P)$(R)DIEvent1-RB") {
@@ -1396,7 +1396,7 @@ record(longin, "$(P)$(R)IntlkCtrlRepeatTime-RB") {
   field(INP, "@timing.proto evg_ilock_repeat_time_intr $(PORT)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntlkCtrl-Raw") {
+record(mbbiDirect, "$(P)$(R)IntlkCtrlRaw") {
   #field(ASG, "Reserved")
   field(DESC, "EVG Interlock control RBV.")
   field(NOBT, "8")
@@ -1410,7 +1410,7 @@ record(bi, "$(P)$(R)IntlkCtrlEnbl-Sts") {
   field(DESC, "Interlock map enable RBV")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntlkCtrl-Raw.B7")
+  field(INP, "$(P)$(R)IntlkCtrlRaw.B7")
   field(FLNK, "$(P)$(R)IntlkCtrlRst-Sts")
 }
 
@@ -1418,7 +1418,7 @@ record(bi, "$(P)$(R)IntlkCtrlRst-Sts") {
   field(DESC, "Interlock map reset RBV")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntlkCtrl-Raw.B6")
+  field(INP, "$(P)$(R)IntlkCtrlRaw.B6")
   field(FLNK, "$(P)$(R)IntlkCtrlRepeat-Sts")
 }
 
@@ -1426,7 +1426,7 @@ record(bi, "$(P)$(R)IntlkCtrlRepeat-Sts") {
   field(DESC, "Interlock map enable continuous mode RBV")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntlkCtrl-Raw.B5")
+  field(INP, "$(P)$(R)IntlkCtrlRaw.B5")
 }
 
 record(mbbiDirect, "$(P)$(R)IntlkEvtStatus-Mon") {
@@ -1480,7 +1480,7 @@ record(longin, "$(P)$(R)Alive-Mon") {
   field(FLNK, "$(P)$(R)DevStatusCalc")
 }
 
-record(longin, "$(P)$(R)RFDiv-Raw") {
+record(longin, "$(P)$(R)RFDivRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVG RF divider status RAW")
   field(SCAN, "I/O Intr")
@@ -1492,7 +1492,7 @@ record(longin, "$(P)$(R)RFDiv-Raw") {
 record(calc, "$(P)$(R)RFDiv-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVG RF divider status RBV")
-  field(INPA, "$(P)$(R)RFDiv-Raw")
+  field(INPA, "$(P)$(R)RFDivRaw")
   field(CALC, "A+1")
 }
 

@@ -1,7 +1,7 @@
 ########################################################################
 # Control and Status Register [0]
 
-record(mbbiDirect, "$(P)$(R)Enbl-Raw"){
+record(mbbiDirect, "$(P)$(R)EnblRaw"){
   field(DESC, "Enable/Disable FANOUT RAW")
   field(NOBT, "1")
   field(DTYP, "stream")
@@ -14,10 +14,10 @@ record(bi, "$(P)$(R)DevEnbl-Sts"){
   field(DESC, "Enable/Disable FANOUT RBV")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Enbl-Raw.B0")
+  field(INP, "$(P)$(R)EnblRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Link-Raw") {
+record(mbbiDirect, "$(P)$(R)LinkRaw") {
   field(ASG, "Reserved")
   field(DESC, "Uplink status RAW")
   field(NOBT, "8")
@@ -32,10 +32,10 @@ record(bi, "$(P)$(R)Link-Mon") {
   field(DESC, "Uplink status")
   field(ZNAM, "UNLINK")
   field(ONAM, "LINK")
-  field(INP, "$(P)$(R)Link-Raw.B7")
+  field(INP, "$(P)$(R)LinkRaw.B7")
 }
 
-record(mbbiDirect, "$(P)$(R)Los-Raw") {
+record(mbbiDirect, "$(P)$(R)LosRaw") {
   field(ASG, "Reserved")
   field(DESC, "Downlink status in OUT0-OUT7 RAW")
   field(NOBT, "8")
@@ -50,7 +50,7 @@ record(bi, "$(P)$(R)Los0-Mon"){
   field(DESC, "OUT0 downlink status RBV")
   field(ZNAM, "LINK")
   field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)Los-Raw.B0")
+  field(INP, "$(P)$(R)LosRaw.B0")
   field(FLNK, "$(P)$(R)Los1-Mon")
 }
 
@@ -59,7 +59,7 @@ record(bi, "$(P)$(R)Los1-Mon"){
   field(DESC, "OUT1 downlink status RBV")
   field(ZNAM, "LINK")
   field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)Los-Raw.B1")
+  field(INP, "$(P)$(R)LosRaw.B1")
   field(FLNK, "$(P)$(R)Los2-Mon")
 }
 
@@ -68,7 +68,7 @@ record(bi, "$(P)$(R)Los2-Mon"){
   field(DESC, "OUT2 downlink status RBV")
   field(ZNAM, "LINK")
   field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)Los-Raw.B2")
+  field(INP, "$(P)$(R)LosRaw.B2")
   field(FLNK, "$(P)$(R)Los3-Mon")
 }
 
@@ -77,7 +77,7 @@ record(bi, "$(P)$(R)Los3-Mon"){
   field(DESC, "OUT3 downlink status RBV")
   field(ZNAM, "LINK")
   field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)Los-Raw.B3")
+  field(INP, "$(P)$(R)LosRaw.B3")
   field(FLNK, "$(P)$(R)Los4-Mon")
 }
 
@@ -86,7 +86,7 @@ record(bi, "$(P)$(R)Los4-Mon"){
   field(DESC, "OUT4 downlink status RBV")
   field(ZNAM, "LINK")
   field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)Los-Raw.B4")
+  field(INP, "$(P)$(R)LosRaw.B4")
   field(FLNK, "$(P)$(R)Los5-Mon")
 }
 
@@ -95,7 +95,7 @@ record(bi, "$(P)$(R)Los5-Mon"){
   field(DESC, "OUT5 downlink status RBV")
   field(ZNAM, "LINK")
   field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)Los-Raw.B5")
+  field(INP, "$(P)$(R)LosRaw.B5")
   field(FLNK, "$(P)$(R)Los6-Mon")
 }
 
@@ -104,7 +104,7 @@ record(bi, "$(P)$(R)Los6-Mon"){
   field(DESC, "OUT6 downlink status RBV")
   field(ZNAM, "LINK")
   field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)Los-Raw.B6")
+  field(INP, "$(P)$(R)LosRaw.B6")
   field(FLNK, "$(P)$(R)Los7-Mon")
 }
 
@@ -113,7 +113,7 @@ record(bi, "$(P)$(R)Los7-Mon"){
   field(DESC, "OUT7 downlink status RBV")
   field(ZNAM, "LINK")
   field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)Los-Raw.B7")
+  field(INP, "$(P)$(R)LosRaw.B7")
 }
 
 record(bo, "$(P)$(R)DevEnbl-Sel"){
