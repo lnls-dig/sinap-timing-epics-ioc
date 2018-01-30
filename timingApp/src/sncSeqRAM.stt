@@ -9,10 +9,11 @@ foreign ssId;
 
 int eventNum;
 char device[40];
-char * evCodeName = "EVCODE";
-char * evTimeName = "EVTIME";
-char * evModeName = "EVDLYMODE";
-char * evCtrlName = "EVTRANSM";
+char * evPrefix = "Evt";
+char * evCodeName = "Code-SP";
+char * evTimeName = "Delay-SP";
+char * evModeName = "DelayType-Sel";
+char * evCtrlName = "Mode-Sel";
 char str[40];
 int i;
 int numberOfWrites;
@@ -185,20 +186,20 @@ ss seq {
 	
 	  %%// Assign events
 	   for (i = 0; i < eventNum; i++) {
-	     sprintf (str, "%s%s%d", device, evCodeName, i);
+	     sprintf (str, "%s%s%d%s", device, evPrefix, i, evCodeName);
 	     pvAssign (event_codes[i], str);
 	     %%//printf("%s\n", str);
 	   }
 	   for (i = 0; i < eventNum; i++) {
-	     sprintf (str, "%s%s%d", device, evTimeName, i);
+	     sprintf (str, "%s%s%d%s", device, evPrefix, i, evTimeName);
 	     pvAssign (event_timestamps[i], str);
 	   }
 	   for (i = 0; i < eventNum; i++) {
-	     sprintf (str, "%s%s%d", device, evModeName, i);
+	     sprintf (str, "%s%s%d%s", device, evPrefix, i, evModeName);
 	     pvAssign (event_modes[i], str);
 	   }
 	   for (i = 0; i < eventNum; i++) {
-	     sprintf (str, "%s%s%d", device, evCtrlName, i);
+	     sprintf (str, "%s%s%d%s", device, evPrefix, i, evCtrlName);
 	     pvAssign (event_ctrl[i], str);
 	   }
 

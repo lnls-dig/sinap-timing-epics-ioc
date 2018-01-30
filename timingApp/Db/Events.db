@@ -4,35 +4,77 @@
 #
 #####################################################
 
-record(stringout, "$(P)$(R)EVDESC$(num)"){
+record(stringout, "$(P)$(R)Evt$(code)Desc-SP"){
+	field(VAL, "$(desc)")
+	field(DESC, "Description of the Event 0x$(code)")
+	field(OUT, "$(P)$(R)Evt$(num)Desc-SP PP")
+}
+
+record(stringout, "$(P)$(R)Evt$(num)Desc-SP"){
 	field(VAL, "$(desc)")
 	field(DESC, "Description of the Event $(num)")
 }
-record(longout, "$(P)$(R)EVCODE$(num)"){
+
+record(longout, "$(P)$(R)Evt$(num)Code-SP"){
 	field(DESC, "Event $(num) code")
 	field(DRVH, "255")
-	field(DRVL, "0")
-	field(VAL, "$(code)")
+	field(DRVL, "1")
+	field(VAL, "0x$(code)")
 }
-record(longout, "$(P)$(R)EVTIME$(num)"){
+
+record(longout, "$(P)$(R)Evt$(code)Delay-SP"){
+	field(DESC, "Event $(num) timestamp")
+	field(DRVL, "100")
+	field(VAL, "$(time)")
+	field(OUT, "$(P)$(R)Evt$(num)Delay-SP PP")
+}
+
+record(longout, "$(P)$(R)Evt$(num)Delay-SP"){
 	field(DESC, "Event $(num) timestamp")
 	field(DRVL, "100")
 	field(VAL, "$(time)")
 }
-record(bo, "$(P)$(R)EVDLYMODE$(num)"){
-	field(DESC, "Delay mode (FIX | INCR)")
-	field(ZNAM, "FIX")
-	field(ONAM, "INCR")
+
+record(bo, "$(P)$(R)Evt$(code)DelayType-Sel"){
+	field(DESC, "Delay mode (Incr | Fixed)")
+	field(ZNAM, "Incr")
+	field(ONAM, "Fixed")
+	field(VAL, "$(mode)")
+	field(OUT, "$(P)$(R)Evt$(num)DelayType-Sel PP")
+}
+
+record(bo, "$(P)$(R)Evt$(num)DelayType-Sel"){
+	field(DESC, "Delay mode (Incr | Fixed)")
+	field(ZNAM, "Incr")
+	field(ONAM, "Fixed")
 	field(VAL, "$(mode)")
 }
-record(mbbo, "$(P)$(R)EVTRANSM$(num)"){
-	field(DESC, "Transmission mode (ALWAYS | INJECTION)")
+
+record(mbbo, "$(P)$(R)Evt$(code)Mode-Sel"){
+	field(DESC, "Transmission mode")
 	field(ZRVL, "0")
-	field(ZRST, "NEVER")
+	field(ZRST, "Disable")
 	field(ONVL, "1")
-	field(ONST, "ALWAYS")
+	field(ONST, "Continuous")
 	field(TWVL, "2")
-	field(TWST, "INJECTION")
+	field(TWST, "Injection")
+	field(THVL, "3")
+	field(THST, "External")
+	field(VAL, "$(transm)")
+	field(OUT, "$(P)$(R)Evt$(num)Mode-Sel PP")
+}
+
+record(mbbo, "$(P)$(R)Evt$(num)Mode-Sel"){
+	field(DESC, "Transmission mode")
+	field(ZRVL, "0")
+	field(ZRST, "Disable")
+	field(ONVL, "1")
+	field(ONST, "Continuous")
+	field(TWVL, "2")
+	field(TWST, "Injection")
+	field(THVL, "3")
+	field(THST, "External")
 	field(VAL, "$(transm)")
 }
+
 #####################################################
