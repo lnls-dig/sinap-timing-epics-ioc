@@ -83,6 +83,7 @@ record(longout, "$(P)$(R)IntTrig00Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig00Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP0 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -94,6 +95,9 @@ record(longout, "$(P)$(R)IntTrig00Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig00Width-SP") {
   field(DESC, "EVE OTP0 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),00) $(PORT)")
@@ -102,6 +106,8 @@ record(longout, "$(P)$(R)IntTrig00Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig00Delay-SP") {
   field(DESC, "EVE OTP0 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),00) $(PORT)")
@@ -259,6 +265,7 @@ record(longout, "$(P)$(R)IntTrig01Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig01Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP1 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -270,6 +277,9 @@ record(longout, "$(P)$(R)IntTrig01Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig01Width-SP") {
   field(DESC, "EVE OTP1 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),01) $(PORT)")
@@ -278,6 +288,8 @@ record(longout, "$(P)$(R)IntTrig01Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig01Delay-SP") {
   field(DESC, "EVE OTP1 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),01) $(PORT)")
@@ -435,6 +447,7 @@ record(longout, "$(P)$(R)IntTrig02Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig02Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP2 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -446,6 +459,9 @@ record(longout, "$(P)$(R)IntTrig02Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig02Width-SP") {
   field(DESC, "EVE OTP2 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),02) $(PORT)")
@@ -454,6 +470,8 @@ record(longout, "$(P)$(R)IntTrig02Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig02Delay-SP") {
   field(DESC, "EVE OTP2 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),02) $(PORT)")
@@ -611,6 +629,7 @@ record(longout, "$(P)$(R)IntTrig03Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig03Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP3 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -622,6 +641,9 @@ record(longout, "$(P)$(R)IntTrig03Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig03Width-SP") {
   field(DESC, "EVE OTP3 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),03) $(PORT)")
@@ -630,6 +652,8 @@ record(longout, "$(P)$(R)IntTrig03Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig03Delay-SP") {
   field(DESC, "EVE OTP3 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),03) $(PORT)")
@@ -787,6 +811,7 @@ record(longout, "$(P)$(R)IntTrig04Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig04Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP4 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -798,6 +823,9 @@ record(longout, "$(P)$(R)IntTrig04Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig04Width-SP") {
   field(DESC, "EVE OTP4 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),04) $(PORT)")
@@ -806,6 +834,8 @@ record(longout, "$(P)$(R)IntTrig04Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig04Delay-SP") {
   field(DESC, "EVE OTP4 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),04) $(PORT)")
@@ -963,6 +993,7 @@ record(longout, "$(P)$(R)IntTrig05Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig05Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP5 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -974,6 +1005,9 @@ record(longout, "$(P)$(R)IntTrig05Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig05Width-SP") {
   field(DESC, "EVE OTP5 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),05) $(PORT)")
@@ -982,6 +1016,8 @@ record(longout, "$(P)$(R)IntTrig05Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig05Delay-SP") {
   field(DESC, "EVE OTP5 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),05) $(PORT)")
@@ -1139,6 +1175,7 @@ record(longout, "$(P)$(R)IntTrig06Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig06Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP6 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -1150,6 +1187,9 @@ record(longout, "$(P)$(R)IntTrig06Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig06Width-SP") {
   field(DESC, "EVE OTP6 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),06) $(PORT)")
@@ -1158,6 +1198,8 @@ record(longout, "$(P)$(R)IntTrig06Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig06Delay-SP") {
   field(DESC, "EVE OTP6 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),06) $(PORT)")
@@ -1315,6 +1357,7 @@ record(longout, "$(P)$(R)IntTrig07Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig07Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP7 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -1326,6 +1369,9 @@ record(longout, "$(P)$(R)IntTrig07Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig07Width-SP") {
   field(DESC, "EVE OTP7 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),07) $(PORT)")
@@ -1334,6 +1380,8 @@ record(longout, "$(P)$(R)IntTrig07Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig07Delay-SP") {
   field(DESC, "EVE OTP7 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),07) $(PORT)")
@@ -1491,6 +1539,7 @@ record(longout, "$(P)$(R)IntTrig08Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig08Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP8 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -1502,6 +1551,9 @@ record(longout, "$(P)$(R)IntTrig08Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig08Width-SP") {
   field(DESC, "EVE OTP8 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),08) $(PORT)")
@@ -1510,6 +1562,8 @@ record(longout, "$(P)$(R)IntTrig08Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig08Delay-SP") {
   field(DESC, "EVE OTP8 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),08) $(PORT)")
@@ -1666,6 +1720,7 @@ record(longout, "$(P)$(R)IntTrig09Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig09Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTP9 number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -1677,6 +1732,9 @@ record(longout, "$(P)$(R)IntTrig09Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig09Width-SP") {
   field(DESC, "EVE OTP9 event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),09) $(PORT)")
@@ -1685,6 +1743,8 @@ record(longout, "$(P)$(R)IntTrig09Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig09Delay-SP") {
   field(DESC, "EVE OTP9 event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),09) $(PORT)")
@@ -1842,6 +1902,7 @@ record(longout, "$(P)$(R)IntTrig10Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig10Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTPA number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -1853,6 +1914,9 @@ record(longout, "$(P)$(R)IntTrig10Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig10Width-SP") {
   field(DESC, "EVE OTPA event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),10) $(PORT)")
@@ -1861,6 +1925,8 @@ record(longout, "$(P)$(R)IntTrig10Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig10Delay-SP") {
   field(DESC, "EVE OTPA event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),10) $(PORT)")
@@ -2018,6 +2084,7 @@ record(longout, "$(P)$(R)IntTrig11Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig11Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTPB number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -2029,6 +2096,9 @@ record(longout, "$(P)$(R)IntTrig11Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig11Width-SP") {
   field(DESC, "EVE OTPB event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),11) $(PORT)")
@@ -2037,6 +2107,8 @@ record(longout, "$(P)$(R)IntTrig11Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig11Delay-SP") {
   field(DESC, "EVE OTPB event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),11) $(PORT)")
@@ -2194,6 +2266,7 @@ record(longout, "$(P)$(R)IntTrig12Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig12Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTPC number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -2205,6 +2278,9 @@ record(longout, "$(P)$(R)IntTrig12Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig12Width-SP") {
   field(DESC, "EVE OTPC event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),12) $(PORT)")
@@ -2213,6 +2289,8 @@ record(longout, "$(P)$(R)IntTrig12Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig12Delay-SP") {
   field(DESC, "EVE OTPC event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),12) $(PORT)")
@@ -2370,6 +2448,7 @@ record(longout, "$(P)$(R)IntTrig13Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig13Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTPD number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -2381,6 +2460,9 @@ record(longout, "$(P)$(R)IntTrig13Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig13Width-SP") {
   field(DESC, "EVE OTPD event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),13) $(PORT)")
@@ -2389,6 +2471,8 @@ record(longout, "$(P)$(R)IntTrig13Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig13Delay-SP") {
   field(DESC, "EVE OTPD event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),13) $(PORT)")
@@ -2546,6 +2630,7 @@ record(longout, "$(P)$(R)IntTrig14Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig14Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTPE number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -2557,6 +2642,9 @@ record(longout, "$(P)$(R)IntTrig14Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig14Width-SP") {
   field(DESC, "EVE OTPE event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),14) $(PORT)")
@@ -2565,6 +2653,8 @@ record(longout, "$(P)$(R)IntTrig14Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig14Delay-SP") {
   field(DESC, "EVE OTPE event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),14) $(PORT)")
@@ -2722,6 +2812,7 @@ record(longout, "$(P)$(R)IntTrig15Evt-Sel") {
 }
 
 record(longout, "$(P)$(R)IntTrig15Pulses-SP"){
+  field(VAL, "1")
   field(DESC, "EVE OTPF number of pulses")
   field(DRVH, "65535")
   field(DRVL, "1")
@@ -2733,6 +2824,9 @@ record(longout, "$(P)$(R)IntTrig15Pulses-SP"){
 
 record(longout, "$(P)$(R)IntTrig15Width-SP") {
   field(DESC, "EVE OTPF event width")
+  field(VAL, "1")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),15) $(PORT)")
@@ -2741,6 +2835,8 @@ record(longout, "$(P)$(R)IntTrig15Width-SP") {
 
 record(longout, "$(P)$(R)IntTrig15Delay-SP") {
   field(DESC, "EVE OTPF event delay")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),15) $(PORT)")
@@ -2992,7 +3088,7 @@ record(scalcout, "$(P)$(R)Out0IntChanCalc3") {
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out0IntChan-Hw.VAL PP")
+  field(OUT, "$(P)$(R)Out0IntChan-Hw PP")
 }
 
 record(longout, "$(P)$(R)Out0IntChan-Hw"){
@@ -3137,7 +3233,7 @@ record(scalcout, "$(P)$(R)Out1IntChanCalc3") {
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out1IntChan-Hw.VAL PP")
+  field(OUT, "$(P)$(R)Out1IntChan-Hw PP")
 }
 
 record(longout, "$(P)$(R)Out1IntChan-Hw"){
@@ -3282,7 +3378,7 @@ record(scalcout, "$(P)$(R)Out2IntChanCalc3") {
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out2IntChan-Hw.VAL PP")
+  field(OUT, "$(P)$(R)Out2IntChan-Hw PP")
 }
 
 record(longout, "$(P)$(R)Out2IntChan-Hw"){
@@ -3427,7 +3523,7 @@ record(scalcout, "$(P)$(R)Out3IntChanCalc3") {
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)sel3toHW PP")
+  field(OUT, "$(P)$(R)Out3IntChan-Hw PP")
 }
 
 record(longout, "$(P)$(R)Out3IntChan-Hw"){
@@ -3571,7 +3667,7 @@ record(scalcout, "$(P)$(R)Out4IntChanCalc3") {
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)sel4toHW PP")
+  field(OUT, "$(P)$(R)Out4IntChan-Hw PP")
 }
 
 record(longout, "$(P)$(R)Out4IntChan-Hw"){
@@ -3716,7 +3812,7 @@ record(scalcout, "$(P)$(R)Out5IntChanCalc3") {
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)sel5toHW PP")
+  field(OUT, "$(P)$(R)Out5IntChan-Hw PP")
 }
 
 record(longout, "$(P)$(R)Out5IntChan-Hw"){
@@ -3861,7 +3957,7 @@ record(scalcout, "$(P)$(R)Out6IntChanCalc3") {
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)sel6toHW PP")
+  field(OUT, "$(P)$(R)Out6IntChan-Hw PP")
 }
 
 record(longout, "$(P)$(R)Out6IntChan-Hw"){
@@ -4006,7 +4102,7 @@ record(scalcout, "$(P)$(R)Out7IntChanCalc3") {
   field(OOPT, "When Non-zero")
   field(DOPT, "Use OCAL")
   field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)sel7toHW PP")
+  field(OUT, "$(P)$(R)Out7IntChan-Hw PP")
 }
 
 record(longout, "$(P)$(R)Out7IntChan-Hw"){
