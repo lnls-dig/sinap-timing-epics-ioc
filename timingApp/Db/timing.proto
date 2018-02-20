@@ -85,36 +85,36 @@ evg_ctrl_seqen_enable_intr{
 # OTP Registers [1 - 16]
 evre_otp_get {
     out "%(\$1\$2cmd_otp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2IntTrig\$3Pulses-RB)02r%(\$1\$2IntTrig\$3Evt-Sel)0r%(\$1\$2IntTrig\$3Delay-RB)04r%(\$1\$2IntTrig\$3Width-RB)04r";
+    in "%*r%*r%(\$1\$2IntTrig\$3Pulses-RB)02r%(\$1\$2IntTrig\$3Evt-Sts)0r%(\$1\$2IntTrig\$3Delay-RB)04r%(\$1\$2IntTrig\$3Width-RB)04r";
 }
 
 evre_otp_ev_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayRaw.RVAL)r%(\$1\$2IntTrig\$3Pulses-RB).2r%(\$1\$2IntTrig\$3Evt-Sts)r%(\$1\$2IntTrig\$3Delay-RB).4r%(\$1\$2IntTrig\$3Width-RB).4r";
+    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayRaw.RVAL)r%(\$1\$2IntTrig\$3Pulses-RB).2r%(\$1\$2IntTrig\$3Evt-Sel)r%(\$1\$2IntTrig\$3Delay-RB).4r%(\$1\$2IntTrig\$3Width-RB).4r";
     evre_otp_get;
 }
 
 evre_otp_pulses_set{
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayRaw.RVAL)r%(\$1\$2IntTrig\$3Pulses-SP).2r%(\$1\$2IntTrig\$3Evt-Sel)r%(\$1\$2IntTrig\$3Delay-RB).4r%(\$1\$2IntTrig\$3Width-RB).4r";
+    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayRaw.RVAL)r%(\$1\$2IntTrig\$3Pulses-SP).2r%(\$1\$2IntTrig\$3Evt-Sts)r%(\$1\$2IntTrig\$3Delay-RB).4r%(\$1\$2IntTrig\$3Width-RB).4r";
     evre_otp_get;
 }
 
 evre_otp_width_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayRaw.RVAL)r%(\$1\$2IntTrig\$3Pulses-RB).2r%(\$1\$2IntTrig\$3Evt-Sel)r%(\$1\$2IntTrig\$3Delay-RB).4r%(\$1\$2IntTrig\$3Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayRaw.RVAL)r%(\$1\$2IntTrig\$3Pulses-RB).2r%(\$1\$2IntTrig\$3Evt-Sts)r%(\$1\$2IntTrig\$3Delay-RB).4r%(\$1\$2IntTrig\$3Width-SP).4r";
     evre_otp_get;
 }
 
 evre_otp_dly_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayRaw.RVAL)r%(\$1\$2IntTrig\$3Pulses-RB).2r%(\$1\$2IntTrig\$3Evt-Sel)r%(\$1\$2IntTrig\$3Delay-SP).4r%(\$1\$2IntTrig\$3Width-RB).4r";
+    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayRaw.RVAL)r%(\$1\$2IntTrig\$3Pulses-RB).2r%(\$1\$2IntTrig\$3Evt-Sts)r%(\$1\$2IntTrig\$3Delay-SP).4r%(\$1\$2IntTrig\$3Width-RB).4r";
     evre_otp_get;
 }
 
 evre_otp_en_pol_time_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3\$4Calc)r%(\$1\$2IntTrig\$3Pulses-RB).2r%(\$1\$2IntTrig\$3Evt-Sel)r%(\$1\$2IntTrig\$3Delay-RB).4r%(\$1\$2IntTrig\$3Width-RB).4r";
+    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3\$4Calc)r%(\$1\$2IntTrig\$3Pulses-RB).2r%(\$1\$2IntTrig\$3Evt-Sts)r%(\$1\$2IntTrig\$3Delay-RB).4r%(\$1\$2IntTrig\$3Width-RB).4r";
     evre_otp_get;
 }
 
 evre_otp_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayCalc)r%(\$1\$2IntTrig\$3Pulses-SP).2r%(\$1\$2IntTrig\$3Evt-Sts)r%(\$1\$2IntTrig\$3Delay-SP).4r%(\$1\$2IntTrig\$3Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2IntTrig\$3DelayCalc)r%(\$1\$2IntTrig\$3Pulses-SP).2r%(\$1\$2IntTrig\$3Evt-Sel)r%(\$1\$2IntTrig\$3Delay-SP).4r%(\$1\$2IntTrig\$3Width-SP).4r";
     evre_otp_get;
 }
 
@@ -571,6 +571,13 @@ evg_ilock_repeat_time_intr {
 #    out "%(\$1\$2cmd_evg_ilockcontrol_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
 #    in "\xF9%(\$1\$2IntlkCtrlRaw)r%*03r%*04r%*03r%(\$1\$2IntlkEvtStatus-Mon)r";
 #}
+
+################################################################################
+# Asynchronous event	EVG		[58]
+
+evg_async_set {
+    out "\x7A\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01%(\$1\$2\$3.OVAL)r";
+}
 
 ################################################################################
 # Firmware version register EVG, Fanout, EVR & EVE [62]

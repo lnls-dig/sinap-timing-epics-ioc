@@ -77,4 +77,29 @@ record(mbbo, "$(P)$(R)Evt$(num)Mode-Sel"){
 	field(VAL, "$(transm)")
 }
 
+record(bo, "$(P)$(R)Evt$(code)ExtTrig-Cmd"){
+	field(DESC, "Send an asynchronous event")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(OUT, "$(P)$(R)Evt$(num)ExtTrig-Cmd PP")
+}
+
+record(bo, "$(P)$(R)Evt$(num)ExtTrig-Cmd"){
+	field(DESC, "Send an asynchronous event")
+	field(ZNAM, "OFF")
+	field(ONAM, "ON")
+	field(FLNK, "$(P)$(R)AsynEvt$(num)")
+}
+
+record(calcout, "$(P)$(R)AsynEvt$(num)") {
+  #field(ASG, "Reserved")
+  field(DESC, "Asyn event calc")
+  field(DTYP, "stream")
+  field(INPA, "$(P)$(R)Evt$(num)Mode-Sel")
+  field(INPB, "$(P)$(R)Evt$(num)ExtTrig-Cmd")
+  field(INPC, "$(code)")
+  field(CALC, "(A=3)?C:0")
+  field(OUT, "@timing.proto evg_async_set($(P),$(R),AsynEvt$(num)) $(PORT)")
+}
+
 #####################################################
