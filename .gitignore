@@ -9,9 +9,9 @@
 scripts/setup/*.log
 
 # EPICS generated
-bin
-lib
-include
+/bin/
+/lib/
+/include/
 db
 dbd
 *_BAK.adl
