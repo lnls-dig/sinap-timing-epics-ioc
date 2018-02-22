@@ -5810,7 +5810,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)RUNSEQ</pv_name>
+    <pv_name>$(P)$(R)ContinuousEvt-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -5833,148 +5833,6 @@ $(pv_value)</tooltip>
     <wuid>10c4971e:157711e6f06:369f</wuid>
     <x>245</x>
     <y>558</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_218</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>Run</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>42</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:36a3</wuid>
-    <x>248</x>
-    <y>541</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <bit>-1</bit>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <confirm_message>Are your sure you want to do this?</confirm_message>
-    <data_type>0</data_type>
-    <effect_3d>true</effect_3d>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>30</height>
-    <labels_from_pv>false</labels_from_pv>
-    <name>Boolean Button_58</name>
-    <off_color>
-      <color red="80" green="0" blue="0" />
-    </off_color>
-    <off_label>OFF</off_label>
-    <on_color>
-      <color red="255" green="0" blue="0" />
-    </on_color>
-    <on_label>ON</on_label>
-    <password></password>
-    <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)STOPSEQ</pv_name>
-    <pv_value />
-    <released_action_index>0</released_action_index>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_boolean_label>false</show_boolean_label>
-    <show_confirm_dialog>0</show_confirm_dialog>
-    <show_led>true</show_led>
-    <square_button>false</square_button>
-    <toggle_button>true</toggle_button>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <visible>true</visible>
-    <widget_type>Boolean Button</widget_type>
-    <width>47</width>
-    <wuid>10c4971e:157711e6f06:36aa</wuid>
-    <x>314</x>
-    <y>558</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>20</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_219</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>Stop</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>42</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:36ab</wuid>
-    <x>317</x>
-    <y>541</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -6014,7 +5872,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)INJSEQ</pv_name>
+    <pv_name>$(P)$(R)InjectionEvt-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -6077,108 +5935,6 @@ $(pv_value)</tooltip>
     <wuid>10c4971e:157711e6f06:36b7</wuid>
     <x>500</x>
     <y>685</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <bit>-1</bit>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <confirm_message>Are your sure you want to do this?</confirm_message>
-    <data_type>0</data_type>
-    <effect_3d>true</effect_3d>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>30</height>
-    <labels_from_pv>false</labels_from_pv>
-    <name>Boolean Button_60</name>
-    <off_color>
-      <color red="80" green="0" blue="0" />
-    </off_color>
-    <off_label>OFF</off_label>
-    <on_color>
-      <color red="255" green="0" blue="0" />
-    </on_color>
-    <on_label>ON</on_label>
-    <password></password>
-    <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)STOPINJSEQ</pv_name>
-    <pv_value />
-    <released_action_index>0</released_action_index>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_boolean_label>false</show_boolean_label>
-    <show_confirm_dialog>0</show_confirm_dialog>
-    <show_led>true</show_led>
-    <square_button>false</square_button>
-    <toggle_button>true</toggle_button>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <visible>true</visible>
-    <widget_type>Boolean Button</widget_type>
-    <width>47</width>
-    <wuid>10c4971e:157711e6f06:36bf</wuid>
-    <x>314</x>
-    <y>613</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>true</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>17</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_221</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>Stop Injection</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>95</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:36c0</wuid>
-    <x>302</x>
-    <y>596</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -8982,13 +8738,13 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>Inject</text>
+    <text>Injection Evt</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>38</width>
+    <width>86</width>
     <wrap_words>false</wrap_words>
     <wuid>7bec8c4e:15a90808c71:-7b16</wuid>
     <x>248</x>
@@ -9654,7 +9410,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_1</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B1</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B1</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9758,7 +9514,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_2</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B2</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B2</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9862,7 +9618,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_3</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B3</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B3</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9966,7 +9722,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_4</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B4</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B4</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10070,7 +9826,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_5</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B5</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B5</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10174,7 +9930,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_6</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B6</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B6</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10278,7 +10034,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_7</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B7</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B7</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10325,7 +10081,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_8</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B8</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B8</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10372,7 +10128,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_9</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.B9</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.B9</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10419,7 +10175,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_10</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.BA</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.BA</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10466,7 +10222,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_11</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.BB</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.BB</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10513,7 +10269,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_12</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.BC</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.BC</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10560,7 +10316,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_13</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.BD</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.BD</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10607,7 +10363,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_15</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.BE</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.BE</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10654,7 +10410,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_16</name>
-    <pv_name>$(P)$(R)IntlkTbl0to15-Sel.BF</pv_name>
+    <pv_name>$(P)$(R)ilock_map0to15.BF</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10701,7 +10457,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_17</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B0</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B0</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10748,7 +10504,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_18</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B1</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B1</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10795,7 +10551,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_19</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B2</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B2</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10842,7 +10598,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_20</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B3</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B3</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10889,7 +10645,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_21</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B4</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B4</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10936,7 +10692,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_22</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B5</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B5</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10983,7 +10739,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_23</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B6</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B6</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -11030,7 +10786,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_24</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B7</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B7</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -11077,7 +10833,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_25</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B8</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B8</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -11124,7 +10880,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_27</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.BA</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.BA</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -11964,7 +11720,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_28</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.BB</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.BB</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -13142,7 +12898,7 @@ $(pv_value)</tooltip>
     <height>20</height>
     <label></label>
     <name>Check Box_26</name>
-    <pv_name>$(P)$(R)IntlkTbl16to27-Sel.B9</pv_name>
+    <pv_name>$(P)$(R)ilock_map16to27.B9</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -13865,6 +13621,46 @@ $(pv_value)</tooltip>
     <wuid>-6631a2c8:161ae417124:-6f2e</wuid>
     <x>793</x>
     <y>533</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <auto_size>true</auto_size>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>17</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <name>Label_218</name>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <text>Continuous Evt</text>
+    <tooltip></tooltip>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Label</widget_type>
+    <width>106</width>
+    <wrap_words>false</wrap_words>
+    <wuid>10c4971e:157711e6f06:36a3</wuid>
+    <x>248</x>
+    <y>541</y>
   </widget>
   <connection typeId="org.csstudio.opibuilder.connection" version="1.0.0">
     <anti_alias>true</anti_alias>
