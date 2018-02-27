@@ -168,6 +168,30 @@ evre_otp_enpoltimeERBV_intr{
 evre_otp_enpoltimeFRBV_intr{
     in "\xD0%r%*03r%*04r%*04r";
 }
+evre_otp_enpoltimeGRBV_intr{
+    in "\xD9%r%*03r%*04r%*04r";
+}
+evre_otp_enpoltimeHRBV_intr{
+    in "\xDA%r%*03r%*04r%*04r";
+}
+evre_otp_enpoltimeIRBV_intr{
+    in "\xDB%r%*03r%*04r%*04r";
+}
+evre_otp_enpoltimeJRBV_intr{
+    in "\xDC%r%*03r%*04r%*04r";
+}
+evre_otp_enpoltimeKRBV_intr{
+    in "\xDD%r%*03r%*04r%*04r";
+}
+evre_otp_enpoltimeLRBV_intr{
+    in "\xDE%r%*03r%*04r%*04r";
+}
+evre_otp_enpoltimeMRBV_intr{
+    in "\xDF%r%*03r%*04r%*04r";
+}
+evre_otp_enpoltimeNRBV_intr{
+    in "\xE0%r%*03r%*04r%*04r";
+}
 
 ################################################################################
 # OUT Registers [17 - 24]

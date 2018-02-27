@@ -75,7 +75,7 @@ record(longout, "$(P)$(R)cmd_ctrl_set") {
 
 record(longout, "$(P)$(R)IntTrig00Evt-Sel") {
   field(DESC, "EVE OTP0 event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),00) $(PORT)")
@@ -257,7 +257,7 @@ record(longout, "$(P)$(R)cmd_otp_get00") {
 
 record(longout, "$(P)$(R)IntTrig01Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),01) $(PORT)")
@@ -439,7 +439,7 @@ record(longout, "$(P)$(R)cmd_otp_get01") {
 
 record(longout, "$(P)$(R)IntTrig02Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),02) $(PORT)")
@@ -621,7 +621,7 @@ record(longout, "$(P)$(R)cmd_otp_get02") {
 
 record(longout, "$(P)$(R)IntTrig03Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),03) $(PORT)")
@@ -803,7 +803,7 @@ record(longout, "$(P)$(R)cmd_otp_get03") {
 
 record(longout, "$(P)$(R)IntTrig04Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),04) $(PORT)")
@@ -985,7 +985,7 @@ record(longout, "$(P)$(R)cmd_otp_get04") {
 
 record(longout, "$(P)$(R)IntTrig05Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),05) $(PORT)")
@@ -1167,7 +1167,7 @@ record(longout, "$(P)$(R)cmd_otp_get05") {
 
 record(longout, "$(P)$(R)IntTrig06Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),06) $(PORT)")
@@ -1349,7 +1349,7 @@ record(longout, "$(P)$(R)cmd_otp_get06") {
 
 record(longout, "$(P)$(R)IntTrig07Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),07) $(PORT)")
@@ -1531,7 +1531,7 @@ record(longout, "$(P)$(R)cmd_otp_get07") {
 
 record(longout, "$(P)$(R)IntTrig08Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),08) $(PORT)")
@@ -1712,7 +1712,7 @@ record(longout, "$(P)$(R)cmd_otp_get08") {
 
 record(longout, "$(P)$(R)IntTrig09Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),09) $(PORT)")
@@ -1894,7 +1894,7 @@ record(longout, "$(P)$(R)cmd_otp_get09") {
 
 record(longout, "$(P)$(R)IntTrig10Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),10) $(PORT)")
@@ -2076,7 +2076,7 @@ record(longout, "$(P)$(R)cmd_otp_get10") {
 
 record(longout, "$(P)$(R)IntTrig11Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),11) $(PORT)")
@@ -2258,7 +2258,7 @@ record(longout, "$(P)$(R)cmd_otp_get11") {
 
 record(longout, "$(P)$(R)IntTrig12Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),12) $(PORT)")
@@ -2440,7 +2440,7 @@ record(longout, "$(P)$(R)cmd_otp_get12") {
 
 record(longout, "$(P)$(R)IntTrig13Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),13) $(PORT)")
@@ -2622,7 +2622,7 @@ record(longout, "$(P)$(R)cmd_otp_get13") {
 
 record(longout, "$(P)$(R)IntTrig14Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),14) $(PORT)")
@@ -2804,7 +2804,7 @@ record(longout, "$(P)$(R)cmd_otp_get14") {
 
 record(longout, "$(P)$(R)IntTrig15Evt-Sel") {
   field(DESC, "EVE event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),15) $(PORT)")
@@ -4546,7 +4546,7 @@ record(longout, "$(P)$(R)cmd_log_set"){
 
 record(longout, "$(P)$(R)DIEvent0-SP") {
   field(DESC, "EVE digital input 0 event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),0) $(PORT)")
@@ -4677,7 +4677,7 @@ record(longout, "$(P)$(R)cmd_diginp_get0") {
 
 record(longout, "$(P)$(R)DIEvent1-SP") {
   field(DESC, "EVE digital input 1 event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),1) $(PORT)")
@@ -4808,7 +4808,7 @@ record(longout, "$(P)$(R)cmd_diginp_get1") {
 
 record(longout, "$(P)$(R)DIEvent2-SP") {
   field(DESC, "EVE digital input 2 event code")
-  field(DRVH, "255")
+  field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),2) $(PORT)")
