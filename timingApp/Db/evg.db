@@ -1563,6 +1563,22 @@ record(waveform, "$(P)$(R)BucketList-SP") {
   field(DESC, "Injection table")
   field(NELM, "864")
   field(FTVL, "USHORT")
+  field(FLNK, "$(P)$(R)BucketListCalc")
+}
+
+record(acalcout, "$(P)$(R)BucketListCalc") {
+  field(DESC, "Injection table")
+  field(NELM, "864")
+  field(INPA, "$(P)$(R)BucketList-SP.NORD")
+  field(INAA, "$(P)$(R)BucketList-SP")
+  field(CALC, "AA%864")
+  field(OUT, "$(P)$(R)BucketList-RB PP")
+}
+
+record(waveform, "$(P)$(R)BucketList-RB") {
+  field(DESC, "Injection table")
+  field(NELM, "864")
+  field(FTVL, "USHORT")
 }
 
 ########################################################################

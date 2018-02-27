@@ -37,6 +37,9 @@ monitor network;
 int tbl[864];
 assign tbl to "{P}{R}BucketList-SP";
 
+int tbl_rbv[864];
+assign tbl_rbv to "{P}{R}BucketList-RB";
+
 int tbl_length;
 assign tbl_length to "{P}{R}BucketList-SP.NORD";
 
@@ -86,9 +89,15 @@ int run_tg;
 assign run_tg to "{P}{R}ContinuousEvt-Sel";
 monitor run_tg;
 
+int run_tg_rbv;
+assign run_tg_rbv to "{P}{R}ContinuousEvt-Sts";
+
 int inj_tg;
 assign inj_tg to "{P}{R}InjectionEvt-Sel";
 monitor inj_tg;
+
+int inj_tg_rbv;
+assign inj_tg_rbv to "{P}{R}InjectionEvt-Sts";
 
 int restart_tg;
 assign restart_tg to "{P}{R}RESTSEQ";
@@ -172,6 +181,12 @@ ss seq {
        StateMachineStatus = 0;
        numberOfWrites = 0;
   
+       run_tg_rbv = 0;
+       pvPut(run_tg_rbv, SYNC);
+
+       inj_tg_rbv = 0;
+       pvPut(inj_tg_rbv, SYNC);
+
       %%// Get macros
        eventNum = str2int(macValueGet("ev_num"));
        sprintf(device, "%s%s", macValueGet("P"), macValueGet("R"));
@@ -233,16 +248,22 @@ ss seq {
   state Stopped {
     entry{
   
-       %{/* STOPPED ENTRY  
+      %{/* STOPPED ENTRY  
   
       -Status update
-       */}%
+      */}%
   
-       %%// Status update (stopped)
-       StateMachineStatus = 1;
-       pvPut(StateMachineStatus, SYNC);
+      %%// Status update (stopped)
+      StateMachineStatus = 1;
+      pvPut(StateMachineStatus, SYNC);
   
-       %%//printf("Stopped Entry\n");
+      run_tg_rbv = 0;
+      pvPut(run_tg_rbv, SYNC);
+  
+      inj_tg_rbv = 0;
+      pvPut(inj_tg_rbv, SYNC);
+
+      %%//printf("Stopped Entry\n");
     }
   
     when(seqen_rbv != 0){
@@ -274,20 +295,26 @@ ss seq {
       %{/* Write to SeqRAM 1 */}%
   
       %%// Status update (preparing to run)
-         StateMachineStatus = 5;
+      StateMachineStatus = 5;
       pvPut(StateMachineStatus, SYNC);
   
+      run_tg_rbv = 0;
+      pvPut(run_tg_rbv, SYNC);
+      
+      inj_tg_rbv = 0;
+      pvPut(inj_tg_rbv, SYNC);
+
       %%// Update event record arrays
-         for(i = 0; i < eventNum; i++){
+      for(i = 0; i < eventNum; i++){
   
         pvGet(event_codes[i], SYNC);
         pvGet(event_timestamps[i], SYNC);
         pvGet(event_modes[i], SYNC);
         pvGet(event_ctrl[i], SYNC);
-         }
+      }
   
       %%// Update and order EventPointerArray
-         updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+      updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
   
       numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
             pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
@@ -386,21 +413,27 @@ ss seq {
   
     entry{
   
-        %{/* RUNNING ENTRY  
-  
+      %{/* RUNNING ENTRY  
+      
       -Status update
       -Clear numberOfWrites
-  
-        */}%
-  
-       %%// Status update (running)
-       StateMachineStatus = 2;
-       pvPut(StateMachineStatus, SYNC);
-  
-       %%// Clear number of writes
-       numberOfWrites = 0;
-  
-       %%//printf("Running Entry\n");
+      
+      */}%
+      
+      %%// Status update (running)
+      StateMachineStatus = 2;
+      pvPut(StateMachineStatus, SYNC);
+      
+      run_tg_rbv = 1;
+      pvPut(run_tg_rbv, SYNC);
+      
+      inj_tg_rbv = 0;
+      pvPut(inj_tg_rbv, SYNC);
+
+      %%// Clear number of writes
+      numberOfWrites = 0;
+      
+      %%//printf("Running Entry\n");
     }
     
     when(seqs == 0){
@@ -448,29 +481,35 @@ ss seq {
       */}%
   
       %%// Status update (preparing to inject)
-         StateMachineStatus = 6;
+      StateMachineStatus = 6;
       pvPut(StateMachineStatus, SYNC);
   
+      run_tg_rbv = 1;
+      pvPut(run_tg_rbv, SYNC);
+
+      inj_tg_rbv = 0;
+      pvPut(inj_tg_rbv, SYNC);
+
       %%// Update bucket list
       pvGet(tbl, SYNC);
   
       %%// Update bucket list length
       pvGet(tbl_length, SYNC);
-  
+      
       %%// Write to seqRAM 2
       if(tbl_length > 0){
   
         %%// Update event record arrays
-           for(i = 0; i < eventNum; i++){
-  
+        for(i = 0; i < eventNum; i++){
+
           pvGet(event_codes[i], SYNC);
           pvGet(event_timestamps[i], SYNC);
           pvGet(event_modes[i], SYNC);
           pvGet(event_ctrl[i], SYNC);
-           }  
+        }  
   
         %%// Update and order EventPointerArray
-           updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+        updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
   
         numberOfWrites = seqTwoWrite(eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
                   pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
@@ -544,21 +583,27 @@ ss seq {
   state Injecting {
     entry{
   
-        %{/* INJECTING ENTRY  
+      %{/* INJECTING ENTRY  
   
       -Status update
       -Seq switch reset
   
-        */}%
+      */}%
   
-       %%// Status update (injecting)
-       StateMachineStatus = 3;
-       pvPut(StateMachineStatus, SYNC);
+      %%// Status update (injecting)
+      StateMachineStatus = 3;
+      pvPut(StateMachineStatus, SYNC);
   
-       %%// Seq switch reset (switching condition is only satisfied once)
-       seqsw = 0;
+      run_tg_rbv = 0;
+      pvPut(run_tg_rbv, SYNC);
+
+      inj_tg_rbv = 1;
+      pvPut(inj_tg_rbv, SYNC);
+
+      %%// Seq switch reset (switching condition is only satisfied once)
+      seqsw = 0;
   
-       %%//printf("Injecting Entry\n");
+      %%//printf("Injecting Entry\n");
     }
   
     when(seqs == 1){
@@ -617,16 +662,22 @@ ss seq {
   
     entry{
   
-        %{/* RESTARTING ENTRY  
+      %{/* RESTARTING ENTRY  
   
       -Status update
-        */}%   
+      */}%   
   
-       %%// Status update (restarting)
-       StateMachineStatus = 4;
-       pvPut(StateMachineStatus, SYNC);
+      %%// Status update (restarting)
+      StateMachineStatus = 4;
+      pvPut(StateMachineStatus, SYNC);
   
-       %%//printf("Restarting Entry\n");
+      run_tg_rbv = 0;
+      pvPut(run_tg_rbv, SYNC);
+
+      inj_tg_rbv = 0;
+      pvPut(inj_tg_rbv, SYNC);
+
+      %%//printf("Restarting Entry\n");
     }
   
     when(seqen_rbv != 0){
@@ -658,16 +709,16 @@ ss seq {
       %{/* Write to SeqRAM 1 */}%
   
       %%// Update event record arrays
-         for(i = 0; i < eventNum; i++){
+      for(i = 0; i < eventNum; i++){
   
         pvGet(event_codes[i], SYNC);
         pvGet(event_timestamps[i], SYNC);
         pvGet(event_modes[i], SYNC);
         pvGet(event_ctrl[i], SYNC);
-         }
+      }
   
-         %%// Update and order EventPointerArray
-         updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+      %%// Update and order EventPointerArray
+      updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
   
       numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
             pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
@@ -1005,9 +1056,10 @@ ss seq {
     // for each bucket
     for(i = 0; i < length; i++){
 
-      // Ignore bucket numbers greater than 864 (storage ring number of buckets).
-      // Ignore bucket numbers smaller than 1.
-      if(TBL[i] > 864 || TBL[i] < 1){
+      // Ignore bucket numbers greater than 863 (storage ring number of buckets).
+      // Ignore bucket numbers smaller than 0.
+      printf("Bucket number: %d\n", TBL[i]);
+      if(TBL[i] > 863 || TBL[i] < 0){
       
         printf("ERROR: Invalid bucket number provided by bucket list. Bucket number was ignored.\n");      
         continue;

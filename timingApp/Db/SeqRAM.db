@@ -37,7 +37,14 @@ record(bo, "$(P)$(R)ContinuousEvt-Sel"){
 	field(SCAN, "Passive")
 	field(ZNAM, "Dsbl")
 	field(ONAM, "Enbl")
-	field(DESC, "Continuous event Disable/Enable")
+	field(DESC, "Continuous event send Disable/Enable")
+}
+
+record(bi, "$(P)$(R)ContinuousEvt-Sts"){
+	field(SCAN, "Passive")
+	field(ZNAM, "Dsbl")
+	field(ONAM, "Enbl")
+	field(DESC, "Continuous event send Disable/Enable")
 }
 
 #####################################################
@@ -46,7 +53,14 @@ record(bo, "$(P)$(R)InjectionEvt-Sel"){
 	field(SCAN, "Passive")
 	field(ZNAM, "Dsbl")
 	field(ONAM, "Enbl")
-	field(DESC, "Sequencer Injection Disable/Enable")
+	field(DESC, "Injection event send Disable/Enable")
+}
+
+record(bi, "$(P)$(R)InjectionEvt-Sts"){
+	field(SCAN, "Passive")
+	field(ZNAM, "Dsbl")
+	field(ONAM, "Enbl")
+	field(DESC, "Injection event send Disable/Enable")
 }
 
 #####################################################
@@ -55,7 +69,7 @@ record(bo, "$(P)$(R)RESTSEQ"){
 	field(SCAN, "Passive")
 	field(ZNAM, "Dsbl")
 	field(ONAM, "Enbl")
-	field(DESC, "Set Sequencer Restart Trigger")
+	field(DESC, "Reload events and restart SeqRAM 1")
 }
 
 #####################################################
@@ -65,5 +79,11 @@ record(bo, "$(P)$(R)REPINJSEQ"){
 	field(ZNAM, "Dsbl")
 	field(ONAM, "Enbl")
 	field(DESC, "Repeat Injection Flag")
+}
+
+record(longout, "$(P)$(R)RepeatBucketList-SP"){
+  field(DESC, "Number of BucketList repetition")
+  field(DRVH, "4294967295")
+  field(DRVL, "0")
 }
 
