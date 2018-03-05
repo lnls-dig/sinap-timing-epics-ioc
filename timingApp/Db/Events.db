@@ -7,43 +7,23 @@
 record(stringout, "$(P)$(R)Evt$(code)Desc-SP"){
 	field(VAL, "$(desc)")
 	field(DESC, "Description of the Event $(code)")
-	field(OUT, "$(P)$(R)Evtn$(num)Desc-SP PP")
 }
 
-record(stringout, "$(P)$(R)Evtn$(num)Desc-SP"){
-	field(VAL, "$(desc)")
-	field(DESC, "Description of the Event $(num)")
-}
-
-record(longout, "$(P)$(R)Evtn$(num)Code-SP"){
-	field(DESC, "Event $(num) code")
-	field(DRVH, "255")
+record(longout, "$(P)$(R)Evt$(code)Code-SP"){
+  field(ASG, "Reserved")
+	field(DESC, "Event $(code) code")
+	field(DRVH, "63")
 	field(DRVL, "1")
 	field(VAL, "$(code)")
 }
 
 record(longout, "$(P)$(R)Evt$(code)Delay-SP"){
-	field(DESC, "Event $(num) timestamp")
-	field(DRVL, "100")
-	field(VAL, "$(time)")
-	field(OUT, "$(P)$(R)Evtn$(num)Delay-SP PP")
-}
-
-record(longout, "$(P)$(R)Evtn$(num)Delay-SP"){
-	field(DESC, "Event $(num) timestamp")
+	field(DESC, "Event $(code) timestamp")
 	field(DRVL, "100")
 	field(VAL, "$(time)")
 }
 
 record(bo, "$(P)$(R)Evt$(code)DelayType-Sel"){
-	field(DESC, "Delay mode (Incr | Fixed)")
-	field(ZNAM, "Incr")
-	field(ONAM, "Fixed")
-	field(VAL, "$(mode)")
-	field(OUT, "$(P)$(R)Evtn$(num)DelayType-Sel PP")
-}
-
-record(bo, "$(P)$(R)Evtn$(num)DelayType-Sel"){
 	field(DESC, "Delay mode (Incr | Fixed)")
 	field(ZNAM, "Incr")
 	field(ONAM, "Fixed")
@@ -61,45 +41,24 @@ record(mbbo, "$(P)$(R)Evt$(code)Mode-Sel"){
 	field(THVL, "3")
 	field(THST, "External")
 	field(VAL, "$(transm)")
-	field(OUT, "$(P)$(R)Evtn$(num)Mode-Sel PP")
-}
-
-record(mbbo, "$(P)$(R)Evtn$(num)Mode-Sel"){
-	field(DESC, "Transmission mode")
-	field(ZRVL, "0")
-	field(ZRST, "Disable")
-	field(ONVL, "1")
-	field(ONST, "Continuous")
-	field(TWVL, "2")
-	field(TWST, "Injection")
-	field(THVL, "3")
-	field(THST, "External")
-	field(VAL, "$(transm)")
 }
 
 record(bo, "$(P)$(R)Evt$(code)ExtTrig-Cmd"){
 	field(DESC, "Send an asynchronous event")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
-	field(OUT, "$(P)$(R)Evtn$(num)ExtTrig-Cmd PP")
+	field(FLNK, "$(P)$(R)AsynEvt$(code)")
 }
 
-record(bo, "$(P)$(R)Evtn$(num)ExtTrig-Cmd"){
-	field(DESC, "Send an asynchronous event")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
-	field(FLNK, "$(P)$(R)AsynEvtn$(num)")
-}
-
-record(calcout, "$(P)$(R)AsynEvtn$(num)") {
-  #field(ASG, "Reserved")
+record(calcout, "$(P)$(R)AsynEvt$(code)") {
+  field(ASG, "Reserved")
   field(DESC, "Asyn event calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Evtn$(num)Mode-Sel")
-  field(INPB, "$(P)$(R)Evtn$(num)ExtTrig-Cmd")
+  field(INPA, "$(P)$(R)Evt$(code)Mode-Sel")
+  field(INPB, "$(P)$(R)Evt$(code)ExtTrig-Cmd")
   field(INPC, "$(code)")
   field(CALC, "(A=3)?C:0")
-  field(OUT, "@timing.proto evg_async_set($(P),$(R),AsynEvtn$(num)) $(PORT)")
+  field(OUT, "@timing.proto evg_async_set($(P),$(R),AsynEvt$(code)) $(PORT)")
 }
 
 #####################################################
