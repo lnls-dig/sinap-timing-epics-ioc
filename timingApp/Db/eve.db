@@ -73,16 +73,16 @@ record(longout, "$(P)$(R)cmd_ctrl_set") {
 ########################################################################
 # OTP0 Register [1]
 
-record(longout, "$(P)$(R)IntTrig00Evt-Sel") {
+record(longout, "$(P)$(R)OTP00Evt-SP") {
   field(DESC, "EVE OTP0 event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),00) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig00DelayRaw")
+  field(FLNK, "$(P)$(R)OTP00DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig00Pulses-SP"){
+record(longout, "$(P)$(R)OTP00Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP0 number of pulses")
   field(DRVH, "65535")
@@ -90,10 +90,10 @@ record(longout, "$(P)$(R)IntTrig00Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),00) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig00DelayRaw")
+  field(FLNK, "$(P)$(R)OTP00DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig00Width-SP") {
+record(longout, "$(P)$(R)OTP00Width-SP") {
   field(DESC, "EVE OTP0 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -101,86 +101,86 @@ record(longout, "$(P)$(R)IntTrig00Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),00) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig00DelayRaw")
+  field(FLNK, "$(P)$(R)OTP00DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig00Delay-SP") {
+record(longout, "$(P)$(R)OTP00Delay-SP") {
   field(DESC, "EVE OTP0 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),00) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig00DelayRaw")
+  field(FLNK, "$(P)$(R)OTP00DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig00Enbl-SP") {
+record(bo, "$(P)$(R)OTP00Enbl-SP") {
   field(DESC, "EVE OTP0 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig00EnblCalc")
+  field(FLNK, "$(P)$(R)OTP00EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig00Pol-Sel") {
+record(bo, "$(P)$(R)OTP00Pol-Sel") {
   field(DESC, "EVE OTP0 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig00PolCalc")
+  field(FLNK, "$(P)$(R)OTP00PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig00Log-Sel") {
+record(bo, "$(P)$(R)OTP00Log-Sel") {
   field(DESC, "EVE OTP0 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig00LogCalc")
+  field(FLNK, "$(P)$(R)OTP00LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig00EnblCalc") {
+record(calcout, "$(P)$(R)OTP00EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig00Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig00Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig00Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP00Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP00Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP00Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),00,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig00DelayCalc")
+  field(FLNK, "$(P)$(R)OTP00DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig00PolCalc") {
+record(calcout, "$(P)$(R)OTP00PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig00Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig00Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig00Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP00Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP00Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP00Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),00,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig00DelayCalc")
+  field(FLNK, "$(P)$(R)OTP00DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig00LogCalc") {
+record(calcout, "$(P)$(R)OTP00LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig00Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig00Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig00Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP00Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP00Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP00Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),00,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig00DelayCalc")
+  field(FLNK, "$(P)$(R)OTP00DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig00DelayCalc") {
+record(calcout, "$(P)$(R)OTP00DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig00Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig00Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig00Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP00Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP00Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP00Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig00DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP00DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP0 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -188,53 +188,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig00DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime0RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig00Log-Sts")
+  field(FLNK, "$(P)$(R)OTP00Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig00Log-Sts") {
+record(bi, "$(P)$(R)OTP00Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig00DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig00Pol-Sts")
+  field(INP, "$(P)$(R)OTP00DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP00Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig00Pol-Sts") {
+record(bi, "$(P)$(R)OTP00Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig00DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig00Enbl-RB")
+  field(INP, "$(P)$(R)OTP00DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP00Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig00Enbl-RB") {
+record(bi, "$(P)$(R)OTP00Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig00DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP00DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig00Pulses-RB"){
+record(longin, "$(P)$(R)OTP00Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig00Evt-Sts") {
+record(longin, "$(P)$(R)OTP00Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig00Width-RB") {
+record(longin, "$(P)$(R)OTP00Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig00Delay-RB") {
+record(longin, "$(P)$(R)OTP00Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 delay RBV")
   field(EGU, "evt_T")
@@ -255,16 +255,16 @@ record(longout, "$(P)$(R)cmd_otp_get00") {
 ########################################################################
 # OTP1 Register [2]
 
-record(longout, "$(P)$(R)IntTrig01Evt-Sel") {
+record(longout, "$(P)$(R)OTP01Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),01) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig01DelayRaw")
+  field(FLNK, "$(P)$(R)OTP01DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig01Pulses-SP"){
+record(longout, "$(P)$(R)OTP01Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP1 number of pulses")
   field(DRVH, "65535")
@@ -272,10 +272,10 @@ record(longout, "$(P)$(R)IntTrig01Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),01) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig01DelayRaw")
+  field(FLNK, "$(P)$(R)OTP01DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig01Width-SP") {
+record(longout, "$(P)$(R)OTP01Width-SP") {
   field(DESC, "EVE OTP1 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -283,86 +283,86 @@ record(longout, "$(P)$(R)IntTrig01Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),01) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig01DelayRaw")
+  field(FLNK, "$(P)$(R)OTP01DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig01Delay-SP") {
+record(longout, "$(P)$(R)OTP01Delay-SP") {
   field(DESC, "EVE OTP1 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),01) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig01DelayRaw")
+  field(FLNK, "$(P)$(R)OTP01DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig01Enbl-SP") {
+record(bo, "$(P)$(R)OTP01Enbl-SP") {
   field(DESC, "EVE OTP1 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig01EnblCalc")
+  field(FLNK, "$(P)$(R)OTP01EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig01Pol-Sel") {
+record(bo, "$(P)$(R)OTP01Pol-Sel") {
   field(DESC, "EVE OTP1 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig01PolCalc")
+  field(FLNK, "$(P)$(R)OTP01PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig01Log-Sel") {
+record(bo, "$(P)$(R)OTP01Log-Sel") {
   field(DESC, "EVE OTP1 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig01LogCalc")
+  field(FLNK, "$(P)$(R)OTP01LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig01EnblCalc") {
+record(calcout, "$(P)$(R)OTP01EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig01Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig01Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig01Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP01Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP01Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP01Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),01,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig01DelayCalc")
+  field(FLNK, "$(P)$(R)OTP01DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig01PolCalc") {
+record(calcout, "$(P)$(R)OTP01PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig01Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig01Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig01Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP01Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP01Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP01Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),01,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig01DelayCalc")
+  field(FLNK, "$(P)$(R)OTP01DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig01LogCalc") {
+record(calcout, "$(P)$(R)OTP01LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig01Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig01Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig01Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP01Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP01Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP01Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),01,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig01DelayCalc")
+  field(FLNK, "$(P)$(R)OTP01DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig01DelayCalc") {
+record(calcout, "$(P)$(R)OTP01DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig01Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig01Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig01Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP01Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP01Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP01Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig01DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP01DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP1 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -370,53 +370,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig01DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime1RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig01Log-Sts")
+  field(FLNK, "$(P)$(R)OTP01Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig01Log-Sts") {
+record(bi, "$(P)$(R)OTP01Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig01DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig01Pol-Sts")
+  field(INP, "$(P)$(R)OTP01DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP01Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig01Pol-Sts") {
+record(bi, "$(P)$(R)OTP01Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig01DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig01Enbl-RB")
+  field(INP, "$(P)$(R)OTP01DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP01Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig01Enbl-RB") {
+record(bi, "$(P)$(R)OTP01Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig01DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP01DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig01Pulses-RB"){
+record(longin, "$(P)$(R)OTP01Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig01Evt-Sts") {
+record(longin, "$(P)$(R)OTP01Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig01Width-RB") {
+record(longin, "$(P)$(R)OTP01Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig01Delay-RB") {
+record(longin, "$(P)$(R)OTP01Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 delay RBV")
   field(EGU, "evt_T")
@@ -437,16 +437,16 @@ record(longout, "$(P)$(R)cmd_otp_get01") {
 ########################################################################
 # OTP2 Register [3]
 
-record(longout, "$(P)$(R)IntTrig02Evt-Sel") {
+record(longout, "$(P)$(R)OTP02Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),02) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig02DelayRaw")
+  field(FLNK, "$(P)$(R)OTP02DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig02Pulses-SP"){
+record(longout, "$(P)$(R)OTP02Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP2 number of pulses")
   field(DRVH, "65535")
@@ -454,10 +454,10 @@ record(longout, "$(P)$(R)IntTrig02Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),02) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig02DelayRaw")
+  field(FLNK, "$(P)$(R)OTP02DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig02Width-SP") {
+record(longout, "$(P)$(R)OTP02Width-SP") {
   field(DESC, "EVE OTP2 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -465,86 +465,86 @@ record(longout, "$(P)$(R)IntTrig02Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),02) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig02DelayRaw")
+  field(FLNK, "$(P)$(R)OTP02DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig02Delay-SP") {
+record(longout, "$(P)$(R)OTP02Delay-SP") {
   field(DESC, "EVE OTP2 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),02) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig02DelayRaw")
+  field(FLNK, "$(P)$(R)OTP02DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig02Enbl-SP") {
+record(bo, "$(P)$(R)OTP02Enbl-SP") {
   field(DESC, "EVE OTP2 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig02EnblCalc")
+  field(FLNK, "$(P)$(R)OTP02EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig02Pol-Sel") {
+record(bo, "$(P)$(R)OTP02Pol-Sel") {
   field(DESC, "EVE OTP2 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig02PolCalc")
+  field(FLNK, "$(P)$(R)OTP02PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig02Log-Sel") {
+record(bo, "$(P)$(R)OTP02Log-Sel") {
   field(DESC, "EVE OTP2 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig02LogCalc")
+  field(FLNK, "$(P)$(R)OTP02LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig02EnblCalc") {
+record(calcout, "$(P)$(R)OTP02EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig02Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig02Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig02Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP02Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP02Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP02Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),02,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig02DelayCalc")
+  field(FLNK, "$(P)$(R)OTP02DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig02PolCalc") {
+record(calcout, "$(P)$(R)OTP02PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig02Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig02Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig02Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP02Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP02Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP02Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),02,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig02DelayCalc")
+  field(FLNK, "$(P)$(R)OTP02DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig02LogCalc") {
+record(calcout, "$(P)$(R)OTP02LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig02Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig02Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig02Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP02Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP02Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP02Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),02,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig02DelayCalc")
+  field(FLNK, "$(P)$(R)OTP02DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig02DelayCalc") {
+record(calcout, "$(P)$(R)OTP02DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig02Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig02Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig02Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP02Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP02Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP02Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig02DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP02DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP2 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -552,53 +552,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig02DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime2RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig02Log-Sts")
+  field(FLNK, "$(P)$(R)OTP02Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig02Log-Sts") {
+record(bi, "$(P)$(R)OTP02Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig02DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig02Pol-Sts")
+  field(INP, "$(P)$(R)OTP02DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP02Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig02Pol-Sts") {
+record(bi, "$(P)$(R)OTP02Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig02DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig02Enbl-RB")
+  field(INP, "$(P)$(R)OTP02DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP02Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig02Enbl-RB") {
+record(bi, "$(P)$(R)OTP02Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig02DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP02DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig02Pulses-RB"){
+record(longin, "$(P)$(R)OTP02Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig02Evt-Sts") {
+record(longin, "$(P)$(R)OTP02Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig02Width-RB") {
+record(longin, "$(P)$(R)OTP02Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig02Delay-RB") {
+record(longin, "$(P)$(R)OTP02Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 delay RBV")
   field(EGU, "evt_T")
@@ -619,16 +619,16 @@ record(longout, "$(P)$(R)cmd_otp_get02") {
 ########################################################################
 # OTP3 Register [4]
 
-record(longout, "$(P)$(R)IntTrig03Evt-Sel") {
+record(longout, "$(P)$(R)OTP03Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),03) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig03DelayRaw")
+  field(FLNK, "$(P)$(R)OTP03DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig03Pulses-SP"){
+record(longout, "$(P)$(R)OTP03Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP3 number of pulses")
   field(DRVH, "65535")
@@ -636,10 +636,10 @@ record(longout, "$(P)$(R)IntTrig03Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),03) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig03DelayRaw")
+  field(FLNK, "$(P)$(R)OTP03DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig03Width-SP") {
+record(longout, "$(P)$(R)OTP03Width-SP") {
   field(DESC, "EVE OTP3 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -647,86 +647,86 @@ record(longout, "$(P)$(R)IntTrig03Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),03) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig03DelayRaw")
+  field(FLNK, "$(P)$(R)OTP03DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig03Delay-SP") {
+record(longout, "$(P)$(R)OTP03Delay-SP") {
   field(DESC, "EVE OTP3 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),03) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig03DelayRaw")
+  field(FLNK, "$(P)$(R)OTP03DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig03Enbl-SP") {
+record(bo, "$(P)$(R)OTP03Enbl-SP") {
   field(DESC, "EVE OTP3 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig03EnblCalc")
+  field(FLNK, "$(P)$(R)OTP03EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig03Pol-Sel") {
+record(bo, "$(P)$(R)OTP03Pol-Sel") {
   field(DESC, "EVE OTP3 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig03PolCalc")
+  field(FLNK, "$(P)$(R)OTP03PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig03Log-Sel") {
+record(bo, "$(P)$(R)OTP03Log-Sel") {
   field(DESC, "EVE OTP3 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig03LogCalc")
+  field(FLNK, "$(P)$(R)OTP03LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig03EnblCalc") {
+record(calcout, "$(P)$(R)OTP03EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig03Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig03Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig03Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP03Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP03Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP03Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),03,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig03DelayCalc")
+  field(FLNK, "$(P)$(R)OTP03DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig03PolCalc") {
+record(calcout, "$(P)$(R)OTP03PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig03Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig03Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig03Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP03Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP03Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP03Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),03,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig03DelayCalc")
+  field(FLNK, "$(P)$(R)OTP03DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig03LogCalc") {
+record(calcout, "$(P)$(R)OTP03LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig03Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig03Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig03Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP03Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP03Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP03Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),03,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig03DelayCalc")
+  field(FLNK, "$(P)$(R)OTP03DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig03DelayCalc") {
+record(calcout, "$(P)$(R)OTP03DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig03Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig03Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig03Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP03Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP03Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP03Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig03DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP03DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP3 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -734,53 +734,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig03DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime3RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig03Log-Sts")
+  field(FLNK, "$(P)$(R)OTP03Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig03Log-Sts") {
+record(bi, "$(P)$(R)OTP03Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig03DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig03Pol-Sts")
+  field(INP, "$(P)$(R)OTP03DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP03Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig03Pol-Sts") {
+record(bi, "$(P)$(R)OTP03Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig03DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig03Enbl-RB")
+  field(INP, "$(P)$(R)OTP03DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP03Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig03Enbl-RB") {
+record(bi, "$(P)$(R)OTP03Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig03DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP03DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig03Pulses-RB"){
+record(longin, "$(P)$(R)OTP03Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig03Evt-Sts") {
+record(longin, "$(P)$(R)OTP03Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig03Width-RB") {
+record(longin, "$(P)$(R)OTP03Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig03Delay-RB") {
+record(longin, "$(P)$(R)OTP03Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 delay RBV")
   field(EGU, "evt_T")
@@ -801,16 +801,16 @@ record(longout, "$(P)$(R)cmd_otp_get03") {
 ########################################################################
 # OTP4 Register [5]
 
-record(longout, "$(P)$(R)IntTrig04Evt-Sel") {
+record(longout, "$(P)$(R)OTP04Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),04) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig04DelayRaw")
+  field(FLNK, "$(P)$(R)OTP04DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig04Pulses-SP"){
+record(longout, "$(P)$(R)OTP04Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP4 number of pulses")
   field(DRVH, "65535")
@@ -818,10 +818,10 @@ record(longout, "$(P)$(R)IntTrig04Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),04) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig04DelayRaw")
+  field(FLNK, "$(P)$(R)OTP04DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig04Width-SP") {
+record(longout, "$(P)$(R)OTP04Width-SP") {
   field(DESC, "EVE OTP4 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -829,86 +829,86 @@ record(longout, "$(P)$(R)IntTrig04Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),04) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig04DelayRaw")
+  field(FLNK, "$(P)$(R)OTP04DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig04Delay-SP") {
+record(longout, "$(P)$(R)OTP04Delay-SP") {
   field(DESC, "EVE OTP4 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),04) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig04DelayRaw")
+  field(FLNK, "$(P)$(R)OTP04DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig04Enbl-SP") {
+record(bo, "$(P)$(R)OTP04Enbl-SP") {
   field(DESC, "EVE OTP4 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig04EnblCalc")
+  field(FLNK, "$(P)$(R)OTP04EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig04Pol-Sel") {
+record(bo, "$(P)$(R)OTP04Pol-Sel") {
   field(DESC, "EVE OTP4 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig04PolCalc")
+  field(FLNK, "$(P)$(R)OTP04PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig04Log-Sel") {
+record(bo, "$(P)$(R)OTP04Log-Sel") {
   field(DESC, "EVE OTP4 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig04LogCalc")
+  field(FLNK, "$(P)$(R)OTP04LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig04EnblCalc") {
+record(calcout, "$(P)$(R)OTP04EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig04Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig04Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig04Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP04Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP04Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP04Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),04,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig04DelayCalc")
+  field(FLNK, "$(P)$(R)OTP04DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig04PolCalc") {
+record(calcout, "$(P)$(R)OTP04PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig04Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig04Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig04Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP04Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP04Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP04Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),04,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig04DelayCalc")
+  field(FLNK, "$(P)$(R)OTP04DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig04LogCalc") {
+record(calcout, "$(P)$(R)OTP04LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig04Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig04Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig04Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP04Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP04Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP04Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),04,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig04DelayCalc")
+  field(FLNK, "$(P)$(R)OTP04DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig04DelayCalc") {
+record(calcout, "$(P)$(R)OTP04DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig04Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig04Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig04Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP04Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP04Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP04Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig04DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP04DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP4 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -916,53 +916,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig04DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime4RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig04Log-Sts")
+  field(FLNK, "$(P)$(R)OTP04Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig04Log-Sts") {
+record(bi, "$(P)$(R)OTP04Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig04DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig04Pol-Sts")
+  field(INP, "$(P)$(R)OTP04DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP04Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig04Pol-Sts") {
+record(bi, "$(P)$(R)OTP04Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig04DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig04Enbl-RB")
+  field(INP, "$(P)$(R)OTP04DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP04Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig04Enbl-RB") {
+record(bi, "$(P)$(R)OTP04Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig04DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP04DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig04Pulses-RB"){
+record(longin, "$(P)$(R)OTP04Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig04Evt-Sts") {
+record(longin, "$(P)$(R)OTP04Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig04Width-RB") {
+record(longin, "$(P)$(R)OTP04Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig04Delay-RB") {
+record(longin, "$(P)$(R)OTP04Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 delay RBV")
   field(EGU, "evt_T")
@@ -983,16 +983,16 @@ record(longout, "$(P)$(R)cmd_otp_get04") {
 ########################################################################
 # OTP5 Register [6]
 
-record(longout, "$(P)$(R)IntTrig05Evt-Sel") {
+record(longout, "$(P)$(R)OTP05Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),05) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig05DelayRaw")
+  field(FLNK, "$(P)$(R)OTP05DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig05Pulses-SP"){
+record(longout, "$(P)$(R)OTP05Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP5 number of pulses")
   field(DRVH, "65535")
@@ -1000,10 +1000,10 @@ record(longout, "$(P)$(R)IntTrig05Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),05) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig05DelayRaw")
+  field(FLNK, "$(P)$(R)OTP05DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig05Width-SP") {
+record(longout, "$(P)$(R)OTP05Width-SP") {
   field(DESC, "EVE OTP5 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -1011,86 +1011,86 @@ record(longout, "$(P)$(R)IntTrig05Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),05) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig05DelayRaw")
+  field(FLNK, "$(P)$(R)OTP05DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig05Delay-SP") {
+record(longout, "$(P)$(R)OTP05Delay-SP") {
   field(DESC, "EVE OTP5 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),05) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig05DelayRaw")
+  field(FLNK, "$(P)$(R)OTP05DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig05Enbl-SP") {
+record(bo, "$(P)$(R)OTP05Enbl-SP") {
   field(DESC, "EVE OTP5 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig05EnblCalc")
+  field(FLNK, "$(P)$(R)OTP05EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig05Pol-Sel") {
+record(bo, "$(P)$(R)OTP05Pol-Sel") {
   field(DESC, "EVE OTP5 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig05PolCalc")
+  field(FLNK, "$(P)$(R)OTP05PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig05Log-Sel") {
+record(bo, "$(P)$(R)OTP05Log-Sel") {
   field(DESC, "EVE OTP5 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig05LogCalc")
+  field(FLNK, "$(P)$(R)OTP05LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig05EnblCalc") {
+record(calcout, "$(P)$(R)OTP05EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig05Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig05Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig05Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP05Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP05Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP05Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),05,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig05DelayCalc")
+  field(FLNK, "$(P)$(R)OTP05DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig05PolCalc") {
+record(calcout, "$(P)$(R)OTP05PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig05Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig05Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig05Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP05Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP05Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP05Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),05,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig05DelayCalc")
+  field(FLNK, "$(P)$(R)OTP05DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig05LogCalc") {
+record(calcout, "$(P)$(R)OTP05LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig05Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig05Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig05Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP05Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP05Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP05Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),05,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig05DelayCalc")
+  field(FLNK, "$(P)$(R)OTP05DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig05DelayCalc") {
+record(calcout, "$(P)$(R)OTP05DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig05Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig05Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig05Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP05Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP05Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP05Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig05DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP05DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP5 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -1098,53 +1098,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig05DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime5RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig05Log-Sts")
+  field(FLNK, "$(P)$(R)OTP05Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig05Log-Sts") {
+record(bi, "$(P)$(R)OTP05Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig05DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig05Pol-Sts")
+  field(INP, "$(P)$(R)OTP05DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP05Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig05Pol-Sts") {
+record(bi, "$(P)$(R)OTP05Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig05DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig05Enbl-RB")
+  field(INP, "$(P)$(R)OTP05DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP05Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig05Enbl-RB") {
+record(bi, "$(P)$(R)OTP05Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig05DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP05DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig05Pulses-RB"){
+record(longin, "$(P)$(R)OTP05Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig05Evt-Sts") {
+record(longin, "$(P)$(R)OTP05Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig05Width-RB") {
+record(longin, "$(P)$(R)OTP05Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig05Delay-RB") {
+record(longin, "$(P)$(R)OTP05Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 delay RBV")
   field(EGU, "evt_T")
@@ -1165,16 +1165,16 @@ record(longout, "$(P)$(R)cmd_otp_get05") {
 ########################################################################
 # OTP6 Register [7]
 
-record(longout, "$(P)$(R)IntTrig06Evt-Sel") {
+record(longout, "$(P)$(R)OTP06Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),06) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig06DelayRaw")
+  field(FLNK, "$(P)$(R)OTP06DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig06Pulses-SP"){
+record(longout, "$(P)$(R)OTP06Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP6 number of pulses")
   field(DRVH, "65535")
@@ -1182,10 +1182,10 @@ record(longout, "$(P)$(R)IntTrig06Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),06) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig06DelayRaw")
+  field(FLNK, "$(P)$(R)OTP06DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig06Width-SP") {
+record(longout, "$(P)$(R)OTP06Width-SP") {
   field(DESC, "EVE OTP6 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -1193,86 +1193,86 @@ record(longout, "$(P)$(R)IntTrig06Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),06) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig06DelayRaw")
+  field(FLNK, "$(P)$(R)OTP06DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig06Delay-SP") {
+record(longout, "$(P)$(R)OTP06Delay-SP") {
   field(DESC, "EVE OTP6 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),06) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig06DelayRaw")
+  field(FLNK, "$(P)$(R)OTP06DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig06Enbl-SP") {
+record(bo, "$(P)$(R)OTP06Enbl-SP") {
   field(DESC, "EVE OTP6 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig06EnblCalc")
+  field(FLNK, "$(P)$(R)OTP06EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig06Pol-Sel") {
+record(bo, "$(P)$(R)OTP06Pol-Sel") {
   field(DESC, "EVE OTP6 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig06PolCalc")
+  field(FLNK, "$(P)$(R)OTP06PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig06Log-Sel") {
+record(bo, "$(P)$(R)OTP06Log-Sel") {
   field(DESC, "EVE OTP6 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig06LogCalc")
+  field(FLNK, "$(P)$(R)OTP06LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig06EnblCalc") {
+record(calcout, "$(P)$(R)OTP06EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig06Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig06Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig06Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP06Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP06Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP06Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),06,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig06DelayCalc")
+  field(FLNK, "$(P)$(R)OTP06DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig06PolCalc") {
+record(calcout, "$(P)$(R)OTP06PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig06Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig06Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig06Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP06Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP06Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP06Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),06,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig06DelayCalc")
+  field(FLNK, "$(P)$(R)OTP06DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig06LogCalc") {
+record(calcout, "$(P)$(R)OTP06LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig06Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig06Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig06Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP06Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP06Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP06Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),06,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig06DelayCalc")
+  field(FLNK, "$(P)$(R)OTP06DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig06DelayCalc") {
+record(calcout, "$(P)$(R)OTP06DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig06Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig06Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig06Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP06Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP06Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP06Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig06DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP06DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP6 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -1280,53 +1280,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig06DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime6RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig06Log-Sts")
+  field(FLNK, "$(P)$(R)OTP06Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig06Log-Sts") {
+record(bi, "$(P)$(R)OTP06Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig06DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig06Pol-Sts")
+  field(INP, "$(P)$(R)OTP06DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP06Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig06Pol-Sts") {
+record(bi, "$(P)$(R)OTP06Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig06DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig06Enbl-RB")
+  field(INP, "$(P)$(R)OTP06DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP06Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig06Enbl-RB") {
+record(bi, "$(P)$(R)OTP06Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig06DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP06DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig06Pulses-RB"){
+record(longin, "$(P)$(R)OTP06Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig06Evt-Sts") {
+record(longin, "$(P)$(R)OTP06Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig06Width-RB") {
+record(longin, "$(P)$(R)OTP06Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig06Delay-RB") {
+record(longin, "$(P)$(R)OTP06Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 delay RBV")
   field(EGU, "evt_T")
@@ -1347,16 +1347,16 @@ record(longout, "$(P)$(R)cmd_otp_get06") {
 ########################################################################
 # OTP7 Register [8]
 
-record(longout, "$(P)$(R)IntTrig07Evt-Sel") {
+record(longout, "$(P)$(R)OTP07Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),07) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig07DelayRaw")
+  field(FLNK, "$(P)$(R)OTP07DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig07Pulses-SP"){
+record(longout, "$(P)$(R)OTP07Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP7 number of pulses")
   field(DRVH, "65535")
@@ -1364,10 +1364,10 @@ record(longout, "$(P)$(R)IntTrig07Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),07) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig07DelayRaw")
+  field(FLNK, "$(P)$(R)OTP07DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig07Width-SP") {
+record(longout, "$(P)$(R)OTP07Width-SP") {
   field(DESC, "EVE OTP7 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -1375,86 +1375,86 @@ record(longout, "$(P)$(R)IntTrig07Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),07) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig07DelayRaw")
+  field(FLNK, "$(P)$(R)OTP07DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig07Delay-SP") {
+record(longout, "$(P)$(R)OTP07Delay-SP") {
   field(DESC, "EVE OTP7 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),07) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig07DelayRaw")
+  field(FLNK, "$(P)$(R)OTP07DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig07Enbl-SP") {
+record(bo, "$(P)$(R)OTP07Enbl-SP") {
   field(DESC, "EVE OTP7 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig07EnblCalc")
+  field(FLNK, "$(P)$(R)OTP07EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig07Pol-Sel") {
+record(bo, "$(P)$(R)OTP07Pol-Sel") {
   field(DESC, "EVE OTP7 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig07PolCalc")
+  field(FLNK, "$(P)$(R)OTP07PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig07Log-Sel") {
+record(bo, "$(P)$(R)OTP07Log-Sel") {
   field(DESC, "EVE OTP7 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig07LogCalc")
+  field(FLNK, "$(P)$(R)OTP07LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig07EnblCalc") {
+record(calcout, "$(P)$(R)OTP07EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig07Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig07Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig07Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP07Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP07Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP07Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),07,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig07DelayCalc")
+  field(FLNK, "$(P)$(R)OTP07DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig07PolCalc") {
+record(calcout, "$(P)$(R)OTP07PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig07Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig07Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig07Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP07Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP07Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP07Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),07,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig07DelayCalc")
+  field(FLNK, "$(P)$(R)OTP07DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig07LogCalc") {
+record(calcout, "$(P)$(R)OTP07LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig07Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig07Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig07Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP07Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP07Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP07Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),07,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig07DelayCalc")
+  field(FLNK, "$(P)$(R)OTP07DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig07DelayCalc") {
+record(calcout, "$(P)$(R)OTP07DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig07Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig07Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig07Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP07Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP07Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP07Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig07DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP07DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP7 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -1462,53 +1462,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig07DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime7RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig07Log-Sts")
+  field(FLNK, "$(P)$(R)OTP07Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig07Log-Sts") {
+record(bi, "$(P)$(R)OTP07Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig07DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig07Pol-Sts")
+  field(INP, "$(P)$(R)OTP07DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP07Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig07Pol-Sts") {
+record(bi, "$(P)$(R)OTP07Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig07DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig07Enbl-RB")
+  field(INP, "$(P)$(R)OTP07DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP07Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig07Enbl-RB") {
+record(bi, "$(P)$(R)OTP07Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig07DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP07DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig07Pulses-RB"){
+record(longin, "$(P)$(R)OTP07Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig07Evt-Sts") {
+record(longin, "$(P)$(R)OTP07Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig07Width-RB") {
+record(longin, "$(P)$(R)OTP07Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig07Delay-RB") {
+record(longin, "$(P)$(R)OTP07Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 delay RBV")
   field(EGU, "evt_T")
@@ -1529,16 +1529,16 @@ record(longout, "$(P)$(R)cmd_otp_get07") {
 ########################################################################
 # OTP8 Register [9]
 
-record(longout, "$(P)$(R)IntTrig08Evt-Sel") {
+record(longout, "$(P)$(R)OTP08Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),08) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig08DelayRaw")
+  field(FLNK, "$(P)$(R)OTP08DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig08Pulses-SP"){
+record(longout, "$(P)$(R)OTP08Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP8 number of pulses")
   field(DRVH, "65535")
@@ -1546,10 +1546,10 @@ record(longout, "$(P)$(R)IntTrig08Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),08) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig08DelayRaw")
+  field(FLNK, "$(P)$(R)OTP08DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig08Width-SP") {
+record(longout, "$(P)$(R)OTP08Width-SP") {
   field(DESC, "EVE OTP8 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -1557,86 +1557,86 @@ record(longout, "$(P)$(R)IntTrig08Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),08) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig08DelayRaw")
+  field(FLNK, "$(P)$(R)OTP08DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig08Delay-SP") {
+record(longout, "$(P)$(R)OTP08Delay-SP") {
   field(DESC, "EVE OTP8 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),08) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig08DelayRaw")
+  field(FLNK, "$(P)$(R)OTP08DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig08Enbl-SP") {
+record(bo, "$(P)$(R)OTP08Enbl-SP") {
   field(DESC, "EVE OTP8 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig08EnblCalc")
+  field(FLNK, "$(P)$(R)OTP08EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig08Pol-Sel") {
+record(bo, "$(P)$(R)OTP08Pol-Sel") {
   field(DESC, "EVE OTP8 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig08PolCalc")
+  field(FLNK, "$(P)$(R)OTP08PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig08Log-Sel") {
+record(bo, "$(P)$(R)OTP08Log-Sel") {
   field(DESC, "EVE OTP8 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig08LogCalc")
+  field(FLNK, "$(P)$(R)OTP08LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig08EnblCalc") {
+record(calcout, "$(P)$(R)OTP08EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig08Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig08Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig08Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP08Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP08Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP08Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),08,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig08DelayCalc")
+  field(FLNK, "$(P)$(R)OTP08DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig08PolCalc") {
+record(calcout, "$(P)$(R)OTP08PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig08Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig08Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig08Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP08Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP08Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP08Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),08,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig08DelayCalc")
+  field(FLNK, "$(P)$(R)OTP08DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig08LogCalc") {
+record(calcout, "$(P)$(R)OTP08LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig08Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig08Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig08Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP08Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP08Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP08Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),08,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig08DelayCalc")
+  field(FLNK, "$(P)$(R)OTP08DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig08DelayCalc") {
+record(calcout, "$(P)$(R)OTP08DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig08Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig08Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig08Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP08Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP08Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP08Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig08DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP08DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP8 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -1644,52 +1644,52 @@ record(mbbiDirect, "$(P)$(R)IntTrig08DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime8RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig08Log-Sts")
+  field(FLNK, "$(P)$(R)OTP08Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig08Log-Sts") {
+record(bi, "$(P)$(R)OTP08Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig08DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig08Pol-Sts")
+  field(INP, "$(P)$(R)OTP08DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP08Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig08Pol-Sts") {
+record(bi, "$(P)$(R)OTP08Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig08DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig08Enbl-RB")
+  field(INP, "$(P)$(R)OTP08DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP08Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig08Enbl-RB") {
+record(bi, "$(P)$(R)OTP08Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig08DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP08DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig08Pulses-RB"){
+record(longin, "$(P)$(R)OTP08Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 number of pulses RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig08Evt-Sts") {
+record(longin, "$(P)$(R)OTP08Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig08Width-RB") {
+record(longin, "$(P)$(R)OTP08Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig08Delay-RB") {
+record(longin, "$(P)$(R)OTP08Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 delay RBV")
   field(EGU, "evt_T")
@@ -1710,16 +1710,16 @@ record(longout, "$(P)$(R)cmd_otp_get08") {
 ########################################################################
 # OTP9 Register [10]
 
-record(longout, "$(P)$(R)IntTrig09Evt-Sel") {
+record(longout, "$(P)$(R)OTP09Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),09) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig09DelayRaw")
+  field(FLNK, "$(P)$(R)OTP09DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig09Pulses-SP"){
+record(longout, "$(P)$(R)OTP09Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP9 number of pulses")
   field(DRVH, "65535")
@@ -1727,10 +1727,10 @@ record(longout, "$(P)$(R)IntTrig09Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),09) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig09DelayRaw")
+  field(FLNK, "$(P)$(R)OTP09DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig09Width-SP") {
+record(longout, "$(P)$(R)OTP09Width-SP") {
   field(DESC, "EVE OTP9 event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -1738,86 +1738,86 @@ record(longout, "$(P)$(R)IntTrig09Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),09) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig09DelayRaw")
+  field(FLNK, "$(P)$(R)OTP09DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig09Delay-SP") {
+record(longout, "$(P)$(R)OTP09Delay-SP") {
   field(DESC, "EVE OTP9 event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),09) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig09DelayRaw")
+  field(FLNK, "$(P)$(R)OTP09DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig09Enbl-SP") {
+record(bo, "$(P)$(R)OTP09Enbl-SP") {
   field(DESC, "EVE OTP9 enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig09EnblCalc")
+  field(FLNK, "$(P)$(R)OTP09EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig09Pol-Sel") {
+record(bo, "$(P)$(R)OTP09Pol-Sel") {
   field(DESC, "EVE OTP9 polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig09PolCalc")
+  field(FLNK, "$(P)$(R)OTP09PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig09Log-Sel") {
+record(bo, "$(P)$(R)OTP09Log-Sel") {
   field(DESC, "EVE OTP9 event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig09LogCalc")
+  field(FLNK, "$(P)$(R)OTP09LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig09EnblCalc") {
+record(calcout, "$(P)$(R)OTP09EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig09Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig09Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig09Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP09Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP09Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP09Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),09,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig09DelayCalc")
+  field(FLNK, "$(P)$(R)OTP09DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig09PolCalc") {
+record(calcout, "$(P)$(R)OTP09PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig09Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig09Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig09Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP09Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP09Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP09Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),09,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig09DelayCalc")
+  field(FLNK, "$(P)$(R)OTP09DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig09LogCalc") {
+record(calcout, "$(P)$(R)OTP09LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig09Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig09Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig09Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP09Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP09Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP09Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),09,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig09DelayCalc")
+  field(FLNK, "$(P)$(R)OTP09DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig09DelayCalc") {
+record(calcout, "$(P)$(R)OTP09DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig09Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig09Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig09Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP09Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP09Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP09Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig09DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP09DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTP9 enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -1825,53 +1825,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig09DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime9RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig09Log-Sts")
+  field(FLNK, "$(P)$(R)OTP09Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig09Log-Sts") {
+record(bi, "$(P)$(R)OTP09Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig09DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig09Pol-Sts")
+  field(INP, "$(P)$(R)OTP09DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP09Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig09Pol-Sts") {
+record(bi, "$(P)$(R)OTP09Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig09DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig09Enbl-RB")
+  field(INP, "$(P)$(R)OTP09DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP09Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig09Enbl-RB") {
+record(bi, "$(P)$(R)OTP09Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig09DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP09DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig09Pulses-RB"){
+record(longin, "$(P)$(R)OTP09Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig09Evt-Sts") {
+record(longin, "$(P)$(R)OTP09Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig09Width-RB") {
+record(longin, "$(P)$(R)OTP09Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig09Delay-RB") {
+record(longin, "$(P)$(R)OTP09Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 delay RBV")
   field(EGU, "evt_T")
@@ -1892,16 +1892,16 @@ record(longout, "$(P)$(R)cmd_otp_get09") {
 ########################################################################
 # OTPA Register [11]
 
-record(longout, "$(P)$(R)IntTrig10Evt-Sel") {
+record(longout, "$(P)$(R)OTP10Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),10) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig10DelayRaw")
+  field(FLNK, "$(P)$(R)OTP10DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig10Pulses-SP"){
+record(longout, "$(P)$(R)OTP10Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPA number of pulses")
   field(DRVH, "65535")
@@ -1909,10 +1909,10 @@ record(longout, "$(P)$(R)IntTrig10Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),10) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig10DelayRaw")
+  field(FLNK, "$(P)$(R)OTP10DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig10Width-SP") {
+record(longout, "$(P)$(R)OTP10Width-SP") {
   field(DESC, "EVE OTPA event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -1920,86 +1920,86 @@ record(longout, "$(P)$(R)IntTrig10Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),10) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig10DelayRaw")
+  field(FLNK, "$(P)$(R)OTP10DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig10Delay-SP") {
+record(longout, "$(P)$(R)OTP10Delay-SP") {
   field(DESC, "EVE OTPA event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),10) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig10DelayRaw")
+  field(FLNK, "$(P)$(R)OTP10DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig10Enbl-SP") {
+record(bo, "$(P)$(R)OTP10Enbl-SP") {
   field(DESC, "EVE OTPA enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig10EnblCalc")
+  field(FLNK, "$(P)$(R)OTP10EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig10Pol-Sel") {
+record(bo, "$(P)$(R)OTP10Pol-Sel") {
   field(DESC, "EVE OTPB polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig10PolCalc")
+  field(FLNK, "$(P)$(R)OTP10PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig10Log-Sel") {
+record(bo, "$(P)$(R)OTP10Log-Sel") {
   field(DESC, "EVE OTPA event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig10LogCalc")
+  field(FLNK, "$(P)$(R)OTP10LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig10EnblCalc") {
+record(calcout, "$(P)$(R)OTP10EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig10Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig10Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig10Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP10Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP10Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP10Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),10,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig10DelayCalc")
+  field(FLNK, "$(P)$(R)OTP10DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig10PolCalc") {
+record(calcout, "$(P)$(R)OTP10PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig10Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig10Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig10Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP10Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP10Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP10Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),10,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig10DelayCalc")
+  field(FLNK, "$(P)$(R)OTP10DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig10LogCalc") {
+record(calcout, "$(P)$(R)OTP10LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig10Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig10Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig10Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP10Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP10Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP10Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),10,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig10DelayCalc")
+  field(FLNK, "$(P)$(R)OTP10DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig10DelayCalc") {
+record(calcout, "$(P)$(R)OTP10DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig10Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig10Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig10Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP10Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP10Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP10Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig10DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP10DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTPA enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -2007,53 +2007,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig10DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltimeARBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig10Log-Sts")
+  field(FLNK, "$(P)$(R)OTP10Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig10Log-Sts") {
+record(bi, "$(P)$(R)OTP10Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig10DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig10Pol-Sts")
+  field(INP, "$(P)$(R)OTP10DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP10Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig10Pol-Sts") {
+record(bi, "$(P)$(R)OTP10Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig10DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig10Enbl-RB")
+  field(INP, "$(P)$(R)OTP10DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP10Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig10Enbl-RB") {
+record(bi, "$(P)$(R)OTP10Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig10DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP10DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig10Pulses-RB"){
+record(longin, "$(P)$(R)OTP10Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig10Evt-Sts") {
+record(longin, "$(P)$(R)OTP10Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig10Width-RB") {
+record(longin, "$(P)$(R)OTP10Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig10Delay-RB") {
+record(longin, "$(P)$(R)OTP10Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA delay RBV")
   field(EGU, "evt_T")
@@ -2074,16 +2074,16 @@ record(longout, "$(P)$(R)cmd_otp_get10") {
 ########################################################################
 # OTPB Register [12]
 
-record(longout, "$(P)$(R)IntTrig11Evt-Sel") {
+record(longout, "$(P)$(R)OTP11Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),11) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig11DelayRaw")
+  field(FLNK, "$(P)$(R)OTP11DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig11Pulses-SP"){
+record(longout, "$(P)$(R)OTP11Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPB number of pulses")
   field(DRVH, "65535")
@@ -2091,10 +2091,10 @@ record(longout, "$(P)$(R)IntTrig11Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),11) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig11DelayRaw")
+  field(FLNK, "$(P)$(R)OTP11DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig11Width-SP") {
+record(longout, "$(P)$(R)OTP11Width-SP") {
   field(DESC, "EVE OTPB event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -2102,86 +2102,86 @@ record(longout, "$(P)$(R)IntTrig11Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),11) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig11DelayRaw")
+  field(FLNK, "$(P)$(R)OTP11DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig11Delay-SP") {
+record(longout, "$(P)$(R)OTP11Delay-SP") {
   field(DESC, "EVE OTPB event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),11) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig11DelayRaw")
+  field(FLNK, "$(P)$(R)OTP11DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig11Enbl-SP") {
+record(bo, "$(P)$(R)OTP11Enbl-SP") {
   field(DESC, "EVE OTPB enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig11EnblCalc")
+  field(FLNK, "$(P)$(R)OTP11EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig11Pol-Sel") {
+record(bo, "$(P)$(R)OTP11Pol-Sel") {
   field(DESC, "EVE OTPB polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig11PolCalc")
+  field(FLNK, "$(P)$(R)OTP11PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig11Log-Sel") {
+record(bo, "$(P)$(R)OTP11Log-Sel") {
   field(DESC, "EVE OTPB event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig11LogCalc")
+  field(FLNK, "$(P)$(R)OTP11LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig11EnblCalc") {
+record(calcout, "$(P)$(R)OTP11EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig11Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig11Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig11Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP11Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP11Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP11Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),11,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig11DelayCalc")
+  field(FLNK, "$(P)$(R)OTP11DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig11PolCalc") {
+record(calcout, "$(P)$(R)OTP11PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig11Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig11Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig11Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP11Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP11Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP11Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),11,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig11DelayCalc")
+  field(FLNK, "$(P)$(R)OTP11DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig11LogCalc") {
+record(calcout, "$(P)$(R)OTP11LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig11Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig11Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig11Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP11Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP11Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP11Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),11,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig11DelayCalc")
+  field(FLNK, "$(P)$(R)OTP11DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig11DelayCalc") {
+record(calcout, "$(P)$(R)OTP11DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig11Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig11Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig11Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP11Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP11Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP11Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig11DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP11DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTPB enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -2189,53 +2189,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig11DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltimeBRBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig11Log-Sts")
+  field(FLNK, "$(P)$(R)OTP11Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig11Log-Sts") {
+record(bi, "$(P)$(R)OTP11Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig11DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig11Pol-Sts")
+  field(INP, "$(P)$(R)OTP11DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP11Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig11Pol-Sts") {
+record(bi, "$(P)$(R)OTP11Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig11DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig11Enbl-RB")
+  field(INP, "$(P)$(R)OTP11DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP11Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig11Enbl-RB") {
+record(bi, "$(P)$(R)OTP11Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig11DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP11DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig11Pulses-RB"){
+record(longin, "$(P)$(R)OTP11Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig11Evt-Sts") {
+record(longin, "$(P)$(R)OTP11Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig11Width-RB") {
+record(longin, "$(P)$(R)OTP11Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig11Delay-RB") {
+record(longin, "$(P)$(R)OTP11Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB delay RBV")
   field(EGU, "evt_T")
@@ -2256,16 +2256,16 @@ record(longout, "$(P)$(R)cmd_otp_get11") {
 ########################################################################
 # OTPC Register [13]
 
-record(longout, "$(P)$(R)IntTrig12Evt-Sel") {
+record(longout, "$(P)$(R)OTP12Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),12) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig12DelayRaw")
+  field(FLNK, "$(P)$(R)OTP12DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig12Pulses-SP"){
+record(longout, "$(P)$(R)OTP12Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPC number of pulses")
   field(DRVH, "65535")
@@ -2273,10 +2273,10 @@ record(longout, "$(P)$(R)IntTrig12Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),12) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig12DelayRaw")
+  field(FLNK, "$(P)$(R)OTP12DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig12Width-SP") {
+record(longout, "$(P)$(R)OTP12Width-SP") {
   field(DESC, "EVE OTPC event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -2284,86 +2284,86 @@ record(longout, "$(P)$(R)IntTrig12Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),12) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig12DelayRaw")
+  field(FLNK, "$(P)$(R)OTP12DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig12Delay-SP") {
+record(longout, "$(P)$(R)OTP12Delay-SP") {
   field(DESC, "EVE OTPC event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),12) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig12DelayRaw")
+  field(FLNK, "$(P)$(R)OTP12DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig12Enbl-SP") {
+record(bo, "$(P)$(R)OTP12Enbl-SP") {
   field(DESC, "EVE OTPC enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig12EnblCalc")
+  field(FLNK, "$(P)$(R)OTP12EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig12Pol-Sel") {
+record(bo, "$(P)$(R)OTP12Pol-Sel") {
   field(DESC, "EVE OTPC polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig12PolCalc")
+  field(FLNK, "$(P)$(R)OTP12PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig12Log-Sel") {
+record(bo, "$(P)$(R)OTP12Log-Sel") {
   field(DESC, "EVE OTPC event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig12LogCalc")
+  field(FLNK, "$(P)$(R)OTP12LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig12EnblCalc") {
+record(calcout, "$(P)$(R)OTP12EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig12Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig12Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig12Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP12Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP12Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP12Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),12,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig12DelayCalc")
+  field(FLNK, "$(P)$(R)OTP12DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig12PolCalc") {
+record(calcout, "$(P)$(R)OTP12PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig12Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig12Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig12Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP12Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP12Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP12Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),12,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig12DelayCalc")
+  field(FLNK, "$(P)$(R)OTP12DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig12LogCalc") {
+record(calcout, "$(P)$(R)OTP12LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig12Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig12Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig12Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP12Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP12Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP12Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),12,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig12DelayCalc")
+  field(FLNK, "$(P)$(R)OTP12DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig12DelayCalc") {
+record(calcout, "$(P)$(R)OTP12DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig12Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig12Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig12Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP12Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP12Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP12Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig12DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP12DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTPC enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -2371,53 +2371,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig12DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltimeCRBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig12Log-Sts")
+  field(FLNK, "$(P)$(R)OTP12Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig12Log-Sts") {
+record(bi, "$(P)$(R)OTP12Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig12DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig12Pol-Sts")
+  field(INP, "$(P)$(R)OTP12DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP12Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig12Pol-Sts") {
+record(bi, "$(P)$(R)OTP12Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig12DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig12Enbl-RB")
+  field(INP, "$(P)$(R)OTP12DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP12Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig12Enbl-RB") {
+record(bi, "$(P)$(R)OTP12Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig12DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP12DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig12Pulses-RB"){
+record(longin, "$(P)$(R)OTP12Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig12Evt-Sts") {
+record(longin, "$(P)$(R)OTP12Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig12Width-RB") {
+record(longin, "$(P)$(R)OTP12Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig12Delay-RB") {
+record(longin, "$(P)$(R)OTP12Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC delay RBV")
   field(EGU, "evt_T")
@@ -2438,16 +2438,16 @@ record(longout, "$(P)$(R)cmd_otp_get12") {
 ########################################################################
 # OTPD Register [14]
 
-record(longout, "$(P)$(R)IntTrig13Evt-Sel") {
+record(longout, "$(P)$(R)OTP13Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),13) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig13DelayRaw")
+  field(FLNK, "$(P)$(R)OTP13DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig13Pulses-SP"){
+record(longout, "$(P)$(R)OTP13Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPD number of pulses")
   field(DRVH, "65535")
@@ -2455,10 +2455,10 @@ record(longout, "$(P)$(R)IntTrig13Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),13) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig13DelayRaw")
+  field(FLNK, "$(P)$(R)OTP13DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig13Width-SP") {
+record(longout, "$(P)$(R)OTP13Width-SP") {
   field(DESC, "EVE OTPD event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -2466,86 +2466,86 @@ record(longout, "$(P)$(R)IntTrig13Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),13) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig13DelayRaw")
+  field(FLNK, "$(P)$(R)OTP13DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig13Delay-SP") {
+record(longout, "$(P)$(R)OTP13Delay-SP") {
   field(DESC, "EVE OTPD event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),13) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig13DelayRaw")
+  field(FLNK, "$(P)$(R)OTP13DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig13Enbl-SP") {
+record(bo, "$(P)$(R)OTP13Enbl-SP") {
   field(DESC, "EVE OTPD enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig13EnblCalc")
+  field(FLNK, "$(P)$(R)OTP13EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig13Pol-Sel") {
+record(bo, "$(P)$(R)OTP13Pol-Sel") {
   field(DESC, "EVE OTPD polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig13PolCalc")
+  field(FLNK, "$(P)$(R)OTP13PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig13Log-Sel") {
+record(bo, "$(P)$(R)OTP13Log-Sel") {
   field(DESC, "EVE OTPD event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig13LogCalc")
+  field(FLNK, "$(P)$(R)OTP13LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig13EnblCalc") {
+record(calcout, "$(P)$(R)OTP13EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig13Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig13Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig13Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP13Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP13Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP13Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),13,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig13DelayCalc")
+  field(FLNK, "$(P)$(R)OTP13DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig13PolCalc") {
+record(calcout, "$(P)$(R)OTP13PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig13Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig13Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig13Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP13Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP13Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP13Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),13,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig13DelayCalc")
+  field(FLNK, "$(P)$(R)OTP13DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig13LogCalc") {
+record(calcout, "$(P)$(R)OTP13LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig13Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig13Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig13Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP13Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP13Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP13Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),13,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig13DelayCalc")
+  field(FLNK, "$(P)$(R)OTP13DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig13DelayCalc") {
+record(calcout, "$(P)$(R)OTP13DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig13Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig13Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig13Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP13Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP13Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP13Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig13DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP13DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTPD enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -2553,53 +2553,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig13DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltimeDRBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig13Log-Sts")
+  field(FLNK, "$(P)$(R)OTP13Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig13Log-Sts") {
+record(bi, "$(P)$(R)OTP13Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig13DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig13Pol-Sts")
+  field(INP, "$(P)$(R)OTP13DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP13Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig13Pol-Sts") {
+record(bi, "$(P)$(R)OTP13Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig13DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig13Enbl-RB")
+  field(INP, "$(P)$(R)OTP13DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP13Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig13Enbl-RB") {
+record(bi, "$(P)$(R)OTP13Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig13DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP13DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig13Pulses-RB"){
+record(longin, "$(P)$(R)OTP13Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig13Evt-Sts") {
+record(longin, "$(P)$(R)OTP13Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig13Width-RB") {
+record(longin, "$(P)$(R)OTP13Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig13Delay-RB") {
+record(longin, "$(P)$(R)OTP13Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD delay RBV")
   field(EGU, "evt_T")
@@ -2620,16 +2620,16 @@ record(longout, "$(P)$(R)cmd_otp_get13") {
 ########################################################################
 # OTPE Register [15]
 
-record(longout, "$(P)$(R)IntTrig14Evt-Sel") {
+record(longout, "$(P)$(R)OTP14Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),14) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig14DelayRaw")
+  field(FLNK, "$(P)$(R)OTP14DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig14Pulses-SP"){
+record(longout, "$(P)$(R)OTP14Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPE number of pulses")
   field(DRVH, "65535")
@@ -2637,10 +2637,10 @@ record(longout, "$(P)$(R)IntTrig14Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),14) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig14DelayRaw")
+  field(FLNK, "$(P)$(R)OTP14DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig14Width-SP") {
+record(longout, "$(P)$(R)OTP14Width-SP") {
   field(DESC, "EVE OTPE event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -2648,86 +2648,86 @@ record(longout, "$(P)$(R)IntTrig14Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),14) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig14DelayRaw")
+  field(FLNK, "$(P)$(R)OTP14DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig14Delay-SP") {
+record(longout, "$(P)$(R)OTP14Delay-SP") {
   field(DESC, "EVE OTPE event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),14) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig14DelayRaw")
+  field(FLNK, "$(P)$(R)OTP14DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig14Enbl-SP") {
+record(bo, "$(P)$(R)OTP14Enbl-SP") {
   field(DESC, "EVE OTPE enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig14EnblCalc")
+  field(FLNK, "$(P)$(R)OTP14EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig14Pol-Sel") {
+record(bo, "$(P)$(R)OTP14Pol-Sel") {
   field(DESC, "EVE OTPE polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig14PolCalc")
+  field(FLNK, "$(P)$(R)OTP14PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig14Log-Sel") {
+record(bo, "$(P)$(R)OTP14Log-Sel") {
   field(DESC, "EVE OTPE event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig14LogCalc")
+  field(FLNK, "$(P)$(R)OTP14LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig14EnblCalc") {
+record(calcout, "$(P)$(R)OTP14EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig14Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig14Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig14Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP14Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP14Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP14Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),14,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig14DelayCalc")
+  field(FLNK, "$(P)$(R)OTP14DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig14PolCalc") {
+record(calcout, "$(P)$(R)OTP14PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig14Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig14Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig14Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP14Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP14Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP14Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),14,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig14DelayCalc")
+  field(FLNK, "$(P)$(R)OTP14DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig14LogCalc") {
+record(calcout, "$(P)$(R)OTP14LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig14Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig14Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig14Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP14Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP14Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP14Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),14,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig14DelayCalc")
+  field(FLNK, "$(P)$(R)OTP14DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig14DelayCalc") {
+record(calcout, "$(P)$(R)OTP14DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig14Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig14Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig14Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP14Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP14Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP14Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig14DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP14DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTPE enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -2735,53 +2735,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig14DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltimeERBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig14Log-Sts")
+  field(FLNK, "$(P)$(R)OTP14Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig14Log-Sts") {
+record(bi, "$(P)$(R)OTP14Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig14DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig14Pol-Sts")
+  field(INP, "$(P)$(R)OTP14DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP14Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig14Pol-Sts") {
+record(bi, "$(P)$(R)OTP14Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig14DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig14Enbl-RB")
+  field(INP, "$(P)$(R)OTP14DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP14Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig14Enbl-RB") {
+record(bi, "$(P)$(R)OTP14Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig14DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP14DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig14Pulses-RB"){
+record(longin, "$(P)$(R)OTP14Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig14Evt-Sts") {
+record(longin, "$(P)$(R)OTP14Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig14Width-RB") {
+record(longin, "$(P)$(R)OTP14Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig14Delay-RB") {
+record(longin, "$(P)$(R)OTP14Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE delay RBV")
   field(EGU, "evt_T")
@@ -2802,16 +2802,16 @@ record(longout, "$(P)$(R)cmd_otp_get14") {
 ########################################################################
 # OTPF Register [16]
 
-record(longout, "$(P)$(R)IntTrig15Evt-Sel") {
+record(longout, "$(P)$(R)OTP15Evt-SP") {
   field(DESC, "EVE event code")
   field(DRVH, "63")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_ev_set($(P),$(R),15) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig15DelayRaw")
+  field(FLNK, "$(P)$(R)OTP15DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig15Pulses-SP"){
+record(longout, "$(P)$(R)OTP15Pulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPF number of pulses")
   field(DRVH, "65535")
@@ -2819,10 +2819,10 @@ record(longout, "$(P)$(R)IntTrig15Pulses-SP"){
   field(EGU, "pulses")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_pulses_set($(P),$(R),15) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig15DelayRaw")
+  field(FLNK, "$(P)$(R)OTP15DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig15Width-SP") {
+record(longout, "$(P)$(R)OTP15Width-SP") {
   field(DESC, "EVE OTPF event width")
   field(VAL, "1")
   field(DRVH, "4294967295")
@@ -2830,86 +2830,86 @@ record(longout, "$(P)$(R)IntTrig15Width-SP") {
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),15) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig15DelayRaw")
+  field(FLNK, "$(P)$(R)OTP15DelayRaw")
 }
 
-record(longout, "$(P)$(R)IntTrig15Delay-SP") {
+record(longout, "$(P)$(R)OTP15Delay-SP") {
   field(DESC, "EVE OTPF event delay")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),15) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig15DelayRaw")
+  field(FLNK, "$(P)$(R)OTP15DelayRaw")
 }
 
-record(bo, "$(P)$(R)IntTrig15Enbl-SP") {
+record(bo, "$(P)$(R)OTP15Enbl-SP") {
   field(DESC, "EVE OTPF enable")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)IntTrig15EnblCalc")
+  field(FLNK, "$(P)$(R)OTP15EnblCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig15Pol-Sel") {
+record(bo, "$(P)$(R)OTP15Pol-Sel") {
   field(DESC, "EVE OTPF polarity")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(FLNK, "$(P)$(R)IntTrig15PolCalc")
+  field(FLNK, "$(P)$(R)OTP15PolCalc")
 }
 
-record(bo, "$(P)$(R)IntTrig15Log-Sel") {
+record(bo, "$(P)$(R)OTP15Log-Sel") {
   field(DESC, "EVE OTPF event timestamping enable")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(P)$(R)IntTrig15LogCalc")
+  field(FLNK, "$(P)$(R)OTP15LogCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig15EnblCalc") {
+record(calcout, "$(P)$(R)OTP15EnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig15Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig15Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig15Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP15Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP15Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP15Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),15,Enbl) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig15DelayCalc")
+  field(FLNK, "$(P)$(R)OTP15DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig15PolCalc") {
+record(calcout, "$(P)$(R)OTP15PolCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig15Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig15Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig15Log-Sts.VAL")
+  field(INPA, "$(P)$(R)OTP15Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP15Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP15Log-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),15,Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig15DelayCalc")
+  field(FLNK, "$(P)$(R)OTP15DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig15LogCalc") {
+record(calcout, "$(P)$(R)OTP15LogCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF set timestamping calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntTrig15Enbl-RB.VAL")
-  field(INPB, "$(P)$(R)IntTrig15Pol-Sts.VAL")
-  field(INPC, "$(P)$(R)IntTrig15Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP15Enbl-RB.VAL")
+  field(INPB, "$(P)$(R)OTP15Pol-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP15Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_set($(P),$(R),15,Log) $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig15DelayCalc")
+  field(FLNK, "$(P)$(R)OTP15DelayCalc")
 }
 
-record(calcout, "$(P)$(R)IntTrig15DelayCalc") {
+record(calcout, "$(P)$(R)OTP15DelayCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF download EN, POL, and TIME")
-  field(INPA, "$(P)$(R)IntTrig15Enbl-SP.VAL")
-  field(INPB, "$(P)$(R)IntTrig15Pol-Sel.VAL")
-  field(INPC, "$(P)$(R)IntTrig15Log-Sel.VAL")
+  field(INPA, "$(P)$(R)OTP15Enbl-SP.VAL")
+  field(INPB, "$(P)$(R)OTP15Pol-Sel.VAL")
+  field(INPC, "$(P)$(R)OTP15Log-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(P)$(R)IntTrig15DelayRaw") {
+record(mbbiDirect, "$(P)$(R)OTP15DelayRaw") {
   field(ASG, "Reserved")
   field(DESC, "OTPF enable, polarity, and timestamp RBV")
   field(NOBT, "8")
@@ -2917,53 +2917,53 @@ record(mbbiDirect, "$(P)$(R)IntTrig15DelayRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltimeFRBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)IntTrig15Log-Sts")
+  field(FLNK, "$(P)$(R)OTP15Log-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig15Log-Sts") {
+record(bi, "$(P)$(R)OTP15Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF timestamping status")
   field(ZNAM, "NOT TIMESTAMPED")
   field(ONAM, "TIMESTAMPED")
-  field(INP, "$(P)$(R)IntTrig15DelayRaw.B0")
-  field(FLNK, "$(P)$(R)IntTrig15Pol-Sts")
+  field(INP, "$(P)$(R)OTP15DelayRaw.B0")
+  field(FLNK, "$(P)$(R)OTP15Pol-Sts")
 }
 
-record(bi, "$(P)$(R)IntTrig15Pol-Sts") {
+record(bi, "$(P)$(R)OTP15Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF polarity status")
   field(ZNAM, "NORMAL")
   field(ONAM, "INVERTED")
-  field(INP, "$(P)$(R)IntTrig15DelayRaw.B1")
-  field(FLNK, "$(P)$(R)IntTrig15Enbl-RB")
+  field(INP, "$(P)$(R)OTP15DelayRaw.B1")
+  field(FLNK, "$(P)$(R)OTP15Enbl-RB")
 }
 
-record(bi, "$(P)$(R)IntTrig15Enbl-RB") {
+record(bi, "$(P)$(R)OTP15Enbl-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF enable status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)IntTrig15DelayRaw.B2")
+  field(INP, "$(P)$(R)OTP15DelayRaw.B2")
 }
 
-record(longin, "$(P)$(R)IntTrig15Pulses-RB"){
+record(longin, "$(P)$(R)OTP15Pulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF number of pulses RBV")
   field(EGU, "pulses")
 }
 
-record(longin, "$(P)$(R)IntTrig15Evt-Sts") {
+record(longin, "$(P)$(R)OTP15Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF event RBV")
 }
 
-record(longin, "$(P)$(R)IntTrig15Width-RB") {
+record(longin, "$(P)$(R)OTP15Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF width RBV")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(P)$(R)IntTrig15Delay-RB") {
+record(longin, "$(P)$(R)OTP15Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF delay RBV")
   field(EGU, "evt_T")
@@ -2984,7 +2984,7 @@ record(longout, "$(P)$(R)cmd_otp_get15") {
 ########################################################################
 # OUT0 Register [17]
 
-record(mbbiDirect, "$(P)$(R)Out0IntlkRaw") {
+record(mbbiDirect, "$(P)$(R)OUT0IntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT0 interlock raw status")
   field(NOBT, "8")
@@ -2992,54 +2992,58 @@ record(mbbiDirect, "$(P)$(R)Out0IntlkRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_out_itl0RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out0Intlk-Sts")
+  field(FLNK, "$(P)$(R)OUT0Intlk-Sts")
 }
 
-record(bi, "$(P)$(R)Out0Intlk-Sts") {
+record(bi, "$(P)$(R)OUT0Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT0 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Out0IntlkRaw.B0")
+  field(INP, "$(P)$(R)OUT0IntlkRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Out0IntChanRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel0RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out0IntChanStatCalc")
-}
-
-record(scalcout, "$(P)$(R)Out0IntChanStatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection status calc")
-  field(INPA, "$(P)$(R)Out0IntChanRaw.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(P)$(R)Out0IntChan-Sts")
-}
-
-record(stringin, "$(P)$(R)Out0IntChan-Sts"){
+record(mbbi, "$(P)$(R)OUT0Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT0 source selection status")
-  field(INP, "$(P)$(R)Out0IntChanStatCalc.SVAL")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x10")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel0RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)Out0FineDelay-RB") {
+record(longin, "$(P)$(R)OUT0FineDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT0 fine delay status")
     field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)Out0RFDelay-RB") {
+record(longin, "$(P)$(R)OUT0RFDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT0 RF delay status")
   field(EGU, "evt_T/20")
 }
 
-record(longout, "$(P)$(R)Out0RFDelay-SP"){
+record(longout, "$(P)$(R)OUT0RFDelay-SP"){
   field(DESC, "EVE OUT0 RF delay")
   field(EGU, "evt_T/20")
   field(DRVL, "0")
@@ -3048,7 +3052,7 @@ record(longout, "$(P)$(R)Out0RFDelay-SP"){
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),0) $(PORT)")
 }
 
-record(longout, "$(P)$(R)Out0FineDelay-SP"){
+record(longout, "$(P)$(R)OUT0FineDelay-SP"){
   field(DESC, "EVE OUT0 fine delay")
   field(EGU, "5ps")
   field(DRVL, "0")
@@ -3057,61 +3061,60 @@ record(longout, "$(P)$(R)Out0FineDelay-SP"){
   field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),0) $(PORT)")
 }
 
-record(stringout, "$(P)$(R)Out0IntChan-Sel"){
-  field(DESC, "EVE OUT0 source selection")
-  field(FLNK, "$(P)$(R)Out0IntChanCalc1")
+record(dfanout, "$(P)$(R)OUT0SrcTrig-SP"){
+  field(DESC, "EVE OUT0 source trigger")
+  field(VAL, "0x10")
+  field(OUTA, "$(P)$(R)OUT0Src-Sel.ZRVL PP")
+  field(OUTB, "$(P)$(R)OUT0Src-Sts.ZRVL PP")
 }
 
-record(scalcout, "$(P)$(R)Out0IntChanCalc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection calc 1")
-  field(INAA, "$(P)$(R)Out0IntChan-Sel.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(P)$(R)Out0IntChanCalc2")
+record(mbbo, "$(P)$(R)OUT0Src-Sel"){
+  field(DESC, "EVR OUT0 source selection")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x10")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT0SrcHw")
 }
 
-record(scalcout, "$(P)$(R)Out0IntChanCalc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection calc 2")
-  field(INAA, "$(P)$(R)Out0IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out0IntChanCalc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(P)$(R)Out0IntChanCalc3")
-}
-
-record(scalcout, "$(P)$(R)Out0IntChanCalc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection calc 3")
-  field(INAA, "$(P)$(R)Out0IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out0IntChanCalc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out0IntChan-Hw PP")
-}
-
-record(longout, "$(P)$(R)Out0IntChan-Hw"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 calculated source selection")
+record(calcout, "$(P)$(R)OUT0SrcHw"){
+  field(DESC, "EVR OUT0 source selection write reg")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(P),$(R),0) $(PORT)")
+  field(INPA, "$(P)$(R)OUT0Src-Sel.RVAL")
+  field(CALC, "B=0?A:B")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),0) $(PORT)")
 }
 
-record(calcout, "$(P)$(R)Out0IntlkCalc") {
+record(calcout, "$(P)$(R)OUT0IntlkCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT0 set interlock function calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Out0Intlk-Sel")
+  field(INPA, "$(P)$(R)OUT0Intlk-Sel")
   field(CALC, "A<<7")
   field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),0) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Out0Intlk-Sel"){
+record(bo, "$(P)$(R)OUT0Intlk-Sel"){
   field(DESC, "EVE OUT0 interlock function selection")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)Out0IntlkCalc")
+  field(FLNK, "$(P)$(R)OUT0IntlkCalc")
 }
 
 record(longout, "$(P)$(R)cmd_out_get0") {
@@ -3129,7 +3132,7 @@ record(longout, "$(P)$(R)cmd_out_set0") {
 ########################################################################
 # OUT1 Register [18]
 
-record(mbbiDirect, "$(P)$(R)Out1IntlkRaw") {
+record(mbbiDirect, "$(P)$(R)OUT1IntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT1 interlock raw status")
   field(NOBT, "8")
@@ -3137,54 +3140,58 @@ record(mbbiDirect, "$(P)$(R)Out1IntlkRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_out_itl1RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out1Intlk-Sts")
+  field(FLNK, "$(P)$(R)OUT1Intlk-Sts")
 }
 
-record(bi, "$(P)$(R)Out1Intlk-Sts") {
+record(bi, "$(P)$(R)OUT1Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT1 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Out1IntlkRaw.B0")
+  field(INP, "$(P)$(R)OUT1IntlkRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Out1IntChanRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel1RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out1IntChanStatCalc")
-}
-
-record(scalcout, "$(P)$(R)Out1IntChanStatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection status calc")
-  field(INPA, "$(P)$(R)Out1IntChanRaw.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(P)$(R)Out1IntChan-Sts")
-}
-
-record(stringin, "$(P)$(R)Out1IntChan-Sts"){
+record(mbbi, "$(P)$(R)OUT1Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT1 source selection status")
-  field(INP, "$(P)$(R)Out1IntChanStatCalc.SVAL")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x11")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel1RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)Out1FineDelay-RB") {
+record(longin, "$(P)$(R)OUT1FineDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT1 fine delay status")
   field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)Out1RFDelay-RB") {
+record(longin, "$(P)$(R)OUT1RFDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT1 RF delay status")
   field(EGU, "evt_T/20")
 }
 
-record(longout, "$(P)$(R)Out1RFDelay-SP"){
+record(longout, "$(P)$(R)OUT1RFDelay-SP"){
   field(DESC, "EVE OUT1 RF delay")
   field(DRVL, "0")
   field(DRVH, "31")
@@ -3193,7 +3200,7 @@ record(longout, "$(P)$(R)Out1RFDelay-SP"){
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),1) $(PORT)")
 }
 
-record(longout, "$(P)$(R)Out1FineDelay-SP"){
+record(longout, "$(P)$(R)OUT1FineDelay-SP"){
   field(DESC, "EVE OUT1 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
@@ -3202,61 +3209,60 @@ record(longout, "$(P)$(R)Out1FineDelay-SP"){
   field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),1) $(PORT)")
 }
 
-record(stringout, "$(P)$(R)Out1IntChan-Sel"){
-  field(DESC, "EVE OUT1 source selection")
-  field(FLNK, "$(P)$(R)Out1IntChanCalc1")
+record(dfanout, "$(P)$(R)OUT1SrcTrig-SP"){
+  field(DESC, "EVE OUT1 source trigger")
+  field(VAL, "0x11")
+  field(OUTA, "$(P)$(R)OUT1Src-Sel.ZRVL PP")
+  field(OUTB, "$(P)$(R)OUT1Src-Sts.ZRVL PP")
 }
 
-record(scalcout, "$(P)$(R)Out1IntChanCalc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection calc 1")
-  field(INAA, "$(P)$(R)Out1IntChan-Sel.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(P)$(R)Out1IntChanCalc2")
+record(mbbo, "$(P)$(R)OUT1Src-Sel"){
+  field(DESC, "EVR OUT1 source selection")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x11")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT1SrcHw")
 }
 
-record(scalcout, "$(P)$(R)Out1IntChanCalc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection calc 2")
-  field(INAA, "$(P)$(R)Out1IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out1IntChanCalc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(P)$(R)Out1IntChanCalc3")
-}
-
-record(scalcout, "$(P)$(R)Out1IntChanCalc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection calc 3")
-  field(INAA, "$(P)$(R)Out1IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out1IntChanCalc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out1IntChan-Hw PP")
-}
-
-record(longout, "$(P)$(R)Out1IntChan-Hw"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 calculated source selection")
+record(calcout, "$(P)$(R)OUT1SrcHw"){
+  field(DESC, "EVR OUT1 source selection write reg")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(P),$(R),1) $(PORT)")
+  field(INPA, "$(P)$(R)OUT1Src-Sel.RVAL")
+  field(CALC, "A")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),1) $(PORT)")
 }
 
-record(calcout, "$(P)$(R)Out1IntlkCalc") {
+record(calcout, "$(P)$(R)OUT1IntlkCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT1 set interlock function calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Out1Intlk-Sel")
+  field(INPA, "$(P)$(R)OUT1Intlk-Sel")
   field(CALC, "A<<7")
   field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),1) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Out1Intlk-Sel"){
+record(bo, "$(P)$(R)OUT1Intlk-Sel"){
   field(DESC, "EVE OUT1 interlock function selection")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)Out1IntlkCalc")
+  field(FLNK, "$(P)$(R)OUT1IntlkCalc")
 }
 
 record(longout, "$(P)$(R)cmd_out_get1") {
@@ -3274,7 +3280,7 @@ record(longout, "$(P)$(R)cmd_out_set1") {
 ########################################################################
 # OUT2 Register [19]
 
-record(mbbiDirect, "$(P)$(R)Out2IntlkRaw") {
+record(mbbiDirect, "$(P)$(R)OUT2IntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT2 interlock raw status")
   field(NOBT, "8")
@@ -3282,54 +3288,58 @@ record(mbbiDirect, "$(P)$(R)Out2IntlkRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_out_itl2RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out2Intlk-Sts")
+  field(FLNK, "$(P)$(R)OUT2Intlk-Sts")
 }
 
-record(bi, "$(P)$(R)Out2Intlk-Sts") {
+record(bi, "$(P)$(R)OUT2Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT2 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Out2IntlkRaw.B0")
+  field(INP, "$(P)$(R)OUT2IntlkRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Out2IntChanRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel2RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out2IntChanStatCalc")
-}
-
-record(scalcout, "$(P)$(R)Out2IntChanStatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection status calc")
-  field(INPA, "$(P)$(R)Out2IntChanRaw.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(P)$(R)Out2IntChan-Sts")
-}
-
-record(stringin, "$(P)$(R)Out2IntChan-Sts"){
+record(mbbi, "$(P)$(R)OUT2Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT2 source selection status")
-  field(INP, "$(P)$(R)Out2IntChanStatCalc.SVAL")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x12")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel2RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)Out2FineDelay-RB") {
+record(longin, "$(P)$(R)OUT2FineDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT2 fine delay status")
   field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)Out2RFDelay-RB") {
+record(longin, "$(P)$(R)OUT2RFDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT2 RF delay status")
   field(EGU, "evt_T/20")
 }
 
-record(longout, "$(P)$(R)Out2RFDelay-SP"){
+record(longout, "$(P)$(R)OUT2RFDelay-SP"){
   field(DESC, "EVE OUT2 RF delay")
   field(DRVL, "0")
   field(DRVH, "31")
@@ -3338,7 +3348,7 @@ record(longout, "$(P)$(R)Out2RFDelay-SP"){
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),2) $(PORT)")
 }
 
-record(longout, "$(P)$(R)Out2FineDelay-SP"){
+record(longout, "$(P)$(R)OUT2FineDelay-SP"){
   field(DESC, "EVE OUT2 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
@@ -3347,61 +3357,60 @@ record(longout, "$(P)$(R)Out2FineDelay-SP"){
   field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),2) $(PORT)")
 }
 
-record(stringout, "$(P)$(R)Out2IntChan-Sel"){
-  field(DESC, "EVE OUT2 source selection")
-  field(FLNK, "$(P)$(R)Out2IntChanCalc1")
+record(dfanout, "$(P)$(R)OUT2SrcTrig-SP"){
+  field(DESC, "EVE OUT2 source trigger")
+  field(VAL, "0x12")
+  field(OUTA, "$(P)$(R)OUT2Src-Sel.ZRVL PP")
+  field(OUTB, "$(P)$(R)OUT2Src-Sts.ZRVL PP")
 }
 
-record(scalcout, "$(P)$(R)Out2IntChanCalc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection calc 1")
-  field(INAA, "$(P)$(R)Out2IntChan-Sel.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(P)$(R)Out2IntChanCalc2")
+record(mbbo, "$(P)$(R)OUT2Src-Sel"){
+  field(DESC, "EVR OUT2 source selection")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x12")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT2SrcHw")
 }
 
-record(scalcout, "$(P)$(R)Out2IntChanCalc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection calc 2")
-  field(INAA, "$(P)$(R)Out2IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out2IntChanCalc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(P)$(R)Out2IntChanCalc3")
-}
-
-record(scalcout, "$(P)$(R)Out2IntChanCalc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection calc 3")
-  field(INAA, "$(P)$(R)Out2IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out2IntChanCalc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out2IntChan-Hw PP")
-}
-
-record(longout, "$(P)$(R)Out2IntChan-Hw"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 calculated source selection")
+record(calcout, "$(P)$(R)OUT2SrcHw"){
+  field(DESC, "EVR OUT2 source selection write reg")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(P),$(R),2) $(PORT)")
+  field(INPA, "$(P)$(R)OUT2Src-Sel.RVAL")
+  field(CALC, "A")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),2) $(PORT)")
 }
 
-record(calcout, "$(P)$(R)Out2IntlkCalc") {
+record(calcout, "$(P)$(R)OUT2IntlkCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT2 set interlock function calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Out2Intlk-Sel")
+  field(INPA, "$(P)$(R)OUT2Intlk-Sel")
   field(CALC, "A<<7")
   field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),2) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Out2Intlk-Sel"){
+record(bo, "$(P)$(R)OUT2Intlk-Sel"){
   field(DESC, "EVE OUT2 interlock function selection")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)Out2IntlkCalc")
+  field(FLNK, "$(P)$(R)OUT2IntlkCalc")
 }
 
 record(longout, "$(P)$(R)cmd_out_get2") {
@@ -3419,7 +3428,7 @@ record(longout, "$(P)$(R)cmd_out_set2") {
 ########################################################################
 # OUT3 Register [20]
 
-record(mbbiDirect, "$(P)$(R)Out3IntlkRaw") {
+record(mbbiDirect, "$(P)$(R)OUT3IntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT3 interlock raw status")
   field(NOBT, "8")
@@ -3427,54 +3436,58 @@ record(mbbiDirect, "$(P)$(R)Out3IntlkRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_out_itl3RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out3Intlk-Sts")
+  field(FLNK, "$(P)$(R)OUT3Intlk-Sts")
 }
 
-record(bi, "$(P)$(R)Out3Intlk-Sts") {
+record(bi, "$(P)$(R)OUT3Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT3 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Out3IntlkRaw.B0")
+  field(INP, "$(P)$(R)OUT3IntlkRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Out3IntChanRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel3RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out3IntChanStatCalc")
-}
-
-record(scalcout, "$(P)$(R)Out3IntChanStatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection status calc")
-  field(INPA, "$(P)$(R)Out3IntChanRaw.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(P)$(R)Out3IntChan-Sts")
-}
-
-record(stringin, "$(P)$(R)Out3IntChan-Sts"){
+record(mbbi, "$(P)$(R)OUT3Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT3 source selection status")
-  field(INP, "$(P)$(R)Out3IntChanStatCalc.SVAL")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x13")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel3RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)Out3FineDelay-RB") {
+record(longin, "$(P)$(R)OUT3FineDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT3 fine delay status")
   field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)Out3RFDelay-RB") {
+record(longin, "$(P)$(R)OUT3RFDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT3 RF delay status")
   field(EGU, "evt_T/20")
 }
 
-record(longout, "$(P)$(R)Out3RFDelay-SP"){
+record(longout, "$(P)$(R)OUT3RFDelay-SP"){
   field(DESC, "EVE OUT3 RF delay")
   field(DRVL, "0")
   field(DRVH, "31")
@@ -3483,7 +3496,7 @@ record(longout, "$(P)$(R)Out3RFDelay-SP"){
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),3) $(PORT)")
 }
 
-record(longout, "$(P)$(R)Out3FineDelay-SP"){
+record(longout, "$(P)$(R)OUT3FineDelay-SP"){
   field(DESC, "EVE OUT3 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
@@ -3492,60 +3505,60 @@ record(longout, "$(P)$(R)Out3FineDelay-SP"){
   field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),3) $(PORT)")
 }
 
-record(stringout, "$(P)$(R)Out3IntChan-Sel"){
-  field(DESC, "EVE OUT3 source selection")
-  field(FLNK, "$(P)$(R)Out3IntChanCalc1")
+record(dfanout, "$(P)$(R)OUT3SrcTrig-SP"){
+  field(DESC, "EVE OUT3 source trigger")
+  field(VAL, "0x13")
+  field(OUTA, "$(P)$(R)OUT3Src-Sel.ZRVL PP")
+  field(OUTB, "$(P)$(R)OUT3Src-Sts.ZRVL PP")
 }
 
-record(scalcout, "$(P)$(R)Out3IntChanCalc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection calc 1")
-  field(INAA, "$(P)$(R)Out3IntChan-Sel.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(P)$(R)Out3IntChanCalc2")
+record(mbbo, "$(P)$(R)OUT3Src-Sel"){
+  field(DESC, "EVR OUT3 source selection")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x13")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT3SrcHw")
 }
 
-record(scalcout, "$(P)$(R)Out3IntChanCalc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection calc 2")
-  field(INAA, "$(P)$(R)Out3IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out3IntChanCalc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(P)$(R)Out3IntChanCalc3")
-}
-
-record(scalcout, "$(P)$(R)Out3IntChanCalc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection calc 3")
-  field(INAA, "$(P)$(R)Out3IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out3IntChanCalc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out3IntChan-Hw PP")
-}
-
-record(longout, "$(P)$(R)Out3IntChan-Hw"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 calculated source selection")
+record(calcout, "$(P)$(R)OUT3SrcHw"){
+  field(DESC, "EVR OUT3 source selection write reg")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(P),$(R),3) $(PORT)")
+  field(INPA, "$(P)$(R)OUT3Src-Sel.RVAL")
+  field(CALC, "A")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),3) $(PORT)")
 }
-record(calcout, "$(P)$(R)Out3IntlkCalc") {
+
+record(calcout, "$(P)$(R)OUT3IntlkCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT3 set interlock function calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Out3Intlk-Sel")
+  field(INPA, "$(P)$(R)OUT3Intlk-Sel")
   field(CALC, "A<<7")
   field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),3) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Out3Intlk-Sel"){
+record(bo, "$(P)$(R)OUT3Intlk-Sel"){
   field(DESC, "EVE OUT3 interlock function selection")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)Out3IntlkCalc")
+  field(FLNK, "$(P)$(R)OUT3IntlkCalc")
 }
 
 record(longout, "$(P)$(R)cmd_out_get3") {
@@ -3563,7 +3576,7 @@ record(longout, "$(P)$(R)cmd_out_set3") {
 ########################################################################
 # OUT4 Register [21]
 
-record(mbbiDirect, "$(P)$(R)Out4IntlkRaw") {
+record(mbbiDirect, "$(P)$(R)OUT4IntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT4 interlock raw status")
   field(NOBT, "8")
@@ -3571,54 +3584,58 @@ record(mbbiDirect, "$(P)$(R)Out4IntlkRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_out_itl4RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out4Intlk-Sts")
+  field(FLNK, "$(P)$(R)OUT4Intlk-Sts")
 }
 
-record(bi, "$(P)$(R)Out4Intlk-Sts") {
+record(bi, "$(P)$(R)OUT4Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT4 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Out4IntlkRaw.B0")
+  field(INP, "$(P)$(R)OUT4IntlkRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Out4IntChanRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel4RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out4IntChanStatCalc")
-}
-
-record(scalcout, "$(P)$(R)Out4IntChanStatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection status calc")
-  field(INPA, "$(P)$(R)Out4IntChanRaw.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(P)$(R)Out4IntChan-Sts")
-}
-
-record(stringin, "$(P)$(R)Out4IntChan-Sts"){
+record(mbbi, "$(P)$(R)OUT4Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT4 source selection status")
-  field(INP, "$(P)$(R)Out4IntChanStatCalc.SVAL")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x14")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel4RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)Out4FineDelay-RB") {
+record(longin, "$(P)$(R)OUT4FineDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT4 fine delay status")
   field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)Out4RFDelay-RB") {
+record(longin, "$(P)$(R)OUT4RFDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT4 RF delay status")
   field(EGU, "evt_T/20")
 }
 
-record(longout, "$(P)$(R)Out4RFDelay-SP"){
+record(longout, "$(P)$(R)OUT4RFDelay-SP"){
   field(DESC, "EVE OUT4 RF delay")
   field(DRVL, "0")
   field(DRVH, "31")
@@ -3627,7 +3644,7 @@ record(longout, "$(P)$(R)Out4RFDelay-SP"){
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),4) $(PORT)")
 }
 
-record(longout, "$(P)$(R)Out4FineDelay-SP"){
+record(longout, "$(P)$(R)OUT4FineDelay-SP"){
   field(DESC, "EVE OUT4 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
@@ -3636,61 +3653,60 @@ record(longout, "$(P)$(R)Out4FineDelay-SP"){
   field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),4) $(PORT)")
 }
 
-record(stringout, "$(P)$(R)Out4IntChan-Sel"){
-  field(DESC, "EVE OUT4 source selection")
-  field(FLNK, "$(P)$(R)Out4IntChanCalc1")
+record(dfanout, "$(P)$(R)OUT4SrcTrig-SP"){
+  field(DESC, "EVE OUT4 source trigger")
+  field(VAL, "0x14")
+  field(OUTA, "$(P)$(R)OUT4Src-Sel.ZRVL PP")
+  field(OUTB, "$(P)$(R)OUT4Src-Sts.ZRVL PP")
 }
 
-record(scalcout, "$(P)$(R)Out4IntChanCalc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection calc 1")
-  field(INAA, "$(P)$(R)Out4IntChan-Sel.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(P)$(R)Out4IntChanCalc2")
+record(mbbo, "$(P)$(R)OUT4Src-Sel"){
+  field(DESC, "EVR OUT4 source selection")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x14")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT4SrcHw")
 }
 
-record(scalcout, "$(P)$(R)Out4IntChanCalc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection calc 2")
-  field(INAA, "$(P)$(R)Out4IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out4IntChanCalc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(P)$(R)Out4IntChanCalc3")
-}
-
-record(scalcout, "$(P)$(R)Out4IntChanCalc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection calc 3")
-  field(INAA, "$(P)$(R)Out4IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out4IntChanCalc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out4IntChan-Hw PP")
-}
-
-record(longout, "$(P)$(R)Out4IntChan-Hw"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 calculated source selection")
+record(calcout, "$(P)$(R)OUT4SrcHw"){
+  field(DESC, "EVR OUT4 source selection write reg")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(P),$(R),4) $(PORT)")
+  field(INPA, "$(P)$(R)OUT4Src-Sel.RVAL")
+  field(CALC, "A")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),4) $(PORT)")
 }
 
-record(calcout, "$(P)$(R)Out4IntlkCalc") {
+record(calcout, "$(P)$(R)OUT4IntlkCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT4 set interlock function calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Out4Intlk-Sel")
+  field(INPA, "$(P)$(R)OUT4Intlk-Sel")
   field(CALC, "A<<7")
   field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),4) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Out4Intlk-Sel"){
+record(bo, "$(P)$(R)OUT4Intlk-Sel"){
   field(DESC, "EVE OUT4 interlock function selection")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)Out4IntlkCalc")
+  field(FLNK, "$(P)$(R)OUT4IntlkCalc")
 }
 
 record(longout, "$(P)$(R)cmd_out_get4") {
@@ -3708,7 +3724,7 @@ record(longout, "$(P)$(R)cmd_out_set4") {
 ########################################################################
 # OUT5 Register [22]
 
-record(mbbiDirect, "$(P)$(R)Out5IntlkRaw") {
+record(mbbiDirect, "$(P)$(R)OUT5IntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT5 interlock raw status")
   field(NOBT, "8")
@@ -3716,54 +3732,58 @@ record(mbbiDirect, "$(P)$(R)Out5IntlkRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_out_itl5RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out5Intlk-Sts")
+  field(FLNK, "$(P)$(R)OUT5Intlk-Sts")
 }
 
-record(bi, "$(P)$(R)Out5Intlk-Sts") {
+record(bi, "$(P)$(R)OUT5Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT5 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Out5IntlkRaw.B0")
+  field(INP, "$(P)$(R)OUT5IntlkRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Out5IntChanRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel5RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out5IntChanStatCalc")
-}
-
-record(scalcout, "$(P)$(R)Out5IntChanStatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection status calc")
-  field(INPA, "$(P)$(R)Out5IntChanRaw.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(P)$(R)Out5IntChan-Sts")
-}
-
-record(stringin, "$(P)$(R)Out5IntChan-Sts"){
+record(mbbi, "$(P)$(R)OUT5Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT5 source selection status")
-  field(INP, "$(P)$(R)Out5IntChanStatCalc.SVAL")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x15")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel5RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)Out5FineDelay-RB") {
+record(longin, "$(P)$(R)OUT5FineDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT5 fine delay status")
   field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)Out5RFDelay-RB") {
+record(longin, "$(P)$(R)OUT5RFDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT5 RF delay status")
   field(EGU, "evt_T/20")
 }
 
-record(longout, "$(P)$(R)Out5RFDelay-SP"){
+record(longout, "$(P)$(R)OUT5RFDelay-SP"){
   field(DESC, "EVE OUT5 RF delay")
   field(DRVL, "0")
   field(DRVH, "31")
@@ -3772,7 +3792,7 @@ record(longout, "$(P)$(R)Out5RFDelay-SP"){
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),5) $(PORT)")
 }
 
-record(longout, "$(P)$(R)Out5FineDelay-SP"){
+record(longout, "$(P)$(R)OUT5FineDelay-SP"){
   field(DESC, "EVE OUT5 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")  
@@ -3781,61 +3801,60 @@ record(longout, "$(P)$(R)Out5FineDelay-SP"){
   field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),5) $(PORT)")
 }
 
-record(stringout, "$(P)$(R)Out5IntChan-Sel"){
-  field(DESC, "EVE OUT5 source selection")
-  field(FLNK, "$(P)$(R)Out5IntChanCalc1")
+record(dfanout, "$(P)$(R)OUT5SrcTrig-SP"){
+  field(DESC, "EVE OUT5 source trigger")
+  field(VAL, "0x15")
+  field(OUTA, "$(P)$(R)OUT5Src-Sel.ZRVL PP")
+  field(OUTB, "$(P)$(R)OUT5Src-Sts.ZRVL PP")
 }
 
-record(scalcout, "$(P)$(R)Out5IntChanCalc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection calc 1")
-  field(INAA, "$(P)$(R)Out5IntChan-Sel.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(P)$(R)Out5IntChanCalc2")
+record(mbbo, "$(P)$(R)OUT5Src-Sel"){
+  field(DESC, "EVR OUT5 source selection")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x15")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT5SrcHw")
 }
 
-record(scalcout, "$(P)$(R)Out5IntChanCalc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection calc 2")
-  field(INAA, "$(P)$(R)Out5IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out5IntChanCalc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(P)$(R)Out5IntChanCalc3")
-}
-
-record(scalcout, "$(P)$(R)Out5IntChanCalc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection calc 3")
-  field(INAA, "$(P)$(R)Out5IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out5IntChanCalc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out5IntChan-Hw PP")
-}
-
-record(longout, "$(P)$(R)Out5IntChan-Hw"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 calculated source selection")
+record(calcout, "$(P)$(R)OUT5SrcHw"){
+  field(DESC, "EVR OUT5 source selection write reg")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(P),$(R),5) $(PORT)")
+  field(INPA, "$(P)$(R)OUT5Src-Sel.RVAL")
+  field(CALC, "A")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),5) $(PORT)")
 }
 
-record(calcout, "$(P)$(R)Out5IntlkCalc") {
+record(calcout, "$(P)$(R)OUT5IntlkCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT5 set interlock function calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Out5Intlk-Sel")
+  field(INPA, "$(P)$(R)OUT5Intlk-Sel")
   field(CALC, "A<<7")
   field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),5) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Out5Intlk-Sel"){
+record(bo, "$(P)$(R)OUT5Intlk-Sel"){
   field(DESC, "EVE OUT5 interlock function selection")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)Out5IntlkCalc")
+  field(FLNK, "$(P)$(R)OUT5IntlkCalc")
 }
 
 record(longout, "$(P)$(R)cmd_out_get5") {
@@ -3853,7 +3872,7 @@ record(longout, "$(P)$(R)cmd_out_set5") {
 ########################################################################
 # OUT6 Register [23]
 
-record(mbbiDirect, "$(P)$(R)Out6IntlkRaw") {
+record(mbbiDirect, "$(P)$(R)OUT6IntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT6 interlock raw status")
   field(NOBT, "8")
@@ -3861,54 +3880,58 @@ record(mbbiDirect, "$(P)$(R)Out6IntlkRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_out_itl6RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out6Intlk-Sts")
+  field(FLNK, "$(P)$(R)OUT6Intlk-Sts")
 }
 
-record(bi, "$(P)$(R)Out6Intlk-Sts") {
+record(bi, "$(P)$(R)OUT6Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT6 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Out6IntlkRaw.B0")
+  field(INP, "$(P)$(R)OUT6IntlkRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Out6IntChanRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel6RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out6IntChanStatCalc")
-}
-
-record(scalcout, "$(P)$(R)Out6IntChanStatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection status calc")
-  field(INPA, "$(P)$(R)Out6IntChanRaw.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(P)$(R)Out6IntChan-Sts")
-}
-
-record(stringin, "$(P)$(R)Out6IntChan-Sts"){
+record(mbbi, "$(P)$(R)OUT6Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT6 source selection status")
-  field(INP, "$(P)$(R)Out6IntChanStatCalc.SVAL")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x16")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel6RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)Out6FineDelay-RB") {
+record(longin, "$(P)$(R)OUT6FineDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT6 fine delay status")
   field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)Out6RFDelay-RB") {
+record(longin, "$(P)$(R)OUT6RFDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT6 RF delay status")
   field(EGU, "evt_T/20")
 }
 
-record(longout, "$(P)$(R)Out6RFDelay-SP"){
+record(longout, "$(P)$(R)OUT6RFDelay-SP"){
   field(DESC, "EVE OUT6 RF delay")
   field(DRVL, "0")
   field(DRVH, "31")
@@ -3917,7 +3940,7 @@ record(longout, "$(P)$(R)Out6RFDelay-SP"){
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),6) $(PORT)")
 }
 
-record(longout, "$(P)$(R)Out6FineDelay-SP"){
+record(longout, "$(P)$(R)OUT6FineDelay-SP"){
   field(DESC, "EVE OUT6 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
@@ -3926,61 +3949,60 @@ record(longout, "$(P)$(R)Out6FineDelay-SP"){
   field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),6) $(PORT)")
 }
 
-record(stringout, "$(P)$(R)Out6IntChan-Sel"){
-  field(DESC, "EVE OUT6 source selection")
-  field(FLNK, "$(P)$(R)Out6IntChanCalc1")
+record(dfanout, "$(P)$(R)OUT6SrcTrig-SP"){
+  field(DESC, "EVE OUT6 source trigger")
+  field(VAL, "0x16")
+  field(OUTA, "$(P)$(R)OUT6Src-Sel.ZRVL PP")
+  field(OUTB, "$(P)$(R)OUT6Src-Sts.ZRVL PP")
 }
 
-record(scalcout, "$(P)$(R)Out6IntChanCalc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection calc 1")
-  field(INAA, "$(P)$(R)Out6IntChan-Sel.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(P)$(R)Out6IntChanCalc2")
+record(mbbo, "$(P)$(R)OUT6Src-Sel"){
+  field(DESC, "EVR OUT6 source selection")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x16")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT6SrcHw")
 }
 
-record(scalcout, "$(P)$(R)Out6IntChanCalc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection calc 2")
-  field(INAA, "$(P)$(R)Out6IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out6IntChanCalc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(P)$(R)Out6IntChanCalc3")
-}
-
-record(scalcout, "$(P)$(R)Out6IntChanCalc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection calc 3")
-  field(INAA, "$(P)$(R)Out6IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out6IntChanCalc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out6IntChan-Hw PP")
-}
-
-record(longout, "$(P)$(R)Out6IntChan-Hw"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 calculated source selection")
+record(calcout, "$(P)$(R)OUT6SrcHw"){
+  field(DESC, "EVR OUT6 source selection write reg")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(P),$(R),6) $(PORT)")
+  field(INPA, "$(P)$(R)OUT6Src-Sel.RVAL")
+  field(CALC, "A")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),6) $(PORT)")
 }
 
-record(calcout, "$(P)$(R)Out6IntlkCalc") {
+record(calcout, "$(P)$(R)OUT6IntlkCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT6 set interlock function calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Out6Intlk-Sel")
+  field(INPA, "$(P)$(R)OUT6Intlk-Sel")
   field(CALC, "A<<7")
   field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),6) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Out6Intlk-Sel"){
+record(bo, "$(P)$(R)OUT6Intlk-Sel"){
   field(DESC, "EVE OUT6 interlock function selection")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)Out6IntlkCalc")
+  field(FLNK, "$(P)$(R)OUT6IntlkCalc")
 }
 
 record(longout, "$(P)$(R)cmd_out_get6") {
@@ -3998,7 +4020,7 @@ record(longout, "$(P)$(R)cmd_out_set6") {
 ########################################################################
 # OUT7 Register [24]
 
-record(mbbiDirect, "$(P)$(R)Out7IntlkRaw") {
+record(mbbiDirect, "$(P)$(R)OUT7IntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT7 interlock raw status")
   field(NOBT, "8")
@@ -4006,54 +4028,58 @@ record(mbbiDirect, "$(P)$(R)Out7IntlkRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_out_itl7RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out7Intlk-Sts")
+  field(FLNK, "$(P)$(R)OUT7Intlk-Sts")
 }
 
-record(bi, "$(P)$(R)Out7Intlk-Sts") {
+record(bi, "$(P)$(R)OUT7Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT7 interlock status")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(INP, "$(P)$(R)Out7IntlkRaw.B0")
+  field(INP, "$(P)$(R)OUT7IntlkRaw.B0")
 }
 
-record(mbbiDirect, "$(P)$(R)Out7IntChanRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel7RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Out7IntChanStatCalc")
-}
-
-record(scalcout, "$(P)$(R)Out7IntChanStatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection status calc")
-  field(INPA, "$(P)$(R)Out7IntChanRaw.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(P)$(R)Out7IntChan-Sts")
-}
-
-record(stringin, "$(P)$(R)Out7IntChan-Sts"){
+record(mbbi, "$(P)$(R)OUT7Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT7 source selection status")
-  field(INP, "$(P)$(R)Out7IntChanStatCalc.SVAL")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x17")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel7RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)Out7FineDelay-RB") {
+record(longin, "$(P)$(R)OUT7FineDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT7 fine delay status")
   field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)Out7RFDelay-RB") {
+record(longin, "$(P)$(R)OUT7RFDelay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT7 RF delay status")
   field(EGU, "evt_T/20")
 }
 
-record(longout, "$(P)$(R)Out7RFDelay-SP"){
+record(longout, "$(P)$(R)OUT7RFDelay-SP"){
   field(DESC, "EVE OUT7 RF delay")
   field(DRVL, "0")
   field(DRVH, "31")
@@ -4062,7 +4088,7 @@ record(longout, "$(P)$(R)Out7RFDelay-SP"){
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),7) $(PORT)")
 }
 
-record(longout, "$(P)$(R)Out7FineDelay-SP"){
+record(longout, "$(P)$(R)OUT7FineDelay-SP"){
   field(DESC, "EVE OUT7 fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")
@@ -4071,61 +4097,60 @@ record(longout, "$(P)$(R)Out7FineDelay-SP"){
   field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),7) $(PORT)")
 }
 
-record(stringout, "$(P)$(R)Out7IntChan-Sel"){
-  field(DESC, "EVE OUT7 source selection")
-  field(FLNK, "$(P)$(R)Out7IntChanCalc1")
+record(dfanout, "$(P)$(R)OUT7SrcTrig-SP"){
+  field(DESC, "EVE OUT7 source trigger")
+  field(VAL, "0x17")
+  field(OUTA, "$(P)$(R)OUT7Src-Sel.ZRVL PP")
+  field(OUTB, "$(P)$(R)OUT7Src-Sts.ZRVL PP")
 }
 
-record(scalcout, "$(P)$(R)Out7IntChanCalc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection calc 1")
-  field(INAA, "$(P)$(R)Out7IntChan-Sel.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(P)$(R)Out7IntChanCalc2")
+record(mbbo, "$(P)$(R)OUT7Src-Sel"){
+  field(DESC, "EVR OUT7 source selection")
+  field(ZRST, "Trigger")
+  field(ZRVL, "0x17")
+  field(ONST, "Clock0")
+  field(ONVL, "0x20")
+  field(TWST, "Clock1")
+  field(TWVL, "0x21")
+  field(THST, "Clock2")
+  field(THVL, "0x22")
+  field(FRST, "Clock3")
+  field(FRVL, "0x23")
+  field(FVST, "Clock4")
+  field(FVVL, "0x24")
+  field(SXST, "Clock5")
+  field(SXVL, "0x25")
+  field(SVST, "Clock6")
+  field(SVVL, "0x26")
+  field(EIST, "Clock7")
+  field(EIVL, "0x27")
+  field(NIST, "Dsbl")
+  field(NIVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT7SrcHw")
 }
 
-record(scalcout, "$(P)$(R)Out7IntChanCalc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection calc 2")
-  field(INAA, "$(P)$(R)Out7IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out7IntChanCalc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(P)$(R)Out7IntChanCalc3")
-}
-
-record(scalcout, "$(P)$(R)Out7IntChanCalc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection calc 3")
-  field(INAA, "$(P)$(R)Out7IntChan-Sel.VAL")
-  field(INPB, "$(P)$(R)Out7IntChanCalc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(P)$(R)Out7IntChan-Hw PP")
-}
-
-record(longout, "$(P)$(R)Out7IntChan-Hw"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 calculated source selection")
+record(calcout, "$(P)$(R)OUT7SrcHw"){
+  field(DESC, "EVR OUT7 source selection write reg")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(P),$(R),7) $(PORT)")
+  field(INPA, "$(P)$(R)OUT7Src-Sel.RVAL")
+  field(CALC, "A")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),7) $(PORT)")
 }
 
-record(calcout, "$(P)$(R)Out7IntlkCalc") {
+record(calcout, "$(P)$(R)OUT7IntlkCalc") {
   field(ASG, "Reserved")
   field(DESC, "EVE OUT7 set interlock function calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Out7Intlk-Sel")
+  field(INPA, "$(P)$(R)OUT7Intlk-Sel")
   field(CALC, "A<<7")
   field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),7) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Out7Intlk-Sel"){
+record(bo, "$(P)$(R)OUT7Intlk-Sel"){
   field(DESC, "EVE OUT7 interlock function selection")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
-  field(FLNK, "$(P)$(R)Out7IntlkCalc")
+  field(FLNK, "$(P)$(R)OUT7IntlkCalc")
 }
 
 record(longout, "$(P)$(R)cmd_out_get7") {
