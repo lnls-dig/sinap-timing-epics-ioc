@@ -9,7 +9,7 @@ foreign ssId;
 
 int eventNum;
 char device[40];
-char * evPrefix = "Evtn";
+char * evPrefix = "Evt";
 char * evCodeName = "Code-SP";
 char * evTimeName = "Delay-SP";
 char * evModeName = "DelayType-Sel";
@@ -41,7 +41,7 @@ int tbl_rbv[864];
 assign tbl_rbv to "{P}{R}BucketList-RB";
 
 int tbl_length;
-assign tbl_length to "{P}{R}BucketList-SP.NORD";
+assign tbl_length to "{P}{R}BucketListLen-Mon";
 
 int seqs;
 assign seqs to "{P}{R}SeqStatus-Mon";
@@ -193,20 +193,20 @@ ss seq {
     
       %%// Assign events
        for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%d%s", device, evPrefix, i, evCodeName);
+         sprintf (str, "%s%s%02d%s", device, evPrefix, i+1, evCodeName);
          pvAssign (event_codes[i], str);
          %%//printf("%s\n", str);
        }
        for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%d%s", device, evPrefix, i, evTimeName);
+         sprintf (str, "%s%s%02d%s", device, evPrefix, i+1, evTimeName);
          pvAssign (event_timestamps[i], str);
        }
        for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%d%s", device, evPrefix, i, evModeName);
+         sprintf (str, "%s%s%02d%s", device, evPrefix, i+1, evModeName);
          pvAssign (event_modes[i], str);
        }
        for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%d%s", device, evPrefix, i, evCtrlName);
+         sprintf (str, "%s%s%02d%s", device, evPrefix, i+1, evCtrlName);
          pvAssign (event_ctrl[i], str);
        }
   
@@ -295,7 +295,7 @@ ss seq {
       %{/* Write to SeqRAM 1 */}%
   
       %%// Status update (preparing to run)
-      StateMachineStatus = 5;
+      StateMachineStatus = 4;
       pvPut(StateMachineStatus, SYNC);
   
       run_tg_rbv = 0;
@@ -476,7 +476,7 @@ ss seq {
       */}%
   
       %%// Status update (preparing to inject)
-      StateMachineStatus = 6;
+      StateMachineStatus = 5;
       pvPut(StateMachineStatus, SYNC);
   
       run_tg_rbv = 1;
@@ -486,7 +486,7 @@ ss seq {
       pvPut(inj_tg_rbv, SYNC);
 
       %%// Update bucket list
-      pvGet(tbl, SYNC);
+      pvGet(tbl_rbv, SYNC);
   
       %%// Update bucket list length
       pvGet(tbl_length, SYNC);
@@ -506,7 +506,7 @@ ss seq {
         %%// Update and order EventPointerArray
         updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
   
-        numberOfWrites = seqTwoWrite(repeatinj_tg, eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
+        numberOfWrites = seqTwoWrite(repeatinj_tg, eventNum, tbl_rbv, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
                   pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
   
         %%// Force seqcountRBV to update
@@ -659,7 +659,7 @@ ss seq {
       */}%   
   
       %%// Status update (restarting)
-      StateMachineStatus = 4;
+      StateMachineStatus = 6;
       pvPut(StateMachineStatus, SYNC);
   
       run_tg_rbv = 0;
