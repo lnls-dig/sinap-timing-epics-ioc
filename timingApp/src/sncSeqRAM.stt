@@ -9,7 +9,7 @@ foreign ssId;
 
 int eventNum;
 char device[40];
-char * evPrefix = "Evt";
+char * evPrefix = "Evtn";
 char * evCodeName = "Code-SP";
 char * evTimeName = "Delay-SP";
 char * evModeName = "DelayType-Sel";
@@ -104,7 +104,7 @@ assign restart_tg to "{P}{R}RESTSEQ";
 monitor restart_tg;
 
 int repeatinj_tg;
-assign repeatinj_tg to "{P}{R}REPINJSEQ";
+assign repeatinj_tg to "{P}{R}RepeatBucketList-SP";
 monitor repeatinj_tg;
 
 %%//----------------------------------------
@@ -157,7 +157,7 @@ monitor repeatinj_tg;
     int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
               VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id);
                       
-    int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
+    int seqTwoWrite(int repeat, int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
                 VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id);
 }%
 
@@ -354,14 +354,6 @@ ss seq {
   
     } state Stopped
   
-    when(repeatinj_tg){
-  
-      %{/* Reset trigger */}%    
-  
-      repeatinj_tg = 0;
-      pvPut(repeatinj_tg, SYNC);
-  
-    } state Stopped
   }
   
   state CheckSeq1Write{
@@ -427,6 +419,9 @@ ss seq {
       run_tg_rbv = 1;
       pvPut(run_tg_rbv, SYNC);
       
+      inj_tg = 0;
+      pvPut(inj_tg, SYNC);
+
       inj_tg_rbv = 0;
       pvPut(inj_tg_rbv, SYNC);
 
@@ -472,7 +467,7 @@ ss seq {
           %%//printf("Moving to Injecting State\n");
     } state Injecting
   
-    when(inj_tg || repeatinj_tg){
+    when(inj_tg){
   
       %{/* 
             -Update Bucket list
@@ -511,7 +506,7 @@ ss seq {
         %%// Update and order EventPointerArray
         updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
   
-        numberOfWrites = seqTwoWrite(eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
+        numberOfWrites = seqTwoWrite(repeatinj_tg, eventNum, tbl, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
                   pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
   
         %%// Force seqcountRBV to update
@@ -616,10 +611,6 @@ ss seq {
     when(inj_tg == 0 && seqsw == 0){
   
       %{/* Return to SeqRAM 1 */}%
-  
-      %%// Reset repeat injection PV
-      repeatinj_tg = 0;
-      pvPut(repeatinj_tg, SYNC);
   
       %%// Switch seqRAM
       if(seqs == 2){
@@ -1042,10 +1033,10 @@ ss seq {
 
      Return: Number of write operations performed.     
   */
-  int seqTwoWrite(int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
+  int seqTwoWrite(int repeat, int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
                 VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id){
                   
-    int i, j, seqdly, rfdly, maxdelay = 0, address = 0;
+    int n, i, j, seqdly, rfdly, maxdelay = 0, address = 0;
 
     // timestamp offset for code 0x7E or 0x70 from previous timestamp
     int offSetEndCode = 10;
@@ -1053,123 +1044,134 @@ ss seq {
     // timestamp for sending the RF delay code to modules
     int RFDlyTimestamp = 10;
 
-    // for each bucket
-    for(i = 0; i < length; i++){
+    printf("Repeat bucket list %d, write seqram %d", repeat, (repeat>0?repeat:repeat+1));
+    // Repeat bucket list
+    for (n = 0; n < (repeat>0?repeat:repeat+1); n++){
 
-      // Ignore bucket numbers greater than 863 (storage ring number of buckets).
-      // Ignore bucket numbers smaller than 0.
-      printf("Bucket number: %d\n", TBL[i]);
-      if(TBL[i] > 863 || TBL[i] < 0){
-      
-        printf("ERROR: Invalid bucket number provided by bucket list. Bucket number was ignored.\n");      
-        continue;
-      }
-
-      // Send appropriate RF delay for modules
-      seqdly = TBL[i] / 4;
-      rfdly = TBL[i] % 4;
-
-      // Set RF Delay Code (code = 0x40 + rfdly)
-
-      *pseqaddr = address;
-      *pseqcode = 0x40 + rfdly * 5;
-      *pseqtime = RFDlyTimestamp;
-
-      // write event info to seqRAM records
-      seq_pvPut(ssId, seqaddr_id, SYNC);
-      seq_pvPut(ssId, seqcode_id, SYNC);
-
-      // write timestamp (wich also triggers write to seqRAM)
-      seq_pvPut(ssId, seqtime_id, SYNC);
-
-      ////////////// D E B U G G I N G //////////////////////////////////////////
-
-      printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
-
-      ///////////////////////////////////////////////////////////////////////////
-
-
-      // point to next address
-      address++;
-
-      // write events
-      for(j = 0; j < evnum; j++){
-
-        // NEVER
-        if(EventPointerArray[j]->ctrl == NEVER)
-          continue;
-
-        // INJECTION AND ALWAYS
-        if(EventPointerArray[j]->mode == INCR){      
-
-          // Set timestamp WITH seqdly
-          *pseqtime = maxdelay = EventPointerArray[j]->timestamp + seqdly;
-        }
-        else{
-
-          // Set timestamp WITHOUT seqdly
-          *pseqtime = maxdelay = EventPointerArray[j]->timestamp;
-        }
-        
-
-            // Write Specified Code 
-        // specify address and code (timestamp was specified above)
-        *pseqaddr = address;
-        *pseqcode = EventPointerArray[j]->code;
-
-        // write event info to seqRAM records
-        seq_pvPut(ssId, seqaddr_id, SYNC);  
-        seq_pvPut(ssId, seqcode_id, SYNC);
+      // for each bucket
+      for(i = 0; i < length; i++){
   
-        // write timestamp (wich also triggers write to seqRAM)
-        seq_pvPut(ssId, seqtime_id, SYNC);
-
-        ////////////// D E B U G G I N G //////////////////////////////////////////
-
-        printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
-
-        ///////////////////////////////////////////////////////////////////////////
-
-
-        // point to next address
-        address++;
+        // Ignore bucket numbers greater than 864 (storage ring number of buckets).
+        // Ignore bucket numbers smaller than 1.
+        printf("Bucket number: %d\n", TBL[i]);
+        if(TBL[i] > 864 || TBL[i] < 1){
         
-      }
-
-            // SequenceRAM Wait code 
-      if(i < length - 1){
-
-        *pseqcode = 0x70; // Send 0x70 code
-        
-        // define address and timestamp
+          printf("ERROR: Invalid bucket number provided by bucket list. Bucket number was ignored.\n");      
+          continue;
+        }
+  
+        // Send appropriate RF delay for modules
+        seqdly = TBL[i] / 4;
+        rfdly = TBL[i] % 4;
+  
+        // Set RF Delay Code (code = 0x40 + rfdly)
+  
         *pseqaddr = address;
-        *pseqtime = maxdelay + offSetEndCode;
+        *pseqcode = 0x40 + rfdly * 5;
+        *pseqtime = RFDlyTimestamp;
   
         // write event info to seqRAM records
         seq_pvPut(ssId, seqaddr_id, SYNC);
         seq_pvPut(ssId, seqcode_id, SYNC);
-
+  
         // write timestamp (wich also triggers write to seqRAM)
         seq_pvPut(ssId, seqtime_id, SYNC);
-
+  
         ////////////// D E B U G G I N G //////////////////////////////////////////
-
+  
         printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
-
+  
         ///////////////////////////////////////////////////////////////////////////
-
-
+  
+  
         // point to next address
-        address++;    
-      }  
+        address++;
+  
+        // write events
+        for(j = 0; j < evnum; j++){
+  
+          // NEVER
+          if(EventPointerArray[j]->ctrl == NEVER)
+            continue;
+  
+          // INJECTION AND ALWAYS
+          if(EventPointerArray[j]->mode == INCR){      
+  
+            // Set timestamp WITH seqdly
+            *pseqtime = maxdelay = EventPointerArray[j]->timestamp + seqdly;
+          }
+          else{
+  
+            // Set timestamp WITHOUT seqdly
+            *pseqtime = maxdelay = EventPointerArray[j]->timestamp;
+          }
+          
+  
+              // Write Specified Code 
+          // specify address and code (timestamp was specified above)
+          *pseqaddr = address;
+          *pseqcode = EventPointerArray[j]->code;
+  
+          // write event info to seqRAM records
+          seq_pvPut(ssId, seqaddr_id, SYNC);  
+          seq_pvPut(ssId, seqcode_id, SYNC);
+    
+          // write timestamp (wich also triggers write to seqRAM)
+          seq_pvPut(ssId, seqtime_id, SYNC);
+  
+          ////////////// D E B U G G I N G //////////////////////////////////////////
+  
+          printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+  
+          ///////////////////////////////////////////////////////////////////////////
+  
+  
+          // point to next address
+          address++;
+          
+        }
+  
+              // SequenceRAM Wait code 
+        if(i < length - 1){
+  
+          *pseqcode = 0x70; // Send 0x70 code
+          
+          // define address and timestamp
+          *pseqaddr = address;
+          *pseqtime = maxdelay + offSetEndCode;
+    
+          // write event info to seqRAM records
+          seq_pvPut(ssId, seqaddr_id, SYNC);
+          seq_pvPut(ssId, seqcode_id, SYNC);
+  
+          // write timestamp (wich also triggers write to seqRAM)
+          seq_pvPut(ssId, seqtime_id, SYNC);
+  
+          ////////////// D E B U G G I N G //////////////////////////////////////////
+  
+          printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+  
+          ///////////////////////////////////////////////////////////////////////////
+  
+  
+          // point to next address
+          address++;    
+        }  
+      }
     }
 
     // Check if bucket list provided valid bucket numbers
     if(address != 0){
 
-      // SequenceRAM Switch RAM code 
-      *pseqcode = 0x7E; // Send 0x7E code
-    
+      if (repeat > 0) {
+        // SequenceRAM code to switch to RAM 1
+        *pseqcode = 0x7E; // Send 0x7E code
+      }
+      else {
+        // SequenceRAM code to back to top and wait next injention trigger
+        *pseqcode = 0x7F; // Send 0x7F code
+      }
+      
       // define address and timestamp
       *pseqaddr = address;
       *pseqtime = maxdelay + offSetEndCode;

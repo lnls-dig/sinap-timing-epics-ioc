@@ -54,7 +54,6 @@ record(mbbiDirect, "$(P)$(R)Los-Mon") {
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto evg_ctrl_los_intr $(PORT)")
-  #field(FLNK, "$(P)$(R)los0RBV")
 }
 
 record(calc, "$(P)$(R)SeqStatusCalc") {
@@ -1569,10 +1568,15 @@ record(waveform, "$(P)$(R)BucketList-SP") {
 record(acalcout, "$(P)$(R)BucketListCalc") {
   field(DESC, "Injection table")
   field(NELM, "864")
-  field(INPA, "$(P)$(R)BucketList-SP.NORD")
   field(INAA, "$(P)$(R)BucketList-SP")
-  field(CALC, "AA%864")
+  field(CALC, "AA[0,IXZ(AA>0 & AA<865)-1]; A:=IXZ(AA>0 & AA<865)")
   field(OUT, "$(P)$(R)BucketList-RB PP")
+  field(FLNK, "$(P)$(R)BucketListLen-Mon PP")
+}
+
+record(longin, "$(P)$(R)BucketListLen-Mon") {
+  field(INP, "$(P)$(R)BucketListCalc.A")
+  field(DESC, "Length of the valid BucketList sequence")
 }
 
 record(waveform, "$(P)$(R)BucketList-RB") {

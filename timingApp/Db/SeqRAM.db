@@ -73,17 +73,15 @@ record(bo, "$(P)$(R)RESTSEQ"){
 }
 
 #####################################################
-# Repeat Injection Trigger Flag: Repeat the injection while set
-record(bo, "$(P)$(R)REPINJSEQ"){
-	field(SCAN, "Passive")
-	field(ZNAM, "Dsbl")
-	field(ONAM, "Enbl")
-	field(DESC, "Repeat Injection Flag")
+record(longout, "$(P)$(R)RepeatBucketList-SP"){
+  field(DESC, "BucketList repetition, 0=infinity")
+  field(DRVH, "100")
+  field(DRVL, "0")
+  field(FLNK, "$(P)$(R)RepeatBucketList-RB")
 }
 
-record(longout, "$(P)$(R)RepeatBucketList-SP"){
-  field(DESC, "Number of BucketList repetition")
-  field(DRVH, "4294967295")
-  field(DRVL, "0")
+record(longin, "$(P)$(R)RepeatBucketList-RB"){
+  field(DESC, "BucketList repetition, 0=infinity")
+  field(INP, "$(P)$(R)RepeatBucketList-SP")
 }
 
