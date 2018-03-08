@@ -35,89 +35,17 @@ record(bi, "$(P)$(R)Link-Mon") {
   field(INP, "$(P)$(R)LinkRaw.B7")
 }
 
-record(mbbiDirect, "$(P)$(R)LosRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "Downlink status in OUT0-OUT7 RAW")
+record(mbbiDirect, "$(P)$(R)Los-Mon") {
+  field(DESC, "Downlink status in OUT0-OUT7")
   field(NOBT, "8")
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto fout_ctrl_los_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Los0-Mon")
-}
-
-record(bi, "$(P)$(R)Los0-Mon"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT0 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)LosRaw.B0")
-  field(FLNK, "$(P)$(R)Los1-Mon")
-}
-
-record(bi, "$(P)$(R)Los1-Mon"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT1 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)LosRaw.B1")
-  field(FLNK, "$(P)$(R)Los2-Mon")
-}
-
-record(bi, "$(P)$(R)Los2-Mon"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT2 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)LosRaw.B2")
-  field(FLNK, "$(P)$(R)Los3-Mon")
-}
-
-record(bi, "$(P)$(R)Los3-Mon"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT3 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)LosRaw.B3")
-  field(FLNK, "$(P)$(R)Los4-Mon")
-}
-
-record(bi, "$(P)$(R)Los4-Mon"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT4 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)LosRaw.B4")
-  field(FLNK, "$(P)$(R)Los5-Mon")
-}
-
-record(bi, "$(P)$(R)Los5-Mon"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT5 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)LosRaw.B5")
-  field(FLNK, "$(P)$(R)Los6-Mon")
-}
-
-record(bi, "$(P)$(R)Los6-Mon"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT6 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)LosRaw.B6")
-  field(FLNK, "$(P)$(R)Los7-Mon")
-}
-
-record(bi, "$(P)$(R)Los7-Mon"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT7 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(P)$(R)LosRaw.B7")
 }
 
 record(bo, "$(P)$(R)DevEnbl-Sel"){
   field(DESC, "Enable/Disable FANOUT")
+  field(MASK, "1")
   field(DTYP, "stream")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
@@ -233,12 +161,14 @@ record(longout, "$(P)$(R)cmd_conf_set") {
 
 record(bo, "$(P)$(R)Download-Cmd") {
   field(DESC, "FOUT download")
+  field(MASK, "1")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
 }
 
 record(bo, "$(P)$(R)Download-Trig") {
   field(DESC, "FOUT download trigger")
+  field(MASK, "1")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
   field(DTYP, "stream")
@@ -270,6 +200,7 @@ record(bi, "$(P)$(R)Network-Mon") {
 
 record(bo, "$(P)$(R)Save-Cmd"){
   field(DESC, "FOUT manual save settings command")
+  field(MASK, "1")
   field(ZNAM, "OFF")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)Save-Trig")
