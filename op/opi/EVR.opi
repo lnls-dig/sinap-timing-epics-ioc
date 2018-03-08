@@ -28,7 +28,7 @@
   <show_ruler>true</show_ruler>
   <snap_to_geometry>true</snap_to_geometry>
   <widget_type>Display</widget_type>
-  <width>1060</width>
+  <width>1500</width>
   <wuid>-da3c482:14c09bba37a:-7f9e</wuid>
   <x>-1</x>
   <y>-1</y>
@@ -433,14 +433,14 @@ $(pv_value)</tooltip>
     <transparent>false</transparent>
     <visible>true</visible>
     <widget_type>Rectangle</widget_type>
-    <width>391</width>
+    <width>493</width>
     <wuid>10c4971e:157711e6f06:-10af</wuid>
     <x>666</x>
     <y>343</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -456,7 +456,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_1</name>
     <rules />
@@ -472,10 +472,10 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>41</width>
+    <width>47</width>
     <wrap_words>false</wrap_words>
     <wuid>-62805d77:14c952d5ca2:-7b81</wuid>
-    <x>35</x>
+    <x>32</x>
     <y>75</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
@@ -618,7 +618,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig00Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -786,7 +786,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo</name>
-    <pv_name>$(P)$(R)IntTrig00Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP00Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -882,7 +882,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig01Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -930,7 +930,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_1</name>
-    <pv_name>$(P)$(R)IntTrig01Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP01Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -981,7 +981,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1036,7 +1036,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1086,7 +1086,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>SEL0</text>
+    <text>SEL</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
@@ -1136,7 +1136,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)Out0Intlk-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT0Intlk-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -1260,7 +1260,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1276,7 +1276,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_38</name>
     <rules />
@@ -1292,15 +1292,15 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>45</width>
+    <width>51</width>
     <wrap_words>false</wrap_words>
     <wuid>-62805d77:14c952d5ca2:-7af8</wuid>
-    <x>172</x>
+    <x>169</x>
     <y>75</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1316,7 +1316,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>22</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_44</name>
     <rules />
@@ -1332,10 +1332,10 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>80</width>
+    <width>88</width>
     <wrap_words>false</wrap_words>
     <wuid>-62805d77:14c952d5ca2:-7af2</wuid>
-    <x>460</x>
+    <x>459</x>
     <y>182</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
@@ -1397,12 +1397,12 @@ $(pv_value)</tooltip>
     <widget_type>Boolean Button</widget_type>
     <width>47</width>
     <wuid>-62805d77:14c952d5ca2:-7af1</wuid>
-    <x>476</x>
+    <x>480</x>
     <y>201</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1418,7 +1418,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>22</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_45</name>
     <rules />
@@ -1434,10 +1434,10 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>80</width>
+    <width>61</width>
     <wrap_words>false</wrap_words>
     <wuid>-62805d77:14c952d5ca2:-7af0</wuid>
-    <x>460</x>
+    <x>473</x>
     <y>237</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
@@ -1499,12 +1499,12 @@ $(pv_value)</tooltip>
     <widget_type>Boolean Button</widget_type>
     <width>47</width>
     <wuid>-62805d77:14c952d5ca2:-7aef</wuid>
-    <x>476</x>
+    <x>480</x>
     <y>256</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1520,7 +1520,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>23</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_48</name>
     <rules />
@@ -1530,13 +1530,13 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>$(Dev)$(Idx)</text>
+    <text>$(P)$(R)</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>97</width>
+    <width>71</width>
     <wrap_words>false</wrap_words>
     <wuid>-62805d77:14c952d5ca2:-c4c</wuid>
     <x>330</x>
@@ -1544,7 +1544,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1560,7 +1560,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>34</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_56</name>
     <rules />
@@ -1570,21 +1570,22 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>Fine delay 5 ps</text>
+    <text>Fine delay
+5 ps</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>100</width>
+    <width>68</width>
     <wrap_words>false</wrap_words>
     <wuid>30421f94:14dfc59a623:825</wuid>
-    <x>790</x>
-    <y>379</y>
+    <x>806</x>
+    <y>363</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -1600,7 +1601,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>34</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_57</name>
     <rules />
@@ -1610,17 +1611,18 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>RF delay evt/20</text>
+    <text>RF delay 
+evt/20</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>110</width>
+    <width>59</width>
     <wrap_words>false</wrap_words>
     <wuid>30421f94:14dfc59a623:826</wuid>
-    <x>877</x>
-    <y>379</y>
+    <x>902</x>
+    <y>363</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
     <actions hook="false" hook_all="false" />
@@ -1655,7 +1657,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out0FineDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT0FineDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1710,7 +1712,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out0RFDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT0RFDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1925,7 +1927,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1980,7 +1982,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2030,7 +2032,7 @@ $(pv_value)</tooltip>
     <name>Text Update_2</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2082,7 +2084,7 @@ $(pv_value)</tooltip>
     <name>Text Update_3</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2134,7 +2136,7 @@ $(pv_value)</tooltip>
     <name>Text Update_4</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP00Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2186,7 +2188,7 @@ $(pv_value)</tooltip>
     <name>Text Update_5</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP00Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2248,7 +2250,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig00Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2394,7 +2396,7 @@ $(pv_value)</tooltip>
     <name>Text Update_6</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2446,7 +2448,7 @@ $(pv_value)</tooltip>
     <name>Text Update_7</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2498,7 +2500,7 @@ $(pv_value)</tooltip>
     <name>Text Update_8</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP01Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2550,7 +2552,7 @@ $(pv_value)</tooltip>
     <name>Text Update_9</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP01Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2612,7 +2614,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig01Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2808,7 +2810,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig02Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -2856,7 +2858,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_14</name>
-    <pv_name>$(P)$(R)IntTrig02Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP02Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2912,7 +2914,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig03Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -2960,7 +2962,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_15</name>
-    <pv_name>$(P)$(R)IntTrig03Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP03Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3011,7 +3013,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3066,7 +3068,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3161,7 +3163,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3216,7 +3218,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3266,7 +3268,7 @@ $(pv_value)</tooltip>
     <name>Text Update_10</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3318,7 +3320,7 @@ $(pv_value)</tooltip>
     <name>Text Update_11</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3370,7 +3372,7 @@ $(pv_value)</tooltip>
     <name>Text Update_12</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP02Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3422,7 +3424,7 @@ $(pv_value)</tooltip>
     <name>Text Update_13</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP02Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3484,7 +3486,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig02Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3630,7 +3632,7 @@ $(pv_value)</tooltip>
     <name>Text Update_14</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3682,7 +3684,7 @@ $(pv_value)</tooltip>
     <name>Text Update_15</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3734,7 +3736,7 @@ $(pv_value)</tooltip>
     <name>Text Update_16</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP03Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3786,7 +3788,7 @@ $(pv_value)</tooltip>
     <name>Text Update_17</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP03Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3848,7 +3850,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig03Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4044,7 +4046,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig04Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP04State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -4092,7 +4094,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_16</name>
-    <pv_name>$(P)$(R)IntTrig04Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP04Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4148,7 +4150,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig05Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP05State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -4196,7 +4198,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_17</name>
-    <pv_name>$(P)$(R)IntTrig05Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP05Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4247,7 +4249,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP04Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4302,7 +4304,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP04Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4397,7 +4399,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP05Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4452,7 +4454,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP05Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4502,7 +4504,7 @@ $(pv_value)</tooltip>
     <name>Text Update_18</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP04Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4554,7 +4556,7 @@ $(pv_value)</tooltip>
     <name>Text Update_19</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP04Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4606,7 +4608,7 @@ $(pv_value)</tooltip>
     <name>Text Update_20</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP04Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4658,7 +4660,7 @@ $(pv_value)</tooltip>
     <name>Text Update_21</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP04Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4720,7 +4722,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig04Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP04State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4866,7 +4868,7 @@ $(pv_value)</tooltip>
     <name>Text Update_22</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP05Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4918,7 +4920,7 @@ $(pv_value)</tooltip>
     <name>Text Update_23</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP05Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4970,7 +4972,7 @@ $(pv_value)</tooltip>
     <name>Text Update_24</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP05Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5022,7 +5024,7 @@ $(pv_value)</tooltip>
     <name>Text Update_25</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP05Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5084,7 +5086,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig05Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP05State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5280,7 +5282,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig06Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP06State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -5368,7 +5370,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_18</name>
-    <pv_name>$(P)$(R)IntTrig06Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP06Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5424,7 +5426,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig07Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP07State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -5472,7 +5474,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_19</name>
-    <pv_name>$(P)$(R)IntTrig07Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP07Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5523,7 +5525,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP06Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5578,7 +5580,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP06Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5673,7 +5675,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP07Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5728,7 +5730,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP07Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5778,7 +5780,7 @@ $(pv_value)</tooltip>
     <name>Text Update_26</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP06Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5830,7 +5832,7 @@ $(pv_value)</tooltip>
     <name>Text Update_27</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP06Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5882,7 +5884,7 @@ $(pv_value)</tooltip>
     <name>Text Update_28</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP06Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5934,7 +5936,7 @@ $(pv_value)</tooltip>
     <name>Text Update_29</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP06Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5996,7 +5998,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig06Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP06State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6142,7 +6144,7 @@ $(pv_value)</tooltip>
     <name>Text Update_30</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP07Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6194,7 +6196,7 @@ $(pv_value)</tooltip>
     <name>Text Update_31</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP07Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6246,7 +6248,7 @@ $(pv_value)</tooltip>
     <name>Text Update_32</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP07Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6298,7 +6300,7 @@ $(pv_value)</tooltip>
     <name>Text Update_33</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP07Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6360,7 +6362,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig07Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP07State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6556,7 +6558,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig08Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP08State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -6604,7 +6606,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_20</name>
-    <pv_name>$(P)$(R)IntTrig08Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP08Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6660,7 +6662,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig09Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP09State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -6708,7 +6710,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_21</name>
-    <pv_name>$(P)$(R)IntTrig09Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP09Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6759,7 +6761,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP08Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6814,7 +6816,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP08Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6909,7 +6911,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP09Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6964,7 +6966,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP09Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7014,7 +7016,7 @@ $(pv_value)</tooltip>
     <name>Text Update_34</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP08Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7066,7 +7068,7 @@ $(pv_value)</tooltip>
     <name>Text Update_35</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP08Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7118,7 +7120,7 @@ $(pv_value)</tooltip>
     <name>Text Update_36</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP08Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7170,7 +7172,7 @@ $(pv_value)</tooltip>
     <name>Text Update_37</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP08Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7232,7 +7234,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig08Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP08State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7378,7 +7380,7 @@ $(pv_value)</tooltip>
     <name>Text Update_38</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP09Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7430,7 +7432,7 @@ $(pv_value)</tooltip>
     <name>Text Update_39</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP09Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7482,7 +7484,7 @@ $(pv_value)</tooltip>
     <name>Text Update_40</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP09Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7534,7 +7536,7 @@ $(pv_value)</tooltip>
     <name>Text Update_41</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP09Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7596,7 +7598,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig09Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP09State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7792,7 +7794,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig10Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP10State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -7840,7 +7842,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_22</name>
-    <pv_name>$(P)$(R)IntTrig10Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP10Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7896,7 +7898,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig11Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP11State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -7944,7 +7946,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_23</name>
-    <pv_name>$(P)$(R)IntTrig11Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP11Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7995,7 +7997,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP10Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8050,7 +8052,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP10Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8145,7 +8147,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP11Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8200,7 +8202,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP11Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8250,7 +8252,7 @@ $(pv_value)</tooltip>
     <name>Text Update_42</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP10Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8302,7 +8304,7 @@ $(pv_value)</tooltip>
     <name>Text Update_43</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP10Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8354,7 +8356,7 @@ $(pv_value)</tooltip>
     <name>Text Update_44</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP10Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8406,7 +8408,7 @@ $(pv_value)</tooltip>
     <name>Text Update_45</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP10Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8468,7 +8470,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig10Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP10State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8614,7 +8616,7 @@ $(pv_value)</tooltip>
     <name>Text Update_46</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP11Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8666,7 +8668,7 @@ $(pv_value)</tooltip>
     <name>Text Update_47</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP11Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8718,7 +8720,7 @@ $(pv_value)</tooltip>
     <name>Text Update_48</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP11Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8770,7 +8772,7 @@ $(pv_value)</tooltip>
     <name>Text Update_49</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP11Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8832,7 +8834,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig11Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP11State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9028,7 +9030,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig12Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP12State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -9076,7 +9078,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_24</name>
-    <pv_name>$(P)$(R)IntTrig12Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP12Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9132,7 +9134,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig13Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP13State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -9180,7 +9182,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_25</name>
-    <pv_name>$(P)$(R)IntTrig13Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP13Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9231,7 +9233,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP12Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9286,7 +9288,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP12Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9381,7 +9383,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP13Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9436,7 +9438,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP13Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9486,7 +9488,7 @@ $(pv_value)</tooltip>
     <name>Text Update_50</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP12Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9538,7 +9540,7 @@ $(pv_value)</tooltip>
     <name>Text Update_51</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP12Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9590,7 +9592,7 @@ $(pv_value)</tooltip>
     <name>Text Update_52</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP12Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9642,7 +9644,7 @@ $(pv_value)</tooltip>
     <name>Text Update_53</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP12Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9704,7 +9706,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig12Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP12State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9850,7 +9852,7 @@ $(pv_value)</tooltip>
     <name>Text Update_54</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP13Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9902,7 +9904,7 @@ $(pv_value)</tooltip>
     <name>Text Update_55</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP13Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9954,7 +9956,7 @@ $(pv_value)</tooltip>
     <name>Text Update_56</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP13Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10006,7 +10008,7 @@ $(pv_value)</tooltip>
     <name>Text Update_57</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP13Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10068,7 +10070,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig13Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP13State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10264,7 +10266,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig14Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP14State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -10312,7 +10314,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_26</name>
-    <pv_name>$(P)$(R)IntTrig14Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP14Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10368,7 +10370,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig15Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP15State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -10416,7 +10418,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_27</name>
-    <pv_name>$(P)$(R)IntTrig15Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP15Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10467,7 +10469,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP14Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10522,7 +10524,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP14Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10617,7 +10619,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP15Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10672,7 +10674,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP15Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10722,7 +10724,7 @@ $(pv_value)</tooltip>
     <name>Text Update_58</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP14Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10774,7 +10776,7 @@ $(pv_value)</tooltip>
     <name>Text Update_59</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP14Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10826,7 +10828,7 @@ $(pv_value)</tooltip>
     <name>Text Update_60</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP14Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10878,7 +10880,7 @@ $(pv_value)</tooltip>
     <name>Text Update_61</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP14Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10940,7 +10942,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig14Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP14State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -11086,7 +11088,7 @@ $(pv_value)</tooltip>
     <name>Text Update_62</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP15Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11138,7 +11140,7 @@ $(pv_value)</tooltip>
     <name>Text Update_63</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP15Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11190,7 +11192,7 @@ $(pv_value)</tooltip>
     <name>Text Update_64</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP15Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11242,7 +11244,7 @@ $(pv_value)</tooltip>
     <name>Text Update_65</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP15Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11304,7 +11306,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig15Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP15State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -11500,7 +11502,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Out0Intlk-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT0Intlk-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -11548,7 +11550,7 @@ $(pv_value)</tooltip>
     <name>Text Update</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out0IntChan-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT0Src-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11600,7 +11602,7 @@ $(pv_value)</tooltip>
     <name>Text Update_67</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out0FineDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT0FineDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11652,7 +11654,7 @@ $(pv_value)</tooltip>
     <name>Text Update_68</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out0RFDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT0RFDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11714,7 +11716,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)Out1Intlk-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT1Intlk-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -11771,7 +11773,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out1FineDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT1FineDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -11826,7 +11828,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out1RFDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT1RFDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -12024,7 +12026,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Out1Intlk-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT1Intlk-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -12072,7 +12074,7 @@ $(pv_value)</tooltip>
     <name>Text Update_69</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out1IntChan-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT1Src-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -12124,7 +12126,7 @@ $(pv_value)</tooltip>
     <name>Text Update_70</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out1FineDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT1FineDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -12176,7 +12178,7 @@ $(pv_value)</tooltip>
     <name>Text Update_71</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out1RFDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT1RFDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -12238,7 +12240,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)Out2Intlk-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT2Intlk-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -12295,7 +12297,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out2FineDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT2FineDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -12350,7 +12352,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out2RFDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT2RFDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -12548,7 +12550,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Out2Intlk-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT2Intlk-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -12596,7 +12598,7 @@ $(pv_value)</tooltip>
     <name>Text Update_72</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out2IntChan-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT2Src-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -12648,7 +12650,7 @@ $(pv_value)</tooltip>
     <name>Text Update_73</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out2FineDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT2FineDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -12700,7 +12702,7 @@ $(pv_value)</tooltip>
     <name>Text Update_74</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out2RFDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT2RFDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -12762,7 +12764,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)Out3Intlk-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT3Intlk-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -12819,7 +12821,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out3FineDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT3FineDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -12874,7 +12876,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out3RFDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT3RFDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -13072,7 +13074,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Out3Intlk-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT3Intlk-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -13120,7 +13122,7 @@ $(pv_value)</tooltip>
     <name>Text Update_75</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out3IntChan-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT3Src-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -13172,7 +13174,7 @@ $(pv_value)</tooltip>
     <name>Text Update_76</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out3FineDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT3FineDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -13224,7 +13226,7 @@ $(pv_value)</tooltip>
     <name>Text Update_77</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out3RFDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT3RFDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -13286,7 +13288,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)Out4Intlk-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT4Intlk-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -13343,7 +13345,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out4FineDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT4FineDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -13398,7 +13400,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out4RFDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT4RFDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -13596,7 +13598,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Out4Intlk-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT4Intlk-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -13644,7 +13646,7 @@ $(pv_value)</tooltip>
     <name>Text Update_78</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out4IntChan-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT4Src-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -13696,7 +13698,7 @@ $(pv_value)</tooltip>
     <name>Text Update_79</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out4FineDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT4FineDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -13748,7 +13750,7 @@ $(pv_value)</tooltip>
     <name>Text Update_80</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out4RFDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT4RFDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -13810,7 +13812,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)Out5Intlk-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT5Intlk-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -13867,7 +13869,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out5FineDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT5FineDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -13922,7 +13924,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out5RFDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT5RFDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -14120,7 +14122,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Out5Intlk-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT5Intlk-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -14168,7 +14170,7 @@ $(pv_value)</tooltip>
     <name>Text Update_81</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out5IntChan-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT5Src-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -14220,7 +14222,7 @@ $(pv_value)</tooltip>
     <name>Text Update_82</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out5FineDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT5FineDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -14272,7 +14274,7 @@ $(pv_value)</tooltip>
     <name>Text Update_83</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out5RFDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT5RFDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -14334,7 +14336,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)Out6Intlk-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT6Intlk-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -14391,7 +14393,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out6FineDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT6FineDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -14446,7 +14448,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out6RFDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT6RFDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -14644,7 +14646,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Out6Intlk-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT6Intlk-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -14692,7 +14694,7 @@ $(pv_value)</tooltip>
     <name>Text Update_84</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out6IntChan-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT6Src-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -14744,7 +14746,7 @@ $(pv_value)</tooltip>
     <name>Text Update_85</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out6FineDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT6FineDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -14796,7 +14798,7 @@ $(pv_value)</tooltip>
     <name>Text Update_86</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out6RFDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT6RFDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -14858,7 +14860,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)Out7Intlk-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT7Intlk-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -14915,7 +14917,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out7FineDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT7FineDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -14970,7 +14972,7 @@ $(pv_value)</tooltip>
     <page_increment>1.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)Out7RFDelay-SP</pv_name>
+    <pv_name>$(P)$(R)OUT7RFDelay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -15168,7 +15170,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Out7Intlk-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT7Intlk-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -15216,7 +15218,7 @@ $(pv_value)</tooltip>
     <name>Text Update_87</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out7IntChan-Sts</pv_name>
+    <pv_name>$(P)$(R)OUT7Src-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -15268,7 +15270,7 @@ $(pv_value)</tooltip>
     <name>Text Update_88</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out7FineDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT7FineDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -15320,7 +15322,7 @@ $(pv_value)</tooltip>
     <name>Text Update_89</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)Out7RFDelay-RB</pv_name>
+    <pv_name>$(P)$(R)OUT7RFDelay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -15444,7 +15446,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15460,7 +15462,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_172</name>
     <rules />
@@ -15476,10 +15478,10 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>58</width>
+    <width>79</width>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:5d6</wuid>
-    <x>94</x>
+    <x>83</x>
     <y>75</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.LED" version="1.0.0">
@@ -15766,7 +15768,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15782,7 +15784,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_177</name>
     <rules />
@@ -15798,10 +15800,10 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>68</width>
+    <width>89</width>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:610</wuid>
-    <x>239</x>
+    <x>228</x>
     <y>158</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
@@ -15858,7 +15860,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -15874,7 +15876,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_178</name>
     <rules />
@@ -15890,10 +15892,10 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>68</width>
+    <width>72</width>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:618</wuid>
-    <x>345</x>
+    <x>341</x>
     <y>158</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextInput" version="2.0.0">
@@ -16035,7 +16037,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -16051,7 +16053,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>0</horizontal_alignment>
     <name>Label_183</name>
     <rules />
@@ -16067,7 +16069,7 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>80</width>
+    <width>105</width>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:1d04</wuid>
     <x>448</x>
@@ -16300,7 +16302,7 @@ $(pv_value)</tooltip>
     <name>Text Input_33</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP01Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16357,7 +16359,7 @@ $(pv_value)</tooltip>
     <name>Text Input_109</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP02Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16414,7 +16416,7 @@ $(pv_value)</tooltip>
     <name>Text Input_110</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP03Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16471,7 +16473,7 @@ $(pv_value)</tooltip>
     <name>Text Input_115</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP04Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16528,7 +16530,7 @@ $(pv_value)</tooltip>
     <name>Text Input_116</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP05Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16585,7 +16587,7 @@ $(pv_value)</tooltip>
     <name>Text Input_121</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP06Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16642,7 +16644,7 @@ $(pv_value)</tooltip>
     <name>Text Input_122</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP07Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16699,7 +16701,7 @@ $(pv_value)</tooltip>
     <name>Text Input_127</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP08Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16756,7 +16758,7 @@ $(pv_value)</tooltip>
     <name>Text Input_128</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP09Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16813,7 +16815,7 @@ $(pv_value)</tooltip>
     <name>Text Input_133</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP10Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16870,7 +16872,7 @@ $(pv_value)</tooltip>
     <name>Text Input_134</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP11Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16927,7 +16929,7 @@ $(pv_value)</tooltip>
     <name>Text Input_139</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP12Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -16984,7 +16986,7 @@ $(pv_value)</tooltip>
     <name>Text Input_140</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP13Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17041,7 +17043,7 @@ $(pv_value)</tooltip>
     <name>Text Input_145</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP14Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17098,7 +17100,7 @@ $(pv_value)</tooltip>
     <name>Text Input_146</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP15Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17155,7 +17157,7 @@ $(pv_value)</tooltip>
     <name>Text Input_172</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP00Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17212,7 +17214,7 @@ $(pv_value)</tooltip>
     <name>Text Input_173</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17304,7 +17306,7 @@ $(pv_value)</tooltip>
     <name>Text Update_96</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig00Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17361,7 +17363,7 @@ $(pv_value)</tooltip>
     <name>Text Input_174</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17413,7 +17415,7 @@ $(pv_value)</tooltip>
     <name>Text Update_97</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig01Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17470,7 +17472,7 @@ $(pv_value)</tooltip>
     <name>Text Input_175</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17522,7 +17524,7 @@ $(pv_value)</tooltip>
     <name>Text Update_98</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig02Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17579,7 +17581,7 @@ $(pv_value)</tooltip>
     <name>Text Input_176</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17631,7 +17633,7 @@ $(pv_value)</tooltip>
     <name>Text Update_99</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig03Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17688,7 +17690,7 @@ $(pv_value)</tooltip>
     <name>Text Input_177</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP04Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17740,7 +17742,7 @@ $(pv_value)</tooltip>
     <name>Text Update_100</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig04Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP04Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17797,7 +17799,7 @@ $(pv_value)</tooltip>
     <name>Text Input_178</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP05Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17849,7 +17851,7 @@ $(pv_value)</tooltip>
     <name>Text Update_101</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig05Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP05Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17906,7 +17908,7 @@ $(pv_value)</tooltip>
     <name>Text Input_179</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP06Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17958,7 +17960,7 @@ $(pv_value)</tooltip>
     <name>Text Update_102</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig06Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP06Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18015,7 +18017,7 @@ $(pv_value)</tooltip>
     <name>Text Input_180</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP07Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18067,7 +18069,7 @@ $(pv_value)</tooltip>
     <name>Text Update_103</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig07Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP07Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18124,7 +18126,7 @@ $(pv_value)</tooltip>
     <name>Text Input_181</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP08Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18176,7 +18178,7 @@ $(pv_value)</tooltip>
     <name>Text Update_104</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig08Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP08Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18233,7 +18235,7 @@ $(pv_value)</tooltip>
     <name>Text Input_182</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP09Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18285,7 +18287,7 @@ $(pv_value)</tooltip>
     <name>Text Update_105</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig09Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP09Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18342,7 +18344,7 @@ $(pv_value)</tooltip>
     <name>Text Input_183</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP10Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18394,7 +18396,7 @@ $(pv_value)</tooltip>
     <name>Text Update_106</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig10Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP10Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18451,7 +18453,7 @@ $(pv_value)</tooltip>
     <name>Text Input_184</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP11Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18503,7 +18505,7 @@ $(pv_value)</tooltip>
     <name>Text Update_107</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig11Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP11Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18560,7 +18562,7 @@ $(pv_value)</tooltip>
     <name>Text Input_185</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP12Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18612,7 +18614,7 @@ $(pv_value)</tooltip>
     <name>Text Update_108</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig12Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP12Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18669,7 +18671,7 @@ $(pv_value)</tooltip>
     <name>Text Input_186</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP13Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18721,7 +18723,7 @@ $(pv_value)</tooltip>
     <name>Text Update_109</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig13Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP13Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18778,7 +18780,7 @@ $(pv_value)</tooltip>
     <name>Text Input_187</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP14Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18830,7 +18832,7 @@ $(pv_value)</tooltip>
     <name>Text Update_110</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig14Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP14Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18887,7 +18889,7 @@ $(pv_value)</tooltip>
     <name>Text Input_188</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP15Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18939,7 +18941,7 @@ $(pv_value)</tooltip>
     <name>Text Update_111</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig15Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP15Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -19041,7 +19043,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig00Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP00Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -19103,7 +19105,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig01Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP01Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -19165,7 +19167,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig00Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP00Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -19223,7 +19225,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig01Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP01Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -19281,7 +19283,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig02Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP02Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -19343,7 +19345,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig02Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP02Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -19401,7 +19403,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig03Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP03Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -19463,7 +19465,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig03Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP03Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -19521,7 +19523,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig04Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP04Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -19583,7 +19585,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig04Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP04Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -19641,7 +19643,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig05Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP05Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -19703,7 +19705,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig05Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP05Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -19761,7 +19763,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig06Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP06Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -19823,7 +19825,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig06Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP06Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -19881,7 +19883,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig07Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP07Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -19943,7 +19945,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig07Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP07Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -20001,7 +20003,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig08Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP08Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -20063,7 +20065,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig08Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP08Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -20121,7 +20123,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig09Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP09Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -20183,7 +20185,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig09Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP09Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -20241,7 +20243,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig10Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP10Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -20303,7 +20305,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig10Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP10Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -20361,7 +20363,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig11Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP11Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -20423,7 +20425,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig11Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP11Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -20481,7 +20483,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig12Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP12Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -20543,7 +20545,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig12Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP12Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -20601,7 +20603,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig13Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP13Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -20663,7 +20665,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig13Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP13Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -20721,7 +20723,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig14Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP14Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -20783,7 +20785,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig14Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP14Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -20841,7 +20843,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig15Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP15Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -20903,7 +20905,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig15Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP15Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -22039,7 +22041,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22055,7 +22057,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>0</horizontal_alignment>
     <name>Label_198</name>
     <rules />
@@ -22071,7 +22073,7 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>64</width>
+    <width>82</width>
     <wrap_words>false</wrap_words>
     <wuid>582ce722:1588d60815d:-5e41</wuid>
     <x>912</x>
@@ -22585,7 +22587,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -22601,7 +22603,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>22</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_206</name>
     <rules />
@@ -22617,10 +22619,10 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>150</width>
+    <width>200</width>
     <wrap_words>false</wrap_words>
     <wuid>-55b24630:158b010436e:-7117</wuid>
-    <x>778</x>
+    <x>751</x>
     <y>1003</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
@@ -22672,7 +22674,7 @@ $(pv_value)</tooltip>
     <width>100</width>
     <wrap_words>false</wrap_words>
     <wuid>-78b5dbf9:158cff25661:7629</wuid>
-    <x>778</x>
+    <x>798</x>
     <y>1044</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.combo" version="1.0.0">
@@ -22697,35 +22699,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>31</height>
-    <items>
-      <s>OTP0</s>
-      <s>OTP1</s>
-      <s>OTP2</s>
-      <s>OTP3</s>
-      <s>OTP4</s>
-      <s>OTP5</s>
-      <s>OTP6</s>
-      <s>OTP7</s>
-      <s>OTP8</s>
-      <s>OTP9</s>
-      <s>OTP10</s>
-      <s>OTP11</s>
-      <s>OTP12</s>
-      <s>OTP13</s>
-      <s>OTP14</s>
-      <s>OTP15</s>
-      <s>Dbus0</s>
-      <s>Dbus1</s>
-      <s>Dbus2</s>
-      <s>Dbus3</s>
-      <s>Dbus4</s>
-      <s>Dbus5</s>
-      <s>Dbus6</s>
-      <s>Dbus7</s>
-    </items>
-    <items_from_pv>false</items_from_pv>
+    <items_from_pv>true</items_from_pv>
     <name>Combo_29</name>
-    <pv_name>$(P)$(R)Out0IntChan-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT0Src-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -22765,35 +22741,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>31</height>
-    <items>
-      <s>OTP0</s>
-      <s>OTP1</s>
-      <s>OTP2</s>
-      <s>OTP3</s>
-      <s>OTP4</s>
-      <s>OTP5</s>
-      <s>OTP6</s>
-      <s>OTP7</s>
-      <s>OTP8</s>
-      <s>OTP9</s>
-      <s>OTP10</s>
-      <s>OTP11</s>
-      <s>OTP12</s>
-      <s>OTP13</s>
-      <s>OTP14</s>
-      <s>OTP15</s>
-      <s>Dbus0</s>
-      <s>Dbus1</s>
-      <s>Dbus2</s>
-      <s>Dbus3</s>
-      <s>Dbus4</s>
-      <s>Dbus5</s>
-      <s>Dbus6</s>
-      <s>Dbus7</s>
-    </items>
-    <items_from_pv>false</items_from_pv>
+    <items_from_pv>true</items_from_pv>
     <name>Combo_30</name>
-    <pv_name>$(P)$(R)Out1IntChan-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT1Src-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -22833,35 +22783,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>31</height>
-    <items>
-      <s>OTP0</s>
-      <s>OTP1</s>
-      <s>OTP2</s>
-      <s>OTP3</s>
-      <s>OTP4</s>
-      <s>OTP5</s>
-      <s>OTP6</s>
-      <s>OTP7</s>
-      <s>OTP8</s>
-      <s>OTP9</s>
-      <s>OTP10</s>
-      <s>OTP11</s>
-      <s>OTP12</s>
-      <s>OTP13</s>
-      <s>OTP14</s>
-      <s>OTP15</s>
-      <s>Dbus0</s>
-      <s>Dbus1</s>
-      <s>Dbus2</s>
-      <s>Dbus3</s>
-      <s>Dbus4</s>
-      <s>Dbus5</s>
-      <s>Dbus6</s>
-      <s>Dbus7</s>
-    </items>
-    <items_from_pv>false</items_from_pv>
+    <items_from_pv>true</items_from_pv>
     <name>Combo_31</name>
-    <pv_name>$(P)$(R)Out2IntChan-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT2Src-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -22901,35 +22825,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>31</height>
-    <items>
-      <s>OTP0</s>
-      <s>OTP1</s>
-      <s>OTP2</s>
-      <s>OTP3</s>
-      <s>OTP4</s>
-      <s>OTP5</s>
-      <s>OTP6</s>
-      <s>OTP7</s>
-      <s>OTP8</s>
-      <s>OTP9</s>
-      <s>OTP10</s>
-      <s>OTP11</s>
-      <s>OTP12</s>
-      <s>OTP13</s>
-      <s>OTP14</s>
-      <s>OTP15</s>
-      <s>Dbus0</s>
-      <s>Dbus1</s>
-      <s>Dbus2</s>
-      <s>Dbus3</s>
-      <s>Dbus4</s>
-      <s>Dbus5</s>
-      <s>Dbus6</s>
-      <s>Dbus7</s>
-    </items>
-    <items_from_pv>false</items_from_pv>
+    <items_from_pv>true</items_from_pv>
     <name>Combo_32</name>
-    <pv_name>$(P)$(R)Out3IntChan-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT3Src-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -22969,35 +22867,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>31</height>
-    <items>
-      <s>OTP0</s>
-      <s>OTP1</s>
-      <s>OTP2</s>
-      <s>OTP3</s>
-      <s>OTP4</s>
-      <s>OTP5</s>
-      <s>OTP6</s>
-      <s>OTP7</s>
-      <s>OTP8</s>
-      <s>OTP9</s>
-      <s>OTP10</s>
-      <s>OTP11</s>
-      <s>OTP12</s>
-      <s>OTP13</s>
-      <s>OTP14</s>
-      <s>OTP15</s>
-      <s>Dbus0</s>
-      <s>Dbus1</s>
-      <s>Dbus2</s>
-      <s>Dbus3</s>
-      <s>Dbus4</s>
-      <s>Dbus5</s>
-      <s>Dbus6</s>
-      <s>Dbus7</s>
-    </items>
-    <items_from_pv>false</items_from_pv>
+    <items_from_pv>true</items_from_pv>
     <name>Combo_33</name>
-    <pv_name>$(P)$(R)Out4IntChan-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT4Src-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -23037,35 +22909,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>31</height>
-    <items>
-      <s>OTP0</s>
-      <s>OTP1</s>
-      <s>OTP2</s>
-      <s>OTP3</s>
-      <s>OTP4</s>
-      <s>OTP5</s>
-      <s>OTP6</s>
-      <s>OTP7</s>
-      <s>OTP8</s>
-      <s>OTP9</s>
-      <s>OTP10</s>
-      <s>OTP11</s>
-      <s>OTP12</s>
-      <s>OTP13</s>
-      <s>OTP14</s>
-      <s>OTP15</s>
-      <s>Dbus0</s>
-      <s>Dbus1</s>
-      <s>Dbus2</s>
-      <s>Dbus3</s>
-      <s>Dbus4</s>
-      <s>Dbus5</s>
-      <s>Dbus6</s>
-      <s>Dbus7</s>
-    </items>
-    <items_from_pv>false</items_from_pv>
+    <items_from_pv>true</items_from_pv>
     <name>Combo_34</name>
-    <pv_name>$(P)$(R)Out5IntChan-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT5Src-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -23105,35 +22951,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>31</height>
-    <items>
-      <s>OTP0</s>
-      <s>OTP1</s>
-      <s>OTP2</s>
-      <s>OTP3</s>
-      <s>OTP4</s>
-      <s>OTP5</s>
-      <s>OTP6</s>
-      <s>OTP7</s>
-      <s>OTP8</s>
-      <s>OTP9</s>
-      <s>OTP10</s>
-      <s>OTP11</s>
-      <s>OTP12</s>
-      <s>OTP13</s>
-      <s>OTP14</s>
-      <s>OTP15</s>
-      <s>Dbus0</s>
-      <s>Dbus1</s>
-      <s>Dbus2</s>
-      <s>Dbus3</s>
-      <s>Dbus4</s>
-      <s>Dbus5</s>
-      <s>Dbus6</s>
-      <s>Dbus7</s>
-    </items>
-    <items_from_pv>false</items_from_pv>
+    <items_from_pv>true</items_from_pv>
     <name>Combo_35</name>
-    <pv_name>$(P)$(R)Out6IntChan-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT6Src-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -23173,35 +22993,9 @@ $(pv_value)</tooltip>
       <color red="0" green="0" blue="0" />
     </foreground_color>
     <height>31</height>
-    <items>
-      <s>OTP0</s>
-      <s>OTP1</s>
-      <s>OTP2</s>
-      <s>OTP3</s>
-      <s>OTP4</s>
-      <s>OTP5</s>
-      <s>OTP6</s>
-      <s>OTP7</s>
-      <s>OTP8</s>
-      <s>OTP9</s>
-      <s>OTP10</s>
-      <s>OTP11</s>
-      <s>OTP12</s>
-      <s>OTP13</s>
-      <s>OTP14</s>
-      <s>OTP15</s>
-      <s>Dbus0</s>
-      <s>Dbus1</s>
-      <s>Dbus2</s>
-      <s>Dbus3</s>
-      <s>Dbus4</s>
-      <s>Dbus5</s>
-      <s>Dbus6</s>
-      <s>Dbus7</s>
-    </items>
-    <items_from_pv>false</items_from_pv>
+    <items_from_pv>true</items_from_pv>
     <name>Combo_36</name>
-    <pv_name>$(P)$(R)Out7IntChan-Sel</pv_name>
+    <pv_name>$(P)$(R)OUT7Src-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -23221,7 +23015,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -23237,7 +23031,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_207</name>
     <rules />
@@ -23253,10 +23047,10 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>77</width>
+    <width>92</width>
     <wrap_words>false</wrap_words>
     <wuid>5a2526d6:159d529c0bf:-5515</wuid>
-    <x>340</x>
+    <x>332</x>
     <y>75</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.BoolButton" version="1.0.0">
@@ -23363,7 +23157,7 @@ $(pv_value)</tooltip>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
-    <auto_size>false</auto_size>
+    <auto_size>true</auto_size>
     <background_color>
       <color red="255" green="255" blue="255" />
     </background_color>
@@ -23379,7 +23173,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="0" green="0" blue="0" />
     </foreground_color>
-    <height>20</height>
+    <height>17</height>
     <horizontal_alignment>1</horizontal_alignment>
     <name>Label_216</name>
     <rules />
@@ -23395,7 +23189,7 @@ $(pv_value)</tooltip>
     <vertical_alignment>1</vertical_alignment>
     <visible>true</visible>
     <widget_type>Label</widget_type>
-    <width>53</width>
+    <width>71</width>
     <wrap_words>false</wrap_words>
     <wuid>-42533508:15ceffa51b8:-7a2b</wuid>
     <x>720</x>
@@ -24139,7 +23933,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig16Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP16State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -24187,7 +23981,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_37</name>
-    <pv_name>$(P)$(R)IntTrig16Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP16Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -24278,7 +24072,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP16Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -24333,7 +24127,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP16Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -24441,7 +24235,7 @@ $(pv_value)</tooltip>
     <name>Text Update_128</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP16Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24493,7 +24287,7 @@ $(pv_value)</tooltip>
     <name>Text Update_129</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP16Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24545,7 +24339,7 @@ $(pv_value)</tooltip>
     <name>Text Update_130</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP16Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24597,7 +24391,7 @@ $(pv_value)</tooltip>
     <name>Text Update_131</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP16Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24659,7 +24453,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig16Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP16State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -24752,7 +24546,7 @@ $(pv_value)</tooltip>
     <name>Text Input_191</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP16Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24809,7 +24603,7 @@ $(pv_value)</tooltip>
     <name>Text Input_192</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP16Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24861,7 +24655,7 @@ $(pv_value)</tooltip>
     <name>Text Update_132</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig16Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP16Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24923,7 +24717,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig16Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP16Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -24985,7 +24779,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig16Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP16Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25043,7 +24837,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig17Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP17State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -25091,7 +24885,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_38</name>
-    <pv_name>$(P)$(R)IntTrig17Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP17Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25182,7 +24976,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP17Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25237,7 +25031,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP17Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25345,7 +25139,7 @@ $(pv_value)</tooltip>
     <name>Text Update_133</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP17Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25397,7 +25191,7 @@ $(pv_value)</tooltip>
     <name>Text Update_134</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP17Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25449,7 +25243,7 @@ $(pv_value)</tooltip>
     <name>Text Update_135</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP17Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25501,7 +25295,7 @@ $(pv_value)</tooltip>
     <name>Text Update_136</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP17Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25563,7 +25357,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig17Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP17State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25656,7 +25450,7 @@ $(pv_value)</tooltip>
     <name>Text Input_195</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP17Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25713,7 +25507,7 @@ $(pv_value)</tooltip>
     <name>Text Input_196</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP17Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25765,7 +25559,7 @@ $(pv_value)</tooltip>
     <name>Text Update_137</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig17Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP17Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25827,7 +25621,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig17Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP17Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -25889,7 +25683,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig17Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP17Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25947,7 +25741,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig18Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP18State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -25995,7 +25789,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_39</name>
-    <pv_name>$(P)$(R)IntTrig18Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP18Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26086,7 +25880,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP18Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26141,7 +25935,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP18Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26249,7 +26043,7 @@ $(pv_value)</tooltip>
     <name>Text Update_138</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP18Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26301,7 +26095,7 @@ $(pv_value)</tooltip>
     <name>Text Update_139</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP18Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26353,7 +26147,7 @@ $(pv_value)</tooltip>
     <name>Text Update_140</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP18Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26405,7 +26199,7 @@ $(pv_value)</tooltip>
     <name>Text Update_141</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP18Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26467,7 +26261,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig18Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP18State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26560,7 +26354,7 @@ $(pv_value)</tooltip>
     <name>Text Input_199</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP18Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26617,7 +26411,7 @@ $(pv_value)</tooltip>
     <name>Text Input_200</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP18Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26669,7 +26463,7 @@ $(pv_value)</tooltip>
     <name>Text Update_142</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig18Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP18Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26731,7 +26525,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig18Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP18Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -26793,7 +26587,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig18Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP18Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26851,7 +26645,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig19Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP19State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -26899,7 +26693,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_40</name>
-    <pv_name>$(P)$(R)IntTrig19Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP19Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26990,7 +26784,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP19Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27045,7 +26839,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP19Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27153,7 +26947,7 @@ $(pv_value)</tooltip>
     <name>Text Update_143</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP19Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27205,7 +26999,7 @@ $(pv_value)</tooltip>
     <name>Text Update_144</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP19Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27257,7 +27051,7 @@ $(pv_value)</tooltip>
     <name>Text Update_145</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP19Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27309,7 +27103,7 @@ $(pv_value)</tooltip>
     <name>Text Update_146</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP19Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27371,7 +27165,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig19Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP19State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27464,7 +27258,7 @@ $(pv_value)</tooltip>
     <name>Text Input_203</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP19Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27521,7 +27315,7 @@ $(pv_value)</tooltip>
     <name>Text Input_204</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP19Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27573,7 +27367,7 @@ $(pv_value)</tooltip>
     <name>Text Update_147</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig19Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP19Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27635,7 +27429,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig19Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP19Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -27697,7 +27491,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig19Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP19Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27755,7 +27549,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig20Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP20State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -27803,7 +27597,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_41</name>
-    <pv_name>$(P)$(R)IntTrig20Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP20Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27894,7 +27688,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP20Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27949,7 +27743,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP20Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28057,7 +27851,7 @@ $(pv_value)</tooltip>
     <name>Text Update_148</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP20Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28109,7 +27903,7 @@ $(pv_value)</tooltip>
     <name>Text Update_149</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP20Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28161,7 +27955,7 @@ $(pv_value)</tooltip>
     <name>Text Update_150</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP20Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28213,7 +28007,7 @@ $(pv_value)</tooltip>
     <name>Text Update_151</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP20Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28275,7 +28069,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig20Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP20State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28368,7 +28162,7 @@ $(pv_value)</tooltip>
     <name>Text Input_207</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP20Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28425,7 +28219,7 @@ $(pv_value)</tooltip>
     <name>Text Input_208</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP20Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28477,7 +28271,7 @@ $(pv_value)</tooltip>
     <name>Text Update_152</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig20Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP20Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28539,7 +28333,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig20Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP20Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -28601,7 +28395,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig20Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP20Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28659,7 +28453,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig21Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP21State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -28707,7 +28501,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_42</name>
-    <pv_name>$(P)$(R)IntTrig21Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP21Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28798,7 +28592,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP21Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28853,7 +28647,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP21Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28961,7 +28755,7 @@ $(pv_value)</tooltip>
     <name>Text Update_153</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP21Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29013,7 +28807,7 @@ $(pv_value)</tooltip>
     <name>Text Update_154</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP21Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29065,7 +28859,7 @@ $(pv_value)</tooltip>
     <name>Text Update_155</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP21Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29117,7 +28911,7 @@ $(pv_value)</tooltip>
     <name>Text Update_156</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP21Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29179,7 +28973,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig21Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP21State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -29272,7 +29066,7 @@ $(pv_value)</tooltip>
     <name>Text Input_211</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP21Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29329,7 +29123,7 @@ $(pv_value)</tooltip>
     <name>Text Input_212</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP21Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29381,7 +29175,7 @@ $(pv_value)</tooltip>
     <name>Text Update_157</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig21Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP21Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29443,7 +29237,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig21Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP21Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -29505,7 +29299,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig21Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP21Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -29563,7 +29357,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig22Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP22State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -29611,7 +29405,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_43</name>
-    <pv_name>$(P)$(R)IntTrig22Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP22Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -29702,7 +29496,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP22Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -29757,7 +29551,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP22Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -29865,7 +29659,7 @@ $(pv_value)</tooltip>
     <name>Text Update_158</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP22Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29917,7 +29711,7 @@ $(pv_value)</tooltip>
     <name>Text Update_159</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP22Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29969,7 +29763,7 @@ $(pv_value)</tooltip>
     <name>Text Update_160</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP22Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30021,7 +29815,7 @@ $(pv_value)</tooltip>
     <name>Text Update_161</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP22Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30083,7 +29877,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig22Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP22State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -30176,7 +29970,7 @@ $(pv_value)</tooltip>
     <name>Text Input_215</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP22Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30233,7 +30027,7 @@ $(pv_value)</tooltip>
     <name>Text Input_216</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP22Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30285,7 +30079,7 @@ $(pv_value)</tooltip>
     <name>Text Update_162</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig22Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP22Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30347,7 +30141,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig22Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP22Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -30409,7 +30203,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig22Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP22Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -30467,7 +30261,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig23Enbl-SP</pv_name>
+    <pv_name>$(P)$(R)OTP23State-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -30515,7 +30309,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_44</name>
-    <pv_name>$(P)$(R)IntTrig23Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP23Pol-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -30606,7 +30400,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP23Width-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -30661,7 +30455,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP23Delay-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -30769,7 +30563,7 @@ $(pv_value)</tooltip>
     <name>Text Update_163</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP23Width-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30821,7 +30615,7 @@ $(pv_value)</tooltip>
     <name>Text Update_164</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP23Delay-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30873,7 +30667,7 @@ $(pv_value)</tooltip>
     <name>Text Update_165</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP23Pol-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30925,7 +30719,7 @@ $(pv_value)</tooltip>
     <name>Text Update_166</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Evt-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP23Evt-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30987,7 +30781,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig23Enbl-RB</pv_name>
+    <pv_name>$(P)$(R)OTP23State-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -31080,7 +30874,7 @@ $(pv_value)</tooltip>
     <name>Text Input_219</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Evt-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP23Evt-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -31137,7 +30931,7 @@ $(pv_value)</tooltip>
     <name>Text Input_220</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP23Pulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -31189,7 +30983,7 @@ $(pv_value)</tooltip>
     <name>Text Update_167</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)IntTrig23Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP23Pulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -31251,7 +31045,7 @@ $(pv_value)</tooltip>
     <on_label>ON</on_label>
     <password></password>
     <push_action_index>0</push_action_index>
-    <pv_name>$(P)$(R)IntTrig23Log-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP23Log-Sel</pv_name>
     <pv_value />
     <released_action_index>0</released_action_index>
     <rules />
@@ -31313,7 +31107,7 @@ $(pv_value)</tooltip>
       <color red="0" green="255" blue="0" />
     </on_color>
     <on_label>ON</on_label>
-    <pv_name>$(P)$(R)IntTrig23Log-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP23Log-Sts</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -31332,5 +31126,901 @@ $(pv_value)</tooltip>
     <wuid>-6631a2c8:161ae417124:-bb8</wuid>
     <x>588</x>
     <y>2204</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <auto_size>false</auto_size>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>20</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <name>Label_303</name>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <text>Trig Source</text>
+    <tooltip></tooltip>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Label</widget_type>
+    <width>100</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-5a9c</wuid>
+    <x>1055</x>
+    <y>378</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <buttons_on_left>false</buttons_on_left>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format>0</format>
+    <height>25</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <horizontal_buttons_layout>false</horizontal_buttons_layout>
+    <limits_from_pv>true</limits_from_pv>
+    <maximum>5115.0</maximum>
+    <minimum>0.0</minimum>
+    <name>Spinner_25</name>
+    <page_increment>1.0</page_increment>
+    <precision>3</precision>
+    <precision_from_pv>false</precision_from_pv>
+    <pv_name>$(P)$(R)OUT0SrcTrig-SP</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_text>true</show_text>
+    <step_increment>1.0</step_increment>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Spinner</widget_type>
+    <width>85</width>
+    <wuid>-629e76af:161f2f0d472:-5a9b</wuid>
+    <x>1062</x>
+    <y>398</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <buttons_on_left>false</buttons_on_left>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format>0</format>
+    <height>25</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <horizontal_buttons_layout>false</horizontal_buttons_layout>
+    <limits_from_pv>true</limits_from_pv>
+    <maximum>5115.0</maximum>
+    <minimum>0.0</minimum>
+    <name>Spinner_26</name>
+    <page_increment>1.0</page_increment>
+    <precision>3</precision>
+    <precision_from_pv>false</precision_from_pv>
+    <pv_name>$(P)$(R)OUT1SrcTrig-SP</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_text>true</show_text>
+    <step_increment>1.0</step_increment>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Spinner</widget_type>
+    <width>85</width>
+    <wuid>-629e76af:161f2f0d472:-5a89</wuid>
+    <x>1062</x>
+    <y>472</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <buttons_on_left>false</buttons_on_left>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format>0</format>
+    <height>25</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <horizontal_buttons_layout>false</horizontal_buttons_layout>
+    <limits_from_pv>true</limits_from_pv>
+    <maximum>5115.0</maximum>
+    <minimum>0.0</minimum>
+    <name>Spinner_27</name>
+    <page_increment>1.0</page_increment>
+    <precision>3</precision>
+    <precision_from_pv>false</precision_from_pv>
+    <pv_name>$(P)$(R)OUT2SrcTrig-SP</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_text>true</show_text>
+    <step_increment>1.0</step_increment>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Spinner</widget_type>
+    <width>85</width>
+    <wuid>-629e76af:161f2f0d472:-5a7e</wuid>
+    <x>1062</x>
+    <y>545</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <buttons_on_left>false</buttons_on_left>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format>0</format>
+    <height>25</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <horizontal_buttons_layout>false</horizontal_buttons_layout>
+    <limits_from_pv>true</limits_from_pv>
+    <maximum>5115.0</maximum>
+    <minimum>0.0</minimum>
+    <name>Spinner_28</name>
+    <page_increment>1.0</page_increment>
+    <precision>3</precision>
+    <precision_from_pv>false</precision_from_pv>
+    <pv_name>$(P)$(R)OUT3SrcTrig-SP</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_text>true</show_text>
+    <step_increment>1.0</step_increment>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Spinner</widget_type>
+    <width>85</width>
+    <wuid>-629e76af:161f2f0d472:-5a76</wuid>
+    <x>1062</x>
+    <y>620</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <buttons_on_left>false</buttons_on_left>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format>0</format>
+    <height>25</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <horizontal_buttons_layout>false</horizontal_buttons_layout>
+    <limits_from_pv>true</limits_from_pv>
+    <maximum>5115.0</maximum>
+    <minimum>0.0</minimum>
+    <name>Spinner_29</name>
+    <page_increment>1.0</page_increment>
+    <precision>3</precision>
+    <precision_from_pv>false</precision_from_pv>
+    <pv_name>$(P)$(R)OUT4SrcTrig-SP</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_text>true</show_text>
+    <step_increment>1.0</step_increment>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Spinner</widget_type>
+    <width>85</width>
+    <wuid>-629e76af:161f2f0d472:-5a6e</wuid>
+    <x>1062</x>
+    <y>691</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <buttons_on_left>false</buttons_on_left>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format>0</format>
+    <height>25</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <horizontal_buttons_layout>false</horizontal_buttons_layout>
+    <limits_from_pv>true</limits_from_pv>
+    <maximum>5115.0</maximum>
+    <minimum>0.0</minimum>
+    <name>Spinner_30</name>
+    <page_increment>1.0</page_increment>
+    <precision>3</precision>
+    <precision_from_pv>false</precision_from_pv>
+    <pv_name>$(P)$(R)OUT5SrcTrig-SP</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_text>true</show_text>
+    <step_increment>1.0</step_increment>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Spinner</widget_type>
+    <width>85</width>
+    <wuid>-629e76af:161f2f0d472:-5a66</wuid>
+    <x>1062</x>
+    <y>764</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <buttons_on_left>false</buttons_on_left>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format>0</format>
+    <height>25</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <horizontal_buttons_layout>false</horizontal_buttons_layout>
+    <limits_from_pv>true</limits_from_pv>
+    <maximum>5115.0</maximum>
+    <minimum>0.0</minimum>
+    <name>Spinner_31</name>
+    <page_increment>1.0</page_increment>
+    <precision>3</precision>
+    <precision_from_pv>false</precision_from_pv>
+    <pv_name>$(P)$(R)OUT6SrcTrig-SP</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_text>true</show_text>
+    <step_increment>1.0</step_increment>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Spinner</widget_type>
+    <width>85</width>
+    <wuid>-629e76af:161f2f0d472:-5a5e</wuid>
+    <x>1062</x>
+    <y>840</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.spinner" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>3</border_style>
+    <border_width>1</border_width>
+    <buttons_on_left>false</buttons_on_left>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format>0</format>
+    <height>25</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <horizontal_buttons_layout>false</horizontal_buttons_layout>
+    <limits_from_pv>true</limits_from_pv>
+    <maximum>5115.0</maximum>
+    <minimum>0.0</minimum>
+    <name>Spinner_32</name>
+    <page_increment>1.0</page_increment>
+    <precision>3</precision>
+    <precision_from_pv>false</precision_from_pv>
+    <pv_name>$(P)$(R)OUT7SrcTrig-SP</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_text>true</show_text>
+    <step_increment>1.0</step_increment>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Spinner</widget_type>
+    <width>85</width>
+    <wuid>-629e76af:161f2f0d472:-5a56</wuid>
+    <x>1062</x>
+    <y>913</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Text Update_168</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(P)$(R)OUT0SrcTrig-RB</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_units>true</show_units>
+    <text>######</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Text Update</widget_type>
+    <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-54d1</wuid>
+    <x>1062</x>
+    <y>438</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Text Update_169</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(P)$(R)OUT1SrcTrig-RB</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_units>true</show_units>
+    <text>######</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Text Update</widget_type>
+    <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-4f58</wuid>
+    <x>1062</x>
+    <y>511</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Text Update_170</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(P)$(R)OUT2SrcTrig-RB</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_units>true</show_units>
+    <text>######</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Text Update</widget_type>
+    <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-4f50</wuid>
+    <x>1062</x>
+    <y>587</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Text Update_171</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(P)$(R)OUT3SrcTrig-RB</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_units>true</show_units>
+    <text>######</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Text Update</widget_type>
+    <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-4f48</wuid>
+    <x>1062</x>
+    <y>660</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Text Update_172</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(P)$(R)OUT4SrcTrig-RB</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_units>true</show_units>
+    <text>######</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Text Update</widget_type>
+    <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-4f40</wuid>
+    <x>1062</x>
+    <y>730</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Text Update_173</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(P)$(R)OUT5SrcTrig-RB</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_units>true</show_units>
+    <text>######</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Text Update</widget_type>
+    <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-4f38</wuid>
+    <x>1062</x>
+    <y>803</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Text Update_174</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(P)$(R)OUT6SrcTrig-RB</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_units>true</show_units>
+    <text>######</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Text Update</widget_type>
+    <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-4f30</wuid>
+    <x>1062</x>
+    <y>879</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.TextUpdate" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <auto_size>false</auto_size>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <format_type>0</format_type>
+    <height>20</height>
+    <horizontal_alignment>0</horizontal_alignment>
+    <name>Text Update_175</name>
+    <precision>0</precision>
+    <precision_from_pv>true</precision_from_pv>
+    <pv_name>$(P)$(R)OUT7SrcTrig-RB</pv_name>
+    <pv_value />
+    <rotation_angle>0.0</rotation_angle>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_units>true</show_units>
+    <text>######</text>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <transparent>false</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Text Update</widget_type>
+    <width>85</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-629e76af:161f2f0d472:-4f28</wuid>
+    <x>1062</x>
+    <y>952</y>
   </widget>
 </display>
