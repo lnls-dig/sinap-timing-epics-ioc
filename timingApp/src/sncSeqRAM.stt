@@ -7,10 +7,10 @@ foreign ssId;
 %%//           Variables
 %%//----------------------------------------
 
-int eventNum;
+int eventNum = 63;
 char device[40];
 char * evPrefix = "Evt";
-char * evCodeName = "Code-SP";
+char * evCodeName = "Code";
 char * evTimeName = "Delay-SP";
 char * evModeName = "DelayType-Sel";
 char * evCtrlName = "Mode-Sel";
@@ -69,16 +69,16 @@ monitor seqcount;
 int seqcount_proc;
 assign seqcount_proc to "{P}{R}SeqCount-SP.PROC";
 
-int event_codes[20];
+int event_codes[63];
 assign event_codes to {};
 
-int event_timestamps[20];
+int event_timestamps[63];
 assign event_timestamps to {};
 
-int event_modes[20];
+int event_modes[63];
 assign event_modes to {};
 
-int event_ctrl[20];
+int event_ctrl[63];
 assign event_ctrl to {};
 
 %%//----------------------------------------
@@ -140,11 +140,11 @@ monitor repeatinj_tg;
     /* Variables */
 
     // Array of pointers to Events
-    Event * EventPointerArray[20];
+    Event * EventPointerArray[63];
     // Array of Events
-    Event EventArray[20];
+    Event EventArray[63];
     // size of both event related arrays
-    const int sizeOfArrays = 20;
+    const int sizeOfArrays = 63;
 
     /* Functions */
     int str2int(char * str);
@@ -189,27 +189,31 @@ ss seq {
 
       %%// Get macros
        eventNum = str2int(macValueGet("ev_num"));
+       printf ("\nEvent count %d\n", eventNum);
        sprintf(device, "%s%s", macValueGet("P"), macValueGet("R"));
     
       %%// Assign events
-       for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%02d%s", device, evPrefix, i+1, evCodeName);
+        for (i = 0; i < eventNum; i++) {
+         sprintf (str, "%s%s%d%s", device, evPrefix, i, evCodeName);
          pvAssign (event_codes[i], str);
-         %%//printf("%s\n", str);
-       }
-       for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%02d%s", device, evPrefix, i+1, evTimeName);
+        }
+
+        for (i = 0; i < eventNum; i++) {
+         pvGet(event_codes[i], SYNC);
+         sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evTimeName);
          pvAssign (event_timestamps[i], str);
-       }
-       for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%02d%s", device, evPrefix, i+1, evModeName);
+        }
+
+        for (i = 0; i < eventNum; i++) {
+         sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evModeName);
          pvAssign (event_modes[i], str);
-       }
-       for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%02d%s", device, evPrefix, i+1, evCtrlName);
+        }
+
+        for (i = 0; i < eventNum; i++) {
+         sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evCtrlName);
          pvAssign (event_ctrl[i], str);
-       }
-  
+        }
+        
       %%// Initialize Event Pointer Array
        init_EventPointerArray(eventNum);
   
@@ -241,7 +245,8 @@ ss seq {
   
       %{/* Unable to connect to some PV */}%
   
-      printf("Error: Some PVs are still disconnected after 10s\n");
+      printf("Error: Some PVs are still disconnected after 10 s\n");
+      printf("Connected: %d Assigned: %d\n", pvConnectCount(), pvAssignCount());
     } state init
   }
   
@@ -291,7 +296,6 @@ ss seq {
     }state Stopped
   
     when(run_tg && (seqcount == 0)){
-  
       %{/* Write to SeqRAM 1 */}%
   
       %%// Status update (preparing to run)
@@ -306,7 +310,7 @@ ss seq {
 
       %%// Update event record arrays
       for(i = 0; i < eventNum; i++){
-  
+        
         pvGet(event_codes[i], SYNC);
         pvGet(event_timestamps[i], SYNC);
         pvGet(event_modes[i], SYNC);
@@ -927,7 +931,7 @@ ss seq {
 
     // Copy Events to array
     for(i = 0; i < evNumber; i++){
-        
+      
       EventPointerArray[i]->code = code_arr[i];
       EventPointerArray[i]->timestamp = time_arr[i];
       EventPointerArray[i]->mode = mode_arr[i];

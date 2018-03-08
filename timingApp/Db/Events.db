@@ -9,7 +9,16 @@ record(stringout, "$(P)$(R)Evt$(code)Desc-SP"){
 	field(DESC, "Description of the Event $(code)")
 }
 
-record(longout, "$(P)$(R)Evt$(code)Code-SP"){
+# this record needs to be "ao" to receive VAL with 2 digits.
+record(ao, "$(P)$(R)Evt$(num)Code"){
+  field(ASG, "Reserved")
+	field(DESC, "Event $(code) code")
+	field(DRVH, "63")
+	field(DRVL, "1")
+	field(VAL, "$(code)")
+}
+
+record(ao, "$(P)$(R)Evt$(code)Code-Mon"){
   field(ASG, "Reserved")
 	field(DESC, "Event $(code) code")
 	field(DRVH, "63")
@@ -52,7 +61,7 @@ record(bo, "$(P)$(R)Evt$(code)ExtTrig-Cmd"){
 
 record(calcout, "$(P)$(R)AsynEvt$(code)") {
   field(ASG, "Reserved")
-  field(DESC, "Asyn event calc")
+  field(DESC, "Asyn event calc $(code)")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)Evt$(code)Mode-Sel")
   field(INPB, "$(P)$(R)Evt$(code)ExtTrig-Cmd")
