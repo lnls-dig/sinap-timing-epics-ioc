@@ -7,6 +7,13 @@
 record(stringout, "$(P)$(R)Evt$(code)Desc-SP"){
 	field(VAL, "$(desc)")
 	field(DESC, "Description of the Event $(code)")
+  field(FLNK, "$(P)$(R)Evt$(code)Desc-RB")
+}
+
+record(stringin, "$(P)$(R)Evt$(code)Desc-RB"){
+	field(VAL, "$(desc)")
+	field(DESC, "Description of the Event $(code)")
+	field(INP, "$(P)$(R)Evt$(code)Desc-SP")
 }
 
 # this record needs to be "ao" to receive VAL with 2 digits.
@@ -28,18 +35,62 @@ record(ao, "$(P)$(R)Evt$(code)Code-Mon"){
 
 record(longout, "$(P)$(R)Evt$(code)Delay-SP"){
 	field(DESC, "Event $(code) timestamp")
+	field(DRVH, "62500000")
 	field(DRVL, "100")
+	field(VAL, "$(time)")
+	field(OUT, "$(P)$(R)Evt$(code)DelayModVal PP")
+}
+
+record(longout, "$(P)$(R)Evt$(code)DelayModVal"){
+	field(DESC, "Event $(code) timestamp mod val")
+	field(OUT, "$(P)$(R)EvtDelayMod.A")
+	field(FLNK, "$(P)$(R)Evt$(code)DelayModNum")
+}
+
+record(longout, "$(P)$(R)Evt$(code)DelayModNum"){
+	field(DESC, "Event $(code) timestamp mod num")
+	field(VAL, "$(num)")
+	field(OUT, "$(P)$(R)EvtDelayMod.B PP")
+}
+
+record(longin, "$(P)$(R)Evt$(code)Delay-RB"){
+	field(DESC, "Event $(code) timestamp")
 	field(VAL, "$(time)")
 }
 
 record(bo, "$(P)$(R)Evt$(code)DelayType-Sel"){
 	field(DESC, "Delay mode (Incr | Fixed)")
+	field(MASK, "1")
 	field(ZNAM, "Incr")
 	field(ONAM, "Fixed")
 	field(VAL, "$(mode)")
+	field(FLNK, "$(P)$(R)Evt$(code)DelayType-Sts")
+}
+
+record(bi, "$(P)$(R)Evt$(code)DelayType-Sts"){
+	field(DESC, "Delay mode (Incr | Fixed)")
+	field(ZNAM, "Incr")
+	field(ONAM, "Fixed")
+	field(VAL, "$(mode)")
+	field(INP, "$(P)$(R)Evt$(code)DelayType-Sel.RVAL")
 }
 
 record(mbbo, "$(P)$(R)Evt$(code)Mode-Sel"){
+	field(DESC, "Transmission mode")
+	field(NOBT, "2")
+	field(ZRVL, "0")
+	field(ZRST, "Disable")
+	field(ONVL, "1")
+	field(ONST, "Continuous")
+	field(TWVL, "2")
+	field(TWST, "Injection")
+	field(THVL, "3")
+	field(THST, "External")
+	field(VAL, "$(transm)")
+	field(FLNK, "$(P)$(R)Evt$(code)Mode-Sts")
+}
+
+record(mbbi, "$(P)$(R)Evt$(code)Mode-Sts"){
 	field(DESC, "Transmission mode")
 	field(ZRVL, "0")
 	field(ZRST, "Disable")
@@ -50,10 +101,12 @@ record(mbbo, "$(P)$(R)Evt$(code)Mode-Sel"){
 	field(THVL, "3")
 	field(THST, "External")
 	field(VAL, "$(transm)")
+	field(INP, "$(P)$(R)Evt$(code)Mode-Sel.RVAL")
 }
 
 record(bo, "$(P)$(R)Evt$(code)ExtTrig-Cmd"){
 	field(DESC, "Send an asynchronous event")
+	field(MASK, "1")
 	field(ZNAM, "OFF")
 	field(ONAM, "ON")
 	field(FLNK, "$(P)$(R)AsynEvt$(code)")
@@ -63,8 +116,8 @@ record(calcout, "$(P)$(R)AsynEvt$(code)") {
   field(ASG, "Reserved")
   field(DESC, "Asyn event calc $(code)")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)Evt$(code)Mode-Sel")
-  field(INPB, "$(P)$(R)Evt$(code)ExtTrig-Cmd")
+  field(INPA, "$(P)$(R)Evt$(code)Mode-Sts")
+  field(INPB, "$(P)$(R)Evt$(code)ExtTrig-Cmd.RVAL")
   field(INPC, "$(code)")
   field(CALC, "(A=3)?C:0")
   field(OUT, "@timing.proto evg_async_set($(P),$(R),AsynEvt$(code)) $(PORT)")

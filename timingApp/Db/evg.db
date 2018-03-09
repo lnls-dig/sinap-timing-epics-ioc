@@ -1682,3 +1682,8 @@ record(calc, "$(P)$(R)Save-Trig"){
   field(CALC, "(A > 0) ? (VAL+1) : VAL")
   field(VAL, "0")
 }
+
+record(calc, "$(P)$(R)EvtDelayMod"){
+	field(DESC, "Event timestamp mod")
+}
+
