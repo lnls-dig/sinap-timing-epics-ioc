@@ -12,8 +12,8 @@ record(mbbiDirect, "$(P)$(R)EnblRaw"){
 
 record(bi, "$(P)$(R)DevEnbl-Sts"){
   field(DESC, "Enable/Disable FANOUT RBV")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)EnblRaw.B0")
 }
 
@@ -30,8 +30,8 @@ record(mbbiDirect, "$(P)$(R)LinkRaw") {
 record(bi, "$(P)$(R)Link-Mon") {
   field(ASG, "Reserved")
   field(DESC, "Uplink status")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
+  field(ZNAM, "Unlink")
+  field(ONAM, "Link")
   field(INP, "$(P)$(R)LinkRaw.B7")
 }
 
@@ -47,8 +47,8 @@ record(bo, "$(P)$(R)DevEnbl-Sel"){
   field(DESC, "Enable/Disable FANOUT")
   field(MASK, "1")
   field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(OUT, "@timing.proto fout_ctrl_set($(P),$(R)) $(PORT)")
 }
 
@@ -162,15 +162,15 @@ record(longout, "$(P)$(R)cmd_conf_set") {
 record(bo, "$(P)$(R)Download-Cmd") {
   field(DESC, "FOUT download")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
 }
 
 record(bo, "$(P)$(R)Download-Trig") {
   field(DESC, "FOUT download trigger")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(DTYP, "stream")
   field(OUT, "@timing.proto fout_download($(P),$(R)) $(PORT)")
 }
@@ -186,23 +186,23 @@ record(calc, "$(P)$(R)DevStatusCalc") {
 record(bi, "$(P)$(R)DevStatus-Mon") {
   field(ASG, "Reserved")
   field(DESC, "FOUT device status")
-  field(ZNAM, "WAITING")
-  field(ONAM, "RUNNING")
+  field(ZNAM, "Waiting")
+  field(ONAM, "Running")
   field(INP, "$(P)$(R)DevStatusCalc")
 }
 
 record(bi, "$(P)$(R)Network-Mon") {
   field(ASG, "Reserved")
   field(DESC, "FOUT network status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Disconnected")
+  field(ONAM, "Connected")
 }
 
 record(bo, "$(P)$(R)Save-Cmd"){
   field(DESC, "FOUT manual save settings command")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)Save-Trig")
 }
 

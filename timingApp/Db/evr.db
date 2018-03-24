@@ -5,8 +5,8 @@ record(bo, "$(P)$(R)DevEnbl-Sel") {
   field(DESC, "EVR enable")
   field(MASK, "1")
   field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(OUT, "@timing.proto evre_ctrl_set($(P),$(R)) $(PORT)")
 }
 
@@ -23,8 +23,8 @@ record(mbbiDirect, "$(P)$(R)DevEnblRaw") {
 record(bi, "$(P)$(R)DevEnbl-Sta") {
   field(ASG, "Reserved")
   field(DESC, "EVR enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)DevEnblRaw.B0")
 }
 
@@ -42,8 +42,8 @@ record(mbbiDirect, "$(P)$(R)LinkIntlkRaw") {
 record(bi, "$(P)$(R)Intlk-Mon") {
   field(ASG, "Reserved")
   field(DESC, "EVR interlock status")
-  field(ZNAM, "DISSERTED")
-  field(ONAM, "ASSERTED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)LinkIntlkRaw.B0")
   field(FLNK, "$(P)$(R)Link-Mon")
 }
@@ -59,8 +59,8 @@ record(mbbiDirect, "$(P)$(R)Los-Mon") {
 record(bi, "$(P)$(R)Link-Mon") {
   field(ASG, "Reserved")
   field(DESC, "EVR fibre link status")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
+  field(ZNAM, "Unlink")
+  field(ONAM, "Link")
   field(INP, "$(P)$(R)LinkIntlkRaw.B1")
 }
 
@@ -126,24 +126,24 @@ record(longout, "$(P)$(R)OTP00Delay-SP") {
 record(bo, "$(P)$(R)OTP00State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP00StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP00Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP00PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP00Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP00LogCalc")
 }
 
@@ -206,8 +206,8 @@ record(mbbiDirect, "$(P)$(R)OTP00DelayRaw") {
 record(bi, "$(P)$(R)OTP00Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP00DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP00Pol-Sts")
 }
@@ -215,8 +215,8 @@ record(bi, "$(P)$(R)OTP00Log-Sts") {
 record(bi, "$(P)$(R)OTP00Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP00DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP00State-Sts")
 }
@@ -224,8 +224,8 @@ record(bi, "$(P)$(R)OTP00Pol-Sts") {
 record(bi, "$(P)$(R)OTP00State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP00DelayRaw.B2")
 }
 
@@ -311,24 +311,24 @@ record(longout, "$(P)$(R)OTP01Delay-SP") {
 record(bo, "$(P)$(R)OTP01State-Sel") {
   field(DESC, "EVR OTP1 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP01StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP01Pol-Sel") {
   field(DESC, "EVR OTP1 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP01PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP01Log-Sel") {
   field(DESC, "EVR OTP1 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP01LogCalc")
 }
 
@@ -391,8 +391,8 @@ record(mbbiDirect, "$(P)$(R)OTP01DelayRaw") {
 record(bi, "$(P)$(R)OTP01Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP1 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP01DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP01Pol-Sts")
 }
@@ -400,8 +400,8 @@ record(bi, "$(P)$(R)OTP01Log-Sts") {
 record(bi, "$(P)$(R)OTP01Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP1 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP01DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP01State-Sts")
 }
@@ -409,8 +409,8 @@ record(bi, "$(P)$(R)OTP01Pol-Sts") {
 record(bi, "$(P)$(R)OTP01State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP1 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP01DelayRaw.B2")
 }
 
@@ -496,24 +496,24 @@ record(longout, "$(P)$(R)OTP02Delay-SP") {
 record(bo, "$(P)$(R)OTP02State-Sel") {
   field(DESC, "EVR OTP2 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP02StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP02Pol-Sel") {
   field(DESC, "EVR OTP2 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP02PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP02Log-Sel") {
   field(DESC, "EVR OTP2 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP02LogCalc")
 }
 
@@ -576,8 +576,8 @@ record(mbbiDirect, "$(P)$(R)OTP02DelayRaw") {
 record(bi, "$(P)$(R)OTP02Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP2 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP02DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP02Pol-Sts")
 }
@@ -585,8 +585,8 @@ record(bi, "$(P)$(R)OTP02Log-Sts") {
 record(bi, "$(P)$(R)OTP02Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP2 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP02DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP02State-Sts")
 }
@@ -594,7 +594,7 @@ record(bi, "$(P)$(R)OTP02Pol-Sts") {
 record(bi, "$(P)$(R)OTP02State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP2 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP02DelayRaw.B2")
 }
@@ -681,24 +681,24 @@ record(longout, "$(P)$(R)OTP03Delay-SP") {
 record(bo, "$(P)$(R)OTP03State-Sel") {
   field(DESC, "EVR OTP3 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP03StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP03Pol-Sel") {
   field(DESC, "EVR OTP3 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP03PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP03Log-Sel") {
   field(DESC, "EVR OTP3 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP03LogCalc")
 }
 
@@ -761,8 +761,8 @@ record(mbbiDirect, "$(P)$(R)OTP03DelayRaw") {
 record(bi, "$(P)$(R)OTP03Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP3 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP03DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP03Pol-Sts")
 }
@@ -770,8 +770,8 @@ record(bi, "$(P)$(R)OTP03Log-Sts") {
 record(bi, "$(P)$(R)OTP03Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP3 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP03DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP03State-Sts")
 }
@@ -779,8 +779,8 @@ record(bi, "$(P)$(R)OTP03Pol-Sts") {
 record(bi, "$(P)$(R)OTP03State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP3 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP03DelayRaw.B2")
 }
 
@@ -866,24 +866,24 @@ record(longout, "$(P)$(R)OTP04Delay-SP") {
 record(bo, "$(P)$(R)OTP04State-Sel") {
   field(DESC, "EVR OTP4 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP04StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP04Pol-Sel") {
   field(DESC, "EVR OTP4 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP04PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP04Log-Sel") {
   field(DESC, "EVR OTP4 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP04LogCalc")
 }
 
@@ -946,8 +946,8 @@ record(mbbiDirect, "$(P)$(R)OTP04DelayRaw") {
 record(bi, "$(P)$(R)OTP04Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP4 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP04DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP04Pol-Sts")
 }
@@ -955,8 +955,8 @@ record(bi, "$(P)$(R)OTP04Log-Sts") {
 record(bi, "$(P)$(R)OTP04Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP4 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP04DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP04State-Sts")
 }
@@ -964,8 +964,8 @@ record(bi, "$(P)$(R)OTP04Pol-Sts") {
 record(bi, "$(P)$(R)OTP04State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP4 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP04DelayRaw.B2")
 }
 
@@ -1051,24 +1051,24 @@ record(longout, "$(P)$(R)OTP05Delay-SP") {
 record(bo, "$(P)$(R)OTP05State-Sel") {
   field(DESC, "EVR OTP5 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP05StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP05Pol-Sel") {
   field(DESC, "EVR OTP5 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP05PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP05Log-Sel") {
   field(DESC, "EVR OTP5 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP05LogCalc")
 }
 
@@ -1131,8 +1131,8 @@ record(mbbiDirect, "$(P)$(R)OTP05DelayRaw") {
 record(bi, "$(P)$(R)OTP05Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP5 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP05DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP05Pol-Sts")
 }
@@ -1140,8 +1140,8 @@ record(bi, "$(P)$(R)OTP05Log-Sts") {
 record(bi, "$(P)$(R)OTP05Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP5 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP05DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP05State-Sts")
 }
@@ -1149,8 +1149,8 @@ record(bi, "$(P)$(R)OTP05Pol-Sts") {
 record(bi, "$(P)$(R)OTP05State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP5 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP05DelayRaw.B2")
 }
 
@@ -1236,24 +1236,24 @@ record(longout, "$(P)$(R)OTP06Delay-SP") {
 record(bo, "$(P)$(R)OTP06State-Sel") {
   field(DESC, "EVR OTP6 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP06StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP06Pol-Sel") {
   field(DESC, "EVR OTP6 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP06PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP06Log-Sel") {
   field(DESC, "EVR OTP6 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP06LogCalc")
 }
 
@@ -1316,8 +1316,8 @@ record(mbbiDirect, "$(P)$(R)OTP06DelayRaw") {
 record(bi, "$(P)$(R)OTP06Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP6 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP06DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP06Pol-Sts")
 }
@@ -1325,8 +1325,8 @@ record(bi, "$(P)$(R)OTP06Log-Sts") {
 record(bi, "$(P)$(R)OTP06Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP6 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP06DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP06State-Sts")
 }
@@ -1334,8 +1334,8 @@ record(bi, "$(P)$(R)OTP06Pol-Sts") {
 record(bi, "$(P)$(R)OTP06State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP6 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP06DelayRaw.B2")
 }
 
@@ -1421,24 +1421,24 @@ record(longout, "$(P)$(R)OTP07Delay-SP") {
 record(bo, "$(P)$(R)OTP07State-Sel") {
   field(DESC, "EVR OTP7 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP07StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP07Pol-Sel") {
   field(DESC, "EVR OTP7 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP07PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP07Log-Sel") {
   field(DESC, "EVR OTP7 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP07LogCalc")
 }
 
@@ -1501,8 +1501,8 @@ record(mbbiDirect, "$(P)$(R)OTP07DelayRaw") {
 record(bi, "$(P)$(R)OTP07Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP7 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP07DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP07Pol-Sts")
 }
@@ -1510,8 +1510,8 @@ record(bi, "$(P)$(R)OTP07Log-Sts") {
 record(bi, "$(P)$(R)OTP07Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP7 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP07DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP07State-Sts")
 }
@@ -1519,8 +1519,8 @@ record(bi, "$(P)$(R)OTP07Pol-Sts") {
 record(bi, "$(P)$(R)OTP07State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP7 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP07DelayRaw.B2")
 }
 
@@ -1606,24 +1606,24 @@ record(longout, "$(P)$(R)OTP08Delay-SP") {
 record(bo, "$(P)$(R)OTP08State-Sel") {
   field(DESC, "EVR OTP8 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP08StateCalc")
 }
 
 record(bo, "$(P)$(R)OTP08Pol-Sel") {
   field(DESC, "EVR OTP8 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP08PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP08Log-Sel") {
   field(DESC, "EVR OTP8 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP08LogCalc")
 }
 
@@ -1686,8 +1686,8 @@ record(mbbiDirect, "$(P)$(R)OTP08DelayRaw") {
 record(bi, "$(P)$(R)OTP08Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP8 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP08DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP08Pol-Sts")
 }
@@ -1695,8 +1695,8 @@ record(bi, "$(P)$(R)OTP08Log-Sts") {
 record(bi, "$(P)$(R)OTP08Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP8 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP08DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP08State-Sts")
 }
@@ -1704,7 +1704,7 @@ record(bi, "$(P)$(R)OTP08Pol-Sts") {
 record(bi, "$(P)$(R)OTP08State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP8 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP08DelayRaw.B2")
 }
@@ -1790,7 +1790,7 @@ record(longout, "$(P)$(R)OTP09Delay-SP") {
 record(bo, "$(P)$(R)OTP09State-Sel") {
   field(DESC, "EVR OTP9 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP09StateCalc")
 }
@@ -1798,16 +1798,16 @@ record(bo, "$(P)$(R)OTP09State-Sel") {
 record(bo, "$(P)$(R)OTP09Pol-Sel") {
   field(DESC, "EVR OTP9 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP09PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP09Log-Sel") {
   field(DESC, "EVR OTP9 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP09LogCalc")
 }
 
@@ -1870,8 +1870,8 @@ record(mbbiDirect, "$(P)$(R)OTP09DelayRaw") {
 record(bi, "$(P)$(R)OTP09Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP9 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP09DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP09Pol-Sts")
 }
@@ -1879,8 +1879,8 @@ record(bi, "$(P)$(R)OTP09Log-Sts") {
 record(bi, "$(P)$(R)OTP09Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP9 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP09DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP09State-Sts")
 }
@@ -1888,7 +1888,7 @@ record(bi, "$(P)$(R)OTP09Pol-Sts") {
 record(bi, "$(P)$(R)OTP09State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP9 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP09DelayRaw.B2")
 }
@@ -1975,7 +1975,7 @@ record(longout, "$(P)$(R)OTP10Delay-SP") {
 record(bo, "$(P)$(R)OTP10State-Sel") {
   field(DESC, "EVR OTPA enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP10StateCalc")
 }
@@ -1983,16 +1983,16 @@ record(bo, "$(P)$(R)OTP10State-Sel") {
 record(bo, "$(P)$(R)OTP10Pol-Sel") {
   field(DESC, "EVR OTPB polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP10PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP10Log-Sel") {
   field(DESC, "EVR OTPA event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP10LogCalc")
 }
 
@@ -2055,8 +2055,8 @@ record(mbbiDirect, "$(P)$(R)OTP10DelayRaw") {
 record(bi, "$(P)$(R)OTP10Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPA timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP10DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP10Pol-Sts")
 }
@@ -2064,8 +2064,8 @@ record(bi, "$(P)$(R)OTP10Log-Sts") {
 record(bi, "$(P)$(R)OTP10Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPA polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP10DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP10State-Sts")
 }
@@ -2073,7 +2073,7 @@ record(bi, "$(P)$(R)OTP10Pol-Sts") {
 record(bi, "$(P)$(R)OTP10State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPA enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP10DelayRaw.B2")
 }
@@ -2160,7 +2160,7 @@ record(longout, "$(P)$(R)OTP11Delay-SP") {
 record(bo, "$(P)$(R)OTP11State-Sel") {
   field(DESC, "EVR OTPB enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP11StateCalc")
 }
@@ -2168,16 +2168,16 @@ record(bo, "$(P)$(R)OTP11State-Sel") {
 record(bo, "$(P)$(R)OTP11Pol-Sel") {
   field(DESC, "EVR OTPB polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP11PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP11Log-Sel") {
   field(DESC, "EVR OTPB event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP11LogCalc")
 }
 
@@ -2240,8 +2240,8 @@ record(mbbiDirect, "$(P)$(R)OTP11DelayRaw") {
 record(bi, "$(P)$(R)OTP11Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPB timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP11DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP11Pol-Sts")
 }
@@ -2249,8 +2249,8 @@ record(bi, "$(P)$(R)OTP11Log-Sts") {
 record(bi, "$(P)$(R)OTP11Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPB polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP11DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP11State-Sts")
 }
@@ -2258,7 +2258,7 @@ record(bi, "$(P)$(R)OTP11Pol-Sts") {
 record(bi, "$(P)$(R)OTP11State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPB enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP11DelayRaw.B2")
 }
@@ -2345,7 +2345,7 @@ record(longout, "$(P)$(R)OTP12Delay-SP") {
 record(bo, "$(P)$(R)OTP12State-Sel") {
   field(DESC, "EVR OTPC enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP12StateCalc")
 }
@@ -2353,16 +2353,16 @@ record(bo, "$(P)$(R)OTP12State-Sel") {
 record(bo, "$(P)$(R)OTP12Pol-Sel") {
   field(DESC, "EVR OTPC polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP12PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP12Log-Sel") {
   field(DESC, "EVR OTPC event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP12LogCalc")
 }
 
@@ -2425,8 +2425,8 @@ record(mbbiDirect, "$(P)$(R)OTP12DelayRaw") {
 record(bi, "$(P)$(R)OTP12Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPC timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP12DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP12Pol-Sts")
 }
@@ -2434,8 +2434,8 @@ record(bi, "$(P)$(R)OTP12Log-Sts") {
 record(bi, "$(P)$(R)OTP12Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPC polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP12DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP12State-Sts")
 }
@@ -2443,7 +2443,7 @@ record(bi, "$(P)$(R)OTP12Pol-Sts") {
 record(bi, "$(P)$(R)OTP12State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPC enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP12DelayRaw.B2")
 }
@@ -2530,7 +2530,7 @@ record(longout, "$(P)$(R)OTP13Delay-SP") {
 record(bo, "$(P)$(R)OTP13State-Sel") {
   field(DESC, "EVR OTPD enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP13StateCalc")
 }
@@ -2538,16 +2538,16 @@ record(bo, "$(P)$(R)OTP13State-Sel") {
 record(bo, "$(P)$(R)OTP13Pol-Sel") {
   field(DESC, "EVR OTPD polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP13PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP13Log-Sel") {
   field(DESC, "EVR OTPD event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP13LogCalc")
 }
 
@@ -2610,8 +2610,8 @@ record(mbbiDirect, "$(P)$(R)OTP13DelayRaw") {
 record(bi, "$(P)$(R)OTP13Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPD timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP13DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP13Pol-Sts")
 }
@@ -2619,8 +2619,8 @@ record(bi, "$(P)$(R)OTP13Log-Sts") {
 record(bi, "$(P)$(R)OTP13Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPD polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP13DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP13State-Sts")
 }
@@ -2628,7 +2628,7 @@ record(bi, "$(P)$(R)OTP13Pol-Sts") {
 record(bi, "$(P)$(R)OTP13State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPD enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP13DelayRaw.B2")
 }
@@ -2715,7 +2715,7 @@ record(longout, "$(P)$(R)OTP14Delay-SP") {
 record(bo, "$(P)$(R)OTP14State-Sel") {
   field(DESC, "EVR OTPE enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP14StateCalc")
 }
@@ -2723,16 +2723,16 @@ record(bo, "$(P)$(R)OTP14State-Sel") {
 record(bo, "$(P)$(R)OTP14Pol-Sel") {
   field(DESC, "EVR OTPE polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP14PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP14Log-Sel") {
   field(DESC, "EVR OTPE event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP14LogCalc")
 }
 
@@ -2795,8 +2795,8 @@ record(mbbiDirect, "$(P)$(R)OTP14DelayRaw") {
 record(bi, "$(P)$(R)OTP14Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPE timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP14DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP14Pol-Sts")
 }
@@ -2804,8 +2804,8 @@ record(bi, "$(P)$(R)OTP14Log-Sts") {
 record(bi, "$(P)$(R)OTP14Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPE polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP14DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP14State-Sts")
 }
@@ -2813,7 +2813,7 @@ record(bi, "$(P)$(R)OTP14Pol-Sts") {
 record(bi, "$(P)$(R)OTP14State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPE enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP14DelayRaw.B2")
 }
@@ -2900,7 +2900,7 @@ record(longout, "$(P)$(R)OTP15Delay-SP") {
 record(bo, "$(P)$(R)OTP15State-Sel") {
   field(DESC, "EVR OTPF enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP15StateCalc")
 }
@@ -2908,16 +2908,16 @@ record(bo, "$(P)$(R)OTP15State-Sel") {
 record(bo, "$(P)$(R)OTP15Pol-Sel") {
   field(DESC, "EVR OTPF polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP15PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP15Log-Sel") {
   field(DESC, "EVR OTPF event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP15LogCalc")
 }
 
@@ -2980,8 +2980,8 @@ record(mbbiDirect, "$(P)$(R)OTP15DelayRaw") {
 record(bi, "$(P)$(R)OTP15Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPF timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP15DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP15Pol-Sts")
 }
@@ -2989,8 +2989,8 @@ record(bi, "$(P)$(R)OTP15Log-Sts") {
 record(bi, "$(P)$(R)OTP15Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPF polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP15DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP15State-Sts")
 }
@@ -2998,7 +2998,7 @@ record(bi, "$(P)$(R)OTP15Pol-Sts") {
 record(bi, "$(P)$(R)OTP15State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTPF enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP15DelayRaw.B2")
 }
@@ -3055,7 +3055,7 @@ record(mbbiDirect, "$(P)$(R)OUT0IntlkRaw") {
 record(bi, "$(P)$(R)OUT0Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT0 interlock status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OUT0IntlkRaw.B0")
 }
@@ -3193,7 +3193,7 @@ record(calcout, "$(P)$(R)OUT0IntlkCalc") {
 record(bo, "$(P)$(R)OUT0Intlk-Sel"){
   field(DESC, "EVR OUT0 interlock function selection")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OUT0IntlkCalc")
 }
@@ -3227,7 +3227,7 @@ record(mbbiDirect, "$(P)$(R)OUT1IntlkRaw") {
 record(bi, "$(P)$(R)OUT1Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT1 interlock status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OUT1IntlkRaw.B0")
 }
@@ -3365,7 +3365,7 @@ record(calcout, "$(P)$(R)OUT1IntlkCalc") {
 record(bo, "$(P)$(R)OUT1Intlk-Sel"){
   field(DESC, "EVR OUT1 interlock function selection")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OUT1IntlkCalc")
 }
@@ -3399,7 +3399,7 @@ record(mbbiDirect, "$(P)$(R)OUT2IntlkRaw") {
 record(bi, "$(P)$(R)OUT2Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT2 interlock status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OUT2IntlkRaw.B0")
 }
@@ -3537,7 +3537,7 @@ record(calcout, "$(P)$(R)OUT2IntlkCalc") {
 record(bo, "$(P)$(R)OUT2Intlk-Sel"){
   field(DESC, "EVR OUT2 interlock function selection")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OUT2IntlkCalc")
 }
@@ -3571,7 +3571,7 @@ record(mbbiDirect, "$(P)$(R)OUT3IntlkRaw") {
 record(bi, "$(P)$(R)OUT3Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT3 interlock status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OUT3IntlkRaw.B0")
 }
@@ -3709,7 +3709,7 @@ record(calcout, "$(P)$(R)OUT3IntlkCalc") {
 record(bo, "$(P)$(R)OUT3Intlk-Sel"){
   field(DESC, "EVR OUT3 interlock function selection")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OUT3IntlkCalc")
 }
@@ -3743,7 +3743,7 @@ record(mbbiDirect, "$(P)$(R)OUT4IntlkRaw") {
 record(bi, "$(P)$(R)OUT4Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT4 interlock status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OUT4IntlkRaw.B0")
 }
@@ -3881,7 +3881,7 @@ record(calcout, "$(P)$(R)OUT4IntlkCalc") {
 record(bo, "$(P)$(R)OUT4Intlk-Sel"){
   field(DESC, "EVR OUT4 interlock function selection")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OUT4IntlkCalc")
 }
@@ -3915,7 +3915,7 @@ record(mbbiDirect, "$(P)$(R)OUT5IntlkRaw") {
 record(bi, "$(P)$(R)OUT5Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT5 interlock status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OUT5IntlkRaw.B0")
 }
@@ -4053,7 +4053,7 @@ record(calcout, "$(P)$(R)OUT5IntlkCalc") {
 record(bo, "$(P)$(R)OUT5Intlk-Sel"){
   field(DESC, "EVR OUT5 interlock function selection")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OUT5IntlkCalc")
 }
@@ -4087,7 +4087,7 @@ record(mbbiDirect, "$(P)$(R)OUT6IntlkRaw") {
 record(bi, "$(P)$(R)OUT6Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT6 interlock status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OUT6IntlkRaw.B0")
 }
@@ -4225,7 +4225,7 @@ record(calcout, "$(P)$(R)OUT6IntlkCalc") {
 record(bo, "$(P)$(R)OUT6Intlk-Sel"){
   field(DESC, "EVR OUT6 interlock function selection")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OUT6IntlkCalc")
 }
@@ -4259,7 +4259,7 @@ record(mbbiDirect, "$(P)$(R)OUT7IntlkRaw") {
 record(bi, "$(P)$(R)OUT7Intlk-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OUT7 interlock status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OUT7IntlkRaw.B0")
 }
@@ -4397,7 +4397,7 @@ record(calcout, "$(P)$(R)OUT7IntlkCalc") {
 record(bo, "$(P)$(R)OUT7Intlk-Sel"){
   field(DESC, "EVR OUT7 interlock function selection")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OUT7IntlkCalc")
 }
@@ -4461,7 +4461,7 @@ record(longout, "$(P)$(R)OTP16Delay-SP") {
 record(bo, "$(P)$(R)OTP16State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP16StateCalc")
 }
@@ -4469,16 +4469,16 @@ record(bo, "$(P)$(R)OTP16State-Sel") {
 record(bo, "$(P)$(R)OTP16Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP16PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP16Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP16LogCalc")
 }
 
@@ -4541,8 +4541,8 @@ record(mbbiDirect, "$(P)$(R)OTP16DelayRaw") {
 record(bi, "$(P)$(R)OTP16Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP16DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP16Pol-Sts")
 }
@@ -4550,8 +4550,8 @@ record(bi, "$(P)$(R)OTP16Log-Sts") {
 record(bi, "$(P)$(R)OTP16Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP16DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP16State-Sts")
 }
@@ -4559,7 +4559,7 @@ record(bi, "$(P)$(R)OTP16Pol-Sts") {
 record(bi, "$(P)$(R)OTP16State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP16DelayRaw.B2")
 }
@@ -4646,7 +4646,7 @@ record(longout, "$(P)$(R)OTP17Delay-SP") {
 record(bo, "$(P)$(R)OTP17State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP17StateCalc")
 }
@@ -4654,16 +4654,16 @@ record(bo, "$(P)$(R)OTP17State-Sel") {
 record(bo, "$(P)$(R)OTP17Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP17PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP17Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP17LogCalc")
 }
 
@@ -4726,8 +4726,8 @@ record(mbbiDirect, "$(P)$(R)OTP17DelayRaw") {
 record(bi, "$(P)$(R)OTP17Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP17DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP17Pol-Sts")
 }
@@ -4735,8 +4735,8 @@ record(bi, "$(P)$(R)OTP17Log-Sts") {
 record(bi, "$(P)$(R)OTP17Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP17DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP17State-Sts")
 }
@@ -4744,7 +4744,7 @@ record(bi, "$(P)$(R)OTP17Pol-Sts") {
 record(bi, "$(P)$(R)OTP17State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP17DelayRaw.B2")
 }
@@ -4831,7 +4831,7 @@ record(longout, "$(P)$(R)OTP18Delay-SP") {
 record(bo, "$(P)$(R)OTP18State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP18StateCalc")
 }
@@ -4839,16 +4839,16 @@ record(bo, "$(P)$(R)OTP18State-Sel") {
 record(bo, "$(P)$(R)OTP18Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP18PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP18Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP18LogCalc")
 }
 
@@ -4911,8 +4911,8 @@ record(mbbiDirect, "$(P)$(R)OTP18DelayRaw") {
 record(bi, "$(P)$(R)OTP18Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP18DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP18Pol-Sts")
 }
@@ -4920,8 +4920,8 @@ record(bi, "$(P)$(R)OTP18Log-Sts") {
 record(bi, "$(P)$(R)OTP18Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP18DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP18State-Sts")
 }
@@ -4929,7 +4929,7 @@ record(bi, "$(P)$(R)OTP18Pol-Sts") {
 record(bi, "$(P)$(R)OTP18State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP18DelayRaw.B2")
 }
@@ -5016,7 +5016,7 @@ record(longout, "$(P)$(R)OTP19Delay-SP") {
 record(bo, "$(P)$(R)OTP19State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP19StateCalc")
 }
@@ -5024,16 +5024,16 @@ record(bo, "$(P)$(R)OTP19State-Sel") {
 record(bo, "$(P)$(R)OTP19Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP19PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP19Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP19LogCalc")
 }
 
@@ -5096,8 +5096,8 @@ record(mbbiDirect, "$(P)$(R)OTP19DelayRaw") {
 record(bi, "$(P)$(R)OTP19Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP19DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP19Pol-Sts")
 }
@@ -5105,8 +5105,8 @@ record(bi, "$(P)$(R)OTP19Log-Sts") {
 record(bi, "$(P)$(R)OTP19Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP19DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP19State-Sts")
 }
@@ -5114,7 +5114,7 @@ record(bi, "$(P)$(R)OTP19Pol-Sts") {
 record(bi, "$(P)$(R)OTP19State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP19DelayRaw.B2")
 }
@@ -5201,7 +5201,7 @@ record(longout, "$(P)$(R)OTP20Delay-SP") {
 record(bo, "$(P)$(R)OTP20State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP20StateCalc")
 }
@@ -5209,16 +5209,16 @@ record(bo, "$(P)$(R)OTP20State-Sel") {
 record(bo, "$(P)$(R)OTP20Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP20PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP20Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP20LogCalc")
 }
 
@@ -5281,8 +5281,8 @@ record(mbbiDirect, "$(P)$(R)OTP20DelayRaw") {
 record(bi, "$(P)$(R)OTP20Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP20DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP20Pol-Sts")
 }
@@ -5290,8 +5290,8 @@ record(bi, "$(P)$(R)OTP20Log-Sts") {
 record(bi, "$(P)$(R)OTP20Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP20DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP20State-Sts")
 }
@@ -5299,7 +5299,7 @@ record(bi, "$(P)$(R)OTP20Pol-Sts") {
 record(bi, "$(P)$(R)OTP20State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP20DelayRaw.B2")
 }
@@ -5386,7 +5386,7 @@ record(longout, "$(P)$(R)OTP21Delay-SP") {
 record(bo, "$(P)$(R)OTP21State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP21StateCalc")
 }
@@ -5394,16 +5394,16 @@ record(bo, "$(P)$(R)OTP21State-Sel") {
 record(bo, "$(P)$(R)OTP21Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP21PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP21Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP21LogCalc")
 }
 
@@ -5466,8 +5466,8 @@ record(mbbiDirect, "$(P)$(R)OTP21DelayRaw") {
 record(bi, "$(P)$(R)OTP21Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP21DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP21Pol-Sts")
 }
@@ -5475,8 +5475,8 @@ record(bi, "$(P)$(R)OTP21Log-Sts") {
 record(bi, "$(P)$(R)OTP21Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP21DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP21State-Sts")
 }
@@ -5484,7 +5484,7 @@ record(bi, "$(P)$(R)OTP21Pol-Sts") {
 record(bi, "$(P)$(R)OTP21State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP21DelayRaw.B2")
 }
@@ -5571,7 +5571,7 @@ record(longout, "$(P)$(R)OTP22Delay-SP") {
 record(bo, "$(P)$(R)OTP22State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP22StateCalc")
 }
@@ -5579,16 +5579,16 @@ record(bo, "$(P)$(R)OTP22State-Sel") {
 record(bo, "$(P)$(R)OTP22Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP22PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP22Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP22LogCalc")
 }
 
@@ -5651,8 +5651,8 @@ record(mbbiDirect, "$(P)$(R)OTP22DelayRaw") {
 record(bi, "$(P)$(R)OTP22Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP22DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP22Pol-Sts")
 }
@@ -5660,8 +5660,8 @@ record(bi, "$(P)$(R)OTP22Log-Sts") {
 record(bi, "$(P)$(R)OTP22Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP22DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP22State-Sts")
 }
@@ -5669,7 +5669,7 @@ record(bi, "$(P)$(R)OTP22Pol-Sts") {
 record(bi, "$(P)$(R)OTP22State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP22DelayRaw.B2")
 }
@@ -5756,7 +5756,7 @@ record(longout, "$(P)$(R)OTP23Delay-SP") {
 record(bo, "$(P)$(R)OTP23State-Sel") {
   field(DESC, "EVR OTP0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)OTP23StateCalc")
 }
@@ -5764,16 +5764,16 @@ record(bo, "$(P)$(R)OTP23State-Sel") {
 record(bo, "$(P)$(R)OTP23Pol-Sel") {
   field(DESC, "EVR OTP0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)OTP23PolCalc")
 }
 
 record(bo, "$(P)$(R)OTP23Log-Sel") {
   field(DESC, "EVR OTP0 event timestamping enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP23LogCalc")
 }
 
@@ -5836,8 +5836,8 @@ record(mbbiDirect, "$(P)$(R)OTP23DelayRaw") {
 record(bi, "$(P)$(R)OTP23Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)OTP23DelayRaw.B0")
   field(FLNK, "$(P)$(R)OTP23Pol-Sts")
 }
@@ -5845,8 +5845,8 @@ record(bi, "$(P)$(R)OTP23Log-Sts") {
 record(bi, "$(P)$(R)OTP23Pol-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)OTP23DelayRaw.B1")
   field(FLNK, "$(P)$(R)OTP23State-Sts")
 }
@@ -5854,7 +5854,7 @@ record(bi, "$(P)$(R)OTP23Pol-Sts") {
 record(bi, "$(P)$(R)OTP23State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR OTP0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)OTP23DelayRaw.B2")
 }
@@ -5962,7 +5962,7 @@ record(bo, "$(P)$(R)stoplog"){
   field(DESC, "EVR stop log command")
   field(MASK, "1")
   field(ONAM, "ON")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(FLNK, "$(P)$(R)stoplogAUX")
 }
 
@@ -5979,7 +5979,7 @@ record(bo, "$(P)$(R)rstlog"){
   field(DESC, "EVR reset log command")
   field(MASK, "1")
   field(ONAM, "ON")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(HIGH, "0.5")
   field(FLNK, "$(P)$(R)RSTLOG")
 }
@@ -6065,7 +6065,7 @@ record(mbbiDirect, "$(P)$(R)LOGCTRLRBV"){
 record(bi, "$(P)$(R)STOPLOGRBV"){
   field(ASG, "Reserved")
   field(ONAM, "ON")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(DESC, "EVR stop log command RBV")
   field(INP, "$(P)$(R)LOGCTRLRBV.B7")
   field(FLNK, "$(P)$(R)RSTLOGRBV")
@@ -6074,7 +6074,7 @@ record(bi, "$(P)$(R)STOPLOGRBV"){
 record(bi, "$(P)$(R)RSTLOGRBV"){
   field(ASG, "Reserved")
   field(ONAM, "ON")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(DESC, "EVR reset log command RBV")
   field(INP, "$(P)$(R)LOGCTRLRBV.B6")
   field(FLNK, "$(P)$(R)FULL")
@@ -6202,7 +6202,7 @@ record(calcout, "$(P)$(R)whileNotEmpty"){
 record(bo, "$(P)$(R)rstSoftBuff"){
   field(DESC, "Reset software buffers")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(HIGH, "1")
   field(FLNK, "$(P)$(R)rstSoftBuffCalc")
@@ -6272,7 +6272,7 @@ record(longout, "$(P)$(R)DIEvent0-SP") {
 record(bo, "$(P)$(R)DIEnbl0-Sel") {
   field(DESC, "EVR digital input 0 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)DIStateCalc0")
 }
@@ -6280,16 +6280,16 @@ record(bo, "$(P)$(R)DIEnbl0-Sel") {
 record(bo, "$(P)$(R)DIPol0-Sel") {
   field(DESC, "EVR digital input 0 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)DIPolCalc0")
 }
 
 record(bo, "$(P)$(R)DILog0-Sel") {
   field(DESC, "EVR dig. input 0 event timestamp enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)DILogCalc0")
 }
 
@@ -6352,8 +6352,8 @@ record(mbbiDirect, "$(P)$(R)DI0Raw") {
 record(bi, "$(P)$(R)DILog0-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 0 timestamping sts")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)DI0Raw.B0")
   field(FLNK, "$(P)$(R)DIPol0-Sts")
 }
@@ -6361,8 +6361,8 @@ record(bi, "$(P)$(R)DILog0-Sts") {
 record(bi, "$(P)$(R)DIPol0-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)DI0Raw.B1")
   field(FLNK, "$(P)$(R)DIEnbl0-Sts")
 }
@@ -6370,7 +6370,7 @@ record(bi, "$(P)$(R)DIPol0-Sts") {
 record(bi, "$(P)$(R)DIEnbl0-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 0 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)DI0Raw.B2")
 }
@@ -6406,7 +6406,7 @@ record(longout, "$(P)$(R)DIEvent1-SP") {
 record(bo, "$(P)$(R)DIEnbl1-Sel") {
   field(DESC, "EVR digital input 1 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)DIStateCalc1")
 }
@@ -6414,16 +6414,16 @@ record(bo, "$(P)$(R)DIEnbl1-Sel") {
 record(bo, "$(P)$(R)DIPol1-Sel") {
   field(DESC, "EVR digital input 1 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)DIPolCalc1")
 }
 
 record(bo, "$(P)$(R)DILog1-Sel") {
   field(DESC, "EVR dig. input 1 event timestamp enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)DILogCalc1")
 }
 
@@ -6486,8 +6486,8 @@ record(mbbiDirect, "$(P)$(R)DI1Raw") {
 record(bi, "$(P)$(R)DILog1-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 1 timestamping sts")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)DI1Raw.B0")
   field(FLNK, "$(P)$(R)DIPol1-Sts")
 }
@@ -6495,8 +6495,8 @@ record(bi, "$(P)$(R)DILog1-Sts") {
 record(bi, "$(P)$(R)DIPol1-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 1 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)DI1Raw.B1")
   field(FLNK, "$(P)$(R)DIEnbl1-Sts")
 }
@@ -6504,7 +6504,7 @@ record(bi, "$(P)$(R)DIPol1-Sts") {
 record(bi, "$(P)$(R)DIEnbl1-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 1 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)DI1Raw.B2")
 }
@@ -6540,7 +6540,7 @@ record(longout, "$(P)$(R)DIEvent2-SP") {
 record(bo, "$(P)$(R)DIEnbl2-Sel") {
   field(DESC, "EVR digital input 2 enable")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(FLNK, "$(P)$(R)DIStateCalc2")
 }
@@ -6548,16 +6548,16 @@ record(bo, "$(P)$(R)DIEnbl2-Sel") {
 record(bo, "$(P)$(R)DIPol2-Sel") {
   field(DESC, "EVR digital input 2 polarity")
   field(MASK, "1")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(FLNK, "$(P)$(R)DIPolCalc2")
 }
 
 record(bo, "$(P)$(R)DILog2-Sel") {
   field(DESC, "EVR dig. input 2 event timestamp enable")
   field(MASK, "1")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)DILogCalc2")
 }
 
@@ -6620,8 +6620,8 @@ record(mbbiDirect, "$(P)$(R)DI2Raw") {
 record(bi, "$(P)$(R)DILog2-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 2 timestamping sts")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(INP, "$(P)$(R)DI2Raw.B0")
   field(FLNK, "$(P)$(R)DIPol2-Sts")
 }
@@ -6629,8 +6629,8 @@ record(bi, "$(P)$(R)DILog2-Sts") {
 record(bi, "$(P)$(R)DIPol2-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 2 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
   field(INP, "$(P)$(R)DI2Raw.B1")
   field(FLNK, "$(P)$(R)DIEnbl2-Sts")
 }
@@ -6638,7 +6638,7 @@ record(bi, "$(P)$(R)DIPol2-Sts") {
 record(bi, "$(P)$(R)DIEnbl2-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR digital input 2 enable status")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(INP, "$(P)$(R)DI2Raw.B2")
 }
@@ -6794,14 +6794,14 @@ record(longout, "$(P)$(R)cmd_conf_set") {
 record(bo, "$(P)$(R)Download-Cmd") {
   field(DESC, "EVR download")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
 }
 
 record(bo, "$(P)$(R)Download-Trig") {
   field(DESC, "EVR download trigger")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evr_download($(P),$(R)) $(PORT)")
@@ -6810,7 +6810,7 @@ record(bo, "$(P)$(R)Download-Trig") {
 record(bo, "$(P)$(R)Upload-Trig") {
   field(DESC, "EVR upload trigger")
   field(MASK, "1")
-  field(ZNAM, "OFF")
+  field(ZNAM, "Dsbl")
   field(ONAM, "ON")
   field(HIGH, "0.5")
   field(FLNK, "$(P)$(R)UploadCalc")
@@ -6845,15 +6845,15 @@ record(bi, "$(P)$(R)DevStatus-Mon") {
 record(bi, "$(P)$(R)Network-Mon") {
   field(ASG, "Reserved")
   field(DESC, "EVR network status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Disconnected")
+  field(ONAM, "Connected")
 }
 
 record(bo, "$(P)$(R)Save-Cmd"){
   field(DESC, "EVR manual Save settings command")
   field(MASK, "1")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)Save-Trig")
 }
 
