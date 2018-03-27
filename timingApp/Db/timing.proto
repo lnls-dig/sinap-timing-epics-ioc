@@ -278,21 +278,21 @@ evre_out_sel7RAW_intr{
 }
 
 ################################################################################
-# Clock mode select EVE [25]
+# Clock mode select EVE [40]
 eve_rf_get {
-    out "\x99\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xd9%*04r%*04r%*04r";
+    out "\xA8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\xe8%*04r%*04r%*04r";
 }
 
 eve_rf_set {
-    out "\x59\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2RFOut-Sel.RVAL)r";
+    out "\x68\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2RFOut-Sel.RVAL)r";
     eve_rf_get;
 }
 
 # Interrupts
 
 eve_rf_intr {
-    in "\xd9%*04r%*04r%*03r%r";
+    in "\xe8%*04r%*04r%*03r%r";
 }
 
 ################################################################################
