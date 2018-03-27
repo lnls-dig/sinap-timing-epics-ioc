@@ -11,7 +11,7 @@ int eventNum = 63;
 char device[40];
 char * evPrefix = "Evt";
 char * evCodeName = "Code";
-char * evTimeName = "Delay-RB";
+char * evTimeName = "Delay-RB.RVAL";
 char * evModeName = "DelayType-Sts";
 char * evCtrlName = "Mode-Sts";
 char str[40];
