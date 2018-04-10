@@ -17,10 +17,10 @@ record(mbbiDirect, "$(P)$(R)DevEnblRaw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_ctrl_enableRAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)DevEnbl-Sta")
+  field(FLNK, "$(P)$(R)DevEnbl-Sts")
 }
 
-record(bi, "$(P)$(R)DevEnbl-Sta") {
+record(bi, "$(P)$(R)DevEnbl-Sts") {
   field(ASG, "Reserved")
   field(DESC, "EVR enable status")
   field(ZNAM, "Dsbl")
@@ -6847,6 +6847,7 @@ record(bi, "$(P)$(R)Network-Mon") {
   field(DESC, "EVR network status")
   field(ZNAM, "Disconnected")
   field(ONAM, "Connected")
+  field(FLNK, "$(P)$(R)FrmVersionA-Cte")
 }
 
 record(bo, "$(P)$(R)Save-Cmd"){
