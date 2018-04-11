@@ -36,12 +36,10 @@ record(ao, "$(P)$(R)Evt$(code)Code-Mon"){
 record(ao, "$(P)$(R)Evt$(code)Delay-SP"){
 	field(DESC, "Event $(code) timestamp")
   field(DTYP, "Raw Soft Channel")
-  field(PINI, "1")
 	field(DRVH, "4294967295")
 	field(DRVL, "0")
   field(AOFF, "-$(EVT_DELAY)")
   field(PREC, "0")
-	field(VAL, "$(time)")
 	field(OUT, "$(P)$(R)Evt$(code)DelayModVal PP")
 }
 
@@ -63,7 +61,7 @@ record(ai, "$(P)$(R)Evt$(code)Delay-RB"){
   field(SCAN, "1 second")
   field(AOFF, "-$(EVT_DELAY)")
   field(PREC, "0")
-	field(VAL, "$(time)")
+	field(RVAL, "$(time)")
 }
 
 record(bo, "$(P)$(R)Evt$(code)DelayType-Sel"){

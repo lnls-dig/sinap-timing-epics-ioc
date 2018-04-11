@@ -1666,6 +1666,7 @@ record(bi, "$(P)$(R)Network-Mon") {
   field(DESC, "EVG network status")
   field(ZNAM, "Disconnected")
   field(ONAM, "Connected")
+  field(FLNK, "$(P)$(R)FrmVersionA-Cte")
 }
 
 record(bo, "$(P)$(R)Save-Cmd"){
