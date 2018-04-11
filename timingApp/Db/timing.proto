@@ -610,7 +610,7 @@ frmvrs_get{
     out "%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
     @init{
-	out "%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+      out "%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     	in "\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
     }
 }
@@ -1031,6 +1031,14 @@ evr_download{
     out "%(\$1\$2cmd_otp_set13)r%(\$1\$2OTP13DelayCalc)r%(\$1\$2OTP13Pulses-SP).2r%(\$1\$2OTP13Evt-SP)r%(\$1\$2OTP13Delay-SP).4r%(\$1\$2OTP13Width-SP).4r";
     out "%(\$1\$2cmd_otp_set14)r%(\$1\$2OTP14DelayCalc)r%(\$1\$2OTP14Pulses-SP).2r%(\$1\$2OTP14Evt-SP)r%(\$1\$2OTP14Delay-SP).4r%(\$1\$2OTP14Width-SP).4r";
     out "%(\$1\$2cmd_otp_set15)r%(\$1\$2OTP15DelayCalc)r%(\$1\$2OTP15Pulses-SP).2r%(\$1\$2OTP15Evt-SP)r%(\$1\$2OTP15Delay-SP).4r%(\$1\$2OTP15Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set16)r%(\$1\$2OTP16DelayCalc)r%(\$1\$2OTP16Pulses-SP).2r%(\$1\$2OTP16Evt-SP)r%(\$1\$2OTP16Delay-SP).4r%(\$1\$2OTP16Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set17)r%(\$1\$2OTP17DelayCalc)r%(\$1\$2OTP17Pulses-SP).2r%(\$1\$2OTP17Evt-SP)r%(\$1\$2OTP17Delay-SP).4r%(\$1\$2OTP17Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set18)r%(\$1\$2OTP18DelayCalc)r%(\$1\$2OTP18Pulses-SP).2r%(\$1\$2OTP18Evt-SP)r%(\$1\$2OTP18Delay-SP).4r%(\$1\$2OTP18Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set19)r%(\$1\$2OTP19DelayCalc)r%(\$1\$2OTP19Pulses-SP).2r%(\$1\$2OTP19Evt-SP)r%(\$1\$2OTP19Delay-SP).4r%(\$1\$2OTP19Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set20)r%(\$1\$2OTP20DelayCalc)r%(\$1\$2OTP20Pulses-SP).2r%(\$1\$2OTP20Evt-SP)r%(\$1\$2OTP20Delay-SP).4r%(\$1\$2OTP20Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set21)r%(\$1\$2OTP21DelayCalc)r%(\$1\$2OTP21Pulses-SP).2r%(\$1\$2OTP21Evt-SP)r%(\$1\$2OTP21Delay-SP).4r%(\$1\$2OTP21Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set22)r%(\$1\$2OTP22DelayCalc)r%(\$1\$2OTP22Pulses-SP).2r%(\$1\$2OTP22Evt-SP)r%(\$1\$2OTP22Delay-SP).4r%(\$1\$2OTP22Width-SP).4r";
+    out "%(\$1\$2cmd_otp_set23)r%(\$1\$2OTP23DelayCalc)r%(\$1\$2OTP23Pulses-SP).2r%(\$1\$2OTP23Evt-SP)r%(\$1\$2OTP23Delay-SP).4r%(\$1\$2OTP23Width-SP).4r";
     # out
     out "%(\$1\$2cmd_out_set0).1r%(\$1\$2OUT0IntlkCalc).1r\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelay-SP).1r";
     out "%(\$1\$2cmd_out_set1).1r%(\$1\$2OUT1IntlkCalc).1r\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelay-SP).1r";

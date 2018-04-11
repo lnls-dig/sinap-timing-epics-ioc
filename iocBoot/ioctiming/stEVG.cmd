@@ -89,7 +89,7 @@ dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=60,  desc='Undefined',
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=61,  desc='Undefined', code='62', time=161, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=62,  desc='Undefined', code='63', time=162, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 
-# < save_restore.cmd
+< save_restore.cmd
 
 ## Run this to trace the stages of iocInit
 #traceIocInit
@@ -103,4 +103,12 @@ seq sncEVGSetup, "P=${P}, R=${R}"
 
 # Injection System State Machine
 seq sncSeqRAM, "P=${P}, R=${R}, ev_num=${EVT_NUM}"
+
+# Create monitor for Autosave
+create_monitor_set("autosave_evg.req", 60, "P=${P}, R=${R}")
+
+# Create manual trigger for Autosave
+create_triggered_set("autosave_evg.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
+
+set_savefile_name("autosave_evg.req", "auto_settings_${P}${R}.sav")
 

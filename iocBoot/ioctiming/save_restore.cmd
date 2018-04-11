@@ -1,53 +1,40 @@
-# Specify save file path
-set_savefile_path("$(TOP)", "autosave/save_files")
+### save_restore setup
+# status-PV prefix
+save_restoreSet_status_prefix("Timing:")
+# Debug-output level
+save_restoreSet_Debug(0)
 
-# Specify request files directories
-set_requestfile_path("$(TOP)", "autosave/request_files")
+# Ok to save/restore save sets with missing values (no CA connection to PV)?
+save_restoreSet_IncompleteSetsOk(1)
+# Save dated backup files?
+save_restoreSet_DatedBackupFiles(1)
 
-# Specify files to be restored, and when
-# EVG
-${EVG1_line}set_pass0_restoreFile("autosave_evg_NOPROC.sav")
-# ITBL
-${EVG1_line}set_pass1_restoreFile("autosave_ITBL_PROC.sav")
-# Events
-${EVG1_line}set_pass1_restoreFile("autosave_event0_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event1_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event2_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event3_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event4_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event5_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event6_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event7_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event8_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event9_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event10_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event11_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event12_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event13_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event14_PROC.sav")
-${EVG1_line}set_pass1_restoreFile("autosave_event15_PROC.sav")
-# EVR
-${EVR1_line}set_pass0_restoreFile("autosave_evr1_NOPROC.sav")
-${EVR2_line}set_pass0_restoreFile("autosave_evr2_NOPROC.sav")
-${EVR3_line}set_pass0_restoreFile("autosave_evr3_NOPROC.sav")
-${EVR4_line}set_pass0_restoreFile("autosave_evr4_NOPROC.sav")
-${EVR5_line}set_pass0_restoreFile("autosave_evr5_NOPROC.sav")
-${EVR6_line}set_pass0_restoreFile("autosave_evr6_NOPROC.sav")
-# EVE
-${EVE1_line}set_pass0_restoreFile("autosave_eve1_NOPROC.sav")
-${EVE2_line}set_pass0_restoreFile("autosave_eve2_NOPROC.sav")
-${EVE3_line}set_pass0_restoreFile("autosave_eve3_NOPROC.sav")
-${EVE4_line}set_pass0_restoreFile("autosave_eve4_NOPROC.sav")
-# FOUT
-${FOUT1_line}set_pass0_restoreFile("autosave_fout1_NOPROC.sav")
-${FOUT2_line}set_pass0_restoreFile("autosave_fout2_NOPROC.sav")
-${FOUT3_line}set_pass0_restoreFile("autosave_fout3_NOPROC.sav")
-${FOUT4_line}set_pass0_restoreFile("autosave_fout4_NOPROC.sav")
-${FOUT5_line}set_pass0_restoreFile("autosave_fout5_NOPROC.sav")
+# Number of sequenced backup files to write
+save_restoreSet_NumSeqFiles(3)
+# Time interval between sequenced backups
+save_restoreSet_SeqPeriodInSeconds(300)
 
-# Enable/Disable backup files (0->Disable, 1->Enable)
-save_restoreSet_DatedBackupFiles(0)
+# If you want save_restore to manage its own NFS mount, specify the name and
+# IP address of the file server to which save files should be written.
+# This currently is supported only on vxWorks.
+#save_restoreSet_NFSHost("oxygen", "164.54.52.4")
 
-# Number of copies of .sav files to maintain
-save_restoreSet_NumSeqFiles(0)
+# specify where save files should be
+set_savefile_path("$(TOP)/iocBoot/$(IOC)", "autosave")
+
+# specify what save files should be restored.  Note these files must be
+# in the directory specified in set_savefile_path(), or, if that function
+# has not been called, from the directory current when iocInit is invoked
+
+# Save files associated with the request files 'auto_positions.req' and
+# 'auto_settings.req'.  These files are the standard way to use autosave in
+# synApps.
+set_pass0_restoreFile("auto_settings_${P}${R}.sav")
+set_pass1_restoreFile("auto_settings_${P}${R}.sav")
+
+# specify directories in which to to search for included request files
+set_requestfile_path("$(TOP)/iocBoot/$(IOC)", "autosave")
+set_requestfile_path("$(TOP)", "timingApp/Db")
+
+dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=${P}${R}")
 
