@@ -14,7 +14,7 @@ PermissionsStartOnly=true
 Environment=TIMING_INSTANCE=%i
 ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
 ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
-WorkingDirectory=/opt/epics/startup/ioc/sinap-timing-epics-ioc/iocBoot/ioctiming
+WorkingDirectory=<INSTALL_PREFIX>/<IOC_NAME>/iocBoot/ioctiming
 # Run procServ with IOC
 ExecStart="/usr/local/bin/runTiming.sh"
 
