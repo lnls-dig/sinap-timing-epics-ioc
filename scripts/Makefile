@@ -43,7 +43,7 @@ install: scripts_in_gen
 
 uninstall: scripts_in_degen
 	-$(foreach bin,$(BIN_FILES),rm -f ${BIN_FILES_PREFIX}/$(bin) $(CMDSEP))
-	$(foreach script,$(SCRIPTS),rm -f ${SCRITS_PREFIX}/$(script) $(CMDSEP))
+	$(foreach script,$(SCRIPTS),rm -f ${SCRIPTS_PREFIX}/$(script) $(CMDSEP))
 
 scripts_in_gen:
 	$(foreach script,$(SCRIPTS_SERVICE_IN), \
