@@ -786,7 +786,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo</name>
-    <pv_name>$(P)$(R)OTP00Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP00Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -930,7 +930,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_1</name>
-    <pv_name>$(P)$(R)OTP01Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP01Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2136,7 +2136,7 @@ $(pv_value)</tooltip>
     <name>Text Update_4</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP00Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2500,7 +2500,7 @@ $(pv_value)</tooltip>
     <name>Text Update_8</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP01Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2858,7 +2858,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_14</name>
-    <pv_name>$(P)$(R)OTP02Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP02Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2962,7 +2962,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_15</name>
-    <pv_name>$(P)$(R)OTP03Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP03Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3372,7 +3372,7 @@ $(pv_value)</tooltip>
     <name>Text Update_12</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP02Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3736,7 +3736,7 @@ $(pv_value)</tooltip>
     <name>Text Update_16</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP03Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4094,7 +4094,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_16</name>
-    <pv_name>$(P)$(R)OTP04Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP04Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4198,7 +4198,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_17</name>
-    <pv_name>$(P)$(R)OTP05Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP05Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4608,7 +4608,7 @@ $(pv_value)</tooltip>
     <name>Text Update_20</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP04Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP04Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4972,7 +4972,7 @@ $(pv_value)</tooltip>
     <name>Text Update_24</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP05Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP05Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5370,7 +5370,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_18</name>
-    <pv_name>$(P)$(R)OTP06Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP06Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5474,7 +5474,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_19</name>
-    <pv_name>$(P)$(R)OTP07Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP07Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5884,7 +5884,7 @@ $(pv_value)</tooltip>
     <name>Text Update_28</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP06Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP06Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6248,7 +6248,7 @@ $(pv_value)</tooltip>
     <name>Text Update_32</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP07Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP07Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6606,7 +6606,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_20</name>
-    <pv_name>$(P)$(R)OTP08Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP08Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6710,7 +6710,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_21</name>
-    <pv_name>$(P)$(R)OTP09Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP09Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7120,7 +7120,7 @@ $(pv_value)</tooltip>
     <name>Text Update_36</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP08Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP08Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7484,7 +7484,7 @@ $(pv_value)</tooltip>
     <name>Text Update_40</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP09Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP09Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7842,7 +7842,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_22</name>
-    <pv_name>$(P)$(R)OTP10Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP10Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7946,7 +7946,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_23</name>
-    <pv_name>$(P)$(R)OTP11Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP11Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8356,7 +8356,7 @@ $(pv_value)</tooltip>
     <name>Text Update_44</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP10Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP10Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8720,7 +8720,7 @@ $(pv_value)</tooltip>
     <name>Text Update_48</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP11Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP11Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9078,7 +9078,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_24</name>
-    <pv_name>$(P)$(R)OTP12Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP12Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9182,7 +9182,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_25</name>
-    <pv_name>$(P)$(R)OTP13Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP13Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9592,7 +9592,7 @@ $(pv_value)</tooltip>
     <name>Text Update_52</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP12Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP12Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9956,7 +9956,7 @@ $(pv_value)</tooltip>
     <name>Text Update_56</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP13Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP13Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10314,7 +10314,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_26</name>
-    <pv_name>$(P)$(R)OTP14Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP14Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10418,7 +10418,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_27</name>
-    <pv_name>$(P)$(R)OTP15Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP15Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10828,7 +10828,7 @@ $(pv_value)</tooltip>
     <name>Text Update_60</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP14Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP14Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11192,7 +11192,7 @@ $(pv_value)</tooltip>
     <name>Text Update_64</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP15Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP15Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -23981,7 +23981,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_37</name>
-    <pv_name>$(P)$(R)OTP16Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP16Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -24339,7 +24339,7 @@ $(pv_value)</tooltip>
     <name>Text Update_130</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP16Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP16Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24885,7 +24885,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_38</name>
-    <pv_name>$(P)$(R)OTP17Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP17Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25243,7 +25243,7 @@ $(pv_value)</tooltip>
     <name>Text Update_135</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP17Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP17Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25789,7 +25789,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_39</name>
-    <pv_name>$(P)$(R)OTP18Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP18Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26147,7 +26147,7 @@ $(pv_value)</tooltip>
     <name>Text Update_140</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP18Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP18Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26693,7 +26693,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_40</name>
-    <pv_name>$(P)$(R)OTP19Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP19Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27051,7 +27051,7 @@ $(pv_value)</tooltip>
     <name>Text Update_145</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP19Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP19Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27597,7 +27597,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_41</name>
-    <pv_name>$(P)$(R)OTP20Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP20Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27955,7 +27955,7 @@ $(pv_value)</tooltip>
     <name>Text Update_150</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP20Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP20Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28501,7 +28501,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_42</name>
-    <pv_name>$(P)$(R)OTP21Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP21Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28859,7 +28859,7 @@ $(pv_value)</tooltip>
     <name>Text Update_155</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP21Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP21Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29405,7 +29405,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_43</name>
-    <pv_name>$(P)$(R)OTP22Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP22Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -29763,7 +29763,7 @@ $(pv_value)</tooltip>
     <name>Text Update_160</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP22Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP22Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30309,7 +30309,7 @@ $(pv_value)</tooltip>
     <height>31</height>
     <items_from_pv>true</items_from_pv>
     <name>Combo_44</name>
-    <pv_name>$(P)$(R)OTP23Pol-Sel</pv_name>
+    <pv_name>$(P)$(R)OTP23Polarity-Sel</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -30667,7 +30667,7 @@ $(pv_value)</tooltip>
     <name>Text Update_165</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP23Pol-Sts</pv_name>
+    <pv_name>$(P)$(R)OTP23Polarity-Sts</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
