@@ -108,7 +108,7 @@ evre_otp_dly_set {
     evre_otp_get;
 }
 
-evre_otp_en_pol_time_set {
+evre_otp_en_pol_time_itl_set {
     out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3\$4Calc)r%(\$1\$2OTP\$3Pulses-RB).2r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3Delay-RB).4r%(\$1\$2OTP\$3Width-RB).4r";
     evre_otp_get;
 }
