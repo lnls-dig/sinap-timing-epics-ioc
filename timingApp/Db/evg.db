@@ -47,6 +47,14 @@ record(mbbiDirect, "$(P)$(R)SeqStatusRFStatusRaw") {
   field(FLNK, "$(P)$(R)RFStatus-Mon")
 }
 
+record(bo, "$(P)$(R)RFReset-Cmd") {
+  field(DESC, "EVG RF input reset")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(HIGH, "1")
+  field(FLNK, "$(P)$(R)RFDiv-SP.PROC")
+}
+
 record(bi, "$(P)$(R)RFStatus-Mon") {
   field(ASG, "Reserved")
   field(DESC, "EVG RF input status")
