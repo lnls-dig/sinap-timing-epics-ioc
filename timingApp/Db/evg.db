@@ -1,3 +1,11 @@
+# RF Frequency
+record(ao, "$(P)$(R)RFRef-SP"){
+  field(DESC, "RF Frequency reference")
+  field(EGU, "Hz")
+  field(PREC, "0")
+  field(VAL, "499658000")
+}
+
 ########################################################################
 # Control and Status Register [0]
 
