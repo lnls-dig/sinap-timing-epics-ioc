@@ -39,6 +39,14 @@ record(mbbiDirect, "$(P)$(R)SeqStatusRFStatusRaw") {
   field(FLNK, "$(P)$(R)RFStatus-Mon")
 }
 
+record(bo, "$(P)$(R)RFReset-Cmd") {
+  field(DESC, "EVG RF input reset")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(HIGH, "1")
+  field(FLNK, "$(P)$(R)RFDiv-SP.PROC")
+}
+
 record(bi, "$(P)$(R)RFStatus-Mon") {
   field(ASG, "Reserved")
   field(DESC, "EVG RF input status")
@@ -1552,8 +1560,9 @@ record(mbbo, "$(P)$(R)DevFun-Sel") {
 record(ao, "$(P)$(R)RFDiv-SP"){
   field(DESC, "EVG RF clock divider")
   field(DTYP, "stream")
-  field(DRVH, "15")
-  field(DRVL, "1")
+  field(DRVH, "4")
+  field(DRVL, "4")
+  field(VAL, "4")
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_conf_rfdiv_set($(P),$(R)) $(PORT)")
