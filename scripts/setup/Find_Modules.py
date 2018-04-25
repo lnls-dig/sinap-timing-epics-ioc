@@ -7,18 +7,17 @@ import time
 import socket
 import sys
 import subprocess
+import nmap
 
 WAIT = 0.005
 
 if (len(sys.argv) == 1):
-  ipsub_list = ['10.0.18','10.0.17','10.2.118','10.2.117']
+  ipsub_list = ['10.0.18','10.0.17','10.0.21','10.0.31']
 else:
   ipsub_list = sys.argv[1:]
   
-port_ini = 50111
-port_end = 50128
-ip_ini = 2
-ip_end = 254
+port_ini = 50100
+port_end = 50150
 
 f = open('Find_Modules.log','w')
 
@@ -48,28 +47,37 @@ def FindMod(UDP_IP, UDP_PORT):
   
 ok = 0
 port_list = range(port_ini,port_end+1)
-ipaddr_list = range(ip_ini,ip_end+1)
 start_time = time.time()
+
 for ipsub in ipsub_list:
   print 'Searching for timing modules in subnet', ipsub
-  for port in port_list:
-    for ipaddr in ipaddr_list:
-      ip = ipsub+'.'+str(ipaddr)
-      ok, a, b, c, addr = FindMod(ip, port)
+
+  nm = nmap.PortScanner() 
+  nm.scan(ipsub+'.2-254', '9999') # scan host ipsub.2-254, port 9999
+  
+  for host in nm.all_hosts():
+    prod = nm[host]['tcp'][9999]['product']
+    port_state = nm[host]['tcp'][9999]['state']
+    if (('Lantronix' in prod) & (port_state == 'open')):
+      mac = nm[host]['tcp'][9999]['extrainfo'].split(' ')[1]
+    else:
+      continue
+    
+    for port in port_list:
+      ok, a, b, c, addr = FindMod(host, port)
       if ((ok==1) & (c[3]!=0)):
-        port_list.remove(port)
         if (c[3]==32):
-          print 'EVE ip:', addr[0], 'port:', addr[1]
-          f.write('EVE ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
+          print 'EVE ip: ', addr[0], 'port:', addr[1], 'mac:', mac
+          f.write('EVE ip:  ' + addr[0] + ' port: ' + str(addr[1]) + ' mac: ' + mac + '\n')
         elif (c[3]==16):
-          print 'FOUT ip:', addr[0], 'port:', addr[1]
-          f.write('FOUT ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
+          print 'FOUT ip:', addr[0], 'port:', addr[1], 'mac:', mac
+          f.write('FOUT ip: ' + addr[0] + ' port: ' + str(addr[1]) + ' mac: ' + mac + '\n')
         elif (c[3]==17):
-          print 'EVR ip:', addr[0], 'port:', addr[1]
-          f.write('EVR ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
+          print 'EVR ip: ', addr[0], 'port:', addr[1], 'mac:', mac
+          f.write('EVR ip:  ' + addr[0] + ' port: ' + str(addr[1]) + ' mac: ' + mac + '\n')
         elif (c[3]==18):
-          print 'EVG ip:', addr[0], 'port:', addr[1]
-          f.write('EVG ip: ' + addr[0] + ' port: ' + str(addr[1]) + '\n')
+          print 'EVG ip: ', addr[0], 'port:', addr[1], 'mac:', mac
+          f.write('EVG ip:  ' + addr[0] + ' port: ' + str(addr[1]) + ' mac: ' + mac + '\n')
         break
 
 elapsed_time = time.time() - start_time
