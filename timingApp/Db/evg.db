@@ -178,6 +178,15 @@ record(calc, "$(P)$(R)ACDiv-RB") {
   field(DESC, "EVG AC line input divider RBV")
   field(INPA, "$(P)$(R)ACDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)InjRate-RB")
+}
+
+record(calc, "$(P)$(R)InjRate-RB"){
+  field(DESC, "EVG Injection rate trigger RBV")
+  field(INPA, "$(P)$(R)ACDiv-RB")
+  field(CALC, "60/A")
+  field(PREC, "0")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)ACEnbl-Sel"){
@@ -187,6 +196,23 @@ record(bo, "$(P)$(R)ACEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evg_acline_acen_set($(P),$(R)) $(PORT)")
+}
+
+record(ao, "$(P)$(R)InjRate-SP"){
+  field(DESC, "EVG Injection rate trigger")
+  field(DRVH, "10")
+  field(DRVL, "1")
+  field(PREC, "0")
+  field(EGU, "Hz")
+  field(FLNK, "$(P)$(R)InjRateCalc")
+}
+
+record(calcout, "$(P)$(R)InjRateCalc"){
+  field(DESC, "EVG Injection rate trigger calcout")
+  field(INPA, "$(P)$(R)InjRate-SP")
+  field(CALC, "60/A")
+  field(PREC, "0")
+  field(OUT, "$(P)$(R)ACDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)ACDiv-SP"){
