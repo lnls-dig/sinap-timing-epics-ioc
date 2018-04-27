@@ -17214,7 +17214,7 @@ $(pv_value)</tooltip>
     <name>Text Input_173</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17266,7 +17266,7 @@ $(pv_value)</tooltip>
       <keep_wh_ratio>false</keep_wh_ratio>
     </scale_options>
     <scripts />
-    <text>Pulses</text>
+    <text>NrPulses</text>
     <tooltip></tooltip>
     <transparent>true</transparent>
     <vertical_alignment>1</vertical_alignment>
@@ -17306,7 +17306,7 @@ $(pv_value)</tooltip>
     <name>Text Update_96</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17363,7 +17363,7 @@ $(pv_value)</tooltip>
     <name>Text Input_174</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17415,7 +17415,7 @@ $(pv_value)</tooltip>
     <name>Text Update_97</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17472,7 +17472,7 @@ $(pv_value)</tooltip>
     <name>Text Input_175</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17524,7 +17524,7 @@ $(pv_value)</tooltip>
     <name>Text Update_98</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17581,7 +17581,7 @@ $(pv_value)</tooltip>
     <name>Text Input_176</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17633,7 +17633,7 @@ $(pv_value)</tooltip>
     <name>Text Update_99</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17690,7 +17690,7 @@ $(pv_value)</tooltip>
     <name>Text Input_177</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP04Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP04NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17742,7 +17742,7 @@ $(pv_value)</tooltip>
     <name>Text Update_100</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP04Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP04NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17799,7 +17799,7 @@ $(pv_value)</tooltip>
     <name>Text Input_178</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP05Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP05NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17851,7 +17851,7 @@ $(pv_value)</tooltip>
     <name>Text Update_101</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP05Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP05NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17908,7 +17908,7 @@ $(pv_value)</tooltip>
     <name>Text Input_179</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP06Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP06NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -17960,7 +17960,7 @@ $(pv_value)</tooltip>
     <name>Text Update_102</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP06Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP06NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18017,7 +18017,7 @@ $(pv_value)</tooltip>
     <name>Text Input_180</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP07Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP07NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18069,7 +18069,7 @@ $(pv_value)</tooltip>
     <name>Text Update_103</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP07Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP07NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18126,7 +18126,7 @@ $(pv_value)</tooltip>
     <name>Text Input_181</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP08Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP08NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18178,7 +18178,7 @@ $(pv_value)</tooltip>
     <name>Text Update_104</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP08Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP08NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18235,7 +18235,7 @@ $(pv_value)</tooltip>
     <name>Text Input_182</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP09Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP09NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18287,7 +18287,7 @@ $(pv_value)</tooltip>
     <name>Text Update_105</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP09Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP09NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18344,7 +18344,7 @@ $(pv_value)</tooltip>
     <name>Text Input_183</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP10Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP10NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18396,7 +18396,7 @@ $(pv_value)</tooltip>
     <name>Text Update_106</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP10Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP10NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18453,7 +18453,7 @@ $(pv_value)</tooltip>
     <name>Text Input_184</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP11Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP11NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18505,7 +18505,7 @@ $(pv_value)</tooltip>
     <name>Text Update_107</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP11Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP11NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18562,7 +18562,7 @@ $(pv_value)</tooltip>
     <name>Text Input_185</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP12Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP12NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18614,7 +18614,7 @@ $(pv_value)</tooltip>
     <name>Text Update_108</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP12Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP12NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18671,7 +18671,7 @@ $(pv_value)</tooltip>
     <name>Text Input_186</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP13Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP13NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18723,7 +18723,7 @@ $(pv_value)</tooltip>
     <name>Text Update_109</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP13Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP13NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18780,7 +18780,7 @@ $(pv_value)</tooltip>
     <name>Text Input_187</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP14Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP14NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18832,7 +18832,7 @@ $(pv_value)</tooltip>
     <name>Text Update_110</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP14Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP14NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18889,7 +18889,7 @@ $(pv_value)</tooltip>
     <name>Text Input_188</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP15Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP15NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -18941,7 +18941,7 @@ $(pv_value)</tooltip>
     <name>Text Update_111</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP15Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP15NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24603,7 +24603,7 @@ $(pv_value)</tooltip>
     <name>Text Input_192</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP16Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP16NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24655,7 +24655,7 @@ $(pv_value)</tooltip>
     <name>Text Update_132</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP16Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP16NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25507,7 +25507,7 @@ $(pv_value)</tooltip>
     <name>Text Input_196</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP17Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP17NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25559,7 +25559,7 @@ $(pv_value)</tooltip>
     <name>Text Update_137</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP17Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP17NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26411,7 +26411,7 @@ $(pv_value)</tooltip>
     <name>Text Input_200</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP18Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP18NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26463,7 +26463,7 @@ $(pv_value)</tooltip>
     <name>Text Update_142</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP18Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP18NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27315,7 +27315,7 @@ $(pv_value)</tooltip>
     <name>Text Input_204</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP19Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP19NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27367,7 +27367,7 @@ $(pv_value)</tooltip>
     <name>Text Update_147</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP19Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP19NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28219,7 +28219,7 @@ $(pv_value)</tooltip>
     <name>Text Input_208</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP20Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP20NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28271,7 +28271,7 @@ $(pv_value)</tooltip>
     <name>Text Update_152</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP20Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP20NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29123,7 +29123,7 @@ $(pv_value)</tooltip>
     <name>Text Input_212</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP21Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP21NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29175,7 +29175,7 @@ $(pv_value)</tooltip>
     <name>Text Update_157</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP21Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP21NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30027,7 +30027,7 @@ $(pv_value)</tooltip>
     <name>Text Input_216</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP22Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP22NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30079,7 +30079,7 @@ $(pv_value)</tooltip>
     <name>Text Update_162</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP22Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP22NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30931,7 +30931,7 @@ $(pv_value)</tooltip>
     <name>Text Input_220</name>
     <precision>0</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP23Pulses-SP</pv_name>
+    <pv_name>$(P)$(R)OTP23NrPulses-SP</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30983,7 +30983,7 @@ $(pv_value)</tooltip>
     <name>Text Update_167</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP23Pulses-RB</pv_name>
+    <pv_name>$(P)$(R)OTP23NrPulses-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />

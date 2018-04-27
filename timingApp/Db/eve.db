@@ -83,7 +83,7 @@ record(longout, "$(P)$(R)OTP00Evt-SP") {
   field(FLNK, "$(P)$(R)OTP00DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP00Pulses-SP"){
+record(longout, "$(P)$(R)OTP00NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP0 number of pulses")
   field(DRVH, "65535")
@@ -97,7 +97,7 @@ record(longout, "$(P)$(R)OTP00Pulses-SP"){
 record(longout, "$(P)$(R)OTP00Width-SP") {
   field(DESC, "EVE OTP0 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -107,7 +107,7 @@ record(longout, "$(P)$(R)OTP00Width-SP") {
 
 record(longout, "$(P)$(R)OTP00Delay-SP") {
   field(DESC, "EVE OTP0 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -254,7 +254,7 @@ record(bi, "$(P)$(R)OTP00State-Sts") {
   field(INP, "$(P)$(R)OTP00DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP00Pulses-RB"){
+record(longin, "$(P)$(R)OTP00NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 number of pulses RBV")
   field(EGU, "pulses")
@@ -301,7 +301,7 @@ record(longout, "$(P)$(R)OTP01Evt-SP") {
   field(FLNK, "$(P)$(R)OTP01DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP01Pulses-SP"){
+record(longout, "$(P)$(R)OTP01NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP1 number of pulses")
   field(DRVH, "65535")
@@ -315,7 +315,7 @@ record(longout, "$(P)$(R)OTP01Pulses-SP"){
 record(longout, "$(P)$(R)OTP01Width-SP") {
   field(DESC, "EVE OTP1 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -325,7 +325,7 @@ record(longout, "$(P)$(R)OTP01Width-SP") {
 
 record(longout, "$(P)$(R)OTP01Delay-SP") {
   field(DESC, "EVE OTP1 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -472,7 +472,7 @@ record(bi, "$(P)$(R)OTP01State-Sts") {
   field(INP, "$(P)$(R)OTP01DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP01Pulses-RB"){
+record(longin, "$(P)$(R)OTP01NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 number of pulses RBV")
   field(EGU, "pulses")
@@ -519,7 +519,7 @@ record(longout, "$(P)$(R)OTP02Evt-SP") {
   field(FLNK, "$(P)$(R)OTP02DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP02Pulses-SP"){
+record(longout, "$(P)$(R)OTP02NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP2 number of pulses")
   field(DRVH, "65535")
@@ -533,7 +533,7 @@ record(longout, "$(P)$(R)OTP02Pulses-SP"){
 record(longout, "$(P)$(R)OTP02Width-SP") {
   field(DESC, "EVE OTP2 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -543,7 +543,7 @@ record(longout, "$(P)$(R)OTP02Width-SP") {
 
 record(longout, "$(P)$(R)OTP02Delay-SP") {
   field(DESC, "EVE OTP2 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -690,7 +690,7 @@ record(bi, "$(P)$(R)OTP02State-Sts") {
   field(INP, "$(P)$(R)OTP02DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP02Pulses-RB"){
+record(longin, "$(P)$(R)OTP02NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 number of pulses RBV")
   field(EGU, "pulses")
@@ -737,7 +737,7 @@ record(longout, "$(P)$(R)OTP03Evt-SP") {
   field(FLNK, "$(P)$(R)OTP03DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP03Pulses-SP"){
+record(longout, "$(P)$(R)OTP03NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP3 number of pulses")
   field(DRVH, "65535")
@@ -751,7 +751,7 @@ record(longout, "$(P)$(R)OTP03Pulses-SP"){
 record(longout, "$(P)$(R)OTP03Width-SP") {
   field(DESC, "EVE OTP3 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -761,7 +761,7 @@ record(longout, "$(P)$(R)OTP03Width-SP") {
 
 record(longout, "$(P)$(R)OTP03Delay-SP") {
   field(DESC, "EVE OTP3 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -908,7 +908,7 @@ record(bi, "$(P)$(R)OTP03State-Sts") {
   field(INP, "$(P)$(R)OTP03DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP03Pulses-RB"){
+record(longin, "$(P)$(R)OTP03NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 number of pulses RBV")
   field(EGU, "pulses")
@@ -955,7 +955,7 @@ record(longout, "$(P)$(R)OTP04Evt-SP") {
   field(FLNK, "$(P)$(R)OTP04DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP04Pulses-SP"){
+record(longout, "$(P)$(R)OTP04NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP4 number of pulses")
   field(DRVH, "65535")
@@ -969,7 +969,7 @@ record(longout, "$(P)$(R)OTP04Pulses-SP"){
 record(longout, "$(P)$(R)OTP04Width-SP") {
   field(DESC, "EVE OTP4 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -979,7 +979,7 @@ record(longout, "$(P)$(R)OTP04Width-SP") {
 
 record(longout, "$(P)$(R)OTP04Delay-SP") {
   field(DESC, "EVE OTP4 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1126,7 +1126,7 @@ record(bi, "$(P)$(R)OTP04State-Sts") {
   field(INP, "$(P)$(R)OTP04DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP04Pulses-RB"){
+record(longin, "$(P)$(R)OTP04NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 number of pulses RBV")
   field(EGU, "pulses")
@@ -1173,7 +1173,7 @@ record(longout, "$(P)$(R)OTP05Evt-SP") {
   field(FLNK, "$(P)$(R)OTP05DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP05Pulses-SP"){
+record(longout, "$(P)$(R)OTP05NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP5 number of pulses")
   field(DRVH, "65535")
@@ -1187,7 +1187,7 @@ record(longout, "$(P)$(R)OTP05Pulses-SP"){
 record(longout, "$(P)$(R)OTP05Width-SP") {
   field(DESC, "EVE OTP5 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1197,7 +1197,7 @@ record(longout, "$(P)$(R)OTP05Width-SP") {
 
 record(longout, "$(P)$(R)OTP05Delay-SP") {
   field(DESC, "EVE OTP5 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1344,7 +1344,7 @@ record(bi, "$(P)$(R)OTP05State-Sts") {
   field(INP, "$(P)$(R)OTP05DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP05Pulses-RB"){
+record(longin, "$(P)$(R)OTP05NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 number of pulses RBV")
   field(EGU, "pulses")
@@ -1391,7 +1391,7 @@ record(longout, "$(P)$(R)OTP06Evt-SP") {
   field(FLNK, "$(P)$(R)OTP06DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP06Pulses-SP"){
+record(longout, "$(P)$(R)OTP06NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP6 number of pulses")
   field(DRVH, "65535")
@@ -1405,7 +1405,7 @@ record(longout, "$(P)$(R)OTP06Pulses-SP"){
 record(longout, "$(P)$(R)OTP06Width-SP") {
   field(DESC, "EVE OTP6 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1415,7 +1415,7 @@ record(longout, "$(P)$(R)OTP06Width-SP") {
 
 record(longout, "$(P)$(R)OTP06Delay-SP") {
   field(DESC, "EVE OTP6 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1562,7 +1562,7 @@ record(bi, "$(P)$(R)OTP06State-Sts") {
   field(INP, "$(P)$(R)OTP06DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP06Pulses-RB"){
+record(longin, "$(P)$(R)OTP06NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 number of pulses RBV")
   field(EGU, "pulses")
@@ -1609,7 +1609,7 @@ record(longout, "$(P)$(R)OTP07Evt-SP") {
   field(FLNK, "$(P)$(R)OTP07DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP07Pulses-SP"){
+record(longout, "$(P)$(R)OTP07NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP7 number of pulses")
   field(DRVH, "65535")
@@ -1623,7 +1623,7 @@ record(longout, "$(P)$(R)OTP07Pulses-SP"){
 record(longout, "$(P)$(R)OTP07Width-SP") {
   field(DESC, "EVE OTP7 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1633,7 +1633,7 @@ record(longout, "$(P)$(R)OTP07Width-SP") {
 
 record(longout, "$(P)$(R)OTP07Delay-SP") {
   field(DESC, "EVE OTP7 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1780,7 +1780,7 @@ record(bi, "$(P)$(R)OTP07State-Sts") {
   field(INP, "$(P)$(R)OTP07DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP07Pulses-RB"){
+record(longin, "$(P)$(R)OTP07NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 number of pulses RBV")
   field(EGU, "pulses")
@@ -1827,7 +1827,7 @@ record(longout, "$(P)$(R)OTP08Evt-SP") {
   field(FLNK, "$(P)$(R)OTP08DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP08Pulses-SP"){
+record(longout, "$(P)$(R)OTP08NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP8 number of pulses")
   field(DRVH, "65535")
@@ -1841,7 +1841,7 @@ record(longout, "$(P)$(R)OTP08Pulses-SP"){
 record(longout, "$(P)$(R)OTP08Width-SP") {
   field(DESC, "EVE OTP8 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1851,7 +1851,7 @@ record(longout, "$(P)$(R)OTP08Width-SP") {
 
 record(longout, "$(P)$(R)OTP08Delay-SP") {
   field(DESC, "EVE OTP8 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -1998,7 +1998,7 @@ record(bi, "$(P)$(R)OTP08State-Sts") {
   field(INP, "$(P)$(R)OTP08DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP08Pulses-RB"){
+record(longin, "$(P)$(R)OTP08NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 number of pulses RBV")
 }
@@ -2044,7 +2044,7 @@ record(longout, "$(P)$(R)OTP09Evt-SP") {
   field(FLNK, "$(P)$(R)OTP09DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP09Pulses-SP"){
+record(longout, "$(P)$(R)OTP09NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTP9 number of pulses")
   field(DRVH, "65535")
@@ -2058,7 +2058,7 @@ record(longout, "$(P)$(R)OTP09Pulses-SP"){
 record(longout, "$(P)$(R)OTP09Width-SP") {
   field(DESC, "EVE OTP9 event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2068,7 +2068,7 @@ record(longout, "$(P)$(R)OTP09Width-SP") {
 
 record(longout, "$(P)$(R)OTP09Delay-SP") {
   field(DESC, "EVE OTP9 event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2215,7 +2215,7 @@ record(bi, "$(P)$(R)OTP09State-Sts") {
   field(INP, "$(P)$(R)OTP09DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP09Pulses-RB"){
+record(longin, "$(P)$(R)OTP09NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 number of pulses RBV")
   field(EGU, "pulses")
@@ -2262,7 +2262,7 @@ record(longout, "$(P)$(R)OTP10Evt-SP") {
   field(FLNK, "$(P)$(R)OTP10DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP10Pulses-SP"){
+record(longout, "$(P)$(R)OTP10NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPA number of pulses")
   field(DRVH, "65535")
@@ -2276,7 +2276,7 @@ record(longout, "$(P)$(R)OTP10Pulses-SP"){
 record(longout, "$(P)$(R)OTP10Width-SP") {
   field(DESC, "EVE OTPA event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2286,7 +2286,7 @@ record(longout, "$(P)$(R)OTP10Width-SP") {
 
 record(longout, "$(P)$(R)OTP10Delay-SP") {
   field(DESC, "EVE OTPA event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2433,7 +2433,7 @@ record(bi, "$(P)$(R)OTP10State-Sts") {
   field(INP, "$(P)$(R)OTP10DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP10Pulses-RB"){
+record(longin, "$(P)$(R)OTP10NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA number of pulses RBV")
   field(EGU, "pulses")
@@ -2480,7 +2480,7 @@ record(longout, "$(P)$(R)OTP11Evt-SP") {
   field(FLNK, "$(P)$(R)OTP11DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP11Pulses-SP"){
+record(longout, "$(P)$(R)OTP11NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPB number of pulses")
   field(DRVH, "65535")
@@ -2494,7 +2494,7 @@ record(longout, "$(P)$(R)OTP11Pulses-SP"){
 record(longout, "$(P)$(R)OTP11Width-SP") {
   field(DESC, "EVE OTPB event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2504,7 +2504,7 @@ record(longout, "$(P)$(R)OTP11Width-SP") {
 
 record(longout, "$(P)$(R)OTP11Delay-SP") {
   field(DESC, "EVE OTPB event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2651,7 +2651,7 @@ record(bi, "$(P)$(R)OTP11State-Sts") {
   field(INP, "$(P)$(R)OTP11DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP11Pulses-RB"){
+record(longin, "$(P)$(R)OTP11NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB number of pulses RBV")
   field(EGU, "pulses")
@@ -2698,7 +2698,7 @@ record(longout, "$(P)$(R)OTP12Evt-SP") {
   field(FLNK, "$(P)$(R)OTP12DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP12Pulses-SP"){
+record(longout, "$(P)$(R)OTP12NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPC number of pulses")
   field(DRVH, "65535")
@@ -2712,7 +2712,7 @@ record(longout, "$(P)$(R)OTP12Pulses-SP"){
 record(longout, "$(P)$(R)OTP12Width-SP") {
   field(DESC, "EVE OTPC event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2722,7 +2722,7 @@ record(longout, "$(P)$(R)OTP12Width-SP") {
 
 record(longout, "$(P)$(R)OTP12Delay-SP") {
   field(DESC, "EVE OTPC event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2869,7 +2869,7 @@ record(bi, "$(P)$(R)OTP12State-Sts") {
   field(INP, "$(P)$(R)OTP12DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP12Pulses-RB"){
+record(longin, "$(P)$(R)OTP12NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC number of pulses RBV")
   field(EGU, "pulses")
@@ -2916,7 +2916,7 @@ record(longout, "$(P)$(R)OTP13Evt-SP") {
   field(FLNK, "$(P)$(R)OTP13DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP13Pulses-SP"){
+record(longout, "$(P)$(R)OTP13NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPD number of pulses")
   field(DRVH, "65535")
@@ -2930,7 +2930,7 @@ record(longout, "$(P)$(R)OTP13Pulses-SP"){
 record(longout, "$(P)$(R)OTP13Width-SP") {
   field(DESC, "EVE OTPD event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -2940,7 +2940,7 @@ record(longout, "$(P)$(R)OTP13Width-SP") {
 
 record(longout, "$(P)$(R)OTP13Delay-SP") {
   field(DESC, "EVE OTPD event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -3087,7 +3087,7 @@ record(bi, "$(P)$(R)OTP13State-Sts") {
   field(INP, "$(P)$(R)OTP13DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP13Pulses-RB"){
+record(longin, "$(P)$(R)OTP13NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD number of pulses RBV")
   field(EGU, "pulses")
@@ -3134,7 +3134,7 @@ record(longout, "$(P)$(R)OTP14Evt-SP") {
   field(FLNK, "$(P)$(R)OTP14DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP14Pulses-SP"){
+record(longout, "$(P)$(R)OTP14NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPE number of pulses")
   field(DRVH, "65535")
@@ -3148,7 +3148,7 @@ record(longout, "$(P)$(R)OTP14Pulses-SP"){
 record(longout, "$(P)$(R)OTP14Width-SP") {
   field(DESC, "EVE OTPE event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -3158,7 +3158,7 @@ record(longout, "$(P)$(R)OTP14Width-SP") {
 
 record(longout, "$(P)$(R)OTP14Delay-SP") {
   field(DESC, "EVE OTPE event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -3305,7 +3305,7 @@ record(bi, "$(P)$(R)OTP14State-Sts") {
   field(INP, "$(P)$(R)OTP14DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP14Pulses-RB"){
+record(longin, "$(P)$(R)OTP14NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE number of pulses RBV")
   field(EGU, "pulses")
@@ -3352,7 +3352,7 @@ record(longout, "$(P)$(R)OTP15Evt-SP") {
   field(FLNK, "$(P)$(R)OTP15DelayRaw")
 }
 
-record(longout, "$(P)$(R)OTP15Pulses-SP"){
+record(longout, "$(P)$(R)OTP15NrPulses-SP"){
   field(VAL, "1")
   field(DESC, "EVE OTPF number of pulses")
   field(DRVH, "65535")
@@ -3366,7 +3366,7 @@ record(longout, "$(P)$(R)OTP15Pulses-SP"){
 record(longout, "$(P)$(R)OTP15Width-SP") {
   field(DESC, "EVE OTPF event width")
   field(VAL, "1")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -3376,7 +3376,7 @@ record(longout, "$(P)$(R)OTP15Width-SP") {
 
 record(longout, "$(P)$(R)OTP15Delay-SP") {
   field(DESC, "EVE OTPF event delay")
-  field(DRVH, "4294967295")
+  field(DRVH, "2147483647")
   field(DRVL, "1")
   field(EGU, "evt_T")
   field(DTYP, "stream")
@@ -3523,7 +3523,7 @@ record(bi, "$(P)$(R)OTP15State-Sts") {
   field(INP, "$(P)$(R)OTP15DelayRaw.B7")
 }
 
-record(longin, "$(P)$(R)OTP15Pulses-RB"){
+record(longin, "$(P)$(R)OTP15NrPulses-RB"){
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF number of pulses RBV")
   field(EGU, "pulses")
