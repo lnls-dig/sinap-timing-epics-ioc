@@ -246,8 +246,13 @@ ss seq {
     when(seqs == 1 && network == 1 && (pvConnectCount() == pvAssignCount()))
     {
       %{/* SeqRAM Running (SeqRAM 1)*/}%
-  
+      
       printf("Moving to Running State\n");
+      run_tg = 1;
+      pvPut(run_tg, SYNC);
+      run_tg_rbv = 1;
+      pvPut(run_tg_rbv, SYNC);
+      
     } state Running
   
     when(seqs == 2 && network == 1 && (pvConnectCount() == pvAssignCount()))
