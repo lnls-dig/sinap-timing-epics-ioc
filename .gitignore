@@ -9,9 +9,9 @@
 scripts/setup/*.log
 
 # EPICS generated
-bin
-lib
-include
+/bin/
+/lib/
+/include/
 db
 dbd
 *_BAK.adl
@@ -29,6 +29,7 @@ O.*/
 # CSS files
 op/opi/logs.*
 op/opi/.metadata
+op/.metadata
 
 # Documentation files
 documentation/*/*.aux

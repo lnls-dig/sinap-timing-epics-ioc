@@ -5,27 +5,27 @@ program sncFOUTSetup
 %%//----------------------------------------
 
 int downloadproc;
-assign downloadproc to "{P}{R}downloadT.PROC";
+assign downloadproc to "{P}{R}Download-Trig.PROC";
 
 int download;
-assign download to "{P}{R}download.VAL";
+assign download to "{P}{R}Download-Cmd.VAL";
 monitor download;
 
 int statdev;
-assign statdev to "{P}{R}statdev";
+assign statdev to "{P}{R}DevStatus-Mon";
 monitor statdev;
 
 int past_alive = -1;
 int alive;
-assign alive to "{P}{R}alive";
+assign alive to "{P}{R}Alive-Mon";
 monitor alive;
 
 int funselRBV;
-assign funselRBV to "{P}{R}funselRBV.RVAL";
+assign funselRBV to "{P}{R}DevFun-Sts.RVAL";
 monitor funselRBV;
 
 int network;
-assign network to "{P}{R}network";
+assign network to "{P}{R}Network-Mon";
 monitor network;
 
 %%//----------------------------------------

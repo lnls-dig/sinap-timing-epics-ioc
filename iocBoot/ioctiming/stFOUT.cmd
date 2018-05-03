@@ -21,7 +21,7 @@ drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT}:${IPPORT} udp",0,0,0)
 ## Load record instances
 dbLoadRecords("${TOP}/db/fout.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
-# < save_restore.cmd
+< save_restore.cmd
 
 ## Run this to trace the stages of iocInit
 #traceIocInit
@@ -33,3 +33,10 @@ iocInit
 # Module initialization and network status state machine
 seq sncFOUTSetup, "P=${P}, R=${R}"
 
+# Create monitor for Autosave
+create_monitor_set("autosave_fout.req", 60, "P=${P}, R=${R}")
+
+# Create manual trigger for Autosave
+create_triggered_set("autosave_fout.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
+
+set_savefile_name("autosave_fout.req", "auto_settings_${P}${R}.sav")

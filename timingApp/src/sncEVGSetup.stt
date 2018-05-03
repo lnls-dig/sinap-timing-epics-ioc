@@ -14,46 +14,46 @@ int utcSrcCopy;
 %%//----------------------------------------
 
 int uploadtrig;
-assign uploadtrig to "{P}{R}uploadT.VAL";
+assign uploadtrig to "{P}{R}Upload-Trig.VAL";
 
 int downloadproc;
-assign downloadproc to "{P}{R}downloadT.PROC";
+assign downloadproc to "{P}{R}Download-Trig.PROC";
 
 int download;
-assign download to "{P}{R}download.VAL";
+assign download to "{P}{R}Download-Cmd.VAL";
 monitor download;
 
 int statdev;
-assign statdev to "{P}{R}statdev";
+assign statdev to "{P}{R}DevStatus-Mon";
 monitor statdev;
 
 int past_alive = -1;
 int alive;
-assign alive to "{P}{R}alive";
+assign alive to "{P}{R}Alive-Mon";
 monitor alive;
 
 int funsel;
-assign funsel to "{P}{R}funsel.VAL";
+assign funsel to "{P}{R}DevFun-Sel.VAL";
 
 int funselRBV;
-assign funselRBV to "{P}{R}funselRBV.RVAL";
+assign funselRBV to "{P}{R}DevFun-Sts.RVAL";
 monitor funselRBV;
 
 int network;
-assign network to "{P}{R}network";
+assign network to "{P}{R}Network-Mon";
 monitor network;
 
 unsigned int utc;
-assign utc to "{P}{R}UTC";
+assign utc to "{P}{R}UTC-SP";
 
 unsigned int utcRBV;
-assign utcRBV to "{P}{R}UTCRBV";
+assign utcRBV to "{P}{R}UTC-RB";
 monitor utcRBV;
 evflag utcRBVFlag;
 sync utcRBV utcRBVFlag;
 
 int utcsrc;
-assign utcsrc to "{P}{R}UTCRef";
+assign utcsrc to "{P}{R}UTCRefSrc-Sel";
 monitor utcsrc;
 
 unsigned int utcCtrlRoom;
@@ -63,10 +63,10 @@ evflag utcCtrlRoomFlag;
 sync utcCtrlRoom utcCtrlRoomFlag;
 
 int utcMismatch;
-assign utcMismatch to "{P}{R}UTCMismatch";
+assign utcMismatch to "{P}{R}UTCMismatch-Mon";
 
 int getutc;
-assign getutc to "{P}{R}GetUTC";
+assign getutc to "{P}{R}GetUTC-Cmd";
 monitor getutc;
 
 %%//----------------------------------------

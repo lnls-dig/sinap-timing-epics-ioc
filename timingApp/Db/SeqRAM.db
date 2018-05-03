@@ -16,71 +16,72 @@ record(mbbo, "$(P)$(R)STATEMACHINE"){
 	field(ZRVL, "0")
 	field(ONST, "Stopped")
 	field(ONVL, "1")
-	field(TWST, "Running")
+	field(TWST, "Continuous")
 	field(TWVL, "2")
-	field(THST, "Injecting")
+	field(THST, "Injection")
 	field(THVL, "3")
-	field(FRST, "Restarting")
+	field(FRST, "Preparing Continuous")
 	field(FRVL, "4")
-	field(FVST, "Preparing to Run")
+	field(FVST, "Preparing Injection")
 	field(FVVL, "5")
-	field(SXST, "Preparing to Inject")
+	field(SXST, "Restarting Continuous")
 	field(SXVL, "6")
 	field(VAL, "0")	
 	field(DESC, "Injection State Machine Status")
 	field(ASG, "Reserved")
 }
-#####################################################
-# Stop Trigger: Return SeqRAM to STOPPED state
-
-record(bo, "$(P)$(R)STOPSEQ"){
-	field(SCAN, "Passive")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
-	field(DESC, "Set Sequencer Stop Trigger")
-}
-#####################################################
-# Stop Injection Trigger: Return from SeqRAM 2 to SeqRAM 1
-record(bo, "$(P)$(R)STOPINJSEQ"){
-	field(SCAN, "Passive")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
-	field(DESC, "Set Sequencer Stop Injection Trigger")
-}
 
 #####################################################
 # Run Trigger: Run SeqRAM 1
-record(bo, "$(P)$(R)RUNSEQ"){
+record(bo, "$(P)$(R)ContinuousEvt-Sel"){
 	field(SCAN, "Passive")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
-	field(DESC, "Set Sequencer Run Trigger")
+	field(ZNAM, "Dsbl")
+	field(ONAM, "Enbl")
+	field(DESC, "Continuous event send Disable/Enable")
+}
+
+record(bi, "$(P)$(R)ContinuousEvt-Sts"){
+	field(SCAN, "Passive")
+	field(ZNAM, "Dsbl")
+	field(ONAM, "Enbl")
+	field(DESC, "Continuous event send Disable/Enable")
 }
 
 #####################################################
 # Injection Trigger: Run SeqRAM 2
-record(bo, "$(P)$(R)INJSEQ"){
+record(bo, "$(P)$(R)InjectionEvt-Sel"){
 	field(SCAN, "Passive")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
-	field(DESC, "Set Sequencer Injection Trigger")
+	field(ZNAM, "Dsbl")
+	field(ONAM, "Enbl")
+	field(DESC, "Injection event send Disable/Enable")
+}
+
+record(bi, "$(P)$(R)InjectionEvt-Sts"){
+	field(SCAN, "Passive")
+	field(ZNAM, "Dsbl")
+	field(ONAM, "Enbl")
+	field(DESC, "Injection event send Disable/Enable")
 }
 
 #####################################################
 # Restart Trigger: Reload events and restart SeqRAM 1
 record(bo, "$(P)$(R)RESTSEQ"){
 	field(SCAN, "Passive")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
-	field(DESC, "Set Sequencer Restart Trigger")
+	field(ZNAM, "Dsbl")
+	field(ONAM, "Enbl")
+	field(DESC, "Reload events and restart SeqRAM 1")
 }
 
 #####################################################
-# Repeat Injection Trigger Flag: Repeat the injection while set
-record(bo, "$(P)$(R)REPINJSEQ"){
-	field(SCAN, "Passive")
-	field(ZNAM, "OFF")
-	field(ONAM, "ON")
-	field(DESC, "Repeat Injection Flag")
+record(longout, "$(P)$(R)RepeatBucketList-SP"){
+  field(DESC, "BucketList repetition, 0=infinity")
+  field(DRVH, "100")
+  field(DRVL, "0")
+  field(FLNK, "$(P)$(R)RepeatBucketList-RB")
+}
+
+record(longin, "$(P)$(R)RepeatBucketList-RB"){
+  field(DESC, "BucketList repetition, 0=infinity")
+  field(INP, "$(P)$(R)RepeatBucketList-SP")
 }
 
