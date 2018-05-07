@@ -727,7 +727,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -782,7 +782,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1665,7 +1665,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1720,7 +1720,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1770,7 +1770,7 @@ $(pv_value)</tooltip>
     <name>Text Update_2</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -1822,7 +1822,7 @@ $(pv_value)</tooltip>
     <name>Text Update_3</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2134,7 +2134,7 @@ $(pv_value)</tooltip>
     <name>Text Update_6</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2186,7 +2186,7 @@ $(pv_value)</tooltip>
     <name>Text Update_7</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2751,7 +2751,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2806,7 +2806,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3015,7 +3015,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3070,7 +3070,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3120,7 +3120,7 @@ $(pv_value)</tooltip>
     <name>Text Update_10</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3172,7 +3172,7 @@ $(pv_value)</tooltip>
     <name>Text Update_11</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3484,7 +3484,7 @@ $(pv_value)</tooltip>
     <name>Text Update_14</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3536,7 +3536,7 @@ $(pv_value)</tooltip>
     <name>Text Update_15</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5782,104 +5782,6 @@ $(pv_value)</tooltip>
     <wrap_words>false</wrap_words>
     <wuid>10c4971e:157711e6f06:5d6</wuid>
     <x>83</x>
-    <y>75</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.LED" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <alarm_pulsing>false</alarm_pulsing>
-    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
-    <background_color>
-      <color red="240" green="240" blue="240" />
-    </background_color>
-    <bit>-1</bit>
-    <border_alarm_sensitive>true</border_alarm_sensitive>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <bulb_border>3</bulb_border>
-    <bulb_border_color>
-      <color red="150" green="150" blue="150" />
-    </bulb_border_color>
-    <data_type>0</data_type>
-    <effect_3d>true</effect_3d>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
-    <foreground_color>
-      <color red="192" green="192" blue="192" />
-    </foreground_color>
-    <height>20</height>
-    <name>LED_32</name>
-    <off_color>
-      <color red="106" green="60" blue="54" />
-    </off_color>
-    <off_label>OFF</off_label>
-    <on_color>
-      <color red="255" green="0" blue="0" />
-    </on_color>
-    <on_label>ON</on_label>
-    <pv_name>$(P)$(R)Intlk-Mon</pv_name>
-    <pv_value />
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>true</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <show_boolean_label>false</show_boolean_label>
-    <square_led>false</square_led>
-    <tooltip>$(pv_name)
-$(pv_value)</tooltip>
-    <visible>true</visible>
-    <widget_type>LED</widget_type>
-    <width>20</width>
-    <wuid>10c4971e:157711e6f06:5db</wuid>
-    <x>252</x>
-    <y>99</y>
-  </widget>
-  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
-    <actions hook="false" hook_all="false" />
-    <auto_size>true</auto_size>
-    <background_color>
-      <color red="255" green="255" blue="255" />
-    </background_color>
-    <border_color>
-      <color red="0" green="128" blue="255" />
-    </border_color>
-    <border_style>0</border_style>
-    <border_width>1</border_width>
-    <enabled>true</enabled>
-    <font>
-      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
-    </font>
-    <foreground_color>
-      <color red="0" green="0" blue="0" />
-    </foreground_color>
-    <height>17</height>
-    <horizontal_alignment>1</horizontal_alignment>
-    <name>Label_173</name>
-    <rules />
-    <scale_options>
-      <width_scalable>true</width_scalable>
-      <height_scalable>true</height_scalable>
-      <keep_wh_ratio>false</keep_wh_ratio>
-    </scale_options>
-    <scripts />
-    <text>INHS</text>
-    <tooltip></tooltip>
-    <transparent>true</transparent>
-    <vertical_alignment>1</vertical_alignment>
-    <visible>true</visible>
-    <widget_type>Label</widget_type>
-    <width>34</width>
-    <wrap_words>false</wrap_words>
-    <wuid>10c4971e:157711e6f06:5df</wuid>
-    <x>245</x>
     <y>75</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
@@ -8304,5 +8206,104 @@ $(pv_value)</tooltip>
     <wuid>-6c8e85c9:163031760b3:-7771</wuid>
     <x>253</x>
     <y>366</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.LED" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <alarm_pulsing>false</alarm_pulsing>
+    <backcolor_alarm_sensitive>false</backcolor_alarm_sensitive>
+    <background_color>
+      <color red="240" green="240" blue="240" />
+    </background_color>
+    <bit>-1</bit>
+    <border_alarm_sensitive>true</border_alarm_sensitive>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <bulb_border>3</bulb_border>
+    <bulb_border_color>
+      <color red="150" green="150" blue="150" />
+    </bulb_border_color>
+    <data_type>0</data_type>
+    <effect_3d>true</effect_3d>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <forecolor_alarm_sensitive>false</forecolor_alarm_sensitive>
+    <foreground_color>
+      <color red="192" green="192" blue="192" />
+    </foreground_color>
+    <height>33</height>
+    <name>LED_33</name>
+    <off_color>
+      <color red="106" green="60" blue="54" />
+    </off_color>
+    <off_label>OFF</off_label>
+    <on_color>
+      <color red="255" green="0" blue="0" />
+    </on_color>
+    <on_label>ON</on_label>
+    <pv_name>$(P)$(R)Intlk-Mon</pv_name>
+    <pv_value />
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>true</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <show_boolean_label>false</show_boolean_label>
+    <square_led>false</square_led>
+    <tooltip>$(pv_name)
+$(pv_value)</tooltip>
+    <visible>true</visible>
+    <widget_type>LED</widget_type>
+    <width>33</width>
+    <wuid>-6befa726:1632b0b0c52:-6c43</wuid>
+    <x>247</x>
+    <y>92</y>
+  </widget>
+  <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
+    <actions hook="false" hook_all="false" />
+    <auto_size>true</auto_size>
+    <background_color>
+      <color red="255" green="255" blue="255" />
+    </background_color>
+    <border_color>
+      <color red="0" green="128" blue="255" />
+    </border_color>
+    <border_style>0</border_style>
+    <border_width>1</border_width>
+    <enabled>true</enabled>
+    <font>
+      <opifont.name fontName="Ubuntu" height="11" style="0" pixels="false">Default</opifont.name>
+    </font>
+    <foreground_color>
+      <color red="0" green="0" blue="0" />
+    </foreground_color>
+    <height>34</height>
+    <horizontal_alignment>1</horizontal_alignment>
+    <name>Label_311</name>
+    <rules />
+    <scale_options>
+      <width_scalable>true</width_scalable>
+      <height_scalable>true</height_scalable>
+      <keep_wh_ratio>false</keep_wh_ratio>
+    </scale_options>
+    <scripts />
+    <text>Interlock
+Input</text>
+    <tooltip></tooltip>
+    <transparent>true</transparent>
+    <vertical_alignment>1</vertical_alignment>
+    <visible>true</visible>
+    <widget_type>Label</widget_type>
+    <width>61</width>
+    <wrap_words>false</wrap_words>
+    <wuid>-6befa726:1632b0b0c52:-6c42</wuid>
+    <x>233</x>
+    <y>61</y>
   </widget>
 </display>

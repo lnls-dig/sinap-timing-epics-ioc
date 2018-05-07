@@ -1,3 +1,21 @@
+record(ao, "$(P)$(R)RFRef-Cte"){
+  field(DESC, "EVG RF Ref Input frequency")
+  field(PREC, "3")
+  field(PINI, "1")
+  field(EGU, "Hz")
+  field(VAL, "499658000")
+  field(FLNK, "$(P)$(R)FPGAClk-Cte")
+}
+
+record(calc, "$(P)$(R)FPGAClk-Cte"){
+  field(DESC, "EVG FPGA Clock")
+  field(PREC, "3")
+  field(EGU, "sec")
+  field(INPA, "$(P)$(R)RFRef-Cte")
+  field(INPB, "$(P)$(R)RFDiv-SP")
+  field(CALC, "B/A")
+}
+
 ########################################################################
 # Control and Status Register [0]
 
@@ -1592,6 +1610,7 @@ record(ao, "$(P)$(R)RFDiv-SP"){
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_conf_rfdiv_set($(P),$(R)) $(PORT)")
+  field(FLNK, "$(P)$(R)FPGAClk-Cte")
 }
 
 record(longout, "$(P)$(R)cmd_conf_get") {

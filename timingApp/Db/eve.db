@@ -94,6 +94,23 @@ record(longout, "$(P)$(R)OTP00NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP00DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP00WidthTime-SP") {
+  field(DESC, "EVE OTP00 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP00WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP00WidthCalc") {
+  field(DESC, "EVE OTP00 trigger width calc")
+  field(INPA, "$(P)$(R)OTP00WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP00Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP00Width-SP") {
   field(DESC, "EVE OTP0 event width")
   field(VAL, "1")
@@ -103,6 +120,23 @@ record(longout, "$(P)$(R)OTP00Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),00) $(PORT)")
   field(FLNK, "$(P)$(R)OTP00DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP00DelayTime-SP") {
+  field(DESC, "EVE OTP00 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP00DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP00DelayTimeCalc") {
+  field(DESC, "EVE OTP00 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP00DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP00Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP00Delay-SP") {
@@ -269,12 +303,32 @@ record(longin, "$(P)$(R)OTP00Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP00WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP00Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP0 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP00DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP00WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP00Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP0 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP00DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP00Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP0 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set00") {
@@ -312,6 +366,23 @@ record(longout, "$(P)$(R)OTP01NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP01DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP01WidthTime-SP") {
+  field(DESC, "EVE OTP01 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP01WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP01WidthCalc") {
+  field(DESC, "EVE OTP01 trigger width calc")
+  field(INPA, "$(P)$(R)OTP01WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP01Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP01Width-SP") {
   field(DESC, "EVE OTP1 event width")
   field(VAL, "1")
@@ -321,6 +392,23 @@ record(longout, "$(P)$(R)OTP01Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),01) $(PORT)")
   field(FLNK, "$(P)$(R)OTP01DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP01DelayTime-SP") {
+  field(DESC, "EVE OTP01 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP01DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP01DelayTimeCalc") {
+  field(DESC, "EVE OTP01 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP01DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP01Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP01Delay-SP") {
@@ -487,12 +575,32 @@ record(longin, "$(P)$(R)OTP01Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP01WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP01Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP1 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP01DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP01WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP01Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP1 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP01DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP01Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP1 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set01") {
@@ -530,6 +638,23 @@ record(longout, "$(P)$(R)OTP02NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP02DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP02WidthTime-SP") {
+  field(DESC, "EVE OTP02 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP02WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP02WidthCalc") {
+  field(DESC, "EVE OTP02 trigger width calc")
+  field(INPA, "$(P)$(R)OTP02WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP02Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP02Width-SP") {
   field(DESC, "EVE OTP2 event width")
   field(VAL, "1")
@@ -539,6 +664,23 @@ record(longout, "$(P)$(R)OTP02Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),02) $(PORT)")
   field(FLNK, "$(P)$(R)OTP02DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP02DelayTime-SP") {
+  field(DESC, "EVE OTP02 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP02DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP02DelayTimeCalc") {
+  field(DESC, "EVE OTP02 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP02DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP02Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP02Delay-SP") {
@@ -705,12 +847,32 @@ record(longin, "$(P)$(R)OTP02Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP02WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP02Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP2 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP02DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP02WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP02Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP2 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP02DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP02Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP2 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set02") {
@@ -748,6 +910,23 @@ record(longout, "$(P)$(R)OTP03NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP03DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP03WidthTime-SP") {
+  field(DESC, "EVE OTP03 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP03WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP03WidthCalc") {
+  field(DESC, "EVE OTP03 trigger width calc")
+  field(INPA, "$(P)$(R)OTP03WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP03Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP03Width-SP") {
   field(DESC, "EVE OTP3 event width")
   field(VAL, "1")
@@ -757,6 +936,23 @@ record(longout, "$(P)$(R)OTP03Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),03) $(PORT)")
   field(FLNK, "$(P)$(R)OTP03DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP03DelayTime-SP") {
+  field(DESC, "EVE OTP03 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP03DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP03DelayTimeCalc") {
+  field(DESC, "EVE OTP03 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP03DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP03Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP03Delay-SP") {
@@ -923,12 +1119,32 @@ record(longin, "$(P)$(R)OTP03Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP03WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP03Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP3 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP03DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP03WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP03Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP3 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP03DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP03Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP3 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set03") {
@@ -966,6 +1182,23 @@ record(longout, "$(P)$(R)OTP04NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP04DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP04WidthTime-SP") {
+  field(DESC, "EVE OTP04 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP04WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP04WidthCalc") {
+  field(DESC, "EVE OTP04 trigger width calc")
+  field(INPA, "$(P)$(R)OTP04WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP04Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP04Width-SP") {
   field(DESC, "EVE OTP4 event width")
   field(VAL, "1")
@@ -975,6 +1208,23 @@ record(longout, "$(P)$(R)OTP04Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),04) $(PORT)")
   field(FLNK, "$(P)$(R)OTP04DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP04DelayTime-SP") {
+  field(DESC, "EVE OTP04 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP04DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP04DelayTimeCalc") {
+  field(DESC, "EVE OTP04 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP04DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP04Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP04Delay-SP") {
@@ -1141,12 +1391,32 @@ record(longin, "$(P)$(R)OTP04Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP04WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP04Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP4 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP04DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP04WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP04Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP4 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP04DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP04Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP4 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set04") {
@@ -1184,6 +1454,23 @@ record(longout, "$(P)$(R)OTP05NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP05DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP05WidthTime-SP") {
+  field(DESC, "EVE OTP05 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP05WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP05WidthCalc") {
+  field(DESC, "EVE OTP05 trigger width calc")
+  field(INPA, "$(P)$(R)OTP05WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP05Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP05Width-SP") {
   field(DESC, "EVE OTP5 event width")
   field(VAL, "1")
@@ -1193,6 +1480,23 @@ record(longout, "$(P)$(R)OTP05Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),05) $(PORT)")
   field(FLNK, "$(P)$(R)OTP05DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP05DelayTime-SP") {
+  field(DESC, "EVE OTP05 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP05DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP05DelayTimeCalc") {
+  field(DESC, "EVE OTP05 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP05DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP05Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP05Delay-SP") {
@@ -1359,12 +1663,32 @@ record(longin, "$(P)$(R)OTP05Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP05WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP05Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP5 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP05DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP05WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP05Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP5 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP05DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP05Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP5 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set05") {
@@ -1402,6 +1726,23 @@ record(longout, "$(P)$(R)OTP06NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP06DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP06WidthTime-SP") {
+  field(DESC, "EVE OTP06 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP06WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP06WidthCalc") {
+  field(DESC, "EVE OTP06 trigger width calc")
+  field(INPA, "$(P)$(R)OTP06WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP06Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP06Width-SP") {
   field(DESC, "EVE OTP6 event width")
   field(VAL, "1")
@@ -1411,6 +1752,23 @@ record(longout, "$(P)$(R)OTP06Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),06) $(PORT)")
   field(FLNK, "$(P)$(R)OTP06DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP06DelayTime-SP") {
+  field(DESC, "EVE OTP06 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP06DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP06DelayTimeCalc") {
+  field(DESC, "EVE OTP06 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP06DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP06Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP06Delay-SP") {
@@ -1577,12 +1935,32 @@ record(longin, "$(P)$(R)OTP06Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP06WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP06Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP6 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP06DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP06WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP06Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP6 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP06DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP06Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP6 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set06") {
@@ -1620,6 +1998,23 @@ record(longout, "$(P)$(R)OTP07NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP07DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP07WidthTime-SP") {
+  field(DESC, "EVE OTP07 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP07WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP07WidthCalc") {
+  field(DESC, "EVE OTP07 trigger width calc")
+  field(INPA, "$(P)$(R)OTP07WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP07Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP07Width-SP") {
   field(DESC, "EVE OTP7 event width")
   field(VAL, "1")
@@ -1629,6 +2024,23 @@ record(longout, "$(P)$(R)OTP07Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),07) $(PORT)")
   field(FLNK, "$(P)$(R)OTP07DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP07DelayTime-SP") {
+  field(DESC, "EVE OTP07 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP07DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP07DelayTimeCalc") {
+  field(DESC, "EVE OTP07 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP07DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP07Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP07Delay-SP") {
@@ -1795,12 +2207,32 @@ record(longin, "$(P)$(R)OTP07Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP07WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP07Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP7 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP07DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP07WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP07Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP7 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP07DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP07Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP7 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set07") {
@@ -1838,6 +2270,23 @@ record(longout, "$(P)$(R)OTP08NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP08DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP08WidthTime-SP") {
+  field(DESC, "EVE OTP08 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP08WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP08WidthCalc") {
+  field(DESC, "EVE OTP08 trigger width calc")
+  field(INPA, "$(P)$(R)OTP08WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP08Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP08Width-SP") {
   field(DESC, "EVE OTP8 event width")
   field(VAL, "1")
@@ -1847,6 +2296,23 @@ record(longout, "$(P)$(R)OTP08Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),08) $(PORT)")
   field(FLNK, "$(P)$(R)OTP08DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP08DelayTime-SP") {
+  field(DESC, "EVE OTP08 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP08DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP08DelayTimeCalc") {
+  field(DESC, "EVE OTP08 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP08DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP08Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP08Delay-SP") {
@@ -2012,12 +2478,32 @@ record(longin, "$(P)$(R)OTP08Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP08WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP08Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP8 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP08DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP08WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP08Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP8 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP08DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP08Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP8 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set08") {
@@ -2055,6 +2541,23 @@ record(longout, "$(P)$(R)OTP09NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP09DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP09WidthTime-SP") {
+  field(DESC, "EVE OTP09 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP09WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP09WidthCalc") {
+  field(DESC, "EVE OTP09 trigger width calc")
+  field(INPA, "$(P)$(R)OTP09WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP09Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP09Width-SP") {
   field(DESC, "EVE OTP9 event width")
   field(VAL, "1")
@@ -2064,6 +2567,23 @@ record(longout, "$(P)$(R)OTP09Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),09) $(PORT)")
   field(FLNK, "$(P)$(R)OTP09DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP09DelayTime-SP") {
+  field(DESC, "EVE OTP09 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP09DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP09DelayTimeCalc") {
+  field(DESC, "EVE OTP09 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP09DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP09Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP09Delay-SP") {
@@ -2230,12 +2750,32 @@ record(longin, "$(P)$(R)OTP09Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP09WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP09Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTP9 delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP09DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP09WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP09Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP9 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP09DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP09Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP9 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set09") {
@@ -2273,6 +2813,23 @@ record(longout, "$(P)$(R)OTP10NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP10DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP10WidthTime-SP") {
+  field(DESC, "EVE OTP10 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP10WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP10WidthCalc") {
+  field(DESC, "EVE OTP10 trigger width calc")
+  field(INPA, "$(P)$(R)OTP10WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP10Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP10Width-SP") {
   field(DESC, "EVE OTPA event width")
   field(VAL, "1")
@@ -2282,6 +2839,23 @@ record(longout, "$(P)$(R)OTP10Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),10) $(PORT)")
   field(FLNK, "$(P)$(R)OTP10DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP10DelayTime-SP") {
+  field(DESC, "EVE OTP10 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP10DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP10DelayTimeCalc") {
+  field(DESC, "EVE OTP10 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP10DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP10Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP10Delay-SP") {
@@ -2448,12 +3022,32 @@ record(longin, "$(P)$(R)OTP10Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP10WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP10Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPA delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP10DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP10WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP10Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP10 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP10DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP10Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP10 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set10") {
@@ -2491,6 +3085,23 @@ record(longout, "$(P)$(R)OTP11NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP11DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP11WidthTime-SP") {
+  field(DESC, "EVE OTP11 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP11WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP11WidthCalc") {
+  field(DESC, "EVE OTP11 trigger width calc")
+  field(INPA, "$(P)$(R)OTP11WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP11Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP11Width-SP") {
   field(DESC, "EVE OTPB event width")
   field(VAL, "1")
@@ -2500,6 +3111,23 @@ record(longout, "$(P)$(R)OTP11Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),11) $(PORT)")
   field(FLNK, "$(P)$(R)OTP11DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP11DelayTime-SP") {
+  field(DESC, "EVE OTP11 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP11DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP11DelayTimeCalc") {
+  field(DESC, "EVE OTP11 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP11DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP11Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP11Delay-SP") {
@@ -2666,12 +3294,32 @@ record(longin, "$(P)$(R)OTP11Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP11WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP11Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPB delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP11DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP11WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP11Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP11 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP11DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP11Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP11 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set11") {
@@ -2709,6 +3357,23 @@ record(longout, "$(P)$(R)OTP12NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP12DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP12WidthTime-SP") {
+  field(DESC, "EVE OTP12 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP12WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP12WidthCalc") {
+  field(DESC, "EVE OTP12 trigger width calc")
+  field(INPA, "$(P)$(R)OTP12WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP12Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP12Width-SP") {
   field(DESC, "EVE OTPC event width")
   field(VAL, "1")
@@ -2718,6 +3383,23 @@ record(longout, "$(P)$(R)OTP12Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),12) $(PORT)")
   field(FLNK, "$(P)$(R)OTP12DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP12DelayTime-SP") {
+  field(DESC, "EVE OTP12 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP12DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP12DelayTimeCalc") {
+  field(DESC, "EVE OTP12 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP12DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP12Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP12Delay-SP") {
@@ -2884,12 +3566,32 @@ record(longin, "$(P)$(R)OTP12Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP12WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP12Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPC delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP12DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP12WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP12Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP12 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP12DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP12Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP12 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set12") {
@@ -2927,6 +3629,23 @@ record(longout, "$(P)$(R)OTP13NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP13DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP13WidthTime-SP") {
+  field(DESC, "EVE OTP13 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP13WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP13WidthCalc") {
+  field(DESC, "EVE OTP13 trigger width calc")
+  field(INPA, "$(P)$(R)OTP13WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP13Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP13Width-SP") {
   field(DESC, "EVE OTPD event width")
   field(VAL, "1")
@@ -2936,6 +3655,23 @@ record(longout, "$(P)$(R)OTP13Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),13) $(PORT)")
   field(FLNK, "$(P)$(R)OTP13DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP13DelayTime-SP") {
+  field(DESC, "EVE OTP13 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP13DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP13DelayTimeCalc") {
+  field(DESC, "EVE OTP13 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP13DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP13Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP13Delay-SP") {
@@ -3102,12 +3838,32 @@ record(longin, "$(P)$(R)OTP13Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP13WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP13Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPD delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP13DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP13WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP13Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP13 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP13DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP13Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP13 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set13") {
@@ -3145,6 +3901,23 @@ record(longout, "$(P)$(R)OTP14NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP14DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP14WidthTime-SP") {
+  field(DESC, "EVE OTP14 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP14WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP14WidthCalc") {
+  field(DESC, "EVE OTP14 trigger width calc")
+  field(INPA, "$(P)$(R)OTP14WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP14Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP14Width-SP") {
   field(DESC, "EVE OTPE event width")
   field(VAL, "1")
@@ -3154,6 +3927,23 @@ record(longout, "$(P)$(R)OTP14Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),14) $(PORT)")
   field(FLNK, "$(P)$(R)OTP14DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP14DelayTime-SP") {
+  field(DESC, "EVE OTP14 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP14DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP14DelayTimeCalc") {
+  field(DESC, "EVE OTP14 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP14DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP14Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP14Delay-SP") {
@@ -3320,12 +4110,32 @@ record(longin, "$(P)$(R)OTP14Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP14WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP14Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPE delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP14DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP14WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP14Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP14 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP14DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP14Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP14 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set14") {
@@ -3363,6 +4173,23 @@ record(longout, "$(P)$(R)OTP15NrPulses-SP"){
   field(FLNK, "$(P)$(R)OTP15DelayRaw")
 }
 
+record(ao, "$(P)$(R)OTP15WidthTime-SP") {
+  field(DESC, "EVE OTP15 trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP15WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP15WidthCalc") {
+  field(DESC, "EVE OTP15 trigger width calc")
+  field(INPA, "$(P)$(R)OTP15WidthTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP15Width-SP PP")
+}
+
 record(longout, "$(P)$(R)OTP15Width-SP") {
   field(DESC, "EVE OTPF event width")
   field(VAL, "1")
@@ -3372,6 +4199,23 @@ record(longout, "$(P)$(R)OTP15Width-SP") {
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_width_set($(P),$(R),15) $(PORT)")
   field(FLNK, "$(P)$(R)OTP15DelayRaw")
+}
+
+record(ao, "$(P)$(R)OTP15DelayTime-SP") {
+  field(DESC, "EVE OTP15 trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP15DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP15DelayTimeCalc") {
+  field(DESC, "EVE OTP15 trigger delay calc")
+  field(INPA, "$(P)$(R)OTP15DelayTime-SP")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(CALC, "CEIL(A/(B*1000000))-A/(B*1000000)<0.5?CEIL(A/(B*1000000)):FLOOR(A/(B*1000000))")
+  field(OUT, "$(P)$(R)OTP15Delay-SP PP")
 }
 
 record(longout, "$(P)$(R)OTP15Delay-SP") {
@@ -3538,12 +4382,32 @@ record(longin, "$(P)$(R)OTP15Width-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF width RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP15WidthTime-RB")
 }
 
 record(longin, "$(P)$(R)OTP15Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "EVE OTPF delay RBV")
   field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP15DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP15WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP15Width-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP15 width time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP15DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP15Delay-RB")
+  field(INPB, "$(P)TI-EVG:FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "EVE OTP15 delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A*B*1000000")
 }
 
 record(longout, "$(P)$(R)cmd_otp_set15") {

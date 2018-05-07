@@ -981,7 +981,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1036,7 +1036,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP00DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1927,7 +1927,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -1982,7 +1982,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP01DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -2032,7 +2032,7 @@ $(pv_value)</tooltip>
     <name>Text Update_2</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2084,7 +2084,7 @@ $(pv_value)</tooltip>
     <name>Text Update_3</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP00Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP00DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2396,7 +2396,7 @@ $(pv_value)</tooltip>
     <name>Text Update_6</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -2448,7 +2448,7 @@ $(pv_value)</tooltip>
     <name>Text Update_7</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP01Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP01DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3013,7 +3013,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3068,7 +3068,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP02DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3163,7 +3163,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3218,7 +3218,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP03DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -3268,7 +3268,7 @@ $(pv_value)</tooltip>
     <name>Text Update_10</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3320,7 +3320,7 @@ $(pv_value)</tooltip>
     <name>Text Update_11</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP02Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP02DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3632,7 +3632,7 @@ $(pv_value)</tooltip>
     <name>Text Update_14</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -3684,7 +3684,7 @@ $(pv_value)</tooltip>
     <name>Text Update_15</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP03Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP03DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4249,7 +4249,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP04Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP04WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4304,7 +4304,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP04Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP04DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4399,7 +4399,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP05Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP05WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4454,7 +4454,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP05Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP05DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -4504,7 +4504,7 @@ $(pv_value)</tooltip>
     <name>Text Update_18</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP04Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP04WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4556,7 +4556,7 @@ $(pv_value)</tooltip>
     <name>Text Update_19</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP04Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP04DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4868,7 +4868,7 @@ $(pv_value)</tooltip>
     <name>Text Update_22</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP05Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP05WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -4920,7 +4920,7 @@ $(pv_value)</tooltip>
     <name>Text Update_23</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP05Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP05DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5525,7 +5525,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP06Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP06WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5580,7 +5580,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP06Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP06DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5675,7 +5675,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP07Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP07WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5730,7 +5730,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP07Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP07DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -5780,7 +5780,7 @@ $(pv_value)</tooltip>
     <name>Text Update_26</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP06Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP06WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -5832,7 +5832,7 @@ $(pv_value)</tooltip>
     <name>Text Update_27</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP06Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP06DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6144,7 +6144,7 @@ $(pv_value)</tooltip>
     <name>Text Update_30</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP07Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP07WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6196,7 +6196,7 @@ $(pv_value)</tooltip>
     <name>Text Update_31</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP07Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP07DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -6761,7 +6761,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP08Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP08WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6816,7 +6816,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP08Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP08DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6911,7 +6911,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP09Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP09WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -6966,7 +6966,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP09Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP09DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -7016,7 +7016,7 @@ $(pv_value)</tooltip>
     <name>Text Update_34</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP08Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP08WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7068,7 +7068,7 @@ $(pv_value)</tooltip>
     <name>Text Update_35</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP08Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP08DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7380,7 +7380,7 @@ $(pv_value)</tooltip>
     <name>Text Update_38</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP09Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP09WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7432,7 +7432,7 @@ $(pv_value)</tooltip>
     <name>Text Update_39</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP09Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP09DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -7997,7 +7997,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP10Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP10WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8052,7 +8052,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP10Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP10DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8147,7 +8147,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP11Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP11WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8202,7 +8202,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP11Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP11DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -8252,7 +8252,7 @@ $(pv_value)</tooltip>
     <name>Text Update_42</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP10Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP10WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8304,7 +8304,7 @@ $(pv_value)</tooltip>
     <name>Text Update_43</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP10Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP10DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8616,7 +8616,7 @@ $(pv_value)</tooltip>
     <name>Text Update_46</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP11Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP11WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -8668,7 +8668,7 @@ $(pv_value)</tooltip>
     <name>Text Update_47</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP11Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP11DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9233,7 +9233,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP12Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP12WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9288,7 +9288,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP12Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP12DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9383,7 +9383,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP13Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP13WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9438,7 +9438,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP13Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP13DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -9488,7 +9488,7 @@ $(pv_value)</tooltip>
     <name>Text Update_50</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP12Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP12WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9540,7 +9540,7 @@ $(pv_value)</tooltip>
     <name>Text Update_51</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP12Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP12DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9852,7 +9852,7 @@ $(pv_value)</tooltip>
     <name>Text Update_54</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP13Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP13WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -9904,7 +9904,7 @@ $(pv_value)</tooltip>
     <name>Text Update_55</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP13Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP13DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10469,7 +10469,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP14Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP14WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10524,7 +10524,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP14Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP14DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10619,7 +10619,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP15Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP15WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10674,7 +10674,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP15Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP15DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -10724,7 +10724,7 @@ $(pv_value)</tooltip>
     <name>Text Update_58</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP14Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP14WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -10776,7 +10776,7 @@ $(pv_value)</tooltip>
     <name>Text Update_59</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP14Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP14DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11088,7 +11088,7 @@ $(pv_value)</tooltip>
     <name>Text Update_62</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP15Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP15WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -11140,7 +11140,7 @@ $(pv_value)</tooltip>
     <name>Text Update_63</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP15Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP15DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24072,7 +24072,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP16Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP16WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -24127,7 +24127,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP16Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP16DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -24235,7 +24235,7 @@ $(pv_value)</tooltip>
     <name>Text Update_128</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP16Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP16WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24287,7 +24287,7 @@ $(pv_value)</tooltip>
     <name>Text Update_129</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP16Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP16DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -24976,7 +24976,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP17Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP17WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25031,7 +25031,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP17Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP17DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25139,7 +25139,7 @@ $(pv_value)</tooltip>
     <name>Text Update_133</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP17Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP17WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25191,7 +25191,7 @@ $(pv_value)</tooltip>
     <name>Text Update_134</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP17Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP17DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -25880,7 +25880,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP18Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP18WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -25935,7 +25935,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP18Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP18DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26043,7 +26043,7 @@ $(pv_value)</tooltip>
     <name>Text Update_138</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP18Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP18WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26095,7 +26095,7 @@ $(pv_value)</tooltip>
     <name>Text Update_139</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP18Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP18DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26784,7 +26784,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP19Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP19WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26839,7 +26839,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP19Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP19DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -26947,7 +26947,7 @@ $(pv_value)</tooltip>
     <name>Text Update_143</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP19Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP19WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -26999,7 +26999,7 @@ $(pv_value)</tooltip>
     <name>Text Update_144</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP19Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP19DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27688,7 +27688,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP20Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP20WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27743,7 +27743,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP20Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP20DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -27851,7 +27851,7 @@ $(pv_value)</tooltip>
     <name>Text Update_148</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP20Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP20WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -27903,7 +27903,7 @@ $(pv_value)</tooltip>
     <name>Text Update_149</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP20Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP20DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28592,7 +28592,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP21Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP21WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28647,7 +28647,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP21Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP21DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -28755,7 +28755,7 @@ $(pv_value)</tooltip>
     <name>Text Update_153</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP21Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP21WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -28807,7 +28807,7 @@ $(pv_value)</tooltip>
     <name>Text Update_154</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP21Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP21DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29496,7 +29496,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP22Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP22WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -29551,7 +29551,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP22Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP22DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -29659,7 +29659,7 @@ $(pv_value)</tooltip>
     <name>Text Update_158</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP22Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP22WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -29711,7 +29711,7 @@ $(pv_value)</tooltip>
     <name>Text Update_159</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP22Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP22DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30400,7 +30400,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP23Width-SP</pv_name>
+    <pv_name>$(P)$(R)OTP23WidthTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -30455,7 +30455,7 @@ $(pv_value)</tooltip>
     <page_increment>10.0</page_increment>
     <precision>3</precision>
     <precision_from_pv>false</precision_from_pv>
-    <pv_name>$(P)$(R)OTP23Delay-SP</pv_name>
+    <pv_name>$(P)$(R)OTP23DelayTime-SP</pv_name>
     <pv_value />
     <rules />
     <scale_options>
@@ -30563,7 +30563,7 @@ $(pv_value)</tooltip>
     <name>Text Update_163</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP23Width-RB</pv_name>
+    <pv_name>$(P)$(R)OTP23WidthTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
@@ -30615,7 +30615,7 @@ $(pv_value)</tooltip>
     <name>Text Update_164</name>
     <precision>0</precision>
     <precision_from_pv>true</precision_from_pv>
-    <pv_name>$(P)$(R)OTP23Delay-RB</pv_name>
+    <pv_name>$(P)$(R)OTP23DelayTime-RB</pv_name>
     <pv_value />
     <rotation_angle>0.0</rotation_angle>
     <rules />
