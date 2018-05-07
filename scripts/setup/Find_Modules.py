@@ -25,9 +25,16 @@ f = open('Find_Modules.log','w')
 def FindMod(UDP_IP, UDP_PORT):
   # Read
   funsel = [16, 17, 18, 32]
-  sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-  sock.settimeout(WAIT)
-  sock.bind(('', UDP_PORT))
+  try:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.settimeout(WAIT)
+    sock.bind(('', UDP_PORT))
+  except:
+    ok = 0
+    addr = ['0.0.0.0', 0]
+    regA = regB = regC = [0, 0, 0, 0]
+    return ok, regA, regB, regC, addr
+    
   add = 63
   ok = 0
   cmd = chr(0x80|add)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)
