@@ -22,13 +22,13 @@ if [ -z "$IPPORT" ]; then
     exit 4
 fi
 
-if [ -z "$DEVICE" ]; then
+if [ -z "$DEVICE_TYPE" ]; then
     echo "Device type is not set. Please use -d option" >&2
     exit 5
 fi
 
-TIMING_TYPE=$(echo ${DEVICE} | grep -Eo "[^0-9]+");
-TIMING_NUMBER=$(echo ${DEVICE} | grep -Eo "[0-9]+");
+TIMING_TYPE=$(echo ${DEVICE_TYPE} | grep -Eo "[^0-9]+");
+TIMING_NUMBER=$(echo ${DEVICE_TYPE} | grep -Eo "[0-9]+");
 
 if [ -z "$TIMING_TYPE" ]; then
     echo "Device type is not set. Please use -d option" >&2
