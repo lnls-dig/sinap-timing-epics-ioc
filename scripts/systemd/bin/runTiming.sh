@@ -24,6 +24,14 @@ if [ -z "${TIMING_CURRENT_DEVICE_TELNET_PORT_SUFFIX}" ]; then
     exit 1
 fi
 
+TIMING_TYPE=$(echo ${TIMING_INSTANCE} | grep -Eo "[^0-9]+");
+
+if [ -z "$TIMING_TYPE" ]; then
+    echo "Device instance is invalid. Valid device options are: EVG, EVE, EVR and FOUT." >&2
+    echo "The instance format is: <device type><device index>. Example: EVG1" >&2
+    exit 5
+fi
+
 ./runProcServ.sh \
     -t "${TIMING_DEVICE_TELNET_PORT}" \
     -P "${TIMING_PV_AREA_PREFIX}" \
