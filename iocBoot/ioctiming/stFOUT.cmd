@@ -1,9 +1,9 @@
 #!../../bin/linux-x86_64/timing
 
-## You may have to change timing to something else
-## everywhere it appears in this file
-
 < envPaths
+
+epicsEnvSet("TOP", "../..")
+
 < FOUT.config
 
 # ################################
