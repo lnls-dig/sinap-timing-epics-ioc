@@ -25,8 +25,9 @@ if [ -z "${TIMING_CURRENT_DEVICE_TELNET_PORT_SUFFIX}" ]; then
 fi
 
 ./runProcServ.sh \
-    -P ${TIMING_PV_AREA_PREFIX} \
-    -R ${TIMING_PV_DEVICE_PREFIX} \
-    -i ${TIMING_DEVICE_IP} \
-    -p ${TIMING_DEVICE_PORT} \
-    -d ${TIMING_INSTANCE}
+    -t "${TIMING_DEVICE_TELNET_PORT}" \
+    -P "${TIMING_PV_AREA_PREFIX}" \
+    -R "${TIMING_PV_DEVICE_PREFIX}" \
+    -i "${TIMING_DEVICE_IP}" \
+    -p "${TIMING_DEVICE_PORT}" \
+    -d "${TIMING_INSTANCE}"
