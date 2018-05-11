@@ -1,0 +1,177 @@
+########################################################################
+# Generic OUT(0 to 7) Register (17 to 24)
+
+record(mbbiDirect, "$(P)$(R)OUT$(num)IntlkRaw") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) interlock raw status")
+  field(NOBT, "8")
+  field(SHFT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_out_itl$(num)RAW_intr $(PORT)")
+  field(FLNK, "$(P)$(R)OUT$(num)Intlk-Sts")
+}
+
+record(bi, "$(P)$(R)OUT$(num)Intlk-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) interlock status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)OUT$(num)IntlkRaw.B0")
+}
+
+record(mbbi, "$(P)$(R)OUT$(num)Src-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) source selection status")
+  field(NOBT, "7")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(ONST, "Trigger")
+  field(ONVL, "0x30")
+  field(TWST, "Clock0")
+  field(TWVL, "0x20")
+  field(THST, "Clock1")
+  field(THVL, "0x21")
+  field(FRST, "Clock2")
+  field(FRVL, "0x22")
+  field(FVST, "Clock3")
+  field(FVVL, "0x23")
+  field(SXST, "Clock4")
+  field(SXVL, "0x24")
+  field(SVST, "Clock5")
+  field(SVVL, "0x25")
+  field(EIST, "Clock6")
+  field(EIVL, "0x26")
+  field(NIST, "Clock7")
+  field(NIVL, "0x27")
+  field(ZRST, "Dsbl")
+  field(ZRVL, "0x0")
+  field(INP, "@timing.proto evre_out_sel$(num)RAW_intr $(PORT)")
+}
+
+record(longin, "$(P)$(R)OUT$(num)FineDelay-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) fine delay status")
+  field(EGU, "5ps")
+}
+
+record(longin, "$(P)$(R)OUT$(num)RFDelay-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) RF delay status")
+  field(EGU, "evt_T/20")
+}
+
+record(longout, "$(P)$(R)OUT$(num)RFDelay-SP"){
+  field(DESC, "OUT$(num) RF delay")
+  field(DRVL, "0")
+  field(DRVH, "31")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(longout, "$(P)$(R)OUT$(num)FineDelay-SP"){
+  field(DESC, "OUT$(num) fine delay")
+  field(DRVL, "0")
+  field(DRVH, "1023")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(longout, "$(P)$(R)OUT$(num)SrcTrig-SP"){
+  field(DESC, "OUT$(num) source trigger")
+  field(DRVL, "0")
+  field(DRVH, "23")
+  field(VAL, "16")
+  field(PINI, "1")
+  field(FLNK, "$(P)$(R)OUT$(num)SrcTrigCalc")
+}
+
+record(calc, "$(P)$(R)OUT$(num)SrcTrig-RB"){
+  field(DESC, "OUT$(num) source trigger RBV")
+  field(INPA, "$(P)$(R)OUT$(num)SrcTrigFan")
+  field(CALC, "(A>=16 && A<=31)?A-16:A-32")
+}
+
+record(calcout, "$(P)$(R)OUT$(num)SrcTrigCalc"){
+  field(DESC, "OUT$(num) source trigger calc")
+  field(INPA, "$(P)$(R)OUT$(num)SrcTrig-SP")
+  field(CALC, "(A>=0 && A<=15)?A+16:A+32")
+  field(OUT, "$(P)$(R)OUT$(num)SrcTrigFan PP")
+}
+
+record(dfanout, "$(P)$(R)OUT$(num)SrcTrigFan"){
+  field(DESC, "OUT$(num) source trigger fan")
+  field(OUTA, "$(P)$(R)OUT$(num)Src-Sel.ONVL PP")
+  field(OUTB, "$(P)$(R)OUT$(num)Src-Sts.ONVL PP")
+  field(FLNK, "$(P)$(R)OUT$(num)SrcTrig-RB")
+}
+
+record(mbbo, "$(P)$(R)OUT$(num)Src-Sel"){
+  field(DESC, "OUT$(num) source selection")
+  field(ONST, "Trigger")
+  field(ONVL, "0x30")
+  field(TWST, "Clock0")
+  field(TWVL, "0x20")
+  field(THST, "Clock1")
+  field(THVL, "0x21")
+  field(FRST, "Clock2")
+  field(FRVL, "0x22")
+  field(FVST, "Clock3")
+  field(FVVL, "0x23")
+  field(SXST, "Clock4")
+  field(SXVL, "0x24")
+  field(SVST, "Clock5")
+  field(SVVL, "0x25")
+  field(EIST, "Clock6")
+  field(EIVL, "0x26")
+  field(NIST, "Clock7")
+  field(NIVL, "0x27")
+  field(ZRST, "Dsbl")
+  field(ZRVL, "0x0")
+  field(FLNK, "$(P)$(R)OUT$(num)SrcHw")
+}
+
+record(calcout, "$(P)$(R)OUT$(num)SrcHw"){
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) source selection write reg")
+  field(DTYP, "stream")
+  field(INPA, "$(P)$(R)OUT$(num)Src-Sel.RVAL")
+  field(CALC, "A")
+  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)OUT$(num)IntlkCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) set interlock function calc")
+  field(DTYP, "stream")
+  field(INPA, "$(P)$(R)OUT$(num)Intlk-Sel.RVAL")
+  field(CALC, "A<<7")
+  field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(bo, "$(P)$(R)OUT$(num)Intlk-Sel"){
+  field(DESC, "OUT$(num) interlock function selection")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)OUT$(num)IntlkCalc")
+}
+
+record(calc, "$(P)$(R)cmd_out_set$(num)") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to OUT$(num)")
+  field(PINI, "1")
+  field(A, "$(num)")
+  field(B, "0x51")
+  field(CALC, "A + B")
+}
+
+record(calc, "$(P)$(R)cmd_out_get$(num)") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read OUT$(num)")
+  field(PINI, "1")
+  field(A, "$(num)")
+  field(B, "0x91")
+  field(CALC, "A + B")
+}
+

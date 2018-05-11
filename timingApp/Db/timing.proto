@@ -120,76 +120,76 @@ evre_otp_set {
 
 # Interrupts
 
-evre_otp_enpoltime0RBV_intr{
+evre_otp_enpoltime00RBV_intr{
     in "\xC1%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime1RBV_intr{
+evre_otp_enpoltime01RBV_intr{
     in "\xC2%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime2RBV_intr{
+evre_otp_enpoltime02RBV_intr{
     in "\xC3%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime3RBV_intr{
+evre_otp_enpoltime03RBV_intr{
     in "\xC4%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime4RBV_intr{
+evre_otp_enpoltime04RBV_intr{
     in "\xC5%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime5RBV_intr{
+evre_otp_enpoltime05RBV_intr{
     in "\xC6%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime6RBV_intr{
+evre_otp_enpoltime06RBV_intr{
     in "\xC7%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime7RBV_intr{
+evre_otp_enpoltime07RBV_intr{
     in "\xC8%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime8RBV_intr{
+evre_otp_enpoltime08RBV_intr{
     in "\xC9%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltime9RBV_intr{
+evre_otp_enpoltime09RBV_intr{
     in "\xCA%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeARBV_intr{
+evre_otp_enpoltime10RBV_intr{
     in "\xCB%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeBRBV_intr{
+evre_otp_enpoltime11RBV_intr{
     in "\xCC%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeCRBV_intr{
+evre_otp_enpoltime12RBV_intr{
     in "\xCD%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeDRBV_intr{
+evre_otp_enpoltime13RBV_intr{
     in "\xCE%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeERBV_intr{
+evre_otp_enpoltime14RBV_intr{
     in "\xCF%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeFRBV_intr{
+evre_otp_enpoltime15RBV_intr{
     in "\xD0%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeGRBV_intr{
+evre_otp_enpoltime16RBV_intr{
     in "\xD9%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeHRBV_intr{
+evre_otp_enpoltime17RBV_intr{
     in "\xDA%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeIRBV_intr{
+evre_otp_enpoltime18RBV_intr{
     in "\xDB%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeJRBV_intr{
+evre_otp_enpoltime19RBV_intr{
     in "\xDC%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeKRBV_intr{
+evre_otp_enpoltime20RBV_intr{
     in "\xDD%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeLRBV_intr{
+evre_otp_enpoltime21RBV_intr{
     in "\xDE%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeMRBV_intr{
+evre_otp_enpoltime22RBV_intr{
     in "\xDF%r%*03r%*04r%*04r";
 }
-evre_otp_enpoltimeNRBV_intr{
+evre_otp_enpoltime23RBV_intr{
     in "\xE0%r%*03r%*04r%*04r";
 }
 
