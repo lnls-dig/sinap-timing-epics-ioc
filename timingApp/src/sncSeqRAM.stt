@@ -479,6 +479,18 @@ ss seq {
 
       EvtDelayValL = EvtDelayVal;
       EvtDelayNumL = EvtDelayNum;
+      delayUsed = 0;
+      for(i = 0; i < eventNum; i++){
+        
+        pvGet(event_timestamps[i], SYNC);
+        if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){
+          delayUsed = 1;
+        }
+      }
+      if (delayUsed == 0) {
+        event_timestamps[EvtDelayNum] = EvtDelayVal;
+        pvPut (event_timestamps[EvtDelayNum], SYNC);
+      }
   
     } state Running
   
@@ -656,6 +668,18 @@ ss seq {
 
       EvtDelayValL = EvtDelayVal;
       EvtDelayNumL = EvtDelayNum;
+      delayUsed = 0;
+      for(i = 0; i < eventNum; i++){
+        
+        pvGet(event_timestamps[i], SYNC);
+        if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){
+          delayUsed = 1;
+        }
+      }
+      if (delayUsed == 0) {
+        event_timestamps[EvtDelayNum] = EvtDelayVal;
+        pvPut (event_timestamps[EvtDelayNum], SYNC);
+      }
   
     } state Injecting
   
