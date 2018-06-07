@@ -992,23 +992,14 @@ record(bo, "$(P)$(R)Download-Trig") {
   field(OUT, "@timing.proto evr_download($(P),$(R)) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Upload-Trig") {
+record(bo, "$(P)$(R)GetRBV") {
   field(DESC, "upload trigger")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(HIGH, "0.5")
-  field(FLNK, "$(P)$(R)UploadCalc")
-}
-
-record(calcout, "$(P)$(R)UploadCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "upload trigger calc")
-  field(INPA, "$(P)$(R)Upload-Trig")
-  field(CALC, "A")
-  field(OOPT, "When Non-zero")
+  #field(HIGH, "0.5")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evr_upload($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evr_get_rbv($(P),$(R)) $(PORT)")
 }
 
 record(calc, "$(P)$(R)DevStatusCalc") {

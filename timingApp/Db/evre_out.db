@@ -1,25 +1,6 @@
 ########################################################################
 # Generic OUT(0 to 7) Register (17 to 24)
 
-record(mbbiDirect, "$(P)$(R)OUT$(num)IntlkRaw") {
-  field(ASG, "Reserved")
-  field(DESC, "OUT$(num) interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl$(num)RAW_intr $(PORT)")
-  field(FLNK, "$(P)$(R)OUT$(num)Intlk-Sts")
-}
-
-record(bi, "$(P)$(R)OUT$(num)Intlk-Sts") {
-  field(ASG, "Reserved")
-  field(DESC, "OUT$(num) interlock status")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  field(INP, "$(P)$(R)OUT$(num)IntlkRaw.B0")
-}
-
 record(mbbi, "$(P)$(R)OUT$(num)Src-Sts") {
   field(ASG, "Reserved")
   field(DESC, "OUT$(num) source selection status")
@@ -55,18 +36,58 @@ record(longin, "$(P)$(R)OUT$(num)FineDelay-RB") {
   field(EGU, "5ps")
 }
 
-record(longin, "$(P)$(R)OUT$(num)RFDelay-RB") {
+record(longin, "$(P)$(R)OUT$(num)RFDelayRaw") {
   field(ASG, "Reserved")
-  field(DESC, "OUT$(num) RF delay status")
+  field(DESC, "OUT$(num) RF delay rbv")
   field(EGU, "evt_T/20")
+}
+
+record(calcout, "$(P)$(R)OUT$(num)RFDelayTypeCalc"){
+  field(DESC, "OUT$(num) RF delay type calc")
+  field(INPA, "$(P)$(R)OUT$(num)RFDelayRaw")
+  field(CALC, "A = 31 ? 1 : 0")
+  field(OUT, "$(P)$(R)OUT$(num)RFDelayType-Sts PP")
+}
+
+record(bi, "$(P)$(R)OUT$(num)RFDelayType-Sts"){
+  field(DESC, "OUT$(num) RF delay type rbv")
+  field(ZNAM, "Manual")
+  field(ONAM, "Auto")
+}
+
+record(calc, "$(P)$(R)OUT$(num)RFDelay-RB") {
+  #field(ASG, "Reserved")
+  field(DESC, "OUT$(num) RF delay rbv")
+  field(INPA, "$(P)$(R)OUT$(num)RFDelayRaw")
+  field(INPB, "$(P)$(R)OUT$(num)RFDelay-SP")
+  field(CALC, "A = 31 ? B : A")
+  field(EGU, "evt_T/20")
+  field(FLNK, "$(P)$(R)OUT$(num)RFDelayTypeCalc")
+}
+
+record(bo, "$(P)$(R)OUT$(num)RFDelayType-Sel"){
+  field(DESC, "OUT$(num) RF delay type")
+  field(MASK, "1")
+  field(ZNAM, "Manual")
+  field(ONAM, "Auto")
+  field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalc")
 }
 
 record(longout, "$(P)$(R)OUT$(num)RFDelay-SP"){
   field(DESC, "OUT$(num) RF delay")
   field(DRVL, "0")
-  field(DRVH, "31")
+  field(DRVH, "30")
+  field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalc")
+}
+
+record(calcout, "$(P)$(R)OUT$(num)RFDelayCalc"){
+  field(DESC, "OUT$(num) RF delay calc")
+  field(INPA, "$(P)$(R)OUT$(num)RFDelayType-Sel.RVAL")
+  field(INPB, "$(P)$(R)OUT$(num)RFDelay-SP")
+  field(CALC, "A = 0 ? B : 31")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),$(num)) $(PORT)")
+  field(FLNK, "$(P)$(R)OUT$(num)RFDelay-RB")
 }
 
 record(longout, "$(P)$(R)OUT$(num)FineDelay-SP"){
@@ -138,23 +159,6 @@ record(calcout, "$(P)$(R)OUT$(num)SrcHw"){
   field(INPA, "$(P)$(R)OUT$(num)Src-Sel.RVAL")
   field(CALC, "A")
   field(OUT, "@timing.proto evre_out_src_set($(P),$(R),$(num)) $(PORT)")
-}
-
-record(calcout, "$(P)$(R)OUT$(num)IntlkCalc") {
-  field(ASG, "Reserved")
-  field(DESC, "OUT$(num) set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)OUT$(num)Intlk-Sel.RVAL")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(P),$(R),$(num)) $(PORT)")
-}
-
-record(bo, "$(P)$(R)OUT$(num)Intlk-Sel"){
-  field(DESC, "OUT$(num) interlock function selection")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)OUT$(num)IntlkCalc")
 }
 
 record(calc, "$(P)$(R)cmd_out_set$(num)") {

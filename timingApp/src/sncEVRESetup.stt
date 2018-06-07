@@ -11,7 +11,7 @@ char str[40];
 %%//----------------------------------------
 
 int uploadtrig;
-assign uploadtrig to "{P}{R}Upload-Trig.VAL";
+assign uploadtrig to "{P}{R}GetRBV.VAL";
 
 int downloadproc;
 assign downloadproc to "{P}{R}Download-Trig.PROC";
@@ -72,6 +72,8 @@ ss configuration {
 
 		%%// trigger upload
 		uploadtrig = 1;
+		pvPut(uploadtrig,SYNC);
+		uploadtrig = 0;
 		pvPut(uploadtrig,SYNC);
 
 		%%// upload message

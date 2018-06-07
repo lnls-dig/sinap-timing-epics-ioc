@@ -14,7 +14,7 @@ int utcSrcCopy;
 %%//----------------------------------------
 
 int uploadtrig;
-assign uploadtrig to "{P}{R}Upload-Trig.VAL";
+assign uploadtrig to "{P}{R}GetRBV.VAL";
 
 int downloadproc;
 assign downloadproc to "{P}{R}Download-Trig.PROC";

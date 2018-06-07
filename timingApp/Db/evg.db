@@ -1,5 +1,5 @@
 record(ao, "$(P)$(R)RFRef-Cte"){
-  field(DESC, "EVG RF Ref Input frequency")
+  field(DESC, "RF Ref Input frequency")
   field(PREC, "3")
   field(PINI, "1")
   field(EGU, "Hz")
@@ -8,7 +8,7 @@ record(ao, "$(P)$(R)RFRef-Cte"){
 }
 
 record(calc, "$(P)$(R)FPGAClk-Cte"){
-  field(DESC, "EVG FPGA Clock")
+  field(DESC, "FPGA Clock")
   field(PREC, "3")
   field(EGU, "sec")
   field(INPA, "$(P)$(R)RFRef-Cte")
@@ -21,7 +21,7 @@ record(calc, "$(P)$(R)FPGAClk-Cte"){
 
 record(mbbiDirect, "$(P)$(R)SeqEnblDevEnblRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG seqen and enable status")
+  field(DESC, "seqen and enable status")
   field(NOBT, "8")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
@@ -31,7 +31,7 @@ record(mbbiDirect, "$(P)$(R)SeqEnblDevEnblRaw") {
 
 record(bi, "$(P)$(R)DevEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG enable status")
+  field(DESC, "enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)SeqEnblDevEnblRaw.B0")
@@ -40,7 +40,7 @@ record(bi, "$(P)$(R)DevEnbl-Sts") {
 
 record(bi, "$(P)$(R)SeqEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM enable status")
+  field(DESC, "SEQRAM enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)SeqEnblDevEnblRaw.B1")
@@ -48,7 +48,7 @@ record(bi, "$(P)$(R)SeqEnbl-Sts") {
 
 record(mbbiDirect, "$(P)$(R)SeqStatusRFStatusRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM and RF input status")
+  field(DESC, "SEQRAM and RF input status")
   field(NOBT, "6")
   field(SHFT, "3")
   field(SCAN, "I/O Intr")
@@ -58,7 +58,7 @@ record(mbbiDirect, "$(P)$(R)SeqStatusRFStatusRaw") {
 }
 
 record(bo, "$(P)$(R)RFReset-Cmd") {
-  field(DESC, "EVG RF input reset")
+  field(DESC, "RF input reset")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(HIGH, "1")
@@ -67,7 +67,7 @@ record(bo, "$(P)$(R)RFReset-Cmd") {
 
 record(bi, "$(P)$(R)RFStatus-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG RF input status")
+  field(DESC, "RF input status")
   field(ZNAM, "Loss or Out of Range")
   field(ONAM, "Normal")
   field(INP, "$(P)$(R)SeqStatusRFStatusRaw.B2")
@@ -84,7 +84,7 @@ record(mbbiDirect, "$(P)$(R)Los-Mon") {
 
 record(calc, "$(P)$(R)SeqStatusCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM status calculation")
+  field(DESC, "SEQRAM status calculation")
   field(INPA, "$(P)$(R)SeqStatusRFStatusRaw")
   field(CALC, "A&3")
   field(FLNK, "$(P)$(R)SeqStatus-Mon")
@@ -92,7 +92,7 @@ record(calc, "$(P)$(R)SeqStatusCalc") {
 
 record(mbbi, "$(P)$(R)SeqStatus-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM status")
+  field(DESC, "SEQRAM status")
   field(INP, "$(P)$(R)SeqStatusCalc")
   field(ZRVL, "0")
   field(ZRST, "Stopped")
@@ -104,7 +104,7 @@ record(mbbi, "$(P)$(R)SeqStatus-Mon") {
 
 record(calcout, "$(P)$(R)SeqEnblDevEnblCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG download SEQEN and ENABLE")
+  field(DESC, "download SEQEN and ENABLE")
   field(PINI, "1")
   field(INPA, "$(P)$(R)SeqEnbl-Sel")
   field(INPB, "$(P)$(R)DevEnbl-Sel")
@@ -113,7 +113,7 @@ record(calcout, "$(P)$(R)SeqEnblDevEnblCalc") {
 
 record(calcout, "$(P)$(R)SEQEN") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM set enable calc")
+  field(DESC, "SEQRAM set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)SeqEnbl-Sel.RVAL")
   field(INPB, "$(P)$(R)DevEnbl-Sts")
@@ -124,7 +124,7 @@ record(calcout, "$(P)$(R)SEQEN") {
 
 record(calcout, "$(P)$(R)EVGEN") {
   field(ASG, "Reserved")
-  field(DESC, "EVG set enable calc")
+  field(DESC, "set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)SeqEnbl-Sts")
   field(INPB, "$(P)$(R)DevEnbl-Sel.RVAL")
@@ -176,7 +176,7 @@ record(bi, "$(P)$(R)ACEnbl-Sts") {
 
 record(longin, "$(P)$(R)ACDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG AC line RAW frequency divider")
+  field(DESC, "AC line RAW frequency divider")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_acline_acdivraw_intr $(PORT)")
@@ -185,14 +185,14 @@ record(longin, "$(P)$(R)ACDivRaw") {
 
 record(calc, "$(P)$(R)ACDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG AC line input divider RBV")
+  field(DESC, "AC line input divider RBV")
   field(INPA, "$(P)$(R)ACDivRaw")
   field(CALC, "A+1")
   field(FLNK, "$(P)$(R)InjRate-RB")
 }
 
 record(calc, "$(P)$(R)InjRate-RB"){
-  field(DESC, "EVG Injection rate trigger RBV")
+  field(DESC, "Injection rate trigger RBV")
   field(INPA, "$(P)$(R)ACDiv-RB")
   field(CALC, "60/A")
   field(PREC, "0")
@@ -209,7 +209,7 @@ record(bo, "$(P)$(R)ACEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)InjRate-SP"){
-  field(DESC, "EVG Injection rate trigger")
+  field(DESC, "Injection rate trigger")
   field(DRVH, "10")
   field(DRVL, "1")
   field(PREC, "0")
@@ -218,7 +218,7 @@ record(ao, "$(P)$(R)InjRate-SP"){
 }
 
 record(calcout, "$(P)$(R)InjRateCalc"){
-  field(DESC, "EVG Injection rate trigger calcout")
+  field(DESC, "Injection rate trigger calcout")
   field(INPA, "$(P)$(R)InjRate-SP")
   field(CALC, "60/A")
   field(PREC, "0")
@@ -226,7 +226,7 @@ record(calcout, "$(P)$(R)InjRateCalc"){
 }
 
 record(ao, "$(P)$(R)ACDiv-SP"){
-  field(DESC, "EVG AC line input divider")
+  field(DESC, "AC line input divider")
   field(DTYP, "stream")
   field(DRVH, "60")
   field(DRVL, "1")
@@ -252,14 +252,14 @@ record(longout, "$(P)$(R)cmd_acdiv_set") {
 
 record(bi, "$(P)$(R)Clk0MuxEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux0 enable status")
+  field(DESC, "Mux0 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(longin, "$(P)$(R)Clk0MuxDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux0 frequency divider RAW")
+  field(DESC, "Mux0 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div0RAW_intr $(PORT)")
@@ -268,7 +268,7 @@ record(longin, "$(P)$(R)Clk0MuxDivRaw") {
 
 record(calc, "$(P)$(R)Clk0MuxDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux0 frequency divider RBV")
+  field(DESC, "Mux0 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk0MuxDivRaw")
   field(CALC, "A+1")
 }
@@ -283,7 +283,7 @@ record(bo, "$(P)$(R)Clk0MuxEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)Clk0MuxDiv-SP"){
-  field(DESC, "EVG Mux0 frequency divider")
+  field(DESC, "Mux0 frequency divider")
   field(DTYP, "stream")
   field(DRVH, "1073741824")
   field(DRVL, "2")
@@ -311,14 +311,14 @@ record(longout, "$(P)$(R)cmd_mux_set0") {
 
 record(bi, "$(P)$(R)Clk1MuxEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux1 enable status")
+  field(DESC, "Mux1 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(longin, "$(P)$(R)Clk1MuxDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux1 frequency divider RAW")
+  field(DESC, "Mux1 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div1RAW_intr $(PORT)")
@@ -327,7 +327,7 @@ record(longin, "$(P)$(R)Clk1MuxDivRaw") {
 
 record(calc, "$(P)$(R)Clk1MuxDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux1 frequency divider RBV")
+  field(DESC, "Mux1 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk1MuxDivRaw")
   field(CALC, "A+1")
 }
@@ -342,7 +342,7 @@ record(bo, "$(P)$(R)Clk1MuxEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)Clk1MuxDiv-SP"){
-  field(DESC, "EVG Mux1 frequency divider")
+  field(DESC, "Mux1 frequency divider")
   field(DTYP, "stream")
   field(DRVH, "1073741824")
   field(DRVL, "2")
@@ -368,14 +368,14 @@ record(longout, "$(P)$(R)cmd_mux_set1") {
 
 record(bi, "$(P)$(R)Clk2MuxEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux2 enable status")
+  field(DESC, "Mux2 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(longin, "$(P)$(R)Clk2MuxDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux2 frequency divider RAW")
+  field(DESC, "Mux2 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div2RAW_intr $(PORT)")
@@ -384,7 +384,7 @@ record(longin, "$(P)$(R)Clk2MuxDivRaw") {
 
 record(calc, "$(P)$(R)Clk2MuxDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux2 frequency divider RBV")
+  field(DESC, "Mux2 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk2MuxDivRaw")
   field(CALC, "A+1")
 }
@@ -399,7 +399,7 @@ record(bo, "$(P)$(R)Clk2MuxEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)Clk2MuxDiv-SP"){
-  field(DESC, "EVG Mux2 frequency divider")
+  field(DESC, "Mux2 frequency divider")
   field(DTYP, "stream")
   field(DRVH, "1073741824")
   field(DRVL, "2")
@@ -425,14 +425,14 @@ record(longout, "$(P)$(R)cmd_mux_set2") {
 
 record(bi, "$(P)$(R)Clk3MuxEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux3 enable status")
+  field(DESC, "Mux3 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(longin, "$(P)$(R)Clk3MuxDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux3 frequency divider RAW")
+  field(DESC, "Mux3 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div3RAW_intr $(PORT)")
@@ -441,7 +441,7 @@ record(longin, "$(P)$(R)Clk3MuxDivRaw") {
 
 record(calc, "$(P)$(R)Clk3MuxDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux3 frequency divider RBV")
+  field(DESC, "Mux3 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk3MuxDivRaw")
   field(CALC, "A+1")
 }
@@ -456,7 +456,7 @@ record(bo, "$(P)$(R)Clk3MuxEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)Clk3MuxDiv-SP"){
-  field(DESC, "EVG Mux3 frequency divider")
+  field(DESC, "Mux3 frequency divider")
   field(DTYP, "stream")
   field(DRVH, "1073741824")
   field(DRVL, "2")
@@ -482,14 +482,14 @@ record(longout, "$(P)$(R)cmd_mux_set3") {
 
 record(bi, "$(P)$(R)Clk4MuxEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux4 enable status")
+  field(DESC, "Mux4 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(longin, "$(P)$(R)Clk4MuxDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux4 frequency divider RAW")
+  field(DESC, "Mux4 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div4RAW_intr $(PORT)")
@@ -498,7 +498,7 @@ record(longin, "$(P)$(R)Clk4MuxDivRaw") {
 
 record(calc, "$(P)$(R)Clk4MuxDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux4 frequency divider RBV")
+  field(DESC, "Mux4 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk4MuxDivRaw")
   field(CALC, "A+1")
 }
@@ -513,7 +513,7 @@ record(bo, "$(P)$(R)Clk4MuxEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)Clk4MuxDiv-SP"){
-  field(DESC, "EVG Mux4 frequency divider")
+  field(DESC, "Mux4 frequency divider")
   field(DTYP, "stream")
   field(DRVH, "1073741824")
   field(DRVL, "2")
@@ -539,14 +539,14 @@ record(longout, "$(P)$(R)cmd_mux_set4") {
 
 record(bi, "$(P)$(R)Clk5MuxEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux5 enable status")
+  field(DESC, "Mux5 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(longin, "$(P)$(R)Clk5MuxDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux5 frequency divider RAW")
+  field(DESC, "Mux5 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div5RAW_intr $(PORT)")
@@ -555,7 +555,7 @@ record(longin, "$(P)$(R)Clk5MuxDivRaw") {
 
 record(calc, "$(P)$(R)Clk5MuxDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux5 frequency divider RBV")
+  field(DESC, "Mux5 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk5MuxDivRaw")
   field(CALC, "A+1")
 }
@@ -570,7 +570,7 @@ record(bo, "$(P)$(R)Clk5MuxEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)Clk5MuxDiv-SP"){
-  field(DESC, "EVG Mux5 frequency divider")
+  field(DESC, "Mux5 frequency divider")
   field(DTYP, "stream")
   field(DRVH, "1073741824")
   field(DRVL, "2")
@@ -597,14 +597,14 @@ record(longout, "$(P)$(R)cmd_mux_set5") {
 
 record(bi, "$(P)$(R)Clk6MuxEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux6 enable status")
+  field(DESC, "Mux6 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(longin, "$(P)$(R)Clk6MuxDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux6 frequency divider RAW")
+  field(DESC, "Mux6 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div6RAW_intr $(PORT)")
@@ -613,7 +613,7 @@ record(longin, "$(P)$(R)Clk6MuxDivRaw") {
 
 record(calc, "$(P)$(R)Clk6MuxDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux6 frequency divider RBV")
+  field(DESC, "Mux6 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk6MuxDivRaw")
   field(CALC, "A+1")
 }
@@ -628,7 +628,7 @@ record(bo, "$(P)$(R)Clk6MuxEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)Clk6MuxDiv-SP"){
-  field(DESC, "EVG Mux6 frequency divider")
+  field(DESC, "Mux6 frequency divider")
   field(DTYP, "stream")
   field(DRVH, "1073741824")
   field(DRVL, "2")
@@ -654,14 +654,14 @@ record(longout, "$(P)$(R)cmd_mux_set6") {
 
 record(bi, "$(P)$(R)Clk7MuxEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux7 enable status")
+  field(DESC, "Mux7 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(longin, "$(P)$(R)Clk7MuxDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux7 frequency divider RAW")
+  field(DESC, "Mux7 frequency divider RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_mux_div7RAW_intr $(PORT)")
@@ -670,7 +670,7 @@ record(longin, "$(P)$(R)Clk7MuxDivRaw") {
 
 record(calc, "$(P)$(R)Clk7MuxDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Mux7 frequency divider RBV")
+  field(DESC, "Mux7 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk7MuxDivRaw")
   field(CALC, "A+1")
 }
@@ -685,7 +685,7 @@ record(bo, "$(P)$(R)Clk7MuxEnbl-Sel"){
 }
 
 record(ao, "$(P)$(R)Clk7MuxDiv-SP"){
-  field(DESC, "EVG Mux7 frequency divider")
+  field(DESC, "Mux7 frequency divider")
   field(DTYP, "stream")
   field(DRVH, "1073741824")
   field(DRVL, "2")
@@ -710,19 +710,19 @@ record(longout, "$(P)$(R)cmd_mux_set7") {
 # SEQRAM setting register [49]
 
 record(longout, "$(P)$(R)SeqAddr-SP"){
-  field(DESC, "Set address of EVG SEQRAM")
+  field(DESC, "Set address of SEQRAM")
   field(DRVH, "16383")
   field(DRVL, "0")
 }
 
 record(longout, "$(P)$(R)SeqCode-SP"){
-  field(DESC, "Set event code in EVG SEQRAM")
+  field(DESC, "Set event code in SEQRAM")
   field(DRVH, "255")
   field(DRVL, "0")
 }
 
 record(longout, "$(P)$(R)SeqTime-SP"){
-  field(DESC, "Set timestamp in EVG SEQRAM")
+  field(DESC, "Set timestamp in SEQRAM")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_seqramset_set($(P),$(R)) $(PORT)")
 }
@@ -738,7 +738,7 @@ record(longout, "$(P)$(R)cmd_seqram_set") {
 
 record(mbbiDirect, "$(P)$(R)SeqCount-SP") {
   field(ASG, "Reserved")
-  field(DESC, "EVG seqcount status")
+  field(DESC, "seqcount status")
   field(NOBT, "14")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_seqramsw_get($(P),$(R)) $(PORT)")
@@ -767,7 +767,7 @@ record(longout, "$(P)$(R)cmd_seqramsw_set") {
 
 # This record value is read by the Sequencer program sncEVGSetup
 record(bo, "$(P)$(R)UTCRefSrc-Sel"){
-  field(DESC, "EVG UTC reference")
+  field(DESC, "UTC reference")
   field(MASK, "1")
   field(ZNAM, "PC")
   field(ONAM, "Control Room")
@@ -797,18 +797,18 @@ record(longin, "$(P)$(R)CtrlRoomUTC"){
   field(EGU, "seconds")
 }
 
-# Note: Setting $(P)$(R)UTC.VAL to 0 causes EVG to broadcast
+# Note: Setting $(P)$(R)UTC.VAL to 0 causes a broadcast
 # 	the timestamp to the EVEs and EVRs.
 
 record(longout, "$(P)$(R)UTC-SP"){
-  field(DESC, "EVG timestamp UTC field")
+  field(DESC, "timestamp UTC field")
   field(EGU, "seconds")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_tmstmp_utc_set($(P),$(R)) $(PORT)")
 }
 
 record(mbbo, "$(P)$(R)TimestampSrc-Sel"){
-  field(DESC, "EVG timestamp signal source")	
+  field(DESC, "timestamp signal source")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
   field(ONST, "DBUS")
@@ -824,19 +824,19 @@ record(mbbo, "$(P)$(R)TimestampSrc-Sel"){
 
 record(longin, "$(P)$(R)UTC-RB"){
   field(ASG, "Reserved")
-  field(DESC, "EVG timestamp UTC field RBV")
+  field(DESC, "timestamp UTC field RBV")
   field(EGU, "seconds")
 }
 
 record(longin, "$(P)$(R)SubSecond-Mon"){
   field(ASG, "Reserved")
-  field(DESC, "EVG timestamp subsecond field RBV")
+  field(DESC, "timestamp subsecond field RBV")
   field(EGU, "evt_T")
 }
 
 record(mbbi, "$(P)$(R)TimestampSrc-Sts"){
   field(ASG, "Reserved")
-  field(DESC, "EVG timestamp signal source RBV")	
+  field(DESC, "timestamp signal source RBV")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
   field(ONST, "DBUS")
@@ -869,7 +869,7 @@ record(longout, "$(P)$(R)cmd_tmstmp_set"){
 # Digital input 0 [53]
 
 record(longout, "$(P)$(R)DIEvent0-SP") {
-  field(DESC, "EVG digital input 0 event code")
+  field(DESC, "digital input 0 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -877,7 +877,7 @@ record(longout, "$(P)$(R)DIEvent0-SP") {
 }
 
 record(bo, "$(P)$(R)DIEnbl0-Sel") {
-  field(DESC, "EVG digital input 0 enable")
+  field(DESC, "digital input 0 enable")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
@@ -885,7 +885,7 @@ record(bo, "$(P)$(R)DIEnbl0-Sel") {
 }
 
 record(bo, "$(P)$(R)DIPol0-Sel") {
-  field(DESC, "EVG digital input 0 polarity")
+  field(DESC, "digital input 0 polarity")
   field(MASK, "1")
   field(ZNAM, "Normal")
   field(ONAM, "Inverse")
@@ -893,7 +893,7 @@ record(bo, "$(P)$(R)DIPol0-Sel") {
 }
 
 record(bo, "$(P)$(R)DILog0-Sel") {
-  field(DESC, "EVG dig. input 0 event timestamp enable")
+  field(DESC, "dig. input 0 event timestamp enable")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
@@ -902,7 +902,7 @@ record(bo, "$(P)$(R)DILog0-Sel") {
 
 record(calcout, "$(P)$(R)DIEnblCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 set enable calc")
+  field(DESC, "digital input 0 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)DIEnbl0-Sel.VAL")
   field(INPB, "$(P)$(R)DIPol0-Sts.VAL")
@@ -914,7 +914,7 @@ record(calcout, "$(P)$(R)DIEnblCalc0") {
 
 record(calcout, "$(P)$(R)DIPolCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 set polarity calc")
+  field(DESC, "digital input 0 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)DIEnbl0-Sts.VAL")
   field(INPB, "$(P)$(R)DIPol0-Sel.VAL")
@@ -926,7 +926,7 @@ record(calcout, "$(P)$(R)DIPolCalc0") {
 
 record(calcout, "$(P)$(R)DILogCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 set timestamp calc")
+  field(DESC, "digital input 0 set timestamp calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)DIEnbl0-Sts.VAL")
   field(INPB, "$(P)$(R)DIPol0-Sts.VAL")
@@ -938,7 +938,7 @@ record(calcout, "$(P)$(R)DILogCalc0") {
 
 record(calcout, "$(P)$(R)DI0Calc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG dig.inp. 0 download en, pol and time")
+  field(DESC, "dig.inp. 0 download en, pol and time")
   field(INPA, "$(P)$(R)DIEnbl0-Sel.VAL")
   field(INPB, "$(P)$(R)DIPol0-Sel.VAL")
   field(INPC, "$(P)$(R)DILog0-Sel.VAL")
@@ -958,7 +958,7 @@ record(mbbiDirect, "$(P)$(R)DI0Raw") {
 
 record(bi, "$(P)$(R)DILog0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 timestamping sts")
+  field(DESC, "digital input 0 timestamping sts")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)DI0Raw.B0")
@@ -967,7 +967,7 @@ record(bi, "$(P)$(R)DILog0-Sts") {
 
 record(bi, "$(P)$(R)DIPol0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 polarity status")
+  field(DESC, "digital input 0 polarity status")
   field(ZNAM, "Normal")
   field(ONAM, "Inverse")
   field(INP, "$(P)$(R)DI0Raw.B1")
@@ -976,7 +976,7 @@ record(bi, "$(P)$(R)DIPol0-Sts") {
 
 record(bi, "$(P)$(R)DIEnbl0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 enable status")
+  field(DESC, "digital input 0 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)DI0Raw.B2")
@@ -984,7 +984,7 @@ record(bi, "$(P)$(R)DIEnbl0-Sts") {
 
 record(longin, "$(P)$(R)DIEvent0-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 event RBV")
+  field(DESC, "digital input 0 event RBV")
 }
 
 record(longout, "$(P)$(R)cmd_diginp_set0") {
@@ -1003,7 +1003,7 @@ record(longout, "$(P)$(R)cmd_diginp_get0") {
 # Digital input 1 [54]
 
 record(longout, "$(P)$(R)DIEvent1-SP") {
-  field(DESC, "EVG digital input 1 event code")
+  field(DESC, "digital input 1 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1011,7 +1011,7 @@ record(longout, "$(P)$(R)DIEvent1-SP") {
 }
 
 record(bo, "$(P)$(R)DIEnbl1-Sel") {
-  field(DESC, "EVG digital input 1 enable")
+  field(DESC, "digital input 1 enable")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
@@ -1019,7 +1019,7 @@ record(bo, "$(P)$(R)DIEnbl1-Sel") {
 }
 
 record(bo, "$(P)$(R)DIPol1-Sel") {
-  field(DESC, "EVG digital input 1 polarity")
+  field(DESC, "digital input 1 polarity")
   field(MASK, "1")
   field(ZNAM, "Normal")
   field(ONAM, "Inverse")
@@ -1027,7 +1027,7 @@ record(bo, "$(P)$(R)DIPol1-Sel") {
 }
 
 record(bo, "$(P)$(R)DILog1-Sel") {
-  field(DESC, "EVG dig. input 1 event timestamp enable")
+  field(DESC, "dig. input 1 event timestamp enable")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
@@ -1036,7 +1036,7 @@ record(bo, "$(P)$(R)DILog1-Sel") {
 
 record(calcout, "$(P)$(R)DIEnblCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 set enable calc")
+  field(DESC, "digital input 1 set enable calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)DIEnbl1-Sel.VAL")
   field(INPB, "$(P)$(R)DIPol1-Sts.VAL")
@@ -1048,7 +1048,7 @@ record(calcout, "$(P)$(R)DIEnblCalc1") {
 
 record(calcout, "$(P)$(R)DIPolCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 set polarity calc")
+  field(DESC, "digital input 1 set polarity calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)DIEnbl1-Sts.VAL")
   field(INPB, "$(P)$(R)DIPol1-Sel.VAL")
@@ -1060,7 +1060,7 @@ record(calcout, "$(P)$(R)DIPolCalc1") {
 
 record(calcout, "$(P)$(R)DILogCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 set timestamp calc")
+  field(DESC, "digital input 1 set timestamp calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)DIEnbl1-Sts.VAL")
   field(INPB, "$(P)$(R)DIPol1-Sts.VAL")
@@ -1072,7 +1072,7 @@ record(calcout, "$(P)$(R)DILogCalc1") {
 
 record(calcout, "$(P)$(R)DI1Calc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG dig.inp. 1 download en, pol and time")
+  field(DESC, "dig.inp. 1 download en, pol and time")
   field(INPA, "$(P)$(R)DIEnbl1-Sel.VAL")
   field(INPB, "$(P)$(R)DIPol1-Sel.VAL")
   field(INPC, "$(P)$(R)DILog1-Sel.VAL")
@@ -1092,7 +1092,7 @@ record(mbbiDirect, "$(P)$(R)DI1Raw") {
 
 record(bi, "$(P)$(R)DILog1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 timestamping sts")
+  field(DESC, "digital input 1 timestamping sts")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)DI1Raw.B0")
@@ -1101,7 +1101,7 @@ record(bi, "$(P)$(R)DILog1-Sts") {
 
 record(bi, "$(P)$(R)DIPol1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 polarity status")
+  field(DESC, "digital input 1 polarity status")
   field(ZNAM, "Normal")
   field(ONAM, "Inverse")
   field(INP, "$(P)$(R)DI1Raw.B1")
@@ -1110,7 +1110,7 @@ record(bi, "$(P)$(R)DIPol1-Sts") {
 
 record(bi, "$(P)$(R)DIEnbl1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 enable status")
+  field(DESC, "digital input 1 enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)DI1Raw.B2")
@@ -1118,7 +1118,7 @@ record(bi, "$(P)$(R)DIEnbl1-Sts") {
 
 record(longin, "$(P)$(R)DIEvent1-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 event RBV")
+  field(DESC, "digital input 1 event RBV")
 }
 
 record(longout, "$(P)$(R)cmd_diginp_set1") {
@@ -1137,16 +1137,16 @@ record(longout, "$(P)$(R)cmd_diginp_get1") {
 # Interlock map [56]
 
 record(mbboDirect, "$(P)$(R)ilock_mbbo") {
-  field(DESC, "EVG interlock input to output map")
+  field(DESC, "interlock input to output map")
 }
 
 record(mbbiDirect, "$(P)$(R)ilock_mbbi") {
-  field(DESC, "EVG interlock input to output map")
+  field(DESC, "interlock input to output map")
   field(VAL, "1")
 }
 
 record(seq, "$(P)$(R)ilock_seq1") {
-  field(DESC, "EVG interlock input to output map")
+  field(DESC, "interlock input to output map")
   field(DOL1, "$(P)$(R)IntlkTbl0to15-Sts.B0")
   field(DOL2, "$(P)$(R)IntlkTbl0to15-Sts.B1")
   field(DOL3, "$(P)$(R)IntlkTbl0to15-Sts.B2")
@@ -1171,7 +1171,7 @@ record(seq, "$(P)$(R)ilock_seq1") {
 }
 
 record(seq, "$(P)$(R)ilock_seq2") {
-  field(DESC, "EVG interlock input to output map")
+  field(DESC, "interlock input to output map")
   field(DOL1, "$(P)$(R)IntlkTbl0to15-Sts.BA")
   field(DOL2, "$(P)$(R)IntlkTbl0to15-Sts.BB")
   field(DOL3, "$(P)$(R)IntlkTbl0to15-Sts.BC")
@@ -1187,7 +1187,7 @@ record(seq, "$(P)$(R)ilock_seq2") {
 }
 
 record(seq, "$(P)$(R)ilock_seq3") {
-  field(DESC, "EVG interlock input to output map")
+  field(DESC, "interlock input to output map")
   field(DOL1, "$(P)$(R)IntlkTbl16to27-Sts.B0")
   field(DOL2, "$(P)$(R)IntlkTbl16to27-Sts.B1")
   field(DOL3, "$(P)$(R)IntlkTbl16to27-Sts.B2")
@@ -1212,7 +1212,7 @@ record(seq, "$(P)$(R)ilock_seq3") {
 }
 
 record(seq, "$(P)$(R)ilock_seq4") {
-  field(DESC, "EVG interlock input to output map")
+  field(DESC, "interlock input to output map")
   field(DOL1, "$(P)$(R)IntlkTbl16to27-Sts.BA")
   field(DOL2, "$(P)$(R)IntlkTbl16to27-Sts.BB")
   field(LNK1, "$(P)$(R)IntlkTbl16to27-Sel.BA")
@@ -1220,18 +1220,18 @@ record(seq, "$(P)$(R)ilock_seq4") {
 }
 
 record(mbboDirect, "$(P)$(R)IntlkTbl0to15-Sel") {
-  field(DESC, "EVG interlock input to output map")
+  field(DESC, "interlock input to output map")
   field(FLNK, "$(P)$(R)IntlkTblCalc")
 }
 
 record(mbboDirect, "$(P)$(R)IntlkTbl16to27-Sel") {
-  field(DESC, "EVG interlock input to output map")
+  field(DESC, "interlock input to output map")
   field(FLNK, "$(P)$(R)IntlkTblCalc")
 }
 
 record(calcout, "$(P)$(R)IntlkTblCalc") {
   #field(ASG, "Reserved")
-  field(DESC, "EVG interlock map calc")
+  field(DESC, "interlock map calc")
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)IntlkTbl16to27-Sel")
   field(INPB, "$(P)$(R)IntlkTbl0to15-Sel")
@@ -1240,7 +1240,7 @@ record(calcout, "$(P)$(R)IntlkTblCalc") {
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn0-SP") {
-  field(DESC, "EVG interlock input 0 event code")
+  field(DESC, "interlock input 0 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1248,7 +1248,7 @@ record(longout, "$(P)$(R)IntlkEvtIn0-SP") {
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn1-SP") {
-  field(DESC, "EVG interlock input 1 event code")
+  field(DESC, "interlock input 1 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1256,7 +1256,7 @@ record(longout, "$(P)$(R)IntlkEvtIn1-SP") {
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn2-SP") {
-  field(DESC, "EVG interlock input 2 event code")
+  field(DESC, "interlock input 2 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1264,7 +1264,7 @@ record(longout, "$(P)$(R)IntlkEvtIn2-SP") {
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn3-SP") {
-  field(DESC, "EVG interlock input 3 event code")
+  field(DESC, "interlock input 3 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1272,7 +1272,7 @@ record(longout, "$(P)$(R)IntlkEvtIn3-SP") {
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn4-SP") {
-  field(DESC, "EVG interlock input 4 event code")
+  field(DESC, "interlock input 4 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1280,7 +1280,7 @@ record(longout, "$(P)$(R)IntlkEvtIn4-SP") {
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn5-SP") {
-  field(DESC, "EVG interlock input 5 event code")
+  field(DESC, "interlock input 5 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1288,7 +1288,7 @@ record(longout, "$(P)$(R)IntlkEvtIn5-SP") {
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn6-SP") {
-  field(DESC, "EVG interlock input 6 event code")
+  field(DESC, "interlock input 6 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1296,7 +1296,7 @@ record(longout, "$(P)$(R)IntlkEvtIn6-SP") {
 }
 
 record(longout, "$(P)$(R)IntlkEvtOut-SP") {
-  field(DESC, "EVG interlock output event code")
+  field(DESC, "interlock output event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
@@ -1316,53 +1316,53 @@ record(longout, "$(P)$(R)cmd_evg_ilockmap_get") {
 }
 
 record(mbbiDirect, "$(P)$(R)IntlkTbl0to15-Sts") {
-  field(DESC, "EVG interlock input to output map RBV")
+  field(DESC, "interlock input to output map RBV")
   field(FLNK, "$(P)$(R)ilock_seq1")
 }
 
 record(mbbiDirect, "$(P)$(R)IntlkTbl16to27-Sts") {
-  field(DESC, "EVG interlock input to output map RBV")
+  field(DESC, "interlock input to output map RBV")
   field(FLNK, "$(P)$(R)ilock_seq3")
 }
 
 record(longin, "$(P)$(R)IntlkEvtIn0-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 0 event code RBV")
+  field(DESC, "interlock input 0 event code RBV")
 }
 
 record(longin, "$(P)$(R)IntlkEvtIn1-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 1 event code RBV")
+  field(DESC, "interlock input 1 event code RBV")
 }
 
 record(longin, "$(P)$(R)IntlkEvtIn2-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 2 event code RBV")
+  field(DESC, "interlock input 2 event code RBV")
 }
 
 record(longin, "$(P)$(R)IntlkEvtIn3-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 3 event code RBV")
+  field(DESC, "interlock input 3 event code RBV")
 }
 
 record(longin, "$(P)$(R)IntlkEvtIn4-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 4 event code RBV")
+  field(DESC, "interlock input 4 event code RBV")
 }
 
 record(longin, "$(P)$(R)IntlkEvtIn5-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 5 event code RBV")
+  field(DESC, "interlock input 5 event code RBV")
 }
 
 record(longin, "$(P)$(R)IntlkEvtIn6-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 6 event code RBV")
+  field(DESC, "interlock input 6 event code RBV")
 }
 
 record(longin, "$(P)$(R)IntlkEvtOut-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock output event code RBV")
+  field(DESC, "interlock output event code RBV")
 }
 
 ########################################################################
@@ -1410,7 +1410,7 @@ record(bo, "$(P)$(R)IntlkCtrlRepeat-Sel") {
 
 record(calcout, "$(P)$(R)IntlkCtrlEnblCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control. En, reset, cont.")
+  field(DESC, "Interlock control. En, reset, cont.")
   field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sel")
   field(INPB, "$(P)$(R)IntlkCtrlRst-Sts")
   field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sts")
@@ -1422,7 +1422,7 @@ record(calcout, "$(P)$(R)IntlkCtrlEnblCalc") {
 
 record(calcout, "$(P)$(R)IntlkCtrlRstCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control. En, reset, cont.")
+  field(DESC, "Interlock control. En, reset, cont.")
   field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sts")
   field(INPB, "$(P)$(R)IntlkCtrlRst-Sel")
   field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sts")
@@ -1434,7 +1434,7 @@ record(calcout, "$(P)$(R)IntlkCtrlRstCalc") {
 
 record(calcout, "$(P)$(R)IntlkCtrlRepeatCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control. En, reset, cont.")
+  field(DESC, "Interlock control. En, reset, cont.")
   field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sts")
   field(INPB, "$(P)$(R)IntlkCtrlRst-Sts")
   field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sel")
@@ -1446,7 +1446,7 @@ record(calcout, "$(P)$(R)IntlkCtrlRepeatCalc") {
 
 record(calcout, "$(P)$(R)IntlkCtrlCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control. En, reset, cont.")
+  field(DESC, "Interlock control. En, reset, cont.")
   field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sel")
   field(INPB, "$(P)$(R)IntlkCtrlRst-Sel")
   field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sel")
@@ -1454,7 +1454,7 @@ record(calcout, "$(P)$(R)IntlkCtrlCalc") {
 }
 
 record(longout, "$(P)$(R)IntlkCtrlRepeatTime-SP") {
-  field(DESC, "EVG Interlock event output repeat time")
+  field(DESC, "Interlock event output repeat time")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(DTYP, "stream")
@@ -1463,7 +1463,7 @@ record(longout, "$(P)$(R)IntlkCtrlRepeatTime-SP") {
 
 record(longin, "$(P)$(R)IntlkCtrlRepeatTime-RB") {
   #field(ASG, "Reserved")
-  field(DESC, "EVG Interlock evtout repeat time RBV")
+  field(DESC, "Interlock evtout repeat time RBV")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_ilock_repeat_time_intr $(PORT)")
@@ -1471,7 +1471,7 @@ record(longin, "$(P)$(R)IntlkCtrlRepeatTime-RB") {
 
 record(mbbiDirect, "$(P)$(R)IntlkCtrlRaw") {
   #field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control RBV.")
+  field(DESC, "Interlock control RBV.")
   field(NOBT, "8")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
@@ -1546,7 +1546,7 @@ record(calcout, "$(P)$(R)cmd_frmvrs_get"){
 
 record(longin, "$(P)$(R)Alive-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG alive")
+  field(DESC, "alive")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_conf_alive_intr $(PORT)")
@@ -1555,7 +1555,7 @@ record(longin, "$(P)$(R)Alive-Mon") {
 
 record(longin, "$(P)$(R)RFDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG RF divider status RAW")
+  field(DESC, "RF divider status RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_conf_rfdivRAW_intr $(PORT)")
@@ -1564,14 +1564,14 @@ record(longin, "$(P)$(R)RFDivRaw") {
 
 record(calc, "$(P)$(R)RFDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG RF divider status RBV")
+  field(DESC, "RF divider status RBV")
   field(INPA, "$(P)$(R)RFDivRaw")
   field(CALC, "A+1")
 }
 
 record(mbbi, "$(P)$(R)DevFun-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG function select status")
+  field(DESC, "function select status")
   field(NOBT, "6")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
@@ -1602,7 +1602,7 @@ record(mbbo, "$(P)$(R)DevFun-Sel") {
 }
 
 record(ao, "$(P)$(R)RFDiv-SP"){
-  field(DESC, "EVG RF clock divider")
+  field(DESC, "RF clock divider")
   field(DTYP, "stream")
   field(DRVH, "4")
   field(DRVL, "4")
@@ -1664,14 +1664,14 @@ record(waveform, "$(P)$(R)BucketList-RB") {
 ########################################################################
 # Write all configuration registers
 record(bo, "$(P)$(R)Download-Cmd") {
-  field(DESC, "EVG download")
+  field(DESC, "download")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
 }
 
 record(bo, "$(P)$(R)Download-Trig") {
-  field(DESC, "EVG download trigger")
+  field(DESC, "download trigger")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
@@ -1679,28 +1679,19 @@ record(bo, "$(P)$(R)Download-Trig") {
   field(OUT, "@timing.proto evg_download($(P),$(R)) $(PORT)")
 }
 
-record(bo, "$(P)$(R)Upload-Trig") {
-  field(DESC, "EVG upload trigger")
+record(bo, "$(P)$(R)GetRBV") {
+  field(DESC, "upload trigger")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(HIGH, "0.5")
-  field(FLNK, "$(P)$(R)UploadCalc")
-}
-
-record(calcout, "$(P)$(R)UploadCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVG upload trigger calc")
-  field(INPA, "$(P)$(R)Upload-Trig.VAL")
-  field(CALC, "A")
-  field(OOPT, "When Non-zero")
+  #field(HIGH, "0.5")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_upload($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_get_rbv($(P),$(R)) $(PORT)")
 }
 
 record(calc, "$(P)$(R)DevStatusCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG device status calc")
+  field(DESC, "device status calc")
   field(INPA, "$(P)$(R)Alive-Mon")
   field(CALC, "A=0?0:1")
   #field(ASG, "Reserved")
@@ -1709,7 +1700,7 @@ record(calc, "$(P)$(R)DevStatusCalc") {
 
 record(bi, "$(P)$(R)DevStatus-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG device status")
+  field(DESC, "device status")
   field(ZNAM, "Waiting")
   field(ONAM, "Running")
   field(INP, "$(P)$(R)DevStatusCalc")
@@ -1717,14 +1708,14 @@ record(bi, "$(P)$(R)DevStatus-Mon") {
 
 record(bi, "$(P)$(R)Network-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG network status")
+  field(DESC, "network status")
   field(ZNAM, "Disconnected")
   field(ONAM, "Connected")
   field(FLNK, "$(P)$(R)FrmVersionA-Cte")
 }
 
 record(bo, "$(P)$(R)Save-Cmd"){
-  field(DESC, "EVG manual Save settings command")
+  field(DESC, "manual Save settings command")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
@@ -1732,7 +1723,7 @@ record(bo, "$(P)$(R)Save-Cmd"){
 }
 
 record(calc, "$(P)$(R)Save-Trig"){
-  field(DESC, "EVG manual Save trigger")
+  field(DESC, "manual Save trigger")
   field(INPA, "$(P)$(R)Save-Cmd.VAL")
   field(CALC, "(A > 0) ? (VAL+1) : VAL")
   field(VAL, "0")
