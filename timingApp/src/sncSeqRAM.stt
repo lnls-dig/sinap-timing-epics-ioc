@@ -376,19 +376,7 @@ ss seq {
       }
   
     } state Stopped
-  
-    when(run_tg == 0){
-  
-    } state Stopped
-  
-    when(inj_tg == 0){
-  
-    } state Stopped
-  
-    when(inj_tg){
-  
-    } state Stopped
-  
+
     when(restart_tg){
   
       %{/* Reset trigger */}%
@@ -559,7 +547,7 @@ ss seq {
   
         %%// Update event record arrays
         for(i = 0; i < eventNum; i++){
-
+          
           pvGet(event_codes[i], SYNC);
           pvGet(event_timestamps[i], SYNC);
           pvGet(event_modes[i], SYNC);
@@ -579,14 +567,6 @@ ss seq {
   
           printf("Injection Triggered\n");
     } state CheckSeq2Write
-    
-    when(run_tg){
-  
-    } state Running
-  
-    when(inj_tg == 0){
-  
-    } state Running
   }
   
   state CheckSeq2Write{
@@ -720,15 +700,6 @@ ss seq {
   
          printf("Stop Triggered\n");
     } state Injecting
-  
-    when(run_tg){
-  
-    } state Injecting
-  
-    when(inj_tg){
-  
-    } state Injecting
-  
   }
   
   state Restarting{
@@ -1063,7 +1034,7 @@ ss seq {
 
       ////////////// D E B U G G I N G //////////////////////////////////////////
 
-      printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+      printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
       ///////////////////////////////////////////////////////////////////////////
 
@@ -1087,8 +1058,7 @@ ss seq {
 
     ////////////// D E B U G G I N G //////////////////////////////////////////
 
-    printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
-
+    printf("Write to SeqRAM 1-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
     ///////////////////////////////////////////////////////////////////////////
 
 
@@ -1126,7 +1096,7 @@ ss seq {
     // timestamp for sending the RF delay code to modules
     int RFDlyTimestamp = 10;
 
-    printf("Repeat bucket list %d, write seqram %d", repeat, (repeat>0?repeat:repeat+1));
+    printf("Repeat bucket list %d, write seqram %d\n", repeat, (repeat>0?repeat:repeat+1));
     // Repeat bucket list
     for (n = 0; n < (repeat>0?repeat:repeat+1); n++){
 
@@ -1161,7 +1131,7 @@ ss seq {
   
         ////////////// D E B U G G I N G //////////////////////////////////////////
   
-        printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+        printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
   
         ///////////////////////////////////////////////////////////////////////////
   
@@ -1203,7 +1173,7 @@ ss seq {
   
           ////////////// D E B U G G I N G //////////////////////////////////////////
   
-          printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+          printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
   
           ///////////////////////////////////////////////////////////////////////////
   
@@ -1231,7 +1201,7 @@ ss seq {
   
           ////////////// D E B U G G I N G //////////////////////////////////////////
   
-          printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+          printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
   
           ///////////////////////////////////////////////////////////////////////////
   
@@ -1267,7 +1237,7 @@ ss seq {
 
       ////////////// D E B U G G I N G //////////////////////////////////////////
 
-      printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= %d, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+      printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
 
       ///////////////////////////////////////////////////////////////////////////
 
