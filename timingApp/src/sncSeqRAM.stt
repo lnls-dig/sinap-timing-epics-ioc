@@ -113,7 +113,7 @@ int inj_tg_rbv;
 assign inj_tg_rbv to "{P}{R}InjectionEvt-Sts";
 
 int restart_tg;
-assign restart_tg to "{P}{R}RESTSEQ";
+assign restart_tg to "{P}{R}UpdateEvt-Cmd";
 monitor restart_tg;
 
 int repeatinj_tg;
@@ -180,624 +180,618 @@ monitor repeatinj_tg;
 
 ss seq {
   
-  state init{ 
-    entry
-    {
-    
-       %{/* INITIALIZATION ENTRY  
-  
-         -Variable initialization
-  
-       */}%
-       
-      EvtDelayValL = EvtDelayVal;
-      EvtDelayNumL = EvtDelayNum;
-
-      %%/* Variable Initialization */
-       StateMachineStatus = 0;
-       numberOfWrites = 0;
-  
-       run_tg_rbv = 0;
-       pvPut(run_tg_rbv, SYNC);
-
-       inj_tg_rbv = 0;
-       pvPut(inj_tg_rbv, SYNC);
-
-      %%// Get macros
-       eventNum = str2int(macValueGet("ev_num"));
-       printf ("\nEvent count %d\n", eventNum);
-       sprintf(device, "%s%s", macValueGet("P"), macValueGet("R"));
-    
-      %%// Assign events
-        for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%d%s", device, evPrefix, i, evCodeName);
-         pvAssign (event_codes[i], str);
-        }
-
-        for (i = 0; i < eventNum; i++) {
-         pvGet(event_codes[i], SYNC);
-         sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evTimeName);
-         pvAssign (event_timestamps[i], str);
-        }
-
-        for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evModeName);
-         pvAssign (event_modes[i], str);
-        }
-
-        for (i = 0; i < eventNum; i++) {
-         sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evCtrlName);
-         pvAssign (event_ctrl[i], str);
-        }
+    state init{ 
+        entry
+        {
         
-      %%// Initialize Event Pointer Array
-       init_EventPointerArray(eventNum);
-  
-       %%//printf("Initialization Entry\n");
-    }
-  
-    when(seqs == 0 && network == 1 && (pvConnectCount() == pvAssignCount()))
-    {
-      %{/* SeqRAM Stopped */}%
-  
-      printf("Moving to Stopped State\n");
-    } state Stopped
-  
-    when(seqs == 1 && network == 1 && (pvConnectCount() == pvAssignCount()))
-    {
-      %{/* SeqRAM Running (SeqRAM 1)*/}%
-      
-      printf("Moving to Running State\n");
-      run_tg = 1;
-      pvPut(run_tg, SYNC);
-      run_tg_rbv = 1;
-      pvPut(run_tg_rbv, SYNC);
-      
-    } state Running
-  
-    when(seqs == 2 && network == 1 && (pvConnectCount() == pvAssignCount()))
-    {
-      %{/* SeqRAM Injecting (SeqRAM 2)*/}%
-  
-      printf("Moving to Injecting State\n");
-    } state Injecting
-  
-    when (delay(10) && (pvConnectCount() != pvAssignCount())) {
-  
-      %{/* Unable to connect to some PV */}%
-  
-      printf("Error: Some PVs are still disconnected after 10 s\n");
-      printf("Connected: %d Assigned: %d\n", pvConnectCount(), pvAssignCount());
-    } state init
-  }
-  
-  state Stopped {
-    entry{
-  
-      %{/* STOPPED ENTRY  
-  
-      -Status update
-      */}%
-  
-      %%// Status update (stopped)
-      StateMachineStatus = 1;
-      pvPut(StateMachineStatus, SYNC);
-  
-      run_tg_rbv = 0;
-      pvPut(run_tg_rbv, SYNC);
-  
-      inj_tg_rbv = 0;
-      pvPut(inj_tg_rbv, SYNC);
+             %{/* INITIALIZATION ENTRY    
+    
+                 -Variable initialization
+    
+             */}%
+             
+            EvtDelayValL = EvtDelayVal;
+            EvtDelayNumL = EvtDelayNum;
 
-      %%//printf("Stopped Entry\n");
+            %%/* Variable Initialization */
+             StateMachineStatus = 0;
+             numberOfWrites = 0;
+    
+             run_tg_rbv = 0;
+             pvPut(run_tg_rbv, SYNC);
+
+             inj_tg_rbv = 0;
+             pvPut(inj_tg_rbv, SYNC);
+
+            %%// Get macros
+             eventNum = str2int(macValueGet("ev_num"));
+             printf ("\nEvent count %d\n", eventNum);
+             sprintf(device, "%s%s", macValueGet("P"), macValueGet("R"));
+        
+            %%// Assign events
+                for (i = 0; i < eventNum; i++) {
+                 sprintf (str, "%s%s%d%s", device, evPrefix, i, evCodeName);
+                 pvAssign (event_codes[i], str);
+                }
+
+                for (i = 0; i < eventNum; i++) {
+                 pvGet(event_codes[i], SYNC);
+                 sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evTimeName);
+                 pvAssign (event_timestamps[i], str);
+                }
+
+                for (i = 0; i < eventNum; i++) {
+                 sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evModeName);
+                 pvAssign (event_modes[i], str);
+                }
+
+                for (i = 0; i < eventNum; i++) {
+                 sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evCtrlName);
+                 pvAssign (event_ctrl[i], str);
+                }
+                
+            %%// Initialize Event Pointer Array
+             init_EventPointerArray(eventNum);
+    
+             %%//printf("Initialization Entry\n");
+        }
+    
+        when(seqs == 0 && network == 1 && (pvConnectCount() == pvAssignCount()))
+        {
+            %{/* SeqRAM Stopped */}%
+    
+            printf("Moving to Stopped State\n");
+        } state Stopped
+    
+        when(seqs == 1 && network == 1 && (pvConnectCount() == pvAssignCount()))
+        {
+            %{/* SeqRAM Running (SeqRAM 1)*/}%
+            
+            printf("Moving to Running State\n");
+            run_tg = 1;
+            pvPut(run_tg, SYNC);
+            run_tg_rbv = 1;
+            pvPut(run_tg_rbv, SYNC);
+            
+        } state Running
+    
+        when(seqs == 2 && network == 1 && (pvConnectCount() == pvAssignCount()))
+        {
+            %{/* SeqRAM Injecting (SeqRAM 2)*/}%
+    
+            printf("Moving to Injecting State\n");
+        } state Injecting
+    
+        when (delay(10) && (pvConnectCount() != pvAssignCount())) {
+    
+            %{/* Unable to connect to some PV */}%
+    
+            printf("Error: Some PVs are still disconnected after 10 s\n");
+            printf("Connected: %d Assigned: %d\n", pvConnectCount(), pvAssignCount());
+        } state init
     }
-  
-    when(seqen_rbv != 0){
-  
-      %{/* Make sure SeqRAM is disabled */}%
-      
-      seqen = 0;
-         pvPut(seqen, SYNC);
-  
-    } state Stopped
-  
-    when(seqen_rbv == 0 && seqcount != 0){
-  
-      %{/* Reset seqcount and clear number of writes */}%
-  
-      seqsw = 1;
-      pvPut(seqsw, SYNC);
-  
+    
+    state Stopped {
+        entry{
+    
+            %{/* STOPPED ENTRY    
+    
+            -Status update
+            */}%
+    
+            %%// Status update (stopped)
+            StateMachineStatus = 1;
+            pvPut(StateMachineStatus, SYNC);
+    
+            run_tg_rbv = 0;
+            pvPut(run_tg_rbv, SYNC);
+    
+            inj_tg_rbv = 0;
+            pvPut(inj_tg_rbv, SYNC);
+
+            %%//printf("Stopped Entry\n");
+        }
+    
+        when(seqen_rbv != 0){
+    
+            %{/* Make sure SeqRAM is disabled */}%
+            
+            seqen = 0;
+                 pvPut(seqen, SYNC);
+    
+        } state Stopped
+    
+        when(seqen_rbv == 0 && seqcount != 0){
+    
+            %{/* Reset seqcount and clear number of writes */}%
+    
+            seqsw = 1;
+            pvPut(seqsw, SYNC);
+    
             numberOfWrites = 0;
-  
-      %%// Force seqcountRBV to update
-      seqcount_proc = 1;
-      pvPut(seqcount_proc, SYNC);
-  
-    }state Stopped
-  
-    when(run_tg && (seqcount == 0)){
-      %{/* Write to SeqRAM 1 */}%
-  
-      %%// Status update (preparing to run)
-      StateMachineStatus = 4;
-      pvPut(StateMachineStatus, SYNC);
-  
-      run_tg_rbv = 0;
-      pvPut(run_tg_rbv, SYNC);
-      
-      inj_tg_rbv = 0;
-      pvPut(inj_tg_rbv, SYNC);
+    
+            %%// Force seqcountRBV to update
+            seqcount_proc = 1;
+            pvPut(seqcount_proc, SYNC);
+    
+        }state Stopped
+    
+        when(run_tg && (seqcount == 0)){
+            %{/* Write to SeqRAM 1 */}%
+    
+            %%// Status update (preparing to run)
+            StateMachineStatus = 4;
+            pvPut(StateMachineStatus, SYNC);
+    
+            run_tg_rbv = 0;
+            pvPut(run_tg_rbv, SYNC);
+            
+            inj_tg_rbv = 0;
+            pvPut(inj_tg_rbv, SYNC);
 
-      %%// Update event record arrays
-      for(i = 0; i < eventNum; i++){
-        
-        pvGet(event_codes[i], SYNC);
-        pvGet(event_timestamps[i], SYNC);
-        pvGet(event_modes[i], SYNC);
-        pvGet(event_ctrl[i], SYNC);
-      }
-  
-      %%// Update and order EventPointerArray
-      updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
-  
-      numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
-            pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
-  
-      %%// Force seqcountRBV to update
-      seqcount_proc = 1;
-      pvPut(seqcount_proc, SYNC);
-  
-      printf("Run Triggered\n");
-    } state CheckSeq1Write
-  
-    when(seqs == 1){
-  
-      %{/* Just go to Running state */}%
-  
-      %%//printf("Moving to Running State\n");
-    } state Running
-  
-    when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
+            %%// Update event record arrays
+            for(i = 0; i < eventNum; i++){
+                
+                pvGet(event_codes[i], SYNC);
+                pvGet(event_timestamps[i], SYNC);
+                pvGet(event_modes[i], SYNC);
+                pvGet(event_ctrl[i], SYNC);
+            }
+    
+            %%// Update and order EventPointerArray
+            updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+    
+            numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
+                        pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
+    
+            %%// Force seqcountRBV to update
+            seqcount_proc = 1;
+            pvPut(seqcount_proc, SYNC);
+    
+            printf("Run Triggered\n");
+        } state CheckSeq1Write
+    
+        when(seqs == 1){
+    
+            %{/* Just go to Running state */}%
+    
+            %%//printf("Moving to Running State\n");
+        } state Running
+    
+        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
 
-      EvtDelayValL = EvtDelayVal;
-      EvtDelayNumL = EvtDelayNum;
-      delayUsed = 0;
-      for(i = 0; i < eventNum; i++){
-        
-        pvGet(event_timestamps[i], SYNC);
-        if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){
-          delayUsed = 1;
-        }
-      }
-      if (delayUsed == 0) {
-        event_timestamps[EvtDelayNum] = EvtDelayVal;
-        pvPut (event_timestamps[EvtDelayNum], SYNC);
-      }
-  
-    } state Stopped
+            EvtDelayValL = EvtDelayVal;
+            EvtDelayNumL = EvtDelayNum;
+            delayUsed = 0;
+            for(i = 0; i < eventNum; i++){
+                
+                pvGet(event_timestamps[i], SYNC);
+                if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){
+                    delayUsed = 1;
+                }
+            }
+            if (delayUsed == 0) {
+                event_timestamps[EvtDelayNum] = EvtDelayVal;
+                pvPut (event_timestamps[EvtDelayNum], SYNC);
+            }
+    
+        } state Stopped
 
-    when(restart_tg){
-  
-      %{/* Reset trigger */}%
-  
-      restart_tg = 0;
-      pvPut(restart_tg, SYNC);
-  
-    } state Stopped
-  
-  }
-  
-  state CheckSeq1Write{
-  
-    entry{
-  
-        %%//printf("CheckSeq1Write Entry\n");
-  
-        %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
-    }
-  
-    when(seqcount == numberOfWrites && seqen_rbv == 0){
-  
-      %{/* Successful Write */}%
-  
-      %%// Enable SeqRAM
-      seqen = 1;
-      pvPut(seqen, SYNC);
-  
-      %%// Switch to SeqRAM 1
-      seqsw = 1;
-      pvPut(seqsw, SYNC);
-  
-      printf("Write to SeqRAM 1 succeded\n");
-  
-    } state CheckSeq1Write
-  
-    when(seqs == 1){
-  
-      %%//printf("Going from CheckSeq1Write to Running State\n");
-  
-      %{/* Just go to Running state */}%
-  
-      %%//printf("Moving to Running State\n");
-    } state Running
-  
-    when(delay(5.0) && seqs != 1){
-  
-      %{/* Unsuccessful Write */}%
-  
-      %%// seqcountRBV will be cleared by seqsw in Stopped Entry
-  
-      printf("Error: Failed to switch or to write to SeqRAM 1.\n");
-  
-    } state Stopped
-  }
-  
-  state Running {
-  
-    entry{
-  
-      %{/* RUNNING ENTRY  
-      
-      -Status update
-      -Clear numberOfWrites
-      
-      */}%
-      
-      %%// Status update (running)
-      StateMachineStatus = 2;
-      pvPut(StateMachineStatus, SYNC);
-      
-      run_tg_rbv = 1;
-      pvPut(run_tg_rbv, SYNC);
-      
-      inj_tg = 0;
-      pvPut(inj_tg, SYNC);
-
-      inj_tg_rbv = 0;
-      pvPut(inj_tg_rbv, SYNC);
-
-      %%// Clear number of writes
-      numberOfWrites = 0;
-      
-      %%//printf("Running Entry\n");
     }
     
-    when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
-
-      EvtDelayValL = EvtDelayVal;
-      EvtDelayNumL = EvtDelayNum;
-      delayUsed = 0;
-      for(i = 0; i < eventNum; i++){
-        
-        pvGet(event_timestamps[i], SYNC);
-        if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){
-          delayUsed = 1;
+    state CheckSeq1Write{
+    
+        entry{
+    
+                %%//printf("CheckSeq1Write Entry\n");
+    
+                %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
         }
-      }
-      if (delayUsed == 0) {
-        event_timestamps[EvtDelayNum] = EvtDelayVal;
-        pvPut (event_timestamps[EvtDelayNum], SYNC);
-      }
-  
-    } state Running
-  
-    when(seqs == 0){
-  
-      %{/* Just go to Stopped state */}%
-  
-          %%//printf("Moving to Stopped State\n");
-    } state Stopped
-  
-    when(run_tg == 0){
-  
-      %{/* Stop SeqRAM (disable SeqRAM) */}%
-  
-      %%// Disable SeqRAM
-      seqen = 0;
-      pvPut(seqen, SYNC);
-  
-          printf("Stop Triggered\n");
-    } state Running
-  
-    when(restart_tg){
-  
-      %{/* Just go to Restarting state */}%
-  
-      %%// Reset trigger
-      restart_tg = 0;
-      pvPut(restart_tg, SYNC);
-  
-         printf("Restart Triggered\n");
-    } state Restarting
-  
-    when(seqs == 2){
-  
-      %{/* Just go to Injecting state */}%
-  
-          %%//printf("Moving to Injecting State\n");
-    } state Injecting
-  
-    when(inj_tg){
-  
-      %{/* 
-            -Update Bucket list
-            -Update Bucket list length
-            -Write to seqRAM 2
-      */}%
-  
-      %%// Status update (preparing to inject)
-      StateMachineStatus = 5;
-      pvPut(StateMachineStatus, SYNC);
-  
-      run_tg_rbv = 1;
-      pvPut(run_tg_rbv, SYNC);
-
-      inj_tg_rbv = 0;
-      pvPut(inj_tg_rbv, SYNC);
-
-      %%// Update bucket list
-      pvGet(tbl_rbv, SYNC);
-  
-      %%// Update bucket list length
-      pvGet(tbl_length, SYNC);
-      
-      %%// Write to seqRAM 2
-      if(tbl_length > 0){
-  
-        %%// Update event record arrays
-        for(i = 0; i < eventNum; i++){
-          
-          pvGet(event_codes[i], SYNC);
-          pvGet(event_timestamps[i], SYNC);
-          pvGet(event_modes[i], SYNC);
-          pvGet(event_ctrl[i], SYNC);
-        }  
-  
-        %%// Update and order EventPointerArray
-        updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
-  
-        numberOfWrites = seqTwoWrite(repeatinj_tg, eventNum, tbl_rbv, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
-                  pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
-  
-        %%// Force seqcountRBV to update
-        seqcount_proc = 1;
-        pvPut(seqcount_proc, SYNC);
-      }
-  
-          printf("Injection Triggered\n");
-    } state CheckSeq2Write
-  }
-  
-  state CheckSeq2Write{
-  
-    entry{
-  
-        %%//printf("CheckSeq2Write Entry\n");
-  
-        %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
+    
+        when(seqcount == numberOfWrites && seqen_rbv == 0){
+    
+            %{/* Successful Write */}%
+    
+            %%// Enable SeqRAM
+            seqen = 1;
+            pvPut(seqen, SYNC);
+    
+            %%// Switch to SeqRAM 1
+            seqsw = 1;
+            pvPut(seqsw, SYNC);
+    
+            printf("Write to SeqRAM 1 succeded\n");
+    
+        } state CheckSeq1Write
+    
+        when(seqs == 1){
+    
+            %%//printf("Going from CheckSeq1Write to Running State\n");
+    
+            %{/* Just go to Running state */}%
+    
+            %%//printf("Moving to Running State\n");
+        } state Running
+    
+        when(delay(5.0) && seqs != 1){
+    
+            %{/* Unsuccessful Write */}%
+    
+            %%// seqcountRBV will be cleared by seqsw in Stopped Entry
+    
+            printf("Error: Failed to switch or to write to SeqRAM 1.\n");
+    
+        } state Stopped
     }
-  
-    when(tbl_length == 0 || numberOfWrites == 0){
-  
-      %{/* Just go to Running state */}%
-  
-    } state Running
-  
-    when(seqcount == numberOfWrites){
-  
-      %{/* Successful Write */}%
-  
-      %%// Avoid when condition being entered again
-      numberOfWrites = -1;
-  
-      %%// Switch to SeqRAM 2
-      seqsw = 1;
-      pvPut(seqsw, SYNC);
-  
-      printf("Write to SeqRAM 2 succeded\n");
-  
-    } state CheckSeq2Write
-  
-    when(seqs == 2){
-  
-      %{/* Just go to Injecting state */}%
-  
-      %%//printf("Moving to Injecting State\n");
-    } state Injecting
-  
-    when(delay(5.0) && seqs != 2){
-  
-      %{/* Unsuccessful Write */}%
-  
-      %%// seqcountRBV will not be cleared
-      %%// System will keep failing if not restarted
-  
-      printf("Error: Failed to switch or to write to SeqRAM 2.\n");
-  
-    } state Running
-  }
-  
-  state Injecting {
-    entry{
-  
-      %{/* INJECTING ENTRY  
-  
-      -Status update
-      -Seq switch reset
-  
-      */}%
-  
-      %%// Status update (injecting)
-      StateMachineStatus = 3;
-      pvPut(StateMachineStatus, SYNC);
-  
-      run_tg_rbv = 0;
-      pvPut(run_tg_rbv, SYNC);
-
-      inj_tg_rbv = 1;
-      pvPut(inj_tg_rbv, SYNC);
-
-      %%// Seq switch reset (switching condition is only satisfied once)
-      seqsw = 0;
-  
-      %%//printf("Injecting Entry\n");
-    }
-  
-    when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
-
-      EvtDelayValL = EvtDelayVal;
-      EvtDelayNumL = EvtDelayNum;
-      delayUsed = 0;
-      for(i = 0; i < eventNum; i++){
-        
-        pvGet(event_timestamps[i], SYNC);
-        if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){
-          delayUsed = 1;
-        }
-      }
-      if (delayUsed == 0) {
-        event_timestamps[EvtDelayNum] = EvtDelayVal;
-        pvPut (event_timestamps[EvtDelayNum], SYNC);
-      }
-  
-    } state Injecting
-  
-    when(seqs == 1){
-  
-      %{/* Just go to Running state */}%
-  
-         %%//printf("Moving to Running State\n");
-    } state Running
-  
-    when(inj_tg == 0 && seqsw == 0){
-  
-      %{/* Return to SeqRAM 1 */}%
-  
-      %%// Switch seqRAM
-      if(seqs == 2){
-         seqsw = 1;
-         pvPut(seqsw, SYNC);
-      }
-  
-         printf("Stop Inj Triggered\n");
-    } state Injecting
-  
-    when(seqs == 0){
-  
-      %{/* Just go to Stopped state */}%
-  
-      %%//printf("Moving to Stopped State\n");
-    } state Stopped
-  
-    when(run_tg == 0){
-  
-      %{/* Stop SequenceRAM (disable SeqRAM) */}%
-  
-      %%// Disable SeqRAM
-      seqen = 0;
-      pvPut(seqen, SYNC);
-  
-         printf("Stop Triggered\n");
-    } state Injecting
-  }
-  
-  state Restarting{
-  
-    entry{
-  
-      %{/* RESTARTING ENTRY  
-  
-      -Status update
-      */}%   
-  
-      %%// Status update (restarting)
-      StateMachineStatus = 6;
-      pvPut(StateMachineStatus, SYNC);
-  
-      run_tg_rbv = 0;
-      pvPut(run_tg_rbv, SYNC);
-
-      inj_tg_rbv = 0;
-      pvPut(inj_tg_rbv, SYNC);
-
-      %%//printf("Restarting Entry\n");
-    }
-  
-    when(seqen_rbv != 0){
-  
-      %{/* Make sure SeqRAM is disabled */}%
-      
-      seqen = 0;
-         pvPut(seqen, SYNC);
-  
-    } state Restarting
-  
-    when(seqen_rbv == 0 && seqcount != 0){
-  
-      %{/* Reset seqcount and clear number of writes */}%
-  
-      seqsw = 1;
-      pvPut(seqsw, SYNC);
-  
+    
+    state Running {
+    
+        entry{
+    
+            %{/* RUNNING ENTRY    
+            
+            -Status update
+            -Clear numberOfWrites
+            
+            */}%
+            
+            %%// Status update (running)
+            StateMachineStatus = 2;
+            pvPut(StateMachineStatus, SYNC);
+            
+            run_tg_rbv = 1;
+            pvPut(run_tg_rbv, SYNC);
+            
+            %%// Clear number of writes
             numberOfWrites = 0;
-  
-      %%// Force seqcountRBV to update
-      seqcount_proc = 1;
-      pvPut(seqcount_proc, SYNC);
-  
-    }state Restarting
-  
-    when(seqs == 0 && seqen_rbv == 0 && seqcount == 0){
-  
-      %{/* Write to SeqRAM 1 */}%
-  
-      %%// Update event record arrays
-      for(i = 0; i < eventNum; i++){
-  
-        pvGet(event_codes[i], SYNC);
-        pvGet(event_timestamps[i], SYNC);
-        pvGet(event_modes[i], SYNC);
-        pvGet(event_ctrl[i], SYNC);
-      }
-  
-      %%// Update and order EventPointerArray
-      updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
-  
-      numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
-            pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
-  
-      %%// Force seqcountRBV to update
-      seqcount_proc = 1;
-      pvPut(seqcount_proc, SYNC);
-  
-    } state CheckSeq1Write
-  
-    when(run_tg == 0){
-  
-    } state Restarting
-  
-    when(inj_tg == 0){
-  
-    } state Restarting
-  
-    when(run_tg){
-  
-    } state Restarting
-  
-    when(inj_tg){
-  
-    } state Restarting
-  
-    when(restart_tg){
-  
-      %{/* Reset trigger */}%
-  
-      restart_tg = 0;
-      pvPut(restart_tg, SYNC);
-  
-    } state Restarting
-  }
+            
+            %%//printf("Running Entry\n");
+        }
+        
+        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
+
+            EvtDelayValL = EvtDelayVal;
+            EvtDelayNumL = EvtDelayNum;
+            delayUsed = 0;
+            for(i = 0; i < eventNum; i++){
+                
+                pvGet(event_timestamps[i], SYNC);
+                if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){
+                    delayUsed = 1;
+                }
+            }
+            if (delayUsed == 0) {
+                event_timestamps[EvtDelayNum] = EvtDelayVal;
+                pvPut (event_timestamps[EvtDelayNum], SYNC);
+            }
+    
+        } state Running
+    
+        when(seqs == 0){
+    
+            %{/* Just go to Stopped state */}%
+    
+            %%//printf("Moving to Stopped State\n");
+        } state Stopped
+    
+        when(run_tg == 0){
+    
+            %{/* Stop SeqRAM (disable SeqRAM) */}%
+    
+            %%// Disable SeqRAM
+            seqen = 0;
+            pvPut(seqen, SYNC);
+    
+            printf("Stop Triggered\n");
+        } state Running
+    
+        when(restart_tg){
+    
+            %{/* Just go to Restarting state */}%
+    
+            %%// Reset trigger
+            restart_tg = 0;
+            pvPut(restart_tg, SYNC);
+    
+            printf("Restart Triggered\n");
+        } state Restarting
+    
+        when(seqs == 2){
+    
+            %{/* Just go to Injecting state */}%
+    
+                    %%//printf("Moving to Injecting State\n");
+        } state Injecting
+    
+        when(inj_tg){
+    
+            %{/* 
+                        -Update Bucket list
+                        -Update Bucket list length
+                        -Write to seqRAM 2
+            */}%
+    
+            %%// Status update (preparing to inject)
+            StateMachineStatus = 5;
+            pvPut(StateMachineStatus, SYNC);
+    
+            run_tg_rbv = 1;
+            pvPut(run_tg_rbv, SYNC);
+
+            inj_tg_rbv = 0;
+            pvPut(inj_tg_rbv, SYNC);
+
+            %%// Update bucket list
+            pvGet(tbl_rbv, SYNC);
+    
+            %%// Update bucket list length
+            pvGet(tbl_length, SYNC);
+            
+            %%// Write to seqRAM 2
+            if(tbl_length > 0){
+    
+                %%// Update event record arrays
+                for(i = 0; i < eventNum; i++){
+                    
+                    pvGet(event_codes[i], SYNC);
+                    pvGet(event_timestamps[i], SYNC);
+                    pvGet(event_modes[i], SYNC);
+                    pvGet(event_ctrl[i], SYNC);
+                }    
+    
+                %%// Update and order EventPointerArray
+                updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+    
+                numberOfWrites = seqTwoWrite(repeatinj_tg, eventNum, tbl_rbv, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
+                                    pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
+    
+                %%// Force seqcountRBV to update
+                seqcount_proc = 1;
+                pvPut(seqcount_proc, SYNC);
+            }
+    
+                    printf("Injection Triggered\n");
+        } state CheckSeq2Write
+    }
+    
+    state CheckSeq2Write{
+    
+        entry{
+    
+                %%//printf("CheckSeq2Write Entry\n");
+    
+                %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
+        }
+    
+        when(tbl_length == 0 || numberOfWrites == 0){
+    
+            %{/* Just go to Running state */}%
+    
+        } state Running
+    
+        when(seqcount == numberOfWrites){
+    
+            %{/* Successful Write */}%
+    
+            %%// Avoid when condition being entered again
+            numberOfWrites = -1;
+    
+            %%// Switch to SeqRAM 2
+            seqsw = 1;
+            pvPut(seqsw, SYNC);
+    
+            printf("Write to SeqRAM 2 succeded\n");
+    
+        } state CheckSeq2Write
+    
+        when(seqs == 2){
+    
+            %{/* Just go to Injecting state */}%
+    
+            %%//printf("Moving to Injecting State\n");
+        } state Injecting
+    
+        when(delay(5.0) && seqs != 2){
+    
+            %{/* Unsuccessful Write */}%
+    
+            %%// seqcountRBV will not be cleared
+            %%// System will keep failing if not restarted
+    
+            printf("Error: Failed to switch or to write to SeqRAM 2.\n");
+    
+        } state Running
+    }
+    
+    state Injecting {
+        entry{
+    
+            %{/* INJECTING ENTRY    
+    
+            -Status update
+            -Seq switch reset
+    
+            */}%
+    
+            %%// Status update (injecting)
+            StateMachineStatus = 3;
+            pvPut(StateMachineStatus, SYNC);
+    
+            run_tg_rbv = 0;
+            pvPut(run_tg_rbv, SYNC);
+
+            inj_tg_rbv = 1;
+            pvPut(inj_tg_rbv, SYNC);
+
+            %%// Seq switch reset (switching condition is only satisfied once)
+            seqsw = 0;
+    
+            %%//printf("Injecting Entry\n");
+        }
+    
+        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
+
+            EvtDelayValL = EvtDelayVal;
+            EvtDelayNumL = EvtDelayNum;
+            delayUsed = 0;
+            for(i = 0; i < eventNum; i++){
+                
+                pvGet(event_timestamps[i], SYNC);
+                if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){
+                    delayUsed = 1;
+                }
+            }
+            if (delayUsed == 0) {
+                event_timestamps[EvtDelayNum] = EvtDelayVal;
+                pvPut (event_timestamps[EvtDelayNum], SYNC);
+            }
+    
+        } state Injecting
+    
+        when(restart_tg){
+    
+            %{/* Just go to Restarting state */}%
+    
+            %%// Reset trigger
+            restart_tg = 0;
+            pvPut(restart_tg, SYNC);
+    
+            printf("Restart Triggered\n");
+        } state Restarting
+    
+        when(seqs == 1){
+    
+            %{/* Just go to Running state */}%
+    
+                 %%//printf("Moving to Running State\n");
+            inj_tg = 0;
+            pvPut(inj_tg, SYNC);
+
+            inj_tg_rbv = 0;
+            pvPut(inj_tg_rbv, SYNC);
+
+        } state Running
+    
+        when(inj_tg == 0 && seqsw == 0){
+    
+            %{/* Return to SeqRAM 1 */}%
+    
+            %%// Switch seqRAM
+            if(seqs == 2){
+                 seqsw = 1;
+                 pvPut(seqsw, SYNC);
+            }
+    
+                 printf("Stop Inj Triggered\n");
+        } state Injecting
+    
+        when(seqs == 0){
+    
+            %{/* Just go to Stopped state */}%
+    
+            %%//printf("Moving to Stopped State\n");
+        } state Stopped
+    
+        when(run_tg == 0){
+    
+            %{/* Stop SequenceRAM (disable SeqRAM) */}%
+    
+            %%// Disable SeqRAM
+            seqen = 0;
+            pvPut(seqen, SYNC);
+    
+                 printf("Stop Triggered\n");
+        } state Injecting
+    }
+    
+    state Restarting{
+    
+        entry{
+    
+            %{/* RESTARTING ENTRY    
+    
+            -Status update
+            */}%     
+    
+            %%// Status update (restarting)
+            StateMachineStatus = 6;
+            pvPut(StateMachineStatus, SYNC);
+    
+            run_tg_rbv = 0;
+            pvPut(run_tg_rbv, SYNC);
+
+            inj_tg_rbv = 0;
+            pvPut(inj_tg_rbv, SYNC);
+
+            %%//printf("Restarting Entry\n");
+        }
+    
+        when(seqen_rbv != 0){
+    
+            %{/* Make sure SeqRAM is disabled */}%
+            
+            seqen = 0;
+                 pvPut(seqen, SYNC);
+    
+        } state Restarting
+    
+        when(seqen_rbv == 0 && seqcount != 0){
+    
+            %{/* Reset seqcount and clear number of writes */}%
+    
+            seqsw = 1;
+            pvPut(seqsw, SYNC);
+    
+                        numberOfWrites = 0;
+    
+            %%// Force seqcountRBV to update
+            seqcount_proc = 1;
+            pvPut(seqcount_proc, SYNC);
+    
+        }state Restarting
+    
+        when(seqs == 0 && seqen_rbv == 0 && seqcount == 0){
+    
+            %{/* Write to SeqRAM 1 */}%
+    
+            %%// Update event record arrays
+            for(i = 0; i < eventNum; i++){
+    
+                pvGet(event_codes[i], SYNC);
+                pvGet(event_timestamps[i], SYNC);
+                pvGet(event_modes[i], SYNC);
+                pvGet(event_ctrl[i], SYNC);
+            }
+    
+            %%// Update and order EventPointerArray
+            updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+    
+            numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
+                        pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
+    
+            %%// Force seqcountRBV to update
+            seqcount_proc = 1;
+            pvPut(seqcount_proc, SYNC);
+    
+        } state CheckSeq1Write
+    
+        when(run_tg == 0){
+    
+        } state Restarting
+    
+        when(inj_tg == 0){
+    
+        } state Restarting
+    
+        when(run_tg){
+    
+        } state Restarting
+    
+        when(inj_tg){
+    
+        } state Restarting
+    
+    }
 }
 
 %%//----------------------------------------
@@ -1184,7 +1178,7 @@ ss seq {
         }
   
               // SequenceRAM Wait code 
-        if(i < length - 1){
+        if(i < length - 1 || n < (repeat-1)){
   
           *pseqcode = 0x70; // Send 0x70 code
           
