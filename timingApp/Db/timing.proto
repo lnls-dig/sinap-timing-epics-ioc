@@ -299,11 +299,11 @@ eve_rf_intr {
 # AC Line register [40]
 evg_acline_get {
     out "%(\$1\$2cmd_acdiv_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xE8%*03r%(\$1\$2ACEnbl-Sts)r%*04r%*04r";
+    in "\xE8%*03r%(\$1\$2ACEnbl-Sts)r%*03r%(\$1\$2ACSrc-Sts)r%*04r";
 }
 
 evg_acline_acen_set{
-    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2ACDivRaw).4r";
+    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00%(\$1\$2ACSrc-Sel.RVAL).1r%(\$1\$2ACDivRaw).4r";
     evg_acline_get;
 }
 
@@ -388,6 +388,14 @@ evg_seqramsw_get {
 evg_seqramsw_set{
     out "%(\$1\$2cmd_seqramsw_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     evg_seqramsw_get;
+}
+
+evg_totalinjcount_intr {
+    in "\xF2%04r%*04r%*04r";
+}
+
+evg_injcount_intr {
+    in "\xF2%*04r%04r%*04r";
 }
 
 ################################################################################

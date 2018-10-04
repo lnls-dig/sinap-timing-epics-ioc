@@ -153,7 +153,7 @@ record(longout, "$(P)$(R)cmd_ctrl_get") {
   field(ASG, "Reserved")
   field(DESC, "Control Status reg read command code")
   field(VAL, "0x80") # (0x80 | reg number)
-  field(SCAN, ".5 second")
+  field(SCAN, "1 second")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ctrl_get($(P),$(R)) $(PORT)")
 }
@@ -172,6 +172,13 @@ record(bi, "$(P)$(R)ACEnbl-Sts") {
   field(DESC, "Enable/Disable AC line input RBV")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
+}
+
+record(bi, "$(P)$(R)ACSrc-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "AC line input source RBV")
+  field(ZNAM, "External")
+  field(ONAM, "Internal")
 }
 
 record(longin, "$(P)$(R)ACDivRaw") {
@@ -205,6 +212,15 @@ record(bo, "$(P)$(R)ACEnbl-Sel"){
   field(DTYP, "stream")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
+  field(OUT, "@timing.proto evg_acline_acen_set($(P),$(R)) $(PORT)")
+}
+
+record(bo, "$(P)$(R)ACSrc-Sel"){
+  field(DESC, "AC line input source")
+  field(MASK, "1")
+  field(DTYP, "stream")
+  field(ZNAM, "External")
+  field(ONAM, "Internal")
   field(OUT, "@timing.proto evg_acline_acen_set($(P),$(R)) $(PORT)")
 }
 
@@ -744,6 +760,20 @@ record(mbbiDirect, "$(P)$(R)SeqCount-SP") {
   field(INP, "@timing.proto evg_seqramsw_get($(P),$(R)) $(PORT)")
 }
 
+record(longin, "$(P)$(R)TotalInjCount-Mon") {
+  field(DESC, "Total injection counter")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_totalinjcount_intr($(P),$(R)) $(PORT)")
+}
+
+record(longin, "$(P)$(R)InjCount-Mon") {
+  field(DESC, "Injection counter")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_injcount_intr($(P),$(R)) $(PORT)")
+}
+
 record(longout, "$(P)$(R)SeqSw-Cmd"){
   field(DESC, "Switch SEQRAM")
   field(DTYP, "stream")
@@ -752,8 +782,11 @@ record(longout, "$(P)$(R)SeqSw-Cmd"){
 
 record(longout, "$(P)$(R)cmd_seqramsw_get") {
   field(ASG, "Reserved")
+  field(SCAN, ".01 second")
   field(DESC, "SEQRAM switch reg read command code")
   field(VAL, "0xB2") # (0x80 | reg number=50)
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_seqramsw_get($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_seqramsw_set") {
@@ -1617,7 +1650,7 @@ record(longout, "$(P)$(R)cmd_conf_get") {
   field(ASG, "Reserved")
   field(DESC, "Configuration reg read command code")
   field(VAL, "0xBF")
-  field(SCAN, "1 second")
+  field(SCAN, ".1 second")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_conf_get($(P),$(R)) $(PORT)")
 }
