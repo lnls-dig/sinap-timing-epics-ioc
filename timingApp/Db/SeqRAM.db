@@ -64,12 +64,13 @@ record(bi, "$(P)$(R)InjectionEvt-Sts"){
 }
 
 #####################################################
-# Restart Trigger: Reload events and restart SeqRAM 1
-record(bo, "$(P)$(R)RESTSEQ"){
+# Restart Trigger: Reload events and restart SeqRAMs
+record(bo, "$(P)$(R)UpdateEvt-Cmd"){
 	field(SCAN, "Passive")
 	field(ZNAM, "Dsbl")
 	field(ONAM, "Enbl")
-	field(DESC, "Reload events and restart SeqRAM 1")
+	field(HIGH, "1")
+	field(DESC, "Reload events and restart SeqRAMs")
 }
 
 #####################################################

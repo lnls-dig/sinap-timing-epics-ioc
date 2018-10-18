@@ -18,6 +18,8 @@ char str[40];
 int i;
 int delayUsed;
 int numberOfWrites;
+long seqram2[16384];
+long seqram1[16384];
 
 %%//----------------------------------------
 %%//      State Machine Status PVs
@@ -168,10 +170,10 @@ monitor repeatinj_tg;
     void updateEventPointerArray(int evNumber, int * code_arr,
          int * time_arr, int * mode_arr, int * control_arr);
     int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
-              VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id);
+              VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, long *seqram1);
                       
     int seqTwoWrite(int repeat, int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
-                VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id);
+                VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, long *seqram2);
 }%
 
 %%//----------------------------------------
@@ -190,6 +192,12 @@ ss seq {
     
              */}%
              
+            %%// Initialize seqram mirrors
+            for (i = 0; i < 16384; i++) {
+                seqram1[i] = 0;
+                seqram2[i] = 0;
+            }
+
             EvtDelayValL = EvtDelayVal;
             EvtDelayNumL = EvtDelayNum;
 
@@ -292,6 +300,11 @@ ss seq {
             %%//printf("Stopped Entry\n");
         }
     
+        when(network == 0)
+        {
+            printf("Network disconnected\n");
+        } state init
+
         when(seqen_rbv != 0){
     
             %{/* Make sure SeqRAM is disabled */}%
@@ -342,7 +355,7 @@ ss seq {
             updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
     
             numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
-                        pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
+                        pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), seqram1);
     
             %%// Force seqcountRBV to update
             seqcount_proc = 1;
@@ -383,9 +396,9 @@ ss seq {
     
         entry{
     
-                %%//printf("CheckSeq1Write Entry\n");
+                printf("CheckSeq1Write Entry\n");
     
-                %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
+                printf("EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
         }
     
         when(seqcount == numberOfWrites && seqen_rbv == 0){
@@ -448,6 +461,11 @@ ss seq {
             %%//printf("Running Entry\n");
         }
         
+        when(network == 0)
+        {
+            printf("Network disconnected\n");
+        } state init
+
         when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
 
             EvtDelayValL = EvtDelayVal;
@@ -543,7 +561,7 @@ ss seq {
                 updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
     
                 numberOfWrites = seqTwoWrite(repeatinj_tg, eventNum, tbl_rbv, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
-                                    pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
+                                    pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), seqram2);
     
                 %%// Force seqcountRBV to update
                 seqcount_proc = 1;
@@ -558,16 +576,11 @@ ss seq {
     
         entry{
     
-                %%//printf("CheckSeq2Write Entry\n");
+                printf("CheckSeq2Write Entry\n");
     
-                %%//printf("Debugging EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
+                printf("EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
         }
-    
-        when(tbl_length == 0 || numberOfWrites == 0){
-    
-            %{/* Just go to Running state */}%
-    
-        } state Running
+        
     
         when(seqcount == numberOfWrites){
     
@@ -629,6 +642,11 @@ ss seq {
             %%//printf("Injecting Entry\n");
         }
     
+        when(network == 0)
+        {
+            printf("Network disconnected\n");
+        } state init
+
         when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
 
             EvtDelayValL = EvtDelayVal;
@@ -767,7 +785,7 @@ ss seq {
             updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
     
             numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
-                        pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime));
+                        pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), seqram1);
     
             %%// Force seqcountRBV to update
             seqcount_proc = 1;
@@ -1001,9 +1019,9 @@ ss seq {
      Return: Number of write operations performed.     
   */
   int seqOneWrite(int evnum, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
-            VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id){
+            VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, long *seqram1){
                       
-    int i, maxdelay = 0, address = 0;
+    int i, maxdelay = 0, address = 0, count = 0;
 
     // timestamp offset for code 0x7F from previous timestamp
     int offSetEndCode = 10;
@@ -1019,12 +1037,18 @@ ss seq {
       *pseqcode = EventPointerArray[i]->code;
       *pseqtime = maxdelay = EventPointerArray[i]->timestamp;
 
-      // write event info to seqRAM records
-      seq_pvPut(ssId, seqaddr_id, SYNC);
-      seq_pvPut(ssId, seqcode_id, SYNC);
-
-      // write timestamp (wich also triggers write to seqRAM)
-      seq_pvPut(ssId, seqtime_id, SYNC);
+        // write seqram just if it was changed
+        if (((*pseqcode) != (seqram1[address]&0xff)) || ((*pseqtime) != (seqram1[address]>>8))){
+            seqram1[address] = ((*pseqtime) << 8) + *pseqcode;
+            
+            // write event info to seqRAM records
+            seq_pvPut(ssId, seqaddr_id, SYNC);
+            seq_pvPut(ssId, seqcode_id, SYNC);
+      
+            // write timestamp (wich also triggers write to seqRAM)
+            seq_pvPut(ssId, seqtime_id, SYNC);
+            count++;
+        }
 
       ////////////// D E B U G G I N G //////////////////////////////////////////
 
@@ -1043,12 +1067,18 @@ ss seq {
     *pseqcode = 0x7F;
     *pseqtime = maxdelay + offSetEndCode;
 
-    // write event info to seqRAM records
-    seq_pvPut(ssId, seqaddr_id, SYNC);
-    seq_pvPut(ssId, seqcode_id, SYNC);
-
-    // write timestamp (wich also triggers write to seqRAM)
-    seq_pvPut(ssId, seqtime_id, SYNC);
+    // write seqram just if it was changed
+    if (((*pseqcode) != (seqram1[address]&0xff)) || ((*pseqtime) != (seqram1[address]>>8))){
+        seqram1[address] = ((*pseqtime) << 8) + *pseqcode;
+        
+        // write event info to seqRAM records
+        seq_pvPut(ssId, seqaddr_id, SYNC);
+        seq_pvPut(ssId, seqcode_id, SYNC);
+  
+        // write timestamp (wich also triggers write to seqRAM)
+        seq_pvPut(ssId, seqtime_id, SYNC);
+        count++;
+    }
 
     ////////////// D E B U G G I N G //////////////////////////////////////////
 
@@ -1060,7 +1090,7 @@ ss seq {
     address++;
 
     // return number of writes to SeqRAM
-         return address;
+         return count;
   }
 
   /*
@@ -1080,9 +1110,9 @@ ss seq {
      Return: Number of write operations performed.     
   */
   int seqTwoWrite(int repeat, int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
-                VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id){
+                VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, long *seqram2){
                   
-    int n, i, j, seqdly, rfdly, maxdelay = 0, address = 0;
+    int n, i, j, seqdly, rfdly, maxdelay = 0, address = 0, count = 0;
 
     // timestamp offset for code 0x7E or 0x70 from previous timestamp
     int offSetEndCode = 10;
@@ -1116,13 +1146,19 @@ ss seq {
         *pseqcode = 0x40 + rfdly * 5;
         *pseqtime = RFDlyTimestamp;
   
-        // write event info to seqRAM records
-        seq_pvPut(ssId, seqaddr_id, SYNC);
-        seq_pvPut(ssId, seqcode_id, SYNC);
-  
-        // write timestamp (wich also triggers write to seqRAM)
-        seq_pvPut(ssId, seqtime_id, SYNC);
-  
+        // write seqram just if it was changed
+        if (((*pseqcode) != (seqram2[address]&0xff)) || ((*pseqtime) != (seqram2[address]>>8))){
+            seqram2[address] = ((*pseqtime) << 8) + *pseqcode;
+            
+            // write event info to seqRAM records
+            seq_pvPut(ssId, seqaddr_id, SYNC);
+            seq_pvPut(ssId, seqcode_id, SYNC);
+      
+            // write timestamp (wich also triggers write to seqRAM)
+            seq_pvPut(ssId, seqtime_id, SYNC);
+            count++;
+        }
+        
         ////////////// D E B U G G I N G //////////////////////////////////////////
   
         printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
@@ -1158,13 +1194,19 @@ ss seq {
           *pseqaddr = address;
           *pseqcode = EventPointerArray[j]->code;
   
-          // write event info to seqRAM records
-          seq_pvPut(ssId, seqaddr_id, SYNC);  
-          seq_pvPut(ssId, seqcode_id, SYNC);
-    
-          // write timestamp (wich also triggers write to seqRAM)
-          seq_pvPut(ssId, seqtime_id, SYNC);
-  
+        // write seqram just if it was changed
+        if (((*pseqcode) != (seqram2[address]&0xff)) || ((*pseqtime) != (seqram2[address]>>8))){
+            seqram2[address] = ((*pseqtime) << 8) + *pseqcode;
+            
+            // write event info to seqRAM records
+            seq_pvPut(ssId, seqaddr_id, SYNC);
+            seq_pvPut(ssId, seqcode_id, SYNC);
+      
+            // write timestamp (wich also triggers write to seqRAM)
+            seq_pvPut(ssId, seqtime_id, SYNC);
+            count++;
+        }
+        
           ////////////// D E B U G G I N G //////////////////////////////////////////
   
           printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
@@ -1186,13 +1228,19 @@ ss seq {
           *pseqaddr = address;
           *pseqtime = maxdelay + offSetEndCode;
     
-          // write event info to seqRAM records
-          seq_pvPut(ssId, seqaddr_id, SYNC);
-          seq_pvPut(ssId, seqcode_id, SYNC);
-  
-          // write timestamp (wich also triggers write to seqRAM)
-          seq_pvPut(ssId, seqtime_id, SYNC);
-  
+        // write seqram just if it was changed
+        if (((*pseqcode) != (seqram2[address]&0xff)) || ((*pseqtime) != (seqram2[address]>>8))){
+            seqram2[address] = ((*pseqtime) << 8) + *pseqcode;
+            
+            // write event info to seqRAM records
+            seq_pvPut(ssId, seqaddr_id, SYNC);
+            seq_pvPut(ssId, seqcode_id, SYNC);
+      
+            // write timestamp (wich also triggers write to seqRAM)
+            seq_pvPut(ssId, seqtime_id, SYNC);
+            count++;
+        }
+        
           ////////////// D E B U G G I N G //////////////////////////////////////////
   
           printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
@@ -1222,13 +1270,19 @@ ss seq {
       *pseqaddr = address;
       *pseqtime = maxdelay + offSetEndCode;
   
-      // write event info to seqRAM records
-      seq_pvPut(ssId, seqaddr_id, SYNC);
-      seq_pvPut(ssId, seqcode_id, SYNC);
-
-      // write timestamp (wich also triggers write to seqRAM)
-      seq_pvPut(ssId, seqtime_id, SYNC);
-
+        // write seqram just if it was changed
+        if (((*pseqcode) != (seqram2[address]&0xff)) || ((*pseqtime) != (seqram2[address]>>8))){
+            seqram2[address] = ((*pseqtime) << 8) + *pseqcode;
+            
+            // write event info to seqRAM records
+            seq_pvPut(ssId, seqaddr_id, SYNC);
+            seq_pvPut(ssId, seqcode_id, SYNC);
+      
+            // write timestamp (wich also triggers write to seqRAM)
+            seq_pvPut(ssId, seqtime_id, SYNC);
+            count++;
+        }
+        
       ////////////// D E B U G G I N G //////////////////////////////////////////
 
       printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
@@ -1240,6 +1294,6 @@ ss seq {
     }
 
     // return number of writes to SeqRAM
-          return address;
+          return count;
   }
 }%

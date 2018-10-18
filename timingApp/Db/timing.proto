@@ -73,6 +73,10 @@ evg_ctrl_los_intr{
     in "\xc0%*04r%*04r%r%*02r%*r";
 }
 
+evg_ctrl_freq_intr{
+    in "\xc0%*04r%04r%*04r";
+}
+
 evg_ctrl_seqstat_rfstat_intr{
     in "\xc0%*04r%*04r%*02r%r%*r";
 }
@@ -299,7 +303,7 @@ eve_rf_intr {
 # AC Line register [40]
 evg_acline_get {
     out "%(\$1\$2cmd_acdiv_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xE8%*03r%(\$1\$2ACEnbl-Sts)r%*03r%(\$1\$2ACSrc-Sts)r%*04r";
+    in "\xE8%*03r%(\$1\$2ACEnbl-Sts)r%*02r%(\$1\$2ACStatus-Mon)r%(\$1\$2ACSrc-Sts)r%*04r";
 }
 
 evg_acline_acen_set{
@@ -308,12 +312,12 @@ evg_acline_acen_set{
 }
 
 evg_acline_acdiv_set{
-    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sts).1r\x00\x00\x00\x00%(\$1\$2ACDiv-SP.RVAL).4r";
+    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sts).1r\x00\x00\x00%(\$1\$2ACSrc-Sts).1r%(\$1\$2ACDiv-SP.RVAL).4r";
     evg_acline_get;
 }
 
 evg_acline_set{
-    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2ACDiv-SP.RVAL).4r";
+    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00%(\$1\$2ACSrc-Sts).1r%(\$1\$2ACDiv-SP.RVAL).4r";
     evg_acline_get;
 }
 

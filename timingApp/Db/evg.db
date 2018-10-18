@@ -1,19 +1,32 @@
-record(ao, "$(P)$(R)RFRef-Cte"){
-  field(DESC, "RF Ref Input frequency")
-  field(PREC, "3")
-  field(PINI, "1")
-  field(EGU, "Hz")
-  field(VAL, "499658000")
-  field(FLNK, "$(P)$(R)FPGAClk-Cte")
+record(calc, "$(P)$(R)FPGAClk-Cte") {
+  field(ASG, "Reserved")
+  field(DESC, "FPGA Clock")
+  field(SCAN, "1 second")
+  field(INPA, "$(P)$(R)Freq-Mon")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(INPC, "$(P)$(R)Counter")
+  field(CALC, "(B*(C-1)+A)/(C)")
+  field(FLNK, "$(P)$(R)Counter")
 }
 
-record(calc, "$(P)$(R)FPGAClk-Cte"){
-  field(DESC, "FPGA Clock")
+record(calc, "$(P)$(R)Counter"){
+  field(DESC, "Average number counter")
+  field(PINI, "1")
+  field(PREC, "0")
+  field(EGU, "Hz")
+  field(INPA, "$(P)$(R)Counter")
+  field(INPB, "1")
+  field(CALC, "A+B")
+  field(FLNK, "$(P)$(R)RFRef-Cte")
+}
+
+record(calc, "$(P)$(R)RFRef-Cte"){
+  field(DESC, "RF Ref Input frequency")
   field(PREC, "3")
-  field(EGU, "sec")
-  field(INPA, "$(P)$(R)RFRef-Cte")
+  field(EGU, "Hz")
+  field(INPA, "$(P)$(R)FPGAClk-Cte")
   field(INPB, "$(P)$(R)RFDiv-SP")
-  field(CALC, "B/A")
+  field(CALC, "A*B")
 }
 
 ########################################################################
@@ -80,6 +93,13 @@ record(mbbiDirect, "$(P)$(R)Los-Mon") {
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto evg_ctrl_los_intr $(PORT)")
+}
+
+record(longin, "$(P)$(R)Freq-Mon") {
+  field(DESC, "Frequency")
+  field(DTYP, "stream")
+  field(SCAN, "I/O Intr")
+  field(INP, "@timing.proto evg_ctrl_freq_intr $(PORT)")
 }
 
 record(calc, "$(P)$(R)SeqStatusCalc") {
@@ -153,7 +173,7 @@ record(longout, "$(P)$(R)cmd_ctrl_get") {
   field(ASG, "Reserved")
   field(DESC, "Control Status reg read command code")
   field(VAL, "0x80") # (0x80 | reg number)
-  field(SCAN, "1 second")
+  field(SCAN, ".1 second")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ctrl_get($(P),$(R)) $(PORT)")
 }
@@ -179,6 +199,13 @@ record(bi, "$(P)$(R)ACSrc-Sts") {
   field(DESC, "AC line input source RBV")
   field(ZNAM, "External")
   field(ONAM, "Internal")
+}
+
+record(bi, "$(P)$(R)ACStatus-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "AC line input status")
+  field(ZNAM, "Disconnected")
+  field(ONAM, "Connected")
 }
 
 record(longin, "$(P)$(R)ACDivRaw") {
@@ -253,8 +280,11 @@ record(ao, "$(P)$(R)ACDiv-SP"){
 
 record(longout, "$(P)$(R)cmd_acdiv_get") {
   field(ASG, "Reserved")
+  field(SCAN, "1 second")
   field(DESC, "AC Line reg read command code")
+  field(DTYP, "stream")
   field(VAL, "0xA8") # (0x80 | reg number=40)
+  field(OUT, "@timing.proto evg_acline_get($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_acdiv_set") {
@@ -1643,7 +1673,6 @@ record(ao, "$(P)$(R)RFDiv-SP"){
   field(AOFF, "1")
   field(PREC, "0")
   field(OUT, "@timing.proto evg_conf_rfdiv_set($(P),$(R)) $(PORT)")
-  field(FLNK, "$(P)$(R)FPGAClk-Cte")
 }
 
 record(longout, "$(P)$(R)cmd_conf_get") {
