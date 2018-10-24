@@ -1,4 +1,6 @@
 $(P)$(R)ACEnbl-Sel
+$(P)$(R)ACSrc-Sel
+$(P)$(R)InjRate-SP
 $(P)$(R)Clk0MuxEnbl-Sel
 $(P)$(R)Clk1MuxEnbl-Sel
 $(P)$(R)Clk2MuxEnbl-Sel

@@ -21,6 +21,15 @@ drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT}:${IPPORT} udp",0,0,0)
 ## Load record instances
 dbLoadRecords("${TOP}/db/fout.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=0, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=1, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=2, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=3, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=4, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=5, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=6, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=7, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+
 < save_restore.cmd
 
 ## Run this to trace the stages of iocInit

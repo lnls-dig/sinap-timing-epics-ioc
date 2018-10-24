@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += evre_otp.db
 DB += evre_out.db
+DB += evgfout_out.db
 DB += eve.db
 DB += evg.db
 DB += evr.db

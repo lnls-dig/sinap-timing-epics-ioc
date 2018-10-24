@@ -24,6 +24,15 @@ drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT}:${IPPORT} udp",0,0,0)
 dbLoadRecords("${TOP}/db/evg.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords "${TOP}/db/SeqRAM.db", "P=${P}, R=${R}"
 
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=0, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=1, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=2, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=3, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=4, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=5, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=6, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=7, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+
 # Events
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=0,   desc='Undefined', code='01', time=100, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=1,   desc='Undefined', code='02', time=101, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"

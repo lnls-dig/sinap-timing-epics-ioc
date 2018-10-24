@@ -1756,7 +1756,7 @@ record(calc, "$(P)$(R)DevStatusCalc") {
   field(DESC, "device status calc")
   field(INPA, "$(P)$(R)Alive-Mon")
   field(CALC, "A=0?0:1")
-  #field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(FLNK, "$(P)$(R)DevStatus-Mon")
 }
 

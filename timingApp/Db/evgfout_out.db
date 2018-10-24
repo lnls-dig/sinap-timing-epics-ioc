@@ -1,0 +1,40 @@
+########################################################################
+# Generic OUT(0 to 7) Register (17 to 24)
+
+record(longin, "$(P)$(R)OUT$(num)TripDelay-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) round trip coarse delay")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evgfout_out_delay$(num)_intr $(PORT)")
+}
+
+record(longin, "$(P)$(R)OUT$(num)FramePos-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) frame position")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evgfout_out_pos$(num)_intr $(PORT)")
+}
+
+record(calc, "$(P)$(R)cmd_out_set$(num)") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to OUT$(num)")
+  field(PINI, "1")
+  field(A, "$(num)")
+  field(B, "0x51")
+  field(CALC, "A + B")
+}
+
+record(calcout, "$(P)$(R)cmd_out_get$(num)") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read OUT$(num)")
+  field(DTYP, "stream")
+  field(SCAN, "1 second")
+  field(PINI, "1")
+  field(A, "$(num)")
+  field(B, "0x91")
+  field(CALC, "A + B")
+  field(OUT, "@timing.proto evgfout_out_get($(P),$(R),$(num)) $(PORT)")
+}
+

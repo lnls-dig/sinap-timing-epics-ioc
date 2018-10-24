@@ -199,6 +199,11 @@ evre_otp_enpoltime23RBV_intr{
 
 ################################################################################
 # OUT Registers [17 - 24]
+evgfout_out_get {
+    out "%(\$1\$2cmd_out_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
 evre_out_get {
     out "%(\$1\$2cmd_out_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT\$3FineDelay-RB)02r%*03r%(\$1\$2OUT\$3RFDelayRaw)r";
@@ -230,6 +235,56 @@ evre_out_set{
 }
 
 # Interrupts
+
+evgfout_out_delay0_intr{
+    in "\xD1%*04r%*04r%02r%*02r";
+}
+evgfout_out_delay1_intr{
+    in "\xD2%*04r%*04r%02r%*02r";
+}
+evgfout_out_delay2_intr{
+    in "\xD3%*04r%*04r%02r%*02r";
+}
+evgfout_out_delay3_intr{
+    in "\xD4%*04r%*04r%02r%*02r";
+}
+evgfout_out_delay4_intr{
+    in "\xD5%*04r%*04r%02r%*02r";
+}
+evgfout_out_delay5_intr{
+    in "\xD6%*04r%*04r%02r%*02r";
+}
+evgfout_out_delay6_intr{
+    in "\xD7%*04r%*04r%02r%*02r";
+}
+evgfout_out_delay7_intr{
+    in "\xD8%*04r%*04r%02r%*02r";
+}
+
+evgfout_out_pos0_intr{
+    in "\xD1%*02r%r%*r%*04r%*04r";
+}
+evgfout_out_pos1_intr{
+    in "\xD2%*02r%r%*r%*04r%*04r";
+}
+evgfout_out_pos2_intr{
+    in "\xD3%*02r%r%*r%*04r%*04r";
+}
+evgfout_out_pos3_intr{
+    in "\xD4%*02r%r%*r%*04r%*04r";
+}
+evgfout_out_pos4_intr{
+    in "\xD5%*02r%r%*r%*04r%*04r";
+}
+evgfout_out_pos5_intr{
+    in "\xD6%*02r%r%*r%*04r%*04r";
+}
+evgfout_out_pos6_intr{
+    in "\xD7%*02r%r%*r%*04r%*04r";
+}
+evgfout_out_pos7_intr{
+    in "\xD8%*02r%r%*r%*04r%*04r";
+}
 
 evre_out_itl0RAW_intr{
     in "\xD1%r%*03r%*04r%*04r";
@@ -410,18 +465,18 @@ evg_tmstmp_get{
 }
 
 evg_tmstmp_utc_set{
-    out "%(\$1\$2cmd_tmstmp_set)r%(\$1\$2UTC-SP).4r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sts.RVAL)r";
+    out "\x73%(\$1\$2UTC-SP).4r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sts.RVAL)r";
     evg_tmstmp_get;
 }
 
 # utc receives 0 causing it to be broadcast
 evg_tmstmp_timesrc_set{
-    out "%(\$1\$2cmd_tmstmp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
+    out "\x73\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
     evg_tmstmp_get;
 }
 
 evg_tmstmp_set{
-    out "%(\$1\$2cmd_tmstmp_set)r%(\$1\$2UTC-SP).4r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
+    out "\x73%(\$1\$2UTC-SP).4r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
     evg_tmstmp_get;
 }
 
@@ -440,7 +495,7 @@ evre_tmstmp_get{
 }
 
 evre_tmstmp_set{
-    out "%(\$1\$2cmd_tmstmp_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
+    out "\x73\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
     evre_tmstmp_get;
 }
 
