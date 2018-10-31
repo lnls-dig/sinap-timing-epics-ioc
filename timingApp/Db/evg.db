@@ -1,28 +1,19 @@
-record(calc, "$(P)$(R)FPGAClk-Cte") {
+########################################################################
+# Frequency Reference PVs
+
+record(acalcout, "$(P)$(R)FPGAClk-Cte") {
   field(ASG, "Reserved")
   field(DESC, "FPGA Clock")
   field(SCAN, "1 second")
+  field(NELM, "5")
   field(INPA, "$(P)$(R)Freq-Mon")
-  field(INPB, "$(P)$(R)FPGAClk-Cte")
-  field(INPC, "$(P)$(R)Counter")
-  field(CALC, "(B*(C-1)+A)/(C)")
-  field(FLNK, "$(P)$(R)Counter")
-}
-
-record(calc, "$(P)$(R)Counter"){
-  field(DESC, "Average number counter")
-  field(PINI, "1")
-  field(PREC, "0")
-  field(EGU, "Hz")
-  field(INPA, "$(P)$(R)Counter")
-  field(INPB, "1")
-  field(CALC, "A+B")
+  field(CALC, "AA:=CAT(AA[1,4],A);AVG(AA)")
   field(FLNK, "$(P)$(R)RFRef-Cte")
 }
 
 record(calc, "$(P)$(R)RFRef-Cte"){
   field(DESC, "RF Ref Input frequency")
-  field(PREC, "3")
+  field(PREC, "1")
   field(EGU, "Hz")
   field(INPA, "$(P)$(R)FPGAClk-Cte")
   field(INPB, "$(P)$(R)RFDiv-SP")
@@ -317,6 +308,17 @@ record(calc, "$(P)$(R)Clk0MuxDiv-RB") {
   field(DESC, "Mux0 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk0MuxDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk0Freq-RB")
+}
+
+record(calc, "$(P)$(R)Clk0Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux0 frequency")
+  field(INPA, "$(P)$(R)Clk0MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)Clk0MuxEnbl-Sel"){
@@ -326,6 +328,15 @@ record(bo, "$(P)$(R)Clk0MuxEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evg_mux_en_set($(P),$(R),0) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)Clk0Freq-SP") {
+  field(DESC, "Mux0 frequency")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk0MuxDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)Clk0MuxDiv-SP"){
@@ -376,6 +387,17 @@ record(calc, "$(P)$(R)Clk1MuxDiv-RB") {
   field(DESC, "Mux1 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk1MuxDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk1Freq-RB")
+}
+
+record(calc, "$(P)$(R)Clk1Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux1 frequency")
+  field(INPA, "$(P)$(R)Clk1MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)Clk1MuxEnbl-Sel"){
@@ -385,6 +407,15 @@ record(bo, "$(P)$(R)Clk1MuxEnbl-Sel"){
   field(ZNAM, "OFF")
   field(ONAM, "ON")
   field(OUT, "@timing.proto evg_mux_en_set($(P),$(R),1) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)Clk1Freq-SP") {
+  field(DESC, "Mux1 frequency")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk1MuxDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)Clk1MuxDiv-SP"){
@@ -433,6 +464,17 @@ record(calc, "$(P)$(R)Clk2MuxDiv-RB") {
   field(DESC, "Mux2 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk2MuxDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk2Freq-RB")
+}
+
+record(calc, "$(P)$(R)Clk2Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux2 frequency")
+  field(INPA, "$(P)$(R)Clk2MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)Clk2MuxEnbl-Sel"){
@@ -442,6 +484,15 @@ record(bo, "$(P)$(R)Clk2MuxEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evg_mux_en_set($(P),$(R),2) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)Clk2Freq-SP") {
+  field(DESC, "Mux2 frequency")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk2MuxDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)Clk2MuxDiv-SP"){
@@ -490,6 +541,17 @@ record(calc, "$(P)$(R)Clk3MuxDiv-RB") {
   field(DESC, "Mux3 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk3MuxDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk3Freq-RB")
+}
+
+record(calc, "$(P)$(R)Clk3Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux3 frequency")
+  field(INPA, "$(P)$(R)Clk3MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)Clk3MuxEnbl-Sel"){
@@ -499,6 +561,15 @@ record(bo, "$(P)$(R)Clk3MuxEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evg_mux_en_set($(P),$(R),3) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)Clk3Freq-SP") {
+  field(DESC, "Mux3 frequency")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk3MuxDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)Clk3MuxDiv-SP"){
@@ -547,6 +618,17 @@ record(calc, "$(P)$(R)Clk4MuxDiv-RB") {
   field(DESC, "Mux4 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk4MuxDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk4Freq-RB")
+}
+
+record(calc, "$(P)$(R)Clk4Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux4 frequency")
+  field(INPA, "$(P)$(R)Clk4MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)Clk4MuxEnbl-Sel"){
@@ -556,6 +638,15 @@ record(bo, "$(P)$(R)Clk4MuxEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evg_mux_en_set($(P),$(R),4) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)Clk4Freq-SP") {
+  field(DESC, "Mux4 frequency")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk4MuxDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)Clk4MuxDiv-SP"){
@@ -604,6 +695,17 @@ record(calc, "$(P)$(R)Clk5MuxDiv-RB") {
   field(DESC, "Mux5 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk5MuxDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk5Freq-RB")
+}
+
+record(calc, "$(P)$(R)Clk5Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux5 frequency")
+  field(INPA, "$(P)$(R)Clk5MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)Clk5MuxEnbl-Sel"){
@@ -613,6 +715,15 @@ record(bo, "$(P)$(R)Clk5MuxEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evg_mux_en_set($(P),$(R),5) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)Clk5Freq-SP") {
+  field(DESC, "Mux5 frequency")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk5MuxDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)Clk5MuxDiv-SP"){
@@ -662,6 +773,17 @@ record(calc, "$(P)$(R)Clk6MuxDiv-RB") {
   field(DESC, "Mux6 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk6MuxDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk6Freq-RB")
+}
+
+record(calc, "$(P)$(R)Clk6Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux6 frequency")
+  field(INPA, "$(P)$(R)Clk6MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)Clk6MuxEnbl-Sel"){
@@ -671,6 +793,15 @@ record(bo, "$(P)$(R)Clk6MuxEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evg_mux_en_set($(P),$(R),6) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)Clk6Freq-SP") {
+  field(DESC, "Mux6 frequency")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk6MuxDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)Clk6MuxDiv-SP"){
@@ -719,6 +850,17 @@ record(calc, "$(P)$(R)Clk7MuxDiv-RB") {
   field(DESC, "Mux7 frequency divider RBV")
   field(INPA, "$(P)$(R)Clk7MuxDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk7Freq-RB")
+}
+
+record(calc, "$(P)$(R)Clk7Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux7 frequency")
+  field(INPA, "$(P)$(R)Clk7MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
 }
 
 record(bo, "$(P)$(R)Clk7MuxEnbl-Sel"){
@@ -728,6 +870,15 @@ record(bo, "$(P)$(R)Clk7MuxEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evg_mux_en_set($(P),$(R),7) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)Clk7Freq-SP") {
+  field(DESC, "Mux7 frequency")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk7MuxDiv-SP PP")
 }
 
 record(ao, "$(P)$(R)Clk7MuxDiv-SP"){
@@ -1789,9 +1940,5 @@ record(calc, "$(P)$(R)Save-Trig"){
   field(INPA, "$(P)$(R)Save-Cmd.VAL")
   field(CALC, "(A > 0) ? (VAL+1) : VAL")
   field(VAL, "0")
-}
-
-record(calc, "$(P)$(R)EvtDelayMod"){
-	field(DESC, "Event timestamp mod")
 }
 

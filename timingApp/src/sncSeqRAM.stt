@@ -44,9 +44,24 @@ int EvtDelayNum;
 assign EvtDelayNum to "{P}{R}EvtDelayMod.B";
 monitor EvtDelayNum;
 
+int EvtType;
+assign EvtType to "{P}{R}EvtDelayMod.C";
+monitor EvtType;
+
+int EvtMode;
+assign EvtMode to "{P}{R}EvtDelayMod.D";
+monitor EvtMode;
+
 int EvtDelayValL;
 
 int EvtDelayNumL;
+
+int EvtTypeL;
+
+int EvtModeL;
+
+int StatusEvt;
+assign StatusEvt to "{P}{R}EvtSyncStatus-Mon";
 
 %%// tbl MUST HAVE, at least, the same length of ITBL
 int tbl[864];
@@ -200,6 +215,8 @@ ss seq {
 
             EvtDelayValL = EvtDelayVal;
             EvtDelayNumL = EvtDelayNum;
+            EvtTypeL = EvtType;
+            EvtModeL = EvtMode;
 
             %%/* Variable Initialization */
              StateMachineStatus = 0;
@@ -371,10 +388,14 @@ ss seq {
             %%//printf("Moving to Running State\n");
         } state Running
     
-        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
+        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL || EvtType != EvtTypeL || EvtMode != EvtModeL){
 
             EvtDelayValL = EvtDelayVal;
             EvtDelayNumL = EvtDelayNum;
+            EvtTypeL = EvtType;
+            EvtModeL = EvtMode;
+            StatusEvt = 0;
+            pvPut (StatusEvt, SYNC);
             delayUsed = 0;
             for(i = 0; i < eventNum; i++){
                 
@@ -401,6 +422,11 @@ ss seq {
                 printf("EVG:seqen: numberOfWrites= %d, seqcount= %d, seqen_rbv= %d, seqs=%d\n", numberOfWrites, seqcount, seqen_rbv, seqs);
         }
     
+        when(network == 0)
+        {
+            printf("Network disconnected\n");
+        } state init
+
         when(seqcount == numberOfWrites && seqen_rbv == 0){
     
             %{/* Successful Write */}%
@@ -434,6 +460,11 @@ ss seq {
     
             printf("Error: Failed to switch or to write to SeqRAM 1.\n");
     
+            %%// Initialize seqram mirrors
+            for (i = 0; i < 16384; i++) {
+                seqram1[i] = 0;
+            }
+
         } state Stopped
     }
     
@@ -455,6 +486,9 @@ ss seq {
             run_tg_rbv = 1;
             pvPut(run_tg_rbv, SYNC);
             
+            StatusEvt = 1;
+            pvPut (StatusEvt, SYNC);
+
             %%// Clear number of writes
             numberOfWrites = 0;
             
@@ -466,10 +500,14 @@ ss seq {
             printf("Network disconnected\n");
         } state init
 
-        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
+        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL || EvtType != EvtTypeL || EvtMode != EvtModeL){
 
             EvtDelayValL = EvtDelayVal;
             EvtDelayNumL = EvtDelayNum;
+            EvtTypeL = EvtType;
+            EvtModeL = EvtMode;
+            StatusEvt = 0;
+            pvPut (StatusEvt, SYNC);
             delayUsed = 0;
             for(i = 0; i < eventNum; i++){
                 
@@ -582,6 +620,11 @@ ss seq {
         }
         
     
+        when(network == 0)
+        {
+            printf("Network disconnected\n");
+        } state init
+
         when(seqcount == numberOfWrites){
     
             %{/* Successful Write */}%
@@ -613,6 +656,11 @@ ss seq {
     
             printf("Error: Failed to switch or to write to SeqRAM 2.\n");
     
+            %%// Initialize seqram mirrors
+            for (i = 0; i < 16384; i++) {
+                seqram2[i] = 0;
+            }
+
         } state Running
     }
     
@@ -636,6 +684,9 @@ ss seq {
             inj_tg_rbv = 1;
             pvPut(inj_tg_rbv, SYNC);
 
+            StatusEvt = 1;
+            pvPut (StatusEvt, SYNC);
+
             %%// Seq switch reset (switching condition is only satisfied once)
             seqsw = 0;
     
@@ -647,10 +698,14 @@ ss seq {
             printf("Network disconnected\n");
         } state init
 
-        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL){
+        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL || EvtType != EvtTypeL || EvtMode != EvtModeL){
 
             EvtDelayValL = EvtDelayVal;
             EvtDelayNumL = EvtDelayNum;
+            EvtTypeL = EvtType;
+            EvtModeL = EvtMode;
+            StatusEvt = 0;
+            pvPut (StatusEvt, SYNC);
             delayUsed = 0;
             for(i = 0; i < eventNum; i++){
                 
@@ -744,6 +799,11 @@ ss seq {
             %%//printf("Restarting Entry\n");
         }
     
+        when(network == 0)
+        {
+            printf("Network disconnected\n");
+        } state init
+
         when(seqen_rbv != 0){
     
             %{/* Make sure SeqRAM is disabled */}%

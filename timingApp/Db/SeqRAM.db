@@ -86,3 +86,15 @@ record(longin, "$(P)$(R)RepeatBucketList-RB"){
   field(INP, "$(P)$(R)RepeatBucketList-SP")
 }
 
+# This PV is observed by the State Machine in sncSeqRAM.stt
+record(calc, "$(P)$(R)EvtDelayMod"){
+	field(DESC, "Event timestamp mod")
+}
+
+record(bo, "$(P)$(R)EvtSyncStatus-Mon"){
+	field(SCAN, "Passive")
+	field(ZNAM, "Unsynced")
+	field(ONAM, "Synced")
+	field(DESC, "Sync status of the events in HW and IOC")
+}
+

@@ -42,7 +42,7 @@ record(ao, "$(P)$(R)Evt$(code)Delay-SP"){
   field(DRVL, "0")
   field(AOFF, "-$(EVT_DELAY)")
   field(PREC, "0")
-  field(FLNK, "$(P)$(R)Evt$(code)DelayModVal")
+  field(OUT, "$(P)$(R)Evt$(code)DelayModVal PP")
   field(VAL, "$(time)")
 }
 
@@ -76,6 +76,7 @@ record(bo, "$(P)$(R)Evt$(code)DelayType-Sel"){
   field(ONAM, "Fixed")
   field(VAL, "$(mode)")
   field(FLNK, "$(P)$(R)Evt$(code)DelayType-Sts")
+  field(OUT, "$(P)$(R)EvtDelayMod.C PP")
 }
 
 record(bi, "$(P)$(R)Evt$(code)DelayType-Sts"){
@@ -100,6 +101,7 @@ record(mbbo, "$(P)$(R)Evt$(code)Mode-Sel"){
   field(THST, "External")
   field(VAL, "$(transm)")
   field(FLNK, "$(P)$(R)Evt$(code)Mode-Sts")
+  field(OUT, "$(P)$(R)EvtDelayMod.D PP")
 }
 
 record(mbbi, "$(P)$(R)Evt$(code)Mode-Sts"){

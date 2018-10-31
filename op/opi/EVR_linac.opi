@@ -18,6 +18,8 @@
   <height>3000</height>
   <macros>
     <include_parent_macros>true</include_parent_macros>
+    <P>TEST-DIG:</P>
+    <R>TI-EVR-1:</R>
   </macros>
   <name></name>
   <rules />
@@ -8424,7 +8426,7 @@ $(pv_value)</tooltip>
     <foreground_color>
       <color red="192" green="192" blue="192" />
     </foreground_color>
-    <height>33</height>
+    <height>20</height>
     <name>LED_32</name>
     <off_color>
       <color red="106" green="60" blue="54" />
@@ -8449,10 +8451,10 @@ $(pv_value)</tooltip>
 $(pv_value)</tooltip>
     <visible>true</visible>
     <widget_type>LED</widget_type>
-    <width>33</width>
+    <width>20</width>
     <wuid>10c4971e:157711e6f06:5db</wuid>
     <x>253</x>
-    <y>110</y>
+    <y>117</y>
   </widget>
   <widget typeId="org.csstudio.opibuilder.widgets.Label" version="1.0.0">
     <actions hook="false" hook_all="false" />
