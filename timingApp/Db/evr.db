@@ -2,7 +2,6 @@
 # Frequency Reference PVs
 
 record(ai, "$(P)$(R)FPGAClk-Cte") {
-  field(ASG, "Reserved")
   field(DESC, "FPGA Clock from EVG")
   field(SCAN, "1 second")
   field(PINI, "1")
