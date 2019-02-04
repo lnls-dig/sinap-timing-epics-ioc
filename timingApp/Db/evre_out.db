@@ -76,7 +76,7 @@ record(bo, "$(P)$(R)OUT$(num)RFDelayType-Sel"){
 record(longout, "$(P)$(R)OUT$(num)RFDelay-SP"){
   field(DESC, "OUT$(num) RF delay")
   field(DRVL, "0")
-  field(DRVH, "30")
+  field(DRVH, "20")
   field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalc")
 }
 
