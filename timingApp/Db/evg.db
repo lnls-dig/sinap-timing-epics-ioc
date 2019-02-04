@@ -20,6 +20,16 @@ record(calc, "$(P)$(R)RFRef-Cte"){
   field(CALC, "A*B")
 }
 
+record(stringout, "$(P)$(R)IPAddr-Mon"){
+  field(DESC, "IPADDR")
+  field(VAL, "$(IPADDR)")
+}
+
+record(stringout, "$(P)$(R)IPPort-Mon"){
+  field(DESC, "IPPORT")
+  field(VAL, "$(IPPORT)")
+}
+
 ########################################################################
 # Control and Status Register [0]
 

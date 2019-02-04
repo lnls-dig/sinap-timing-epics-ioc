@@ -21,7 +21,7 @@ drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT}:${IPPORT} udp",0,0,0)
 ## Load record instances
 
 # EVG
-dbLoadRecords("${TOP}/db/evg.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg.db", "P=${P}, R=${R}, IPADDR=${IPADDR}, IPPORT=${IPPORT}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords "${TOP}/db/SeqRAM.db", "P=${P}, R=${R}"
 
 dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=0, PORT=${PORT}, ADDR=0, TIMEOUT=2")
@@ -33,22 +33,21 @@ dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=5, PORT=${PORT}, 
 dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=6, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=7, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
-# Events
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=0,   desc='Undefined', code='01', time=100, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=1,   desc='Undefined', code='02', time=101, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=2,   desc='Undefined', code='03', time=102, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=3,   desc='Undefined', code='04', time=103, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=4,   desc='Undefined', code='05', time=104, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=5,   desc='Undefined', code='06', time=105, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=6,   desc='Undefined', code='07', time=106, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=7,   desc='Undefined', code='08', time=107, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=8,   desc='Undefined', code='09', time=108, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=9,   desc='Undefined', code='10', time=109, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=10,  desc='Undefined', code='11', time=110, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=11,  desc='Undefined', code='12', time=111, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=12,  desc='Undefined', code='13', time=112, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=13,  desc='Undefined', code='14', time=113, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
-dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=14,  desc='Undefined', code='15', time=114, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=0,   desc='Linac', code='01', time=100, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=1,   desc='InjBO', code='02', time=101, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=2,   desc='InjSI', code='03', time=102, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=3,   desc='RmpBO', code='04', time=103, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=4,   desc='MigSI', code='05', time=104, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=5,   desc='DigLI', code='06', time=105, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=6,   desc='DigTB', code='07', time=106, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=7,   desc='DigBO', code='08', time=107, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=8,   desc='DigTS', code='09', time=108, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=9,   desc='DigSI', code='10', time=109, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=10,  desc='OrbSI', code='11', time=110, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=11,  desc='CplSI', code='12', time=111, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=12,  desc='TunSI', code='13', time=112, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=13,  desc='Study', code='14', time=113, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
+dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=14,  desc='OrbBO', code='15', time=114, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=15,  desc='Undefined', code='16', time=115, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=16,  desc='Undefined', code='17', time=116, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=17,  desc='Undefined', code='18', time=117, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"

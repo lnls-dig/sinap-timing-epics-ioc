@@ -5,7 +5,18 @@ record(ai, "$(P)$(R)FPGAClk-Cte") {
   field(DESC, "FPGA Clock from EVG")
   field(SCAN, "1 second")
   field(PINI, "1")
+  field(VAL, "124914500")
   field(INP, "TEST-DIG:TI-EVG:FPGAClk-Cte")
+}
+
+record(stringout, "$(P)$(R)IPAddr-Mon"){
+  field(DESC, "IPADDR")
+  field(VAL, "$(IPADDR)")
+}
+
+record(stringout, "$(P)$(R)IPPort-Mon"){
+  field(DESC, "IPPORT")
+  field(VAL, "$(IPPORT)")
 }
 
 ########################################################################
