@@ -1,14 +1,31 @@
 ########################################################################
 # Frequency Reference PVs
 
-record(acalcout, "$(P)$(R)FPGAClk-Cte") {
+record(acalcout, "$(P)$(R)FPGAClkMAF") {
   field(ASG, "Reserved")
   field(DESC, "FPGA Clock")
   field(SCAN, "1 second")
   field(NELM, "5")
   field(INPA, "$(P)$(R)Freq-Mon")
   field(CALC, "AA:=CAT(AA[1,4],A);AVG(AA)")
+  field(FLNK, "$(P)$(R)FPGAClkCalc")
+}
+
+record(calcout, "$(P)$(R)FPGAClkCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "FPGA Clock")
+  field(SCAN, "1 second")
+  field(INPA, "$(P)$(R)FPGAClkMAF")
+  field(INPB, "$(P)$(R)TimestampSrc-Sel")
+  field(INPC, "$(P)$(R)FPGAClk-Cte")
+  field(OUT, "$(P)$(R)FPGAClk-Cte PP")
+  field(CALC, "B>0?A:C")
   field(FLNK, "$(P)$(R)RFRef-Cte")
+}
+
+record(ai, "$(P)$(R)FPGAClk-Cte") {
+  field(VAL, "124914500")
+  field(DESC, "FPGA Clock")
 }
 
 record(calc, "$(P)$(R)RFRef-Cte"){
@@ -898,6 +915,8 @@ record(ao, "$(P)$(R)Clk7MuxDiv-SP"){
   field(DRVL, "2")
   field(AOFF, "1")
   field(PREC, "0")
+  field(PINI, "1")
+  field(VAL, "4968")
   field(OUT, "@timing.proto evg_mux_div_set($(P),$(R),7) $(PORT)")
 }
 
