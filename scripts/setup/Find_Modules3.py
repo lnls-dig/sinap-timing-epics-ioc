@@ -1,101 +1,146 @@
+#!/usr/bin/python3.5
 ########################### Run in python 3 ###########################
 
 # Find timing modules in a subnetwork
 
-import numpy as np
 import time
 import socket
 import sys
-import subprocess
-import nmap
+import telnetlib
 
-WAIT = 0.01
-NrTry = 3 
-
-if (len(sys.argv) == 1):
-  ipsub_list = ['10.0.18','10.0.17','10.0.21','10.0.38','10.0.9']
-else:
-  ipsub_list = sys.argv[1:]
-  
-port_ini = 50100
-port_end = 50150
-
-f = open('Find_Modules.log','w')
-
+############################# Functions ###############################
 def FindMod(UDP_IP, UDP_PORT):
   # Read
   funsel = [16, 17, 18, 32]
+  addr = (UDP_IP, UDP_PORT)
+  
   try:
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.settimeout(WAIT)
     sock.bind(('', UDP_PORT))
   except:
     ok = 0
-    addr = ['0.0.0.0', 0]
+    addr = ('0.0.0.0', 0)
     regA = regB = regC = [0, 0, 0, 0]
-    return ok, regA, regB, regC, addr
+    return ok, 0, hex(0), addr
     
-  add = 63
+  # Try read module function
+  reg = 63
   ok = 0
-  cmd = chr(0x80|add)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)
-  
+  func = 0
+  commit = hex(0)
+  cmd = bytes([0x80|reg]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0])
+
   for i in range(NrTry):
-    sock.sendto(str.encode(cmd), (UDP_IP, UDP_PORT))
+
+    sock.sendto(cmd, addr)
+    time.sleep(WAIT)
+
     try: 
       data, addr = sock.recvfrom(13) # buffer size is 13 bytes
-      regA = [(ord(data[1])),(ord(data[2])),(ord(data[3])),(ord(data[4]))]
-      regB = [(ord(data[5])),(ord(data[6])),(ord(data[7])),(ord(data[8]))]
-      regC = [(ord(data[9])),(ord(data[10])),(ord(data[11])),(ord(data[12]))]
+      regA = [data[1],data[2],data[3],data[4]]
+      regB = [data[5],data[6],data[7],data[8]]
+      regC = [data[9],data[10],data[11],data[12]]
       if (regC[3] in funsel):
+        func = regC[3]
         ok = 1
+      # Read firmware version
+      reg = 62
+      cmd = bytes([0x80|reg]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0]+[0])
+      sock.sendto(cmd, addr)
+      time.sleep(WAIT)
+      data, addr = sock.recvfrom(13) # buffer size is 13 bytes
+      value = 0
+      for regnum in range(11):
+        value = value | data[regnum+1]<<(8*(11-regnum))
+      commit = hex(value)
     except:
+      #print('aqui',UDP_PORT)
       ok = 0
-      addr = ['0.0.0.0', 0]
       regA = regB = regC = [0, 0, 0, 0]
+
     if (ok == 1):
       break
-    
-  return ok, regA, regB, regC, addr
+
+  sock.close()
+  return ok, func, commit, addr
   
-port_list = range(port_ini,port_end+1)
+############################# End Functions############################
+
+WAIT = 0.05
+NrTry = 3 
+
+if (len(sys.argv) == 1):
+  print('Missing subnet argument: Find_Modules3.py subnet1 subnet2 ... subnetN')
+  ipsub_list = ['10.0.18']
+  #exit()
+else:
+  ipsub_list = sys.argv[1:]
+  
+hw_map = open('mac_to_serial.csv','r')
+
+mac_to_serial = {} # empty dictionary
+
+for line in hw_map:
+    mac = line.split(';')[0]
+    serial = line.split(';')[1][0:-1]
+    if (mac == ''):
+      continue
+    mac_to_serial[mac] = serial
+    
+hw_map.close()
+    
+f = open('Find_Modules.log','w')
+
 start_time = time.time()
 
 for ipsub in ipsub_list:
-  print('Searching for timing modules in subnet', ipsub, 'and port range', port_ini, 'to', port_end)
+  print('Searching for timing modules in subnet', ipsub)
 
-  nm = nmap.PortScanner() 
-  nm.scan(ipsub+'.2-254', '9999') # scan host ipsub.2-254, port 9999
-  print(nm.command_line())
-  
-  for host in nm.all_hosts():
-    prod = nm[host]['tcp'][9999]['product']
-    port_state = nm[host]['tcp'][9999]['state']
-    if (('Lantronix' in prod) & (port_state == 'open')):
-      mac = nm[host]['tcp'][9999]['extrainfo'].split(' ')[1]
-    else:
+  # Searching for Lantronix modules, telnet port 9999
+  for i in range(2,255):
+    addr = (ipsub+'.'+str(i),9999)
+    host = ipsub+'.'+str(i)
+
+    try:
+      tn = telnetlib.Telnet(host, 9999, WAIT)
+    except:
       continue
- 
-    ok = 0
-    for port in port_list:
-      ok, a, b, c, addr = FindMod(host, port)
-      if ((ok==1) & (c[3]!=0)):
-        if (c[3]==32):
-          print ('EVE ip: ', host, 'port:', port, 'mac:', mac)
-          f.write('EVE ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + '\n')
-        elif (c[3]==16):
-          print ('FOUT ip:', host, 'port:', port, 'mac:', mac)
-          f.write('FOUT ip: ' + host + ' port: ' + str(port) + ' mac: ' + mac + '\n')
-        elif (c[3]==17):
-          print ('EVR ip: ', host, 'port:', port, 'mac:', mac)
-          f.write('EVR ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + '\n')
-        elif (c[3]==18):
-          print ('EVG ip: ', host, 'port:', port, 'mac:', mac)
-          f.write('EVG ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + '\n')
-        break
+
+    ans = str(tn.read_until(bytes('\0','ascii'),1))
+    if ('MAC address' in ans):
+      mac = ans.split(' ')[2].split('\\')[0]
+    else:
+      mac = '00:00:00:00:00:00'
+
+    tn.write(bytes('\r','ascii'))
+    ans = str(tn.read_until(bytes('\0','ascii'),1)).replace(' ','')
+    ans = ans.split('Channel1')[1]
+    ans = ans.split('Port')[1]
+    ans = ans.split('\\r')[0]
+    port = int(ans)
+  
+    ok, func, commit, addr = FindMod(host, port)
+    if ((ok==1) & (func!=0)):
+      if (func==32):
+        print ('EVE ip:', host, 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac])
+        f.write('EVE ip: ' + host + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
+      elif (func==16):
+        print ('FOUT ip:', host, 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac])
+        f.write('FOUT ip: ' + host + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
+      elif (func==17):
+        print ('EVR ip:', host, 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac])
+        f.write('EVR ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
+      elif (func==18):
+        print ('EVG ip:', host, 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac])
+        f.write('EVG ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
 
     if (ok == 0):
-      print ('NO ANS ip: ', host, 'mac:', mac)
-      f.write('NO ANS ip:  ' + host + ' mac: ' + mac + '\n')
+      if (mac in mac_to_serial):
+        print ('NO ANS ip:', host, 'port:', port, 'mac:', mac, 'serial number:', mac_to_serial[mac])
+      else:
+        print ('NO ANS ip:', host, 'port:', port, 'mac:', mac)
+      f.write('NO ANS ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + '\n')
 
 elapsed_time = time.time() - start_time
 print ('Elapsed time:', elapsed_time, 'sec')
