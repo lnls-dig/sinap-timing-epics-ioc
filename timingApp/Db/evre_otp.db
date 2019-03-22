@@ -66,10 +66,11 @@ record(calcout, "$(P)$(R)OTP$(num)DelayTimeCalc") {
 record(longout, "$(P)$(R)OTP$(num)Delay-SP") {
   field(DESC, "OTP$(num) trigger delay")
   field(DRVH, "2147483647")
-  field(DRVL, "1")
+  field(DRVL, "0")
   field(EGU, "evt_T")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
+  field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),$(num)) $(PORT)")
+  field(FLNK, "$(P)$(R)OTP$(num)Delay-RB")
 }
 
 record(bo, "$(P)$(R)OTP$(num)State-Sel") {
@@ -235,6 +236,8 @@ record(longin, "$(P)$(R)OTP$(num)Delay-RB") {
   field(ASG, "Reserved")
   field(DESC, "OTP$(num) delay RBV")
   field(EGU, "evt_T")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_get($(P),$(R),$(num)) $(PORT)")
   field(FLNK, "$(P)$(R)OTP$(num)DelayTime-RB")
 }
 
