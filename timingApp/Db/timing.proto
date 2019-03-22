@@ -10,7 +10,7 @@ fout_ctrl_get{
 }
 
 fout_ctrl_set{
-  out "%(\$1\$2cmd_ctrl_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel.RVAL)r";
+  out "%(\$1\$2cmd_ctrl_set)r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel.RVAL)r";
   fout_ctrl_get;
 }
 
@@ -18,6 +18,10 @@ fout_ctrl_set{
 
 fout_ctrl_en_intr{
   in "\xc0%*04r%*04r%*03r%r";
+}
+
+fout_ctrl_rxen_intr{
+    in "\xc0%*03r%r%*04r%*04r";
 }
 
 fout_ctrl_link_intr{
@@ -63,7 +67,7 @@ evg_ctrl_seq_en_set{
 }
 
 evg_ctrl_set{
-    out "%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2SeqEnblDevEnblCalc).1r";
+    out "%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2SeqEnblDevEnblCalc).1r";
     evg_ctrl_get;
 }
 
@@ -71,6 +75,10 @@ evg_ctrl_set{
 
 evg_ctrl_los_intr{
     in "\xc0%*04r%*04r%r%*02r%*r";
+}
+
+evg_ctrl_rxen_intr{
+    in "\xc0%*03r%r%*04r%*04r";
 }
 
 evg_ctrl_freq_intr{
@@ -109,7 +117,6 @@ evre_otp_width_set {
 
 evre_otp_dly_set {
     out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3RegAByte3RBV.RVAL)r%(\$1\$2OTP\$3NrPulses-RB).2r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3Delay-SP).4r%(\$1\$2OTP\$3Width-RB).4r";
-    evre_otp_get;
 }
 
 evre_otp_en_pol_time_itl_set {
@@ -234,31 +241,61 @@ evre_out_set{
     evre_out_get;
 }
 
+evgfout_out_set{
+    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2OUT\$3Delay-SP).1r\x00";
+    evgfout_out_get;
+}
+
 # Interrupts
 
-evgfout_out_delay0_intr{
+evgfout_tripdelay0_intr{
     in "\xD1%*04r%*04r%02r%*02r";
 }
-evgfout_out_delay1_intr{
+evgfout_tripdelay1_intr{
     in "\xD2%*04r%*04r%02r%*02r";
 }
-evgfout_out_delay2_intr{
+evgfout_tripdelay2_intr{
     in "\xD3%*04r%*04r%02r%*02r";
 }
-evgfout_out_delay3_intr{
+evgfout_tripdelay3_intr{
     in "\xD4%*04r%*04r%02r%*02r";
 }
-evgfout_out_delay4_intr{
+evgfout_tripdelay4_intr{
     in "\xD5%*04r%*04r%02r%*02r";
 }
-evgfout_out_delay5_intr{
+evgfout_tripdelay5_intr{
     in "\xD6%*04r%*04r%02r%*02r";
 }
-evgfout_out_delay6_intr{
+evgfout_tripdelay6_intr{
     in "\xD7%*04r%*04r%02r%*02r";
 }
-evgfout_out_delay7_intr{
+evgfout_tripdelay7_intr{
     in "\xD8%*04r%*04r%02r%*02r";
+}
+
+evgfout_out_delay0_intr{
+    in "\xD1%*04r%*04r%*02r%r%*r";
+}
+evgfout_out_delay1_intr{
+    in "\xD2%*04r%*04r%*02r%r%*r";
+}
+evgfout_out_delay2_intr{
+    in "\xD3%*04r%*04r%*02r%r%*r";
+}
+evgfout_out_delay3_intr{
+    in "\xD4%*04r%*04r%*02r%r%*r";
+}
+evgfout_out_delay4_intr{
+    in "\xD5%*04r%*04r%*02r%r%*r";
+}
+evgfout_out_delay5_intr{
+    in "\xD6%*04r%*04r%*02r%r%*r";
+}
+evgfout_out_delay6_intr{
+    in "\xD7%*04r%*04r%*02r%r%*r";
+}
+evgfout_out_delay7_intr{
+    in "\xD8%*04r%*04r%*02r%r%*r";
 }
 
 evgfout_out_pos0_intr{
