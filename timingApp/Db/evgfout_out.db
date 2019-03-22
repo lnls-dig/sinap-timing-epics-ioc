@@ -6,7 +6,7 @@ record(longin, "$(P)$(R)OUT$(num)TripDelay-Mon") {
   field(DESC, "OUT$(num) round trip coarse delay")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evgfout_out_delay$(num)_intr $(PORT)")
+  field(INP, "@timing.proto evgfout_tripdelay$(num)_intr $(PORT)")
 }
 
 record(longin, "$(P)$(R)OUT$(num)FramePos-Mon") {
@@ -15,6 +15,22 @@ record(longin, "$(P)$(R)OUT$(num)FramePos-Mon") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evgfout_out_pos$(num)_intr $(PORT)")
+}
+
+record(longout, "$(P)$(R)OUT$(num)Delay-SP") {
+  field(DESC, "Set output delay OUT$(num)")
+  field(DTYP, "stream")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(OUT, "@timing.proto evgfout_out_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(longin, "$(P)$(R)OUT$(num)Delay-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Get output delay OUT$(num)")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evgfout_out_delay$(num)_intr $(PORT)")
 }
 
 record(calc, "$(P)$(R)cmd_out_set$(num)") {
