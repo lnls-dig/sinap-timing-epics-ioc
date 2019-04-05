@@ -273,7 +273,7 @@ record(bo, "$(P)$(R)ACEnbl-Sel"){
   field(DTYP, "stream")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(OUT, "@timing.proto evg_acline_acen_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_acline_set($(P),$(R)) $(PORT)")
 }
 
 record(bo, "$(P)$(R)ACSrc-Sel"){
@@ -282,7 +282,7 @@ record(bo, "$(P)$(R)ACSrc-Sel"){
   field(DTYP, "stream")
   field(ZNAM, "External")
   field(ONAM, "Internal")
-  field(OUT, "@timing.proto evg_acline_acen_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_acline_set($(P),$(R)) $(PORT)")
 }
 
 record(ao, "$(P)$(R)InjRate-SP"){
@@ -310,7 +310,7 @@ record(ao, "$(P)$(R)ACDiv-SP"){
   field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
-  field(OUT, "@timing.proto evg_acline_acdiv_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_acline_set($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_acdiv_get") {
