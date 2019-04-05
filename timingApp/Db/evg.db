@@ -287,6 +287,7 @@ record(bo, "$(P)$(R)ACSrc-Sel"){
 
 record(ao, "$(P)$(R)InjRate-SP"){
   field(DESC, "Injection rate trigger")
+  field(PINI, "1")
   field(DRVH, "10")
   field(DRVL, "1")
   field(PREC, "0")

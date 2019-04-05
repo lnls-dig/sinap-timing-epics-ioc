@@ -154,7 +154,6 @@ $(P)$(R)Evt63Mode-Sel
 $(P)$(R)TimestampSrc-Sel
 $(P)$(R)IntlkTbl0to15-Sel
 $(P)$(R)IntlkTbl16to27-Sel
-$(P)$(R)ACDiv-SP
 $(P)$(R)Clk0MuxDiv-SP
 $(P)$(R)Clk1MuxDiv-SP
 $(P)$(R)Clk2MuxDiv-SP
