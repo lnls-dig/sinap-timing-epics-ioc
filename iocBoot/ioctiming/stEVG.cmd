@@ -97,6 +97,8 @@ dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=60,  desc='Undefined',
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=61,  desc='Undefined', code='62', time=161, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=62,  desc='Undefined', code='63', time=162, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 
+< event_alias.cmd
+
 < save_restore.cmd
 
 ## Run this to trace the stages of iocInit

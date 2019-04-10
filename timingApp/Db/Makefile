@@ -18,6 +18,7 @@ DB += evg.db
 DB += evr.db
 DB += fout.db
 DB += Events.db
+DB += HLEvents.db
 DB += SeqRAM.db
 
 #----------------------------------------------------
