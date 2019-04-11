@@ -36,7 +36,8 @@ record(ao, "$(P)$(R)Evt$(code)Code-Mon"){
 
 record(ao, "$(P)$(R)Evt$(code)DelayTime-SP") {
   field(DESC, "Event $(code) timestamp time unit")
-  field(VAL, "0")
+  field(PINI, "1")
+  field(PREC, "3")
   field(DRVH, "17000000")
   field(DRVL, "0")
   field(EGU, "us")
@@ -77,9 +78,9 @@ record(longout, "$(P)$(R)Evt$(code)DelayModNum"){
 
 record(ai, "$(P)$(R)Evt$(code)Delay-RB"){
   field(DESC, "Event $(code) timestamp raw")
-  field(INP, "$(P)$(R)Evt$(code)Delay-SP.RVAL")
+  #field(INP, "$(P)$(R)Evt$(code)Delay-SP.RVAL CPP")
   field(DTYP, "Raw Soft Channel")
-  field(SCAN, "1 second")
+  #field(SCAN, "1 second")
   field(AOFF, "-$(EVT_DELAY)")
   field(PREC, "0")
   #field(RVAL, "$(time)")
