@@ -74,18 +74,6 @@ record(bo, "$(P)$(R)UpdateEvt-Cmd"){
 }
 
 #####################################################
-record(longout, "$(P)$(R)RepeatBucketList-SP"){
-  field(DESC, "BucketList repetition, 0=infinity")
-  field(DRVH, "100")
-  field(DRVL, "0")
-  field(FLNK, "$(P)$(R)RepeatBucketList-RB")
-}
-
-record(longin, "$(P)$(R)RepeatBucketList-RB"){
-  field(DESC, "BucketList repetition, 0=infinity")
-  field(INP, "$(P)$(R)RepeatBucketList-SP")
-}
-
 # This PV is observed by the State Machine in sncSeqRAM.stt
 record(calc, "$(P)$(R)EvtDelayMod"){
 	field(DESC, "Event timestamp mod")

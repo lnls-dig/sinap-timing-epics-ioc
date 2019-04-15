@@ -1274,6 +1274,7 @@ record(longout, "$(P)$(R)cmd_conf_set") {
 
 record(waveform, "$(P)$(R)BucketList-SP") {
   field(DESC, "Injection table")
+  field(PINI, "1")
   field(NELM, "864")
   field(FTVL, "USHORT")
   field(FLNK, "$(P)$(R)BucketListCalc")
@@ -1297,6 +1298,19 @@ record(waveform, "$(P)$(R)BucketList-RB") {
   field(DESC, "Injection table RBV")
   field(NELM, "864")
   field(FTVL, "USHORT")
+}
+
+record(longout, "$(P)$(R)RepeatBucketList-SP"){
+  field(DESC, "BucketList repetition, 0=infinity")
+  field(PINI, "1")
+  field(DRVH, "100")
+  field(DRVL, "0")
+  field(FLNK, "$(P)$(R)RepeatBucketList-RB")
+}
+
+record(longin, "$(P)$(R)RepeatBucketList-RB"){
+  field(DESC, "BucketList repetition, 0=infinity")
+  field(INP, "$(P)$(R)RepeatBucketList-SP")
 }
 
 ########################################################################
