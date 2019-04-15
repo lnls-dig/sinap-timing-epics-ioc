@@ -72,6 +72,7 @@ assign tbl_rbv to "{P}{R}BucketList-RB";
 
 int tbl_length;
 assign tbl_length to "{P}{R}BucketListLen-Mon";
+monitor tbl_length;
 
 int seqs;
 assign seqs to "{P}{R}SeqStatus-Mon";
@@ -551,6 +552,14 @@ ss seq {
     
                     %%//printf("Moving to Injecting State\n");
         } state Injecting
+    
+        when(inj_tg && tbl_length <= 0){
+    
+            inj_tg = 0;
+            pvPut(inj_tg, SYNC);
+            printf("Injection table is empty\n");
+
+        } state Running
     
         when(inj_tg){
     
