@@ -113,11 +113,11 @@ include $(TOP)/configure/RULES
 
 timing_DBD += drvAsynIPPort.dbd
 timing_DBD += drvVxi11.dbd
-timing_DBD += stream.dbd
 timing_DBD += calcSupport.dbd
+timing_DBD += stream.dbd
 timing_DBD += asSupport.dbd
 
 timing_LIBS += asyn
-timing_LIBS += stream
 timing_LIBS += calc
+timing_LIBS += stream
 timing_LIBS += autosave
