@@ -53,16 +53,24 @@ record(mbbiDirect, "$(P)$(R)LinkIntlkRaw") {
   field(ASG, "Reserved")
   field(DESC, "link and inhs status")
   field(NOBT, "8")
-  field(SHFT, "6")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_ctrl_linkinhs_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Intlk-Mon")
+  field(FLNK, "$(P)$(R)IntlkStatus-Mon")
 }
 
-record(bi, "$(P)$(R)Intlk-Mon") {
+record(bi, "$(P)$(R)IntlkStatus-Mon") {
   field(ASG, "Reserved")
   field(DESC, "interlock status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)LinkIntlkRaw.B6")
+  field(FLNK, "$(P)$(R)IntlkEnbl-Mon")
+}
+
+record(bi, "$(P)$(R)IntlkEnbl-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input enable")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)LinkIntlkRaw.B0")
@@ -74,7 +82,7 @@ record(bi, "$(P)$(R)Link-Mon") {
   field(DESC, "fibre link status")
   field(ZNAM, "Unlink")
   field(ONAM, "Link")
-  field(INP, "$(P)$(R)LinkIntlkRaw.B1")
+  field(INP, "$(P)$(R)LinkIntlkRaw.B7")
 }
 
 record(longout, "$(P)$(R)cmd_ctrl_get") {
