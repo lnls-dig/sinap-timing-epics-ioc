@@ -956,6 +956,7 @@ record(mbbi, "$(P)$(R)DevFun-Sts") {
 
 record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVO configuration as EVR")
+  field(PINI, "1")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
   field(ONVL, "17")

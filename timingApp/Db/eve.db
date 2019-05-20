@@ -105,6 +105,7 @@ record(longout, "$(P)$(R)cmd_ctrl_set") {
 
 record(mbbo, "$(P)$(R)RFOut-Sel") {
   field(DESC, "RF out mode")
+  field(PINI, "1")
   field(ZRVL, "0")
   field(ZRST, "Dsbl")
   field(ONVL, "1")
