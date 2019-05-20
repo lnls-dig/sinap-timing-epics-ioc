@@ -985,6 +985,15 @@ record(mbbi, "$(P)$(R)DevFun-Sts") {
   field(INP, "@timing.proto evre_conf_funsel_intr $(PORT)")
 }
 
+record(mbbo, "$(P)$(R)DevFun-Sel") {
+  field(DESC, "STD-EVE fixed configuration")
+  field(ZRVL, "32")
+  field(ZRST, "EVE")
+  field(DTYP, "stream")
+  field(VAL, "0")
+  field(OUT, "@timing.proto evr_conf_funsel_set($(P),$(R)) $(PORT)")
+}
+
 record(mbbo, "$(P)$(R)ClkMode-SP"){
   field(DESC, "clock mode")
   field(ZRVL, "11")
