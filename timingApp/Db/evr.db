@@ -74,7 +74,7 @@ record(bi, "$(P)$(R)IntlkEnbl-Mon") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)LinkIntlkRaw.B0")
-  field(FLNK, "$(P)$(R)Link-Mon")
+  field(FLNK, "$(P)$(R)LinkStatus-Mon")
 }
 
 record(mbbiDirect, "$(P)$(R)Los-Mon") {
@@ -85,7 +85,7 @@ record(mbbiDirect, "$(P)$(R)Los-Mon") {
   field(INP, "@timing.proto evg_ctrl_los_intr $(PORT)")
 }
 
-record(bi, "$(P)$(R)Link-Mon") {
+record(bi, "$(P)$(R)LinkStatus-Mon") {
   field(ASG, "Reserved")
   field(DESC, "fibre link status")
   field(ZNAM, "Unlink")

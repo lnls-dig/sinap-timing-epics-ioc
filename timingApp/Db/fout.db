@@ -49,10 +49,10 @@ record(mbbiDirect, "$(P)$(R)LinkRaw") {
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto fout_ctrl_link_intr $(PORT)")
-  field(FLNK, "$(P)$(R)Link-Mon")
+  field(FLNK, "$(P)$(R)LinkStatus-Mon")
 }
 
-record(bi, "$(P)$(R)Link-Mon") {
+record(bi, "$(P)$(R)LinkStatus-Mon") {
   field(ASG, "Reserved")
   field(DESC, "Uplink status")
   field(ZNAM, "Unlink")
