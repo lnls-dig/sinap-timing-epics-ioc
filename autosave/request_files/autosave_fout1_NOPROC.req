@@ -1,5 +1,0 @@
-# Control and Status
-$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):fouten.VAL
-# Configuration
-$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funsel.VAL
-$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funsel.RVAL

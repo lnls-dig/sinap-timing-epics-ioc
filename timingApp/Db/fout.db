@@ -1,139 +1,92 @@
+record(stringout, "$(P)$(R)IPAddr-Mon"){
+  field(DESC, "IPADDR")
+  field(VAL, "$(IPADDR)")
+}
+
+record(stringout, "$(P)$(R)IPPort-Mon"){
+  field(DESC, "IPPORT")
+  field(VAL, "$(IPPORT)")
+}
+
 ########################################################################
 # Control and Status Register [0]
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):foutenRAW"){
+record(mbboDirect, "$(P)$(R)RxEnbl-SP") {
+  field(DESC, "Each bit sets Rx OUT status")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto fout_ctrl_set($(P),$(R)) $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)RxEnbl-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Each bit shows Rx OUT status")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto fout_ctrl_rxen_intr $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)EnblRaw"){
   field(DESC, "Enable/Disable FANOUT RAW")
   field(NOBT, "1")
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto fout_ctrl_en_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):foutenRBV")
+  field(FLNK, "$(P)$(R)DevEnbl-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):foutenRBV"){
+record(bi, "$(P)$(R)DevEnbl-Sts"){
   field(DESC, "Enable/Disable FANOUT RBV")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):foutenRAW.B0")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)EnblRaw.B0")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):linkRAW") {
+record(mbbiDirect, "$(P)$(R)LinkRaw") {
   field(ASG, "Reserved")
   field(DESC, "Uplink status RAW")
   field(NOBT, "8")
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto fout_ctrl_link_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):link")
+  field(FLNK, "$(P)$(R)LinkStatus-Mon")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):link") {
+record(bi, "$(P)$(R)LinkStatus-Mon") {
   field(ASG, "Reserved")
   field(DESC, "Uplink status")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):linkRAW.B7")
+  field(ZNAM, "Unlink")
+  field(ONAM, "Link")
+  field(INP, "$(P)$(R)LinkRaw.B7")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW") {
-  field(ASG, "Reserved")
-  field(DESC, "Downlink status in OUT0-OUT7 RAW")
+record(mbbiDirect, "$(P)$(R)Los-Mon") {
+  field(DESC, "Downlink status in OUT0-OUT7")
   field(NOBT, "8")
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto fout_ctrl_los_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los0RBV")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los0RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT0 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los1RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los1RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT1 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los2RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los2RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT2 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B2")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los3RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los3RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT3 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B3")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los4RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los4RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT4 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B4")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los5RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los5RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT5 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B5")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los6RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los6RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT6 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B6")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los7RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los7RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "OUT7 downlink status RBV")
-  field(ZNAM, "LINK")
-  field(ONAM, "LOSS")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOSRAW.B7")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):fouten"){
+record(bo, "$(P)$(R)DevEnbl-Sel"){
   field(DESC, "Enable/Disable FANOUT")
+  field(MASK, "1")
   field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto fout_ctrl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(OUT, "@timing.proto fout_ctrl_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_get") {
+record(longout, "$(P)$(R)cmd_ctrl_get") {
   field(ASG, "Reserved")
   field(DESC, "Control Status reg read command code")
   field(VAL, "0x80") # (0x80 | reg number)
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto fout_ctrl_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto fout_ctrl_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_set") {
+record(longout, "$(P)$(R)cmd_ctrl_set") {
   field(ASG, "Reserved")
   field(DESC, "Control Status reg write command code")
   field(VAL, "0x40")
@@ -142,28 +95,28 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_set") {
 ########################################################################
 # Firmware Version [62]
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONA"){
+record(longin, "$(P)$(R)FrmVersionA-Cte"){
   #field(ASG, "Reserved")
   field(DESC, "EVO firmware version")
   field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONB"){
+record(longin, "$(P)$(R)FrmVersionB-Cte"){
   #field(ASG, "Reserved")
   field(DESC, "EVO firmware version")
   field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONC"){
+record(longin, "$(P)$(R)FrmVersionC-Cte"){
   #field(ASG, "Reserved")
   field(DESC, "EVO firmware version")
   field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_frmvrs_get"){
+record(calcout, "$(P)$(R)cmd_frmvrs_get"){
   field(ASG, "Reserved")
   field(DESC, "Firmware version read command code")
   field(VAL, "0xBE")
@@ -172,16 +125,16 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_frmvrs_get"){
 ########################################################################
 # Configuration Register [63]
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive") {
+record(longin, "$(P)$(R)Alive-Mon") {
   field(ASG, "Reserved")
   field(DESC, "FOUT alive")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto fout_conf_alive_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc")
+  field(FLNK, "$(P)$(R)DevStatusCalc")
 }
 
-record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV") {
+record(mbbi, "$(P)$(R)DevFun-Sts") {
 #  field(ASG, "Reserved")
   field(DESC, "STD-EVO function select status")
   field(NOBT, "6")
@@ -198,7 +151,7 @@ record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV") {
   field(INP, "@timing.proto fout_conf_funsel_intr $(PORT)")
 }
 
-record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funsel") {
+record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVO configuration")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
@@ -210,19 +163,19 @@ record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funsel") {
   field(THST, "EVE")
   field(VAL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto fout_conf_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto fout_conf_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_get") {
+record(longout, "$(P)$(R)cmd_conf_get") {
   field(ASG, "Reserved")
   field(DESC, "Configuration reg read command code")
   field(VAL, "0xBF")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto fout_conf_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto fout_conf_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_set") {
+record(longout, "$(P)$(R)cmd_conf_set") {
   field(ASG, "Reserved")
   field(DESC, "Configuration reg write command code")
   field(VAL, "0x7F")
@@ -231,53 +184,57 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_set") {
 ########################################################################
 # Write all configuration registers
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):download") {
+record(bo, "$(P)$(R)Download-Cmd") {
   field(DESC, "FOUT download")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):downloadT") {
+record(bo, "$(P)$(R)Download-Trig") {
   field(DESC, "FOUT download trigger")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto fout_download($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto fout_download($(P),$(R)) $(PORT)")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc") {
+record(calc, "$(P)$(R)DevStatusCalc") {
   field(ASG, "Reserved")
   field(DESC, "FOUT device status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive")
+  field(INPA, "$(P)$(R)Alive-Mon")
   field(CALC, "A=0?0:1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdev")
+  field(FLNK, "$(P)$(R)DevStatus-Mon")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdev") {
+record(bi, "$(P)$(R)DevStatus-Mon") {
   field(ASG, "Reserved")
   field(DESC, "FOUT device status")
-  field(ZNAM, "WAITING")
-  field(ONAM, "RUNNING")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc")
+  field(ZNAM, "Waiting")
+  field(ONAM, "Running")
+  field(INP, "$(P)$(R)DevStatusCalc")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):network") {
+record(bi, "$(P)$(R)Network-Mon") {
   field(ASG, "Reserved")
   field(DESC, "FOUT network status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(ZNAM, "Disconnected")
+  field(ONAM, "Connected")
+  field(FLNK, "$(P)$(R)FrmVersionA-Cte")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE"){
+record(bo, "$(P)$(R)Save-Cmd"){
   field(DESC, "FOUT manual save settings command")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):save_T")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)Save-Trig")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):save_T"){
+record(calc, "$(P)$(R)Save-Trig"){
   field(DESC, "FOUT manual save trigger")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE.VAL")
+  field(INPA, "$(P)$(R)Save-Cmd.VAL")
   field(CALC, "(A > 0) ? (VAL+1) : VAL")
   field(VAL, "0")
 }

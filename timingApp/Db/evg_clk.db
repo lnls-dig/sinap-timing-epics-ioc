@@ -1,0 +1,111 @@
+########################################################################
+# Generic CLK channel (register 41 to 48)
+
+record(bi, "$(P)$(R)Clk$(num)MuxEnbl-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux$(num) enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+}
+
+record(longin, "$(P)$(R)Clk$(num)MuxDivRaw") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux$(num) frequency divider RAW")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_mux_div$(num)RAW_intr $(PORT)")
+  field(FLNK, "$(P)$(R)Clk$(num)MuxDiv-RB")
+}
+
+record(calc, "$(P)$(R)Clk$(num)MuxDiv-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux$(num) frequency divider RBV")
+  field(INPA, "$(P)$(R)Clk$(num)MuxDivRaw")
+  field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)Clk$(num)Freq-RB")
+}
+
+record(calcout, "$(P)$(R)Clk$(num)Freq-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Mux$(num) frequency")
+  field(INPA, "$(P)$(R)Clk$(num)MuxDivRaw")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/(A+1)")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk$(num)Freq-SP PP")
+}
+
+record(bo, "$(P)$(R)Clk$(num)MuxEnbl-Sel"){
+  field(DESC, "Enable/Disable Mux$(num)")
+  field(MASK, "1")
+  field(PINI, "1")
+  field(DTYP, "stream")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(OUT, "@timing.proto evg_mux_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(ao, "$(P)$(R)Clk$(num)Freq-SP") {
+  field(DESC, "Mux$(num) frequency")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk$(num)CalcSELN PP")
+}
+
+record(calcout, "$(P)$(R)Clk$(num)CalcSELN") {
+  field(DESC, "Clk$(num)SELN")
+  field(INPA, "$(P)$(R)Clk$(num)Freq-SP")
+  field(INPB, "$(P)$(R)Clk$(num)Freq-RB")
+  field(INPC, "$(P)$(R)Clk$(num)MuxDiv-SP")
+  field(INPD, "$(P)$(R)Clk$(num)MuxDiv-RB")
+  field(CALC, "A-B+C-D=0?0:1")
+  field(PREC, "0")
+  field(OUT, "$(P)$(R)Clk$(num)fanout.SELN PP")
+}
+
+record(fanout, "$(P)$(R)Clk$(num)fanout") {
+  field(DESC, "Clk$(num)fanout")
+  field(SELM, "Specified")
+  field(LNK1, "$(P)$(R)Clk$(num)FreqCalc")
+}
+
+record(calcout, "$(P)$(R)Clk$(num)FreqCalc") {
+  field(DESC, "Mux$(num) frequency")
+  field(INPA, "$(P)$(R)Clk$(num)Freq-SP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "B/A")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(OUT, "$(P)$(R)Clk$(num)MuxDiv-SP PP")
+}
+
+record(ao, "$(P)$(R)Clk$(num)MuxDiv-SP"){
+  field(DESC, "Mux$(num) frequency divider")
+  field(DTYP, "stream")
+  field(PINI, "1")
+  field(DRVH, "1073741824")
+  field(DRVL, "2")
+  field(AOFF, "1")
+  field(PREC, "0")
+  field(OUT, "@timing.proto evg_mux_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(calc, "$(P)$(R)cmd_mux_get$(num)") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read Mux$(num) register")
+  field(PINI, "1")
+  field(A, "$(num)")
+  field(B, "0xA9") # (0x80 | reg number=41)
+  field(CALC, "A + B")
+}
+
+record(calc, "$(P)$(R)cmd_mux_set$(num)") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to Mux$(num) register")
+  field(PINI, "1")
+  field(A, "$(num)")
+  field(B, "0x69")
+  field(CALC, "A + B")
+}
+

@@ -11,33 +11,33 @@ char str[40];
 %%//----------------------------------------
 
 int uploadtrig;
-assign uploadtrig to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:uploadT.VAL";
+assign uploadtrig to "{P}{R}GetRBV.VAL";
 
 int downloadproc;
-assign downloadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:downloadT.PROC";
+assign downloadproc to "{P}{R}Download-Trig.PROC";
 
 int download;
-assign download to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:download.VAL";
+assign download to "{P}{R}Download-Cmd.VAL";
 monitor download;
 
 int statdev;
-assign statdev to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:statdev";
+assign statdev to "{P}{R}DevStatus-Mon";
 monitor statdev;
 
 int past_alive = -1;
 int alive;
-assign alive to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:alive";
+assign alive to "{P}{R}Alive-Mon";
 monitor alive;
 
 int funsel;
 assign funsel to "";
 
 int funselRBV;
-assign funselRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:funselRBV.RVAL";
+assign funselRBV to "{P}{R}DevFun-Sts.RVAL";
 monitor funselRBV;
 
 int network;
-assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
+assign network to "{P}{R}Network-Mon";
 monitor network;
 
 %%//----------------------------------------
@@ -53,7 +53,7 @@ ss configuration {
 		%{/* Wait 1 sec while module starts up */}%
 
 		%%// Init message
-		printf("\n%s-%s:%s-%s%s state machine initiated\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\n%s%s state machine initiated\n", macValueGet("P"), macValueGet("R"));
 
 	} state upload
     }
@@ -73,9 +73,11 @@ ss configuration {
 		%%// trigger upload
 		uploadtrig = 1;
 		pvPut(uploadtrig,SYNC);
+		uploadtrig = 0;
+		pvPut(uploadtrig,SYNC);
 
 		%%// upload message
-		printf("\nConfiguration uploaded from %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\nConfiguration uploaded from %s%s.\n", macValueGet("P"), macValueGet("R"));
 
 	} state waiting
     }
@@ -89,7 +91,7 @@ ss configuration {
 		if(funselRBV != 32){
 			
 			%%// get 'funsel' PV name
-			sprintf (str, "%s-%s:%s-%s%s:funsel.VAL", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+			sprintf (str, "%s%sfunsel.VAL", macValueGet("P"), macValueGet("R"));
 
 			%%// assign 'funsel'
 			pvAssign (funsel, str);
@@ -129,7 +131,7 @@ ss configuration {
 		pvPut(downloadproc,SYNC);
 
 		%%// download message
-		printf("\nConfiguration downloaded to %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\nConfiguration downloaded to %s%s.\n", macValueGet("P"), macValueGet("R"));
 
 		%%// clear download PV
 		download = 0;

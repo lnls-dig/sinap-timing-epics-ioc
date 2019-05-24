@@ -1,0 +1,279 @@
+########################################################################
+# Generic OTP(00 to 23) Register (1 to 16 and 25 to 32)
+
+record(longout, "$(P)$(R)OTP$(num)Evt-SP") {
+  field(DESC, "OTP$(num) event code")
+  field(DRVH, "63")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(longout, "$(P)$(R)OTP$(num)NrPulses-SP"){
+  field(VAL, "1")
+  field(DESC, "OTP$(num) number of pulses")
+  field(DRVH, "65535")
+  field(DRVL, "1")
+  field(EGU, "pulses")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(ao, "$(P)$(R)OTP$(num)WidthTime-SP") {
+  field(DESC, "OTP$(num) trigger width time")
+  field(VAL, "0.008")
+  field(DRVH, "17000000")
+  field(DRVL, "0.008")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP$(num)WidthCalc")
+}
+
+record(calcout, "$(P)$(R)OTP$(num)WidthCalc") {
+  field(DESC, "OTP$(num) trigger width calc")
+  field(INPA, "$(P)$(R)OTP$(num)WidthTime-SP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "CEIL(A*(B/1000000))-A*(B/1000000)<0.5?CEIL(A*(B/1000000)):FLOOR(A*(B/1000000))")
+  field(OUT, "$(P)$(R)OTP$(num)Width-SP PP")
+}
+
+record(longout, "$(P)$(R)OTP$(num)Width-SP") {
+  field(DESC, "OTP$(num) trigger width")
+  field(VAL, "1")
+  field(DRVH, "2147483647")
+  field(DRVL, "1")
+  field(EGU, "evt_T")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(ao, "$(P)$(R)OTP$(num)DelayTime-SP") {
+  field(DESC, "OTP$(num) trigger delay time")
+  field(VAL, "0")
+  field(DRVH, "17000000")
+  field(DRVL, "0")
+  field(EGU, "us")
+  field(FLNK, "$(P)$(R)OTP$(num)DelayTimeCalc")
+}
+
+record(calcout, "$(P)$(R)OTP$(num)DelayTimeCalc") {
+  field(DESC, "OTP$(num) trigger delay calc")
+  field(INPA, "$(P)$(R)OTP$(num)DelayTime-SP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "CEIL(A*(B/1000000))-A*(B/1000000)<0.5?CEIL(A*(B/1000000)):FLOOR(A*(B/1000000))")
+  field(OUT, "$(P)$(R)OTP$(num)Delay-SP PP")
+}
+
+record(longout, "$(P)$(R)OTP$(num)Delay-SP") {
+  field(DESC, "OTP$(num) trigger delay")
+  field(DRVH, "2147483647")
+  field(DRVL, "0")
+  field(EGU, "evt_T")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),$(num)) $(PORT)")
+  field(FLNK, "$(P)$(R)OTP$(num)Delay-RB")
+}
+
+record(bo, "$(P)$(R)OTP$(num)State-Sel") {
+  field(DESC, "OTP$(num) enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+}
+
+record(bo, "$(P)$(R)OTP$(num)Polarity-Sel") {
+  field(DESC, "OTP$(num) polarity")
+  field(MASK, "1")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+}
+
+record(bo, "$(P)$(R)OTP$(num)Log-Sel") {
+  field(DESC, "OTP$(num) event timestamping enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+}
+
+record(bo, "$(P)$(R)OTP$(num)ByPassIntlk-Sel") {
+  field(DESC, "OTP$(num) interlock function selection")
+  field(MASK, "1")
+  field(ZNAM, "Bypass")
+  field(ONAM, "Active")
+  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+}
+
+record(calcout, "$(P)$(R)OTP$(num)StateCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) set enable calc")
+  field(DTYP, "stream")
+  field(INPA, "$(P)$(R)OTP$(num)State-Sel.RVAL")
+  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
+  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sts.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),State) $(PORT)")
+  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+}
+
+record(calcout, "$(P)$(R)OTP$(num)PolCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) set polarity calc")
+  field(DTYP, "stream")
+  field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
+  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sel.RVAL")
+  field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
+  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sts.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Pol) $(PORT)")
+  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+}
+
+record(calcout, "$(P)$(R)OTP$(num)LogCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) set timestamping calc")
+  field(DTYP, "stream")
+  field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
+  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP$(num)Log-Sel.RVAL")
+  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sts.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Log) $(PORT)")
+  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+}
+
+record(calcout, "$(P)$(R)OTP$(num)IntlkCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) set interlock calc")
+  field(DTYP, "stream")
+  field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
+  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
+  field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
+  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sel.RVAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Intlk) $(PORT)")
+  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+}
+
+record(calcout, "$(P)$(R)OTP$(num)RegAByte3") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) download EN, POL, and TIME")
+  field(DTYP, "stream")
+  field(INPA, "$(P)$(R)OTP$(num)State-Sel.RVAL")
+  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sel.RVAL")
+  field(INPC, "$(P)$(R)OTP$(num)Log-Sel.RVAL")
+  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sel.VAL")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)OTP$(num)RegAByte3RBV") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) enable, pol, timelog and intlk RBV")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_enpoltime$(num)RBV_intr $(PORT)")
+  field(FLNK, "$(P)$(R)OTP$(num)ByPassIntlk-Sts")
+}
+
+record(bi, "$(P)$(R)OTP$(num)ByPassIntlk-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) interlock status")
+  field(ZNAM, "Bypass")
+  field(ONAM, "Active")
+  field(INP, "$(P)$(R)OTP$(num)RegAByte3RBV.B4")
+  field(FLNK, "$(P)$(R)OTP$(num)Log-Sts")
+}
+
+record(bi, "$(P)$(R)OTP$(num)Log-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) timestamping status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)OTP$(num)RegAByte3RBV.B5")
+  field(FLNK, "$(P)$(R)OTP$(num)Polarity-Sts")
+}
+
+record(bi, "$(P)$(R)OTP$(num)Polarity-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) polarity status")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(INP, "$(P)$(R)OTP$(num)RegAByte3RBV.B6")
+  field(FLNK, "$(P)$(R)OTP$(num)State-Sts")
+}
+
+record(bi, "$(P)$(R)OTP$(num)State-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)OTP$(num)RegAByte3RBV.B7")
+}
+
+record(longin, "$(P)$(R)OTP$(num)NrPulses-RB"){
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) number of pulses RBV")
+  field(EGU, "pulses")
+}
+
+record(longin, "$(P)$(R)OTP$(num)Evt-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) event RBV")
+}
+
+record(longin, "$(P)$(R)OTP$(num)Width-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) width RBV")
+  field(EGU, "evt_T")
+  field(FLNK, "$(P)$(R)OTP$(num)WidthTime-RB")
+}
+
+record(longin, "$(P)$(R)OTP$(num)Delay-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "OTP$(num) delay RBV")
+  field(EGU, "evt_T")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evre_otp_get($(P),$(R),$(num)) $(PORT)")
+  field(FLNK, "$(P)$(R)OTP$(num)DelayTime-RB")
+}
+
+record(calc, "$(P)$(R)OTP$(num)WidthTime-RB") {
+  field(INPA, "$(P)$(R)OTP$(num)Width-RB")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "OTP$(num) width time RBV")
+  field(EGU, "us")
+  field(CALC, "A/B*1000000")
+}
+
+record(calc, "$(P)$(R)OTP$(num)DelayTime-RB") {
+  field(INPA, "$(P)$(R)OTP$(num)Delay-RB")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(PREC, "3")
+  field(DESC, "OTP$(num) delay time RBV")
+  field(EGU, "us")
+  field(CALC, "A/B*1000000")
+}
+
+record(calc, "$(P)$(R)cmd_otp_set$(num)") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to OTP$(num)")
+  field(PINI, "1")
+  field(A, "$(num)")
+  field(B, "0x41")
+  field(CALC, "A<16 ? B + A : B + 8 + A") # (0x41 + num(in range 00 to 15), 0x41 + 8 + num (in range 16 to 23)
+}
+
+record(calc, "$(P)$(R)cmd_otp_get$(num)") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read OTP$(num)")
+  field(PINI, "1")
+  field(A, "$(num)")
+  field(B, "0x81")
+  field(CALC, "A<16 ? B + A : B + 8 + A") # (0x81 + num(in range 00 to 15), 0x81 + 8 + num (in range 16 to 23)
+}
+

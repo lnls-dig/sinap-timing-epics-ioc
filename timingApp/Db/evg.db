@@ -1,74 +1,153 @@
 ########################################################################
+# Frequency Reference PVs
+
+record(acalcout, "$(P)$(R)FPGAClkMAF") {
+  field(ASG, "Reserved")
+  field(DESC, "FPGA Clock")
+  field(SCAN, "1 second")
+  field(NELM, "5")
+  field(INPA, "$(P)$(R)Freq-Mon")
+  field(CALC, "AA:=CAT(AA[1,4],A);AVG(AA)")
+  field(FLNK, "$(P)$(R)FPGAClkCalc")
+}
+
+record(calcout, "$(P)$(R)FPGAClkCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "FPGA Clock")
+  field(SCAN, "1 second")
+  field(INPA, "$(P)$(R)FPGAClkMAF")
+  field(INPB, "$(P)$(R)TimestampSrc-Sel")
+  field(INPC, "$(P)$(R)FPGAClk-Cte")
+  field(OUT, "$(P)$(R)FPGAClk-Cte PP")
+  field(CALC, "B>0?A:C")
+  field(FLNK, "$(P)$(R)RFRef-Cte")
+}
+
+record(ai, "$(P)$(R)FPGAClk-Cte") {
+  field(VAL, "124914500")
+  field(DESC, "FPGA Clock")
+}
+
+record(calc, "$(P)$(R)RFRef-Cte"){
+  field(DESC, "RF Ref Input frequency")
+  field(PREC, "1")
+  field(EGU, "Hz")
+  field(INPA, "$(P)$(R)FPGAClk-Cte")
+  field(INPB, "$(P)$(R)RFDiv-SP")
+  field(CALC, "A*B")
+}
+
+record(stringout, "$(P)$(R)IPAddr-Mon"){
+  field(DESC, "IPADDR")
+  field(VAL, "$(IPADDR)")
+}
+
+record(stringout, "$(P)$(R)IPPort-Mon"){
+  field(DESC, "IPPORT")
+  field(VAL, "$(IPPORT)")
+}
+
+########################################################################
 # Control and Status Register [0]
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqen_enable") {
+record(mbboDirect, "$(P)$(R)RxEnbl-SP") {
+  field(DESC, "Each bit sets Rx OUT status")
+  field(NOBT, "8")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ctrl_set($(P),$(R)) $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)RxEnbl-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG seqen and enable status")
+  field(DESC, "Each bit shows Rx OUT status")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_ctrl_rxen_intr $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)SeqEnblDevEnblRaw") {
+  field(ASG, "Reserved")
+  field(DESC, "seqen and enable status")
   field(NOBT, "8")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_ctrl_seqen_enable_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRBV")
+  field(FLNK, "$(P)$(R)DevEnbl-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRBV") {
+record(bi, "$(P)$(R)DevEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqen_enable.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqenRBV")
+  field(DESC, "enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)SeqEnblDevEnblRaw.B0")
+  field(FLNK, "$(P)$(R)SeqEnbl-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqenRBV") {
+record(bi, "$(P)$(R)SeqEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqen_enable.B1")
+  field(DESC, "SEQRAM enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)SeqEnblDevEnblRaw.B1")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstat_rfstat") {
+record(mbbiDirect, "$(P)$(R)SeqStatusRFStatusRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM and RF input status")
+  field(DESC, "SEQRAM and RF input status")
   field(NOBT, "6")
   field(SHFT, "3")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_ctrl_seqstat_rfstat_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfstat")
+  field(FLNK, "$(P)$(R)RFStatus-Mon")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfstat") {
+record(bo, "$(P)$(R)RFReset-Cmd") {
+  field(DESC, "RF input reset")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(HIGH, "1")
+  field(FLNK, "$(P)$(R)RFDiv-SP.PROC")
+}
+
+record(bi, "$(P)$(R)RFStatus-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG RF input status")
-  field(ZNAM, "LOSS OR OUT OF RANGE")
-  field(ONAM, "NORMAL")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstat_rfstat.B2")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstatCalc")
+  field(DESC, "RF input status")
+  field(ZNAM, "Loss or Out of Range")
+  field(ONAM, "Normal")
+  field(INP, "$(P)$(R)SeqStatusRFStatusRaw.B2")
+  field(FLNK, "$(P)$(R)SeqStatusCalc")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOS") {
-  field(DESC, "Downlink status in OUT0-OUT7 RAW")
+record(mbbiDirect, "$(P)$(R)Los-Mon") {
+  field(DESC, "Downlink status in OUT0-OUT7")
   field(NOBT, "8")
   field(DTYP, "stream")
   field(SCAN, "I/O Intr")
   field(INP, "@timing.proto evg_ctrl_los_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):los0RBV")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstatCalc") {
+record(longin, "$(P)$(R)Freq-Mon") {
+  field(DESC, "Frequency")
+  field(DTYP, "stream")
+  field(SCAN, "I/O Intr")
+  field(INP, "@timing.proto evg_ctrl_freq_intr $(PORT)")
+}
+
+record(calc, "$(P)$(R)SeqStatusCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM status calculation")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstat_rfstat")
+  field(DESC, "SEQRAM status calculation")
+  field(INPA, "$(P)$(R)SeqStatusRFStatusRaw")
   field(CALC, "A&3")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstat")
+  field(FLNK, "$(P)$(R)SeqStatus-Mon")
 }
 
-record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstat") {
+record(mbbi, "$(P)$(R)SeqStatus-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstatCalc")
+  field(DESC, "SEQRAM status")
+  field(INP, "$(P)$(R)SeqStatusCalc")
   field(ZRVL, "0")
   field(ZRST, "Stopped")
   field(ONVL, "1")
@@ -77,61 +156,63 @@ record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqstat") {
   field(TWST, "SEQRAM 2")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SEQEN_ENABLE") {
+record(calcout, "$(P)$(R)SeqEnblDevEnblCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG download SEQEN and ENABLE")
+  field(DESC, "download SEQEN and ENABLE")
   field(PINI, "1")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqen")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable")
+  field(INPA, "$(P)$(R)SeqEnbl-Sel")
+  field(INPB, "$(P)$(R)DevEnbl-Sel")
   field(CALC, "(A<<1)|B")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SEQEN") {
+record(calcout, "$(P)$(R)SEQEN") {
   field(ASG, "Reserved")
-  field(DESC, "EVG SEQRAM set enable calc")
+  field(DESC, "SEQRAM set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqen")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRBV")
+  field(INPA, "$(P)$(R)SeqEnbl-Sel.RVAL")
+  field(INPB, "$(P)$(R)DevEnbl-Sts")
   field(CALC, "(A<<1)|B")
-  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),SEQEN) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SEQEN_ENABLE")
+  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(P),$(R),SEQEN) $(PORT)")
+  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVGEN") {
+record(calcout, "$(P)$(R)EVGEN") {
   field(ASG, "Reserved")
-  field(DESC, "EVG set enable calc")
+  field(DESC, "set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqenRBV")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable")
+  field(INPA, "$(P)$(R)SeqEnbl-Sts")
+  field(INPB, "$(P)$(R)DevEnbl-Sel.RVAL")
   field(CALC, "(A<<1)|B")
-  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),EVGEN) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SEQEN_ENABLE")
+  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(P),$(R),EVGEN) $(PORT)")
+  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqen"){
+record(bo, "$(P)$(R)SeqEnbl-Sel"){
   field(DESC, "Enable/Disable Sequence RAM")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SEQEN")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)SEQEN")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable"){
+record(bo, "$(P)$(R)DevEnbl-Sel"){
   field(DESC, "Enable/Disable EVG")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVGEN")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)EVGEN")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_get") {
+record(longout, "$(P)$(R)cmd_ctrl_get") {
   field(ASG, "Reserved")
   field(DESC, "Control Status reg read command code")
   field(VAL, "0x80") # (0x80 | reg number)
-  field(SCAN, ".5 second")
+  field(SCAN, ".1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ctrl_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ctrl_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_set") {
+record(longout, "$(P)$(R)cmd_ctrl_set") {
   field(ASG, "Reserved")
   field(DESC, "Control Status reg write command code")
   field(VAL, "0x40")
@@ -140,532 +221,135 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_set") {
 ########################################################################
 # AC Line register [40]
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acenRBV") {
+record(bi, "$(P)$(R)ACEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG AC line input enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(DESC, "Enable/Disable AC line input RBV")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdivRAW") {
+record(bi, "$(P)$(R)ACSrc-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG AC line RAW frequency divider")
+  field(DESC, "AC line input source RBV")
+  field(ZNAM, "External")
+  field(ONAM, "Internal")
+}
+
+record(bi, "$(P)$(R)ACStatus-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "AC line input status")
+  field(ZNAM, "Disconnected")
+  field(ONAM, "Connected")
+}
+
+record(longin, "$(P)$(R)ACDivRaw") {
+  field(ASG, "Reserved")
+  field(DESC, "AC line RAW frequency divider")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_acline_acdivraw_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdivRBV")
+  field(FLNK, "$(P)$(R)ACDiv-RB")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdivRBV") {
+record(calc, "$(P)$(R)ACDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG AC line frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdivRAW")
+  field(DESC, "AC line input divider RBV")
+  field(INPA, "$(P)$(R)ACDivRaw")
   field(CALC, "A+1")
+  field(FLNK, "$(P)$(R)InjRate-RB")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acen"){
+record(calc, "$(P)$(R)InjRate-RB"){
+  field(DESC, "Injection rate trigger RBV")
+  field(INPA, "$(P)$(R)ACDiv-RB")
+  field(CALC, "60/A")
+  field(PREC, "0")
+  field(EGU, "Hz")
+}
+
+record(bo, "$(P)$(R)ACEnbl-Sel"){
   field(DESC, "Enable/Disable AC line input")
+  field(MASK, "1")
   field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_acline_acen_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(OUT, "@timing.proto evg_acline_set($(P),$(R)) $(PORT)")
 }
 
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):acdiv"){
-  field(DESC, "EVG AC divider prescaler setting")
+record(bo, "$(P)$(R)ACSrc-Sel"){
+  field(DESC, "AC line input source")
+  field(MASK, "1")
   field(DTYP, "stream")
-  field(DRVH, "1073741824")
+  field(ZNAM, "External")
+  field(ONAM, "Internal")
+  field(OUT, "@timing.proto evg_acline_set($(P),$(R)) $(PORT)")
+}
+
+record(ao, "$(P)$(R)InjRate-SP"){
+  field(DESC, "Injection rate trigger")
+  field(PINI, "1")
+  field(DRVH, "10")
+  field(DRVL, "1")
+  field(PREC, "0")
+  field(EGU, "Hz")
+  field(FLNK, "$(P)$(R)InjRateCalc")
+}
+
+record(calcout, "$(P)$(R)InjRateCalc"){
+  field(DESC, "Injection rate trigger calcout")
+  field(INPA, "$(P)$(R)InjRate-SP")
+  field(CALC, "60/A")
+  field(PREC, "0")
+  field(OUT, "$(P)$(R)ACDiv-SP PP")
+}
+
+record(ao, "$(P)$(R)ACDiv-SP"){
+  field(DESC, "AC line input divider")
+  field(DTYP, "stream")
+  field(DRVH, "60")
   field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
-  field(OUT, "@timing.proto evg_acline_acdiv_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_acline_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_acline_get") {
+record(longout, "$(P)$(R)cmd_acdiv_get") {
   field(ASG, "Reserved")
+  field(SCAN, "1 second")
   field(DESC, "AC Line reg read command code")
+  field(DTYP, "stream")
   field(VAL, "0xA8") # (0x80 | reg number=40)
+  field(OUT, "@timing.proto evg_acline_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_acline_set") {
+record(longout, "$(P)$(R)cmd_acdiv_set") {
   field(ASG, "Reserved")
   field(DESC, "AC Line reg write command code")
   field(VAL, "0x68")
 }
 
 ########################################################################
-# Mux0 register [41]
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux0 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux0 frequency divider RAW")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_mux_div0RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0RBV")
-}
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux0 frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0RAW")
-  field(CALC, "A+1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen0"){
-  field(DESC, "Enable/Disable MUX0")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_mux_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-}
-
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv0"){
-  field(DESC, "EVG MUX0 prescaler setting")
-  field(DTYP, "stream")
-  field(DRVH, "1073741824")
-  field(DRVL, "1")
-  field(AOFF, "1")
-  field(PREC, "0")
-  field(OUT, "@timing.proto evg_mux_div_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_get0") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read Mux0 register")
-  field(VAL, "0xA9") # (0x80 | reg number=41)
-  #field(ASG, "Reserved")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_set0") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to Mux0 register")
-  field(VAL, "0x69")
-  #field(ASG, "Reserved")
-}
-
-########################################################################
-# Mux1 register [42]
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux1 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux1 frequency divider RAW")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_mux_div1RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1RBV")
-}
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux1 frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1RAW")
-  field(CALC, "A+1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen1"){
-  field(DESC, "Enable/Disable MUX1")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_mux_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-}
-
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv1"){
-  field(DESC, "EVG Mux1 prescaler setting")
-  field(DTYP, "stream")
-  field(DRVH, "1073741824")
-  field(DRVL, "1")
-  field(AOFF, "1")
-  field(PREC, "0")
-  field(OUT, "@timing.proto evg_mux_div_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_get1") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read Mux1 register")
-  field(VAL, "0xAA") # (0x80 | reg number=42)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_set1") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to Mux1 register")
-  field(VAL, "0x6A")
-}
-
-########################################################################
-# Mux2 register [43]
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux2 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux2 frequency divider RAW")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_mux_div2RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2RBV")
-}
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux2 frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2RAW")
-  field(CALC, "A+1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen2"){
-  field(DESC, "Enable/Disable MUX2")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_mux_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-}
-
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv2"){
-  field(DESC, "EVG Mux2 prescaler setting")
-  field(DTYP, "stream")
-  field(DRVH, "1073741824")
-  field(DRVL, "1")
-  field(AOFF, "1")
-  field(PREC, "0")
-  field(OUT, "@timing.proto evg_mux_div_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_get2") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read Mux2 register")
-  field(VAL, "0xAB") # (0x80 | reg number=43)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_set2") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to Mux2 register")
-  field(VAL, "0x6B")
-}
-
-########################################################################
-# Mux3 register [44]
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux3 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux3 frequency divider RAW")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_mux_div3RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3RBV")
-}
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux3 frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3RAW")
-  field(CALC, "A+1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen3"){
-  field(DESC, "Enable/Disable MUX3")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_mux_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-}
-
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv3"){
-  field(DESC, "EVG Mux3 prescaler setting")
-  field(DTYP, "stream")
-  field(DRVH, "1073741824")
-  field(DRVL, "1")
-  field(AOFF, "1")
-  field(PREC, "0")
-  field(OUT, "@timing.proto evg_mux_div_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_get3") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read Mux3 register")
-  field(VAL, "0xAC") # (0x80 | reg number=44)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_set3") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to Mux3 register")
-  field(VAL, "0x6C")
-}
-
-########################################################################
-# Mux4 register [45]
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux4 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux4 frequency divider RAW")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_mux_div4RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4RBV")
-}
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux4 frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4RAW")
-  field(CALC, "A+1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen4"){
-  field(DESC, "Enable/Disable MUX4")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_mux_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-}
-
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv4"){
-  field(DESC, "EVG Mux4 prescaler setting")
-  field(DTYP, "stream")
-  field(DRVH, "1073741824")
-  field(DRVL, "1")
-  field(AOFF, "1")
-  field(PREC, "0")
-  field(OUT, "@timing.proto evg_mux_div_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_get4") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read Mux4 register")
-  field(VAL, "0xAD") # (0x80 | reg number=45)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_set4") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to Mux4 register")
-  field(VAL, "0x6D")
-}
-
-########################################################################
-# Mux5 register [46]
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux5 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux5 frequency divider RAW")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_mux_div5RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5RBV")
-}
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux5 frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5RAW")
-  field(CALC, "A+1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen5"){
-  field(DESC, "Enable/Disable MUX5")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_mux_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-}
-
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv5"){
-  field(DESC, "EVG Mux5 prescaler setting")
-  field(DTYP, "stream")
-  field(DRVH, "1073741824")
-  field(DRVL, "1")
-  field(AOFF, "1")
-  field(PREC, "0")
-  field(OUT, "@timing.proto evg_mux_div_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_get5") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read Mux5 register")
-  field(VAL, "0xAE") # (0x80 | reg number=46)
-  #field(ASG, "Reserved")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_set5") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to Mux5 register")
-  field(VAL, "0x6E")
-}
-
-########################################################################
-# Mux6 register [47]
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux6 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux6 frequency divider RAW")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_mux_div6RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6RBV")
-}
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux6 frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6RAW")
-  field(CALC, "A+1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen6"){
-  field(DESC, "Enable/Disable MUX6")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_mux_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-}
-
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv6"){
-  field(DESC, "EVG Mux6 prescaler setting")
-  field(DTYP, "stream")
-  field(DRVH, "1073741824")
-  field(DRVL, "1")
-  field(AOFF, "1")
-  field(PREC, "0")
-  field(OUT, "@timing.proto evg_mux_div_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_get6") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read Mux6 register")
-  field(VAL, "0xAF") # (0x80 | reg number=47)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_set6") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to Mux6 register")
-  field(VAL, "0x6F")
-}
-
-########################################################################
-# Mux7 register [48]
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux7 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux7 frequency divider RAW")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evg_mux_div7RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7RBV")
-}
-
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVG Mux7 frequency divider RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7RAW")
-  field(CALC, "A+1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxen7"){
-  field(DESC, "Enable/Disable MUX7")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evg_mux_en_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-}
-
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):muxdiv7"){
-  field(DESC, "EVG Mux7 prescaler setting")
-  field(DTYP, "stream")
-  field(DRVH, "1073741824")
-  field(DRVL, "1")
-  field(AOFF, "1")
-  field(PREC, "0")
-  field(OUT, "@timing.proto evg_mux_div_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_get7") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read Mux7 register")
-  field(VAL, "0xB0") # (0x80 | reg number=48)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_mux_set7") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to Mux7 register")
-  field(VAL, "0x70")
-}
-
-########################################################################
 # SEQRAM setting register [49]
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqaddr"){
-  field(DESC, "Set address of EVG SEQRAM")
+record(longout, "$(P)$(R)SeqAddr-SP"){
+  field(DESC, "Set address of SEQRAM")
   field(DRVH, "16383")
   field(DRVL, "0")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqcode"){
-  field(DESC, "Set event code in EVG SEQRAM")
+record(longout, "$(P)$(R)SeqCode-SP"){
+  field(DESC, "Set event code in SEQRAM")
   field(DRVH, "255")
   field(DRVL, "0")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqtime"){
-  field(DESC, "Set timestamp in EVG SEQRAM")
+record(longout, "$(P)$(R)SeqTime-SP"){
+  field(DESC, "Set timestamp in SEQRAM")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_seqramset_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_seqramset_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramset_set") {
+record(longout, "$(P)$(R)cmd_seqram_set") {
   field(ASG, "Reserved")
   field(DESC, "SEQRAM setting reg write command code")
   field(VAL, "0x71")
@@ -674,27 +358,44 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramset_set") {
 ########################################################################
 # SEQRAM switch register [50]
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqcountRBV") {
+record(mbbiDirect, "$(P)$(R)SeqCount-SP") {
   field(ASG, "Reserved")
-  field(DESC, "EVG seqcount status")
+  field(DESC, "seqcount status")
   field(NOBT, "14")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evg_seqramsw_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(INP, "@timing.proto evg_seqramsw_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):seqram_switch"){
+record(longin, "$(P)$(R)TotalInjCount-Mon") {
+  field(DESC, "Total injection counter")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_totalinjcount_intr($(P),$(R)) $(PORT)")
+}
+
+record(longin, "$(P)$(R)InjCount-Mon") {
+  field(DESC, "Injection counter")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_injcount_intr($(P),$(R)) $(PORT)")
+}
+
+record(longout, "$(P)$(R)SeqSw-Cmd"){
   field(DESC, "Switch SEQRAM")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_seqramsw_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_seqramsw_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramsw_get") {
+record(longout, "$(P)$(R)cmd_seqramsw_get") {
   field(ASG, "Reserved")
+  field(SCAN, ".01 second")
   field(DESC, "SEQRAM switch reg read command code")
   field(VAL, "0xB2") # (0x80 | reg number=50)
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_seqramsw_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramsw_set") {
+record(longout, "$(P)$(R)cmd_seqramsw_set") {
   field(ASG, "Reserved")
   field(DESC, "SEQRAM switch reg write command code")
   field(VAL, "0x72")
@@ -704,14 +405,15 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_seqramsw_set") {
 # Timestamp register [51]
 
 # This record value is read by the Sequencer program sncEVGSetup
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCRef"){
-  field(DESC, "EVG UTC reference")
+record(bo, "$(P)$(R)UTCRefSrc-Sel"){
+  field(DESC, "UTC reference")
+  field(MASK, "1")
   field(ZNAM, "PC")
   field(ONAM, "Control Room")
 }
 
 # This record value is written by the Sequencer program sncEVGSetup
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCMismatch"){
+record(bi, "$(P)$(R)UTCMismatch-Mon"){
   field(ASG, "Reserved")
   field(DESC, "UTC mismatch between ref. and EVG")
   field(ZNAM, "Match")
@@ -719,32 +421,33 @@ record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCMismatch"){
 }
 
 # This record value is read by the Sequencer program sncEVGSetup
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):GetUTC"){
+record(bo, "$(P)$(R)GetUTC-Cmd"){
   field(DESC, "Get UTC from configured reference cmd")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
 }
 
 # This record monitors the control room timestamp
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):CtrlRoomUTC"){
+record(longin, "$(P)$(R)CtrlRoomUTC"){
   field(ASG, "Reserved")
   field(DESC, "Control room UTC monitor")
   field(INP, "Cont:LNLS191:NTP:Timestamp CPP")
   field(EGU, "seconds")
 }
 
-# Note: Setting $(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTC.VAL to 0 causes EVG to broadcast
+# Note: Setting $(P)$(R)UTC.VAL to 0 causes a broadcast
 # 	the timestamp to the EVEs and EVRs.
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTC"){
-  field(DESC, "EVG timestamp UTC field")
+record(longout, "$(P)$(R)UTC-SP"){
+  field(DESC, "timestamp UTC field")
   field(EGU, "seconds")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_tmstmp_utc_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_tmstmp_utc_set($(P),$(R)) $(PORT)")
 }
 
-record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC"){
-  field(DESC, "EVG timestamp signal source")	
+record(mbbo, "$(P)$(R)TimestampSrc-Sel"){
+  field(DESC, "timestamp signal source")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
   field(ONST, "DBUS")
@@ -755,24 +458,24 @@ record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC"){
   field(THVL, "3")
   field(VAL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_tmstmp_timesrc_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_tmstmp_timesrc_set($(P),$(R)) $(PORT)")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCRBV"){
+record(longin, "$(P)$(R)UTC-RB"){
   field(ASG, "Reserved")
-  field(DESC, "EVG timestamp UTC field RBV")
+  field(DESC, "timestamp UTC field RBV")
   field(EGU, "seconds")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):subsecondRBV"){
+record(longin, "$(P)$(R)SubSecond-Mon"){
   field(ASG, "Reserved")
-  field(DESC, "EVG timestamp subsecond field RBV")
+  field(DESC, "timestamp subsecond field RBV")
   field(EGU, "evt_T")
 }
 
-record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRCRBV"){
+record(mbbi, "$(P)$(R)TimestampSrc-Sts"){
   field(ASG, "Reserved")
-  field(DESC, "EVG timestamp signal source RBV")	
+  field(DESC, "timestamp signal source RBV")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
   field(ONST, "DBUS")
@@ -786,16 +489,16 @@ record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRCRBV"){
   field(INP, "@timing.proto evg_tmstmp_timesrcRBV_intr $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_tmstmp_get"){
+record(longout, "$(P)$(R)cmd_tmstmp_get"){
   field(ASG, "Reserved")
   field(DESC, "Timestamp reg read command code")
   field(VAL, "0xB3")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_tmstmp_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_tmstmp_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_tmstmp_set"){
+record(longout, "$(P)$(R)cmd_tmstmp_set"){
   field(ASG, "Reserved")
   field(DESC, "Timestamp reg write command code")
   field(VAL, "0x73")
@@ -804,81 +507,84 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_tmstmp_set"){
 ########################################################################
 # Digital input 0 [53]
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev0") {
-  field(DESC, "EVG digital input 0 event code")
+record(longout, "$(P)$(R)DIEvent0-SP") {
+  field(DESC, "digital input 0 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),0) $(PORT)")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0") {
-  field(DESC, "EVG digital input 0 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN0")
+record(bo, "$(P)$(R)DIEnbl0-Sel") {
+  field(DESC, "digital input 0 enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DIEnblCalc0")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0") {
-  field(DESC, "EVG digital input 0 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL0")
+record(bo, "$(P)$(R)DIPol0-Sel") {
+  field(DESC, "digital input 0 polarity")
+  field(MASK, "1")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(FLNK, "$(P)$(R)DIPolCalc0")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0") {
-  field(DESC, "EVG dig. input 0 event timestamp enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME0")
+record(bo, "$(P)$(R)DILog0-Sel") {
+  field(DESC, "dig. input 0 event timestamp enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DILogCalc0")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN0") {
+record(calcout, "$(P)$(R)DIEnblCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 set enable calc")
+  field(DESC, "digital input 0 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl0-Sel.VAL")
+  field(INPB, "$(P)$(R)DIPol0-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog0-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGEN) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DIEnblCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI0Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL0") {
+record(calcout, "$(P)$(R)DIPolCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 set polarity calc")
+  field(DESC, "digital input 0 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl0-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol0-Sel.VAL")
+  field(INPC, "$(P)$(R)DILog0-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGPOL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DIPolCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI0Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME0") {
+record(calcout, "$(P)$(R)DILogCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 set timestamp calc")
+  field(DESC, "digital input 0 set timestamp calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0.VAL")
+  field(INPA, "$(P)$(R)DIEnbl0-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol0-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog0-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGTIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DILogCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI0Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0") {
+record(calcout, "$(P)$(R)DI0Calc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG dig.inp. 0 download en, pol and time")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0.VAL")
+  field(DESC, "dig.inp. 0 download en, pol and time")
+  field(INPA, "$(P)$(R)DIEnbl0-Sel.VAL")
+  field(INPB, "$(P)$(R)DIPol0-Sel.VAL")
+  field(INPC, "$(P)$(R)DILog0-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV") {
+record(mbbiDirect, "$(P)$(R)DI0Raw") {
   field(ASG, "Reserved")
   field(DESC, "DIGINP0 en, pol, and timestamp RBV")
   field(NOBT, "8")
@@ -886,47 +592,47 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evgre_diginp0_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV")
+  field(FLNK, "$(P)$(R)DILog0-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV") {
+record(bi, "$(P)$(R)DILog0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 timestamping sts")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV")
+  field(DESC, "digital input 0 timestamping sts")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI0Raw.B0")
+  field(FLNK, "$(P)$(R)DIPol0-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV") {
+record(bi, "$(P)$(R)DIPol0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV")
+  field(DESC, "digital input 0 polarity status")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(INP, "$(P)$(R)DI0Raw.B1")
+  field(FLNK, "$(P)$(R)DIEnbl0-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV") {
+record(bi, "$(P)$(R)DIEnbl0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B2")
+  field(DESC, "digital input 0 enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI0Raw.B2")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev0RBV") {
+record(longin, "$(P)$(R)DIEvent0-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 0 event RBV")
+  field(DESC, "digital input 0 event RBV")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set0") {
+record(longout, "$(P)$(R)cmd_diginp_set0") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to DIGINP0")
   field(VAL, "0x75") # (0x40 | reg number=1)
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get0") {
+record(longout, "$(P)$(R)cmd_diginp_get0") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read DIGINP0")
   field(VAL, "0xB5") # (0x80 | reg number=1)
@@ -935,81 +641,84 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get0") {
 ########################################################################
 # Digital input 1 [54]
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev1") {
-  field(DESC, "EVG digital input 1 event code")
+record(longout, "$(P)$(R)DIEvent1-SP") {
+  field(DESC, "digital input 1 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),1) $(PORT)")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1") {
-  field(DESC, "EVG digital input 1 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN1")
+record(bo, "$(P)$(R)DIEnbl1-Sel") {
+  field(DESC, "digital input 1 enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DIEnblCalc1")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1") {
-  field(DESC, "EVG digital input 1 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL1")
+record(bo, "$(P)$(R)DIPol1-Sel") {
+  field(DESC, "digital input 1 polarity")
+  field(MASK, "1")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(FLNK, "$(P)$(R)DIPolCalc1")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1") {
-  field(DESC, "EVG dig. input 1 event timestamp enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME1")
+record(bo, "$(P)$(R)DILog1-Sel") {
+  field(DESC, "dig. input 1 event timestamp enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DILogCalc1")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN1") {
+record(calcout, "$(P)$(R)DIEnblCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 set enable calc")
+  field(DESC, "digital input 1 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl1-Sel.VAL")
+  field(INPB, "$(P)$(R)DIPol1-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog1-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGEN) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DIEnblCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI1Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL1") {
+record(calcout, "$(P)$(R)DIPolCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 set polarity calc")
+  field(DESC, "digital input 1 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl1-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol1-Sel.VAL")
+  field(INPC, "$(P)$(R)DILog1-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGPOL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DIPolCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI1Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME1") {
+record(calcout, "$(P)$(R)DILogCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 set timestamp calc")
+  field(DESC, "digital input 1 set timestamp calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1.VAL")
+  field(INPA, "$(P)$(R)DIEnbl1-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol1-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog1-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGTIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DILogCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI1Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1") {
+record(calcout, "$(P)$(R)DI1Calc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG dig.inp. 1 download en, pol and time")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1.VAL")
+  field(DESC, "dig.inp. 1 download en, pol and time")
+  field(INPA, "$(P)$(R)DIEnbl1-Sel.VAL")
+  field(INPB, "$(P)$(R)DIPol1-Sel.VAL")
+  field(INPC, "$(P)$(R)DILog1-Sel.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV") {
+record(mbbiDirect, "$(P)$(R)DI1Raw") {
   field(ASG, "Reserved")
   field(DESC, "DIGINP1 en, pol, and timestamp RBV")
   field(NOBT, "8")
@@ -1017,47 +726,47 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evgre_diginp1_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV")
+  field(FLNK, "$(P)$(R)DILog1-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV") {
+record(bi, "$(P)$(R)DILog1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 timestamping sts")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV")
+  field(DESC, "digital input 1 timestamping sts")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI1Raw.B0")
+  field(FLNK, "$(P)$(R)DIPol1-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV") {
+record(bi, "$(P)$(R)DIPol1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV")
+  field(DESC, "digital input 1 polarity status")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(INP, "$(P)$(R)DI1Raw.B1")
+  field(FLNK, "$(P)$(R)DIEnbl1-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV") {
+record(bi, "$(P)$(R)DIEnbl1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B2")
+  field(DESC, "digital input 1 enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI1Raw.B2")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev1RBV") {
+record(longin, "$(P)$(R)DIEvent1-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG digital input 1 event RBV")
+  field(DESC, "digital input 1 event RBV")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set1") {
+record(longout, "$(P)$(R)cmd_diginp_set1") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to DIGINP1")
   field(VAL, "0x76") # (0x40 | reg number=1)
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get1") {
+record(longout, "$(P)$(R)cmd_diginp_get1") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read DIGINP1")
   field(VAL, "0xB6") # (0x80 | reg number=1)
@@ -1066,370 +775,373 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get1") {
 ########################################################################
 # Interlock map [56]
 
-record(mbboDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_mbbo") {
-  field(DESC, "EVG interlock input to output map")
+record(mbboDirect, "$(P)$(R)ilock_mbbo") {
+  field(DESC, "interlock input to output map")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_mbbi") {
-  field(DESC, "EVG interlock input to output map")
+record(mbbiDirect, "$(P)$(R)ilock_mbbi") {
+  field(DESC, "interlock input to output map")
   field(VAL, "1")
 }
 
-record(seq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq1") {
-  field(DESC, "EVG interlock input to output map")
-  field(DOL1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B0")
-  field(DOL2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B1")
-  field(DOL3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B2")
-  field(DOL4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B3")
-  field(DOL5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B4")
-  field(DOL6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B5")
-  field(DOL7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B6")
-  field(DOL8, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B7")
-  field(DOL9, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B8")
-  field(DOLA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.B9")
-  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B0")
-  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B1")
-  field(LNK3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B2")
-  field(LNK4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B3")
-  field(LNK5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B4")
-  field(LNK6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B5")
-  field(LNK7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B6")
-  field(LNK8, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B7")
-  field(LNK9, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B8")
-  field(LNKA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.B9")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq2")
+record(seq, "$(P)$(R)ilock_seq1") {
+  field(DESC, "interlock input to output map")
+  field(DOL1, "$(P)$(R)IntlkTbl0to15-Sts.B0")
+  field(DOL2, "$(P)$(R)IntlkTbl0to15-Sts.B1")
+  field(DOL3, "$(P)$(R)IntlkTbl0to15-Sts.B2")
+  field(DOL4, "$(P)$(R)IntlkTbl0to15-Sts.B3")
+  field(DOL5, "$(P)$(R)IntlkTbl0to15-Sts.B4")
+  field(DOL6, "$(P)$(R)IntlkTbl0to15-Sts.B5")
+  field(DOL7, "$(P)$(R)IntlkTbl0to15-Sts.B6")
+  field(DOL8, "$(P)$(R)IntlkTbl0to15-Sts.B7")
+  field(DOL9, "$(P)$(R)IntlkTbl0to15-Sts.B8")
+  field(DOLA, "$(P)$(R)IntlkTbl0to15-Sts.B9")
+  field(LNK1, "$(P)$(R)IntlkTbl0to15-Sel.B0")
+  field(LNK2, "$(P)$(R)IntlkTbl0to15-Sel.B1")
+  field(LNK3, "$(P)$(R)IntlkTbl0to15-Sel.B2")
+  field(LNK4, "$(P)$(R)IntlkTbl0to15-Sel.B3")
+  field(LNK5, "$(P)$(R)IntlkTbl0to15-Sel.B4")
+  field(LNK6, "$(P)$(R)IntlkTbl0to15-Sel.B5")
+  field(LNK7, "$(P)$(R)IntlkTbl0to15-Sel.B6")
+  field(LNK8, "$(P)$(R)IntlkTbl0to15-Sel.B7")
+  field(LNK9, "$(P)$(R)IntlkTbl0to15-Sel.B8")
+  field(LNKA, "$(P)$(R)IntlkTbl0to15-Sel.B9")
+  field(FLNK, "$(P)$(R)ilock_seq2")
 }
 
-record(seq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq2") {
-  field(DESC, "EVG interlock input to output map")
-  field(DOL1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BA")
-  field(DOL2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BB")
-  field(DOL3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BC")
-  field(DOL4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BD")
-  field(DOL5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BE")
-  field(DOL6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV.BF")
-  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BA")
-  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BB")
-  field(LNK3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BC")
-  field(LNK4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BD")
-  field(LNK5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BE")
-  field(LNK6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15.BF")
+record(seq, "$(P)$(R)ilock_seq2") {
+  field(DESC, "interlock input to output map")
+  field(DOL1, "$(P)$(R)IntlkTbl0to15-Sts.BA")
+  field(DOL2, "$(P)$(R)IntlkTbl0to15-Sts.BB")
+  field(DOL3, "$(P)$(R)IntlkTbl0to15-Sts.BC")
+  field(DOL4, "$(P)$(R)IntlkTbl0to15-Sts.BD")
+  field(DOL5, "$(P)$(R)IntlkTbl0to15-Sts.BE")
+  field(DOL6, "$(P)$(R)IntlkTbl0to15-Sts.BF")
+  field(LNK1, "$(P)$(R)IntlkTbl0to15-Sel.BA")
+  field(LNK2, "$(P)$(R)IntlkTbl0to15-Sel.BB")
+  field(LNK3, "$(P)$(R)IntlkTbl0to15-Sel.BC")
+  field(LNK4, "$(P)$(R)IntlkTbl0to15-Sel.BD")
+  field(LNK5, "$(P)$(R)IntlkTbl0to15-Sel.BE")
+  field(LNK6, "$(P)$(R)IntlkTbl0to15-Sel.BF")
 }
 
-record(seq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq3") {
-  field(DESC, "EVG interlock input to output map")
-  field(DOL1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B0")
-  field(DOL2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B1")
-  field(DOL3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B2")
-  field(DOL4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B3")
-  field(DOL5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B4")
-  field(DOL6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B5")
-  field(DOL7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B6")
-  field(DOL8, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B7")
-  field(DOL9, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B8")
-  field(DOLA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.B9")
-  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B0")
-  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B1")
-  field(LNK3, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B2")
-  field(LNK4, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B3")
-  field(LNK5, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B4")
-  field(LNK6, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B5")
-  field(LNK7, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B6")
-  field(LNK8, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B7")
-  field(LNK9, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B8")
-  field(LNKA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.B9")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq4")
+record(seq, "$(P)$(R)ilock_seq3") {
+  field(DESC, "interlock input to output map")
+  field(DOL1, "$(P)$(R)IntlkTbl16to27-Sts.B0")
+  field(DOL2, "$(P)$(R)IntlkTbl16to27-Sts.B1")
+  field(DOL3, "$(P)$(R)IntlkTbl16to27-Sts.B2")
+  field(DOL4, "$(P)$(R)IntlkTbl16to27-Sts.B3")
+  field(DOL5, "$(P)$(R)IntlkTbl16to27-Sts.B4")
+  field(DOL6, "$(P)$(R)IntlkTbl16to27-Sts.B5")
+  field(DOL7, "$(P)$(R)IntlkTbl16to27-Sts.B6")
+  field(DOL8, "$(P)$(R)IntlkTbl16to27-Sts.B7")
+  field(DOL9, "$(P)$(R)IntlkTbl16to27-Sts.B8")
+  field(DOLA, "$(P)$(R)IntlkTbl16to27-Sts.B9")
+  field(LNK1, "$(P)$(R)IntlkTbl16to27-Sel.B0")
+  field(LNK2, "$(P)$(R)IntlkTbl16to27-Sel.B1")
+  field(LNK3, "$(P)$(R)IntlkTbl16to27-Sel.B2")
+  field(LNK4, "$(P)$(R)IntlkTbl16to27-Sel.B3")
+  field(LNK5, "$(P)$(R)IntlkTbl16to27-Sel.B4")
+  field(LNK6, "$(P)$(R)IntlkTbl16to27-Sel.B5")
+  field(LNK7, "$(P)$(R)IntlkTbl16to27-Sel.B6")
+  field(LNK8, "$(P)$(R)IntlkTbl16to27-Sel.B7")
+  field(LNK9, "$(P)$(R)IntlkTbl16to27-Sel.B8")
+  field(LNKA, "$(P)$(R)IntlkTbl16to27-Sel.B9")
+  field(FLNK, "$(P)$(R)ilock_seq4")
 }
 
-record(seq, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq4") {
-  field(DESC, "EVG interlock input to output map")
-  field(DOL1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.BA")
-  field(DOL2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV.BB")
-  field(LNK1, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.BA")
-  field(LNK2, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27.BB")
+record(seq, "$(P)$(R)ilock_seq4") {
+  field(DESC, "interlock input to output map")
+  field(DOL1, "$(P)$(R)IntlkTbl16to27-Sts.BA")
+  field(DOL2, "$(P)$(R)IntlkTbl16to27-Sts.BB")
+  field(LNK1, "$(P)$(R)IntlkTbl16to27-Sel.BA")
+  field(LNK2, "$(P)$(R)IntlkTbl16to27-Sel.BB")
 }
 
-record(mbboDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15") {
-  field(DESC, "EVG interlock input to output map")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map")
+record(mbboDirect, "$(P)$(R)IntlkTbl0to15-Sel") {
+  field(DESC, "interlock input to output map")
+  field(FLNK, "$(P)$(R)IntlkTblCalc")
 }
 
-record(mbboDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27") {
-  field(DESC, "EVG interlock input to output map")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map")
+record(mbboDirect, "$(P)$(R)IntlkTbl16to27-Sel") {
+  field(DESC, "interlock input to output map")
+  field(FLNK, "$(P)$(R)IntlkTblCalc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map") {
+record(calcout, "$(P)$(R)IntlkTblCalc") {
   #field(ASG, "Reserved")
-  field(DESC, "EVG interlock map calc")
+  field(DESC, "interlock map calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15")
+  field(INPA, "$(P)$(R)IntlkTbl16to27-Sel")
+  field(INPB, "$(P)$(R)IntlkTbl0to15-Sel")
   field(CALC, "(A<<16)+B")
-  field(OUT, "@timing.proto evg_ilockmap_map_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_map_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in0") {
-  field(DESC, "EVG interlock input 0 event code")
+record(longout, "$(P)$(R)IntlkEvtIn0-SP") {
+  field(DESC, "interlock input 0 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev0_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_ev0_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in1") {
-  field(DESC, "EVG interlock input 1 event code")
+record(longout, "$(P)$(R)IntlkEvtIn1-SP") {
+  field(DESC, "interlock input 1 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev1_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_ev1_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in2") {
-  field(DESC, "EVG interlock input 2 event code")
+record(longout, "$(P)$(R)IntlkEvtIn2-SP") {
+  field(DESC, "interlock input 2 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev2_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_ev2_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in3") {
-  field(DESC, "EVG interlock input 3 event code")
+record(longout, "$(P)$(R)IntlkEvtIn3-SP") {
+  field(DESC, "interlock input 3 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev3_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_ev3_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in4") {
-  field(DESC, "EVG interlock input 4 event code")
+record(longout, "$(P)$(R)IntlkEvtIn4-SP") {
+  field(DESC, "interlock input 4 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev4_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_ev4_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in5") {
-  field(DESC, "EVG interlock input 5 event code")
+record(longout, "$(P)$(R)IntlkEvtIn5-SP") {
+  field(DESC, "interlock input 5 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev5_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_ev5_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in6") {
-  field(DESC, "EVG interlock input 6 event code")
+record(longout, "$(P)$(R)IntlkEvtIn6-SP") {
+  field(DESC, "interlock input 6 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev6_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_ev6_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_out") {
-  field(DESC, "EVG interlock output event code")
+record(longout, "$(P)$(R)IntlkEvtOut-SP") {
+  field(DESC, "interlock output event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_evout_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_evout_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_evg_ilockmap_set") {
+record(longout, "$(P)$(R)cmd_evg_ilockmap_set") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to Interlock Map")
   field(VAL, "0x78")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_evg_ilockmap_get") {
+record(longout, "$(P)$(R)cmd_evg_ilockmap_get") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read Interlock Map")
   field(VAL, "0xB8")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map0to15RBV") {
-  field(DESC, "EVG interlock input to output map RBV")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq1")
+record(mbbiDirect, "$(P)$(R)IntlkTbl0to15-Sts") {
+  field(DESC, "interlock input to output map RBV")
+  field(FLNK, "$(P)$(R)ilock_seq1")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_map16to27RBV") {
-  field(DESC, "EVG interlock input to output map RBV")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_seq3")
+record(mbbiDirect, "$(P)$(R)IntlkTbl16to27-Sts") {
+  field(DESC, "interlock input to output map RBV")
+  field(FLNK, "$(P)$(R)ilock_seq3")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in0RBV") {
+record(longin, "$(P)$(R)IntlkEvtIn0-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 0 event code RBV")
+  field(DESC, "interlock input 0 event code RBV")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in1RBV") {
+record(longin, "$(P)$(R)IntlkEvtIn1-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 1 event code RBV")
+  field(DESC, "interlock input 1 event code RBV")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in2RBV") {
+record(longin, "$(P)$(R)IntlkEvtIn2-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 2 event code RBV")
+  field(DESC, "interlock input 2 event code RBV")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in3RBV") {
+record(longin, "$(P)$(R)IntlkEvtIn3-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 3 event code RBV")
+  field(DESC, "interlock input 3 event code RBV")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in4RBV") {
+record(longin, "$(P)$(R)IntlkEvtIn4-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 4 event code RBV")
+  field(DESC, "interlock input 4 event code RBV")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in5RBV") {
+record(longin, "$(P)$(R)IntlkEvtIn5-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 5 event code RBV")
+  field(DESC, "interlock input 5 event code RBV")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_in6RBV") {
+record(longin, "$(P)$(R)IntlkEvtIn6-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock input 6 event code RBV")
+  field(DESC, "interlock input 6 event code RBV")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_evt_outRBV") {
+record(longin, "$(P)$(R)IntlkEvtOut-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG interlock output event code RBV")
+  field(DESC, "interlock output event code RBV")
 }
 
 ########################################################################
 # Interlock Control and Status [57]
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_evg_ilockcontrol_set") {
+record(longout, "$(P)$(R)cmd_evg_ilockcontrol_set") {
   field(ASG, "Reserved")
-  field(DESC, "Command code to write to Interlock Control")
+  field(DESC, "Command code to write Interlock Control")
   field(VAL, "0x79")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_evg_ilockcontrol_get") {
+record(longout, "$(P)$(R)cmd_evg_ilockcontrol_get") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read Interlock Control")
   field(SCAN, "1 second")
   field(VAL, "0xB9")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockcontrol_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockcontrol_get($(P),$(R)) $(PORT)")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_en") {
+record(bo, "$(P)$(R)IntlkCtrlEnbl-Sel") {
   field(DESC, "Interlock map enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_EN")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)IntlkCtrlEnblCalc")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rst") {
+record(bo, "$(P)$(R)IntlkCtrlRst-Sel") {
   field(DESC, "Interlock map reset")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(HIGH, "1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_RST")
+  field(FLNK, "$(P)$(R)IntlkCtrlRstCalc")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeat") {
+record(bo, "$(P)$(R)IntlkCtrlRepeat-Sel") {
   field(DESC, "Interlock map enable continuous mode")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_REPEAT")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)IntlkCtrlRepeatCalc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_EN") {
+record(calcout, "$(P)$(R)IntlkCtrlEnblCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control. Enable, reset and continuous send mode.")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_en")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rstRBV")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeatRBV")
+  field(DESC, "Interlock control. En, reset, cont.")
+  field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sel")
+  field(INPB, "$(P)$(R)IntlkCtrlRst-Sts")
+  field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sts")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockcontrol_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),EN) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R),EnblCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_RST") {
+record(calcout, "$(P)$(R)IntlkCtrlRstCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control. Enable, reset and continuous send mode.")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_enRBV")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rst")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeatRBV")
+  field(DESC, "Interlock control. En, reset, cont.")
+  field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sts")
+  field(INPB, "$(P)$(R)IntlkCtrlRst-Sel")
+  field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sts")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockcontrol_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),RST) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R),RstCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_REPEAT") {
+record(calcout, "$(P)$(R)IntlkCtrlRepeatCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control. Enable, reset and continuous send mode.")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_enRBV")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rstRBV")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeat")
+  field(DESC, "Interlock control. En, reset, cont.")
+  field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sts")
+  field(INPB, "$(P)$(R)IntlkCtrlRst-Sts")
+  field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sel")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockcontrol_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),REPEAT) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R),RepeatCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control") {
+record(calcout, "$(P)$(R)IntlkCtrlCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control. Enable, reset and continuous send mode.")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_en")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rst")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeat")
+  field(DESC, "Interlock control. En, reset, cont.")
+  field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sel")
+  field(INPB, "$(P)$(R)IntlkCtrlRst-Sel")
+  field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sel")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_repeat_time") {
-  field(DESC, "EVG Interlock event output repeat time")
+record(longout, "$(P)$(R)IntlkCtrlRepeatTime-SP") {
+  field(DESC, "Interlock event output repeat time")
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockrepeat_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockrepeat_time_set($(P),$(R)) $(PORT)")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_repeat_timeRBV") {
+record(longin, "$(P)$(R)IntlkCtrlRepeatTime-RB") {
   #field(ASG, "Reserved")
-  field(DESC, "EVG Interlock event output repeat time RBV")
+  field(DESC, "Interlock evtout repeat time RBV")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_ilock_repeat_time_intr $(PORT)")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_controlRBV") {
+record(mbbiDirect, "$(P)$(R)IntlkCtrlRaw") {
   #field(ASG, "Reserved")
-  field(DESC, "EVG Interlock control RBV. Enable, reset and continuous send mode.")
+  field(DESC, "Interlock control RBV.")
   field(NOBT, "8")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_ilock_control_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_enRBV")
+  field(FLNK, "$(P)$(R)IntlkCtrlEnbl-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_enRBV") {
+record(bi, "$(P)$(R)IntlkCtrlEnbl-Sts") {
   field(DESC, "Interlock map enable RBV")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_controlRBV.B7")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rstRBV")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)IntlkCtrlRaw.B7")
+  field(FLNK, "$(P)$(R)IntlkCtrlRst-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_rstRBV") {
+record(bi, "$(P)$(R)IntlkCtrlRst-Sts") {
   field(DESC, "Interlock map reset RBV")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_controlRBV.B6")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeatRBV")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)IntlkCtrlRaw.B6")
+  field(FLNK, "$(P)$(R)IntlkCtrlRepeat-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_control_repeatRBV") {
+record(bi, "$(P)$(R)IntlkCtrlRepeat-Sts") {
   field(DESC, "Interlock map enable continuous mode RBV")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_controlRBV.B5")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)IntlkCtrlRaw.B5")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_status") {
+record(mbbiDirect, "$(P)$(R)IntlkEvtStatus-Mon") {
   #field(ASG, "Reserved")
   field(DESC, "Interlock event status")
   field(NOBT, "8")
@@ -1441,28 +1153,28 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ilock_status") {
 ########################################################################
 # Firmware Version [62]
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONA"){
+record(longin, "$(P)$(R)FrmVersionA-Cte"){
   #field(ASG, "Reserved")
   field(DESC, "EVO firmware version")
   field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONB"){
+record(longin, "$(P)$(R)FrmVersionB-Cte"){
   #field(ASG, "Reserved")
   field(DESC, "EVO firmware version")
   field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSIONC"){
+record(longin, "$(P)$(R)FrmVersionC-Cte"){
   #field(ASG, "Reserved")
   field(DESC, "EVO firmware version")
   field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_frmvrs_get"){
+record(calcout, "$(P)$(R)cmd_frmvrs_get"){
   field(ASG, "Reserved")
   field(DESC, "Firmware version read command code")
   field(VAL, "0xBE")
@@ -1471,34 +1183,34 @@ record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_frmvrs_get"){
 ########################################################################
 # Configuration Register [63]
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive") {
+record(longin, "$(P)$(R)Alive-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG alive")
+  field(DESC, "alive")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_conf_alive_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc")
+  field(FLNK, "$(P)$(R)DevStatusCalc")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdivRAW") {
+record(longin, "$(P)$(R)RFDivRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVG RF divider status RAW")
+  field(DESC, "RF divider status RAW")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evg_conf_rfdivRAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdivRBV")
+  field(FLNK, "$(P)$(R)RFDiv-RB")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdivRBV") {
+record(calc, "$(P)$(R)RFDiv-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVG RF divider status RBV")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdivRAW")
+  field(DESC, "RF divider status RBV")
+  field(INPA, "$(P)$(R)RFDivRaw")
   field(CALC, "A+1")
 }
 
-record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV") {
+record(mbbi, "$(P)$(R)DevFun-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVG function select status")
+  field(DESC, "function select status")
   field(NOBT, "6")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
@@ -1513,7 +1225,7 @@ record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV") {
   field(INP, "@timing.proto evg_conf_funsel_intr $(PORT)")
 }
 
-record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funsel") {
+record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVO configuration as EVG")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
@@ -1525,29 +1237,30 @@ record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funsel") {
   field(THST, "EVE")
   field(VAL, "2")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_conf_funsel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_conf_funsel_set($(P),$(R)) $(PORT)")
 }
 
-record(ao, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdiv"){
-  field(DESC, "EVG RF clock divider")
+record(ao, "$(P)$(R)RFDiv-SP"){
+  field(DESC, "RF clock divider")
   field(DTYP, "stream")
-  field(DRVH, "15")
-  field(DRVL, "1")
+  field(DRVH, "4")
+  field(DRVL, "4")
+  field(VAL, "4")
   field(AOFF, "1")
   field(PREC, "0")
-  field(OUT, "@timing.proto evg_conf_rfdiv_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_conf_rfdiv_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_get") {
+record(longout, "$(P)$(R)cmd_conf_get") {
   field(ASG, "Reserved")
   field(DESC, "Configuration reg read command code")
   field(VAL, "0xBF")
-  field(SCAN, "1 second")
+  field(SCAN, ".1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_conf_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_conf_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_set") {
+record(longout, "$(P)$(R)cmd_conf_set") {
   field(ASG, "Reserved")
   field(DESC, "Configuration reg write command code")
   field(VAL, "0x7F")
@@ -1559,80 +1272,112 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_set") {
 # !ITBL.NELM MUST NOT BE MODIFIED!, since it affects the 
 # event table length
 
-record(waveform, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITBL") {
+record(waveform, "$(P)$(R)BucketList-SP") {
   field(DESC, "Injection table")
+  field(PINI, "1")
+  field(NELM, "864")
+  field(FTVL, "USHORT")
+  field(FLNK, "$(P)$(R)BucketListCalc")
+}
+
+record(acalcout, "$(P)$(R)BucketListCalc") {
+  field(DESC, "Injection table calc validation")
+  field(NELM, "864")
+  field(INAA, "$(P)$(R)BucketList-SP")
+  field(CALC, "AA[0,IXZ(AA>0 & AA<865)-1]; A:=IXZ(AA>0 & AA<865)")
+  field(OUT, "$(P)$(R)BucketList-RB PP")
+  field(FLNK, "$(P)$(R)BucketListLen-Mon PP")
+}
+
+record(longin, "$(P)$(R)BucketListLen-Mon") {
+  field(INP, "$(P)$(R)BucketListCalc.A")
+  field(DESC, "Length of the valid BucketList sequence")
+}
+
+record(waveform, "$(P)$(R)BucketList-RB") {
+  field(DESC, "Injection table RBV")
   field(NELM, "864")
   field(FTVL, "USHORT")
 }
 
+record(longout, "$(P)$(R)RepeatBucketList-SP"){
+  field(DESC, "BucketList repetition, 0=infinity")
+  field(PINI, "1")
+  field(DRVH, "100")
+  field(DRVL, "0")
+  field(FLNK, "$(P)$(R)RepeatBucketList-RB")
+}
+
+record(longin, "$(P)$(R)RepeatBucketList-RB"){
+  field(DESC, "BucketList repetition, 0=infinity")
+  field(INP, "$(P)$(R)RepeatBucketList-SP")
+}
+
 ########################################################################
 # Write all configuration registers
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):download") {
-  field(DESC, "EVG download")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+record(bo, "$(P)$(R)Download-Cmd") {
+  field(DESC, "download")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):downloadT") {
-  field(DESC, "EVG download trigger")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+record(bo, "$(P)$(R)Download-Trig") {
+  field(DESC, "download trigger")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_download($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_download($(P),$(R)) $(PORT)")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT") {
-  field(DESC, "EVG upload trigger")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(HIGH, "0.5")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadCalc")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVG upload trigger calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT.VAL")
-  field(CALC, "A")
-  field(OOPT, "When Non-zero")
+record(bo, "$(P)$(R)GetRBV") {
+  field(DESC, "upload trigger")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  #field(HIGH, "0.5")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_upload($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evg_get_rbv($(P),$(R)) $(PORT)")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc") {
+record(calc, "$(P)$(R)DevStatusCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVG device status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive")
+  field(DESC, "device status calc")
+  field(INPA, "$(P)$(R)Alive-Mon")
   field(CALC, "A=0?0:1")
-  #field(ASG, "Reserved")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdev")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdev") {
   field(ASG, "Reserved")
-  field(DESC, "EVG device status")
-  field(ZNAM, "WAITING")
-  field(ONAM, "RUNNING")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc")
+  field(FLNK, "$(P)$(R)DevStatus-Mon")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):network") {
+record(bi, "$(P)$(R)DevStatus-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVG network status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(DESC, "device status")
+  field(ZNAM, "Waiting")
+  field(ONAM, "Running")
+  field(INP, "$(P)$(R)DevStatusCalc")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE"){
-  field(DESC, "EVG manual Save settings command")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):save_T")
+record(bi, "$(P)$(R)Network-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "network status")
+  field(ZNAM, "Disconnected")
+  field(ONAM, "Connected")
+  field(FLNK, "$(P)$(R)FrmVersionA-Cte")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):save_T"){
-  field(DESC, "EVG manual Save trigger")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE.VAL")
+record(bo, "$(P)$(R)Save-Cmd"){
+  field(DESC, "manual Save settings command")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)Save-Trig")
+}
+
+record(calc, "$(P)$(R)Save-Trig"){
+  field(DESC, "manual Save trigger")
+  field(INPA, "$(P)$(R)Save-Cmd.VAL")
   field(CALC, "(A > 0) ? (VAL+1) : VAL")
   field(VAL, "0")
 }
+
