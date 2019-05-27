@@ -47,7 +47,7 @@ record(ao, "$(P)$(R)Evt$(code)DelayTime-SP") {
 record(calcout, "$(P)$(R)Evt$(code)DelayTimeCalc") {
   field(DESC, "Event $(code) timestamp calc")
   field(INPA, "$(P)$(R)Evt$(code)DelayTime-SP")
-  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
   field(CALC, "CEIL(A*(B/1000000))-A*(B/1000000)<0.5?CEIL(A*(B/1000000)):FLOOR(A*(B/1000000))")
   field(OUT, "$(P)$(R)Evt$(code)Delay-SP PP")
 }
@@ -89,7 +89,7 @@ record(ai, "$(P)$(R)Evt$(code)Delay-RB"){
 
 record(calc, "$(P)$(R)Evt$(code)DelayTime-RB") {
   field(INPA, "$(P)$(R)Evt$(code)Delay-RB")
-  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
   field(PREC, "3")
   field(DESC, "Event $(code) timestamp time unit")
   field(EGU, "us")

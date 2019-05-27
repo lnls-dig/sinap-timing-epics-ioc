@@ -17,7 +17,7 @@ record(calcout, "$(P)$(R)FPGAClkCalc") {
   field(SCAN, "1 second")
   field(INPA, "$(P)$(R)FPGAClkMAF")
   field(INPB, "$(P)$(R)TimestampSrc-Sel")
-  field(INPC, "$(P)$(R)FPGAClk-Cte")
+  field(INPC, "$(P)$(R)FPGAClk-Cte CPP")
   field(OUT, "$(P)$(R)FPGAClk-Cte PP")
   field(CALC, "B>0?A:C")
   field(FLNK, "$(P)$(R)RFRef-Cte")
@@ -32,7 +32,7 @@ record(calc, "$(P)$(R)RFRef-Cte"){
   field(DESC, "RF Ref Input frequency")
   field(PREC, "1")
   field(EGU, "Hz")
-  field(INPA, "$(P)$(R)FPGAClk-Cte")
+  field(INPA, "$(P)$(R)FPGAClk-Cte CPP")
   field(INPB, "$(P)$(R)RFDiv-SP")
   field(CALC, "A*B")
 }

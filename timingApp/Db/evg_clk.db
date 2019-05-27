@@ -29,7 +29,7 @@ record(calcout, "$(P)$(R)Clk$(num)Freq-RB") {
   field(ASG, "Reserved")
   field(DESC, "Mux$(num) frequency")
   field(INPA, "$(P)$(R)Clk$(num)MuxDivRaw")
-  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
   field(CALC, "B/(A+1)")
   field(PREC, "1")
   field(EGU, "Hz")
@@ -73,7 +73,7 @@ record(fanout, "$(P)$(R)Clk$(num)fanout") {
 record(calcout, "$(P)$(R)Clk$(num)FreqCalc") {
   field(DESC, "Mux$(num) frequency")
   field(INPA, "$(P)$(R)Clk$(num)Freq-SP")
-  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
   field(CALC, "B/A")
   field(PREC, "1")
   field(EGU, "Hz")

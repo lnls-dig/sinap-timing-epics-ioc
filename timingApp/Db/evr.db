@@ -6,7 +6,7 @@ record(ai, "$(P)$(R)FPGAClk-Cte") {
   field(SCAN, "1 second")
   field(PINI, "1")
   field(VAL, "124914500")
-  field(INP, "TEST-DIG:TI-EVG:FPGAClk-Cte")
+  field(INP, "RA-RaMO:TI-EVG:FPGAClk-Cte")
 }
 
 record(stringout, "$(P)$(R)IPAddr-Mon"){
