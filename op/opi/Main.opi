@@ -274,6 +274,7 @@ $(pv_value)</tooltip>
           <include_parent_macros>true</include_parent_macros>
           <R></R>
           <P>$(text)</P>
+          <T>Time</T>
         </macros>
         <mode>1</mode>
         <description></description>
