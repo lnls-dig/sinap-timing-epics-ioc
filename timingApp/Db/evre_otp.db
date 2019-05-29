@@ -97,14 +97,6 @@ record(bo, "$(P)$(R)OTP$(num)Log-Sel") {
   field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
 }
 
-record(bo, "$(P)$(R)OTP$(num)ByPassIntlk-Sel") {
-  field(DESC, "OTP$(num) interlock function selection")
-  field(MASK, "1")
-  field(ZNAM, "Bypass")
-  field(ONAM, "Active")
-  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
-}
-
 record(calcout, "$(P)$(R)OTP$(num)StateCalc") {
   field(ASG, "Reserved")
   field(DESC, "OTP$(num) set enable calc")
@@ -112,8 +104,7 @@ record(calcout, "$(P)$(R)OTP$(num)StateCalc") {
   field(INPA, "$(P)$(R)OTP$(num)State-Sel.RVAL")
   field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
   field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
-  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sts.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),State) $(PORT)")
   field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
 }
@@ -125,8 +116,7 @@ record(calcout, "$(P)$(R)OTP$(num)PolCalc") {
   field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
   field(INPB, "$(P)$(R)OTP$(num)Polarity-Sel.RVAL")
   field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
-  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sts.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Pol) $(PORT)")
   field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
 }
@@ -138,8 +128,7 @@ record(calcout, "$(P)$(R)OTP$(num)LogCalc") {
   field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
   field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
   field(INPC, "$(P)$(R)OTP$(num)Log-Sel.RVAL")
-  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sts.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Log) $(PORT)")
   field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
 }
@@ -151,8 +140,7 @@ record(calcout, "$(P)$(R)OTP$(num)IntlkCalc") {
   field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
   field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
   field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
-  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sel.RVAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Intlk) $(PORT)")
   field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
 }
@@ -164,8 +152,7 @@ record(calcout, "$(P)$(R)OTP$(num)RegAByte3") {
   field(INPA, "$(P)$(R)OTP$(num)State-Sel.RVAL")
   field(INPB, "$(P)$(R)OTP$(num)Polarity-Sel.RVAL")
   field(INPC, "$(P)$(R)OTP$(num)Log-Sel.RVAL")
-  field(INPD, "$(P)$(R)OTP$(num)ByPassIntlk-Sel.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)|(D<<4)")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
 }
 
@@ -176,15 +163,6 @@ record(mbbiDirect, "$(P)$(R)OTP$(num)RegAByte3RBV") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_otp_enpoltime$(num)RBV_intr $(PORT)")
-  field(FLNK, "$(P)$(R)OTP$(num)ByPassIntlk-Sts")
-}
-
-record(bi, "$(P)$(R)OTP$(num)ByPassIntlk-Sts") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP$(num) interlock status")
-  field(ZNAM, "Bypass")
-  field(ONAM, "Active")
-  field(INP, "$(P)$(R)OTP$(num)RegAByte3RBV.B4")
   field(FLNK, "$(P)$(R)OTP$(num)Log-Sts")
 }
 
