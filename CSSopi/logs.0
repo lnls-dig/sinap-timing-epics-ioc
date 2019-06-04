@@ -1,5 +1,0 @@
-2017-04-12 16:35:01.133 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-12 16:35:01.301 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-12 16:35:05.060 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml
-2017-04-12 16:35:05.567 INFO [Thread 36] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/ca/ca.xml
-2017-04-12 16:48:28.390 INFO [Thread 1] org.diirt.util.config.Configuration (getFile) - Loading configuration/diirt/datasources/datasources.xml

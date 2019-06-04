@@ -1,0 +1,27 @@
+########################################################################
+#
+# EVG EVENT RECORD ALIAS
+#
+########################################################################
+
+alias("$(P)$(R)Evt$(code)Code-Mon", "$(P)$(R)$(alias)Code-Mon")
+
+alias("$(P)$(R)Evt$(code)DelayTime-SP", "$(P)$(R)$(alias)DelayTime-SP")
+
+alias("$(P)$(R)Evt$(code)DelayTime-RB", "$(P)$(R)$(alias)DelayTime-RB")
+
+alias("$(P)$(R)Evt$(code)Delay-SP", "$(P)$(R)$(alias)Delay-SP")
+
+alias("$(P)$(R)Evt$(code)Delay-RB", "$(P)$(R)$(alias)Delay-RB")
+
+alias("$(P)$(R)Evt$(code)DelayType-Sel", "$(P)$(R)$(alias)DelayType-Sel")
+
+alias("$(P)$(R)Evt$(code)DelayType-Sts", "$(P)$(R)$(alias)DelayType-Sts")
+
+alias("$(P)$(R)Evt$(code)Mode-Sel", "$(P)$(R)$(alias)Mode-Sel")
+
+alias("$(P)$(R)Evt$(code)Mode-Sts", "$(P)$(R)$(alias)Mode-Sts")
+
+alias("$(P)$(R)Evt$(code)ExtTrig-Cmd", "$(P)$(R)$(alias)ExtTrig-Cmd")
+
+########################################################################

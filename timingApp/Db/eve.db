@@ -1,4056 +1,113 @@
 ########################################################################
-# Control and Status Register [0]
+# Frequency Reference PVs
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable") {
-  field(DESC, "EVE enable")
-  field(DTYP, "stream")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(OUT, "@timing.proto evre_ctrl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+record(ai, "$(P)$(R)FPGAClk-Cte") {
+  field(DESC, "FPGA Clock from EVG")
+  field(SCAN, "1 second")
+  field(PINI, "1")
+  field(VAL, "124914500")
+  field(INP, "RA-RaMO:TI-EVG:FPGAClk-Cte")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRAW") {
+record(stringout, "$(P)$(R)IPAddr-Mon"){
+  field(DESC, "IPADDR")
+  field(VAL, "$(IPADDR)")
+}
+
+record(stringout, "$(P)$(R)IPPort-Mon"){
+  field(DESC, "IPPORT")
+  field(VAL, "$(IPPORT)")
+}
+
+########################################################################
+# Control and Status Register [0]
+
+record(bo, "$(P)$(R)DevEnbl-Sel") {
+  field(DESC, "enable")
+  field(MASK, "1")
+  field(DTYP, "stream")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(OUT, "@timing.proto evre_ctrl_set($(P),$(R)) $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)DevEnblRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVE enable status RAW")
+  field(DESC, "enable status RAW")
   field(NOBT, "1")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_ctrl_enableRAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRBV")
+  field(FLNK, "$(P)$(R)DevEnbl-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRBV") {
+record(bi, "$(P)$(R)DevEnbl-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableRAW.B0")
+  field(DESC, "enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DevEnblRaw.B0")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):linkinhs") {
+record(mbbiDirect, "$(P)$(R)LinkIntlkRaw") {
   field(ASG, "Reserved")
-  field(DESC, "EVE link and inhs status")
+  field(DESC, "link and inhs status")
   field(NOBT, "8")
-  field(SHFT, "6")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_ctrl_linkinhs_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):inhs")
+  field(FLNK, "$(P)$(R)IntlkStatus-Mon")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):inhs") {
+record(bi, "$(P)$(R)IntlkStatus-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVE interlock status")
-  field(ZNAM, "DISSERTED")
-  field(ONAM, "ASSERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):linkinhs.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):link")
+  field(DESC, "interlock status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)LinkIntlkRaw.B6")
+  field(FLNK, "$(P)$(R)IntlkEnbl-Mon")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):link") {
+record(bi, "$(P)$(R)IntlkEnbl-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVE fibre link status")
-  field(ZNAM, "UNLINK")
-  field(ONAM, "LINK")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):linkinhs.B1")
+  field(DESC, "interlock input enable")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)LinkIntlkRaw.B0")
+  field(FLNK, "$(P)$(R)LinkStatus-Mon")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_get") {
+record(bi, "$(P)$(R)LinkStatus-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "fibre link status")
+  field(ZNAM, "Unlink")
+  field(ONAM, "Link")
+  field(INP, "$(P)$(R)LinkIntlkRaw.B7")
+}
+
+record(longout, "$(P)$(R)cmd_ctrl_get") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read Ctrl Status reg")
   field(VAL, "0x80") # (0x80 | reg number)
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_ctrl_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evre_ctrl_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_ctrl_set") {
+record(longout, "$(P)$(R)cmd_ctrl_set") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to Ctrl Status reg")
   field(VAL, "0x40") # (0x40 | reg number)
 }
 
 ########################################################################
-# OTP0 Register [1]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event0") {
-  field(DESC, "EVE OTP0 event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses0"){
-  field(DESC, "EVE OTP0 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width0") {
-  field(DESC, "EVE OTP0 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay0") {
-  field(DESC, "EVE OTP0 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0") {
-  field(DESC, "EVE OTP0 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE0")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0") {
-  field(DESC, "EVE OTP0 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL0")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0") {
-  field(DESC, "EVE OTP0 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME0")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE0") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL0") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME0") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP0 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime0RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime0RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses0RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP0 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set0") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP0")
-  field(VAL, "0x41") # (0x40 | reg number=1)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get0") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP0")
-  field(VAL, "0x81") # (0x80 | reg number=1)
-}
-
-########################################################################
-# OTP1 Register [2]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event1") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses1"){
-  field(DESC, "EVE OTP1 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width1") {
-  field(DESC, "EVE OTP1 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay1") {
-  field(DESC, "EVE OTP1 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1") {
-  field(DESC, "EVE OTP1 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1") {
-  field(DESC, "EVE OTP1 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL1")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1") {
-  field(DESC, "EVE OTP1 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME1")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE1") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL1") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME1") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP1 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime1RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime1RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses1RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP1 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set1") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP1")
-  field(VAL, "0x42") # (0x40 | reg number=2)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get1") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP1")
-  field(VAL, "0x82") # (0x80 | reg number=2)
-}
-
-########################################################################
-# OTP2 Register [3]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event2") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses2"){
-  field(DESC, "EVE OTP2 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width2") {
-  field(DESC, "EVE OTP2 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay2") {
-  field(DESC, "EVE OTP2 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2") {
-  field(DESC, "EVE OTP2 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE2")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2") {
-  field(DESC, "EVE OTP2 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL2")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2") {
-  field(DESC, "EVE OTP2 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME2")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE2") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL2") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME2") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP2 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime2RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime2RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses2RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP2 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set2") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP2")
-  field(VAL, "0x43") # (0x40 | reg number=3)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get2") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP2")
-  field(VAL, "0x83") # (0x80 | reg number=3)
-}
-
-########################################################################
-# OTP3 Register [4]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event3") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses3"){
-  field(DESC, "EVE OTP3 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width3") {
-  field(DESC, "EVE OTP3 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay3") {
-  field(DESC, "EVE OTP3 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3") {
-  field(DESC, "EVE OTP3 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE3")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3") {
-  field(DESC, "EVE OTP3 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL3")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3") {
-  field(DESC, "EVE OTP3 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME3")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP3 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime3RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime3RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses3RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP3 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set3") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP3")
-  field(VAL, "0x44") # (0x40 | reg number=4)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get3") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP3")
-  field(VAL, "0x84") # (0x80 | reg number=4)
-}
-
-########################################################################
-# OTP4 Register [5]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event4") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses4"){
-  field(DESC, "EVE OTP4 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width4") {
-  field(DESC, "EVE OTP4 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay4") {
-  field(DESC, "EVE OTP4 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4") {
-  field(DESC, "EVE OTP4 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE4")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4") {
-  field(DESC, "EVE OTP4 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL4")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4") {
-  field(DESC, "EVE OTP4 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME4")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE4") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL4") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME4") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP4 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime4RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime4RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses4RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP4 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set4") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP4")
-  field(VAL, "0x45") # (0x40 | reg number=5)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get4") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP4")
-  field(VAL, "0x85") # (0x80 | reg number=5)
-}
-
-########################################################################
-# OTP5 Register [6]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event5") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses5"){
-  field(DESC, "EVE OTP5 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width5") {
-  field(DESC, "EVE OTP5 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay5") {
-  field(DESC, "EVE OTP5 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5") {
-  field(DESC, "EVE OTP5 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE5")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5") {
-  field(DESC, "EVE OTP5 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL5")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5") {
-  field(DESC, "EVE OTP5 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME5")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE5") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL5") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME5") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP5 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime5RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime5RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses5RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP5 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set5") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP5")
-  field(VAL, "0x46") # (0x40 | reg number=6)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get5") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP5")
-  field(VAL, "0x86") # (0x80 | reg number=6)
-}
-
-########################################################################
-# OTP6 Register [7]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event6") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses6"){
-  field(DESC, "EVE OTP6 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width6") {
-  field(DESC, "EVE OTP6 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay6") {
-  field(DESC, "EVE OTP6 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6") {
-  field(DESC, "EVE OTP6 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE6")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6") {
-  field(DESC, "EVE OTP6 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL6")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6") {
-  field(DESC, "EVE OTP6 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME6")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE6") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL6") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME6") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP6 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime6RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime6RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses6RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP6 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set6") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP6")
-  field(VAL, "0x47") # (0x40 | reg number=7)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get6") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP6")
-  field(VAL, "0x87") # (0x80 | reg number=7)
-}
-
-########################################################################
-# OTP7 Register [8]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event7") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses7"){
-  field(DESC, "EVE OTP7 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width7") {
-  field(DESC, "EVE OTP7 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay7") {
-  field(DESC, "EVE OTP7 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7") {
-  field(DESC, "EVE OTP7 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE7")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7") {
-  field(DESC, "EVE OTP7 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL7")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7") {
-  field(DESC, "EVE OTP7 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME7")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE7") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL7") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME7") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP7 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime7RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime7RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses7RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP7 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set7") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP7")
-  field(VAL, "0x48") # (0x40 | reg number=8)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get7") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP7")
-  field(VAL, "0x88") # (0x80 | reg number=8)
-}
-
-########################################################################
-# OTP8 Register [9]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event8") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),8) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses8"){
-  field(DESC, "EVE OTP8 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),8) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width8") {
-  field(DESC, "EVE OTP8 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),8) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay8") {
-  field(DESC, "EVE OTP8 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),8) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8") {
-  field(DESC, "EVE OTP8 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE8")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8") {
-  field(DESC, "EVE OTP8 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL8")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8") {
-  field(DESC, "EVE OTP8 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME8")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE8") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),8,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL8") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),8,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME8") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),8,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP8 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime8RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time8RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol8RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable8RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime8RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses8RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 number of pulses RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event8RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width8RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay8RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP8 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set8") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP8")
-  field(VAL, "0x49") # (0x40 | reg number=9)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get8") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP8")
-  field(VAL, "0x89") # (0x80 | reg number=9)
-}
-
-########################################################################
-# OTP9 Register [10]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event9") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),9) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses9"){
-  field(DESC, "EVE OTP9 number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),9) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width9") {
-  field(DESC, "EVE OTP9 event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),9) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9RBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay9") {
-  field(DESC, "EVE OTP9 event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),9) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9RBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9") {
-  field(DESC, "EVE OTP9 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE9")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9") {
-  field(DESC, "EVE OTP9 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL9")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9") {
-  field(DESC, "EVE OTP9 event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME9")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLE9") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),9,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POL9") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9RBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),9,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIME9") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),9,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP9 enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltime9RBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):time9RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pol9RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enable9RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltime9RBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulses9RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):event9RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):width9RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delay9RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTP9 delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_set9") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTP9")
-  field(VAL, "0x4A") # (0x40 | reg number=10)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_get9") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTP9")
-  field(VAL, "0x8A") # (0x80 | reg number=10)
-}
-
-########################################################################
-# OTPA Register [11]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventA") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),A) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeARBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesA"){
-  field(DESC, "EVE OTPA number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),A) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeARBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthA") {
-  field(DESC, "EVE OTPA event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),A) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeARBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayA") {
-  field(DESC, "EVE OTPA event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),A) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeARBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableA") {
-  field(DESC, "EVE OTPA enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEA")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polA") {
-  field(DESC, "EVE OTPB polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLA")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeA") {
-  field(DESC, "EVE OTPA event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEA")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEA") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableA.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polARBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeARBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),A,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeA")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLA") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableARBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polA.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeARBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),A,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeA")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEA") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableARBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polARBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeA.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),A,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeA")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeA") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableA.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polA.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeA.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeARBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTPA enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltimeARBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeARBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeARBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeARBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polARBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polARBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeARBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableARBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableARBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeARBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesARBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventARBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthARBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayARBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPA delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_setA") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTPA")
-  field(VAL, "0x4B") # (0x40 | reg number=11)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_getA") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTPA")
-  field(VAL, "0x8B") # (0x80 | reg number=11)
-}
-
-########################################################################
-# OTPB Register [12]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventB") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),B) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeBRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesB"){
-  field(DESC, "EVE OTPB number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),B) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeBRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthB") {
-  field(DESC, "EVE OTPB event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),B) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeBRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayB") {
-  field(DESC, "EVE OTPB event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),B) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeBRBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableB") {
-  field(DESC, "EVE OTPB enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEB")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polB") {
-  field(DESC, "EVE OTPB polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLB")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeB") {
-  field(DESC, "EVE OTPB event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEB")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEB") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableB.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polBRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeBRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),B,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeB")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLB") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableBRBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polB.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeBRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),B,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeB")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEB") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableBRBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polBRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeB.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),B,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeB")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeB") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableB.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polB.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeB.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeBRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTPB enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltimeBRBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeBRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeBRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeBRBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polBRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polBRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeBRBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableBRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableBRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeBRBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesBRBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventBRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthBRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayBRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPB delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_setB") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTPB")
-  field(VAL, "0x4C") # (0x40 | reg number=12)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_getB") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTPB")
-  field(VAL, "0x8C") # (0x80 | reg number=12)
-}
-
-########################################################################
-# OTPC Register [13]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventC") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),C) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeCRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesC"){
-  field(DESC, "EVE OTPC number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),C) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeCRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthC") {
-  field(DESC, "EVE OTPC event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),C) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeCRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayC") {
-  field(DESC, "EVE OTPC event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),C) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeCRBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableC") {
-  field(DESC, "EVE OTPC enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEC")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polC") {
-  field(DESC, "EVE OTPC polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLC")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeC") {
-  field(DESC, "EVE OTPC event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEC")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEC") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableC.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polCRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeCRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),C,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeC")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLC") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableCRBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polC.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeCRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),C,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeC")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEC") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableCRBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polCRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeC.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),C,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeC")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeC") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableC.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polC.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeC.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeCRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTPC enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltimeCRBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeCRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeCRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeCRBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polCRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polCRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeCRBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableCRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableCRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeCRBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesCRBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventCRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthCRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayCRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPC delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_setC") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTPC")
-  field(VAL, "0x4D") # (0x40 | reg number=13)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_getC") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTPC")
-  field(VAL, "0x8D") # (0x80 | reg number=13)
-}
-
-########################################################################
-# OTPD Register [14]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventD") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),D) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeDRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesD"){
-  field(DESC, "EVE OTPD number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),D) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeDRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthD") {
-  field(DESC, "EVE OTPD event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),D) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeDRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayD") {
-  field(DESC, "EVE OTPD event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),D) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeDRBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableD") {
-  field(DESC, "EVE OTPD enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLED")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polD") {
-  field(DESC, "EVE OTPD polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLD")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeD") {
-  field(DESC, "EVE OTPD event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMED")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLED") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableD.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polDRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeDRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),D,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeD")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLD") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableDRBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polD.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeDRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),D,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeD")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMED") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableDRBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polDRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeD.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),D,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeD")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeD") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableD.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polD.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeD.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeDRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTPD enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltimeDRBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeDRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeDRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeDRBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polDRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polDRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeDRBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableDRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableDRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeDRBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesDRBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventDRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthDRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayDRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPD delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_setD") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTPD")
-  field(VAL, "0x4E") # (0x40 | reg number=14)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_getD") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTPD")
-  field(VAL, "0x8E") # (0x80 | reg number=14)
-}
-
-########################################################################
-# OTPE Register [15]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventE") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),E) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeERBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesE"){
-  field(DESC, "EVE OTPE number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),E) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeERBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthE") {
-  field(DESC, "EVE OTPE event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),E) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeERBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayE") {
-  field(DESC, "EVE OTPE event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),E) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeERBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableE") {
-  field(DESC, "EVE OTPE enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEE")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polE") {
-  field(DESC, "EVE OTPE polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLE")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeE") {
-  field(DESC, "EVE OTPE event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEE")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEE") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableE.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polERBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeERBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),E,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeE")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLE") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableERBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polE.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeERBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),E,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeE")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEE") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableERBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polERBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeE.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),E,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeE")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeE") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableE.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polE.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeE.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeERBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTPE enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltimeERBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeERBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeERBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeERBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polERBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polERBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeERBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableERBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableERBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeERBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesERBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventERBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthERBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayERBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPE delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_setE") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTPE")
-  field(VAL, "0x4F") # (0x40 | reg number=15)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_getE") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTPE")
-  field(VAL, "0x8F") # (0x80 | reg number=15)
-}
-
-########################################################################
-# OTPF Register [16]
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventF") {
-  field(DESC, "EVE event code")
-  field(DRVH, "255")
-  field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),F) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeFRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesF"){
-  field(DESC, "EVE OTPF number of pulses")
-  field(DRVH, "65535")
-  field(DRVL, "1")
-  field(EGU, "pulses")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_pulses_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),F) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeFRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthF") {
-  field(DESC, "EVE OTPF event width")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_width_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),F) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeFRBV")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayF") {
-  field(DESC, "EVE OTPF event delay")
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),F) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeFRBV")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableF") {
-  field(DESC, "EVE OTPF enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEF")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polF") {
-  field(DESC, "EVE OTPF polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLF")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeF") {
-  field(DESC, "EVE OTPF event timestamping enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEF")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ENABLEF") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableF.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polFRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeFRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),F,ENABLE) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeF")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):POLF") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableFRBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polF.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeFRBV.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),F,POL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeF")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMEF") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableFRBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polFRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeF.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),F,TIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeF")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeF") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF download EN, POL, and TIME")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableF.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polF.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeF.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeFRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "OTPF enable, polarity, and timestamp RBV")
-  field(NOBT, "8")
-  field(SHFT, "5")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_otp_enpoltimeFRBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeFRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):timeFRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF timestamping status")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeFRBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polFRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):polFRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeFRBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableFRBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enableFRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):enpoltimeFRBV.B2")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pulsesFRBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF number of pulses RBV")
-  field(EGU, "pulses")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):eventFRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF event RBV")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):widthFRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF width RBV")
-  field(EGU, "evt_T")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):delayFRBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OTPF delay RBV")
-  field(EGU, "evt_T")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_setF") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OTPF")
-  field(VAL, "0x50") # (0x40 | reg number=16)
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_otp_getF") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OTPF")
-  field(VAL, "0x90") # (0x80 | reg number=16)
-}
-
-########################################################################
-# OUT0 Register [17]
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl0RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0RAW.B0")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel0RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0StatCalc")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0StatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0RAW.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0RBV")
-}
-
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0StatCalc.SVAL")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 fine delay status")
-    field(EGU, "5ps")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly0RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 RF delay status")
-  field(EGU, "evt_T/20")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly0"){
-  field(DESC, "EVE OUT0 RF delay")
-  field(EGU, "evt_T/20")
-  field(DRVL, "0")
-  field(DRVH, "31")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly0"){
-  field(DESC, "EVE OUT0 fine delay")
-  field(EGU, "5ps")
-  field(DRVL, "0")
-  field(DRVH, "1023")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-}
-
-record(stringout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0"){
-  field(DESC, "EVE OUT0 source selection")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0Calc1")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0Calc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection calc 1")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0Calc2")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0Calc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection calc 2")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0Calc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0Calc3")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0Calc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 source selection calc 3")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0Calc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0toHW.VAL PP")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel0toHW"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 calculated source selection")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL0") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT0 set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl0"){
-  field(DESC, "EVE OUT0 interlock function selection")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL0")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_get0") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OUT0")
-  field(VAL, "0x91") # (0x80 | (reg number=17))
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_set0") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OUT0")
-  field(VAL, "0x51")
-}
-
-########################################################################
-# OUT1 Register [18]
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl1RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1RAW.B0")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel1RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1StatCalc")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1StatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1RAW.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1RBV")
-}
-
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1StatCalc.SVAL")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 fine delay status")
-  field(EGU, "5ps")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly1RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 RF delay status")
-  field(EGU, "evt_T/20")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly1"){
-  field(DESC, "EVE OUT1 RF delay")
-  field(DRVL, "0")
-  field(DRVH, "31")
-  field(EGU, "evt_T/20")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly1"){
-  field(DESC, "EVE OUT1 fine delay")
-  field(DRVL, "0")
-  field(DRVH, "1023")
-  field(EGU, "5ps")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-}
-
-record(stringout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1"){
-  field(DESC, "EVE OUT1 source selection")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1Calc1")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1Calc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection calc 1")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1Calc2")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1Calc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection calc 2")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1Calc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1Calc3")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1Calc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 source selection calc 3")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1Calc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1toHW.VAL PP")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel1toHW"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 calculated source selection")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL1") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT1 set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl1"){
-  field(DESC, "EVE OUT1 interlock function selection")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL1")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_get1") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OUT1")
-  field(VAL, "0x92") # (0x80 | (reg number=18))
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_set1") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OUT1")
-  field(VAL, "0x52")
-}
-
-########################################################################
-# OUT2 Register [19]
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl2RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2RAW.B0")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel2RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2StatCalc")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2StatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2RAW.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2RBV")
-}
-
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2StatCalc.SVAL")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 fine delay status")
-  field(EGU, "5ps")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly2RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 RF delay status")
-  field(EGU, "evt_T/20")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly2"){
-  field(DESC, "EVE OUT2 RF delay")
-  field(DRVL, "0")
-  field(DRVH, "31")
-  field(EGU, "evt_T/20")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly2"){
-  field(DESC, "EVE OUT2 fine delay")
-  field(DRVL, "0")
-  field(DRVH, "1023")
-  field(EGU, "5ps")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-}
-
-record(stringout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2"){
-  field(DESC, "EVE OUT2 source selection")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2Calc1")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2Calc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection calc 1")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2Calc2")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2Calc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection calc 2")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2Calc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2Calc3")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2Calc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 source selection calc 3")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2Calc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2toHW.VAL PP")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel2toHW"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 calculated source selection")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL2") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT2 set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl2"){
-  field(DESC, "EVE OUT2 interlock function selection")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL2")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_get2") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OUT2")
-  field(VAL, "0x93") # (0x80 | (reg number=19))
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_set2") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OUT2")
-  field(VAL, "0x53")
-}
-
-########################################################################
-# OUT3 Register [20]
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl3RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3RAW.B0")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel3RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3StatCalc")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3StatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3RAW.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3RBV")
-}
-
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3StatCalc.SVAL")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 fine delay status")
-  field(EGU, "5ps")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly3RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 RF delay status")
-  field(EGU, "evt_T/20")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly3"){
-  field(DESC, "EVE OUT3 RF delay")
-  field(DRVL, "0")
-  field(DRVH, "31")
-  field(EGU, "evt_T/20")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly3"){
-  field(DESC, "EVE OUT3 fine delay")
-  field(DRVL, "0")
-  field(DRVH, "1023")
-  field(EGU, "5ps")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-}
-
-record(stringout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3"){
-  field(DESC, "EVE OUT3 source selection")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3Calc1")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3Calc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection calc 1")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3Calc2")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3Calc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection calc 2")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3Calc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3Calc3")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3Calc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 source selection calc 3")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3Calc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3toHW PP")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel3toHW"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 calculated source selection")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-}
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT3 set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),3) $(PORT)")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl3"){
-  field(DESC, "EVE OUT3 interlock function selection")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL3")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_get3") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OUT3")
-  field(VAL, "0x94") # (0x80 | (reg number=20))
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_set3") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OUT3")
-  field(VAL, "0x54")
-}
-
-########################################################################
-# OUT4 Register [21]
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl4RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4RAW.B0")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel4RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4StatCalc")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4StatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4RAW.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4RBV")
-}
-
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4StatCalc.SVAL")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 fine delay status")
-  field(EGU, "5ps")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly4RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 RF delay status")
-  field(EGU, "evt_T/20")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly4"){
-  field(DESC, "EVE OUT4 RF delay")
-  field(DRVL, "0")
-  field(DRVH, "31")
-  field(EGU, "evt_T/20")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly4"){
-  field(DESC, "EVE OUT4 fine delay")
-  field(DRVL, "0")
-  field(DRVH, "1023")
-  field(EGU, "5ps")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-}
-
-record(stringout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4"){
-  field(DESC, "EVE OUT4 source selection")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4Calc1")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4Calc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection calc 1")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4Calc2")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4Calc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection calc 2")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4Calc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4Calc3")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4Calc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 source selection calc 3")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4Calc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4toHW PP")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel4toHW"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 calculated source selection")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL4") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT4 set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),4) $(PORT)")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl4"){
-  field(DESC, "EVE OUT4 interlock function selection")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL4")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_get4") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OUT4")
-  field(VAL, "0x95") # (0x80 | (reg number=21))
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_set4") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OUT4")
-  field(VAL, "0x55")
-}
-
-########################################################################
-# OUT5 Register [22]
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl5RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5RAW.B0")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel5RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5StatCalc")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5StatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5RAW.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5RBV")
-}
-
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5StatCalc.SVAL")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 fine delay status")
-  field(EGU, "5ps")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly5RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 RF delay status")
-  field(EGU, "evt_T/20")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly5"){
-  field(DESC, "EVE OUT5 RF delay")
-  field(DRVL, "0")
-  field(DRVH, "31")
-  field(EGU, "evt_T/20")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly5"){
-  field(DESC, "EVE OUT5 fine delay")
-  field(DRVL, "0")
-  field(DRVH, "1023")  
-  field(EGU, "evt_T")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-}
-
-record(stringout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5"){
-  field(DESC, "EVE OUT5 source selection")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5Calc1")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5Calc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection calc 1")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5Calc2")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5Calc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection calc 2")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5Calc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5Calc3")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5Calc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 source selection calc 3")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5Calc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5toHW PP")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel5toHW"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 calculated source selection")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL5") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT5 set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),5) $(PORT)")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl5"){
-  field(DESC, "EVE OUT5 interlock function selection")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL5")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_get5") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OUT5")
-  field(VAL, "0x96") # (0x80 | (reg number=22))
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_set5") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OUT5")
-  field(VAL, "0x56")
-}
-
-########################################################################
-# OUT6 Register [23]
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl6RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6RAW.B0")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel6RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6StatCalc")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6StatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6RAW.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6RBV")
-}
-
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6StatCalc.SVAL")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 fine delay status")
-  field(EGU, "5ps")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly6RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 RF delay status")
-  field(EGU, "evt_T/20")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly6"){
-  field(DESC, "EVE OUT6 RF delay")
-  field(DRVL, "0")
-  field(DRVH, "31")
-  field(EGU, "evt_T/20")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly6"){
-  field(DESC, "EVE OUT6 fine delay")
-  field(DRVL, "0")
-  field(DRVH, "1023")
-  field(EGU, "5ps")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-}
-
-record(stringout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6"){
-  field(DESC, "EVE OUT6 source selection")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6Calc1")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6Calc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection calc 1")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6Calc2")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6Calc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection calc 2")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6Calc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6Calc3")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6Calc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 source selection calc 3")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6Calc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6toHW PP")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel6toHW"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 calculated source selection")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL6") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT6 set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),6) $(PORT)")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl6"){
-  field(DESC, "EVE OUT6 interlock function selection")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL6")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_get6") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OUT6")
-  field(VAL, "0x97") # (0x80 | (reg number=23))
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_set6") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OUT6")
-  field(VAL, "0x57")
-}
-
-########################################################################
-# OUT7 Register [24]
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 interlock raw status")
-  field(NOBT, "8")
-  field(SHFT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_itl7RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7RBV")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 interlock status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7RAW.B0")
-}
-
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7RAW") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection status RAW")
-  field(NOBT, "7")
-  field(SCAN, "I/O Intr")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto evre_out_sel7RAW_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7StatCalc")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7StatCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7RAW.VAL")
-  field(CALC, "A > 31 ? printf('Dbus%d',A-32) : printf('OTP%d',A-16)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7RBV")
-}
-
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7RBV"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection status")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7StatCalc.SVAL")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 fine delay status")
-  field(EGU, "5ps")
-}
-
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly7RBV") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 RF delay status")
-  field(EGU, "evt_T/20")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rfdly7"){
-  field(DESC, "EVE OUT7 RF delay")
-  field(DRVL, "0")
-  field(DRVH, "31")
-  field(EGU, "evt_T/20")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):finedly7"){
-  field(DESC, "EVE OUT7 fine delay")
-  field(DRVL, "0")
-  field(DRVH, "1023")
-  field(EGU, "5ps")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-}
-
-record(stringout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7"){
-  field(DESC, "EVE OUT7 source selection")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7Calc1")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7Calc1"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection calc 1")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7.VAL")
-  field(CALC, "AA[0,2]=='OTP'&&len(AA)=4&&(AA=='OTP0'||(DBL(AA)>0&&DBL(AA)<=9))")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7Calc2")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7Calc2"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection calc 2")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7Calc1.VAL")
-  field(CALC, "B||(AA[0,2]=='OTP'&&len(AA)=5&&DBL(AA[-2,-1])>=10&&DBL(AA[-2,-1])<16)")  
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7Calc3")
-}
-
-record(scalcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7Calc3") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 source selection calc 3")
-  field(INAA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7Calc2.VAL")
-  field(CALC, "B||(len(AA)=5&&AA[0,3]=='Dbus'&&(AA=='Dbus0'||(DBL(AA)>0&&DBL(AA)<8)))")  
-  field(OOPT, "When Non-zero")
-  field(DOPT, "Use OCAL")
-  field(OCAL, "AA[0,2]=='OTP' ? 16+DBL(AA) : 32+DBL(AA)")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7toHW PP")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):sel7toHW"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 calculated source selection")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_sel_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL7") {
-  field(ASG, "Reserved")
-  field(DESC, "EVE OUT7 set interlock function calc")
-  field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7")
-  field(CALC, "A<<7")
-  field(OUT, "@timing.proto evre_out_itl_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),7) $(PORT)")
-}
-
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):itl7"){
-  field(DESC, "EVE OUT7 interlock function selection")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):ITL7")
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_get7") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to read OUT7")
-  field(VAL, "0x98") # (0x80 | (reg number=24))
-}
-
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_out_set7") {
-  field(ASG, "Reserved")
-  field(DESC, "Command code to write to OUT7")
-  field(VAL, "0x58")
-}
-
-########################################################################
-# RF output register [25]
-
-record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmsel") {
-  field(DESC, "EVE RF out mode")
+# RF output register [40]
+
+record(mbbo, "$(P)$(R)RFOut-Sel") {
+  field(DESC, "RF out mode")
+  field(PINI, "1")
   field(ZRVL, "0")
-  field(ZRST, "OFF")
+  field(ZRST, "Dsbl")
   field(ONVL, "1")
   field(ONST, "RF/4")
   field(TWVL, "2")
@@ -4062,14 +119,14 @@ record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmsel") {
   field(FVVL, "5")
   field(FVST, "10*RF/4")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto eve_rf_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto eve_rf_set($(P),$(R)) $(PORT)")
 }
 
-record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmselRBV") {
+record(mbbi, "$(P)$(R)RFOut-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE RF out mode status")
+  field(DESC, "RF out mode status")
   field(ZRVL, "0")
-  field(ZRST, "OFF")
+  field(ZRST, "Dsbl")
   field(ONVL, "1")
   field(ONST, "RF/4")
   field(TWVL, "2")
@@ -4088,8 +145,8 @@ record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmselRBV") {
 ########################################################################
 # Timestamp register [51]
 
-record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC"){
-  field(DESC, "EVE timestamp signal source")	
+record(mbbo, "$(P)$(R)TimestampSrc-Sel"){
+  field(DESC, "timestamp signal source")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
   field(ONST, "DBUS")
@@ -4100,24 +157,24 @@ record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRC"){
   field(THVL, "3")
   field(VAL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_tmstmp_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evre_tmstmp_set($(P),$(R)) $(PORT)")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCRBV"){
+record(longin, "$(P)$(R)UTC-RB"){
   field(ASG, "Reserved")
-  field(DESC, "EVE timestamp UTC field RBV")
+  field(DESC, "timestamp UTC field RBV")
   field(EGU, "seconds")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):subsecondRBV"){
+record(longin, "$(P)$(R)SubSecond-Mon"){
   field(ASG, "Reserved")
-  field(DESC, "EVE timestamp subsecond field RBV")
+  field(DESC, "timestamp subsecond field RBV")
   field(EGU, "evt_T")
 }
 
-record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRCRBV"){
+record(mbbi, "$(P)$(R)TimestampSrc-Sts"){
   field(ASG, "Reserved")
-  field(DESC, "EVE timestamp signal source RBV")	
+  field(DESC, "timestamp signal source RBV")	
   field(ZRST, "IDLE")
   field(ZRVL, "0")
   field(ONST, "DBUS")
@@ -4131,16 +188,16 @@ record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):TIMESRCRBV"){
   field(INP, "@timing.proto evre_tmstmp_timesrcRBV_intr $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_tmstmp_get"){
+record(longout, "$(P)$(R)cmd_tmstmp_get"){
   field(ASG, "Reserved")
   field(DESC, "Command code to read timestamp reg")
   field(VAL, "0xB3")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_tmstmp_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evre_tmstmp_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_tmstmp_set"){
+record(longout, "$(P)$(R)cmd_tmstmp_set"){
   field(ASG, "Reserved")
   field(DESC, "Command code to write to timestamp reg")
   field(VAL, "0x73")
@@ -4149,254 +206,301 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_tmstmp_set"){
 ########################################################################
 # Timestamp log register [52]
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplog"){
-  field(DESC, "EVE stop log command")
-  field(ONAM, "ON")
-  field(ZNAM, "OFF")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplogAUX")
+record(bo, "$(P)$(R)stoplog"){
+  field(DESC, "stop log command")
+  field(MASK, "1")
+  field(ONAM, "Enbl")
+  field(ZNAM, "Dsbl")
+  field(FLNK, "$(P)$(R)stoplogAUX")
 }
 
 # initialization by @init
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplogAUX"){
+record(calcout, "$(P)$(R)stoplogAUX"){
   field(ASG, "Reserved")
   field(DESC, "Auxiliar var for stoplog")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplog")
+  field(INPA, "$(P)$(R)stoplog.RVAL")
   field(CALC, "A << 7")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPLOG")
+  field(FLNK, "$(P)$(R)STOPLOG")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstlog"){
-  field(DESC, "EVE reset log command")
-  field(ONAM, "ON")
-  field(ZNAM, "OFF")
+record(bo, "$(P)$(R)rstlog"){
+  field(DESC, "reset log command")
+  field(MASK, "1")
+  field(ONAM, "Enbl")
+  field(ZNAM, "Dsbl")
   field(HIGH, "0.5")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RSTLOG")
+  field(FLNK, "$(P)$(R)RSTLOG")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull"){
-  field(DESC, "EVE pull from log command")
+record(bo, "$(P)$(R)pull"){
+  field(DESC, "pull from log command")
+  field(MASK, "1")
   field(ONAM, "PULL")
   field(ZNAM, "DO NOTHING")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):checkPull")
+  field(FLNK, "$(P)$(R)checkPull")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):checkPull"){
+record(calcout, "$(P)$(R)checkPull"){
   field(ASG, "Reserved")
   field(DESC, "Validate pull action")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EMPTY")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull")
+  field(INPA, "$(P)$(R)EMPTY")
+  field(INPB, "$(P)$(R)pull.RVAL")
   field(CALC, "(A = 0) && !(B = 0)")
   field(OOPT, "When Non-zero")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):PULL.PROC")
+  field(OUT, "$(P)$(R)PULL.PROC")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPLOG") {
+record(calcout, "$(P)$(R)STOPLOG") {
   field(ASG, "Reserved")
-  field(DESC, "EVE set stop log calc")
+  field(DESC, "set stop log calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplog.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RSTLOGRBV.VAL")
+  field(INPA, "$(P)$(R)stoplog.VAL")
+  field(INPB, "$(P)$(R)RSTLOGRBV.VAL")
   field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_log_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),STOPLOG) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):onlyRead")
+  field(OUT, "@timing.proto evre_log_set($(P),$(R),STOPLOG) $(PORT)")
+  field(FLNK, "$(P)$(R)onlyRead")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RSTLOG") {
+record(calcout, "$(P)$(R)RSTLOG") {
   field(ASG, "Reserved")
-  field(DESC, "EVE set reset log calc")
+  field(DESC, "set reset log calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplogAUX.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstlog.VAL")
+  field(INPA, "$(P)$(R)stoplogAUX.VAL")
+  field(INPB, "$(P)$(R)rstlog.RVAL")
   field(CALC, "(A & 128)|(B<<6)")
-  field(OUT, "@timing.proto evre_log_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),RSTLOG) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):onlyRead")
+  field(OUT, "@timing.proto evre_log_set($(P),$(R),RSTLOG) $(PORT)")
+  field(FLNK, "$(P)$(R)onlyRead")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):PULL") {
+record(calcout, "$(P)$(R)PULL") {
   field(ASG, "Reserved")
-  field(DESC, "EVE set pull log calc")
+  field(DESC, "set pull log calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplogAUX.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RSTLOGRBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull.VAL")
+  field(INPA, "$(P)$(R)stoplogAUX.VAL")
+  field(INPB, "$(P)$(R)RSTLOGRBV.VAL")
+  field(INPC, "$(P)$(R)pull.RVAL")
   field(CALC, "(A & 128)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_log_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),PULL) $(PORT)")
+  field(OUT, "@timing.proto evre_log_set($(P),$(R),PULL) $(PORT)")
   field(PRIO, "HIGH")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):readAndUpdate")
+  field(FLNK, "$(P)$(R)readAndUpdate")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCTRL") {
+record(calcout, "$(P)$(R)LOGCTRL") {
   field(ASG, "Reserved")
-  field(DESC, "EVE download stop, reset, and pull")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):stoplog.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):rstlog.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull.VAL")
+  field(DESC, "download stop, reset, and pull")
+  field(INPA, "$(P)$(R)stoplog.VAL")
+  field(INPB, "$(P)$(R)rstlog.RVAL")
+  field(INPC, "$(P)$(R)pull.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCOUNT"){
+record(longin, "$(P)$(R)LOGCOUNT"){
   field(ASG, "Reserved")
-  field(DESC, "EVE number of timestamps in the buffer")
+  field(DESC, "number of timestamps in the buffer")
   field(EGU, "timestamps")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCTRLRBV"){
+record(mbbiDirect, "$(P)$(R)LOGCTRLRBV"){
   field(ASG, "Reserved")
-  field(DESC, "EVE timestamp log control RBV")
+  field(DESC, "timestamp log control RBV")
   field(NOBT, "8")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_log_ctrlRBV_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPLOGRBV")
+  field(FLNK, "$(P)$(R)STOPLOGRBV")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):STOPLOGRBV"){
+record(bi, "$(P)$(R)STOPLOGRBV"){
   field(ASG, "Reserved")
-  field(ONAM, "ON")
-  field(ZNAM, "OFF")
-  field(DESC, "EVE stop log command RBV")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCTRLRBV.B7")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RSTLOGRBV")
+  field(ONAM, "Enbl")
+  field(ZNAM, "Dsbl")
+  field(DESC, "stop log command RBV")
+  field(INP, "$(P)$(R)LOGCTRLRBV.B7")
+  field(FLNK, "$(P)$(R)RSTLOGRBV")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):RSTLOGRBV"){
+record(bi, "$(P)$(R)RSTLOGRBV"){
   field(ASG, "Reserved")
-  field(ONAM, "ON")
-  field(ZNAM, "OFF")
-  field(DESC, "EVE reset log command RBV")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCTRLRBV.B6")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FULL")
+  field(ONAM, "Enbl")
+  field(ZNAM, "Dsbl")
+  field(DESC, "reset log command RBV")
+  field(INP, "$(P)$(R)LOGCTRLRBV.B6")
+  field(FLNK, "$(P)$(R)FULL")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FULL"){
-  field(ASG, "Reserved")
-  field(ONAM, "YES")
-  field(ZNAM, "NO")
-  field(DESC, "EVE timestamp buffer full flag")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCTRLRBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EMPTY")
-}
-
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EMPTY"){
+record(bi, "$(P)$(R)FULL"){
   field(ASG, "Reserved")
   field(ONAM, "YES")
   field(ZNAM, "NO")
-  field(DESC, "EVE timestamp buffer empty flag")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCTRLRBV.B0")
+  field(DESC, "timestamp buffer full flag")
+  field(INP, "$(P)$(R)LOGCTRLRBV.B1")
+  field(FLNK, "$(P)$(R)EMPTY")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGUTC"){
+record(bi, "$(P)$(R)EMPTY"){
   field(ASG, "Reserved")
-  field(DESC, "EVE UTC timestamp pulled from log")
+  field(ONAM, "YES")
+  field(ZNAM, "NO")
+  field(DESC, "timestamp buffer empty flag")
+  field(INP, "$(P)$(R)LOGCTRLRBV.B0")
+}
+
+record(longin, "$(P)$(R)LOGUTC"){
+  field(ASG, "Reserved")
+  field(DESC, "UTC timestamp pulled from log")
   field(EGU, "seconds")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGSUBSEC"){
+record(longin, "$(P)$(R)LOGSUBSEC"){
   field(ASG, "Reserved")
-  field(DESC, "EVE subsecond timestamp pulled from log")
+  field(DESC, "subsecond timestamp pulled from log")
   field(EGU, "evt_T")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGEVENT"){
+record(longin, "$(P)$(R)LOGEVENT"){
   field(ASG, "Reserved")
-  field(DESC, "EVE timestamp event pulled from log")
+  field(DESC, "timestamp event pulled from log")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):onlyRead"){
+record(longout, "$(P)$(R)onlyRead"){
   field(ASG, "Reserved")
   field(DESC, "Read timestamp and don't update buffers")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_log_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCTRL")
+  field(OUT, "@timing.proto evre_log_get($(P),$(R)) $(PORT)")
+  field(FLNK, "$(P)$(R)LOGCTRL")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):readAndUpdate"){
+record(longout, "$(P)$(R)readAndUpdate"){
   field(ASG, "Reserved")
   field(DESC, "Read register and update buffers")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_log_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evre_log_get($(P),$(R)) $(PORT)")
   field(PRIO, "HIGH")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCbuffer")
+  field(FLNK, "$(P)$(R)UTCbuffer")
 }
 
-record(compress, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):UTCbuffer"){
+record(compress, "$(P)$(R)UTCbuffer"){
   field(ASG, "Reserved")
   field(DESC, "UTC circular buffer")
   field(EGU, "seconds")
   field(ALG, "Circular Buffer")
   field(NSAM, "1000")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGUTC")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SUBSECbuffer")
+  field(INP, "$(P)$(R)LOGUTC")
+  field(FLNK, "$(P)$(R)SUBSECbuffer")
 }
 
-record(compress, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SUBSECbuffer"){
+record(compress, "$(P)$(R)SUBSECbuffer"){
   field(ASG, "Reserved")
   field(DESC, "SUBSEC circular buffer")
   field(EGU, "evt_T")
   field(ALG, "Circular Buffer")
   field(NSAM, "1000")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGSUBSEC")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVENTbuffer")
+  field(INP, "$(P)$(R)LOGSUBSEC")
+  field(FLNK, "$(P)$(R)EVENTbuffer")
 }
 
-record(compress, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EVENTbuffer"){
+record(compress, "$(P)$(R)EVENTbuffer"){
   field(ASG, "Reserved")
   field(DESC, "Event circular buffer")
   field(ALG, "Circular Buffer")
   field(NSAM, "1000")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGEVENT")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGSOFTCNT")
+  field(INP, "$(P)$(R)LOGEVENT")
+  field(FLNK, "$(P)$(R)LOGSOFTCNT")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGSOFTCNT"){
+record(calc, "$(P)$(R)LOGSOFTCNT"){
   field(ASG, "Reserved")
   field(DESC, "Software fresh data buffer counter")
   field(EGU, "timestamps")
   field(CALC, "VAL + 1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pullAgain")
+  field(FLNK, "$(P)$(R)pullAgain")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pullAgain"){
+record(calcout, "$(P)$(R)pullAgain"){
   field(ASG, "Reserved")
   field(DESC, "Pull again decision calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):whileNotEmpty.VAL")
+  field(INPA, "$(P)$(R)whileNotEmpty.VAL")
   field(CALC, "A")
   field(OOPT, "When Non-zero")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):whileNotEmpty.PROC")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):LOGCTRL")
+  field(OUT, "$(P)$(R)whileNotEmpty.PROC")
+  field(FLNK, "$(P)$(R)LOGCTRL")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):PeriodicPull"){
+record(calcout, "$(P)$(R)PeriodicPull"){
   field(ASG, "Reserved")
   field(DESC, "Periodic pull of timestamps")
   field(SCAN, "2 second")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):whileNotEmpty.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EMPTY")
+  field(INPA, "$(P)$(R)whileNotEmpty.VAL")
+  field(INPB, "$(P)$(R)EMPTY")
   field(CALC, "(A = 0) && (B = 0)")
   field(VAL, "0")
   field(OOPT, "When Non-zero")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):whileNotEmpty.PROC")
+  field(OUT, "$(P)$(R)whileNotEmpty.PROC")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):whileNotEmpty"){
+record(calcout, "$(P)$(R)whileNotEmpty"){
   field(ASG, "Reserved")
   field(DESC, "Flag: pull while buffer is not empty")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):EMPTY")
+  field(INPA, "$(P)$(R)EMPTY")
   field(CALC, "A = 0")
   field(VAL, "0")
-  field(OUT, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):pull PP")
+  field(OUT, "$(P)$(R)pull PP")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_log_get"){
+record(bo, "$(P)$(R)rstSoftBuff"){
+  field(DESC, "Reset software buffers")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(HIGH, "1")
+  field(FLNK, "$(P)$(R)rstSoftBuffCalc")
+}
+
+record(calcout, "$(P)$(R)rstSoftBuffCalc"){
+  field(ASG, "Reserved")
+  field(DESC, "Reset software buffers calc")
+  field(INPA, "$(P)$(R)rstSoftBuff.RVAL")
+  field(CALC, "A")
+  field(OOPT, "When Non-zero")
+  field(OUT, "$(P)$(R)rstSoftBuffSeq.PROC")
+}
+
+record(sseq, "$(P)$(R)rstSoftBuffSeq"){
+  field(ASG, "Reserved")
+  field(DESC, "Reset software buffers sequence")
+  field(SELM, "All")
+  field(DO1, "1")
+  field(DO2, "1")
+  field(DO3, "1")
+  field(DO4, "0")
+  field(DO5, "1")
+  field(DO6, "1")
+  field(DO7, "1")
+  field(LNK1, "$(P)$(R)UTCbuffer.RES PP")	# Reset and process UTC buffer. It will pull a -1 when processed.
+  field(LNK2, "$(P)$(R)SUBSECbuffer.RES PP")	# Reset and process SUBSEC buffer. It will pull a -1 when processed.
+  field(LNK3, "$(P)$(R)EVENTbuffer.RES PP")	# Reset and process EVENT buffer. It will pull a -1 when processed.
+  field(LNK4, "$(P)$(R)LOGSOFTCNT")		# Zero soft log count
+  field(LNK5, "$(P)$(R)UTCbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
+  field(LNK6, "$(P)$(R)SUBSECbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
+  field(LNK7, "$(P)$(R)EVENTbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
+  field(WAIT1, "Wait")
+  field(WAIT2, "Wait")
+  field(WAIT3, "Wait")
+  field(WAIT4, "Wait")
+  field(WAIT5, "Wait")
+  field(WAIT6, "Wait")
+}
+
+record(longout, "$(P)$(R)cmd_log_get"){
   field(ASG, "Reserved")
   field(DESC, "Timestamp log reg read command code")
   field(VAL, "0xB4")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_log_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evre_log_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_log_set"){
+record(longout, "$(P)$(R)cmd_log_set"){
   field(ASG, "Reserved")
   field(DESC, "Timestamp log reg write command code")
   field(VAL, "0x74")
@@ -4405,81 +509,84 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_log_set"){
 ########################################################################
 # Digital input 0 [53]
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev0") {
-  field(DESC, "EVE digital input 0 event code")
+record(longout, "$(P)$(R)DIEvent0-SP") {
+  field(DESC, "digital input 0 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),0) $(PORT)")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0") {
-  field(DESC, "EVE digital input 0 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN0")
+record(bo, "$(P)$(R)DIEnbl0-Sel") {
+  field(DESC, "digital input 0 enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DIStateCalc0")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0") {
-  field(DESC, "EVE digital input 0 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL0")
+record(bo, "$(P)$(R)DIPol0-Sel") {
+  field(DESC, "digital input 0 polarity")
+  field(MASK, "1")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(FLNK, "$(P)$(R)DIPolCalc0")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0") {
-  field(DESC, "EVE dig. input 0 event timestamp enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME0")
+record(bo, "$(P)$(R)DILog0-Sel") {
+  field(DESC, "dig. input 0 event timestamp enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DILogCalc0")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN0") {
+record(calcout, "$(P)$(R)DIStateCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 0 set enable calc")
+  field(DESC, "digital input 0 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl0-Sel.RVAL")
+  field(INPB, "$(P)$(R)DIPol0-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog0-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGEN) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DIStateCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI0Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL0") {
+record(calcout, "$(P)$(R)DIPolCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 0 set polarity calc")
+  field(DESC, "digital input 0 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl0-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol0-Sel.RVAL")
+  field(INPC, "$(P)$(R)DILog0-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGPOL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DIPolCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI0Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME0") {
+record(calcout, "$(P)$(R)DILogCalc0") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 0 set timestamp calc")
+  field(DESC, "digital input 0 set timestamp calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0.VAL")
+  field(INPA, "$(P)$(R)DIEnbl0-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol0-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog0-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),0,DIGTIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),0,DILogCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI0Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0") {
+record(calcout, "$(P)$(R)DI0Calc") {
   field(ASG, "Reserved")
-  field(DESC, "EVE dig.inp. 0 download en, pol and time")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0.VAL")
+  field(DESC, "dig.inp. 0 download en, pol and time")
+  field(INPA, "$(P)$(R)DIEnbl0-Sel.RVAL")
+  field(INPB, "$(P)$(R)DIPol0-Sel.RVAL")
+  field(INPC, "$(P)$(R)DILog0-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV") {
+record(mbbiDirect, "$(P)$(R)DI0Raw") {
   field(ASG, "Reserved")
   field(DESC, "DIGINP0 en, pol, and timestamp RBV")
   field(NOBT, "8")
@@ -4487,47 +594,47 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evgre_diginp0_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV")
+  field(FLNK, "$(P)$(R)DILog0-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime0RBV") {
+record(bi, "$(P)$(R)DILog0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 0 timestamping sts")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV")
+  field(DESC, "digital input 0 timestamping sts")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI0Raw.B0")
+  field(FLNK, "$(P)$(R)DIPol0-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol0RBV") {
+record(bi, "$(P)$(R)DIPol0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 0 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV")
+  field(DESC, "digital input 0 polarity status")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(INP, "$(P)$(R)DI0Raw.B1")
+  field(FLNK, "$(P)$(R)DIEnbl0-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen0RBV") {
+record(bi, "$(P)$(R)DIEnbl0-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 0 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept0RBV.B2")
+  field(DESC, "digital input 0 enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI0Raw.B2")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev0RBV") {
+record(longin, "$(P)$(R)DIEvent0-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 0 event RBV")
+  field(DESC, "digital input 0 event RBV")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set0") {
+record(longout, "$(P)$(R)cmd_diginp_set0") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to DIGINP0")
   field(VAL, "0x75") # (0x40 | reg number=1)
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get0") {
+record(longout, "$(P)$(R)cmd_diginp_get0") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read DIGINP0")
   field(VAL, "0xB5") # (0x80 | reg number=1)
@@ -4536,81 +643,84 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get0") {
 ########################################################################
 # Digital input 1 [54]
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev1") {
-  field(DESC, "EVE digital input 1 event code")
+record(longout, "$(P)$(R)DIEvent1-SP") {
+  field(DESC, "digital input 1 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),1) $(PORT)")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1") {
-  field(DESC, "EVE digital input 1 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN1")
+record(bo, "$(P)$(R)DIEnbl1-Sel") {
+  field(DESC, "digital input 1 enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DIStateCalc1")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1") {
-  field(DESC, "EVE digital input 1 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL1")
+record(bo, "$(P)$(R)DIPol1-Sel") {
+  field(DESC, "digital input 1 polarity")
+  field(MASK, "1")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(FLNK, "$(P)$(R)DIPolCalc1")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1") {
-  field(DESC, "EVE dig. input 1 event timestamp enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME1")
+record(bo, "$(P)$(R)DILog1-Sel") {
+  field(DESC, "dig. input 1 event timestamp enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DILogCalc1")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN1") {
+record(calcout, "$(P)$(R)DIStateCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 1 set enable calc")
+  field(DESC, "digital input 1 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl1-Sel.RVAL")
+  field(INPB, "$(P)$(R)DIPol1-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog1-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGEN) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DIStateCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI1Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL1") {
+record(calcout, "$(P)$(R)DIPolCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 1 set polarity calc")
+  field(DESC, "digital input 1 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl1-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol1-Sel.RVAL")
+  field(INPC, "$(P)$(R)DILog1-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGPOL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DIPolCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI1Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME1") {
+record(calcout, "$(P)$(R)DILogCalc1") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 1 set timestamp calc")
+  field(DESC, "digital input 1 set timestamp calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1.VAL")
+  field(INPA, "$(P)$(R)DIEnbl1-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol1-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog1-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),1,DIGTIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),1,DILogCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI1Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1") {
+record(calcout, "$(P)$(R)DI1Calc") {
   field(ASG, "Reserved")
-  field(DESC, "EVE dig.inp. 1 download en, pol and time")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1.VAL")
+  field(DESC, "dig.inp. 1 download en, pol and time")
+  field(INPA, "$(P)$(R)DIEnbl1-Sel.RVAL")
+  field(INPB, "$(P)$(R)DIPol1-Sel.RVAL")
+  field(INPC, "$(P)$(R)DILog1-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV") {
+record(mbbiDirect, "$(P)$(R)DI1Raw") {
   field(ASG, "Reserved")
   field(DESC, "DIGINP1 en, pol, and timestamp RBV")
   field(NOBT, "8")
@@ -4618,47 +728,47 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evgre_diginp1_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV")
+  field(FLNK, "$(P)$(R)DILog1-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime1RBV") {
+record(bi, "$(P)$(R)DILog1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 1 timestamping sts")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV")
+  field(DESC, "digital input 1 timestamping sts")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI1Raw.B0")
+  field(FLNK, "$(P)$(R)DIPol1-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol1RBV") {
+record(bi, "$(P)$(R)DIPol1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 1 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV")
+  field(DESC, "digital input 1 polarity status")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(INP, "$(P)$(R)DI1Raw.B1")
+  field(FLNK, "$(P)$(R)DIEnbl1-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen1RBV") {
+record(bi, "$(P)$(R)DIEnbl1-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 1 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept1RBV.B2")
+  field(DESC, "digital input 1 enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI1Raw.B2")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev1RBV") {
+record(longin, "$(P)$(R)DIEvent1-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 1 event RBV")
+  field(DESC, "digital input 1 event RBV")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set1") {
+record(longout, "$(P)$(R)cmd_diginp_set1") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to DIGINP1")
   field(VAL, "0x76") # (0x40 | reg number=1)
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get1") {
+record(longout, "$(P)$(R)cmd_diginp_get1") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read DIGINP1")
   field(VAL, "0xB6") # (0x80 | reg number=1)
@@ -4667,81 +777,84 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get1") {
 ########################################################################
 # Digital input 2 [55]
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev2") {
-  field(DESC, "EVE digital input 2 event code")
+record(longout, "$(P)$(R)DIEvent2-SP") {
+  field(DESC, "digital input 2 event code")
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evgre_diginp_ev_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2) $(PORT)")
+  field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),2) $(PORT)")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen2") {
-  field(DESC, "EVE digital input 2 enable")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN2")
+record(bo, "$(P)$(R)DIEnbl2-Sel") {
+  field(DESC, "digital input 2 enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DIStateCalc2")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol2") {
-  field(DESC, "EVE digital input 2 polarity")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL2")
+record(bo, "$(P)$(R)DIPol2-Sel") {
+  field(DESC, "digital input 2 polarity")
+  field(MASK, "1")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(FLNK, "$(P)$(R)DIPolCalc2")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime2") {
-  field(DESC, "EVE dig. input 2 event timestamp enable")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME2")
+record(bo, "$(P)$(R)DILog2-Sel") {
+  field(DESC, "dig. input 2 event timestamp enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)DILogCalc2")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGEN2") {
+record(calcout, "$(P)$(R)DIStateCalc2") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 2 set enable calc")
+  field(DESC, "digital input 2 set enable calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen2.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol2RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime2RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl2-Sel.RVAL")
+  field(INPB, "$(P)$(R)DIPol2-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog2-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2,DIGEN) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),2,DIStateCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI2Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGPOL2") {
+record(calcout, "$(P)$(R)DIPolCalc2") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 2 set polarity calc")
+  field(DESC, "digital input 2 set polarity calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen2RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol2.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime2RBV.VAL")
+  field(INPA, "$(P)$(R)DIEnbl2-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol2-Sel.RVAL")
+  field(INPC, "$(P)$(R)DILog2-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2,DIGPOL) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),2,DIPolCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI2Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):DIGTIME2") {
+record(calcout, "$(P)$(R)DILogCalc2") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 2 set timestamp calc")
+  field(DESC, "digital input 2 set timestamp calc")
   field(DTYP, "stream")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen2RBV.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol2RBV.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime2.VAL")
+  field(INPA, "$(P)$(R)DIEnbl2-Sts.VAL")
+  field(INPB, "$(P)$(R)DIPol2-Sts.VAL")
+  field(INPC, "$(P)$(R)DILog2-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx),2,DIGTIME) $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2")
+  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),2,DILogCalc) $(PORT)")
+  field(FLNK, "$(P)$(R)DI2Calc")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2") {
+record(calcout, "$(P)$(R)DI2Calc") {
   field(ASG, "Reserved")
-  field(DESC, "EVE dig.inp. 2 download en, pol and time")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen2.VAL")
-  field(INPB, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol2.VAL")
-  field(INPC, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime2.VAL")
+  field(DESC, "dig.inp. 2 download en, pol and time")
+  field(INPA, "$(P)$(R)DIEnbl2-Sel.RVAL")
+  field(INPB, "$(P)$(R)DIPol2-Sel.RVAL")
+  field(INPC, "$(P)$(R)DILog2-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
 }
 
-record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2RBV") {
+record(mbbiDirect, "$(P)$(R)DI2Raw") {
   field(ASG, "Reserved")
   field(DESC, "DIGINP2 en, pol, and timestamp RBV")
   field(NOBT, "8")
@@ -4749,47 +862,47 @@ record(mbbiDirect, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2RBV") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evgre_diginp2_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime2RBV")
+  field(FLNK, "$(P)$(R)DILog2-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digtime2RBV") {
+record(bi, "$(P)$(R)DILog2-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 2 timestamping sts")
-  field(ZNAM, "NOT TIMESTAMPED")
-  field(ONAM, "TIMESTAMPED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2RBV.B0")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol2RBV")
+  field(DESC, "digital input 2 timestamping sts")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI2Raw.B0")
+  field(FLNK, "$(P)$(R)DIPol2-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digpol2RBV") {
+record(bi, "$(P)$(R)DIPol2-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 2 polarity status")
-  field(ZNAM, "NORMAL")
-  field(ONAM, "INVERTED")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2RBV.B1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen2RBV")
+  field(DESC, "digital input 2 polarity status")
+  field(ZNAM, "Normal")
+  field(ONAM, "Inverse")
+  field(INP, "$(P)$(R)DI2Raw.B1")
+  field(FLNK, "$(P)$(R)DIEnbl2-Sts")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digen2RBV") {
+record(bi, "$(P)$(R)DIEnbl2-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 2 enable status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digept2RBV.B2")
+  field(DESC, "digital input 2 enable status")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)DI2Raw.B2")
 }
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):digev2RBV") {
+record(longin, "$(P)$(R)DIEvent2-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVE digital input 2 event RBV")
+  field(DESC, "digital input 2 event RBV")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_set2") {
+record(longout, "$(P)$(R)cmd_diginp_set2") {
   field(ASG, "Reserved")
   field(DESC, "Command code to write to DIGINP2")
   field(VAL, "0x77") # (0x40 | reg number=1)
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get2") {
+record(longout, "$(P)$(R)cmd_diginp_get2") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read DIGINP2")
   field(VAL, "0xB7") # (0x80 | reg number=1)
@@ -4798,34 +911,48 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_diginp_get2") {
 ########################################################################
 # Firmware Version [62]
 
-record(stringin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):FRMVERSION"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE firmware version")
+record(longin, "$(P)$(R)FrmVersionA-Cte"){
+  #field(ASG, "Reserved")
+  field(DESC, "firmware version")
   field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
 }
 
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_frmvrs_get"){
+record(longin, "$(P)$(R)FrmVersionB-Cte"){
+  #field(ASG, "Reserved")
+  field(DESC, "firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
+}
+
+record(longin, "$(P)$(R)FrmVersionC-Cte"){
+  #field(ASG, "Reserved")
+  field(DESC, "firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)cmd_frmvrs_get"){
   field(ASG, "Reserved")
-  field(DESC, "EVE firmware version read command code")
+  field(DESC, "Firmware version read command code")
   field(VAL, "0xBE")
 }
- 
+
 ########################################################################
 # Configuration Register [63]
 
-record(longin, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive") {
+record(longin, "$(P)$(R)Alive-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVE alive")
+  field(DESC, "alive")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_conf_alive_intr $(PORT)")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc")
+  field(FLNK, "$(P)$(R)DevStatusCalc")
 }
 
-record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):clkmodeRBV") {
+record(mbbi, "$(P)$(R)ClkMode-RB") {
   field(ASG, "Reserved")
-  field(DESC, "EVE clock mode status")
+  field(DESC, "clock mode status")
   field(NOBT, "6")
   field(ZRVL, "11")
   field(ZRST, "60-62.5 MHz")
@@ -4842,9 +969,9 @@ record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):clkmodeRBV") {
   field(INP, "@timing.proto evre_conf_clkmode_intr $(PORT)")
 }
 
-record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV") {
+record(mbbi, "$(P)$(R)DevFun-Sts") {
   field(ASG, "Reserved")
-  field(DESC, "EVE function select status")
+  field(DESC, "function select status")
   field(NOBT, "6")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
@@ -4859,8 +986,17 @@ record(mbbi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):funselRBV") {
   field(INP, "@timing.proto evre_conf_funsel_intr $(PORT)")
 }
 
-record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):clkmode"){
-  field(DESC, "EVE clock mode")
+record(mbbo, "$(P)$(R)DevFun-Sel") {
+  field(DESC, "STD-EVE fixed configuration")
+  field(ZRVL, "32")
+  field(ZRST, "EVE")
+  field(DTYP, "stream")
+  field(VAL, "0")
+  field(OUT, "@timing.proto evr_conf_funsel_set($(P),$(R)) $(PORT)")
+}
+
+record(mbbo, "$(P)$(R)ClkMode-SP"){
+  field(DESC, "clock mode")
   field(ZRVL, "11")
   field(ZRST, "11")
   field(ONVL, "16")
@@ -4873,19 +1009,19 @@ record(mbbo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):clkmode"){
   field(FRST, "19")
   field(VAL, "1")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto eve_conf_set($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto eve_conf_set($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_get"){
+record(longout, "$(P)$(R)cmd_conf_get"){
   field(ASG, "Reserved")
   field(DESC, "Configuration reg read command code")
   field(VAL, "0xBF")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(OUT, "@timing.proto eve_conf_get($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto eve_conf_get($(P),$(R)) $(PORT)")
 }
 
-record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_set") {
+record(longout, "$(P)$(R)cmd_conf_set") {
   field(ASG, "Reserved")
   field(DESC, "Configuration reg write command code")
   field(VAL, "0x7F")
@@ -4893,71 +1029,67 @@ record(longout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):cmd_conf_set") {
 
 ########################################################################
 # Write all configuration registers
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):download") {
-  field(DESC, "EVE download")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+record(bo, "$(P)$(R)Download-Cmd") {
+  field(DESC, "download config to hardware")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):downloadT") {
-  field(DESC, "EVE download trigger")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+record(bo, "$(P)$(R)Download-Trig") {
+  field(DESC, "download trigger")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto eve_download($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto eve_download($(P),$(R)) $(PORT)")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT") {
-  field(DESC, "EVE upload trigger")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(HIGH, "0.5")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadCalc")
-}
-
-record(calcout, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadCalc"){
-  field(ASG, "Reserved")
-  field(DESC, "EVE upload trigger calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):uploadT")
-  field(CALC, "A")
-  field(OOPT, "When Non-zero")
+record(bo, "$(P)$(R)GetRBV") {
+  field(DESC, "upload trigger")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  #field(HIGH, "0.5")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto eve_upload($(Sec),$(Sub),$(Dis),$(Dev),$(Idx)) $(PORT)")
+  field(OUT, "@timing.proto evr_get_rbv($(P),$(R)) $(PORT)")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc") {
+record(calc, "$(P)$(R)DevStatusCalc") {
   field(ASG, "Reserved")
-  field(DESC, "EVE device status calc")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):alive")
+  field(DESC, "device status calc")
+  field(INPA, "$(P)$(R)Alive-Mon")
   field(CALC, "A=0?0:1")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdev")
+  field(FLNK, "$(P)$(R)DevStatus-Mon")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdev") {
+record(bi, "$(P)$(R)DevStatus-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVE device status")
+  field(DESC, "device status")
   field(ZNAM, "WAITING")
   field(ONAM, "RUNNING")
-  field(INP, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):statdevcalc")
+  field(INP, "$(P)$(R)DevStatusCalc")
 }
 
-record(bi, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):network") {
+record(bi, "$(P)$(R)Network-Mon") {
   field(ASG, "Reserved")
-  field(DESC, "EVE network status")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
+  field(DESC, "network status")
+  field(ZNAM, "Disconnected")
+  field(ONAM, "Connected")
+  field(FLNK, "$(P)$(R)FrmVersionA-Cte")
 }
 
-record(bo, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE"){
-  field(DESC, "EVE manual Save settings command")
-  field(ZNAM, "OFF")
-  field(ONAM, "ON")
-  field(FLNK, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):save_T")
+record(bo, "$(P)$(R)Save-Cmd"){
+  field(DESC, "manual Save settings command")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)Save-Trig")
 }
 
-record(calc, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):save_T"){
-  field(DESC, "EVE manual Save trigger")
-  field(INPA, "$(Sec)-$(Sub):$(Dis)-$(Dev)$(Idx):SAVE.VAL")
+record(calc, "$(P)$(R)Save-Trig"){
+  field(DESC, "manual Save trigger")
+  field(INPA, "$(P)$(R)Save-Cmd.VAL")
   field(CALC, "(A > 0) ? (VAL+1) : VAL")
   field(VAL, "0")
 }

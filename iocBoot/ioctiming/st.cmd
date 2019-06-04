@@ -5,8 +5,6 @@
 
 < envPaths
 
-cd ${TOP}
-
 # ###### MACRO SUBSTITUTION ###### 
 
 ## Naming Convention
@@ -32,7 +30,7 @@ epicsEnvSet EVR4_line "#"
 epicsEnvSet EVR5_line "#"
 epicsEnvSet EVR6_line "#"
 
-epicsEnvSet EVE1_line ""
+epicsEnvSet EVE1_line "#"
 epicsEnvSet EVE2_line "#"
 epicsEnvSet EVE3_line "#"
 epicsEnvSet EVE4_line "#"
@@ -48,10 +46,10 @@ epicsEnvSet FOUT5_line "#"
 epicsEnvSet("STREAM_PROTOCOL_PATH", "$(TOP)/timingApp/Db")
 
 ## Register all support components
-dbLoadDatabase "dbd/timing.dbd"
+dbLoadDatabase("${TOP}/dbd/timing.dbd")
 timing_registerRecordDeviceDriver pdbbase
 
-asSetFilename("$(TOP)/accessSecurityFile.acf")
+asSetFilename("$(TOP)/timingApp/Db/accessSecurityFile.acf")
 
 ${EVG1_line}drvAsynIPPortConfigure ("EVG1", "10.0.18.32:50111:50111 udp",0,0,0)
 
@@ -67,7 +65,7 @@ ${EVE2_line}drvAsynIPPortConfigure ("EVE2", "10.0.18.32:50122:50122 udp",0,0,0)
 ${EVE3_line}drvAsynIPPortConfigure ("EVE3", "10.0.18.123:50123:50123 udp",0,0,0)
 ${EVE4_line}drvAsynIPPortConfigure ("EVE4", "10.0.18.124:50124:50124 udp",0,0,0)
 
-${FOUT1_line}drvAsynIPPortConfigure ("FOUT1", "10.0.18.65:50118:50118 udp",0,0,0)
+${FOUT1_line}drvAsynIPPortConfigure ("FOUT1", "10.2.118.35:50116:50116 udp",0,0,0)
 ${FOUT2_line}drvAsynIPPortConfigure ("FOUT2", "10.0.18.43:50117:50117 udp",0,0,0)
 ${FOUT3_line}drvAsynIPPortConfigure ("FOUT3", "10.0.18.65:50118:50118 udp",0,0,0)
 ${FOUT4_line}drvAsynIPPortConfigure ("FOUT4", "10.0.18.65:50118:50118 udp",0,0,0)
@@ -121,63 +119,11 @@ ${FOUT3_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${D
 ${FOUT4_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=4, PORT=FOUT4, ADDR=0, TIMEOUT=2")
 ${FOUT5_line}dbLoadRecords("${TOP}/db/fout.db", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${FDEV}, Idx=5, PORT=FOUT5, ADDR=0, TIMEOUT=2")
 
-# Specify save file path
-set_savefile_path("$(TOP)", "autosave/save_files")
-
-# Specify request files directories
-set_requestfile_path("$(TOP)", "autosave/request_files")
-
-# Specify files to be restored, and when
-# EVG
-${EVG1_line}set_pass0_restoreFile("autosave_evg_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1")
-# ITBL
-${EVG1_line}set_pass1_restoreFile("autosave_ITBL_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1")
-# Events
-${EVG1_line}set_pass1_restoreFile("autosave_event0_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=0")
-${EVG1_line}set_pass1_restoreFile("autosave_event1_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=1")
-${EVG1_line}set_pass1_restoreFile("autosave_event2_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=2")
-${EVG1_line}set_pass1_restoreFile("autosave_event3_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=3")
-${EVG1_line}set_pass1_restoreFile("autosave_event4_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=4")
-${EVG1_line}set_pass1_restoreFile("autosave_event5_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=5")
-${EVG1_line}set_pass1_restoreFile("autosave_event6_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=6")
-${EVG1_line}set_pass1_restoreFile("autosave_event7_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=7")
-${EVG1_line}set_pass1_restoreFile("autosave_event8_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=8")
-${EVG1_line}set_pass1_restoreFile("autosave_event9_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=9")
-${EVG1_line}set_pass1_restoreFile("autosave_event10_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=10")
-${EVG1_line}set_pass1_restoreFile("autosave_event11_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=11")
-${EVG1_line}set_pass1_restoreFile("autosave_event12_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=12")
-${EVG1_line}set_pass1_restoreFile("autosave_event13_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=13")
-${EVG1_line}set_pass1_restoreFile("autosave_event14_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=14")
-${EVG1_line}set_pass1_restoreFile("autosave_event15_PROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${GDEV}, Idx=1, num=15")
-# EVR
-${EVR1_line}set_pass0_restoreFile("autosave_evr1_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=1")
-${EVR2_line}set_pass0_restoreFile("autosave_evr2_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=2")
-${EVR3_line}set_pass0_restoreFile("autosave_evr3_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=3")
-${EVR4_line}set_pass0_restoreFile("autosave_evr4_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=4")
-${EVR5_line}set_pass0_restoreFile("autosave_evr5_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=5")
-${EVR6_line}set_pass0_restoreFile("autosave_evr6_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${RDEV}, Idx=6")
-# EVE
-${EVE1_line}set_pass0_restoreFile("autosave_eve1_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=1")
-${EVE2_line}set_pass0_restoreFile("autosave_eve2_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=2")
-${EVE3_line}set_pass0_restoreFile("autosave_eve3_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=3")
-${EVE4_line}set_pass0_restoreFile("autosave_eve4_NOPROC.sav", "Sec=${SEC}, Sub=${SUB}, Dis=${DIS}, Dev=${EDEV}, Idx=4")
-# FOUT
-${FOUT1_line}set_pass0_restoreFile("autosave_fout1_NOPROC.sav")
-${FOUT2_line}set_pass0_restoreFile("autosave_fout2_NOPROC.sav")
-${FOUT3_line}set_pass0_restoreFile("autosave_fout3_NOPROC.sav")
-${FOUT4_line}set_pass0_restoreFile("autosave_fout4_NOPROC.sav")
-${FOUT5_line}set_pass0_restoreFile("autosave_fout5_NOPROC.sav")
-
-# Enable/Disable backup files (0->Disable, 1->Enable)
-save_restoreSet_DatedBackupFiles(0)
-
-# Number of copies of .sav files to maintain
-save_restoreSet_NumSeqFiles(0)
+# < save_restore.cmd
 
 ## Run this to trace the stages of iocInit
 #traceIocInit
 
-cd ${TOP}/iocBoot/${IOC}
 iocInit
 
 ## Start any sequence programs

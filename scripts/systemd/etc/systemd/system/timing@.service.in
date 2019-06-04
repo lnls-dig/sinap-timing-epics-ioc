@@ -1,0 +1,22 @@
+[Unit]
+Description=TIMING IOC %p%I
+After=rc-local.service
+Wants=rc-local.service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+# Source environment
+EnvironmentFile=/etc/sysconfig/timing-epics-ioc
+EnvironmentFile=/etc/sysconfig/timing-epics-ioc-mapping
+# Execute pre with root
+PermissionsStartOnly=true
+Environment=TIMING_INSTANCE=%i
+ExecStartPre=/bin/mkdir -p /var/log/procServ/%p%i
+ExecStartPre=/bin/mkdir -p /var/run/procServ/%p%i
+WorkingDirectory=<INSTALL_PREFIX>/<IOC_NAME>/iocBoot/ioctiming
+# Run procServ with IOC
+ExecStart="/usr/local/bin/runTiming.sh"
+
+[Install]
+WantedBy=multi-user.target

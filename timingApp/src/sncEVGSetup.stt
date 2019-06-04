@@ -7,65 +7,66 @@ program sncEVGSetup
 int currTime;
 int prevTime;
 int wrongUTCflg;
+int utcSrcCopy;
 
 %%//----------------------------------------
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
 int uploadtrig;
-assign uploadtrig to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:uploadT.VAL";
+assign uploadtrig to "{P}{R}GetRBV.VAL";
 
 int downloadproc;
-assign downloadproc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:downloadT.PROC";
+assign downloadproc to "{P}{R}Download-Trig.PROC";
 
 int download;
-assign download to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:download.VAL";
+assign download to "{P}{R}Download-Cmd.VAL";
 monitor download;
 
 int statdev;
-assign statdev to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:statdev";
+assign statdev to "{P}{R}DevStatus-Mon";
 monitor statdev;
 
 int past_alive = -1;
 int alive;
-assign alive to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:alive";
+assign alive to "{P}{R}Alive-Mon";
 monitor alive;
 
 int funsel;
-assign funsel to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:funsel.VAL";
+assign funsel to "{P}{R}DevFun-Sel.VAL";
 
 int funselRBV;
-assign funselRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:funselRBV.RVAL";
+assign funselRBV to "{P}{R}DevFun-Sts.RVAL";
 monitor funselRBV;
 
 int network;
-assign network to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:network";
+assign network to "{P}{R}Network-Mon";
 monitor network;
 
-int utc;
-assign utc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTC";
+unsigned int utc;
+assign utc to "{P}{R}UTC-SP";
 
-int utcRBV;
-assign utcRBV to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCRBV";
+unsigned int utcRBV;
+assign utcRBV to "{P}{R}UTC-RB";
 monitor utcRBV;
 evflag utcRBVFlag;
 sync utcRBV utcRBVFlag;
 
 int utcsrc;
-assign utcsrc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCSRC";
+assign utcsrc to "{P}{R}UTCRefSrc-Sel";
 monitor utcsrc;
 
-%%//int utcRefVal;
-%%//assign utcRefVal to "Cont:LNLS191:NTP:Timestamp";
-%%//monitor utcRefVal;
-%%//evflag utcRefFlag;
-%%//sync utcRefVal utcRefFlag;
+unsigned int utcCtrlRoom;
+assign utcCtrlRoom to "{P}{R}CtrlRoomUTC";
+monitor utcCtrlRoom;
+evflag utcCtrlRoomFlag;
+sync utcCtrlRoom utcCtrlRoomFlag;
 
 int utcMismatch;
-assign utcMismatch to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:UTCMismatch";
+assign utcMismatch to "{P}{R}UTCMismatch-Mon";
 
 int getutc;
-assign getutc to "{Sec}-{Sub}:{Dis}-{Dev}{Idx}:GetUTC";
+assign getutc to "{P}{R}GetUTC-Cmd";
 monitor getutc;
 
 %%//----------------------------------------
@@ -87,7 +88,7 @@ ss configuration {
 		%{/* Wait 1 sec while module starts up */}%
 
 		%%// Init message
-		printf("\n%s-%s:%s-%s%s state machine initiated\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\n%s%s state machine initiated\n", macValueGet("P"), macValueGet("R"));
 
 	} state upload
     }
@@ -109,7 +110,7 @@ ss configuration {
 		pvPut(uploadtrig,SYNC);
 
 		%%// upload message
-		printf("\nConfiguration uploaded from %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\nConfiguration uploaded from %s%s.\n", macValueGet("P"), macValueGet("R"));
 
 	} state waiting
 
@@ -121,6 +122,9 @@ ss configuration {
 
 		%%// Clear wrong UTC flag
 		wrongUTCflg = 0;
+	
+		%%// Clear control room flag
+		efClear(utcRBVFlag);
 	}
 
 	when ((funselRBV != 18) && (network == 1)) {
@@ -141,25 +145,37 @@ ss configuration {
 
 	when (efTestAndClear(utcRBVFlag)) {
 
-		%{/* On Timing UTCRBV change, compare it to reference */}%
+		%{/* On Timing UTCRBV change, compare it to the reference */}%
 
-		if(utcsrc == 1 && (utcRBV < time(NULL) || utcRBV > time(NULL))){
+		utcSrcCopy = utcsrc; %%// Copy UTC source to protect it against change
 
-			%%// set UTC mismatch PV
-			utcMismatch = 1;
-			pvPut(utcMismatch, SYNC);
-		} 
-		%%//else if(utcsrc == 1 && (utcRBV < utcRefVal || utcRBV > utcRefVal)){
-		%%//
-			%%// set UTC mismatch PV
-		%%//	utcMismatch = 1;
-		%%//	pvPut(utcMismatch, SYNC);
-		%%//}
-		%%//else{
-			%%// clear UTC mismatch PV
-		%%//	utcMismatch = 0;
-		%%//	pvPut(utcMismatch, SYNC);			
-		%%//}
+		if(utcSrcCopy == 0){ %%// UTC source comes from PC
+
+			if(utcRBV == time(NULL)){
+
+				%%// clear UTC mismatch PV
+				utcMismatch = 0;
+			}
+			else{
+				%%// set UTC mismatch PV
+				utcMismatch = 1;
+			}
+		}
+		else { %%// UTC source comes from Control Room PV
+		
+			if(utcRBV == utcCtrlRoom){
+
+				%%// clear UTC mismatch PV
+				utcMismatch = 0;
+			}
+			else{
+				%%// set UTC mismatch PV
+				utcMismatch = 1;
+			}
+		}
+
+		%%// put result	in PV		
+		pvPut(utcMismatch, SYNC);
 
 	} state waiting
 
@@ -187,7 +203,7 @@ ss configuration {
 		pvPut(downloadproc,SYNC);
 
 		%%// download message
-		printf("\nConfiguration downloaded to %s-%s:%s-%s%s.\n", macValueGet("Sec"), macValueGet("Sub"), macValueGet("Dis"), macValueGet("Dev"), macValueGet("Idx"));
+		printf("\nConfiguration downloaded to %s%s.\n", macValueGet("P"), macValueGet("R"));
 
 		%%// clear download PV
 		download = 0;
@@ -205,17 +221,23 @@ ss configuration {
 
 	entry{
 
-		%%// Get computer time
-		if(utcsrc == 0){
+		%%// Copy UTC source to protect it against change
+		utcSrcCopy = utcsrc;
+
+		if(utcSrcCopy == 0){
+
+			%%// Get computer time				
 			currTime = time(NULL);
 			prevTime = currTime;
 		}
+		else{
 
-		%%// Clear reference UTC update flag
-		%%//efClear(utcRefFlag);
+			%%// Clear Control Room UTC flag
+			efClear(utcCtrlRoomFlag);
+		}
 	}
-	
-	when(utcsrc == 0 && delay(0.01)){
+
+	when(utcSrcCopy == 0 && delay(0.01)){
 
 		%{/* Read UTC value from computer */}%
 
@@ -223,7 +245,7 @@ ss configuration {
 
 	} state updateUTC
 
-	when(utcsrc == 0 && prevTime != currTime){
+	when(utcSrcCopy == 0 && prevTime != currTime){
 
 		%{/* Update UTC as soon as PC time changes value */}%
 
@@ -232,13 +254,12 @@ ss configuration {
 
 	} state waiting
 
-	when(){
-	%%//when (utcsrc == 1 && efTestAndClear(utcRefFlag)) {
+	when (utcSrcCopy == 1 && efTestAndClear(utcCtrlRoomFlag)) {
 
 		%{/* Update UTC as soon as reference changes value */}%
 
-	%%//	utc = utcRefVal;
-	%%//	pvPut(utc, SYNC);
+		utc = utcCtrlRoom;
+		pvPut(utc, SYNC);
 
 	}state waiting
     }
