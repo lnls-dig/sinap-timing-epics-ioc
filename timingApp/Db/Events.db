@@ -34,25 +34,25 @@ record(ao, "$(P)$(R)Evt$(code)Code-Mon"){
   field(VAL, "$(code)")
 }
 
-record(ao, "$(P)$(R)Evt$(code)DelayTime-SP") {
+record(ao, "$(P)$(R)Evt$(code)Delay-SP") {
   field(DESC, "Event $(code) timestamp time unit")
   field(PINI, "1")
   field(PREC, "3")
   field(DRVH, "17000000")
   field(DRVL, "0")
   field(EGU, "us")
-  field(FLNK, "$(P)$(R)Evt$(code)DelayTimeCalc")
+  field(FLNK, "$(P)$(R)Evt$(code)DelayCalc")
 }
 
-record(calcout, "$(P)$(R)Evt$(code)DelayTimeCalc") {
+record(calcout, "$(P)$(R)Evt$(code)DelayCalc") {
   field(DESC, "Event $(code) timestamp calc")
-  field(INPA, "$(P)$(R)Evt$(code)DelayTime-SP")
+  field(INPA, "$(P)$(R)Evt$(code)Delay-SP")
   field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
   field(CALC, "CEIL(A*(B/1000000))-A*(B/1000000)<0.5?CEIL(A*(B/1000000)):FLOOR(A*(B/1000000))")
-  field(OUT, "$(P)$(R)Evt$(code)Delay-SP PP")
+  field(OUT, "$(P)$(R)Evt$(code)DelayRaw-SP PP")
 }
 
-record(ao, "$(P)$(R)Evt$(code)Delay-SP"){
+record(ao, "$(P)$(R)Evt$(code)DelayRaw-SP"){
   field(DESC, "Event $(code) timestamp raw")
   field(PINI, "1")
   field(DTYP, "Raw Soft Channel")
@@ -76,19 +76,19 @@ record(longout, "$(P)$(R)Evt$(code)DelayModNum"){
   field(OUT, "$(P)$(R)EvtDelayMod.B PP")
 }
 
-record(ai, "$(P)$(R)Evt$(code)Delay-RB"){
+record(ai, "$(P)$(R)Evt$(code)DelayRaw-RB"){
   field(DESC, "Event $(code) timestamp raw")
-  #field(INP, "$(P)$(R)Evt$(code)Delay-SP.RVAL CPP")
+  #field(INP, "$(P)$(R)Evt$(code)DelayRaw-SP.RVAL CPP")
   field(DTYP, "Raw Soft Channel")
   #field(SCAN, "1 second")
   field(AOFF, "-$(EVT_DELAY)")
   field(PREC, "0")
   #field(RVAL, "$(time)")
-  field(FLNK, "$(P)$(R)Evt$(code)DelayTime-RB")
+  field(FLNK, "$(P)$(R)Evt$(code)Delay-RB")
 }
 
-record(calc, "$(P)$(R)Evt$(code)DelayTime-RB") {
-  field(INPA, "$(P)$(R)Evt$(code)Delay-RB")
+record(calc, "$(P)$(R)Evt$(code)Delay-RB") {
+  field(INPA, "$(P)$(R)Evt$(code)DelayRaw-RB")
   field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
   field(PREC, "3")
   field(DESC, "Event $(code) timestamp time unit")
