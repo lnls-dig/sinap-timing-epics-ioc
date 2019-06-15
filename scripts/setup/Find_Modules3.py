@@ -115,6 +115,7 @@ for ipsub in ipsub_list:
 
     tn.write(bytes('\r','ascii'))
     ans = str(tn.read_until(bytes('\0','ascii'),1)).replace(' ','')
+    dhcpname = ans.split('DHCPdevicename:')[1].split('\\n')[0]
     ans = ans.split('Channel1')[1]
     ans = ans.split('Port')[1]
     ans = ans.split('\\r')[0]
@@ -123,24 +124,24 @@ for ipsub in ipsub_list:
     ok, func, commit, addr = FindMod(host, port)
     if ((ok==1) & (func!=0)):
       if (func==32):
-        print ('EVE ip:', host, 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac])
-        f.write('EVE ip: ' + host + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
+        print ('   EVE ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        f.write('   EVE ip: ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
       elif (func==16):
-        print ('FOUT ip:', host, 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac])
-        f.write('FOUT ip: ' + host + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
+        print ('  FOUT ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        f.write('  FOUT ip: ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
       elif (func==17):
-        print ('EVR ip:', host, 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac])
-        f.write('EVR ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
+        print ('   EVR ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        f.write('   EVR ip:  ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
       elif (func==18):
-        print ('EVG ip:', host, 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac])
-        f.write('EVG ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
+        print ('   EVG ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        f.write('   EVG ip:  ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
 
     if (ok == 0):
       if (mac in mac_to_serial):
-        print ('NO ANS ip:', host, 'port:', port, 'mac:', mac, 'serial number:', mac_to_serial[mac])
+        print ('NO ANS ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
       else:
-        print ('NO ANS ip:', host, 'port:', port, 'mac:', mac)
-      f.write('NO ANS ip:  ' + host + ' port: ' + str(port) + ' mac: ' + mac + '\n')
+        print ('NO ANS ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'DHCP Name:', dhcpname)
+      f.write('NO ANS ip:  ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + '\n')
 
 elapsed_time = time.time() - start_time
 print ('Elapsed time:', elapsed_time, 'sec')
