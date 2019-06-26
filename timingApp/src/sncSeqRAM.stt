@@ -11,7 +11,7 @@ int eventNum = 63;
 char device[40];
 char * evPrefix = "Evt";
 char * evCodeName = "Code";
-char * evTimeName = "DelayRaw-RB.RVAL";
+char * evTimeNameRB = "DelayRaw-RB.RVAL";
 char * evTimeNameSP = "DelayRaw-SP.RVAL";
 char * evModeName = "DelayType-Sts";
 char * evCtrlName = "Mode-Sts";
@@ -103,9 +103,13 @@ assign seqcount_proc to "{P}{R}SeqCount-SP.PROC";
 int event_codes[63];
 assign event_codes to {};
 
-unsigned int event_timestampsID[63];
-int event_timestamps[63];
-assign event_timestamps to {};
+unsigned int event_timestampsRBID[63];
+
+int event_timestampsRB[63];
+assign event_timestampsRB to {};
+
+unsigned int event_timestampsSPID[63];
+
 int event_timestampsSP[63];
 assign event_timestampsSP to {};
 
@@ -193,7 +197,7 @@ monitor repeatinj_tg;
                       
     int seqTwoWrite(int repeat, int evnum, int TBL[], int length, SS_ID ssId, int *pseqaddr, int *pseqcode, int *pseqtime,
                 VAR_ID seqaddr_id, VAR_ID seqcode_id, VAR_ID seqtime_id, long *seqram2);
-    int getAvailableDelay (SS_ID ssId, int* event_timestamps, unsigned int* event_timestampsID, int EvtDelayVal, int EvtDelayNum, int eventNum);
+    void setAvailableDelay (SS_ID ssId, int* event_timestamps, unsigned int* event_timestampsID, int* EvtDelayVal, unsigned int* EvtDelayNum, int eventNum);
     int checkAvailableDelay (SS_ID ssId, int* event_timestamps, unsigned int* event_timestampsID, int EvtDelayVal, int EvtDelayNum, int eventNum);
 }%
 
@@ -247,14 +251,14 @@ ss seq {
 
                 for (i = 0; i < eventNum; i++) {
                  pvGet (event_codes[i], SYNC);
-                 sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evTimeName);
-                 pvAssign (event_timestamps[i], str);
+                 sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evTimeNameRB);
+                 pvAssign (event_timestampsRB[i], str);
                  sprintf (str, "%s%s%02d%s", device, evPrefix, event_codes[i], evTimeNameSP);
                  pvAssign (event_timestampsSP[i], str);
-                 event_timestampsID[i] = pvIndex (event_timestamps[i]);
-                 pvGet (event_timestampsSP[i], SYNC);
-                 event_timestamps[i] = getAvailableDelay(ssId, event_timestamps, event_timestampsID, event_timestampsSP[i], i, eventNum);
-                 pvPut (event_timestamps[i], SYNC);
+                 pvMonitor (event_timestampsSP[i]);
+                 event_timestampsRBID[i] = pvIndex (event_timestampsRB[i]);
+                 event_timestampsSPID[i] = pvIndex (event_timestampsSP[i]);
+                 setAvailableDelay(ssId, event_timestampsRB, event_timestampsRBID, event_timestampsSP, event_timestampsSPID, eventNum);
                 }
 
                 for (i = 0; i < eventNum; i++) {
@@ -375,13 +379,13 @@ ss seq {
             for(i = 0; i < eventNum; i++){
                 
                 pvGet(event_codes[i], SYNC);
-                pvGet(event_timestamps[i], SYNC);
+                pvGet(event_timestampsRB[i], SYNC);
                 pvGet(event_modes[i], SYNC);
                 pvGet(event_ctrl[i], SYNC);
             }
     
             %%// Update and order EventPointerArray
-            updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+            updateEventPointerArray(eventNum, event_codes, event_timestampsRB, event_modes, event_ctrl);
     
             numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
                         pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), seqram1);
@@ -408,9 +412,7 @@ ss seq {
             EvtModeL = EvtMode;
             StatusEvt = 0;
             pvPut (StatusEvt, SYNC);
-            EvtDelayVal = getAvailableDelay(ssId, event_timestamps, event_timestampsID, EvtDelayVal, EvtDelayNum, eventNum);
-            event_timestamps[EvtDelayNum] = EvtDelayVal;
-            pvPut (event_timestamps[EvtDelayNum], SYNC);
+            setAvailableDelay(ssId, event_timestampsRB, event_timestampsRBID, event_timestampsSP, event_timestampsSPID, eventNum);
     
         } state Stopped
 
@@ -511,9 +513,7 @@ ss seq {
             EvtModeL = EvtMode;
             StatusEvt = 0;
             pvPut (StatusEvt, SYNC);
-            EvtDelayVal = getAvailableDelay(ssId, event_timestamps, event_timestampsID, EvtDelayVal, EvtDelayNum, eventNum);
-            event_timestamps[EvtDelayNum] = EvtDelayVal;
-            pvPut (event_timestamps[EvtDelayNum], SYNC);
+            setAvailableDelay(ssId, event_timestampsRB, event_timestampsRBID, event_timestampsSP, event_timestampsSPID, eventNum);
     
         } state Running
     
@@ -592,13 +592,13 @@ ss seq {
                 for(i = 0; i < eventNum; i++){
                     
                     pvGet(event_codes[i], SYNC);
-                    pvGet(event_timestamps[i], SYNC);
+                    pvGet(event_timestampsRB[i], SYNC);
                     pvGet(event_modes[i], SYNC);
                     pvGet(event_ctrl[i], SYNC);
                 }    
     
                 %%// Update and order EventPointerArray
-                updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+                updateEventPointerArray(eventNum, event_codes, event_timestampsRB, event_modes, event_ctrl);
     
                 numberOfWrites = seqTwoWrite(repeatinj_tg, eventNum, tbl_rbv, tbl_length, ssId, &seqaddr, &seqcode, &seqtime,
                                     pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), seqram2);
@@ -708,9 +708,7 @@ ss seq {
             EvtModeL = EvtMode;
             StatusEvt = 0;
             pvPut (StatusEvt, SYNC);
-            EvtDelayVal = getAvailableDelay(ssId, event_timestamps, event_timestampsID, EvtDelayVal, EvtDelayNum, eventNum);
-            event_timestamps[EvtDelayNum] = EvtDelayVal;
-            pvPut (event_timestamps[EvtDelayNum], SYNC);
+            setAvailableDelay(ssId, event_timestampsRB, event_timestampsRBID, event_timestampsSP, event_timestampsSPID, eventNum);
     
         } state Injecting
     
@@ -829,13 +827,13 @@ ss seq {
             for(i = 0; i < eventNum; i++){
     
                 pvGet(event_codes[i], SYNC);
-                pvGet(event_timestamps[i], SYNC);
+                pvGet(event_timestampsRB[i], SYNC);
                 pvGet(event_modes[i], SYNC);
                 pvGet(event_ctrl[i], SYNC);
             }
     
             %%// Update and order EventPointerArray
-            updateEventPointerArray(eventNum, event_codes, event_timestamps, event_modes, event_ctrl);
+            updateEventPointerArray(eventNum, event_codes, event_timestampsRB, event_modes, event_ctrl);
     
             numberOfWrites = seqOneWrite(eventNum, ssId, &seqaddr, &seqcode, &seqtime,
                         pvIndex(seqaddr), pvIndex(seqcode), pvIndex(seqtime), seqram1);
@@ -1351,7 +1349,7 @@ ss seq {
   }
   
   /*
-     Name: getAvailableDelay
+     Name: setAvailableDelay
 
      Description: Check if a delay value is being used by another event.
 
@@ -1362,20 +1360,39 @@ ss seq {
           EvtDelayNum is the number of the event to write the delay.
           eventNum is the numbers of events, the length of input arrays.
 
-     Return: available delay, equal or higher than the required value.     
+     Return: null.     
   */
-  int getAvailableDelay (SS_ID ssId, int* event_timestamps, unsigned int* event_timestampsID, int EvtDelayVal, int EvtDelayNum, int eventNum) {
+  void setAvailableDelay (SS_ID ssId, int* event_timestamps, unsigned int* event_timestampsID, int* EvtDelayVal, unsigned int* event_timestampsSPID, int eventNum) {
     int i = 0;
-    while(i < eventNum){
-        
-        seq_pvGet(ssId, event_timestampsID[i], SYNC);
-        if (event_timestamps[i] == EvtDelayVal && i != EvtDelayNum){ // if delay in use by another event
-            EvtDelayVal++;
-            i = 0;
-        }
-        i++;
+    int j = 0;
+
+    while(j < eventNum){
+      i = 0;
+      while(i < eventNum){
+          
+          seq_pvGet(ssId, event_timestampsID[i], SYNC);
+          if (event_timestamps[i] == EvtDelayVal[j] && i != j){ // if delay in use by another event
+              EvtDelayVal[j] = EvtDelayVal[j] + 1;
+              //printf ("\nEvt %d %d SP %d RB %d mod\n", j, i, EvtDelayVal[j], event_timestamps[i]);
+              i = 0;
+          }
+          else
+            i++;
+      }
+      event_timestamps[j] = EvtDelayVal[j];
+      //printf ("\nEvt %d SP %d RB %d new\n", j, EvtDelayVal[j], event_timestamps[j]);
+      seq_pvPut(ssId, event_timestampsID[j], SYNC);
+      j++;
     }
-    return EvtDelayVal;
+
+    i = 0;
+    while(i < eventNum){
+      seq_pvGet(ssId, event_timestampsSPID[i], SYNC);  
+      printf ("\nEvt %d SP %d RB %d mod\n", i, EvtDelayVal[i], event_timestamps[i]);
+      i++;
+    }
+    
+    return;
   }
 
   /*
