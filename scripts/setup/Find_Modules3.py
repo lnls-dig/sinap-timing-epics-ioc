@@ -114,7 +114,11 @@ for ipsub in ipsub_list:
       mac = '00:00:00:00:00:00'
 
     tn.write(bytes('\r','ascii'))
-    ans = str(tn.read_until(bytes('\0','ascii'),1)).replace(' ','')
+    ans_raw = tn.read_until(bytes('\0','ascii'),1)
+    if (len(str(ans_raw,'utf-8')) < 1000):
+      continue
+    ans = str(ans_raw).replace(' ','')
+    
     dhcpname = ans.split('DHCPdevicename:')[1].split('\\n')[0]
     ans = ans.split('Channel1')[1]
     ans = ans.split('Port')[1]
