@@ -292,6 +292,7 @@ record(ao, "$(P)$(R)InjRate-SP"){
   field(DRVL, "1")
   field(PREC, "0")
   field(EGU, "Hz")
+  field(VAL, "2")
   field(FLNK, "$(P)$(R)InjRateCalc")
 }
 
