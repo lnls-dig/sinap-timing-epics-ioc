@@ -213,31 +213,31 @@ evgfout_out_get {
 
 evre_out_get {
     out "%(\$1\$2cmd_out_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT\$3FineDelay-RB)02r%*03r%(\$1\$2OUT\$3RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT\$3FineDelayRaw-RB)02r%*03r%(\$1\$2OUT\$3RFDelayRaw-RB)r";
 }
 
 evre_out_rfdly_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelay-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalc).1r";
+    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalcRaw).1r";
     evre_out_get;
 }
 
 evre_out_finedly_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
+    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
     evre_out_get;
 }
 
 evre_out_src_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelay-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
+    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
     evre_out_get;
 }
 
 evre_out_itl_set{
-    out "%(\$1\$2cmd_out_set\$3).1r%(\$1\$2OUT\$3IntlkCalc).1r\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelay-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
+    out "%(\$1\$2cmd_out_set\$3).1r%(\$1\$2OUT\$3IntlkCalc).1r\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
     evre_out_get;
 }
 
 evre_out_set{
-    out "%(\$1\$2cmd_out_set\$3).1r%(\$1\$2OUT\$3IntlkCalc).1r\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalc).1r";
+    out "%(\$1\$2cmd_out_set\$3).1r%(\$1\$2OUT\$3IntlkCalc).1r\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalcRaw).1r";
     evre_out_get;
 }
 
@@ -910,28 +910,28 @@ evre_get_otp_rbv{
 evre_get_out_rbv{
     # out0
     out "%(\$1\$2cmd_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT0FineDelay-RB)02r%*03r%(\$1\$2OUT0RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT0FineDelayRaw-RB)02r%*03r%(\$1\$2OUT0RFDelayRaw-RB)r";
     # out1
     out "%(\$1\$2cmd_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT1FineDelay-RB)02r%*03r%(\$1\$2OUT1RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT1FineDelayRaw-RB)02r%*03r%(\$1\$2OUT1RFDelayRaw-RB)r";
     # out2
     out "%(\$1\$2cmd_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT2FineDelay-RB)02r%*03r%(\$1\$2OUT2RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT2FineDelayRaw-RB)02r%*03r%(\$1\$2OUT2RFDelayRaw-RB)r";
     # out3
     out "%(\$1\$2cmd_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT3FineDelay-RB)02r%*03r%(\$1\$2OUT3RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT3FineDelayRaw-RB)02r%*03r%(\$1\$2OUT3RFDelayRaw-RB)r";
     # out4
     out "%(\$1\$2cmd_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT4FineDelay-RB)02r%*03r%(\$1\$2OUT4RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT4FineDelayRaw-RB)02r%*03r%(\$1\$2OUT4RFDelayRaw-RB)r";
     # out5
     out "%(\$1\$2cmd_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT5FineDelay-RB)02r%*03r%(\$1\$2OUT5RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT5FineDelayRaw-RB)02r%*03r%(\$1\$2OUT5RFDelayRaw-RB)r";
     # out6
     out "%(\$1\$2cmd_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT6FineDelay-RB)02r%*03r%(\$1\$2OUT6RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT6FineDelayRaw-RB)02r%*03r%(\$1\$2OUT6RFDelayRaw-RB)r";
     # out7
     out "%(\$1\$2cmd_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT7FineDelay-RB)02r%*03r%(\$1\$2OUT7RFDelayRaw)r";
+    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT7FineDelayRaw-RB)02r%*03r%(\$1\$2OUT7RFDelayRaw-RB)r";
 }
 
 eve_get_rbv{
@@ -1057,14 +1057,14 @@ eve_download{
     out "%(\$1\$2cmd_otp_set14)r%(\$1\$2OTP14RegAByte3)r%(\$1\$2OTP14NrPulses-SP).2r%(\$1\$2OTP14Evt-SP)r%(\$1\$2OTP14DelayRaw-SP).4r%(\$1\$2OTP14WidthRaw-SP).4r";
     out "%(\$1\$2cmd_otp_set15)r%(\$1\$2OTP15RegAByte3)r%(\$1\$2OTP15NrPulses-SP).2r%(\$1\$2OTP15Evt-SP)r%(\$1\$2OTP15DelayRaw-SP).4r%(\$1\$2OTP15WidthRaw-SP).4r";
     # out
-    out "%(\$1\$2cmd_out_set0).1r\x00\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set1).1r\x00\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set2).1r\x00\x00\x00%(\$1\$2OUT2SrcHw).1r\x00\x00%(\$1\$2OUT2FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT2RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set3).1r\x00\x00\x00%(\$1\$2OUT3SrcHw).1r\x00\x00%(\$1\$2OUT3FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT3RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set4).1r\x00\x00\x00%(\$1\$2OUT4SrcHw).1r\x00\x00%(\$1\$2OUT4FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT4RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set5).1r\x00\x00\x00%(\$1\$2OUT5SrcHw).1r\x00\x00%(\$1\$2OUT5FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT5RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalc).1r";
+    out "%(\$1\$2cmd_out_set0).1r\x00\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set1).1r\x00\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set2).1r\x00\x00\x00%(\$1\$2OUT2SrcHw).1r\x00\x00%(\$1\$2OUT2FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT2RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set3).1r\x00\x00\x00%(\$1\$2OUT3SrcHw).1r\x00\x00%(\$1\$2OUT3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT3RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set4).1r\x00\x00\x00%(\$1\$2OUT4SrcHw).1r\x00\x00%(\$1\$2OUT4FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT4RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set5).1r\x00\x00\x00%(\$1\$2OUT5SrcHw).1r\x00\x00%(\$1\$2OUT5FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT5RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalcRaw).1r";
     # digital inputs
     out "%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     out "%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
@@ -1107,14 +1107,14 @@ evr_download{
     out "%(\$1\$2cmd_otp_set22)r%(\$1\$2OTP22RegAByte3)r%(\$1\$2OTP22NrPulses-SP).2r%(\$1\$2OTP22Evt-SP)r%(\$1\$2OTP22DelayRaw-SP).4r%(\$1\$2OTP22WidthRaw-SP).4r";
     out "%(\$1\$2cmd_otp_set23)r%(\$1\$2OTP23RegAByte3)r%(\$1\$2OTP23NrPulses-SP).2r%(\$1\$2OTP23Evt-SP)r%(\$1\$2OTP23DelayRaw-SP).4r%(\$1\$2OTP23WidthRaw-SP).4r";
     # out
-    out "%(\$1\$2cmd_out_set0).1r\x00\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set1).1r\x00\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set2).1r\x00\x00\x00%(\$1\$2OUT2SrcHw).1r\x00\x00%(\$1\$2OUT2FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT2RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set3).1r\x00\x00\x00%(\$1\$2OUT3SrcHw).1r\x00\x00%(\$1\$2OUT3FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT3RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set4).1r\x00\x00\x00%(\$1\$2OUT4SrcHw).1r\x00\x00%(\$1\$2OUT4FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT4RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set5).1r\x00\x00\x00%(\$1\$2OUT5SrcHw).1r\x00\x00%(\$1\$2OUT5FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT5RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalc).1r";
-    out "%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelay-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalc).1r";
+    out "%(\$1\$2cmd_out_set0).1r\x00\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set1).1r\x00\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set2).1r\x00\x00\x00%(\$1\$2OUT2SrcHw).1r\x00\x00%(\$1\$2OUT2FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT2RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set3).1r\x00\x00\x00%(\$1\$2OUT3SrcHw).1r\x00\x00%(\$1\$2OUT3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT3RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set4).1r\x00\x00\x00%(\$1\$2OUT4SrcHw).1r\x00\x00%(\$1\$2OUT4FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT4RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set5).1r\x00\x00\x00%(\$1\$2OUT5SrcHw).1r\x00\x00%(\$1\$2OUT5FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT5RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalcRaw).1r";
     # digital inputs
     out "%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     out "%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
