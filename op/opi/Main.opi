@@ -150,7 +150,7 @@ $(pv_value)</tooltip>
     <style>1</style>
     <text>Generic-EVG</text>
     <toggle_button>false</toggle_button>
-    <tooltip>P1916004</tooltip>
+    <tooltip></tooltip>
     <visible>true</visible>
     <widget_type>Action Button</widget_type>
     <width>250</width>
@@ -269,12 +269,12 @@ $(pv_value)</tooltip>
   <widget typeId="org.csstudio.opibuilder.widgets.ActionButton" version="2.0.0">
     <actions hook="false" hook_all="true">
       <action type="OPEN_DISPLAY">
-        <path>EVRE_Time_Units.opi</path>
+        <path>EVRE.opi</path>
         <macros>
           <include_parent_macros>true</include_parent_macros>
           <R></R>
           <P>$(text)</P>
-          <T>Time</T>
+          <T></T>
         </macros>
         <mode>1</mode>
         <description></description>
@@ -317,7 +317,7 @@ $(pv_value)</tooltip>
     <style>1</style>
     <text>Generic-EVR/EVE</text>
     <toggle_button>false</toggle_button>
-    <tooltip>P1916004</tooltip>
+    <tooltip></tooltip>
     <visible>true</visible>
     <widget_type>Action Button</widget_type>
     <width>250</width>
@@ -523,7 +523,7 @@ $(pv_value)</tooltip>
     <style>1</style>
     <text>Generic-Fout</text>
     <toggle_button>false</toggle_button>
-    <tooltip>P1916004</tooltip>
+    <tooltip></tooltip>
     <visible>true</visible>
     <widget_type>Action Button</widget_type>
     <width>250</width>
@@ -539,6 +539,7 @@ $(pv_value)</tooltip>
           <include_parent_macros>true</include_parent_macros>
           <R></R>
           <P>$(text)</P>
+          <T>Raw</T>
         </macros>
         <mode>1</mode>
         <description></description>
@@ -581,7 +582,7 @@ $(pv_value)</tooltip>
     <style>1</style>
     <text>Generic-EVR/EVE</text>
     <toggle_button>false</toggle_button>
-    <tooltip>P1916004</tooltip>
+    <tooltip></tooltip>
     <visible>true</visible>
     <widget_type>Action Button</widget_type>
     <width>250</width>
