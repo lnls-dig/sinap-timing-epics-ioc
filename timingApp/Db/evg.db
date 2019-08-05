@@ -262,7 +262,7 @@ record(calc, "$(P)$(R)InjRate-RB"){
   field(DESC, "Injection rate trigger RBV")
   field(INPA, "$(P)$(R)ACDiv-RB")
   field(CALC, "60/A")
-  field(PREC, "0")
+  field(PREC, "3")
   field(EGU, "Hz")
 }
 
@@ -288,8 +288,8 @@ record(ao, "$(P)$(R)InjRate-SP"){
   field(DESC, "Injection rate trigger")
   field(PINI, "1")
   field(DRVH, "10")
-  field(DRVL, "1")
-  field(PREC, "0")
+  field(DRVL, "0.001")
+  field(PREC, "3")
   field(EGU, "Hz")
   field(VAL, "2")
   field(FLNK, "$(P)$(R)InjRateCalc")
@@ -298,7 +298,7 @@ record(ao, "$(P)$(R)InjRate-SP"){
 record(calcout, "$(P)$(R)InjRateCalc"){
   field(DESC, "Injection rate trigger calcout")
   field(INPA, "$(P)$(R)InjRate-SP")
-  field(CALC, "60/A")
+  field(CALC, "NINT(60/A)")
   field(PREC, "0")
   field(OUT, "$(P)$(R)ACDiv-SP PP")
 }
@@ -306,7 +306,7 @@ record(calcout, "$(P)$(R)InjRateCalc"){
 record(ao, "$(P)$(R)ACDiv-SP"){
   field(DESC, "AC line input divider")
   field(DTYP, "stream")
-  field(DRVH, "60")
+  field(DRVH, "60000")
   field(DRVL, "1")
   field(AOFF, "1")
   field(PREC, "0")
