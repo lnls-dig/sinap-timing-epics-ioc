@@ -242,7 +242,7 @@ evre_out_set{
 }
 
 evgfout_out_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2OUT\$3DelayRaw-SP).1r\x00";
+    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2OUT\$3Delay-SP).1r\x00";
     evgfout_out_get;
 }
 
