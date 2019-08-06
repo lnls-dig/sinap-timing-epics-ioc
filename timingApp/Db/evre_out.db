@@ -30,38 +30,62 @@ record(mbbi, "$(P)$(R)OUT$(num)Src-Sts") {
   field(INP, "@timing.proto evre_out_sel$(num)RAW_intr $(PORT)")
 }
 
-record(longin, "$(P)$(R)OUT$(num)FineDelay-RB") {
+record(longin, "$(P)$(R)OUT$(num)FineDelayRaw-RB") {
   field(ASG, "Reserved")
   field(DESC, "OUT$(num) fine delay status")
   field(EGU, "5ps")
+  field(FLNK, "$(P)$(R)OUT$(num)FineDelay-RB")
 }
 
-record(longin, "$(P)$(R)OUT$(num)RFDelayRaw") {
+record(ai, "$(P)$(R)OUT$(num)FineDelay-RB") {
+  field(ASG, "Reserved")
+  field(INP, "$(P)$(R)OUT$(num)FineDelayRaw-RB")
+  field(DTYP, "Raw Soft Channel")
+  field(PREC, "0")
+  field(ASLO, "5")
+  field(EGU, "ps")
+}
+
+record(longin, "$(P)$(R)OUT$(num)RFDelayRaw-RB") {
   field(ASG, "Reserved")
   field(DESC, "OUT$(num) RF delay rbv")
   field(EGU, "evt_T/20")
+  field(FLNK, "$(P)$(R)OUT$(num)RFDelay-RB")
 }
 
 record(calcout, "$(P)$(R)OUT$(num)RFDelayTypeCalc"){
+  field(ASG, "Reserved")
   field(DESC, "OUT$(num) RF delay type calc")
-  field(INPA, "$(P)$(R)OUT$(num)RFDelayRaw")
+  field(INPA, "$(P)$(R)OUT$(num)RFDelayRaw-RB")
   field(CALC, "A = 31 ? 1 : 0")
   field(OUT, "$(P)$(R)OUT$(num)RFDelayType-Sts PP")
 }
 
 record(bi, "$(P)$(R)OUT$(num)RFDelayType-Sts"){
+  field(ASG, "Reserved")
   field(DESC, "OUT$(num) RF delay type rbv")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
 }
 
+record(calc, "$(P)$(R)OUT$(num)RFDelayStep-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) RF delay step in ns")
+  field(INPA, "$(P)$(R)FPGAClk-Cte CPP")
+  field(CALC, "10**9/(A*20)")
+  field(PREC, "3")
+  field(EGU, "ns")
+}
+
 record(calc, "$(P)$(R)OUT$(num)RFDelay-RB") {
-  #field(ASG, "Reserved")
+  field(ASG, "Reserved")
   field(DESC, "OUT$(num) RF delay rbv")
-  field(INPA, "$(P)$(R)OUT$(num)RFDelayRaw")
-  field(INPB, "$(P)$(R)OUT$(num)RFDelay-SP")
-  field(CALC, "A = 31 ? B : A")
-  field(EGU, "evt_T/20")
+  field(INPA, "$(P)$(R)OUT$(num)RFDelayRaw-RB")
+  field(INPB, "$(P)$(R)OUT$(num)RFDelayRaw-SP")
+  field(INPC, "$(P)$(R)OUT$(num)RFDelayStep-Mon CPP")
+  field(CALC, "A=31?B*C:A*C")
+  field(PREC, "3")
+  field(EGU, "ns")
   field(FLNK, "$(P)$(R)OUT$(num)RFDelayTypeCalc")
 }
 
@@ -70,27 +94,53 @@ record(bo, "$(P)$(R)OUT$(num)RFDelayType-Sel"){
   field(MASK, "1")
   field(ZNAM, "Manual")
   field(ONAM, "Auto")
-  field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalc")
+  field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalcRaw")
 }
 
-record(longout, "$(P)$(R)OUT$(num)RFDelay-SP"){
-  field(DESC, "OUT$(num) RF delay")
-  field(DRVL, "0")
-  field(DRVH, "20")
+record(ao, "$(P)$(R)OUT$(num)RFDelay-SP"){
+  field(DESC, "OUT$(num) RF delay set")
+  field(PREC, "3")
+  field(EGU, "ns")
   field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalc")
 }
 
 record(calcout, "$(P)$(R)OUT$(num)RFDelayCalc"){
-  field(DESC, "OUT$(num) RF delay calc")
+  field(DESC, "OUT$(num) RF delay egu to raw")
+  field(INPA, "$(P)$(R)OUT$(num)RFDelay-SP")
+  field(INPB, "$(P)$(R)OUT$(num)RFDelayStep-Mon")
+  field(CALC, "NINT(A/B)")
+  field(PREC, "0")
+  field(OUT, "$(P)$(R)OUT$(num)RFDelayRaw-SP PP")
+}
+
+record(longout, "$(P)$(R)OUT$(num)RFDelayRaw-SP"){
+  field(DESC, "OUT$(num) RF delay")
+  field(DRVL, "0")
+  field(DRVH, "20")
+  field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalcRaw")
+}
+
+record(calcout, "$(P)$(R)OUT$(num)RFDelayCalcRaw"){
+  field(DESC, "OUT$(num) RF delay calc raw")
   field(INPA, "$(P)$(R)OUT$(num)RFDelayType-Sel.RVAL")
-  field(INPB, "$(P)$(R)OUT$(num)RFDelay-SP")
+  field(INPB, "$(P)$(R)OUT$(num)RFDelayRaw-SP")
   field(CALC, "A = 0 ? B : 31")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),$(num)) $(PORT)")
   field(FLNK, "$(P)$(R)OUT$(num)RFDelay-RB")
 }
 
-record(longout, "$(P)$(R)OUT$(num)FineDelay-SP"){
+record(ao, "$(P)$(R)OUT$(num)FineDelay-SP"){
+  field(DESC, "OUT$(num) fine delay")
+  field(DTYP, "Raw Soft Channel")
+  field(DRVL, "0")
+  field(DRVH, "5115")
+  field(PREC, "0")
+  field(ASLO, "5")
+  field(OUT, "$(P)$(R)OUT$(num)FineDelayRaw-SP PP")
+}
+
+record(longout, "$(P)$(R)OUT$(num)FineDelayRaw-SP"){
   field(DESC, "OUT$(num) fine delay")
   field(DRVL, "0")
   field(DRVH, "1023")

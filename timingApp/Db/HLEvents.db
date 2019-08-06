@@ -6,9 +6,9 @@
 
 alias("$(P)$(R)Evt$(code)Code-Mon", "$(P)$(R)$(alias)Code-Mon")
 
-alias("$(P)$(R)Evt$(code)DelayTime-SP", "$(P)$(R)$(alias)DelayTime-SP")
+alias("$(P)$(R)Evt$(code)DelayRaw-SP", "$(P)$(R)$(alias)DelayRaw-SP")
 
-alias("$(P)$(R)Evt$(code)DelayTime-RB", "$(P)$(R)$(alias)DelayTime-RB")
+alias("$(P)$(R)Evt$(code)DelayRaw-RB", "$(P)$(R)$(alias)DelayRaw-RB")
 
 alias("$(P)$(R)Evt$(code)Delay-SP", "$(P)$(R)$(alias)Delay-SP")
 

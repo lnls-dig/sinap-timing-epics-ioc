@@ -1,4 +1,4 @@
-########################### Run in python 2 ###########################
+########################### Run in python 3 ###########################
 
 import time
 import socket
@@ -7,43 +7,31 @@ EVG = '10.0.18.55'
 UDP_PORT = 50116
 WAIT = 0.001
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.settimeout(1)
+sock = socket.socket(socket.AF_INET, # Internet
+                     socket.SOCK_DGRAM) # UDP
+
 sock.bind(('', UDP_PORT))
 
 def EvoWrite(UDP_IP, add, regA, regB, regC):
     # Write
     cmd = chr(0x40|add)+chr(regA[0])+chr(regA[1])+chr(regA[2])+chr(regA[3])+chr(regB[0])+chr(regB[1])+chr(regB[2])+chr(regB[3])+chr(regC[0])+chr(regC[1])+chr(regC[2])+chr(regC[3])
-    sock.sendto(cmd, (UDP_IP, UDP_PORT))
+    sock.sendto(bytes(cmd, 'latin-1'), (UDP_IP, UDP_PORT))
     time.sleep(WAIT)
 
 def EvoRead(UDP_IP, add):
     # Read
-    while True:
-
-        cmd = chr(0x80|add)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)
-        sock.sendto(cmd, (UDP_IP, UDP_PORT))
-        time.sleep(WAIT)
-        try:
-            data, addr = sock.recvfrom(13) # buffer size is 13 bytes
-            regA = [(ord(data[1])),(ord(data[2])),(ord(data[3])),(ord(data[4]))]
-            regB = [(ord(data[5])),(ord(data[6])),(ord(data[7])),(ord(data[8]))]
-            regC = [(ord(data[9])),(ord(data[10])),(ord(data[11])),(ord(data[12]))]
-            break
-        except KeyboardInterrupt:
-            break
-        except:
-            print( 'Error reading address', add)
-            time.sleep(WAIT)
-            continue
+    cmd = chr(0x80|add)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)+chr(0)
+    sock.sendto(bytes(cmd, 'latin-1'), (UDP_IP, UDP_PORT))
+    data, addr = sock.recvfrom(13) # buffer size is 13 bytes
+    regA = [((data[1])),((data[2])),((data[3])),((data[4]))]
+    regB = [((data[5])),((data[6])),((data[7])),((data[8]))]
+    regC = [((data[9])),((data[10])),((data[11])),((data[12]))]
     return regA, regB, regC
 
 def EvoReadStatus(UDP_IP):
     regA, regB, regC = EvoRead(UDP_IP, 63) # Configuration Register
     # function selection
     # 0 -> FOUT, 1 -> EVR, 2 -> EVG
-    time_delay = (regC[0]<<8)+regC[1]
-    evt_rec = (regC[2])
     FUNSEL = (regC[3] & 0b11)
     if (FUNSEL == 2): # EVG
         RFDIV = (regB[1] & 0b1111) + 1
@@ -122,7 +110,7 @@ def EvoEvgSEQRAMIdle(UDP_IP, num_evt, evt, evt_end):
     seqadd = 0
     delta = 500000
     delay = 0
-    print seqadd, EvoRead(UDP_IP, 50)
+    print (seqadd, EvoRead(UDP_IP, 50))
 
     # Setting SEQRAM
     for i in range(num_evt):
