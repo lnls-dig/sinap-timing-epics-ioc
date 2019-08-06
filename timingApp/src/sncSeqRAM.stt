@@ -1388,7 +1388,7 @@ ss seq {
     i = 0;
     while(i < eventNum){
       seq_pvGet(ssId, event_timestampsSPID[i], SYNC);  
-      printf ("\nEvt %d SP %d RB %d mod\n", i, EvtDelayVal[i], event_timestamps[i]);
+      //printf ("\nEvt %d SP %d RB %d mod\n", i, EvtDelayVal[i], event_timestamps[i]);
       i++;
     }
     
