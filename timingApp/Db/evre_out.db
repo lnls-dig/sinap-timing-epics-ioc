@@ -126,7 +126,7 @@ record(calcout, "$(P)$(R)OUT$(num)RFDelayCalcRaw"){
   field(INPB, "$(P)$(R)OUT$(num)RFDelayRaw-SP")
   field(CALC, "A = 0 ? B : 31")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_rfdly_set($(P),$(R),$(num)) $(PORT)")
+  field(OUT, "@timing.proto evre_out_set($(P),$(R),$(num)) $(PORT)")
   field(FLNK, "$(P)$(R)OUT$(num)RFDelay-RB")
 }
 
@@ -145,7 +145,7 @@ record(longout, "$(P)$(R)OUT$(num)FineDelayRaw-SP"){
   field(DRVL, "0")
   field(DRVH, "1023")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_out_finedly_set($(P),$(R),$(num)) $(PORT)")
+  field(OUT, "@timing.proto evre_out_set($(P),$(R),$(num)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)OUT$(num)SrcTrig-SP"){
@@ -208,7 +208,7 @@ record(calcout, "$(P)$(R)OUT$(num)SrcHw"){
   field(DTYP, "stream")
   field(INPA, "$(P)$(R)OUT$(num)Src-Sel.RVAL")
   field(CALC, "A")
-  field(OUT, "@timing.proto evre_out_src_set($(P),$(R),$(num)) $(PORT)")
+  field(OUT, "@timing.proto evre_out_set($(P),$(R),$(num)) $(PORT)")
 }
 
 record(calc, "$(P)$(R)cmd_out_set$(num)") {

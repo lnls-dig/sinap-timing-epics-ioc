@@ -237,7 +237,7 @@ evre_out_itl_set{
 }
 
 evre_out_set{
-    out "%(\$1\$2cmd_out_set\$3).1r%(\$1\$2OUT\$3IntlkCalc).1r\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalcRaw).1r";
+    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalcRaw).1r";
     evre_out_get;
 }
 
