@@ -162,9 +162,11 @@ monitor repeatinj_tg;
 
     // Event Ctrl ENUM
     typedef enum{
-  NEVER = 0,
-  ALWAYS = 1,
-  INJECTION = 2
+  DISABLE = 0,
+  CONTINUOUS = 1,
+  INJECTION = 2,
+  ONESHOT = 3,
+  EXTERNAL = 4
     } evctrl;
 
     // Event Struct
@@ -1057,12 +1059,12 @@ ss seq {
   /*
      Name: seqOneWrite
 
-     Description: Writes to SequenceRAM 1 the events configured as ALWAYS.
+     Description: Writes to SequenceRAM 1 the events configured as CONTINUOUS.
       The event information is acquired from EventPointerArray.
       Checks if seqRAM pointer is pointing to the address it was supposed to at the end.
       The seqtime record is responsible for triggering the hardware write when processed.
 
-     Arguments: First argument is the total number of events (ALWAYS and INJECTION).
+     Arguments: First argument is the total number of events (CONTINUOUS and INJECTION).
           Second argument is the calling state set.
           Next three arguments are pointers to variables seqaddr, seqcode, and seqtime.
           Following three arguments are the VAR_IDs of the variables seqaddr, seqcode, and seqtime.
@@ -1080,7 +1082,7 @@ ss seq {
     for(i = 0; i < evnum; i++){
 
       // jump non-always events
-      if(EventPointerArray[i]->ctrl != ALWAYS)
+      if(EventPointerArray[i]->ctrl != CONTINUOUS)
         continue;
 
       // define address, get code and timestamp
@@ -1152,7 +1154,7 @@ ss seq {
       Checks if seqRAM pointer is pointing to the address it was supposed to at the end.
       The seqtime record is responsible for triggering the hardware write when processed.
 
-     Arguments: First argument is total number of events (ALWAYS and INJECTION).
+     Arguments: First argument is total number of events (CONTINUOUS and INJECTION).
           Second argument is the bucket array.
           Third argument is the length of the bucket array.
           Next three arguments are pointers to variables seqaddr, seqcode, and seqtime.
@@ -1223,11 +1225,15 @@ ss seq {
         // write events
         for(j = 0; j < evnum; j++){
   
-          // NEVER
-          if(EventPointerArray[j]->ctrl == NEVER)
+          // DISABLE
+          if(EventPointerArray[j]->ctrl == DISABLE)
             continue;
   
-          // INJECTION AND ALWAYS
+          // ONESHOT event is sent only for the first bucket
+          if(EventPointerArray[j]->ctrl == ONESHOT && i > 0)
+            continue;
+  
+          // INJECTION AND CONTINUOUS
           if(EventPointerArray[j]->mode == INCR){      
   
             // Set timestamp WITH seqdly
