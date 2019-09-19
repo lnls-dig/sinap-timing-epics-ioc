@@ -1277,27 +1277,48 @@ record(waveform, "$(P)$(R)BucketList-SP") {
   field(PINI, "1")
   field(NELM, "864")
   field(FTVL, "USHORT")
+  field(FLNK, "$(P)$(R)BucketListLen-Mon")
+}
+
+record(acalcout, "$(P)$(R)BucketListLen-Mon") {
+  field(DESC, "Injection table valid len")
+  field(NELM, "864")
+  field(INAA, "$(P)$(R)BucketList-SP")
+  field(CALC, "IXZ(AA>0 && AA<865)>0?IXZ(AA>0 && AA<865):0")
   field(FLNK, "$(P)$(R)BucketListCalc")
 }
 
 record(acalcout, "$(P)$(R)BucketListCalc") {
   field(DESC, "Injection table calc validation")
   field(NELM, "864")
+  field(INPA, "$(P)$(R)BucketListLen-Mon")
   field(INAA, "$(P)$(R)BucketList-SP")
-  field(CALC, "AA[0,IXZ(AA>0 & AA<865)-1]; A:=IXZ(AA>0 & AA<865)")
-  field(OUT, "$(P)$(R)BucketList-RB PP")
-  field(FLNK, "$(P)$(R)BucketListLen-Mon PP")
-}
-
-record(longin, "$(P)$(R)BucketListLen-Mon") {
-  field(INP, "$(P)$(R)BucketListCalc.A")
-  field(DESC, "Length of the valid BucketList sequence")
+  field(CALC, "A>0?AA[0,IXZ(AA>0 & AA<865)-1]:ARR(0)")
+  field(FLNK, "$(P)$(R)BucketList-RB")
 }
 
 record(waveform, "$(P)$(R)BucketList-RB") {
   field(DESC, "Injection table RBV")
+  field(INP, "$(P)$(R)BucketListCalc.AVAL")
   field(NELM, "864")
   field(FTVL, "USHORT")
+  field(FLNK, "$(P)$(R)BucketListSyncStatus-Mon")
+}
+
+record(acalcout, "$(P)$(R)BucketListSyncStatus-Mon") {
+  field(DESC, "Injection table calc validation")
+  field(NELM, "864")
+  field(INAA, "$(P)$(R)BucketList-RB")
+  field(INBB, "$(P)$(R)BucketList-Mon")
+  field(CALC, "AMAX(AA-BB)=0&&AMIN(AA-BB)=0?1:0")
+}
+
+record(waveform, "$(P)$(R)BucketList-Mon") {
+  field(DESC, "Injection table hardware monitor")
+  field(INP, "$(P)$(R)BucketList-RB")
+  field(NELM, "864")
+  field(FTVL, "USHORT")
+  field(FLNK, "$(P)$(R)BucketListSyncStatus-Mon")
 }
 
 record(longout, "$(P)$(R)RepeatBucketList-SP"){

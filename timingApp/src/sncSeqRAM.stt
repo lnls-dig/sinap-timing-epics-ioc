@@ -68,11 +68,18 @@ int tbl[864];
 assign tbl to "{P}{R}BucketList-SP";
 
 int tbl_rbv[864];
-assign tbl_rbv to "{P}{R}BucketList-RB";
+assign tbl_rbv to "{P}{R}BucketList-Mon";
+
+int tbl_rbv_proc;
+assign tbl_rbv_proc to "{P}{R}BucketList-Mon.PROC";
 
 int tbl_length;
 assign tbl_length to "{P}{R}BucketListLen-Mon";
 monitor tbl_length;
+
+int tbl_diff;
+assign tbl_diff to "{P}{R}BucketListSyncStatus-Mon";
+monitor tbl_diff;
 
 int seqs;
 assign seqs to "{P}{R}SeqStatus-Mon";
@@ -507,18 +514,6 @@ ss seq {
             printf("Network disconnected\n");
         } state init
 
-        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL || EvtType != EvtTypeL || EvtMode != EvtModeL){
-
-            EvtDelayValL = EvtDelayVal;
-            EvtDelayNumL = EvtDelayNum;
-            EvtTypeL = EvtType;
-            EvtModeL = EvtMode;
-            StatusEvt = 0;
-            pvPut (StatusEvt, SYNC);
-            setAvailableDelay(ssId, event_timestampsRB, event_timestampsRBID, event_timestampsSP, event_timestampsSPID, eventNum);
-    
-        } state Running
-    
         when(seqs == 0){
     
             %{/* Just go to Stopped state */}%
@@ -582,6 +577,8 @@ ss seq {
             pvPut(inj_tg_rbv, SYNC);
 
             %%// Update bucket list
+            tbl_rbv_proc = 1;
+            pvPut(tbl_rbv_proc, SYNC);
             pvGet(tbl_rbv, SYNC);
     
             %%// Update bucket list length
@@ -612,6 +609,19 @@ ss seq {
     
                     printf("Injection Triggered\n");
         } state CheckSeq2Write
+
+        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL || EvtType != EvtTypeL || EvtMode != EvtModeL){
+
+            EvtDelayValL = EvtDelayVal;
+            EvtDelayNumL = EvtDelayNum;
+            EvtTypeL = EvtType;
+            EvtModeL = EvtMode;
+            StatusEvt = 0;
+            pvPut (StatusEvt, SYNC);
+            setAvailableDelay(ssId, event_timestampsRB, event_timestampsRBID, event_timestampsSP, event_timestampsSPID, eventNum);
+    
+        } state Running
+    
     }
     
     state CheckSeq2Write{
@@ -702,18 +712,6 @@ ss seq {
             printf("Network disconnected\n");
         } state init
 
-        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL || EvtType != EvtTypeL || EvtMode != EvtModeL){
-
-            EvtDelayValL = EvtDelayVal;
-            EvtDelayNumL = EvtDelayNum;
-            EvtTypeL = EvtType;
-            EvtModeL = EvtMode;
-            StatusEvt = 0;
-            pvPut (StatusEvt, SYNC);
-            setAvailableDelay(ssId, event_timestampsRB, event_timestampsRBID, event_timestampsSP, event_timestampsSPID, eventNum);
-    
-        } state Injecting
-    
         when(restart_tg){
     
             %{/* Just go to Restarting state */}%
@@ -768,6 +766,19 @@ ss seq {
     
                  printf("Stop Triggered\n");
         } state Injecting
+
+        when(EvtDelayVal != EvtDelayValL || EvtDelayNum != EvtDelayNumL || EvtType != EvtTypeL || EvtMode != EvtModeL){
+
+            EvtDelayValL = EvtDelayVal;
+            EvtDelayNumL = EvtDelayNum;
+            EvtTypeL = EvtType;
+            EvtModeL = EvtMode;
+            StatusEvt = 0;
+            pvPut (StatusEvt, SYNC);
+            setAvailableDelay(ssId, event_timestampsRB, event_timestampsRBID, event_timestampsSP, event_timestampsSPID, eventNum);
+    
+        } state Injecting
+    
     }
     
     state Restarting{
