@@ -165,7 +165,7 @@ record(calcout, "$(P)$(R)AsynEvt$(code)") {
   field(INPA, "$(P)$(R)Evt$(code)Mode-Sts")
   field(INPB, "$(P)$(R)Evt$(code)ExtTrig-Cmd.RVAL")
   field(INPC, "$(code)")
-  field(CALC, "(A=3)?C:0")
+  field(CALC, "(A=4)?C:0")
   field(OUT, "@timing.proto evg_async_set($(P),$(R),AsynEvt$(code)) $(PORT)")
 }
 
