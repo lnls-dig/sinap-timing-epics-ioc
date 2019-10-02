@@ -266,3 +266,4 @@ $(P)$(R)OTP21IntlkCalc
 $(P)$(R)OTP22IntlkCalc
 $(P)$(R)OTP23IntlkCalc
 $(P)$(R)FPGAClk-Cte
+$(P)$(R)FPGAClk-Cte.INP
