@@ -308,3 +308,4 @@ $(P)$(R)Evt62Desc-SP
 $(P)$(R)Evt63Desc-SP
 $(P)$(R)BucketList-SP
 $(P)$(R)FPGAClk-Cte
+$(P)$(R)FPGAClk-Cte.INP
