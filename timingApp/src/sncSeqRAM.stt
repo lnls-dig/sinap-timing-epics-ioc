@@ -1236,8 +1236,8 @@ ss seq {
         // write events
         for(j = 0; j < evnum; j++){
   
-          // DISABLE
-          if(EventPointerArray[j]->ctrl == DISABLE)
+          // DISABLE and EXTERNAL are not sent
+          if(EventPointerArray[j]->ctrl == DISABLE || EventPointerArray[j]->ctrl == EXTERNAL)
             continue;
   
           // ONESHOT event is sent only for the first bucket
