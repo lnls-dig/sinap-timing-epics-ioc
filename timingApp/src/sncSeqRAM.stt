@@ -1386,6 +1386,38 @@ ss seq {
       // point to next address
       address++;
 
+      // define address and timestamp
+      *pseqaddr = address;
+      *pseqtime = maxdelay + offSetEndCode;
+  
+        // write seqram just if it was changed
+        if (((*pseqcode) != (seqram2[address]&0xff)) || ((*pseqtime) != (seqram2[address]>>8))){
+            seqram2[address] = ((*pseqtime) << 8) + *pseqcode;
+            
+            // write event info to seqRAM records
+            seq_pvPut(ssId, seqaddr_id, SYNC);
+            seq_pvPut(ssId, seqcode_id, SYNC);
+      
+            // write timestamp (wich also triggers write to seqRAM)
+            seq_pvPut(ssId, seqtime_id, SYNC);
+            count++;
+            ////////////// D E B U G G I N G //////////////////////////////////////////
+      
+            printf("Write to SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+      
+            ///////////////////////////////////////////////////////////////////////////
+  
+        }
+        else {
+            ////////////// D E B U G G I N G //////////////////////////////////////////
+      
+            printf("Stay in SeqRAM 2-> seqaddr= %d, seqcode= 0x%x, seqtime= %d\n", *pseqaddr, *pseqcode, *pseqtime);
+      
+            ///////////////////////////////////////////////////////////////////////////
+        }        
+
+      // point to next address
+      address++;
     }
 
     // return number of writes to SeqRAM
