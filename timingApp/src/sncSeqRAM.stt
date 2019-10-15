@@ -692,7 +692,7 @@ ss seq {
             StateMachineStatus = 3;
             pvPut(StateMachineStatus, SYNC);
     
-            run_tg_rbv = 0;
+            run_tg_rbv = 1;
             pvPut(run_tg_rbv, SYNC);
 
             inj_tg_rbv = 1;
