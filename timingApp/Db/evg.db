@@ -1326,6 +1326,17 @@ record(longout, "$(P)$(R)RepeatBucketList-SP"){
   field(PINI, "1")
   field(DRVH, "100")
   field(DRVL, "0")
+  field(FLNK, "$(P)$(R)RepeatBucketListCalc")
+}
+
+# If the repeat number changes EvtSyncStatus-Mon goes to 0: Unsynced
+record(calcout, "$(P)$(R)RepeatBucketListCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "Monitor changes in repeat number")
+  field(INPA, "$(P)$(R)RepeatBucketList-SP")
+  field(INPB, "$(P)$(R)RepeatBucketList-RB")
+  field(CALC, "A==B?1:0")
+  field(OUT, "$(P)$(R)EvtSyncStatus-Mon PP")
   field(FLNK, "$(P)$(R)RepeatBucketList-RB")
 }
 

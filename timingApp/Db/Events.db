@@ -103,8 +103,8 @@ record(bo, "$(P)$(R)Evt$(code)DelayType-Sel"){
   field(ZNAM, "Incr")
   field(ONAM, "Fixed")
   field(VAL, "$(mode)")
-  field(FLNK, "$(P)$(R)Evt$(code)DelayType-Sts")
-  field(OUT, "$(P)$(R)EvtDelayMod.C PP")
+  field(OUT, "$(P)$(R)EvtDelayMod.C")
+  field(FLNK, "$(P)$(R)Evt$(code)DelayModNum")
 }
 
 record(bi, "$(P)$(R)Evt$(code)DelayType-Sts"){
@@ -112,7 +112,7 @@ record(bi, "$(P)$(R)Evt$(code)DelayType-Sts"){
   field(ZNAM, "Incr")
   field(ONAM, "Fixed")
   field(VAL, "$(mode)")
-  field(INP, "$(P)$(R)Evt$(code)DelayType-Sel.RVAL")
+  field(INP, "$(P)$(R)Evt$(code)DelayType-Sel.RVAL CPP")
 }
 
 record(mbbo, "$(P)$(R)Evt$(code)Mode-Sel"){
@@ -130,8 +130,8 @@ record(mbbo, "$(P)$(R)Evt$(code)Mode-Sel"){
   field(FRVL, "4")
   field(FRST, "External")
   field(VAL, "$(transm)")
-  field(FLNK, "$(P)$(R)Evt$(code)Mode-Sts")
-  field(OUT, "$(P)$(R)EvtDelayMod.D PP")
+  field(OUT, "$(P)$(R)EvtDelayMod.D")
+  field(FLNK, "$(P)$(R)Evt$(code)DelayModNum")
 }
 
 record(mbbi, "$(P)$(R)Evt$(code)Mode-Sts"){
@@ -147,7 +147,7 @@ record(mbbi, "$(P)$(R)Evt$(code)Mode-Sts"){
   field(FRVL, "4")
   field(FRST, "External")
   field(VAL, "$(transm)")
-  field(INP, "$(P)$(R)Evt$(code)Mode-Sel.RVAL")
+  field(INP, "$(P)$(R)Evt$(code)Mode-Sel.RVAL CPP")
 }
 
 record(bo, "$(P)$(R)Evt$(code)ExtTrig-Cmd"){
