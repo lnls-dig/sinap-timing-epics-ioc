@@ -1284,7 +1284,7 @@ record(acalcout, "$(P)$(R)BucketListLen-Mon") {
   field(DESC, "Injection table valid len")
   field(NELM, "864")
   field(INAA, "$(P)$(R)BucketList-SP")
-  field(CALC, "IXZ(AA>0 && AA<865)>0?IXZ(AA>0 && AA<865):0")
+  field(CALC, "IXZ(AA>0 & AA<865)>0 & (AA>0 & AA<865)>0?IXZ(AA>0 & AA<865):0")
   field(FLNK, "$(P)$(R)BucketListCalc")
 }
 
