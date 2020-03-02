@@ -62,7 +62,7 @@ evg_ctrl_get {
 }
 
 evg_ctrl_seq_en_set{
-    out "%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3).1r";
+    out "%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3).1r";
     evg_ctrl_get;
 }
 

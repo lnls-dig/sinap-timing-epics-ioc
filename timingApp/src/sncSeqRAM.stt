@@ -163,8 +163,8 @@ monitor repeatinj_tg;
 
     // Event Mode ENUM
     typedef enum{
-  FIX = 0,
-  INCR = 1
+  FIX = 1,
+  INCR = 0
     } evmode;
 
     // Event Ctrl ENUM

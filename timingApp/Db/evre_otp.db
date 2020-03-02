@@ -19,11 +19,20 @@ record(longout, "$(P)$(R)OTP$(num)NrPulses-SP"){
   field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
 }
 
+record(calcout, "$(P)$(R)OTP$(num)WidthUpdate") {
+  field(DESC, "OTP$(num) trigger width update")
+  field(INPA, "$(P)$(R)OTP$(num)WidthRaw-SP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
+  field(CALC, "A/B*1000000")
+  field(OUT, "$(P)$(R)OTP$(num)Width-SP PP")
+}
+
 record(ao, "$(P)$(R)OTP$(num)Width-SP") {
   field(DESC, "OTP$(num) trigger width time")
   field(VAL, "0.008")
   field(DRVH, "17000000")
   field(DRVL, "0.008")
+  field(PREC, "3")
   field(EGU, "us")
   field(FLNK, "$(P)$(R)OTP$(num)WidthCalc")
 }
@@ -31,7 +40,7 @@ record(ao, "$(P)$(R)OTP$(num)Width-SP") {
 record(calcout, "$(P)$(R)OTP$(num)WidthCalc") {
   field(DESC, "OTP$(num) trigger width calc")
   field(INPA, "$(P)$(R)OTP$(num)Width-SP")
-  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
   field(CALC, "CEIL(A*(B/1000000))-A*(B/1000000)<0.5?CEIL(A*(B/1000000)):FLOOR(A*(B/1000000))")
   field(OUT, "$(P)$(R)OTP$(num)WidthRaw-SP PP")
 }
@@ -46,11 +55,20 @@ record(longout, "$(P)$(R)OTP$(num)WidthRaw-SP") {
   field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
 }
 
+record(calcout, "$(P)$(R)OTP$(num)DelayUpdate") {
+  field(DESC, "OTP$(num) trigger delay update")
+  field(INPA, "$(P)$(R)OTP$(num)DelayRaw-SP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
+  field(CALC, "A/B*1000000")
+  field(OUT, "$(P)$(R)OTP$(num)Delay-SP PP")
+}
+
 record(ao, "$(P)$(R)OTP$(num)Delay-SP") {
   field(DESC, "OTP$(num) trigger delay time")
   field(VAL, "0")
   field(DRVH, "17000000")
   field(DRVL, "0")
+  field(PREC, "3")
   field(EGU, "us")
   field(FLNK, "$(P)$(R)OTP$(num)DelayTimeCalc")
 }
@@ -58,7 +76,7 @@ record(ao, "$(P)$(R)OTP$(num)Delay-SP") {
 record(calcout, "$(P)$(R)OTP$(num)DelayTimeCalc") {
   field(DESC, "OTP$(num) trigger delay calc")
   field(INPA, "$(P)$(R)OTP$(num)Delay-SP")
-  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
   field(CALC, "CEIL(A*(B/1000000))-A*(B/1000000)<0.5?CEIL(A*(B/1000000)):FLOOR(A*(B/1000000))")
   field(OUT, "$(P)$(R)OTP$(num)DelayRaw-SP PP")
 }
@@ -69,7 +87,7 @@ record(longout, "$(P)$(R)OTP$(num)DelayRaw-SP") {
   field(DRVL, "0")
   field(EGU, "evt_T")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_otp_dly_set($(P),$(R),$(num)) $(PORT)")
+  field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
   field(FLNK, "$(P)$(R)OTP$(num)DelayRaw-RB")
 }
 
@@ -221,7 +239,7 @@ record(longin, "$(P)$(R)OTP$(num)DelayRaw-RB") {
 
 record(calc, "$(P)$(R)OTP$(num)Width-RB") {
   field(INPA, "$(P)$(R)OTP$(num)WidthRaw-RB")
-  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
   field(PREC, "3")
   field(DESC, "OTP$(num) width time RBV")
   field(EGU, "us")
@@ -230,7 +248,7 @@ record(calc, "$(P)$(R)OTP$(num)Width-RB") {
 
 record(calc, "$(P)$(R)OTP$(num)Delay-RB") {
   field(INPA, "$(P)$(R)OTP$(num)DelayRaw-RB")
-  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
   field(PREC, "3")
   field(DESC, "OTP$(num) delay time RBV")
   field(EGU, "us")

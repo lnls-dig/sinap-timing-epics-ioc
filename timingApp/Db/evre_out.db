@@ -75,6 +75,7 @@ record(calc, "$(P)$(R)OUT$(num)RFDelayStep-Mon") {
   field(CALC, "10**9/(A*20)")
   field(PREC, "3")
   field(EGU, "ns")
+  field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalc")
 }
 
 record(calc, "$(P)$(R)OUT$(num)RFDelay-RB") {
@@ -99,6 +100,7 @@ record(bo, "$(P)$(R)OUT$(num)RFDelayType-Sel"){
 
 record(ao, "$(P)$(R)OUT$(num)RFDelay-SP"){
   field(DESC, "OUT$(num) RF delay set")
+  field(PINI, "1")
   field(PREC, "3")
   field(EGU, "ns")
   field(FLNK, "$(P)$(R)OUT$(num)RFDelayCalc")
@@ -132,6 +134,7 @@ record(calcout, "$(P)$(R)OUT$(num)RFDelayCalcRaw"){
 
 record(ao, "$(P)$(R)OUT$(num)FineDelay-SP"){
   field(DESC, "OUT$(num) fine delay")
+  field(PINI, "1")
   field(DTYP, "Raw Soft Channel")
   field(DRVL, "0")
   field(DRVH, "5115")

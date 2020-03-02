@@ -1,39 +1,30 @@
 ########################################################################
 # Frequency Reference PVs
 
-record(acalcout, "$(P)$(R)FPGAClkMAF") {
-  field(ASG, "Reserved")
-  field(DESC, "FPGA Clock")
-  field(SCAN, "1 second")
-  field(NELM, "5")
-  field(INPA, "$(P)$(R)Freq-Mon")
-  field(CALC, "AA:=CAT(AA[1,4],A);AVG(AA)")
-  field(FLNK, "$(P)$(R)FPGAClkCalc")
-}
-
 record(calcout, "$(P)$(R)FPGAClkCalc") {
   field(ASG, "Reserved")
-  field(DESC, "FPGA Clock")
-  field(INPA, "$(P)$(R)FPGAClkMAF")
-  field(INPB, "$(P)$(R)TimestampSrc-Sel")
-  field(INPC, "$(P)$(R)FPGAClk-Cte CPP")
-#  field(OUT, "$(P)$(R)FPGAClk-Cte PP")
-  field(CALC, "B>0?A:C")
-#  field(FLNK, "$(P)$(R)RFRef-Cte")
+  field(DESC, "FPGA Clock Calc")
+  field(INPA, "$(P)$(R)RFRef-Mon")
+  field(INPB, "$(P)$(R)RFDiv-SP")
+  field(OUT, "$(P)$(R)FPGAClk-Cte PP")
+  field(CALC, "A/B")
 }
 
 record(ai, "$(P)$(R)FPGAClk-Cte") {
   field(VAL, "124914500")
   field(DESC, "FPGA Clock")
+  field(PREC, "3")
+  field(EGU, "Hz")
 }
 
-record(calc, "$(P)$(R)RFRef-Cte"){
+record(ai, "$(P)$(R)RFRef-Mon"){
   field(DESC, "RF Ref Input frequency")
-  field(PREC, "1")
+  field(PINI, "1")
+  field(PREC, "3")
   field(EGU, "Hz")
-  field(INPA, "$(P)$(R)FPGAClk-Cte CPP")
-  field(INPB, "$(P)$(R)RFDiv-SP")
-  field(CALC, "A*B")
+  field(INP, "RF-Gen:GeneralFreq-RB CPP")
+  field(VAL, "499658000.000")
+  field(FLNK,"$(P)$(R)FPGAClkCalc")
 }
 
 record(stringout, "$(P)$(R)IPAddr-Mon"){
@@ -1284,7 +1275,7 @@ record(acalcout, "$(P)$(R)BucketListLen-Mon") {
   field(DESC, "Injection table valid len")
   field(NELM, "864")
   field(INAA, "$(P)$(R)BucketList-SP")
-  field(CALC, "IXZ(AA>0 && AA<865)>0?IXZ(AA>0 && AA<865):0")
+  field(CALC, "IXZ(AA>0 & AA<865)>0 & (AA>0 & AA<865)>0?IXZ(AA>0 & AA<865):0")
   field(FLNK, "$(P)$(R)BucketListCalc")
 }
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/python3
 ########################### Run in python 3 ###########################
 
 # Find timing modules in a subnetwork
