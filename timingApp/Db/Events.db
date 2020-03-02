@@ -44,7 +44,6 @@ record(calcout, "$(P)$(R)Evt$(code)DelayUpdate") {
 
 record(ao, "$(P)$(R)Evt$(code)Delay-SP") {
   field(DESC, "Event $(code) timestamp time unit")
-  field(PINI, "1")
   field(PREC, "3")
   field(DRVH, "17000000")
   field(DRVL, "0")
