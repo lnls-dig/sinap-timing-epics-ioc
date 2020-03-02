@@ -19,6 +19,7 @@ record(ai, "$(P)$(R)FPGAClk-Cte") {
 
 record(ai, "$(P)$(R)RFRef-Mon"){
   field(DESC, "RF Ref Input frequency")
+  field(PINI, "1")
   field(PREC, "3")
   field(EGU, "Hz")
   field(INP, "RF-Gen:GeneralFreq-RB CPP")
