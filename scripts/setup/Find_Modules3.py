@@ -65,6 +65,12 @@ def FindMod(UDP_IP, UDP_PORT):
   sock.close()
   return ok, func, commit, addr
   
+def mac_to_serial (mac, mac_to_serial_dic):
+  if (mac in mac_to_serial_dic):
+    return mac_to_serial_dic[mac]
+  else:
+    return 'Unknown'
+
 ############################# End Functions############################
 
 WAIT = 0.05
@@ -76,19 +82,23 @@ if (len(sys.argv) == 1):
   #exit()
 else:
   ipsub_list = sys.argv[1:]
+
+try:  
+  hw_map = open('mac_to_serial.csv','r')
   
-hw_map = open('mac_to_serial.csv','r')
-
-mac_to_serial = {} # empty dictionary
-
-for line in hw_map:
-    mac = line.split(';')[0]
-    serial = line.split(';')[1][0:-1]
-    if (mac == ''):
-      continue
-    mac_to_serial[mac] = serial
-    
-hw_map.close()
+  mac_to_serial_dic = {} # empty dictionary
+  
+  for line in hw_map:
+      mac = line.split(';')[0]
+      serial = line.split(';')[1][0:-1]
+      if (mac == ''):
+        continue
+      mac_to_serial_dic[mac] = serial
+      
+  hw_map.close()
+  
+except:
+  mac_to_serial_dic = {0:0}
     
 f = open('Find_Modules.log','w')
 
@@ -128,21 +138,21 @@ for ipsub in ipsub_list:
     ok, func, commit, addr = FindMod(host, port)
     if ((ok==1) & (func!=0)):
       if (func==32):
-        print ('   EVE ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        print ('   EVE ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial(mac, mac_to_serial_dic), 'DHCP Name:', dhcpname)
         f.write('   EVE ip: ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
       elif (func==16):
-        print ('  FOUT ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        print ('  FOUT ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial(mac, mac_to_serial_dic), 'DHCP Name:', dhcpname)
         f.write('  FOUT ip: ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
       elif (func==17):
-        print ('   EVR ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        print ('   EVR ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial(mac, mac_to_serial_dic), 'DHCP Name:', dhcpname)
         f.write('   EVR ip:  ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
       elif (func==18):
-        print ('   EVG ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        print ('   EVG ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'gateware commit:', commit, 'serial number:', mac_to_serial(mac, mac_to_serial_dic), 'DHCP Name:', dhcpname)
         f.write('   EVG ip:  ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + 'gateware commit:' + commit + '\n')
 
     if (ok == 0):
       if (mac in mac_to_serial):
-        print ('NO ANS ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'serial number:', mac_to_serial[mac], 'DHCP Name:', dhcpname)
+        print ('NO ANS ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'serial number:', mac_to_serial(mac, mac_to_serial_dic), 'DHCP Name:', dhcpname)
       else:
         print ('NO ANS ip:', host.ljust(15), 'port:', port, 'mac:', mac, 'DHCP Name:', dhcpname)
       f.write('NO ANS ip:  ' + host.ljust(15) + ' port: ' + str(port) + ' mac: ' + mac + '\n')
