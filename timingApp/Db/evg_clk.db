@@ -57,9 +57,7 @@ record(calcout, "$(P)$(R)Clk$(num)CalcSELN") {
   field(DESC, "Clk$(num)SELN")
   field(INPA, "$(P)$(R)Clk$(num)Freq-SP")
   field(INPB, "$(P)$(R)Clk$(num)Freq-RB")
-  field(INPC, "$(P)$(R)Clk$(num)MuxDiv-SP")
-  field(INPD, "$(P)$(R)Clk$(num)MuxDiv-RB")
-  field(CALC, "A-B+C-D=0?0:1")
+  field(CALC, "A==B?0:1")
   field(PREC, "0")
   field(OUT, "$(P)$(R)Clk$(num)fanout.SELN PP")
 }
@@ -73,7 +71,7 @@ record(fanout, "$(P)$(R)Clk$(num)fanout") {
 record(calcout, "$(P)$(R)Clk$(num)FreqCalc") {
   field(DESC, "Mux$(num) frequency")
   field(INPA, "$(P)$(R)Clk$(num)Freq-SP")
-  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
+  field(INPB, "$(P)$(R)FPGAClk-Cte")
   field(CALC, "B/A")
   field(PREC, "1")
   field(EGU, "Hz")
