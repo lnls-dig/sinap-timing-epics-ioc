@@ -115,54 +115,6 @@ record(bo, "$(P)$(R)OTP$(num)Log-Sel") {
   field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
 }
 
-record(calcout, "$(P)$(R)OTP$(num)StateCalc") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP$(num) set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)OTP$(num)State-Sel.RVAL")
-  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
-  field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),State) $(PORT)")
-  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
-}
-
-record(calcout, "$(P)$(R)OTP$(num)PolCalc") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP$(num) set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
-  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sel.RVAL")
-  field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Pol) $(PORT)")
-  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
-}
-
-record(calcout, "$(P)$(R)OTP$(num)LogCalc") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP$(num) set timestamping calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
-  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
-  field(INPC, "$(P)$(R)OTP$(num)Log-Sel.RVAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Log) $(PORT)")
-  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
-}
-
-record(calcout, "$(P)$(R)OTP$(num)IntlkCalc") {
-  field(ASG, "Reserved")
-  field(DESC, "OTP$(num) set interlock calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)OTP$(num)State-Sts.VAL")
-  field(INPB, "$(P)$(R)OTP$(num)Polarity-Sts.VAL")
-  field(INPC, "$(P)$(R)OTP$(num)Log-Sts.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_otp_en_pol_time_itl_set($(P),$(R),$(num),Intlk) $(PORT)")
-  field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
-}
-
 record(bo, "$(P)$(R)OTP$(num)EvtCntRst-Cmd") {
   field(DESC, "OTP$(num) reset event count")
   field(MASK, "1")
