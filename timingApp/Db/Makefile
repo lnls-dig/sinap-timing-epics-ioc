@@ -11,6 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install)
 # databases, templates, substitutions like this
 DB += evre_otp.db
+DB += evre_otp_scan.db
 DB += evre_out.db
 DB += evgfout_out.db
 DB += evg_clk.db

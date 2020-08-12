@@ -1,0 +1,138 @@
+########################################################################
+# OTP Event Count Scan Register (33 to 36)
+
+# Register 33
+record(calc, "$(P)$(R)OTP00to05StateCalc") {
+#  field(ASG, "Reserved")
+  field(DESC, "OTP 00 to 05 State Enbl OR flag")
+  field(INPA, "$(P)$(R)OTP00State-Sts.VAL CPP")
+  field(INPB, "$(P)$(R)OTP01State-Sts.VAL CPP")
+  field(INPC, "$(P)$(R)OTP02State-Sts.VAL CPP")
+  field(INPD, "$(P)$(R)OTP03State-Sts.VAL CPP")
+  field(INPE, "$(P)$(R)OTP04State-Sts.VAL CPP")
+  field(INPF, "$(P)$(R)OTP05State-Sts.VAL CPP")
+  field(INPG, "$(P)$(R)OTP00EvtCntRst-Cmd.VAL CPP")
+  field(INPH, "$(P)$(R)OTP01EvtCntRst-Cmd.VAL CPP")
+  field(INPI, "$(P)$(R)OTP02EvtCntRst-Cmd.VAL CPP")
+  field(INPJ, "$(P)$(R)OTP03EvtCntRst-Cmd.VAL CPP")
+  field(INPK, "$(P)$(R)OTP04EvtCntRst-Cmd.VAL CPP")
+  field(INPL, "$(P)$(R)OTP05EvtCntRst-Cmd.VAL CPP")
+  field(CALC, "A || B || C || D || E || F || G || H || I || J || K || L")
+  field(FLNK, "$(P)$(R)OTPCntReadSELNCalc")
+}
+
+# Register 34
+record(calc, "$(P)$(R)OTP06to11StateCalc") {
+#  field(ASG, "Reserved")
+  field(DESC, "OTP 06 to 11 State Enbl OR flag")
+  field(INPA, "$(P)$(R)OTP06State-Sts.VAL CPP")
+  field(INPB, "$(P)$(R)OTP07State-Sts.VAL CPP")
+  field(INPC, "$(P)$(R)OTP08State-Sts.VAL CPP")
+  field(INPD, "$(P)$(R)OTP09State-Sts.VAL CPP")
+  field(INPE, "$(P)$(R)OTP10State-Sts.VAL CPP")
+  field(INPF, "$(P)$(R)OTP11State-Sts.VAL CPP")
+  field(INPG, "$(P)$(R)OTP06EvtCntRst-Cmd.VAL CPP")
+  field(INPH, "$(P)$(R)OTP07EvtCntRst-Cmd.VAL CPP")
+  field(INPI, "$(P)$(R)OTP08EvtCntRst-Cmd.VAL CPP")
+  field(INPJ, "$(P)$(R)OTP09EvtCntRst-Cmd.VAL CPP")
+  field(INPK, "$(P)$(R)OTP10EvtCntRst-Cmd.VAL CPP")
+  field(INPL, "$(P)$(R)OTP11EvtCntRst-Cmd.VAL CPP")
+  field(CALC, "A || B || C || D || E || F || G || H || I || J || K || L")
+  field(FLNK, "$(P)$(R)OTPCntReadSELNCalc")
+}
+
+# Register 35
+record(calc, "$(P)$(R)OTP12to17StateCalc") {
+#  field(ASG, "Reserved")
+  field(DESC, "OTP 12 to 17 State Enbl OR flag")
+  field(INPA, "$(P)$(R)OTP12State-Sts.VAL CPP")
+  field(INPB, "$(P)$(R)OTP13State-Sts.VAL CPP")
+  field(INPC, "$(P)$(R)OTP14State-Sts.VAL CPP")
+  field(INPD, "$(P)$(R)OTP15State-Sts.VAL CPP")
+  field(INPE, "$(P)$(R)OTP16State-Sts.VAL CPP")
+  field(INPF, "$(P)$(R)OTP17State-Sts.VAL CPP")
+  field(INPG, "$(P)$(R)OTP12EvtCntRst-Cmd.VAL CPP")
+  field(INPH, "$(P)$(R)OTP13EvtCntRst-Cmd.VAL CPP")
+  field(INPI, "$(P)$(R)OTP14EvtCntRst-Cmd.VAL CPP")
+  field(INPJ, "$(P)$(R)OTP15EvtCntRst-Cmd.VAL CPP")
+  field(INPK, "$(P)$(R)OTP16EvtCntRst-Cmd.VAL CPP")
+  field(INPL, "$(P)$(R)OTP17EvtCntRst-Cmd.VAL CPP")
+  field(CALC, "A || B || C || D || E || F || G || H || I || J || K || L")
+  field(FLNK, "$(P)$(R)OTPCntReadSELNCalc")
+}
+
+# Register 36
+record(calc, "$(P)$(R)OTP18to23StateCalc") {
+#  field(ASG, "Reserved")
+  field(DESC, "OTP 18 to 23 State Enbl OR flag")
+  field(INPA, "$(P)$(R)OTP18State-Sts.VAL CPP")
+  field(INPB, "$(P)$(R)OTP19State-Sts.VAL CPP")
+  field(INPC, "$(P)$(R)OTP20State-Sts.VAL CPP")
+  field(INPD, "$(P)$(R)OTP21State-Sts.VAL CPP")
+  field(INPE, "$(P)$(R)OTP22State-Sts.VAL CPP")
+  field(INPF, "$(P)$(R)OTP23State-Sts.VAL CPP")
+  field(INPG, "$(P)$(R)OTP18EvtCntRst-Cmd.VAL CPP")
+  field(INPH, "$(P)$(R)OTP19EvtCntRst-Cmd.VAL CPP")
+  field(INPI, "$(P)$(R)OTP20EvtCntRst-Cmd.VAL CPP")
+  field(INPJ, "$(P)$(R)OTP21EvtCntRst-Cmd.VAL CPP")
+  field(INPK, "$(P)$(R)OTP22EvtCntRst-Cmd.VAL CPP")
+  field(INPL, "$(P)$(R)OTP23EvtCntRst-Cmd.VAL CPP")
+  field(CALC, "A || B || C || D || E || F || G || H || I || J || K || L")
+  field(FLNK, "$(P)$(R)OTPCntReadSELNCalc")
+}
+
+record(calc, "$(P)$(R)OTPCntReadSELNCalc") {
+#  field(ASG, "Reserved")
+  field(DESC, "OTP Count Read ")
+  field(INPA, "$(P)$(R)OTP00to05StateCalc")
+  field(INPB, "$(P)$(R)OTP06to11StateCalc")
+  field(INPC, "$(P)$(R)OTP12to17StateCalc")
+  field(INPD, "$(P)$(R)OTP18to23StateCalc")
+  field(CALC, "A+B*2+C*4+D*8")
+#  field(FLNK, "$(P)$(R)OTPCntReadFanout")
+}
+
+record(fanout, "$(P)$(R)OTPCntReadFanout") {
+#  field(ASG, "Reserved")
+  field(DESC, "Read count register fanout")
+  field(SCAN, ".1 second")
+  field(SELL, "$(P)$(R)OTPCntReadSELNCalc")
+  field(SELM, "Mask")
+  field(LNK1, "$(P)$(R)cmd_evre_otp00to05_count_get")
+  field(LNK2, "$(P)$(R)cmd_evre_otp06to11_count_get")
+  field(LNK3, "$(P)$(R)cmd_evre_otp12to17_count_get")
+  field(LNK4, "$(P)$(R)cmd_evre_otp18to23_count_get")
+}
+
+record(longout, "$(P)$(R)cmd_evre_otp00to05_count_get") {
+#  field(ASG, "Reserved")
+  field(DESC, "Command code to read Ctrl Status reg")
+  field(VAL, "0xA1") # (0x80 | 33)
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_otp00to05_count_get($(P),$(R)) $(PORT)")
+}
+
+record(longout, "$(P)$(R)cmd_evre_otp06to11_count_get") {
+#  field(ASG, "Reserved")
+  field(DESC, "Command code to read Ctrl Status reg")
+  field(VAL, "0xA2") # (0x80 | 34)
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_otp06to11_count_get($(P),$(R)) $(PORT)")
+}
+
+record(longout, "$(P)$(R)cmd_evre_otp12to17_count_get") {
+#  field(ASG, "Reserved")
+  field(DESC, "Command code to read Ctrl Status reg")
+  field(VAL, "0xA3") # (0x80 | 35)
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_otp12to17_count_get($(P),$(R)) $(PORT)")
+}
+
+record(longout, "$(P)$(R)cmd_evre_otp18to23_count_get") {
+#  field(ASG, "Reserved")
+  field(DESC, "Command code to read Ctrl Status reg")
+  field(VAL, "0xA4") # (0x80 | 36)
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evre_otp18to23_count_get($(P),$(R)) $(PORT)")
+}
+

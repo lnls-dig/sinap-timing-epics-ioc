@@ -100,30 +100,6 @@ evre_otp_get {
     in "%*r%*r%(\$1\$2OTP\$3NrPulses-RB)02r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3DelayRaw-RB)04r%(\$1\$2OTP\$3WidthRaw-RB)04r";
 }
 
-evre_otp_ev_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3RegAByte3RBV.RVAL)r%(\$1\$2OTP\$3NrPulses-RB).2r%(\$1\$2OTP\$3Evt-SP)r%(\$1\$2OTP\$3DelayRaw-RB).4r%(\$1\$2OTP\$3WidthRaw-RB).4r";
-    evre_otp_get;
-}
-
-evre_otp_pulses_set{
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3RegAByte3RBV.RVAL)r%(\$1\$2OTP\$3NrPulses-SP).2r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3DelayRaw-RB).4r%(\$1\$2OTP\$3WidthRaw-RB).4r";
-    evre_otp_get;
-}
-
-evre_otp_width_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3RegAByte3RBV.RVAL)r%(\$1\$2OTP\$3NrPulses-RB).2r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3DelayRaw-RB).4r%(\$1\$2OTP\$3WidthRaw-SP).4r";
-    evre_otp_get;
-}
-
-evre_otp_dly_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3RegAByte3RBV.RVAL)r%(\$1\$2OTP\$3NrPulses-RB).2r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3DelayRaw-SP).4r%(\$1\$2OTP\$3WidthRaw-RB).4r";
-}
-
-evre_otp_en_pol_time_itl_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3\$4Calc)r%(\$1\$2OTP\$3NrPulses-RB).2r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3DelayRaw-RB).4r%(\$1\$2OTP\$3WidthRaw-RB).4r";
-    evre_otp_get;
-}
-
 evre_otp_set {
     out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3RegAByte3)r%(\$1\$2OTP\$3NrPulses-SP).2r%(\$1\$2OTP\$3Evt-SP)r%(\$1\$2OTP\$3DelayRaw-SP).4r%(\$1\$2OTP\$3WidthRaw-SP).4r";
     evre_otp_get;
@@ -214,26 +190,6 @@ evgfout_out_get {
 evre_out_get {
     out "%(\$1\$2cmd_out_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT\$3FineDelayRaw-RB)02r%*03r%(\$1\$2OUT\$3RFDelayRaw-RB)r";
-}
-
-evre_out_rfdly_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalcRaw).1r";
-    evre_out_get;
-}
-
-evre_out_finedly_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
-    evre_out_get;
-}
-
-evre_out_src_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
-    evre_out_get;
-}
-
-evre_out_itl_set{
-    out "%(\$1\$2cmd_out_set\$3).1r%(\$1\$2OUT\$3IntlkCalc).1r\x00\x00%(\$1\$2OUT\$3Src-Sts.RVAL).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-RB).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelay-RB).1r";
-    evre_out_get;
 }
 
 evre_out_set{
@@ -371,6 +327,124 @@ evre_out_sel6RAW_intr{
 }
 evre_out_sel7RAW_intr{
     in "\xD8%*03r%r%*04r%*04r";
+}
+
+################################################################################
+# OTP Event Count Registers [33 - 36]
+evre_otp00to05_count_get {
+    out "%(\$1\$2cmd_evre_otp00to05_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
+evre_otp06to11_count_get {
+    out "%(\$1\$2cmd_evre_otp06to11_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
+evre_otp12to17_count_get {
+    out "%(\$1\$2cmd_evre_otp12to17_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
+evre_otp18to23_count_get {
+    out "%(\$1\$2cmd_evre_otp18to23_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
+evre_otp_count00_intr{
+    in "\xE1%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count01_intr{
+    in "\xE1%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count02_intr{
+    in "\xE1%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+evre_otp_count03_intr{
+    in "\xE1%*02r%*02r%02r%*02r%*02r%*02r";
+}
+
+evre_otp_count04_intr{
+    in "\xE1%*02r%*02r%*02r%*02r%*02r%02r";
+}
+
+evre_otp_count05_intr{
+    in "\xE1%*02r%*02r%*02r%*02r%02r%*02r";
+}
+
+evre_otp_count06_intr{
+    in "\xE2%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count07_intr{
+    in "\xE2%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count08_intr{
+    in "\xE2%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+evre_otp_count09_intr{
+    in "\xE2%*02r%*02r%02r%*02r%*02r%*02r";
+}
+
+evre_otp_count10_intr{
+    in "\xE2%*02r%*02r%*02r%*02r%*02r%02r";
+}
+
+evre_otp_count11_intr{
+    in "\xE2%*02r%*02r%*02r%*02r%02r%*02r";
+}
+
+evre_otp_count12_intr{
+    in "\xE3%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count13_intr{
+    in "\xE3%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count14_intr{
+    in "\xE3%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+evre_otp_count15_intr{
+    in "\xE3%*02r%*02r%02r%*02r%*02r%*02r";
+}
+
+evre_otp_count16_intr{
+    in "\xE3%*02r%*02r%*02r%*02r%*02r%02r";
+}
+
+evre_otp_count17_intr{
+    in "\xE3%*02r%*02r%*02r%*02r%02r%*02r";
+}
+
+evre_otp_count18_intr{
+    in "\xE4%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count19_intr{
+    in "\xE4%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count20_intr{
+    in "\xE4%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+evre_otp_count21_intr{
+    in "\xE4%*02r%*02r%02r%*02r%*02r%*02r";
+}
+
+evre_otp_count22_intr{
+    in "\xE4%*02r%*02r%*02r%*02r%*02r%02r";
+}
+
+evre_otp_count23_intr{
+    in "\xE4%*02r%*02r%*02r%*02r%02r%*02r";
 }
 
 ################################################################################
