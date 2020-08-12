@@ -374,6 +374,124 @@ evre_out_sel7RAW_intr{
 }
 
 ################################################################################
+# OTP Event Count Registers [33 - 36]
+evre_otp00to05_count_get {
+    out "%(\$1\$2cmd_evre_otp00to05_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
+evre_otp06to11_count_get {
+    out "%(\$1\$2cmd_evre_otp06to11_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
+evre_otp12to17_count_get {
+    out "%(\$1\$2cmd_evre_otp12to17_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
+evre_otp18to23_count_get {
+    out "%(\$1\$2cmd_evre_otp18to23_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "%*r%*04r%*04r%*04r";
+}
+
+evre_otp_count00_intr{
+    in "\xE1%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count01_intr{
+    in "\xE1%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count02_intr{
+    in "\xE1%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+evre_otp_count03_intr{
+    in "\xE1%*02r%*02r%02r%*02r%*02r%*02r";
+}
+
+evre_otp_count04_intr{
+    in "\xE1%*02r%*02r%*02r%*02r%*02r%02r";
+}
+
+evre_otp_count05_intr{
+    in "\xE1%*02r%*02r%*02r%*02r%02r%*02r";
+}
+
+evre_otp_count06_intr{
+    in "\xE2%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count07_intr{
+    in "\xE2%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count08_intr{
+    in "\xE2%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+evre_otp_count09_intr{
+    in "\xE2%*02r%*02r%02r%*02r%*02r%*02r";
+}
+
+evre_otp_count10_intr{
+    in "\xE2%*02r%*02r%*02r%*02r%*02r%02r";
+}
+
+evre_otp_count11_intr{
+    in "\xE2%*02r%*02r%*02r%*02r%02r%*02r";
+}
+
+evre_otp_count12_intr{
+    in "\xE3%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count13_intr{
+    in "\xE3%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count14_intr{
+    in "\xE3%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+evre_otp_count15_intr{
+    in "\xE3%*02r%*02r%02r%*02r%*02r%*02r";
+}
+
+evre_otp_count16_intr{
+    in "\xE3%*02r%*02r%*02r%*02r%*02r%02r";
+}
+
+evre_otp_count17_intr{
+    in "\xE3%*02r%*02r%*02r%*02r%02r%*02r";
+}
+
+evre_otp_count18_intr{
+    in "\xE4%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count19_intr{
+    in "\xE4%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_otp_count20_intr{
+    in "\xE4%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+evre_otp_count21_intr{
+    in "\xE4%*02r%*02r%02r%*02r%*02r%*02r";
+}
+
+evre_otp_count22_intr{
+    in "\xE4%*02r%*02r%*02r%*02r%*02r%02r";
+}
+
+evre_otp_count23_intr{
+    in "\xE4%*02r%*02r%*02r%*02r%02r%*02r";
+}
+
+################################################################################
 # Clock mode select EVE [40]
 eve_rf_get {
     out "\xA8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
