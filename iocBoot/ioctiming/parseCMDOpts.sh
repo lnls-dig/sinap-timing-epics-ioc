@@ -4,7 +4,7 @@ set -e
 
 usage () {
     echo "Usage:" >&2
-    echo "  $1 -t PROCSERV_TELNET_PORT [-P P_VAL] [-R R_VAL] -i IPADDR -p IPPORT -d DEVICE " >&2
+    echo "  $1 -t PROCSERV_TELNET_PORT [-P P_VAL] [-R R_VAL] [-L HL_EVENTS_LINK] -i IPADDR -p IPPORT -d DEVICE" >&2
     echo >&2
     echo " Options:" >&2
     echo "  -t                  Configure procServ telnet port" >&2
@@ -13,9 +13,10 @@ usage () {
     echo "  -i                  Configure IP address to connect to device" >&2
     echo "  -p                  Configure IP port number to connect to device" >&2
     echo "  -d                  Configure Sinap Timing device type [EVG<number>|EVR<number>|EVE<number>|FOUT<number>]" >&2
+    echo "  -l                  Configure High-level events link to load at EVG" >&2
 }
 
-while getopts ":t:P:R:i:p:d:" opt; do
+while getopts ":t:P:R:i:p:d:l:" opt; do
   case $opt in
     t) DEVICE_TELNET_PORT="$OPTARG" ;;
     P) P="$OPTARG" ;;
@@ -23,6 +24,7 @@ while getopts ":t:P:R:i:p:d:" opt; do
     i) IPADDR="$OPTARG" ;;
     p) IPPORT="$OPTARG" ;;
     d) DEVICE_TYPE="$OPTARG" ;;
+    l) HIGH_LEVEL_LINK="$OPTARG" ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       usage $0

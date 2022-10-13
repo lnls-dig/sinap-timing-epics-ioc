@@ -43,6 +43,12 @@ fi
 case ${TIMING_TYPE} in
     EVG)
         ST_CMD_FILE=stEVG.cmd
+        echo "EVG Device: running event_alias.py to generate high-level events alias"
+        if [ -z "$HIGH_LEVEL_LINK" ]; then
+            /usr/bin/python3 event_alias.py
+        else
+            /usr/bin/python3 event_alias.py ${HIGH_LEVEL_LINK}
+        fi
         ;;
 
     EVR)
