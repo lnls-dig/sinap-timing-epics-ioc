@@ -33,14 +33,14 @@ dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=5, PORT=${PORT}, 
 dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=6, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=7, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
-dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=0, PORT=${PORT}, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=1, PORT=${PORT}, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=2, PORT=${PORT}, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=3, PORT=${PORT}, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=4, PORT=${PORT}, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=5, PORT=${PORT}, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=6, PORT=${PORT}, ADDR=0, TIMEOUT=2")
-dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=7, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=0, desc='Undefined', PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=1, desc='Undefined', PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=2, desc='Undefined', PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=3, desc='Undefined', PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=4, desc='Undefined', PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=5, desc='Undefined', PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=6, desc='Undefined', PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evg_clk.db", "P=${P}, R=${R}, num=7, desc='Undefined', PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=0,   desc='Undefined', code='01', time=100, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
 dbLoadRecords "${TOP}/db/Events.db", "P=${P}, R=${R}, num=1,   desc='Undefined', code='02', time=101, mode=0, transm=0, PORT=${PORT}, ADDR=0, TIMEOUT=2, EVT_DELAY=${EVT_DELAY}"
