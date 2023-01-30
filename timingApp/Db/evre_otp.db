@@ -3,7 +3,7 @@
 
 record(longout, "$(P)$(R)OTP$(num)Evt-SP") {
   field(DESC, "OTP$(num) event code")
-  field(DRVH, "63")
+  field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evre_otp_set($(P),$(R),$(num)) $(PORT)")
