@@ -89,6 +89,19 @@ record(ao, "$(P)$(R)Clk$(num)MuxDiv-SP"){
   field(OUT, "@timing.proto evg_mux_set($(P),$(R),$(num)) $(PORT)")
 }
 
+record(stringout, "$(P)$(R)Clk$(num)Desc-SP"){
+  field(PINI, "1")
+  field(VAL, "$(desc)")
+  field(DESC, "Description of the Clock Output")
+  field(FLNK, "$(P)$(R)Clk$(num)Desc-RB")
+}
+
+record(stringin, "$(P)$(R)Clk$(num)Desc-RB"){
+  field(VAL, "$(desc)")
+  field(DESC, "Description of the Clock Output Readback")
+  field(INP, "$(P)$(R)Clk$(num)Desc-SP")
+}
+
 record(calc, "$(P)$(R)cmd_mux_get$(num)") {
   field(ASG, "Reserved")
   field(DESC, "Command code to read Mux$(num) register")

@@ -1236,6 +1236,8 @@ record(ao, "$(P)$(R)RFDiv-SP"){
   field(DTYP, "stream")
   field(DRVH, "4")
   field(DRVL, "4")
+  field(HOPR, "4")
+  field(LOPR, "4")
   field(VAL, "4")
   field(AOFF, "1")
   field(PREC, "0")

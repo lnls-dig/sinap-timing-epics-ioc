@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  ioc:
+    image: ghcr.io/${IOC_GROUP}/${IOC_REPO}:${COMMIT_ID}
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      labels:
+        org.opencontainers.image.revision: ${COMMIT_ID}
+        org.opencontainers.image.source: https://github.com/${IOC_GROUP}/${IOC_REPO}
+        org.opencontainers.image.description: "SINAP Timing EPICS IOC container"
+      args:
+        BASE_VERSION: ${BASE_VERSION}
+        COMMIT_ID: ${COMMIT_ID}
+        DEBIAN_VERSION: ${DEBIAN_VERSION}
+        IOC_GROUP: ${IOC_GROUP}
+        IOC_REPO: ${IOC_REPO}

@@ -9,6 +9,14 @@ $(P)$(R)Clk4MuxEnbl-Sel
 $(P)$(R)Clk5MuxEnbl-Sel
 $(P)$(R)Clk6MuxEnbl-Sel
 $(P)$(R)Clk7MuxEnbl-Sel
+$(P)$(R)Clk0Desc-SP
+$(P)$(R)Clk1Desc-SP
+$(P)$(R)Clk2Desc-SP
+$(P)$(R)Clk3Desc-SP
+$(P)$(R)Clk4Desc-SP
+$(P)$(R)Clk5Desc-SP
+$(P)$(R)Clk6Desc-SP
+$(P)$(R)Clk7Desc-SP
 $(P)$(R)DI0Calc
 $(P)$(R)DI1Calc
 $(P)$(R)DIEnbl0-Sel
@@ -18,6 +26,7 @@ $(P)$(R)DILog1-Sel
 $(P)$(R)DIPol0-Sel
 $(P)$(R)DIPol1-Sel
 $(P)$(R)DevEnbl-Sel
+$(P)$(R)RxEnbl-SP
 $(P)$(R)Evt01DelayType-Sel
 $(P)$(R)Evt02DelayType-Sel
 $(P)$(R)Evt03DelayType-Sel

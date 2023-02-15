@@ -21,19 +21,17 @@
 
 TEMPLATE_TOP=$(EPICS_BASE)/templates/makeBaseApp/top
 
-SUPPORT=/opt/epics/synApps-lnls-R1-1-2/support
-
 # If using the sequencer, point SNCSEQ at its top directory:
-SNCSEQ=$(SUPPORT)/seq-2-2-6
+SNCSEQ=/opt/epics-R3.15.6/modules/sequencer-2-2-R2-2-6
 
 # EPICS_BASE usually appears last so other apps can override stuff:
-EPICS_BASE=/opt/epics/base
+EPICS_BASE=/opt/epics-R3.15.6/base
 
 # Set RULES here if you want to take build rules from somewhere
 # other than EPICS_BASE:
 #RULES=/path/to/epics/support/module/rules/x-y
 
-ASYN=$(SUPPORT)/asyn-R4-33
-STREAM=$(SUPPORT)/stream-R2-8-8/StreamDevice-2-8-8
-CALC=$(SUPPORT)/calc-R3-7-1
-AUTOSAVE=$(SUPPORT)/autosave-R5-9
+ASYN=/opt/epics-R3.15.6/modules/asyn-R4-33
+STREAM=/opt/epics-R3.15.6/modules/StreamDevice-2.8.8
+CALC=/opt/epics-R3.15.6/modules/calc-R3-7-1
+AUTOSAVE=/opt/epics-R3.15.6/modules/autosave-R5-9
