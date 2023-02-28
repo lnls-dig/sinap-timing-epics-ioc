@@ -14,6 +14,8 @@ export STREAM="2.8.8"
 export CALC="3-7-1"
 export AUTOSAVE="5-9"
 
+NPROC=$(nproc)
+
 #Run apt update
 apt update
 
@@ -27,7 +29,7 @@ tar -xvzf base-${BASE}.tar.gz
 rm base-${BASE}.tar.gz
 mv base-${BASE} base
 cd base
-make install clean
+make -j${NPROC} install clean
 cd /opt/epics-R${BASE}
 mkdir modules
 
@@ -43,7 +45,7 @@ sed -i -e "s|^.*EPICS_BASE=.*$|EPICS_BASE=/opt/epics-R${BASE}/base|" \
        -e "s|^.*IPAC=.*$|#IPAC=|" \
        -e "s|^.*SUPPORT=.*$|#SUPPORT=|" \
        configure/RELEASE
-make install clean
+make -j${NPROC} install clean
 
 # Sequencer
 apt install -y re2c
@@ -53,7 +55,7 @@ tar -xvzf R${SEQ}.tar.gz
 rm R${SEQ}.tar.gz
 cd /opt/epics-R${BASE}/modules/sequencer-2-2-R${SEQ}
 sed -i -e "s|^.*EPICS_BASE=.*$|EPICS_BASE=/opt/epics-R${BASE}/base|" configure/RELEASE
-make install clean
+make -j${NPROC} install clean
 
 #Calc
 cd /opt/epics-R${BASE}/modules
@@ -66,7 +68,7 @@ sed -i -e "s|^.*SUPPORT=.*$|#SUPPORT=|" \
        -e "s|^.*SSCAN=.*$|#SSCAN=|" \
        -e "s|^.*EPICS_BASE=.*$|EPICS_BASE=/opt/epics-R${BASE}/base|" \
        configure/RELEASE
-make install clean
+make -j${NPROC} install clean
 
 #Stream
 apt install -y libpcre3 libpcre3-dev
@@ -81,7 +83,7 @@ sed -i -e "s|^.*EPICS_BASE=.*$|EPICS_BASE=/opt/epics-R${BASE}/base|" \
        -e "23cPCRE_INCLUDE=/usr/include/pcre" \
        -e "24cPCRE_LIB=/usr/lib64" \
        configure/RELEASE
-make install clean
+make -j${NPROC} install clean
 
 # Autosave
 cd /opt/epics-R${BASE}/modules
@@ -92,7 +94,7 @@ cd autosave-R${AUTOSAVE}
 sed -i -e "s|^.*EPICS_BASE=.*$|EPICS_BASE=/opt/epics-R${BASE}/base|" \
        -e "s|^.*SUPPORT=.*$|#SUPPORT=|" \
        configure/RELEASE
-make install clean
+make -j${NPROC} install clean
 
 #Clean apt to reduce layer size
 apt clean
