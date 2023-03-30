@@ -16,7 +16,7 @@ timing_registerRecordDeviceDriver pdbbase
 
 asSetFilename("$(TOP)/timingApp/Db/accessSecurityFile.acf")
 
-drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT}:${IPPORT} udp",0,0,0)
+drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT} udp",0,0,0)
 
 ## Load record instances
 dbLoadRecords("${TOP}/db/fout.db", "P=${P}, R=${R}, IPADDR=${IPADDR}, IPPORT=${IPPORT}, PORT=${PORT}, ADDR=0, TIMEOUT=2")

@@ -1,642 +1,649 @@
+#### This protocol file has been edited to be used with SINAP Devices with gateware versions up to v1.2.1 and Lantronix Datagram1.
+# Datagram0 (originally used) requires the remote and local port to be the same and adds a header to serial messages
+# Datagram1 works with any server local port, however doesn't send the serial header
+# This protocol file has been edited to emulate Lantronix UDP Datagram0 header.
+# output protocol sends an additional 7 bytes header: 0x02 (start byte) + 0x00 0x00 0x00 0x00 (4 bytes to emulate sender IP, not used) + 0x00 0x0D (2 bytes - message length)
+# input protocol reads out the same 7 bytes header: 0x02 (start byte) + 0x00 0x00 0x00 0x00 (4 bytes to emulate sender IP, not used) + 0x00 0x0D (2 bytes - message length)
+
 Terminator = "";
-MaxInput = 13;
+MaxInput = 20;
 ExtraInput = Ignore;
 ################################################################################
 # Control and Status Register FOUT [0]
 
 fout_ctrl_get{
-  out "%(\$1\$2cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-  in "\xc0%*04r%*04r%*04r";
+  out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+  in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*04r";
 }
 
 fout_ctrl_set{
-  out "%(\$1\$2cmd_ctrl_set)r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel.RVAL)r";
+  out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set)r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel.RVAL)r";
   fout_ctrl_get;
 }
 
 # Interrupts
 
 fout_ctrl_en_intr{
-  in "\xc0%*04r%*04r%*03r%r";
+  in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*03r%r";
 }
 
 fout_ctrl_rxen_intr{
-    in "\xc0%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xc0%*03r%r%*04r%*04r";
 }
 
 fout_ctrl_link_intr{
-  in "\xc0%*04r%*04r%*02r%r%*r";
+  in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*02r%r%*r";
 }
 
 fout_ctrl_los_intr{
-  in "\xc0%*04r%*04r%r%*03r";
+  in "\x02%*04r\x00\x0D\xc0%*04r%*04r%r%*03r";
 }
 
 ################################################################################
 # Control and Status Register EVE & EVR [0]
 evre_ctrl_get {
-    out "%(\$1\$2cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xc0%*04r%*04r%*02r%*r%*r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*02r%*r%*r";
 }
 
 evre_ctrl_set {
-    out "%(\$1\$2cmd_ctrl_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel.RVAL)b";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel.RVAL)b";
     evre_ctrl_get;
 }
 
 # Interrupts
 
 evre_ctrl_enableRAW_intr{
-    in "\xc0%*04r%*04r%*02r%*r%r";
+    in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*02r%*r%r";
 }
 
 evre_ctrl_linkinhs_intr{
-    in "\xc0%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*02r%r%*r";
 }
 
 ################################################################################
 # Control and Status Register EVG [0]
 evg_ctrl_get {
-    out "%(\$1\$2cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xc0%*04r%*04r%*04r"; # waiting for an answer to trigger interrupts before run next command 
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*04r"; # waiting for an answer to trigger interrupts before run next command 
 }
 
 evg_ctrl_seq_en_set{
-    out "%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3).1r";
     evg_ctrl_get;
 }
 
 evg_ctrl_set{
-    out "%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2SeqEnblDevEnblCalc).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2SeqEnblDevEnblCalc).1r";
     evg_ctrl_get;
 }
 
 # Interrupts
 
 evg_ctrl_los_intr{
-    in "\xc0%*04r%*04r%r%*02r%*r";
+    in "\x02%*04r\x00\x0D\xc0%*04r%*04r%r%*02r%*r";
 }
 
 evg_ctrl_rxen_intr{
-    in "\xc0%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xc0%*03r%r%*04r%*04r";
 }
 
 evg_ctrl_freq_intr{
-    in "\xc0%*04r%04r%*04r";
+    in "\x02%*04r\x00\x0D\xc0%*04r%04r%*04r";
 }
 
 evg_ctrl_seqstat_rfstat_intr{
-    in "\xc0%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*02r%r%*r";
 }
 
 evg_ctrl_seqen_enable_intr{
-    in "\xc0%*04r%*04r%*02r%*r%r";
+    in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*02r%*r%r";
 }
 
 ################################################################################
 # OTP Registers [1 - 16 & 25 - 32]
 evre_otp_get {
-    out "%(\$1\$2cmd_otp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP\$3NrPulses-RB)02r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3DelayRaw-RB)04r%(\$1\$2OTP\$3WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP\$3NrPulses-RB)02r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3DelayRaw-RB)04r%(\$1\$2OTP\$3WidthRaw-RB)04r";
 }
 
 evre_otp_set {
-    out "%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3RegAByte3)r%(\$1\$2OTP\$3NrPulses-SP).2r%(\$1\$2OTP\$3Evt-SP)r%(\$1\$2OTP\$3DelayRaw-SP).4r%(\$1\$2OTP\$3WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set\$3)r%(\$1\$2OTP\$3RegAByte3)r%(\$1\$2OTP\$3NrPulses-SP).2r%(\$1\$2OTP\$3Evt-SP)r%(\$1\$2OTP\$3DelayRaw-SP).4r%(\$1\$2OTP\$3WidthRaw-SP).4r";
     evre_otp_get;
 }
 
 # Interrupts
 
 evre_otp_enpoltime00RBV_intr{
-    in "\xC1%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC1%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime01RBV_intr{
-    in "\xC2%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC2%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime02RBV_intr{
-    in "\xC3%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC3%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime03RBV_intr{
-    in "\xC4%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC4%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime04RBV_intr{
-    in "\xC5%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC5%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime05RBV_intr{
-    in "\xC6%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC6%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime06RBV_intr{
-    in "\xC7%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC7%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime07RBV_intr{
-    in "\xC8%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC8%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime08RBV_intr{
-    in "\xC9%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xC9%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime09RBV_intr{
-    in "\xCA%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xCA%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime10RBV_intr{
-    in "\xCB%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xCB%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime11RBV_intr{
-    in "\xCC%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xCC%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime12RBV_intr{
-    in "\xCD%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xCD%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime13RBV_intr{
-    in "\xCE%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xCE%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime14RBV_intr{
-    in "\xCF%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xCF%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime15RBV_intr{
-    in "\xD0%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD0%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime16RBV_intr{
-    in "\xD9%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD9%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime17RBV_intr{
-    in "\xDA%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xDA%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime18RBV_intr{
-    in "\xDB%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xDB%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime19RBV_intr{
-    in "\xDC%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xDC%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime20RBV_intr{
-    in "\xDD%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xDD%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime21RBV_intr{
-    in "\xDE%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xDE%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime22RBV_intr{
-    in "\xDF%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xDF%r%*03r%*04r%*04r";
 }
 evre_otp_enpoltime23RBV_intr{
-    in "\xE0%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xE0%r%*03r%*04r%*04r";
 }
 
 ################################################################################
 # OUT Registers [17 - 24]
 evgfout_out_get {
-    out "%(\$1\$2cmd_out_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*04r%*04r%*04r";
 }
 
 evre_out_get {
-    out "%(\$1\$2cmd_out_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT\$3FineDelayRaw-RB)02r%*03r%(\$1\$2OUT\$3RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT\$3FineDelayRaw-RB)02r%*03r%(\$1\$2OUT\$3RFDelayRaw-RB)r";
 }
 
 evre_out_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00%(\$1\$2OUT\$3SrcHw).1r\x00\x00%(\$1\$2OUT\$3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT\$3RFDelayCalcRaw).1r";
     evre_out_get;
 }
 
 evgfout_out_set{
-    out "%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2OUT\$3Delay-SP).1r\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set\$3).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2OUT\$3Delay-SP).1r\x00";
     evgfout_out_get;
 }
 
 # Interrupts
 
 evgfout_tripdelay0_intr{
-    in "\xD1%*04r%*04r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xD1%*04r%*04r%02r%*02r";
 }
 evgfout_tripdelay1_intr{
-    in "\xD2%*04r%*04r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xD2%*04r%*04r%02r%*02r";
 }
 evgfout_tripdelay2_intr{
-    in "\xD3%*04r%*04r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xD3%*04r%*04r%02r%*02r";
 }
 evgfout_tripdelay3_intr{
-    in "\xD4%*04r%*04r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xD4%*04r%*04r%02r%*02r";
 }
 evgfout_tripdelay4_intr{
-    in "\xD5%*04r%*04r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xD5%*04r%*04r%02r%*02r";
 }
 evgfout_tripdelay5_intr{
-    in "\xD6%*04r%*04r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xD6%*04r%*04r%02r%*02r";
 }
 evgfout_tripdelay6_intr{
-    in "\xD7%*04r%*04r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xD7%*04r%*04r%02r%*02r";
 }
 evgfout_tripdelay7_intr{
-    in "\xD8%*04r%*04r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xD8%*04r%*04r%02r%*02r";
 }
 
 evgfout_out_delay0_intr{
-    in "\xD1%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xD1%*04r%*04r%*02r%r%*r";
 }
 evgfout_out_delay1_intr{
-    in "\xD2%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xD2%*04r%*04r%*02r%r%*r";
 }
 evgfout_out_delay2_intr{
-    in "\xD3%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xD3%*04r%*04r%*02r%r%*r";
 }
 evgfout_out_delay3_intr{
-    in "\xD4%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xD4%*04r%*04r%*02r%r%*r";
 }
 evgfout_out_delay4_intr{
-    in "\xD5%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xD5%*04r%*04r%*02r%r%*r";
 }
 evgfout_out_delay5_intr{
-    in "\xD6%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xD6%*04r%*04r%*02r%r%*r";
 }
 evgfout_out_delay6_intr{
-    in "\xD7%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xD7%*04r%*04r%*02r%r%*r";
 }
 evgfout_out_delay7_intr{
-    in "\xD8%*04r%*04r%*02r%r%*r";
+    in "\x02%*04r\x00\x0D\xD8%*04r%*04r%*02r%r%*r";
 }
 
 evgfout_out_pos0_intr{
-    in "\xD1%*02r%r%*r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD1%*02r%r%*r%*04r%*04r";
 }
 evgfout_out_pos1_intr{
-    in "\xD2%*02r%r%*r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD2%*02r%r%*r%*04r%*04r";
 }
 evgfout_out_pos2_intr{
-    in "\xD3%*02r%r%*r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD3%*02r%r%*r%*04r%*04r";
 }
 evgfout_out_pos3_intr{
-    in "\xD4%*02r%r%*r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD4%*02r%r%*r%*04r%*04r";
 }
 evgfout_out_pos4_intr{
-    in "\xD5%*02r%r%*r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD5%*02r%r%*r%*04r%*04r";
 }
 evgfout_out_pos5_intr{
-    in "\xD6%*02r%r%*r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD6%*02r%r%*r%*04r%*04r";
 }
 evgfout_out_pos6_intr{
-    in "\xD7%*02r%r%*r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD7%*02r%r%*r%*04r%*04r";
 }
 evgfout_out_pos7_intr{
-    in "\xD8%*02r%r%*r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD8%*02r%r%*r%*04r%*04r";
 }
 
 evre_out_itl0RAW_intr{
-    in "\xD1%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD1%r%*03r%*04r%*04r";
 }
 evre_out_itl1RAW_intr{
-    in "\xD2%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD2%r%*03r%*04r%*04r";
 }
 evre_out_itl2RAW_intr{
-    in "\xD3%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD3%r%*03r%*04r%*04r";
 }
 evre_out_itl3RAW_intr{
-    in "\xD4%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD4%r%*03r%*04r%*04r";
 }
 evre_out_itl4RAW_intr{
-    in "\xD5%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD5%r%*03r%*04r%*04r";
 }
 evre_out_itl5RAW_intr{
-    in "\xD6%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD6%r%*03r%*04r%*04r";
 }
 evre_out_itl6RAW_intr{
-    in "\xD7%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD7%r%*03r%*04r%*04r";
 }
 evre_out_itl7RAW_intr{
-    in "\xD8%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD8%r%*03r%*04r%*04r";
 }
 
 evre_out_sel0RAW_intr{
-    in "\xD1%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD1%*03r%r%*04r%*04r";
 }
 evre_out_sel1RAW_intr{
-    in "\xD2%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD2%*03r%r%*04r%*04r";
 }
 evre_out_sel2RAW_intr{
-    in "\xD3%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD3%*03r%r%*04r%*04r";
 }
 evre_out_sel3RAW_intr{
-    in "\xD4%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD4%*03r%r%*04r%*04r";
 }
 evre_out_sel4RAW_intr{
-    in "\xD5%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD5%*03r%r%*04r%*04r";
 }
 evre_out_sel5RAW_intr{
-    in "\xD6%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD6%*03r%r%*04r%*04r";
 }
 evre_out_sel6RAW_intr{
-    in "\xD7%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD7%*03r%r%*04r%*04r";
 }
 evre_out_sel7RAW_intr{
-    in "\xD8%*03r%r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xD8%*03r%r%*04r%*04r";
 }
 
 ################################################################################
 # OTP Event Count Registers [33 - 36]
 evre_otp00to05_count_get {
-    out "%(\$1\$2cmd_evre_otp00to05_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evre_otp00to05_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*04r%*04r%*04r";
 }
 
 evre_otp06to11_count_get {
-    out "%(\$1\$2cmd_evre_otp06to11_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evre_otp06to11_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*04r%*04r%*04r";
 }
 
 evre_otp12to17_count_get {
-    out "%(\$1\$2cmd_evre_otp12to17_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evre_otp12to17_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*04r%*04r%*04r";
 }
 
 evre_otp18to23_count_get {
-    out "%(\$1\$2cmd_evre_otp18to23_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evre_otp18to23_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*04r%*04r%*04r";
 }
 
 evre_otp_count00_intr{
-    in "\xE1%*02r%02r%*02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE1%*02r%02r%*02r%*02r%*02r%*02r";
 }
 
 evre_otp_count01_intr{
-    in "\xE1%02r%*02r%*02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE1%02r%*02r%*02r%*02r%*02r%*02r";
 }
 
 evre_otp_count02_intr{
-    in "\xE1%*02r%*02r%*02r%02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE1%*02r%*02r%*02r%02r%*02r%*02r";
 }
 
 evre_otp_count03_intr{
-    in "\xE1%*02r%*02r%02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE1%*02r%*02r%02r%*02r%*02r%*02r";
 }
 
 evre_otp_count04_intr{
-    in "\xE1%*02r%*02r%*02r%*02r%*02r%02r";
+    in "\x02%*04r\x00\x0D\xE1%*02r%*02r%*02r%*02r%*02r%02r";
 }
 
 evre_otp_count05_intr{
-    in "\xE1%*02r%*02r%*02r%*02r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xE1%*02r%*02r%*02r%*02r%02r%*02r";
 }
 
 evre_otp_count06_intr{
-    in "\xE2%*02r%02r%*02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE2%*02r%02r%*02r%*02r%*02r%*02r";
 }
 
 evre_otp_count07_intr{
-    in "\xE2%02r%*02r%*02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE2%02r%*02r%*02r%*02r%*02r%*02r";
 }
 
 evre_otp_count08_intr{
-    in "\xE2%*02r%*02r%*02r%02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE2%*02r%*02r%*02r%02r%*02r%*02r";
 }
 
 evre_otp_count09_intr{
-    in "\xE2%*02r%*02r%02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE2%*02r%*02r%02r%*02r%*02r%*02r";
 }
 
 evre_otp_count10_intr{
-    in "\xE2%*02r%*02r%*02r%*02r%*02r%02r";
+    in "\x02%*04r\x00\x0D\xE2%*02r%*02r%*02r%*02r%*02r%02r";
 }
 
 evre_otp_count11_intr{
-    in "\xE2%*02r%*02r%*02r%*02r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xE2%*02r%*02r%*02r%*02r%02r%*02r";
 }
 
 evre_otp_count12_intr{
-    in "\xE3%*02r%02r%*02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE3%*02r%02r%*02r%*02r%*02r%*02r";
 }
 
 evre_otp_count13_intr{
-    in "\xE3%02r%*02r%*02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE3%02r%*02r%*02r%*02r%*02r%*02r";
 }
 
 evre_otp_count14_intr{
-    in "\xE3%*02r%*02r%*02r%02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE3%*02r%*02r%*02r%02r%*02r%*02r";
 }
 
 evre_otp_count15_intr{
-    in "\xE3%*02r%*02r%02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE3%*02r%*02r%02r%*02r%*02r%*02r";
 }
 
 evre_otp_count16_intr{
-    in "\xE3%*02r%*02r%*02r%*02r%*02r%02r";
+    in "\x02%*04r\x00\x0D\xE3%*02r%*02r%*02r%*02r%*02r%02r";
 }
 
 evre_otp_count17_intr{
-    in "\xE3%*02r%*02r%*02r%*02r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xE3%*02r%*02r%*02r%*02r%02r%*02r";
 }
 
 evre_otp_count18_intr{
-    in "\xE4%*02r%02r%*02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE4%*02r%02r%*02r%*02r%*02r%*02r";
 }
 
 evre_otp_count19_intr{
-    in "\xE4%02r%*02r%*02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE4%02r%*02r%*02r%*02r%*02r%*02r";
 }
 
 evre_otp_count20_intr{
-    in "\xE4%*02r%*02r%*02r%02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE4%*02r%*02r%*02r%02r%*02r%*02r";
 }
 
 evre_otp_count21_intr{
-    in "\xE4%*02r%*02r%02r%*02r%*02r%*02r";
+    in "\x02%*04r\x00\x0D\xE4%*02r%*02r%02r%*02r%*02r%*02r";
 }
 
 evre_otp_count22_intr{
-    in "\xE4%*02r%*02r%*02r%*02r%*02r%02r";
+    in "\x02%*04r\x00\x0D\xE4%*02r%*02r%*02r%*02r%*02r%02r";
 }
 
 evre_otp_count23_intr{
-    in "\xE4%*02r%*02r%*02r%*02r%02r%*02r";
+    in "\x02%*04r\x00\x0D\xE4%*02r%*02r%*02r%*02r%02r%*02r";
 }
 
 ################################################################################
 # Clock mode select EVE [40]
 eve_rf_get {
-    out "\xA8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xe8%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D\xA8\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xe8%*04r%*04r%*04r";
 }
 
 eve_rf_set {
-    out "\x68\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2RFOut-Sel.RVAL)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D\x68\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2RFOut-Sel.RVAL)r";
     eve_rf_get;
 }
 
 # Interrupts
 
 eve_rf_intr {
-    in "\xe8%*04r%*04r%*03r%r";
+    in "\x02%*04r\x00\x0D\xe8%*04r%*04r%*03r%r";
 }
 
 ################################################################################
 # AC Line register [40]
 evg_acline_get {
-    out "%(\$1\$2cmd_acdiv_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xE8%*03r%(\$1\$2ACEnbl-Sts)r%*02r%(\$1\$2ACStatus-Mon)r%(\$1\$2ACSrc-Sts)r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_acdiv_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xE8%*03r%(\$1\$2ACEnbl-Sts)r%*02r%(\$1\$2ACStatus-Mon)r%(\$1\$2ACSrc-Sts)r%*04r";
 }
 
 evg_acline_acen_set{
-    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00%(\$1\$2ACSrc-Sel.RVAL).1r%(\$1\$2ACDivRaw).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00%(\$1\$2ACSrc-Sel.RVAL).1r%(\$1\$2ACDivRaw).4r";
     evg_acline_get;
 }
 
 evg_acline_acdiv_set{
-    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00%(\$1\$2ACSrc-Sel.RVAL).1r%(\$1\$2ACDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00%(\$1\$2ACSrc-Sel.RVAL).1r%(\$1\$2ACDiv-SP.RVAL).4r";
     evg_acline_get;
 }
 
 evg_acline_set{
-    out "%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00%(\$1\$2ACSrc-Sel.RVAL).1r%(\$1\$2ACDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_acdiv_set).1r\x00\x00\x00%(\$1\$2ACEnbl-Sel.RVAL).1r\x00\x00\x00%(\$1\$2ACSrc-Sel.RVAL).1r%(\$1\$2ACDiv-SP.RVAL).4r";
     evg_acline_get;
 }
 
 # Interrupts
 
 evg_acline_acdivraw_intr{
-    in "\xE8%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xE8%*03r%*r%*04r%04r";
 }
 
 ################################################################################
 # Mux register [41 - 48]
 evg_mux_get {
-    out "%(\$1\$2cmd_mux_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk\$3MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk\$3MuxEnbl-Sts)r%*04r%*04r";
 }
 
 evg_mux_en_set{
-    out "%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDivRaw).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDivRaw).4r";
     evg_mux_get;
 }
 
 evg_mux_div_set{
-    out "%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sts).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sts).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDiv-SP.RVAL).4r";
     evg_mux_get;
 }
 
 evg_mux_set{
-    out "%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDiv-SP.RVAL).4r";
     evg_mux_get;
 }
 
 # Mux interrupts
 
 evg_mux_div0RAW_intr{
-    in "\xE9%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xE9%*03r%*r%*04r%04r";
 }
 evg_mux_div1RAW_intr{
-    in "\xEA%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xEA%*03r%*r%*04r%04r";
 }
 evg_mux_div2RAW_intr{
-    in "\xEB%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xEB%*03r%*r%*04r%04r";
 }
 evg_mux_div3RAW_intr{
-    in "\xEC%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xEC%*03r%*r%*04r%04r";
 }
 evg_mux_div4RAW_intr{
-    in "\xED%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xED%*03r%*r%*04r%04r";
 }
 evg_mux_div5RAW_intr{
-    in "\xEE%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xEE%*03r%*r%*04r%04r";
 }
 evg_mux_div6RAW_intr{
-    in "\xEF%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xEF%*03r%*r%*04r%04r";
 }
 evg_mux_div7RAW_intr{
-    in "\xF0%*03r%*r%*04r%04r";
+    in "\x02%*04r\x00\x0D\xF0%*03r%*r%*04r%04r";
 }
 
 ################################################################################
 # SEQRAM setting register [49]
 evg_seqramset_set{
-    out "%(\$1\$2cmd_seqram_set).1r\x00\x00%(\$1\$2SeqAddr-SP).2r\x00\x00\x00%(\$1\$2SeqCode-SP).1r%(\$1\$2SeqTime-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_seqram_set).1r\x00\x00%(\$1\$2SeqAddr-SP).2r\x00\x00\x00%(\$1\$2SeqCode-SP).1r%(\$1\$2SeqTime-SP).4r";
 }
 
 ################################################################################
 # SEQRAM switch register [50]
 evg_seqramsw_get {
-    out "%(\$1\$2cmd_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF2%*04r%*04r%*02r%(\$1\$2SeqCount-SP.RVAL)02r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_seqramsw_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xF2%*04r%*04r%*02r%(\$1\$2SeqCount-SP.RVAL)02r";
 }
 
 evg_seqramsw_set{
-    out "%(\$1\$2cmd_seqramsw_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_seqramsw_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     evg_seqramsw_get;
 }
 
 evg_totalinjcount_intr {
-    in "\xF2%04r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xF2%04r%*04r%*04r";
 }
 
 evg_injcount_intr {
-    in "\xF2%*04r%04r%*04r";
+    in "\x02%*04r\x00\x0D\xF2%*04r%04r%*04r";
 }
 
 ################################################################################
 # Timestamp register EVG [51]
 evg_tmstmp_get{
-    out "%(\$1\$2cmd_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF3%(\$1\$2UTC-RB)04r%(\$1\$2SubSecond-Mon)04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xF3%(\$1\$2UTC-RB)04r%(\$1\$2SubSecond-Mon)04r%*04r";
 }
 
 evg_tmstmp_utc_set{
-    out "\x73%(\$1\$2UTC-SP).4r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sts.RVAL)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D\x73%(\$1\$2UTC-SP).4r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sts.RVAL)r";
     evg_tmstmp_get;
 }
 
 # utc receives 0 causing it to be broadcast
 evg_tmstmp_timesrc_set{
-    out "\x73\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D\x73\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
     evg_tmstmp_get;
 }
 
 evg_tmstmp_set{
-    out "\x73%(\$1\$2UTC-SP).4r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D\x73%(\$1\$2UTC-SP).4r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
     evg_tmstmp_get;
 }
 
 # Interrupts
 
 evg_tmstmp_timesrcRBV_intr{
-    in "\xF3%*04r%*04r%*03r%r";
+    in "\x02%*04r\x00\x0D\xF3%*04r%*04r%*03r%r";
 }
 
 
 ################################################################################
 # Timestamp register EVE & EVR [51]
 evre_tmstmp_get{
-    out "%(\$1\$2cmd_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF3%(\$1\$2UTC-RB)04r%(\$1\$2SubSecond-Mon)04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_tmstmp_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xF3%(\$1\$2UTC-RB)04r%(\$1\$2SubSecond-Mon)04r%*04r";
 }
 
 evre_tmstmp_set{
-    out "\x73\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D\x73\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2TimestampSrc-Sel.RVAL)r";
     evre_tmstmp_get;
 }
 
 # Interrupts
 
 evre_tmstmp_timesrcRBV_intr{
-    in "\xF3%*04r%*04r%*03r%r";
+    in "\x02%*04r\x00\x0D\xF3%*04r%*04r%*03r%r";
 }
 
 ################################################################################
 # Timestamp log register EVE & EVR [52]
 
 evre_log_get{
-    out "%(\$1\$2cmd_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xF4%(\$1\$2LOGUTC)04r%(\$1\$2LOGSUBSEC)04r%(\$1\$2LOGEVENT)r%(\$1\$2LOGCOUNT)02r%*r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xF4%(\$1\$2LOGUTC)04r%(\$1\$2LOGSUBSEC)04r%(\$1\$2LOGEVENT)r%(\$1\$2LOGCOUNT)02r%*r";
     @init{
-  out "%(\$1\$2cmd_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-      in "\xF4%*04r%*04r%*03r%(\$1\$2stoplogAUX)r";
+      out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+      in "\x02%*04r\x00\x0D\xF4%*04r%*04r%*03r%(\$1\$2stoplogAUX)r";
     }
 }
 
 evre_log_set{
-    out "%(\$1\$2cmd_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3)r";
     # reading of register is made by record "onlyRead" or "readAndUpdate" to assure synchronization
 }
 
 # Interrupts
 
 evre_log_ctrlRBV_intr{
-    in "\xF4%*04r%*04r%*03r%r";
+    in "\x02%*04r\x00\x0D\xF4%*04r%*04r%*03r%r";
 }
 
 ################################################################################
@@ -644,152 +651,152 @@ evre_log_ctrlRBV_intr{
 #    EVE & EVR   [53-55]
 
 evgre_diginp_get {
-    out "%(\$1\$2cmd_diginp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent\$3-RB)0r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent\$3-RB)0r%*04r%*04r";
 }
 
 evgre_diginp_ev_set {
-    out "%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Raw.RVAL)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Raw.RVAL)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     evgre_diginp_get;
 }
 
 evgre_diginp_ept_set {
-    out "%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2\$4\$3)r\x00\x00%(\$1\$2DIEvent\$3-RB)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2\$4\$3)r\x00\x00%(\$1\$2DIEvent\$3-RB)r\x00\x00\x00\x00\x00\x00\x00\x00";
     evgre_diginp_get;
 }
 
 evgre_diginp_set {
-    out "%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Calc)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Calc)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     evgre_diginp_get;
 }
 
 # Interrupts
 
 evgre_diginp0_intr{
-    in "\xF5%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xF5%r%*03r%*04r%*04r";
 }
 evgre_diginp1_intr{
-    in "\xF6%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xF6%r%*03r%*04r%*04r";
 }
 evgre_diginp2_intr{
-    in "\xF7%r%*03r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xF7%r%*03r%*04r%*04r";
 }
 
 ################################################################################
 # Interlock map  EVG    [56]
 
 evg_ilockmap_get {
-    out "%(\$1\$2cmd_evg_ilockmap_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%(\$1\$2IntlkTbl16to27-Sts)02r%(\$1\$2IntlkTbl0to15-Sts)02r%(\$1\$2IntlkEvtOut-RB)0r%(\$1\$2IntlkEvtIn6-RB)0r%(\$1\$2IntlkEvtIn5-RB)0r%(\$1\$2IntlkEvtIn4-RB)0r%(\$1\$2IntlkEvtIn3-RB)0r%(\$1\$2IntlkEvtIn2-RB)0r%(\$1\$2IntlkEvtIn1-RB)0r%(\$1\$2IntlkEvtIn0-RB)0r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%(\$1\$2IntlkTbl16to27-Sts)02r%(\$1\$2IntlkTbl0to15-Sts)02r%(\$1\$2IntlkEvtOut-RB)0r%(\$1\$2IntlkEvtIn6-RB)0r%(\$1\$2IntlkEvtIn5-RB)0r%(\$1\$2IntlkEvtIn4-RB)0r%(\$1\$2IntlkEvtIn3-RB)0r%(\$1\$2IntlkEvtIn2-RB)0r%(\$1\$2IntlkEvtIn1-RB)0r%(\$1\$2IntlkEvtIn0-RB)0r";
 }
 
 evg_ilockmap_upload {
-    out "%(\$1\$2cmd_evg_ilockmap_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%(\$1\$2IntlkTbl16to27-Sel)02r%(\$1\$2IntlkTbl0to15-Sel)02r%(\$1\$2IntlkEvtOut-RB)0r%(\$1\$2IntlkEvtIn6-RB)0r%(\$1\$2IntlkEvtIn5-RB)0r%(\$1\$2IntlkEvtIn4-RB)0r%(\$1\$2IntlkEvtIn3-RB)0r%(\$1\$2IntlkEvtIn2-RB)0r%(\$1\$2IntlkEvtIn1-RB)0r%(\$1\$2IntlkEvtIn0-RB)0r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%(\$1\$2IntlkTbl16to27-Sel)02r%(\$1\$2IntlkTbl0to15-Sel)02r%(\$1\$2IntlkEvtOut-RB)0r%(\$1\$2IntlkEvtIn6-RB)0r%(\$1\$2IntlkEvtIn5-RB)0r%(\$1\$2IntlkEvtIn4-RB)0r%(\$1\$2IntlkEvtIn3-RB)0r%(\$1\$2IntlkEvtIn2-RB)0r%(\$1\$2IntlkEvtIn1-RB)0r%(\$1\$2IntlkEvtIn0-RB)0r";
 }
 
 evg_ilockmap_map_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTblCalc).4r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTblCalc).4r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
 
 evg_ilockmap_ev0_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-SP)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-SP)r";
     evg_ilockmap_get;
 }
 
 evg_ilockmap_ev1_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
 
 evg_ilockmap_ev2_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
 
 evg_ilockmap_ev3_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
 
 evg_ilockmap_ev4_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
 
 evg_ilockmap_ev5_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
 
 evg_ilockmap_ev6_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
 
 evg_ilockmap_evout_set {
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
 
 # Interrupts
 
 #evgre_diginp_intr{
-#    in "\xF8%r%*03r%*04r%*04r";
+#    in "\x02%*04r\x00\x0D\xF8%r%*03r%*04r%*04r";
 #}
 
 ################################################################################
 # Interlock Status  EVG    [57]
 
 evg_ilockcontrol_get {
-    out "%(\$1\$2cmd_evg_ilockcontrol_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%(\$1\$2IntlkCtrlRaw)r%*03r%*04r%*03r%*r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%(\$1\$2IntlkCtrlRaw)r%*03r%*04r%*03r%*r";
 }
 
 evg_ilockcontrol_set {
-    out "%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrl\$3)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-RB).4r\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrl\$3)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-RB).4r\x00\x00\x00\x00";
     evg_ilockcontrol_get;
 }
 
 evg_ilockrepeat_time_set {
-    out "%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrlRaw)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-SP).4r\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrlRaw)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-SP).4r\x00\x00\x00\x00";
     evg_ilockcontrol_get;
 }
 
 evg_ilock_status_intr {
-    in "\xF9%*04r%*04r%*03r%r";
+    in "\x02%*04r\x00\x0D\xF9%*04r%*04r%*03r%r";
 }
 
 evg_ilock_control_intr {
-    in "\xF9%r%*04r%*04r%*03r";
+    in "\x02%*04r\x00\x0D\xF9%r%*04r%*04r%*03r";
 }
 
 evg_ilock_repeat_time_intr {
-    in "\xF9%*04r%04r%*04r";
+    in "\x02%*04r\x00\x0D\xF9%*04r%04r%*04r";
 }
 
 #evg_ilock_status {
-#    out "%(\$1\$2cmd_evg_ilockcontrol_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-#    in "\xF9%(\$1\$2IntlkCtrlRaw)r%*03r%*04r%*03r%(\$1\$2IntlkEvtStatus-Mon)r";
+#    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+#    in "\x02%*04r\x00\x0D\xF9%(\$1\$2IntlkCtrlRaw)r%*03r%*04r%*03r%(\$1\$2IntlkEvtStatus-Mon)r";
 #}
 
 ################################################################################
 # Asynchronous event  EVG    [58]
 
 evg_async_set {
-    out "\x7A\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01%(\$1\$2\$3.OVAL)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D\x7A\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01%(\$1\$2\$3.OVAL)r";
 }
 
 ################################################################################
 # Firmware version register EVG, Fanout, EVR & EVE [62]
 
 frmvrs_get{
-    out "%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
     @init{
-      out "%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-      in "\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
+      out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+      in "\x02%*04r\x00\x0D\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
     }
 }
 
@@ -797,70 +804,70 @@ frmvrs_get{
 # Configutarion Register EVG [63]
 
 evg_conf_get {
-    out "%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFF%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*04r";
 }
 
 evg_conf_funsel_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDivRaw).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDivRaw).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evg_conf_get;
 }
 
 evg_conf_rfdiv_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDiv-SP.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sts.RVAL).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDiv-SP.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sts.RVAL).1r";
     evg_conf_get;
 }
 
 evg_conf_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDiv-SP.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDiv-SP.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evg_conf_get;
 }
 
 # Interrupts
 
 evg_conf_alive_intr{
-    in "\xFF%04r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xFF%04r%*04r%*04r";
 }
 
 evg_conf_rfdivRAW_intr{
-    in "\xFF%*04r%*r%r%*02r%*04r";
+    in "\x02%*04r\x00\x0D\xFF%*04r%*r%r%*02r%*04r";
 }
 
 evg_conf_funsel_intr{
-    in "\xFF%*04r%*04r%*03r%r";
+    in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*03r%r";
 }
 
 ################################################################################
 # Configutarion register EVR/EVE [63]
 
 evr_conf_get {
-    out "%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFF%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*04r";
 }
 
 evr_conf_funsel_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-RB.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-RB.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evr_conf_get;
 }
 
 evr_conf_clk_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sts.RVAL).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sts.RVAL).1r";
     evr_conf_get;
 }
 
 evr_conf_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evr_conf_get;
 }
 
 
 eve_conf_get {
-    out "%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\xFF%*04r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*04r";
 }
 
 eve_conf_set{
-    out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00\x20";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00\x20";
     eve_conf_get;
 }
 
@@ -868,38 +875,38 @@ eve_conf_set{
 
 
 evre_conf_alive_intr{
-    in "\xFF%04r%*04r%*04r";
+    in "\x02%*04r\x00\x0D\xFF%04r%*04r%*04r";
 }
 
 evre_conf_funsel_intr{
-    in "\xFF%*04r%*04r%*03r%r";
+    in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*03r%r";
 }
 
 evre_conf_clkmode_intr{
-    in "\xFF%*04r%*03r%r%*04r";
+    in "\x02%*04r\x00\x0D\xFF%*04r%*03r%r%*04r";
 }
 
 ################################################################################
 # Configutarion register FOUT [63]
 
 fout_conf_get{
-  out "%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-  in "\xFF%*04r%*04r%*04r";
+  out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+  in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*04r";
 }
 
 fout_conf_set{
-  out "%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
+  out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     fout_conf_get;
 }
 
 # Interrupts
 
 fout_conf_alive_intr{
-  in "\xFF%04r%*04r%*04r";
+  in "\x02%*04r\x00\x0D\xFF%04r%*04r%*04r";
 }
 
 fout_conf_funsel_intr{
-  in "\xFF%*04r%*04r%*03r%r";
+  in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*03r%r";
 }
 
 ########################################################################
@@ -908,104 +915,104 @@ fout_conf_funsel_intr{
 evre_get_otp_rbv{
     # OTPs readback 
     # otp00    
-    out "%(\$1\$2cmd_otp_get00)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP00NrPulses-RB)02r%(\$1\$2OTP00Evt-RB)r%(\$1\$2OTP00DelayRaw-RB)04r%(\$1\$2OTP00WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get00)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP00NrPulses-RB)02r%(\$1\$2OTP00Evt-RB)r%(\$1\$2OTP00DelayRaw-RB)04r%(\$1\$2OTP00WidthRaw-RB)04r";
     # otp01
-    out "%(\$1\$2cmd_otp_get01)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP01NrPulses-RB)02r%(\$1\$2OTP01Evt-RB)r%(\$1\$2OTP01DelayRaw-RB)04r%(\$1\$2OTP01WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get01)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP01NrPulses-RB)02r%(\$1\$2OTP01Evt-RB)r%(\$1\$2OTP01DelayRaw-RB)04r%(\$1\$2OTP01WidthRaw-RB)04r";
     # otp02
-    out "%(\$1\$2cmd_otp_get02)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP02NrPulses-RB)02r%(\$1\$2OTP02Evt-RB)r%(\$1\$2OTP02DelayRaw-RB)04r%(\$1\$2OTP02WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get02)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP02NrPulses-RB)02r%(\$1\$2OTP02Evt-RB)r%(\$1\$2OTP02DelayRaw-RB)04r%(\$1\$2OTP02WidthRaw-RB)04r";
     # otp03
-    out "%(\$1\$2cmd_otp_get03)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP03NrPulses-RB)02r%(\$1\$2OTP03Evt-RB)r%(\$1\$2OTP03DelayRaw-RB)04r%(\$1\$2OTP03WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get03)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP03NrPulses-RB)02r%(\$1\$2OTP03Evt-RB)r%(\$1\$2OTP03DelayRaw-RB)04r%(\$1\$2OTP03WidthRaw-RB)04r";
     # otp04
-    out "%(\$1\$2cmd_otp_get04)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP04NrPulses-RB)02r%(\$1\$2OTP04Evt-RB)r%(\$1\$2OTP04DelayRaw-RB)04r%(\$1\$2OTP04WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get04)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP04NrPulses-RB)02r%(\$1\$2OTP04Evt-RB)r%(\$1\$2OTP04DelayRaw-RB)04r%(\$1\$2OTP04WidthRaw-RB)04r";
     # otp05
-    out "%(\$1\$2cmd_otp_get05)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP05NrPulses-RB)02r%(\$1\$2OTP05Evt-RB)r%(\$1\$2OTP05DelayRaw-RB)04r%(\$1\$2OTP05WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get05)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP05NrPulses-RB)02r%(\$1\$2OTP05Evt-RB)r%(\$1\$2OTP05DelayRaw-RB)04r%(\$1\$2OTP05WidthRaw-RB)04r";
     # otp06
-    out "%(\$1\$2cmd_otp_get06)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP06NrPulses-RB)02r%(\$1\$2OTP06Evt-RB)r%(\$1\$2OTP06DelayRaw-RB)04r%(\$1\$2OTP06WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get06)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP06NrPulses-RB)02r%(\$1\$2OTP06Evt-RB)r%(\$1\$2OTP06DelayRaw-RB)04r%(\$1\$2OTP06WidthRaw-RB)04r";
     # otp07
-    out "%(\$1\$2cmd_otp_get07)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP07NrPulses-RB)02r%(\$1\$2OTP07Evt-RB)r%(\$1\$2OTP07DelayRaw-RB)04r%(\$1\$2OTP07WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get07)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP07NrPulses-RB)02r%(\$1\$2OTP07Evt-RB)r%(\$1\$2OTP07DelayRaw-RB)04r%(\$1\$2OTP07WidthRaw-RB)04r";
     # otp08
-    out "%(\$1\$2cmd_otp_get08)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP08NrPulses-RB)02r%(\$1\$2OTP08Evt-RB)r%(\$1\$2OTP08DelayRaw-RB)04r%(\$1\$2OTP08WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get08)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP08NrPulses-RB)02r%(\$1\$2OTP08Evt-RB)r%(\$1\$2OTP08DelayRaw-RB)04r%(\$1\$2OTP08WidthRaw-RB)04r";
     # otp09
-    out "%(\$1\$2cmd_otp_get09)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP09NrPulses-RB)02r%(\$1\$2OTP09Evt-RB)r%(\$1\$2OTP09DelayRaw-RB)04r%(\$1\$2OTP09WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get09)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP09NrPulses-RB)02r%(\$1\$2OTP09Evt-RB)r%(\$1\$2OTP09DelayRaw-RB)04r%(\$1\$2OTP09WidthRaw-RB)04r";
     # otp10
-    out "%(\$1\$2cmd_otp_get10)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP10NrPulses-RB)02r%(\$1\$2OTP10Evt-RB)r%(\$1\$2OTP10DelayRaw-RB)04r%(\$1\$2OTP10WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get10)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP10NrPulses-RB)02r%(\$1\$2OTP10Evt-RB)r%(\$1\$2OTP10DelayRaw-RB)04r%(\$1\$2OTP10WidthRaw-RB)04r";
     # otp11
-    out "%(\$1\$2cmd_otp_get11)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP11NrPulses-RB)02r%(\$1\$2OTP11Evt-RB)r%(\$1\$2OTP11DelayRaw-RB)04r%(\$1\$2OTP11WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get11)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP11NrPulses-RB)02r%(\$1\$2OTP11Evt-RB)r%(\$1\$2OTP11DelayRaw-RB)04r%(\$1\$2OTP11WidthRaw-RB)04r";
     # otp12
-    out "%(\$1\$2cmd_otp_get12)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP12NrPulses-RB)02r%(\$1\$2OTP12Evt-RB)r%(\$1\$2OTP12DelayRaw-RB)04r%(\$1\$2OTP12WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get12)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP12NrPulses-RB)02r%(\$1\$2OTP12Evt-RB)r%(\$1\$2OTP12DelayRaw-RB)04r%(\$1\$2OTP12WidthRaw-RB)04r";
     # otp13
-    out "%(\$1\$2cmd_otp_get13)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP13NrPulses-RB)02r%(\$1\$2OTP13Evt-RB)r%(\$1\$2OTP13DelayRaw-RB)04r%(\$1\$2OTP13WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get13)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP13NrPulses-RB)02r%(\$1\$2OTP13Evt-RB)r%(\$1\$2OTP13DelayRaw-RB)04r%(\$1\$2OTP13WidthRaw-RB)04r";
     # otp14
-    out "%(\$1\$2cmd_otp_get14)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP14NrPulses-RB)02r%(\$1\$2OTP14Evt-RB)r%(\$1\$2OTP14DelayRaw-RB)04r%(\$1\$2OTP14WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get14)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP14NrPulses-RB)02r%(\$1\$2OTP14Evt-RB)r%(\$1\$2OTP14DelayRaw-RB)04r%(\$1\$2OTP14WidthRaw-RB)04r";
     # otp15
-    out "%(\$1\$2cmd_otp_get15)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP15NrPulses-RB)02r%(\$1\$2OTP15Evt-RB)r%(\$1\$2OTP15DelayRaw-RB)04r%(\$1\$2OTP15WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get15)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP15NrPulses-RB)02r%(\$1\$2OTP15Evt-RB)r%(\$1\$2OTP15DelayRaw-RB)04r%(\$1\$2OTP15WidthRaw-RB)04r";
     # otp16
-    out "%(\$1\$2cmd_otp_get16)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP16NrPulses-RB)02r%(\$1\$2OTP16Evt-RB)r%(\$1\$2OTP16DelayRaw-RB)04r%(\$1\$2OTP16WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get16)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP16NrPulses-RB)02r%(\$1\$2OTP16Evt-RB)r%(\$1\$2OTP16DelayRaw-RB)04r%(\$1\$2OTP16WidthRaw-RB)04r";
     # otp17
-    out "%(\$1\$2cmd_otp_get17)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP17NrPulses-RB)02r%(\$1\$2OTP17Evt-RB)r%(\$1\$2OTP17DelayRaw-RB)04r%(\$1\$2OTP17WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get17)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP17NrPulses-RB)02r%(\$1\$2OTP17Evt-RB)r%(\$1\$2OTP17DelayRaw-RB)04r%(\$1\$2OTP17WidthRaw-RB)04r";
     # otp18
-    out "%(\$1\$2cmd_otp_get18)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP18NrPulses-RB)02r%(\$1\$2OTP18Evt-RB)r%(\$1\$2OTP18DelayRaw-RB)04r%(\$1\$2OTP18WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get18)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP18NrPulses-RB)02r%(\$1\$2OTP18Evt-RB)r%(\$1\$2OTP18DelayRaw-RB)04r%(\$1\$2OTP18WidthRaw-RB)04r";
     # otp19
-    out "%(\$1\$2cmd_otp_get19)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP19NrPulses-RB)02r%(\$1\$2OTP19Evt-RB)r%(\$1\$2OTP19DelayRaw-RB)04r%(\$1\$2OTP19WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get19)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP19NrPulses-RB)02r%(\$1\$2OTP19Evt-RB)r%(\$1\$2OTP19DelayRaw-RB)04r%(\$1\$2OTP19WidthRaw-RB)04r";
     # otp20
-    out "%(\$1\$2cmd_otp_get20)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP20NrPulses-RB)02r%(\$1\$2OTP20Evt-RB)r%(\$1\$2OTP20DelayRaw-RB)04r%(\$1\$2OTP20WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get20)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP20NrPulses-RB)02r%(\$1\$2OTP20Evt-RB)r%(\$1\$2OTP20DelayRaw-RB)04r%(\$1\$2OTP20WidthRaw-RB)04r";
     # otp21
-    out "%(\$1\$2cmd_otp_get21)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP21NrPulses-RB)02r%(\$1\$2OTP21Evt-RB)r%(\$1\$2OTP21DelayRaw-RB)04r%(\$1\$2OTP21WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get21)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP21NrPulses-RB)02r%(\$1\$2OTP21Evt-RB)r%(\$1\$2OTP21DelayRaw-RB)04r%(\$1\$2OTP21WidthRaw-RB)04r";
     # otp22
-    out "%(\$1\$2cmd_otp_get22)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP22NrPulses-RB)02r%(\$1\$2OTP22Evt-RB)r%(\$1\$2OTP22DelayRaw-RB)04r%(\$1\$2OTP22WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get22)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP22NrPulses-RB)02r%(\$1\$2OTP22Evt-RB)r%(\$1\$2OTP22DelayRaw-RB)04r%(\$1\$2OTP22WidthRaw-RB)04r";
     # otp23
-    out "%(\$1\$2cmd_otp_get23)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%(\$1\$2OTP23NrPulses-RB)02r%(\$1\$2OTP23Evt-RB)r%(\$1\$2OTP23DelayRaw-RB)04r%(\$1\$2OTP23WidthRaw-RB)04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get23)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP23NrPulses-RB)02r%(\$1\$2OTP23Evt-RB)r%(\$1\$2OTP23DelayRaw-RB)04r%(\$1\$2OTP23WidthRaw-RB)04r";
 }
     
 evre_get_out_rbv{
     # out0
-    out "%(\$1\$2cmd_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT0FineDelayRaw-RB)02r%*03r%(\$1\$2OUT0RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT0FineDelayRaw-RB)02r%*03r%(\$1\$2OUT0RFDelayRaw-RB)r";
     # out1
-    out "%(\$1\$2cmd_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT1FineDelayRaw-RB)02r%*03r%(\$1\$2OUT1RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT1FineDelayRaw-RB)02r%*03r%(\$1\$2OUT1RFDelayRaw-RB)r";
     # out2
-    out "%(\$1\$2cmd_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT2FineDelayRaw-RB)02r%*03r%(\$1\$2OUT2RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT2FineDelayRaw-RB)02r%*03r%(\$1\$2OUT2RFDelayRaw-RB)r";
     # out3
-    out "%(\$1\$2cmd_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT3FineDelayRaw-RB)02r%*03r%(\$1\$2OUT3RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT3FineDelayRaw-RB)02r%*03r%(\$1\$2OUT3RFDelayRaw-RB)r";
     # out4
-    out "%(\$1\$2cmd_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT4FineDelayRaw-RB)02r%*03r%(\$1\$2OUT4RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT4FineDelayRaw-RB)02r%*03r%(\$1\$2OUT4RFDelayRaw-RB)r";
     # out5
-    out "%(\$1\$2cmd_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT5FineDelayRaw-RB)02r%*03r%(\$1\$2OUT5RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT5FineDelayRaw-RB)02r%*03r%(\$1\$2OUT5RFDelayRaw-RB)r";
     # out6
-    out "%(\$1\$2cmd_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT6FineDelayRaw-RB)02r%*03r%(\$1\$2OUT6RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT6FineDelayRaw-RB)02r%*03r%(\$1\$2OUT6RFDelayRaw-RB)r";
     # out7
-    out "%(\$1\$2cmd_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*r%*02r%*r%*02r%(\$1\$2OUT7FineDelayRaw-RB)02r%*03r%(\$1\$2OUT7RFDelayRaw-RB)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%*02r%*r%*02r%(\$1\$2OUT7FineDelayRaw-RB)02r%*03r%(\$1\$2OUT7RFDelayRaw-RB)r";
 }
 
 eve_get_rbv{
@@ -1017,14 +1024,14 @@ eve_get_rbv{
   
     # Digital inputs readback
     # digin0
-    out "%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";
     # digin1
-    out "%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";
     # digin2
-    out "%(\$1\$2cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent2-RB)0r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent2-RB)0r%*04r%*04r";
 
     # RF output readback
   eve_rf_get;
@@ -1043,14 +1050,14 @@ evr_get_rbv{
 
     # Digital inputs readback
     # digin0
-    out "%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";
     # digin1
-    out "%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";
     # digin2
-    out "%(\$1\$2cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent2-RB)0r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent2-RB)0r%*04r%*04r";
 
     # Timestamp log
   evre_log_get;
@@ -1061,37 +1068,37 @@ evr_get_rbv{
 evg_get_rbv{
     # MUXs readback
     # mux0
-    out "%(\$1\$2cmd_mux_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk0MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk0MuxEnbl-Sts)r%*04r%*04r";
     # mux1
-    out "%(\$1\$2cmd_mux_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk1MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk1MuxEnbl-Sts)r%*04r%*04r";
     # mux2
-    out "%(\$1\$2cmd_mux_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk2MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk2MuxEnbl-Sts)r%*04r%*04r";
     # mux3
-    out "%(\$1\$2cmd_mux_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk3MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk3MuxEnbl-Sts)r%*04r%*04r";
     # mux4
-    out "%(\$1\$2cmd_mux_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk4MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get4)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk4MuxEnbl-Sts)r%*04r%*04r";
     # mux5
-    out "%(\$1\$2cmd_mux_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk5MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get5)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk5MuxEnbl-Sts)r%*04r%*04r";
     # mux6
-    out "%(\$1\$2cmd_mux_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk6MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get6)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk6MuxEnbl-Sts)r%*04r%*04r";
     # mux7
-    out "%(\$1\$2cmd_mux_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2Clk7MuxEnbl-Sts)r%*04r%*04r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk7MuxEnbl-Sts)r%*04r%*04r";
 
     # Digital inputs readback
     # digin0
-    out "%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";    
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";    
     # digin1
-    out "%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";    
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";    
 
     # AC Line
   evg_acline_get;
@@ -1114,35 +1121,35 @@ eve_download{
     # RF output settings
   eve_rf_set;
     # otp
-    out "%(\$1\$2cmd_otp_set00)r%(\$1\$2OTP00RegAByte3)r%(\$1\$2OTP00NrPulses-SP).2r%(\$1\$2OTP00Evt-SP)r%(\$1\$2OTP00DelayRaw-SP).4r%(\$1\$2OTP00WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set01)r%(\$1\$2OTP01RegAByte3)r%(\$1\$2OTP01NrPulses-SP).2r%(\$1\$2OTP01Evt-SP)r%(\$1\$2OTP01DelayRaw-SP).4r%(\$1\$2OTP01WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set02)r%(\$1\$2OTP02RegAByte3)r%(\$1\$2OTP02NrPulses-SP).2r%(\$1\$2OTP02Evt-SP)r%(\$1\$2OTP02DelayRaw-SP).4r%(\$1\$2OTP02WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set03)r%(\$1\$2OTP03RegAByte3)r%(\$1\$2OTP03NrPulses-SP).2r%(\$1\$2OTP03Evt-SP)r%(\$1\$2OTP03DelayRaw-SP).4r%(\$1\$2OTP03WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set04)r%(\$1\$2OTP04RegAByte3)r%(\$1\$2OTP04NrPulses-SP).2r%(\$1\$2OTP04Evt-SP)r%(\$1\$2OTP04DelayRaw-SP).4r%(\$1\$2OTP04WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set05)r%(\$1\$2OTP05RegAByte3)r%(\$1\$2OTP05NrPulses-SP).2r%(\$1\$2OTP05Evt-SP)r%(\$1\$2OTP05DelayRaw-SP).4r%(\$1\$2OTP05WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set06)r%(\$1\$2OTP06RegAByte3)r%(\$1\$2OTP06NrPulses-SP).2r%(\$1\$2OTP06Evt-SP)r%(\$1\$2OTP06DelayRaw-SP).4r%(\$1\$2OTP06WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set07)r%(\$1\$2OTP07RegAByte3)r%(\$1\$2OTP07NrPulses-SP).2r%(\$1\$2OTP07Evt-SP)r%(\$1\$2OTP07DelayRaw-SP).4r%(\$1\$2OTP07WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set08)r%(\$1\$2OTP08RegAByte3)r%(\$1\$2OTP08NrPulses-SP).2r%(\$1\$2OTP08Evt-SP)r%(\$1\$2OTP08DelayRaw-SP).4r%(\$1\$2OTP08WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set09)r%(\$1\$2OTP09RegAByte3)r%(\$1\$2OTP09NrPulses-SP).2r%(\$1\$2OTP09Evt-SP)r%(\$1\$2OTP09DelayRaw-SP).4r%(\$1\$2OTP09WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set10)r%(\$1\$2OTP10RegAByte3)r%(\$1\$2OTP10NrPulses-SP).2r%(\$1\$2OTP10Evt-SP)r%(\$1\$2OTP10DelayRaw-SP).4r%(\$1\$2OTP10WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set11)r%(\$1\$2OTP11RegAByte3)r%(\$1\$2OTP11NrPulses-SP).2r%(\$1\$2OTP11Evt-SP)r%(\$1\$2OTP11DelayRaw-SP).4r%(\$1\$2OTP11WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set12)r%(\$1\$2OTP12RegAByte3)r%(\$1\$2OTP12NrPulses-SP).2r%(\$1\$2OTP12Evt-SP)r%(\$1\$2OTP12DelayRaw-SP).4r%(\$1\$2OTP12WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set13)r%(\$1\$2OTP13RegAByte3)r%(\$1\$2OTP13NrPulses-SP).2r%(\$1\$2OTP13Evt-SP)r%(\$1\$2OTP13DelayRaw-SP).4r%(\$1\$2OTP13WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set14)r%(\$1\$2OTP14RegAByte3)r%(\$1\$2OTP14NrPulses-SP).2r%(\$1\$2OTP14Evt-SP)r%(\$1\$2OTP14DelayRaw-SP).4r%(\$1\$2OTP14WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set15)r%(\$1\$2OTP15RegAByte3)r%(\$1\$2OTP15NrPulses-SP).2r%(\$1\$2OTP15Evt-SP)r%(\$1\$2OTP15DelayRaw-SP).4r%(\$1\$2OTP15WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set00)r%(\$1\$2OTP00RegAByte3)r%(\$1\$2OTP00NrPulses-SP).2r%(\$1\$2OTP00Evt-SP)r%(\$1\$2OTP00DelayRaw-SP).4r%(\$1\$2OTP00WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set01)r%(\$1\$2OTP01RegAByte3)r%(\$1\$2OTP01NrPulses-SP).2r%(\$1\$2OTP01Evt-SP)r%(\$1\$2OTP01DelayRaw-SP).4r%(\$1\$2OTP01WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set02)r%(\$1\$2OTP02RegAByte3)r%(\$1\$2OTP02NrPulses-SP).2r%(\$1\$2OTP02Evt-SP)r%(\$1\$2OTP02DelayRaw-SP).4r%(\$1\$2OTP02WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set03)r%(\$1\$2OTP03RegAByte3)r%(\$1\$2OTP03NrPulses-SP).2r%(\$1\$2OTP03Evt-SP)r%(\$1\$2OTP03DelayRaw-SP).4r%(\$1\$2OTP03WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set04)r%(\$1\$2OTP04RegAByte3)r%(\$1\$2OTP04NrPulses-SP).2r%(\$1\$2OTP04Evt-SP)r%(\$1\$2OTP04DelayRaw-SP).4r%(\$1\$2OTP04WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set05)r%(\$1\$2OTP05RegAByte3)r%(\$1\$2OTP05NrPulses-SP).2r%(\$1\$2OTP05Evt-SP)r%(\$1\$2OTP05DelayRaw-SP).4r%(\$1\$2OTP05WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set06)r%(\$1\$2OTP06RegAByte3)r%(\$1\$2OTP06NrPulses-SP).2r%(\$1\$2OTP06Evt-SP)r%(\$1\$2OTP06DelayRaw-SP).4r%(\$1\$2OTP06WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set07)r%(\$1\$2OTP07RegAByte3)r%(\$1\$2OTP07NrPulses-SP).2r%(\$1\$2OTP07Evt-SP)r%(\$1\$2OTP07DelayRaw-SP).4r%(\$1\$2OTP07WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set08)r%(\$1\$2OTP08RegAByte3)r%(\$1\$2OTP08NrPulses-SP).2r%(\$1\$2OTP08Evt-SP)r%(\$1\$2OTP08DelayRaw-SP).4r%(\$1\$2OTP08WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set09)r%(\$1\$2OTP09RegAByte3)r%(\$1\$2OTP09NrPulses-SP).2r%(\$1\$2OTP09Evt-SP)r%(\$1\$2OTP09DelayRaw-SP).4r%(\$1\$2OTP09WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set10)r%(\$1\$2OTP10RegAByte3)r%(\$1\$2OTP10NrPulses-SP).2r%(\$1\$2OTP10Evt-SP)r%(\$1\$2OTP10DelayRaw-SP).4r%(\$1\$2OTP10WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set11)r%(\$1\$2OTP11RegAByte3)r%(\$1\$2OTP11NrPulses-SP).2r%(\$1\$2OTP11Evt-SP)r%(\$1\$2OTP11DelayRaw-SP).4r%(\$1\$2OTP11WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set12)r%(\$1\$2OTP12RegAByte3)r%(\$1\$2OTP12NrPulses-SP).2r%(\$1\$2OTP12Evt-SP)r%(\$1\$2OTP12DelayRaw-SP).4r%(\$1\$2OTP12WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set13)r%(\$1\$2OTP13RegAByte3)r%(\$1\$2OTP13NrPulses-SP).2r%(\$1\$2OTP13Evt-SP)r%(\$1\$2OTP13DelayRaw-SP).4r%(\$1\$2OTP13WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set14)r%(\$1\$2OTP14RegAByte3)r%(\$1\$2OTP14NrPulses-SP).2r%(\$1\$2OTP14Evt-SP)r%(\$1\$2OTP14DelayRaw-SP).4r%(\$1\$2OTP14WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set15)r%(\$1\$2OTP15RegAByte3)r%(\$1\$2OTP15NrPulses-SP).2r%(\$1\$2OTP15Evt-SP)r%(\$1\$2OTP15DelayRaw-SP).4r%(\$1\$2OTP15WidthRaw-SP).4r";
     # out
-    out "%(\$1\$2cmd_out_set0).1r\x00\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set1).1r\x00\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set2).1r\x00\x00\x00%(\$1\$2OUT2SrcHw).1r\x00\x00%(\$1\$2OUT2FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT2RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set3).1r\x00\x00\x00%(\$1\$2OUT3SrcHw).1r\x00\x00%(\$1\$2OUT3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT3RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set4).1r\x00\x00\x00%(\$1\$2OUT4SrcHw).1r\x00\x00%(\$1\$2OUT4FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT4RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set5).1r\x00\x00\x00%(\$1\$2OUT5SrcHw).1r\x00\x00%(\$1\$2OUT5FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT5RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set0).1r\x00\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set1).1r\x00\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set2).1r\x00\x00\x00%(\$1\$2OUT2SrcHw).1r\x00\x00%(\$1\$2OUT2FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT2RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set3).1r\x00\x00\x00%(\$1\$2OUT3SrcHw).1r\x00\x00%(\$1\$2OUT3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT3RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set4).1r\x00\x00\x00%(\$1\$2OUT4SrcHw).1r\x00\x00%(\$1\$2OUT4FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT4RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set5).1r\x00\x00\x00%(\$1\$2OUT5SrcHw).1r\x00\x00%(\$1\$2OUT5FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT5RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalcRaw).1r";
     # digital inputs
-    out "%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1\$2cmd_diginp_set2)r%(\$1\$2DI2Calc)r\x00\x00%(\$1\$2DIEvent2-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set2)r%(\$1\$2DI2Calc)r\x00\x00%(\$1\$2DIEvent2-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     # control settings
   evre_ctrl_set;
     # Timestamp source
@@ -1156,43 +1163,43 @@ evr_download{
     # initialize the module
   evr_conf_set;
     # otp
-    out "%(\$1\$2cmd_otp_set00)r%(\$1\$2OTP00RegAByte3)r%(\$1\$2OTP00NrPulses-SP).2r%(\$1\$2OTP00Evt-SP)r%(\$1\$2OTP00DelayRaw-SP).4r%(\$1\$2OTP00WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set01)r%(\$1\$2OTP01RegAByte3)r%(\$1\$2OTP01NrPulses-SP).2r%(\$1\$2OTP01Evt-SP)r%(\$1\$2OTP01DelayRaw-SP).4r%(\$1\$2OTP01WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set02)r%(\$1\$2OTP02RegAByte3)r%(\$1\$2OTP02NrPulses-SP).2r%(\$1\$2OTP02Evt-SP)r%(\$1\$2OTP02DelayRaw-SP).4r%(\$1\$2OTP02WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set03)r%(\$1\$2OTP03RegAByte3)r%(\$1\$2OTP03NrPulses-SP).2r%(\$1\$2OTP03Evt-SP)r%(\$1\$2OTP03DelayRaw-SP).4r%(\$1\$2OTP03WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set04)r%(\$1\$2OTP04RegAByte3)r%(\$1\$2OTP04NrPulses-SP).2r%(\$1\$2OTP04Evt-SP)r%(\$1\$2OTP04DelayRaw-SP).4r%(\$1\$2OTP04WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set05)r%(\$1\$2OTP05RegAByte3)r%(\$1\$2OTP05NrPulses-SP).2r%(\$1\$2OTP05Evt-SP)r%(\$1\$2OTP05DelayRaw-SP).4r%(\$1\$2OTP05WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set06)r%(\$1\$2OTP06RegAByte3)r%(\$1\$2OTP06NrPulses-SP).2r%(\$1\$2OTP06Evt-SP)r%(\$1\$2OTP06DelayRaw-SP).4r%(\$1\$2OTP06WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set07)r%(\$1\$2OTP07RegAByte3)r%(\$1\$2OTP07NrPulses-SP).2r%(\$1\$2OTP07Evt-SP)r%(\$1\$2OTP07DelayRaw-SP).4r%(\$1\$2OTP07WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set08)r%(\$1\$2OTP08RegAByte3)r%(\$1\$2OTP08NrPulses-SP).2r%(\$1\$2OTP08Evt-SP)r%(\$1\$2OTP08DelayRaw-SP).4r%(\$1\$2OTP08WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set09)r%(\$1\$2OTP09RegAByte3)r%(\$1\$2OTP09NrPulses-SP).2r%(\$1\$2OTP09Evt-SP)r%(\$1\$2OTP09DelayRaw-SP).4r%(\$1\$2OTP09WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set10)r%(\$1\$2OTP10RegAByte3)r%(\$1\$2OTP10NrPulses-SP).2r%(\$1\$2OTP10Evt-SP)r%(\$1\$2OTP10DelayRaw-SP).4r%(\$1\$2OTP10WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set11)r%(\$1\$2OTP11RegAByte3)r%(\$1\$2OTP11NrPulses-SP).2r%(\$1\$2OTP11Evt-SP)r%(\$1\$2OTP11DelayRaw-SP).4r%(\$1\$2OTP11WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set12)r%(\$1\$2OTP12RegAByte3)r%(\$1\$2OTP12NrPulses-SP).2r%(\$1\$2OTP12Evt-SP)r%(\$1\$2OTP12DelayRaw-SP).4r%(\$1\$2OTP12WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set13)r%(\$1\$2OTP13RegAByte3)r%(\$1\$2OTP13NrPulses-SP).2r%(\$1\$2OTP13Evt-SP)r%(\$1\$2OTP13DelayRaw-SP).4r%(\$1\$2OTP13WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set14)r%(\$1\$2OTP14RegAByte3)r%(\$1\$2OTP14NrPulses-SP).2r%(\$1\$2OTP14Evt-SP)r%(\$1\$2OTP14DelayRaw-SP).4r%(\$1\$2OTP14WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set15)r%(\$1\$2OTP15RegAByte3)r%(\$1\$2OTP15NrPulses-SP).2r%(\$1\$2OTP15Evt-SP)r%(\$1\$2OTP15DelayRaw-SP).4r%(\$1\$2OTP15WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set16)r%(\$1\$2OTP16RegAByte3)r%(\$1\$2OTP16NrPulses-SP).2r%(\$1\$2OTP16Evt-SP)r%(\$1\$2OTP16DelayRaw-SP).4r%(\$1\$2OTP16WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set17)r%(\$1\$2OTP17RegAByte3)r%(\$1\$2OTP17NrPulses-SP).2r%(\$1\$2OTP17Evt-SP)r%(\$1\$2OTP17DelayRaw-SP).4r%(\$1\$2OTP17WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set18)r%(\$1\$2OTP18RegAByte3)r%(\$1\$2OTP18NrPulses-SP).2r%(\$1\$2OTP18Evt-SP)r%(\$1\$2OTP18DelayRaw-SP).4r%(\$1\$2OTP18WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set19)r%(\$1\$2OTP19RegAByte3)r%(\$1\$2OTP19NrPulses-SP).2r%(\$1\$2OTP19Evt-SP)r%(\$1\$2OTP19DelayRaw-SP).4r%(\$1\$2OTP19WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set20)r%(\$1\$2OTP20RegAByte3)r%(\$1\$2OTP20NrPulses-SP).2r%(\$1\$2OTP20Evt-SP)r%(\$1\$2OTP20DelayRaw-SP).4r%(\$1\$2OTP20WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set21)r%(\$1\$2OTP21RegAByte3)r%(\$1\$2OTP21NrPulses-SP).2r%(\$1\$2OTP21Evt-SP)r%(\$1\$2OTP21DelayRaw-SP).4r%(\$1\$2OTP21WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set22)r%(\$1\$2OTP22RegAByte3)r%(\$1\$2OTP22NrPulses-SP).2r%(\$1\$2OTP22Evt-SP)r%(\$1\$2OTP22DelayRaw-SP).4r%(\$1\$2OTP22WidthRaw-SP).4r";
-    out "%(\$1\$2cmd_otp_set23)r%(\$1\$2OTP23RegAByte3)r%(\$1\$2OTP23NrPulses-SP).2r%(\$1\$2OTP23Evt-SP)r%(\$1\$2OTP23DelayRaw-SP).4r%(\$1\$2OTP23WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set00)r%(\$1\$2OTP00RegAByte3)r%(\$1\$2OTP00NrPulses-SP).2r%(\$1\$2OTP00Evt-SP)r%(\$1\$2OTP00DelayRaw-SP).4r%(\$1\$2OTP00WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set01)r%(\$1\$2OTP01RegAByte3)r%(\$1\$2OTP01NrPulses-SP).2r%(\$1\$2OTP01Evt-SP)r%(\$1\$2OTP01DelayRaw-SP).4r%(\$1\$2OTP01WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set02)r%(\$1\$2OTP02RegAByte3)r%(\$1\$2OTP02NrPulses-SP).2r%(\$1\$2OTP02Evt-SP)r%(\$1\$2OTP02DelayRaw-SP).4r%(\$1\$2OTP02WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set03)r%(\$1\$2OTP03RegAByte3)r%(\$1\$2OTP03NrPulses-SP).2r%(\$1\$2OTP03Evt-SP)r%(\$1\$2OTP03DelayRaw-SP).4r%(\$1\$2OTP03WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set04)r%(\$1\$2OTP04RegAByte3)r%(\$1\$2OTP04NrPulses-SP).2r%(\$1\$2OTP04Evt-SP)r%(\$1\$2OTP04DelayRaw-SP).4r%(\$1\$2OTP04WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set05)r%(\$1\$2OTP05RegAByte3)r%(\$1\$2OTP05NrPulses-SP).2r%(\$1\$2OTP05Evt-SP)r%(\$1\$2OTP05DelayRaw-SP).4r%(\$1\$2OTP05WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set06)r%(\$1\$2OTP06RegAByte3)r%(\$1\$2OTP06NrPulses-SP).2r%(\$1\$2OTP06Evt-SP)r%(\$1\$2OTP06DelayRaw-SP).4r%(\$1\$2OTP06WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set07)r%(\$1\$2OTP07RegAByte3)r%(\$1\$2OTP07NrPulses-SP).2r%(\$1\$2OTP07Evt-SP)r%(\$1\$2OTP07DelayRaw-SP).4r%(\$1\$2OTP07WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set08)r%(\$1\$2OTP08RegAByte3)r%(\$1\$2OTP08NrPulses-SP).2r%(\$1\$2OTP08Evt-SP)r%(\$1\$2OTP08DelayRaw-SP).4r%(\$1\$2OTP08WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set09)r%(\$1\$2OTP09RegAByte3)r%(\$1\$2OTP09NrPulses-SP).2r%(\$1\$2OTP09Evt-SP)r%(\$1\$2OTP09DelayRaw-SP).4r%(\$1\$2OTP09WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set10)r%(\$1\$2OTP10RegAByte3)r%(\$1\$2OTP10NrPulses-SP).2r%(\$1\$2OTP10Evt-SP)r%(\$1\$2OTP10DelayRaw-SP).4r%(\$1\$2OTP10WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set11)r%(\$1\$2OTP11RegAByte3)r%(\$1\$2OTP11NrPulses-SP).2r%(\$1\$2OTP11Evt-SP)r%(\$1\$2OTP11DelayRaw-SP).4r%(\$1\$2OTP11WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set12)r%(\$1\$2OTP12RegAByte3)r%(\$1\$2OTP12NrPulses-SP).2r%(\$1\$2OTP12Evt-SP)r%(\$1\$2OTP12DelayRaw-SP).4r%(\$1\$2OTP12WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set13)r%(\$1\$2OTP13RegAByte3)r%(\$1\$2OTP13NrPulses-SP).2r%(\$1\$2OTP13Evt-SP)r%(\$1\$2OTP13DelayRaw-SP).4r%(\$1\$2OTP13WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set14)r%(\$1\$2OTP14RegAByte3)r%(\$1\$2OTP14NrPulses-SP).2r%(\$1\$2OTP14Evt-SP)r%(\$1\$2OTP14DelayRaw-SP).4r%(\$1\$2OTP14WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set15)r%(\$1\$2OTP15RegAByte3)r%(\$1\$2OTP15NrPulses-SP).2r%(\$1\$2OTP15Evt-SP)r%(\$1\$2OTP15DelayRaw-SP).4r%(\$1\$2OTP15WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set16)r%(\$1\$2OTP16RegAByte3)r%(\$1\$2OTP16NrPulses-SP).2r%(\$1\$2OTP16Evt-SP)r%(\$1\$2OTP16DelayRaw-SP).4r%(\$1\$2OTP16WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set17)r%(\$1\$2OTP17RegAByte3)r%(\$1\$2OTP17NrPulses-SP).2r%(\$1\$2OTP17Evt-SP)r%(\$1\$2OTP17DelayRaw-SP).4r%(\$1\$2OTP17WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set18)r%(\$1\$2OTP18RegAByte3)r%(\$1\$2OTP18NrPulses-SP).2r%(\$1\$2OTP18Evt-SP)r%(\$1\$2OTP18DelayRaw-SP).4r%(\$1\$2OTP18WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set19)r%(\$1\$2OTP19RegAByte3)r%(\$1\$2OTP19NrPulses-SP).2r%(\$1\$2OTP19Evt-SP)r%(\$1\$2OTP19DelayRaw-SP).4r%(\$1\$2OTP19WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set20)r%(\$1\$2OTP20RegAByte3)r%(\$1\$2OTP20NrPulses-SP).2r%(\$1\$2OTP20Evt-SP)r%(\$1\$2OTP20DelayRaw-SP).4r%(\$1\$2OTP20WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set21)r%(\$1\$2OTP21RegAByte3)r%(\$1\$2OTP21NrPulses-SP).2r%(\$1\$2OTP21Evt-SP)r%(\$1\$2OTP21DelayRaw-SP).4r%(\$1\$2OTP21WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set22)r%(\$1\$2OTP22RegAByte3)r%(\$1\$2OTP22NrPulses-SP).2r%(\$1\$2OTP22Evt-SP)r%(\$1\$2OTP22DelayRaw-SP).4r%(\$1\$2OTP22WidthRaw-SP).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_set23)r%(\$1\$2OTP23RegAByte3)r%(\$1\$2OTP23NrPulses-SP).2r%(\$1\$2OTP23Evt-SP)r%(\$1\$2OTP23DelayRaw-SP).4r%(\$1\$2OTP23WidthRaw-SP).4r";
     # out
-    out "%(\$1\$2cmd_out_set0).1r\x00\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set1).1r\x00\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set2).1r\x00\x00\x00%(\$1\$2OUT2SrcHw).1r\x00\x00%(\$1\$2OUT2FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT2RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set3).1r\x00\x00\x00%(\$1\$2OUT3SrcHw).1r\x00\x00%(\$1\$2OUT3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT3RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set4).1r\x00\x00\x00%(\$1\$2OUT4SrcHw).1r\x00\x00%(\$1\$2OUT4FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT4RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set5).1r\x00\x00\x00%(\$1\$2OUT5SrcHw).1r\x00\x00%(\$1\$2OUT5FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT5RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalcRaw).1r";
-    out "%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set0).1r\x00\x00\x00%(\$1\$2OUT0SrcHw).1r\x00\x00%(\$1\$2OUT0FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT0RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set1).1r\x00\x00\x00%(\$1\$2OUT1SrcHw).1r\x00\x00%(\$1\$2OUT1FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT1RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set2).1r\x00\x00\x00%(\$1\$2OUT2SrcHw).1r\x00\x00%(\$1\$2OUT2FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT2RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set3).1r\x00\x00\x00%(\$1\$2OUT3SrcHw).1r\x00\x00%(\$1\$2OUT3FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT3RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set4).1r\x00\x00\x00%(\$1\$2OUT4SrcHw).1r\x00\x00%(\$1\$2OUT4FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT4RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set5).1r\x00\x00\x00%(\$1\$2OUT5SrcHw).1r\x00\x00%(\$1\$2OUT5FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT5RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalcRaw).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalcRaw).1r";
     # digital inputs
-    out "%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1\$2cmd_diginp_set2)r%(\$1\$2DI2Calc)r\x00\x00%(\$1\$2DIEvent2-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set2)r%(\$1\$2DI2Calc)r\x00\x00%(\$1\$2DIEvent2-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     # control settings
   evre_ctrl_set;
     # Timestamp source
@@ -1206,24 +1213,24 @@ evg_download{
     # initialize the module
   evg_conf_set;
     # mux
-    out "%(\$1\$2cmd_mux_set0).1r\x00\x00\x00%(\$1\$2Clk0MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk0MuxDiv-SP.RVAL).4r";
-    out "%(\$1\$2cmd_mux_set1).1r\x00\x00\x00%(\$1\$2Clk1MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk1MuxDiv-SP.RVAL).4r";
-    out "%(\$1\$2cmd_mux_set2).1r\x00\x00\x00%(\$1\$2Clk2MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk2MuxDiv-SP.RVAL).4r";
-    out "%(\$1\$2cmd_mux_set3).1r\x00\x00\x00%(\$1\$2Clk3MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk3MuxDiv-SP.RVAL).4r";
-    out "%(\$1\$2cmd_mux_set4).1r\x00\x00\x00%(\$1\$2Clk4MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk4MuxDiv-SP.RVAL).4r";
-    out "%(\$1\$2cmd_mux_set5).1r\x00\x00\x00%(\$1\$2Clk5MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk5MuxDiv-SP.RVAL).4r";
-    out "%(\$1\$2cmd_mux_set6).1r\x00\x00\x00%(\$1\$2Clk6MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk6MuxDiv-SP.RVAL).4r";
-    out "%(\$1\$2cmd_mux_set7).1r\x00\x00\x00%(\$1\$2Clk7MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk7MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set0).1r\x00\x00\x00%(\$1\$2Clk0MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk0MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set1).1r\x00\x00\x00%(\$1\$2Clk1MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk1MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set2).1r\x00\x00\x00%(\$1\$2Clk2MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk2MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set3).1r\x00\x00\x00%(\$1\$2Clk3MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk3MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set4).1r\x00\x00\x00%(\$1\$2Clk4MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk4MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set5).1r\x00\x00\x00%(\$1\$2Clk5MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk5MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set6).1r\x00\x00\x00%(\$1\$2Clk6MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk6MuxDiv-SP.RVAL).4r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set7).1r\x00\x00\x00%(\$1\$2Clk7MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk7MuxDiv-SP.RVAL).4r";
 
     # digital inputs
-    out "%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
 
   # interlock map
-    out "%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sel).2r%(\$1\$2IntlkTbl0to15-Sel).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-SP)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sel).2r%(\$1\$2IntlkTbl0to15-Sel).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-SP)r";
 
   # interlock control
-  out "%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrlCalc)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-SP).4r\x00\x00\x00\x00";
+  out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrlCalc)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-SP).4r\x00\x00\x00\x00";
   
     # ac line settings
   evg_acline_set;
