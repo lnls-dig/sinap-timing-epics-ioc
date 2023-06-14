@@ -1,6 +1,6 @@
 ### save_restore setup
 # status-PV prefix
-save_restoreSet_status_prefix("Timing:")
+save_restoreSet_status_prefix("${P}${R}")
 # Debug-output level
 save_restoreSet_Debug(0)
 
@@ -36,5 +36,5 @@ set_pass1_restoreFile("auto_settings_${P}${R}.sav")
 set_requestfile_path("$(TOP)/iocBoot/$(IOC)", "autosave")
 set_requestfile_path("$(TOP)", "timingApp/Db")
 
-dbLoadRecords("$(AUTOSAVE)/asApp/Db/save_restoreStatus.db", "P=${P}${R}")
+dbLoadRecords("$(TOP)/db/save_restoreStatus.db", "P=${P}${R}")
 

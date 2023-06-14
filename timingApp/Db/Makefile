@@ -23,6 +23,8 @@ DB += Events.db
 DB += HLEvents.db
 DB += SeqRAM.db
 
+DB += $(AUTOSAVE)/asApp/Db/save_restoreStatus.db
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_TEMPLATE = <templatename>
