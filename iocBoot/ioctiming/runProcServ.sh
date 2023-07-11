@@ -20,7 +20,7 @@ set -u
 
 # Run run*.sh scripts with procServ
 if [ "${UNIX_SOCKET}" ]; then
-    /usr/bin/procServ -f -n TIMING_${DEVICE_TYPE} -i ^C^D unix:./procserv.sock ./runGenericModule.sh "$@"
+    /usr/bin/procServ -L-  -f -n TIMING_${DEVICE_TYPE} -i ^C^D unix:./procserv.sock ./runGenericModule.sh "$@"
 else
-    /usr/bin/procServ -f -n TIMING_${DEVICE_TYPE} -i ^C^D ${DEVICE_TELNET_PORT} ./runGenericModule.sh "$@"
+    /usr/bin/procServ -L- -f -n TIMING_${DEVICE_TYPE} -i ^C^D ${DEVICE_TELNET_PORT} ./runGenericModule.sh "$@"
 fi

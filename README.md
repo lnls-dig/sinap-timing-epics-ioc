@@ -21,6 +21,8 @@ E.g.:
 
 ### How to build docker image
 
-Run `docker compose` from docker directory saving COMMIT_ID as environemnt variable:
+Make sure the `docker/` git submodule has been initialized or that this repository was cloned recursively.
 
-`COMMIT_ID=$(git rev-parse --short HEAD) docker compose build --build-arg .env`
+Run `docker compose` from root directory, after exporting the `COMMIT_ID` environment variable:
+
+`COMMIT_ID=$(git rev-parse --short HEAD) docker compose build`
