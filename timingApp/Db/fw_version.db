@@ -1,0 +1,50 @@
+########################################################################
+# Firmware Version [62]
+
+record(longin, "$(P)$(R)FrmVersionA-Cte"){
+  #field(ASG, "Reserved")
+  field(DESC, "firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
+}
+
+record(longin, "$(P)$(R)FrmVersionB-Cte"){
+  #field(ASG, "Reserved")
+  field(DESC, "firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
+}
+
+record(longin, "$(P)$(R)FrmVersionC-Cte"){
+  #field(ASG, "Reserved")
+  field(DESC, "firmware version")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
+}
+
+record(calcout, "$(P)$(R)cmd_frmvrs_get"){
+  field(ASG, "Reserved")
+  field(DESC, "Firmware version read command code")
+  field(VAL, "0xBE")
+}
+
+record(scalcout, "$(P)$(R)FrmVersionAStr-Cte") {
+  field(INPA, "$(P)$(R)FrmVersionA-Cte CP")
+  field(CALC, "PRINTF(\"%08x\",A)")
+}
+record(scalcout, "$(P)$(R)FrmVersionBStr-Cte") {
+  field(INPA, "$(P)$(R)FrmVersionB-Cte CP")
+  field(CALC, "PRINTF(\"%08x\",A)")
+}
+record(scalcout, "$(P)$(R)FrmVersionCStr-Cte") {
+  field(INPA, "$(P)$(R)FrmVersionC-Cte CP")
+  field(CALC, "PRINTF(\"%08x\",A)")
+}
+
+record(scalcout, "$(P)$(R)FwVersion-Cte"){
+  field(INAA, "$(P)$(R)FrmVersionAStr-Cte.SVAL CP")
+  field(INBB, "$(P)$(R)FrmVersionBStr-Cte.SVAL CP")
+  field(INCC, "$(P)$(R)FrmVersionCStr-Cte.SVAL CP")
+  field(CALC, "AA+BB+CC")
+  field(PINI, YES)
+}

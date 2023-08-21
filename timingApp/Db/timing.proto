@@ -792,8 +792,6 @@ evg_async_set {
 # Firmware version register EVG, Fanout, EVR & EVE [62]
 
 frmvrs_get{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
     @init{
       out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_frmvrs_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
       in "\x02%*04r\x00\x0D\xFE%(\$1\$2FrmVersionA-Cte)04r%(\$1\$2FrmVersionB-Cte)04r%(\$1\$2FrmVersionC-Cte)04r";
