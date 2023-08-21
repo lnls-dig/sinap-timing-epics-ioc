@@ -93,36 +93,6 @@ record(longout, "$(P)$(R)cmd_ctrl_set") {
 }
 
 ########################################################################
-# Firmware Version [62]
-
-record(longin, "$(P)$(R)FrmVersionA-Cte"){
-  #field(ASG, "Reserved")
-  field(DESC, "EVO firmware version")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
-}
-
-record(longin, "$(P)$(R)FrmVersionB-Cte"){
-  #field(ASG, "Reserved")
-  field(DESC, "EVO firmware version")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
-}
-
-record(longin, "$(P)$(R)FrmVersionC-Cte"){
-  #field(ASG, "Reserved")
-  field(DESC, "EVO firmware version")
-  field(DTYP, "stream")
-  field(INP, "@timing.proto frmvrs_get($(P),$(R)) $(PORT)")
-}
-
-record(calcout, "$(P)$(R)cmd_frmvrs_get"){
-  field(ASG, "Reserved")
-  field(DESC, "Firmware version read command code")
-  field(VAL, "0xBE")
-}
-
-########################################################################
 # Configuration Register [63]
 
 record(longin, "$(P)$(R)Alive-Mon") {

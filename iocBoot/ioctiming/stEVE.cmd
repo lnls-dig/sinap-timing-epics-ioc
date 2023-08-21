@@ -21,6 +21,8 @@ drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT} udp",0,0,0)
 ## Load record instances
 dbLoadRecords("${TOP}/db/eve.db", "P=${P}, R=${R}, IPADDR=${IPADDR}, IPPORT=${IPPORT}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
+dbLoadRecords("${TOP}/db/fw_version.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+
 dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=00, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=01, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=02, PORT=${PORT}, ADDR=0, TIMEOUT=2")
