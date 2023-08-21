@@ -104,7 +104,7 @@ evg_ctrl_seqen_enable_intr{
 # OTP Registers [1 - 16 & 25 - 32]
 evre_otp_get {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP\$3NrPulses-RB)02r%(\$1\$2OTP\$3Evt-RB)r%(\$1\$2OTP\$3DelayRaw-RB)04r%(\$1\$2OTP\$3WidthRaw-RB)04r";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2OTP\$3NrPulses-RB)02r%(\$1\$2OTP\$3Evt-RB)0r%(\$1\$2OTP\$3DelayRaw-RB)04r%(\$1\$2OTP\$3WidthRaw-RB)04r";
 }
 
 evre_otp_set {
