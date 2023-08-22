@@ -191,6 +191,7 @@ record(bo, "$(P)$(R)DevEnbl-Sel"){
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)EVGEN")
+  field(PINI, YES)
 }
 
 record(longout, "$(P)$(R)cmd_ctrl_get") {

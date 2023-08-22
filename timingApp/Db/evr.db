@@ -29,6 +29,7 @@ record(bo, "$(P)$(R)DevEnbl-Sel") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(OUT, "@timing.proto evre_ctrl_set($(P),$(R)) $(PORT)")
+  field(PINI, YES)
 }
 
 record(mbbiDirect, "$(P)$(R)DevEnblRaw") {
