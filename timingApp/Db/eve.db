@@ -3,6 +3,7 @@
 
 record(ai, "$(P)$(R)FPGAClk-Cte") {
   field(DESC, "FPGA Clock from EVG")
+  field(EGU, "Hz")
   field(SCAN, "1 second")
   field(PINI, "1")
   field(VAL, "124914500")
