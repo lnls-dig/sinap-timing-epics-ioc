@@ -767,15 +767,6 @@ record(longout, "$(P)$(R)cmd_diginp_get1") {
 ########################################################################
 # Interlock map [56]
 
-record(mbboDirect, "$(P)$(R)ilock_mbbo") {
-  field(DESC, "interlock input to output map")
-}
-
-record(mbbiDirect, "$(P)$(R)ilock_mbbi") {
-  field(DESC, "interlock input to output map")
-  field(VAL, "1")
-}
-
 record(seq, "$(P)$(R)ilock_seq1") {
   field(DESC, "interlock input to output map")
   field(DOL1, "$(P)$(R)IntlkTbl0to15-Sts.B0")
