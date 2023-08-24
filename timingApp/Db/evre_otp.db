@@ -97,6 +97,7 @@ record(bo, "$(P)$(R)OTP$(num)State-Sel") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)OTP$(num)RegAByte3")
+  field(PINI, YES)
 }
 
 record(bo, "$(P)$(R)OTP$(num)Polarity-Sel") {
