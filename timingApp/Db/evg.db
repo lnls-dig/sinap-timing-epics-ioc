@@ -1011,6 +1011,7 @@ record(bo, "$(P)$(R)IntlkCtrlEnbl-Sel") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)IntlkCtrlEnblCalc")
+  field(PINI, YES)
 }
 
 record(bo, "$(P)$(R)IntlkCtrlRst-Sel") {
