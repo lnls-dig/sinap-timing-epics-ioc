@@ -28,16 +28,10 @@ if [ -z "$DEVICE_TYPE" ]; then
 fi
 
 TIMING_TYPE=$(echo ${DEVICE_TYPE} | grep -Eo "[^0-9]+");
-TIMING_NUMBER=$(echo ${DEVICE_TYPE} | grep -Eo "[0-9]+");
 
 if [ -z "$TIMING_TYPE" ]; then
     echo "Device type is not set. Please use -d option" >&2
     exit 5
-fi
-
-if [ -z "$TIMING_NUMBER" ]; then
-    echo "Device number is not set. Please use -d option" >&2
-    exit 6
 fi
 
 case ${TIMING_TYPE} in
