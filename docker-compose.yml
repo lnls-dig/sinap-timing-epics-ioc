@@ -13,4 +13,4 @@ services:
         REPONAME: sinap-timing-epics-ioc
         RUNDIR: /opt/sinap-timing-epics-ioc/iocBoot/ioctiming
         ENTRYPOINT: ./runProcServ.sh
-        RUNTIME_PACKAGES: python3
+        RUNTIME_PACKAGES: python3 ca-certificates
