@@ -5,6 +5,7 @@ services:
     build:
       context: ./
       dockerfile: docker/Dockerfile
+      target: static-link
       labels:
         org.opencontainers.image.revision: ${COMMIT_ID}
         org.opencontainers.image.source: https://github.com/lnls-dig/sinap-timing-epics-ioc
