@@ -15,10 +15,11 @@ int statdev;
 assign statdev to "{P}{R}DevStatus-Mon";
 monitor statdev;
 
-int past_alive = -1;
-int alive;
-assign alive to "{P}{R}Alive-Mon";
-monitor alive;
+int cmd_conf_get;
+assign cmd_conf_get to "{P}{R}cmd_conf_get";
+monitor cmd_conf_get;
+evflag cmd_conf_get_event;
+sync cmd_conf_get cmd_conf_get_event;
 
 int funselRBV;
 assign funselRBV to "{P}{R}DevFun-Sts.RVAL";
@@ -105,34 +106,9 @@ ss networkStatus {
 
 	state networkCheck {
 
-		when (delay(2.0)) {
-
-			%{/* Check main status PVs */}%
-
-			if (funselRBV == 0) {
-
-				past_alive = -1;
-				network = 0;
-				pvPut(network,SYNC);
-			}
-			else if (statdev == 0) {
-
-				past_alive = -1;
-				network = 1;
-				pvPut(network,SYNC);
-			}
-			else if (alive > past_alive) {
-
-				past_alive = alive;
-				network = 1;
-				pvPut(network,SYNC);
-			}
-			else {
-				past_alive = alive;
-				network = 0;
-				pvPut(network,SYNC);
-			}
-
+		when (efTestAndClear(cmd_conf_get_event)) {
+			network = !(pvStatus(cmd_conf_get) || funselRBV == 0);
+			pvPut(network,SYNC);
 		} state networkCheck
 	}
 }
