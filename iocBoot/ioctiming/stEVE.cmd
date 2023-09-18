@@ -18,6 +18,8 @@ asSetFilename("$(TOP)/timingApp/Db/accessSecurityFile.acf")
 
 drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT} udp",0,0,0)
 
+dbLoadRecords("${TOP}/db/asynRecord.db", "P=$(P)$(R), R=asyn, PORT=$(PORT), ADDR=0, OMAX=80, IMAX=80")
+
 ## Load record instances
 dbLoadRecords("${TOP}/db/eve.db", "P=${P}, R=${R}, IPADDR=${IPADDR}, IPPORT=${IPPORT}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
