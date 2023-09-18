@@ -26,6 +26,8 @@ DB += fw_version.db
 
 DB += $(AUTOSAVE)/asApp/Db/save_restoreStatus.db
 
+DB += $(ASYN)/db/asynRecord.db
+
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
 # <anyname>_TEMPLATE = <templatename>

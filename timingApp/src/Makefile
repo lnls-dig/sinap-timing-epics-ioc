@@ -102,6 +102,7 @@ ifneq ($(SNCSEQ),)
     sncFOUTSetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
 endif
 
+timing_DBD += asyn.dbd
 timing_DBD += drvAsynIPPort.dbd
 timing_DBD += calcSupport.dbd
 timing_DBD += stream.dbd
