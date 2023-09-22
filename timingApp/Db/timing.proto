@@ -8,6 +8,7 @@
 Terminator = "";
 MaxInput = 20;
 ExtraInput = Ignore;
+ReadTimeout = 1200;
 ################################################################################
 # Control and Status Register FOUT [0]
 
