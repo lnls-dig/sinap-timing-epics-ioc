@@ -625,9 +625,9 @@ evre_tmstmp_timesrcRBV_intr{
 }
 
 ################################################################################
-# Timestamp log register EVE & EVR [52]
+# Timestamp log register EVG, EVE & EVR [52]
 
-evre_log_get{
+evgre_log_get{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_log_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\x02%*04r\x00\x0D\xF4%(\$1\$2LOGUTC)04r%(\$1\$2LOGSUBSEC)04r%(\$1\$2LOGEVENT)r%(\$1\$2LOGCOUNT)02r%*r";
     @init{
@@ -636,7 +636,7 @@ evre_log_get{
     }
 }
 
-evre_log_set{
+evgre_log_set{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_log_set)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3)r";
     # reading of register is made by record "onlyRead" or "readAndUpdate" to assure synchronization
 }
@@ -1035,7 +1035,7 @@ eve_get_rbv{
     # RF output readback
   eve_rf_get;
     # Timestamp log
-      evre_log_get;
+      evgre_log_get;
     # Timestamp
   evre_tmstmp_get;
 }
@@ -1059,7 +1059,7 @@ evr_get_rbv{
     in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent2-RB)0r%*04r%*04r";
 
     # Timestamp log
-  evre_log_get;
+  evgre_log_get;
     # Timestamp
   evre_tmstmp_get;
 }
