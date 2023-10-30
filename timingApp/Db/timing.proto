@@ -756,12 +756,12 @@ evg_ilockcontrol_get {
 }
 
 evg_ilockcontrol_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrl\$3)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-RB).4r\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrl\$3)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-RB).4r\x00\x00%(\$1\$2IntlkLogEnbl-RB).1r\x00";
     evg_ilockcontrol_get;
 }
 
-evg_ilockrepeat_time_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrlRaw)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-SP).4r\x00\x00\x00\x00";
+evg_ilockrepeat_time_log_set {
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrlRaw)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-SP).4r\x00\x00%(\$1\$2IntlkLogEnbl-SP).1r\x00";
     evg_ilockcontrol_get;
 }
 
@@ -775,6 +775,10 @@ evg_ilock_control_intr {
 
 evg_ilock_repeat_time_intr {
     in "\x02%*04r\x00\x0D\xF9%*04r%04r%*04r";
+}
+
+evg_ilock_log_intr {
+    in "\x02%*04r\x00\x0D\xF9%*04r%*04r%*02r%01r%*r";
 }
 
 #evg_ilock_status {
