@@ -52,7 +52,7 @@ record(calcout, "$(P)$(R)STOPLOG") {
   field(INPA, "$(P)$(R)stoplog.VAL")
   field(INPB, "$(P)$(R)RSTLOGRBV.VAL")
   field(CALC, "(A<<7)|(B<<6)")
-  field(OUT, "@timing.proto evre_log_set($(P),$(R),STOPLOG) $(PORT)")
+  field(OUT, "@timing.proto evgre_log_set($(P),$(R),STOPLOG) $(PORT)")
   field(FLNK, "$(P)$(R)onlyRead")
 }
 
@@ -63,7 +63,7 @@ record(calcout, "$(P)$(R)RSTLOG") {
   field(INPA, "$(P)$(R)stoplogAUX.VAL")
   field(INPB, "$(P)$(R)rstlog.RVAL")
   field(CALC, "(A & 128)|(B<<6)")
-  field(OUT, "@timing.proto evre_log_set($(P),$(R),RSTLOG) $(PORT)")
+  field(OUT, "@timing.proto evgre_log_set($(P),$(R),RSTLOG) $(PORT)")
   field(FLNK, "$(P)$(R)onlyRead")
 }
 
@@ -75,7 +75,7 @@ record(calcout, "$(P)$(R)PULL") {
   field(INPB, "$(P)$(R)RSTLOGRBV.VAL")
   field(INPC, "$(P)$(R)pull.RVAL")
   field(CALC, "(A & 128)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_log_set($(P),$(R),PULL) $(PORT)")
+  field(OUT, "@timing.proto evgre_log_set($(P),$(R),PULL) $(PORT)")
   field(PRIO, "HIGH")
   field(FLNK, "$(P)$(R)readAndUpdate")
 }
@@ -161,7 +161,7 @@ record(longout, "$(P)$(R)onlyRead"){
   field(ASG, "Reserved")
   field(DESC, "Read timestamp and don't update buffers")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_log_get($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evgre_log_get($(P),$(R)) $(PORT)")
   field(FLNK, "$(P)$(R)LOGCTRL")
 }
 
@@ -169,7 +169,7 @@ record(longout, "$(P)$(R)readAndUpdate"){
   field(ASG, "Reserved")
   field(DESC, "Read register and update buffers")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_log_get($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evgre_log_get($(P),$(R)) $(PORT)")
   field(PRIO, "HIGH")
   field(FLNK, "$(P)$(R)UTCbuffer")
 }
@@ -292,7 +292,7 @@ record(longout, "$(P)$(R)cmd_log_get"){
   field(VAL, "0xB4")
   field(SCAN, "1 second")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_log_get($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evgre_log_get($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_log_set"){
