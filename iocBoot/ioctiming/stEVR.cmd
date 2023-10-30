@@ -24,6 +24,7 @@ dbLoadRecords("${TOP}/db/asynRecord.db", "P=$(P)$(R), R=asyn, PORT=$(PORT), ADDR
 dbLoadRecords("${TOP}/db/evr.db", "P=${P}, R=${R}, IPADDR=${IPADDR}, IPPORT=${IPPORT}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
 dbLoadRecords("${TOP}/db/fw_version.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/event_log.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
 dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=00, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=01, PORT=${PORT}, ADDR=0, TIMEOUT=2")
