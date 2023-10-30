@@ -1005,6 +1005,22 @@ record(longout, "$(P)$(R)cmd_evg_ilockcontrol_get") {
   field(OUT, "@timing.proto evg_ilockcontrol_get($(P),$(R)) $(PORT)")
 }
 
+record(mbboDirect, "$(P)$(R)IntlkLogEnbl-SP") {
+  field(DESC, "Each bit sets interlock map log enable")
+  field(NOBT, "8")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockrepeat_time_log_set($(P),$(R)) $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)IntlkLogEnbl-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Interlock map log enable status")
+  field(NOBT, "8")
+  field(DTYP, "stream")
+  field(SCAN, "I/O Intr")
+  field(INP, "@timing.proto evg_ilock_log_intr $(PORT)")
+}
+
 record(bo, "$(P)$(R)IntlkCtrlEnbl-Sel") {
   field(DESC, "Interlock map enable")
   field(MASK, "1")
@@ -1081,7 +1097,7 @@ record(longout, "$(P)$(R)IntlkCtrlRepeatTime-SP") {
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockrepeat_time_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockrepeat_time_log_set($(P),$(R)) $(PORT)")
 }
 
 record(longin, "$(P)$(R)IntlkCtrlRepeatTime-RB") {
