@@ -46,6 +46,8 @@ iocInit
 # Module initialization and network status state machine
 seq sncFOUTSetup, "P=${P}, R=${R}"
 
+< rx_locked.cmd
+
 # Create monitor for Autosave
 create_monitor_set("autosave_fout.req", 60, "P=${P}, R=${R}")
 

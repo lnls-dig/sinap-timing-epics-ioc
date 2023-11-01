@@ -127,6 +127,8 @@ seq sncEVGSetup, "P=${P}, R=${R}"
 # Injection System State Machine
 seq sncSeqRAM, "P=${P}, R=${R}, ev_num=${EVT_NUM}"
 
+< rx_locked.cmd
+
 # Create monitor for Autosave
 create_monitor_set("autosave_evg.req", 60, "P=${P}, R=${R}")
 
