@@ -1,0 +1,47 @@
+program EVGFOUTRxLocked
+option +s;
+
+int frame_pos;
+assign frame_pos to "{P}{R}OUT{num}FramePos-Mon";
+monitor frame_pos;
+evflag frame_pos_event;
+sync frame_pos to frame_pos_event;
+
+int rx_locked;
+assign rx_locked to "{P}{R}OUT{num}RxLocked-Mon";
+
+ss rx_locked {
+    state off {
+        entry {
+            rx_locked = 0;
+            pvPut(rx_locked);
+        }
+
+        when (delay(5)) {
+        } state on
+
+        when (efTestAndClear(frame_pos_event)) {
+        } state off
+    }
+
+    state on {
+        int change_counter;
+
+        entry {
+            change_counter = 0;
+            rx_locked = 1;
+            pvPut(rx_locked);
+        }
+
+        when (efTestAndClear(frame_pos_event)) {
+            change_counter++;
+        } state on
+
+        when (delay(5)) {
+            change_counter = 0;
+        } state on
+
+        when (change_counter > 1) {
+        } state off
+    }
+}

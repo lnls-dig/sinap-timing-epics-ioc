@@ -17,6 +17,13 @@ record(longin, "$(P)$(R)OUT$(num)FramePos-Mon") {
   field(INP, "@timing.proto evgfout_out_pos$(num)_intr $(PORT)")
 }
 
+record(bi, "$(P)$(R)OUT$(num)RxLocked-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "OUT$(num) rx clock locked")
+  field(ZNAM, "off")
+  field(ONAM, "on")
+}
+
 record(longout, "$(P)$(R)OUT$(num)Delay-SP") {
   field(DESC, "Set output delay OUT$(num)")
   field(DTYP, "stream")

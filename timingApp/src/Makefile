@@ -100,6 +100,9 @@ ifneq ($(SNCSEQ),)
     sncFOUTSetupProgram_SRCS += sncFOUTSetupProgram.st
     sncFOUTSetupProgram_LIBS += seq pv
     sncFOUTSetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
+
+    timing_DBD += EVGFOUTRxLocked.dbd
+    timing_SRCS += EVGFOUTRxLocked.stt
 endif
 
 timing_DBD += asyn.dbd
