@@ -188,6 +188,7 @@ record(bo, "$(P)$(R)DIEnbl0-Sel") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)DIStateCalc0")
+  field(PINI, YES)
 }
 
 record(bo, "$(P)$(R)DIPol0-Sel") {
@@ -322,6 +323,7 @@ record(bo, "$(P)$(R)DIEnbl1-Sel") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)DIStateCalc1")
+  field(PINI, YES)
 }
 
 record(bo, "$(P)$(R)DIPol1-Sel") {
@@ -456,6 +458,7 @@ record(bo, "$(P)$(R)DIEnbl2-Sel") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(FLNK, "$(P)$(R)DIStateCalc2")
+  field(PINI, YES)
 }
 
 record(bo, "$(P)$(R)DIPol2-Sel") {
