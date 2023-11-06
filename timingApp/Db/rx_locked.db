@@ -1,0 +1,30 @@
+########################################################################
+# Control and Status Register [0]
+
+record(bo, "$(P)$(R)RxLockedLtcRst-Cmd"){
+  field(DTYP, "stream")
+  field(DESC, "Reset Rx locked Latches")
+  field(MASK, "1")
+  field(HIGH, "1")
+  field(ZNAM, "nothing")
+  field(ONAM, "reset")
+  field(OUT, "@timing.proto $(DEVICE)_ctrl_set($(P),$(R)) $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)RxLocked-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "Each bit shows Rx locked status")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evgfout_ctrl_rxlocked_intr $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)RxLockedLtc-Mon") {
+  field(ASG, "Reserved")
+  field(DESC, "Each bit shows Rx locked latches status")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evgfout_ctrl_rxlockedltc_intr $(PORT)")
+}
