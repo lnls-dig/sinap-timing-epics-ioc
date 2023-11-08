@@ -25,6 +25,8 @@ dbLoadRecords("${TOP}/db/fout.db", "P=${P}, R=${R}, IPADDR=${IPADDR}, IPPORT=${I
 
 dbLoadRecords("${TOP}/db/fw_version.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
+dbLoadRecords("${TOP}/db/rx_locked.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2, DEVICE=fout")
+
 dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=0, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=1, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evgfout_out.db", "P=${P}, R=${R}, num=2, PORT=${PORT}, ADDR=0, TIMEOUT=2")
