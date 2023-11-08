@@ -17,14 +17,6 @@ $(P)$(R)Clk4Desc-SP
 $(P)$(R)Clk5Desc-SP
 $(P)$(R)Clk6Desc-SP
 $(P)$(R)Clk7Desc-SP
-$(P)$(R)DI0Calc
-$(P)$(R)DI1Calc
-$(P)$(R)DIEnbl0-Sel
-$(P)$(R)DIEnbl1-Sel
-$(P)$(R)DILog0-Sel
-$(P)$(R)DILog1-Sel
-$(P)$(R)DIPol0-Sel
-$(P)$(R)DIPol1-Sel
 $(P)$(R)DevEnbl-Sel
 $(P)$(R)RxEnbl-SP
 $(P)$(R)Evt01DelayType-Sel
@@ -235,8 +227,6 @@ $(P)$(R)Evt61DelayRaw-SP
 $(P)$(R)Evt62DelayRaw-SP
 $(P)$(R)Evt63DelayRaw-SP
 $(P)$(R)RFDiv-SP
-$(P)$(R)DIEvent0-SP
-$(P)$(R)DIEvent1-SP
 $(P)$(R)IntlkCtrlRepeat-Sel
 $(P)$(R)IntlkEvtIn0-SP
 $(P)$(R)IntlkEvtIn1-SP

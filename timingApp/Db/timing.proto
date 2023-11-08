@@ -1233,10 +1233,6 @@ evg_download{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set6).1r\x00\x00\x00%(\$1\$2Clk6MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk6MuxDiv-SP.RVAL).4r";
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set7).1r\x00\x00\x00%(\$1\$2Clk7MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk7MuxDiv-SP.RVAL).4r";
 
-    # digital inputs
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-
   # interlock map
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sel).2r%(\$1\$2IntlkTbl0to15-Sel).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-SP)r";
 
