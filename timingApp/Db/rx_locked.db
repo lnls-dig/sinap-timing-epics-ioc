@@ -28,3 +28,18 @@ record(mbbiDirect, "$(P)$(R)RxLockedLtc-Mon") {
   field(DTYP, "stream")
   field(INP, "@timing.proto evgfout_ctrl_rxlockedltc_intr $(PORT)")
 }
+
+record(calc, "$(P)$(R)DownlinkStatusCalc") {
+  field(ASG, Reserved)
+  field(INPA, "$(P)$(R)RxEnbl-SP CP")
+  field(INPB, "$(P)$(R)Los-Mon CP")
+  field(INPC, "$(P)$(R)RxLockedLtc-Mon CP")
+  field(CALC, "B | (A & ~C)")
+}
+
+record(mbboDirect, "$(P)$(R)DownlinkStatus-Mon") {
+  field(ASG, Reserved)
+  field(DESC, "Downlink connection status")
+  field(OMSL, "closed_loop")
+  field(DOL, "$(P)$(R)DownlinkStatusCalc CP")
+}
