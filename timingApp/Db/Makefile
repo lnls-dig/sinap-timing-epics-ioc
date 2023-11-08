@@ -25,6 +25,7 @@ DB += SeqRAM.db
 DB += fw_version.db
 DB += event_log.db
 DB += rx_locked.db
+DB += digital_input.db
 
 DB += $(AUTOSAVE)/asApp/Db/save_restoreStatus.db
 
