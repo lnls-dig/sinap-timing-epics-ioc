@@ -214,9 +214,6 @@ $(P)$(R)OUT6SrcTrig-SP
 $(P)$(R)OUT7FineDelay-SP
 $(P)$(R)OUT7RFDelay-SP
 $(P)$(R)OUT7SrcTrig-SP
-$(P)$(R)DI0Calc
-$(P)$(R)DI1Calc
-$(P)$(R)DI2Calc
 $(P)$(R)OTP00RegAByte3
 $(P)$(R)OTP01RegAByte3
 $(P)$(R)OTP02RegAByte3
