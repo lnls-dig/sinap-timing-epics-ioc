@@ -7,7 +7,7 @@ record(longout, "$(P)$(R)DIEvent$(IN_N)-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evgre_diginp_ev_set($(P),$(R),$(IN_N)) $(PORT)")
+  field(OUT, "@timing.proto evre_diginp_ev_set($(P),$(R),$(IN_N)) $(PORT)")
 }
 
 record(bo, "$(P)$(R)DIEnbl$(IN_N)-Sel") {
@@ -43,7 +43,7 @@ record(calcout, "$(P)$(R)DIStateCalc$(IN_N)") {
   field(INPB, "$(P)$(R)DIPol$(IN_N)-Sts.VAL")
   field(INPC, "$(P)$(R)DILog$(IN_N)-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),$(IN_N),DIStateCalc) $(PORT)")
+  field(OUT, "@timing.proto evre_diginp_ept_set($(P),$(R),$(IN_N),DIStateCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
 }
 
@@ -55,7 +55,7 @@ record(calcout, "$(P)$(R)DIPolCalc$(IN_N)") {
   field(INPB, "$(P)$(R)DIPol$(IN_N)-Sel.RVAL")
   field(INPC, "$(P)$(R)DILog$(IN_N)-Sts.VAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),$(IN_N),DIPolCalc) $(PORT)")
+  field(OUT, "@timing.proto evre_diginp_ept_set($(P),$(R),$(IN_N),DIPolCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
 }
 
@@ -67,7 +67,7 @@ record(calcout, "$(P)$(R)DILogCalc$(IN_N)") {
   field(INPB, "$(P)$(R)DIPol$(IN_N)-Sts.VAL")
   field(INPC, "$(P)$(R)DILog$(IN_N)-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evgre_diginp_ept_set($(P),$(R),$(IN_N),DILogCalc) $(PORT)")
+  field(OUT, "@timing.proto evre_diginp_ept_set($(P),$(R),$(IN_N),DILogCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
 }
 
@@ -87,7 +87,7 @@ record(mbbiDirect, "$(P)$(R)DI$(IN_N)Raw") {
   field(SHFT, "5")
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
-  field(INP, "@timing.proto evgre_diginp$(IN_N)_intr $(PORT)")
+  field(INP, "@timing.proto evre_diginp$(IN_N)_intr $(PORT)")
   field(FLNK, "$(P)$(R)DILog$(IN_N)-Sts")
 }
 
