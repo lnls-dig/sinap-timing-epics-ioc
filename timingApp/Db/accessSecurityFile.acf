@@ -1,7 +1,7 @@
 HAG(hag) {joao}
 ASG(DEFAULT){
 	RULE(1,READ)
-	RULE(1,WRITE)
+	RULE(1,WRITE,TRAPWRITE)
 }
 
 ASG(Reserved){

@@ -107,11 +107,13 @@ timing_DBD += drvAsynIPPort.dbd
 timing_DBD += calcSupport.dbd
 timing_DBD += stream.dbd
 timing_DBD += asSupport.dbd
+timing_DBD += caPutLog.dbd
 
 timing_LIBS += asyn
 timing_LIBS += calc
 timing_LIBS += stream
 timing_LIBS += autosave
+timing_LIBS += caPutLog
 
 # Finally link to the EPICS Base libraries
 timing_LIBS += $(EPICS_BASE_IOC_LIBS)
