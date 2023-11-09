@@ -660,11 +660,11 @@ evre_log_ctrlRBV_intr{
 
 evre_diginp_get {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent\$3-RB)0r%*04r%*04r";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIN\$3Evt-RB)0r%*04r%*04r";
 }
 
 evre_diginp_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Calc)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DIN\$3Calc)r\x00\x00%(\$1\$2DIN\$3Evt-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     evre_diginp_get;
 }
 
@@ -1019,13 +1019,13 @@ eve_get_rbv{
     # Digital inputs readback
     # digin0
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIN0Evt-RB)0r%*04r%*04r";
     # digin1
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIN1Evt-RB)0r%*04r%*04r";
     # digin2
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent2-RB)0r%*04r%*04r";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIN2Evt-RB)0r%*04r%*04r";
 
     # RF output readback
   eve_rf_get;
@@ -1045,13 +1045,13 @@ evr_get_rbv{
     # Digital inputs readback
     # digin0
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIN0Evt-RB)0r%*04r%*04r";
     # digin1
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIN1Evt-RB)0r%*04r%*04r";
     # digin2
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get2)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent2-RB)0r%*04r%*04r";
+    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIN2Evt-RB)0r%*04r%*04r";
 
     # Timestamp log
   evgre_log_get;
@@ -1133,9 +1133,9 @@ eve_download{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalcRaw).1r";
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalcRaw).1r";
     # digital inputs
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set2)r%(\$1\$2DI2Calc)r\x00\x00%(\$1\$2DIEvent2-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set0)r%(\$1\$2DIN0Calc)r\x00\x00%(\$1\$2DIN0Evt-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set1)r%(\$1\$2DIN1Calc)r\x00\x00%(\$1\$2DIN1Evt-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set2)r%(\$1\$2DIN2Calc)r\x00\x00%(\$1\$2DIN2Evt-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     # control settings
   evre_ctrl_set;
     # Timestamp source
@@ -1183,9 +1183,9 @@ evr_download{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set6).1r\x00\x00\x00%(\$1\$2OUT6SrcHw).1r\x00\x00%(\$1\$2OUT6FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT6RFDelayCalcRaw).1r";
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_out_set7).1r\x00\x00\x00%(\$1\$2OUT7SrcHw).1r\x00\x00%(\$1\$2OUT7FineDelayRaw-SP).2r\x00\x00\x00%(\$1\$2OUT7RFDelayCalcRaw).1r";
     # digital inputs
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set0)r%(\$1\$2DI0Calc)r\x00\x00%(\$1\$2DIEvent0-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set1)r%(\$1\$2DI1Calc)r\x00\x00%(\$1\$2DIEvent1-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set2)r%(\$1\$2DI2Calc)r\x00\x00%(\$1\$2DIEvent2-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set0)r%(\$1\$2DIN0Calc)r\x00\x00%(\$1\$2DIN0Evt-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set1)r%(\$1\$2DIN1Calc)r\x00\x00%(\$1\$2DIN1Evt-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set2)r%(\$1\$2DIN2Calc)r\x00\x00%(\$1\$2DIN2Evt-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     # control settings
   evre_ctrl_set;
     # Timestamp source
