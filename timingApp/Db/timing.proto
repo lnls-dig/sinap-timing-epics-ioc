@@ -663,16 +663,6 @@ evre_diginp_get {
     in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent\$3-RB)0r%*04r%*04r";
 }
 
-evre_diginp_ev_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Raw.RVAL)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    evre_diginp_get;
-}
-
-evre_diginp_ept_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2\$4\$3)r\x00\x00%(\$1\$2DIEvent\$3-RB)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    evre_diginp_get;
-}
-
 evre_diginp_set {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Calc)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
     evre_diginp_get;
