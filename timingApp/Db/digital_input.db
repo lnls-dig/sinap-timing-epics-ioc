@@ -6,8 +6,7 @@ record(longout, "$(P)$(R)DIEvent$(IN_N)-SP") {
   field(DESC, "digital input 0 event code")
   field(DRVH, "255")
   field(DRVL, "0")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evre_diginp_ev_set($(P),$(R),$(IN_N)) $(PORT)")
+  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
 }
 
 record(bo, "$(P)$(R)DIEnbl$(IN_N)-Sel") {
@@ -15,8 +14,7 @@ record(bo, "$(P)$(R)DIEnbl$(IN_N)-Sel") {
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)DIStateCalc$(IN_N)")
-  field(PINI, YES)
+  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
 }
 
 record(bo, "$(P)$(R)DIPol$(IN_N)-Sel") {
@@ -24,7 +22,7 @@ record(bo, "$(P)$(R)DIPol$(IN_N)-Sel") {
   field(MASK, "1")
   field(ZNAM, "Normal")
   field(ONAM, "Inverse")
-  field(FLNK, "$(P)$(R)DIPolCalc$(IN_N)")
+  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
 }
 
 record(bo, "$(P)$(R)DILog$(IN_N)-Sel") {
@@ -32,52 +30,19 @@ record(bo, "$(P)$(R)DILog$(IN_N)-Sel") {
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)DILogCalc$(IN_N)")
-}
-
-record(calcout, "$(P)$(R)DIStateCalc$(IN_N)") {
-  field(ASG, "Reserved")
-  field(DESC, "digital input $(IN_N) set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)DIEnbl$(IN_N)-Sel.RVAL")
-  field(INPB, "$(P)$(R)DIPol$(IN_N)-Sts.VAL")
-  field(INPC, "$(P)$(R)DILog$(IN_N)-Sts.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_diginp_ept_set($(P),$(R),$(IN_N),DIStateCalc) $(PORT)")
-  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
-}
-
-record(calcout, "$(P)$(R)DIPolCalc$(IN_N)") {
-  field(ASG, "Reserved")
-  field(DESC, "digital input $(IN_N) set polarity calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)DIEnbl$(IN_N)-Sts.VAL")
-  field(INPB, "$(P)$(R)DIPol$(IN_N)-Sel.RVAL")
-  field(INPC, "$(P)$(R)DILog$(IN_N)-Sts.VAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_diginp_ept_set($(P),$(R),$(IN_N),DIPolCalc) $(PORT)")
-  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
-}
-
-record(calcout, "$(P)$(R)DILogCalc$(IN_N)") {
-  field(ASG, "Reserved")
-  field(DESC, "digital input $(IN_N) set timestamp calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)DIEnbl$(IN_N)-Sts.VAL")
-  field(INPB, "$(P)$(R)DIPol$(IN_N)-Sts.VAL")
-  field(INPC, "$(P)$(R)DILog$(IN_N)-Sel.RVAL")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(OUT, "@timing.proto evre_diginp_ept_set($(P),$(R),$(IN_N),DILogCalc) $(PORT)")
   field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
 }
 
 record(calcout, "$(P)$(R)DI$(IN_N)Calc") {
   field(ASG, "Reserved")
   field(DESC, "dig.inp. $(IN_N) download en, pol and time")
+  field(DTYP, "stream")
+  field(PINI, YES)
   field(INPA, "$(P)$(R)DIEnbl$(IN_N)-Sel.RVAL")
   field(INPB, "$(P)$(R)DIPol$(IN_N)-Sel.RVAL")
   field(INPC, "$(P)$(R)DILog$(IN_N)-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(OUT, "@timing.proto evre_diginp_set($(P),$(R),$(IN_N)) $(PORT)")
 }
 
 record(mbbiDirect, "$(P)$(R)DI$(IN_N)Raw") {
