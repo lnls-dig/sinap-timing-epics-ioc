@@ -656,38 +656,37 @@ evre_log_ctrlRBV_intr{
 }
 
 ################################################################################
-# Digital input  EVG    [53-54]
-#    EVE & EVR   [53-55]
+# Digital input EVE & EVR   [53-55]
 
-evgre_diginp_get {
+evre_diginp_get {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent\$3-RB)0r%*04r%*04r";
 }
 
-evgre_diginp_ev_set {
+evre_diginp_ev_set {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Raw.RVAL)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    evgre_diginp_get;
+    evre_diginp_get;
 }
 
-evgre_diginp_ept_set {
+evre_diginp_ept_set {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2\$4\$3)r\x00\x00%(\$1\$2DIEvent\$3-RB)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    evgre_diginp_get;
+    evre_diginp_get;
 }
 
-evgre_diginp_set {
+evre_diginp_set {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_set\$3)r%(\$1\$2DI\$3Calc)r\x00\x00%(\$1\$2DIEvent\$3-SP)r\x00\x00\x00\x00\x00\x00\x00\x00";
-    evgre_diginp_get;
+    evre_diginp_get;
 }
 
 # Interrupts
 
-evgre_diginp0_intr{
+evre_diginp0_intr{
     in "\x02%*04r\x00\x0D\xF5%r%*03r%*04r%*04r";
 }
-evgre_diginp1_intr{
+evre_diginp1_intr{
     in "\x02%*04r\x00\x0D\xF6%r%*03r%*04r%*04r";
 }
-evgre_diginp2_intr{
+evre_diginp2_intr{
     in "\x02%*04r\x00\x0D\xF7%r%*03r%*04r%*04r";
 }
 
@@ -748,12 +747,6 @@ evg_ilockmap_evout_set {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
     evg_ilockmap_get;
 }
-
-# Interrupts
-
-#evgre_diginp_intr{
-#    in "\x02%*04r\x00\x0D\xF8%r%*03r%*04r%*04r";
-#}
 
 ################################################################################
 # Interlock Status  EVG    [57]
@@ -1102,14 +1095,6 @@ evg_get_rbv{
     # mux7
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_get7)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk7MuxEnbl-Sts)r%*04r%*04r";
-
-    # Digital inputs readback
-    # digin0
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get0)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent0-RB)0r%*04r%*04r";    
-    # digin1
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_diginp_get1)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2DIEvent1-RB)0r%*04r%*04r";    
 
     # AC Line
   evg_acline_get;
