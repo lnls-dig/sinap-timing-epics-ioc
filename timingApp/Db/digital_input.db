@@ -2,50 +2,50 @@
 # Digital input 0 -> 2 [53 + IN_N]
 # PARAMETER IN_N: Input Number from 0 to 2
 
-record(longout, "$(P)$(R)DIEvent$(IN_N)-SP") {
+record(longout, "$(P)$(R)DIN$(IN_N)Evt-SP") {
   field(DESC, "digital input 0 event code")
   field(DRVH, "255")
   field(DRVL, "0")
-  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
+  field(FLNK, "$(P)$(R)DIN$(IN_N)Calc")
 }
 
-record(bo, "$(P)$(R)DIEnbl$(IN_N)-Sel") {
+record(bo, "$(P)$(R)DIN$(IN_N)State-Sel") {
   field(DESC, "digital input $(IN_N) enable")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
+  field(FLNK, "$(P)$(R)DIN$(IN_N)Calc")
 }
 
-record(bo, "$(P)$(R)DIPol$(IN_N)-Sel") {
+record(bo, "$(P)$(R)DIN$(IN_N)Polarity-Sel") {
   field(DESC, "digital input $(IN_N) polarity")
   field(MASK, "1")
   field(ZNAM, "Normal")
   field(ONAM, "Inverse")
-  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
+  field(FLNK, "$(P)$(R)DIN$(IN_N)Calc")
 }
 
-record(bo, "$(P)$(R)DILog$(IN_N)-Sel") {
+record(bo, "$(P)$(R)DIN$(IN_N)Log-Sel") {
   field(DESC, "dig. input $(IN_N) event timestamp enable")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)DI$(IN_N)Calc")
+  field(FLNK, "$(P)$(R)DIN$(IN_N)Calc")
 }
 
-record(calcout, "$(P)$(R)DI$(IN_N)Calc") {
+record(calcout, "$(P)$(R)DIN$(IN_N)Calc") {
   field(ASG, "Reserved")
   field(DESC, "dig.inp. $(IN_N) download en, pol and time")
   field(DTYP, "stream")
   field(PINI, YES)
-  field(INPA, "$(P)$(R)DIEnbl$(IN_N)-Sel.RVAL")
-  field(INPB, "$(P)$(R)DIPol$(IN_N)-Sel.RVAL")
-  field(INPC, "$(P)$(R)DILog$(IN_N)-Sel.RVAL")
+  field(INPA, "$(P)$(R)DIN$(IN_N)State-Sel.RVAL")
+  field(INPB, "$(P)$(R)DIN$(IN_N)Polarity-Sel.RVAL")
+  field(INPC, "$(P)$(R)DIN$(IN_N)Log-Sel.RVAL")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(OUT, "@timing.proto evre_diginp_set($(P),$(R),$(IN_N)) $(PORT)")
 }
 
-record(mbbiDirect, "$(P)$(R)DI$(IN_N)Raw") {
+record(mbbiDirect, "$(P)$(R)DIN$(IN_N)Raw") {
   field(ASG, "Reserved")
   field(DESC, "DIGINP$(IN_N) en, pol, and timestamp RBV")
   field(NOBT, "8")
@@ -53,36 +53,36 @@ record(mbbiDirect, "$(P)$(R)DI$(IN_N)Raw") {
   field(SCAN, "I/O Intr")
   field(DTYP, "stream")
   field(INP, "@timing.proto evre_diginp$(IN_N)_intr $(PORT)")
-  field(FLNK, "$(P)$(R)DILog$(IN_N)-Sts")
+  field(FLNK, "$(P)$(R)DIN$(IN_N)Log-Sts")
 }
 
-record(bi, "$(P)$(R)DILog$(IN_N)-Sts") {
+record(bi, "$(P)$(R)DIN$(IN_N)Log-Sts") {
   field(ASG, "Reserved")
   field(DESC, "digital input $(IN_N) timestamping sts")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(INP, "$(P)$(R)DI$(IN_N)Raw.B0")
-  field(FLNK, "$(P)$(R)DIPol$(IN_N)-Sts")
+  field(INP, "$(P)$(R)DIN$(IN_N)Raw.B0")
+  field(FLNK, "$(P)$(R)DIN$(IN_N)Polarity-Sts")
 }
 
-record(bi, "$(P)$(R)DIPol$(IN_N)-Sts") {
+record(bi, "$(P)$(R)DIN$(IN_N)Polarity-Sts") {
   field(ASG, "Reserved")
   field(DESC, "digital input $(IN_N) polarity status")
   field(ZNAM, "Normal")
   field(ONAM, "Inverse")
-  field(INP, "$(P)$(R)DI$(IN_N)Raw.B1")
-  field(FLNK, "$(P)$(R)DIEnbl$(IN_N)-Sts")
+  field(INP, "$(P)$(R)DIN$(IN_N)Raw.B1")
+  field(FLNK, "$(P)$(R)DIN$(IN_N)State-Sts")
 }
 
-record(bi, "$(P)$(R)DIEnbl$(IN_N)-Sts") {
+record(bi, "$(P)$(R)DIN$(IN_N)State-Sts") {
   field(ASG, "Reserved")
   field(DESC, "digital input $(IN_N) enable status")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(INP, "$(P)$(R)DI$(IN_N)Raw.B2")
+  field(INP, "$(P)$(R)DIN$(IN_N)Raw.B2")
 }
 
-record(longin, "$(P)$(R)DIEvent$(IN_N)-RB") {
+record(longin, "$(P)$(R)DIN$(IN_N)Evt-RB") {
   field(ASG, "Reserved")
   field(DESC, "digital input $(IN_N) event RBV")
 }
