@@ -13,6 +13,7 @@ devices = {
     'PA-RaCtrl:TI-EVR-1',
     'PA-RaCtrl:TI-EVR-2',
     'IA-20RaDiag01:TI-EVR',
+    'IA-10RaBPM:TI-EVR',
     'BA-IMBA:TI-EVR'],
   'EVE':['LA-BIH01RACK2:TI-EVE',
     'IA-16RaBbB:TI-EVE',
