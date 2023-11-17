@@ -6,7 +6,6 @@ ASG(DEFAULT){
 
 ASG(Reserved){
 	RULE(1,READ)
-	RULE(0,WRITE)
 }
 
 ASG(Interlock){
