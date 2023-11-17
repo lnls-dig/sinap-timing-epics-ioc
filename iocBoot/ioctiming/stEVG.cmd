@@ -15,6 +15,7 @@ dbLoadDatabase("${TOP}/dbd/timing.dbd")
 timing_registerRecordDeviceDriver pdbbase
 
 asSetFilename("$(TOP)/timingApp/Db/accessSecurityFile.acf")
+asSetSubstitutions("P=$(P),R=$(R)")
 
 drvAsynIPPortConfigure ("${PORT}", "${IPADDR}:${IPPORT} tcp",0,0,0)
 
