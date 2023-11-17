@@ -45,6 +45,7 @@ record(mbboDirect, "$(P)$(R)RxEnbl-SP") {
   field(NOBT, "8")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ctrl_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(mbbiDirect, "$(P)$(R)RxEnbl-RB") {
@@ -576,11 +577,13 @@ record(seq, "$(P)$(R)ilock_seq4") {
 record(mbboDirect, "$(P)$(R)IntlkTbl0to15-Sel") {
   field(DESC, "interlock input to output map")
   field(FLNK, "$(P)$(R)IntlkTblCalc")
+  field(ASG, "Interlock")
 }
 
 record(mbboDirect, "$(P)$(R)IntlkTbl16to27-Sel") {
   field(DESC, "interlock input to output map")
   field(FLNK, "$(P)$(R)IntlkTblCalc")
+  field(ASG, "Interlock")
 }
 
 record(calcout, "$(P)$(R)IntlkTblCalc") {
@@ -599,6 +602,7 @@ record(longout, "$(P)$(R)IntlkEvtIn0-SP") {
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ilockmap_ev0_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn1-SP") {
@@ -607,6 +611,7 @@ record(longout, "$(P)$(R)IntlkEvtIn1-SP") {
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ilockmap_ev1_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn2-SP") {
@@ -615,6 +620,7 @@ record(longout, "$(P)$(R)IntlkEvtIn2-SP") {
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ilockmap_ev2_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn3-SP") {
@@ -623,6 +629,7 @@ record(longout, "$(P)$(R)IntlkEvtIn3-SP") {
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ilockmap_ev3_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn4-SP") {
@@ -631,6 +638,7 @@ record(longout, "$(P)$(R)IntlkEvtIn4-SP") {
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ilockmap_ev4_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn5-SP") {
@@ -639,6 +647,7 @@ record(longout, "$(P)$(R)IntlkEvtIn5-SP") {
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ilockmap_ev5_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn6-SP") {
@@ -647,6 +656,7 @@ record(longout, "$(P)$(R)IntlkEvtIn6-SP") {
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ilockmap_ev6_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkEvtOut-SP") {
@@ -655,6 +665,7 @@ record(longout, "$(P)$(R)IntlkEvtOut-SP") {
   field(DRVL, "0")
   field(DTYP, "stream")
   field(OUT, "@timing.proto evg_ilockmap_evout_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)cmd_evg_ilockmap_set") {
