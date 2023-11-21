@@ -15,6 +15,7 @@ record(mbboDirect, "$(P)$(R)RxEnbl-SP") {
   field(DESC, "Each bit sets Rx OUT status")
   field(DTYP, "stream")
   field(OUT, "@timing.proto fout_ctrl_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(mbbiDirect, "$(P)$(R)RxEnbl-RB") {
