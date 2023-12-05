@@ -688,53 +688,8 @@ evg_ilockmap_get {
     in "\x02%*04r\x00\x0D%*r%(\$1\$2IntlkTbl16to27-Sts)02r%(\$1\$2IntlkTbl0to15-Sts)02r%(\$1\$2IntlkEvtOut-RB)0r%(\$1\$2IntlkEvtIn6-RB)0r%(\$1\$2IntlkEvtIn5-RB)0r%(\$1\$2IntlkEvtIn4-RB)0r%(\$1\$2IntlkEvtIn3-RB)0r%(\$1\$2IntlkEvtIn2-RB)0r%(\$1\$2IntlkEvtIn1-RB)0r%(\$1\$2IntlkEvtIn0-RB)0r";
 }
 
-evg_ilockmap_upload {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D%*r%(\$1\$2IntlkTbl16to27-Sel)02r%(\$1\$2IntlkTbl0to15-Sel)02r%(\$1\$2IntlkEvtOut-RB)0r%(\$1\$2IntlkEvtIn6-RB)0r%(\$1\$2IntlkEvtIn5-RB)0r%(\$1\$2IntlkEvtIn4-RB)0r%(\$1\$2IntlkEvtIn3-RB)0r%(\$1\$2IntlkEvtIn2-RB)0r%(\$1\$2IntlkEvtIn1-RB)0r%(\$1\$2IntlkEvtIn0-RB)0r";
-}
-
-evg_ilockmap_map_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTblCalc).4r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
-    evg_ilockmap_get;
-}
-
-evg_ilockmap_ev0_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-SP)r";
-    evg_ilockmap_get;
-}
-
-evg_ilockmap_ev1_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-RB)r";
-    evg_ilockmap_get;
-}
-
-evg_ilockmap_ev2_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
-    evg_ilockmap_get;
-}
-
-evg_ilockmap_ev3_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
-    evg_ilockmap_get;
-}
-
-evg_ilockmap_ev4_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
-    evg_ilockmap_get;
-}
-
-evg_ilockmap_ev5_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
-    evg_ilockmap_get;
-}
-
-evg_ilockmap_ev6_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-RB)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
-    evg_ilockmap_get;
-}
-
-evg_ilockmap_evout_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sts).2r%(\$1\$2IntlkTbl0to15-Sts).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-RB)r%(\$1\$2IntlkEvtIn5-RB)r%(\$1\$2IntlkEvtIn4-RB)r%(\$1\$2IntlkEvtIn3-RB)r%(\$1\$2IntlkEvtIn2-RB)r%(\$1\$2IntlkEvtIn1-RB)r%(\$1\$2IntlkEvtIn0-RB)r";
+evg_ilockmap_set {
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTblCalc).4r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-SP)r";
     evg_ilockmap_get;
 }
 
@@ -1094,7 +1049,6 @@ evg_get_rbv{
   evg_tmstmp_get;
   # Interlock Map and Control
   evg_ilockmap_get;
-  #evg_ilockmap_upload;
   evg_ilockcontrol_get;
 }
 
@@ -1209,8 +1163,7 @@ evg_download{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set7).1r\x00\x00\x00%(\$1\$2Clk7MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk7MuxDiv-SP.RVAL).4r";
 
   # interlock map
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sel).2r%(\$1\$2IntlkTbl0to15-Sel).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-SP)r";
-
+  evg_ilockmap_set;
   # interlock control
   out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockcontrol_set)r%(\$1\$2IntlkCtrlCalc)r\x00\x00\x00%(\$1\$2IntlkCtrlRepeatTime-SP).4r\x00\x00\x00\x00";
   
