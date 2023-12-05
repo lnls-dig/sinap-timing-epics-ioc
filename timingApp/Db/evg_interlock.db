@@ -5,6 +5,7 @@ record(mbboDirect, "$(P)$(R)IntlkTbl0to15-Sel") {
   field(DESC, "interlock input to output map")
   field(FLNK, "$(P)$(R)IntlkTblCalc")
   field(ASG, "Interlock")
+  field(PINI, YES)
 }
 
 record(mbboDirect, "$(P)$(R)IntlkTbl16to27-Sel") {
