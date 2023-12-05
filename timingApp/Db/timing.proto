@@ -689,7 +689,7 @@ evg_ilockmap_get {
 }
 
 evg_ilockmap_set {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTblCalc).4r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-SP)r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evg_ilockmap_set)r%(\$1\$2IntlkTbl16to27-Sel).2r%(\$1\$2IntlkTbl0to15-Sel).2r%(\$1\$2IntlkEvtOut-SP)r%(\$1\$2IntlkEvtIn6-SP)r%(\$1\$2IntlkEvtIn5-SP)r%(\$1\$2IntlkEvtIn4-SP)r%(\$1\$2IntlkEvtIn3-SP)r%(\$1\$2IntlkEvtIn2-SP)r%(\$1\$2IntlkEvtIn1-SP)r%(\$1\$2IntlkEvtIn0-SP)r";
     evg_ilockmap_get;
 }
 
