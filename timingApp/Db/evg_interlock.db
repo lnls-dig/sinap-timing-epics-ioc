@@ -1,80 +1,6 @@
 ########################################################################
 # Interlock map [56]
 
-record(seq, "$(P)$(R)ilock_seq1") {
-  field(DESC, "interlock input to output map")
-  field(DOL1, "$(P)$(R)IntlkTbl0to15-Sts.B0")
-  field(DOL2, "$(P)$(R)IntlkTbl0to15-Sts.B1")
-  field(DOL3, "$(P)$(R)IntlkTbl0to15-Sts.B2")
-  field(DOL4, "$(P)$(R)IntlkTbl0to15-Sts.B3")
-  field(DOL5, "$(P)$(R)IntlkTbl0to15-Sts.B4")
-  field(DOL6, "$(P)$(R)IntlkTbl0to15-Sts.B5")
-  field(DOL7, "$(P)$(R)IntlkTbl0to15-Sts.B6")
-  field(DOL8, "$(P)$(R)IntlkTbl0to15-Sts.B7")
-  field(DOL9, "$(P)$(R)IntlkTbl0to15-Sts.B8")
-  field(DOLA, "$(P)$(R)IntlkTbl0to15-Sts.B9")
-  field(LNK1, "$(P)$(R)IntlkTbl0to15-Sel.B0")
-  field(LNK2, "$(P)$(R)IntlkTbl0to15-Sel.B1")
-  field(LNK3, "$(P)$(R)IntlkTbl0to15-Sel.B2")
-  field(LNK4, "$(P)$(R)IntlkTbl0to15-Sel.B3")
-  field(LNK5, "$(P)$(R)IntlkTbl0to15-Sel.B4")
-  field(LNK6, "$(P)$(R)IntlkTbl0to15-Sel.B5")
-  field(LNK7, "$(P)$(R)IntlkTbl0to15-Sel.B6")
-  field(LNK8, "$(P)$(R)IntlkTbl0to15-Sel.B7")
-  field(LNK9, "$(P)$(R)IntlkTbl0to15-Sel.B8")
-  field(LNKA, "$(P)$(R)IntlkTbl0to15-Sel.B9")
-  field(FLNK, "$(P)$(R)ilock_seq2")
-}
-
-record(seq, "$(P)$(R)ilock_seq2") {
-  field(DESC, "interlock input to output map")
-  field(DOL1, "$(P)$(R)IntlkTbl0to15-Sts.BA")
-  field(DOL2, "$(P)$(R)IntlkTbl0to15-Sts.BB")
-  field(DOL3, "$(P)$(R)IntlkTbl0to15-Sts.BC")
-  field(DOL4, "$(P)$(R)IntlkTbl0to15-Sts.BD")
-  field(DOL5, "$(P)$(R)IntlkTbl0to15-Sts.BE")
-  field(DOL6, "$(P)$(R)IntlkTbl0to15-Sts.BF")
-  field(LNK1, "$(P)$(R)IntlkTbl0to15-Sel.BA")
-  field(LNK2, "$(P)$(R)IntlkTbl0to15-Sel.BB")
-  field(LNK3, "$(P)$(R)IntlkTbl0to15-Sel.BC")
-  field(LNK4, "$(P)$(R)IntlkTbl0to15-Sel.BD")
-  field(LNK5, "$(P)$(R)IntlkTbl0to15-Sel.BE")
-  field(LNK6, "$(P)$(R)IntlkTbl0to15-Sel.BF")
-}
-
-record(seq, "$(P)$(R)ilock_seq3") {
-  field(DESC, "interlock input to output map")
-  field(DOL1, "$(P)$(R)IntlkTbl16to27-Sts.B0")
-  field(DOL2, "$(P)$(R)IntlkTbl16to27-Sts.B1")
-  field(DOL3, "$(P)$(R)IntlkTbl16to27-Sts.B2")
-  field(DOL4, "$(P)$(R)IntlkTbl16to27-Sts.B3")
-  field(DOL5, "$(P)$(R)IntlkTbl16to27-Sts.B4")
-  field(DOL6, "$(P)$(R)IntlkTbl16to27-Sts.B5")
-  field(DOL7, "$(P)$(R)IntlkTbl16to27-Sts.B6")
-  field(DOL8, "$(P)$(R)IntlkTbl16to27-Sts.B7")
-  field(DOL9, "$(P)$(R)IntlkTbl16to27-Sts.B8")
-  field(DOLA, "$(P)$(R)IntlkTbl16to27-Sts.B9")
-  field(LNK1, "$(P)$(R)IntlkTbl16to27-Sel.B0")
-  field(LNK2, "$(P)$(R)IntlkTbl16to27-Sel.B1")
-  field(LNK3, "$(P)$(R)IntlkTbl16to27-Sel.B2")
-  field(LNK4, "$(P)$(R)IntlkTbl16to27-Sel.B3")
-  field(LNK5, "$(P)$(R)IntlkTbl16to27-Sel.B4")
-  field(LNK6, "$(P)$(R)IntlkTbl16to27-Sel.B5")
-  field(LNK7, "$(P)$(R)IntlkTbl16to27-Sel.B6")
-  field(LNK8, "$(P)$(R)IntlkTbl16to27-Sel.B7")
-  field(LNK9, "$(P)$(R)IntlkTbl16to27-Sel.B8")
-  field(LNKA, "$(P)$(R)IntlkTbl16to27-Sel.B9")
-  field(FLNK, "$(P)$(R)ilock_seq4")
-}
-
-record(seq, "$(P)$(R)ilock_seq4") {
-  field(DESC, "interlock input to output map")
-  field(DOL1, "$(P)$(R)IntlkTbl16to27-Sts.BA")
-  field(DOL2, "$(P)$(R)IntlkTbl16to27-Sts.BB")
-  field(LNK1, "$(P)$(R)IntlkTbl16to27-Sel.BA")
-  field(LNK2, "$(P)$(R)IntlkTbl16to27-Sel.BB")
-}
-
 record(mbboDirect, "$(P)$(R)IntlkTbl0to15-Sel") {
   field(DESC, "interlock input to output map")
   field(FLNK, "$(P)$(R)IntlkTblCalc")
@@ -182,13 +108,13 @@ record(longout, "$(P)$(R)cmd_evg_ilockmap_get") {
 }
 
 record(mbbiDirect, "$(P)$(R)IntlkTbl0to15-Sts") {
+  field(ASG, "Reserved")
   field(DESC, "interlock input to output map RBV")
-  field(FLNK, "$(P)$(R)ilock_seq1")
 }
 
 record(mbbiDirect, "$(P)$(R)IntlkTbl16to27-Sts") {
+  field(ASG, "Reserved")
   field(DESC, "interlock input to output map RBV")
-  field(FLNK, "$(P)$(R)ilock_seq3")
 }
 
 record(longin, "$(P)$(R)IntlkEvtIn0-RB") {
