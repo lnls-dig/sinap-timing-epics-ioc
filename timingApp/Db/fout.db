@@ -11,11 +11,12 @@ record(stringout, "$(P)$(R)IPPort-Mon"){
 ########################################################################
 # Control and Status Register [0]
 
-record(mbboDirect, "$(P)$(R)RxEnbl-SP") {
-  field(DESC, "Each bit sets Rx OUT status")
+record(mbboDirect, "$(P)$(R)RxEnblHw-SP") {
+  field(DESC, "RxEnbl actually written to hw.")
+  field(NOBT, "8")
   field(DTYP, "stream")
   field(OUT, "@timing.proto fout_ctrl_set($(P),$(R)) $(PORT)")
-  field(ASG, "Interlock")
+  field(ASG, "Reserved")
 }
 
 record(mbbiDirect, "$(P)$(R)RxEnbl-RB") {
