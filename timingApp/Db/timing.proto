@@ -18,7 +18,7 @@ fout_ctrl_get{
 }
 
 fout_ctrl_set{
-  out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set)r%(\$1\$2RxLockedLtcRst-Cmd).1r\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel.RVAL)r";
+  out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set)r%(\$1\$2RxLockedLtcRst-Cmd).1r\x00\x00%(\$1\$2RxEnblHw-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2DevEnbl-Sel.RVAL)r";
   fout_ctrl_get;
 }
 
@@ -70,12 +70,12 @@ evg_ctrl_get {
 }
 
 evg_ctrl_seq_en_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnblHw-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3).1r";
     evg_ctrl_get;
 }
 
 evg_ctrl_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set).1r%(\$1\$2RxLockedLtcRst-Cmd).1r\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2SeqEnblDevEnblCalc).1r";
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set).1r%(\$1\$2RxLockedLtcRst-Cmd).1r\x00\x00%(\$1\$2RxEnblHw-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2SeqEnblDevEnblCalc).1r";
     evg_ctrl_get;
 }
 

@@ -53,4 +53,3 @@ record(calcout, "$(P)$(R)cmd_out_get$(num)") {
   field(CALC, "A + B")
   field(OUT, "@timing.proto evgfout_out_get($(P),$(R),$(num)) $(PORT)")
 }
-
