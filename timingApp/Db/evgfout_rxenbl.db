@@ -6,6 +6,7 @@ record(mbboDirect, "$(P)$(R)RxEnbl-SP") {
   field(NOBT, "8")
   field(ASG, "Interlock")
   field(FLNK, "$(P)$(R)RxEnblVerify PP")
+  field(PINI, YES)
 }
 
 record(longout, "$(P)$(R)RxEnblMax-Cte") {
