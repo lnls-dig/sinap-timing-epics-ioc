@@ -83,9 +83,10 @@ $(P)$(R)Evt61DelayType-Sel
 $(P)$(R)Evt62DelayType-Sel
 $(P)$(R)Evt63DelayType-Sel
 $(P)$(R)InjectionEvt-Sel
+$(P)$(R)IntlkLogEnbl-SP
 $(P)$(R)IntlkCtrlEnbl-Sel
 $(P)$(R)IntlkCtrlRepeat-Sel
-$(P)$(R)IntlkCtrlRst-Sel
+$(P)$(R)IntlkCtrlRepeatTime-SP
 $(P)$(R)SeqEnbl-Sel
 $(P)$(R)UTCRefSrc-Sel
 $(P)$(R)DevFun-Sel
