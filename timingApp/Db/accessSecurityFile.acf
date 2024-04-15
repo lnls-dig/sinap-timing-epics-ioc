@@ -11,7 +11,7 @@ ASG(Reserved){
 ASG(Interlock){
 	INPA($(P)$(R)IntlkCtrlEnbl-Sel)
 	RULE(1,READ)
-	RULE(1,WRITE) {
+	RULE(1,WRITE,TRAPWRITE) {
 		CALC("A=0")
 	}
 }
