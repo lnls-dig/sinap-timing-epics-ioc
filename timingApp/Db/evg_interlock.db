@@ -21,7 +21,7 @@ record(calcout, "$(P)$(R)IntlkTblCalc") {
   field(INPA, "$(P)$(R)IntlkTbl16to27-Sel")
   field(INPB, "$(P)$(R)IntlkTbl0to15-Sel")
   field(CALC, "(A<<16)+B")
-  field(OUT, "@timing.proto evg_ilockmap_map_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn0-SP") {
@@ -29,7 +29,7 @@ record(longout, "$(P)$(R)IntlkEvtIn0-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev0_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
 }
 
@@ -38,7 +38,7 @@ record(longout, "$(P)$(R)IntlkEvtIn1-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev1_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
 }
 
@@ -47,7 +47,7 @@ record(longout, "$(P)$(R)IntlkEvtIn2-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev2_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
 }
 
@@ -56,7 +56,7 @@ record(longout, "$(P)$(R)IntlkEvtIn3-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev3_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
 }
 
@@ -65,7 +65,7 @@ record(longout, "$(P)$(R)IntlkEvtIn4-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev4_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
 }
 
@@ -74,7 +74,7 @@ record(longout, "$(P)$(R)IntlkEvtIn5-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev5_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
 }
 
@@ -83,7 +83,7 @@ record(longout, "$(P)$(R)IntlkEvtIn6-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_ev6_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
 }
 
@@ -92,7 +92,7 @@ record(longout, "$(P)$(R)IntlkEvtOut-SP") {
   field(DRVH, "255")
   field(DRVL, "0")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockmap_evout_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
 }
 
