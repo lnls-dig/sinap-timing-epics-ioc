@@ -22,7 +22,7 @@ record(ai, "$(P)$(R)RFRef-Mon"){
   field(PINI, "1")
   field(PREC, "3")
   field(EGU, "Hz")
-  field(INP, "RF-Gen:GeneralFreq-RB CPP")
+  field(INP, "RF-Gen:GeneralFreq-RB CPP NMS")
   field(VAL, "499658000.000")
   field(FLNK,"$(P)$(R)FPGAClkCalc")
 }
