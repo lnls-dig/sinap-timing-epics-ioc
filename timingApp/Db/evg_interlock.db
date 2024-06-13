@@ -193,8 +193,8 @@ record(bo, "$(P)$(R)IntlkCtrlEnbl-Sel") {
   field(PINI, YES)
 }
 
-record(bo, "$(P)$(R)IntlkCtrlRst-Sel") {
-  field(DESC, "Interlock map reset")
+record(bo, "$(P)$(R)IntlkCtrlRst-Cmd") {
+  field(DESC, "Interlock map reset command")
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
@@ -214,7 +214,7 @@ record(calcout, "$(P)$(R)IntlkCtrlCalc") {
   field(ASG, "Reserved")
   field(DESC, "Interlock control. En, reset, cont.")
   field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sel")
-  field(INPB, "$(P)$(R)IntlkCtrlRst-Sel")
+  field(INPB, "$(P)$(R)IntlkCtrlRst-Cmd")
   field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sel")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
   field(DTYP, "stream")
@@ -252,14 +252,6 @@ record(bi, "$(P)$(R)IntlkCtrlEnbl-Sts") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(INP, "$(P)$(R)IntlkCtrlRaw.B7")
-  field(FLNK, "$(P)$(R)IntlkCtrlRst-Sts")
-}
-
-record(bi, "$(P)$(R)IntlkCtrlRst-Sts") {
-  field(DESC, "Interlock map reset RBV")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  field(INP, "$(P)$(R)IntlkCtrlRaw.B6")
   field(FLNK, "$(P)$(R)IntlkCtrlRepeat-Sts")
 }
 
