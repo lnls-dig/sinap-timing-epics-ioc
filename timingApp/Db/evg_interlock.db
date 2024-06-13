@@ -172,7 +172,7 @@ record(mbboDirect, "$(P)$(R)IntlkLogEnbl-SP") {
   field(DESC, "Each bit sets interlock map log enable")
   field(NOBT, "8")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockrepeat_time_log_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R)) $(PORT)")
 }
 
 record(mbbiDirect, "$(P)$(R)IntlkLogEnbl-RB") {
@@ -189,7 +189,7 @@ record(bo, "$(P)$(R)IntlkCtrlEnbl-Sel") {
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)IntlkCtrlEnblCalc")
+  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
   field(PINI, YES)
 }
 
@@ -199,7 +199,7 @@ record(bo, "$(P)$(R)IntlkCtrlRst-Sel") {
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
   field(HIGH, "1")
-  field(FLNK, "$(P)$(R)IntlkCtrlRstCalc")
+  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
 }
 
 record(bo, "$(P)$(R)IntlkCtrlRepeat-Sel") {
@@ -207,42 +207,6 @@ record(bo, "$(P)$(R)IntlkCtrlRepeat-Sel") {
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)IntlkCtrlRepeatCalc")
-}
-
-record(calcout, "$(P)$(R)IntlkCtrlEnblCalc") {
-  field(ASG, "Reserved")
-  field(DESC, "Interlock control. En, reset, cont.")
-  field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sel")
-  field(INPB, "$(P)$(R)IntlkCtrlRst-Sts")
-  field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sts")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R),EnblCalc) $(PORT)")
-  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
-}
-
-record(calcout, "$(P)$(R)IntlkCtrlRstCalc") {
-  field(ASG, "Reserved")
-  field(DESC, "Interlock control. En, reset, cont.")
-  field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sts")
-  field(INPB, "$(P)$(R)IntlkCtrlRst-Sel")
-  field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sts")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R),RstCalc) $(PORT)")
-  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
-}
-
-record(calcout, "$(P)$(R)IntlkCtrlRepeatCalc") {
-  field(ASG, "Reserved")
-  field(DESC, "Interlock control. En, reset, cont.")
-  field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sts")
-  field(INPB, "$(P)$(R)IntlkCtrlRst-Sts")
-  field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sel")
-  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R),RepeatCalc) $(PORT)")
   field(FLNK, "$(P)$(R)IntlkCtrlCalc")
 }
 
@@ -253,6 +217,8 @@ record(calcout, "$(P)$(R)IntlkCtrlCalc") {
   field(INPB, "$(P)$(R)IntlkCtrlRst-Sel")
   field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sel")
   field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)IntlkCtrlRepeatTime-SP") {
@@ -260,7 +226,7 @@ record(longout, "$(P)$(R)IntlkCtrlRepeatTime-SP") {
   field(DRVH, "4294967295")
   field(DRVL, "1")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_ilockrepeat_time_log_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R)) $(PORT)")
 }
 
 record(longin, "$(P)$(R)IntlkCtrlRepeatTime-RB") {
