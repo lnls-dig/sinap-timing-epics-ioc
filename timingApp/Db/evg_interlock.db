@@ -3,25 +3,17 @@
 
 record(mbboDirect, "$(P)$(R)IntlkTbl0to15-Sel") {
   field(DESC, "interlock input to output map")
-  field(FLNK, "$(P)$(R)IntlkTblCalc")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
   field(ASG, "Interlock")
   field(PINI, YES)
 }
 
 record(mbboDirect, "$(P)$(R)IntlkTbl16to27-Sel") {
   field(DESC, "interlock input to output map")
-  field(FLNK, "$(P)$(R)IntlkTblCalc")
-  field(ASG, "Interlock")
-}
-
-record(calcout, "$(P)$(R)IntlkTblCalc") {
-  #field(ASG, "Reserved")
-  field(DESC, "interlock map calc")
   field(DTYP, "stream")
-  field(INPA, "$(P)$(R)IntlkTbl16to27-Sel")
-  field(INPB, "$(P)$(R)IntlkTbl0to15-Sel")
-  field(CALC, "(A<<16)+B")
   field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
 }
 
 record(longout, "$(P)$(R)IntlkEvtIn0-SP") {
