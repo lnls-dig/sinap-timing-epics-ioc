@@ -151,31 +151,11 @@ record(calcout, "$(P)$(R)SeqEnblDevEnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "download SEQEN and ENABLE")
   field(PINI, "1")
+  field(DTYP, "stream")
   field(INPA, "$(P)$(R)SeqEnbl-Sel")
   field(INPB, "$(P)$(R)DevEnbl-Sel")
   field(CALC, "(A<<1)|B")
-}
-
-record(calcout, "$(P)$(R)SEQEN") {
-  field(ASG, "Reserved")
-  field(DESC, "SEQRAM set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)SeqEnbl-Sel.RVAL")
-  field(INPB, "$(P)$(R)DevEnbl-Sts")
-  field(CALC, "(A<<1)|B")
-  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(P),$(R),SEQEN) $(PORT)")
-  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
-}
-
-record(calcout, "$(P)$(R)EVGEN") {
-  field(ASG, "Reserved")
-  field(DESC, "set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)SeqEnbl-Sts")
-  field(INPB, "$(P)$(R)DevEnbl-Sel.RVAL")
-  field(CALC, "(A<<1)|B")
-  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(P),$(R),EVGEN) $(PORT)")
-  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
+  field(OUT, "@timing.proto evg_ctrl_set($(P),$(R)) $(PORT)")
 }
 
 record(bo, "$(P)$(R)SeqEnbl-Sel"){
@@ -183,7 +163,7 @@ record(bo, "$(P)$(R)SeqEnbl-Sel"){
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)SEQEN")
+  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
 }
 
 record(bo, "$(P)$(R)DevEnbl-Sel"){
@@ -191,7 +171,7 @@ record(bo, "$(P)$(R)DevEnbl-Sel"){
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)EVGEN")
+  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
   field(PINI, YES)
 }
 

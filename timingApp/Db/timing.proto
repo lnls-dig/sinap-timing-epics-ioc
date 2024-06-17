@@ -69,11 +69,6 @@ evg_ctrl_get {
     in "\x02%*04r\x00\x0D\xc0%*04r%*04r%*04r"; # waiting for an answer to trigger interrupts before run next command 
 }
 
-evg_ctrl_seq_en_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set).1r\x00\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2\$3).1r";
-    evg_ctrl_get;
-}
-
 evg_ctrl_set{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_ctrl_set).1r%(\$1\$2RxLockedLtcRst-Cmd).1r\x00\x00%(\$1\$2RxEnbl-SP).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2SeqEnblDevEnblCalc).1r";
     evg_ctrl_get;
