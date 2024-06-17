@@ -1,0 +1,272 @@
+########################################################################
+# Interlock map [56]
+
+record(mbboDirect, "$(P)$(R)IntlkTbl0to15-Sel") {
+  field(DESC, "interlock input to output map")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+  field(PINI, YES)
+}
+
+record(mbboDirect, "$(P)$(R)IntlkTbl16to27-Sel") {
+  field(DESC, "interlock input to output map")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)IntlkEvtIn0-SP") {
+  field(DESC, "interlock input 0 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)IntlkEvtIn1-SP") {
+  field(DESC, "interlock input 1 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)IntlkEvtIn2-SP") {
+  field(DESC, "interlock input 2 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)IntlkEvtIn3-SP") {
+  field(DESC, "interlock input 3 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)IntlkEvtIn4-SP") {
+  field(DESC, "interlock input 4 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)IntlkEvtIn5-SP") {
+  field(DESC, "interlock input 5 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)IntlkEvtIn6-SP") {
+  field(DESC, "interlock input 6 event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)IntlkEvtOut-SP") {
+  field(DESC, "interlock output event code")
+  field(DRVH, "255")
+  field(DRVL, "0")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockmap_set($(P),$(R)) $(PORT)")
+  field(ASG, "Interlock")
+}
+
+record(longout, "$(P)$(R)cmd_evg_ilockmap_set") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write to Interlock Map")
+  field(VAL, "0x78")
+}
+
+record(longout, "$(P)$(R)cmd_evg_ilockmap_get") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read Interlock Map")
+  field(VAL, "0xB8")
+}
+
+record(mbbiDirect, "$(P)$(R)IntlkTbl0to15-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input to output map RBV")
+}
+
+record(mbbiDirect, "$(P)$(R)IntlkTbl16to27-Sts") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input to output map RBV")
+}
+
+record(longin, "$(P)$(R)IntlkEvtIn0-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input 0 event code RBV")
+}
+
+record(longin, "$(P)$(R)IntlkEvtIn1-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input 1 event code RBV")
+}
+
+record(longin, "$(P)$(R)IntlkEvtIn2-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input 2 event code RBV")
+}
+
+record(longin, "$(P)$(R)IntlkEvtIn3-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input 3 event code RBV")
+}
+
+record(longin, "$(P)$(R)IntlkEvtIn4-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input 4 event code RBV")
+}
+
+record(longin, "$(P)$(R)IntlkEvtIn5-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input 5 event code RBV")
+}
+
+record(longin, "$(P)$(R)IntlkEvtIn6-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock input 6 event code RBV")
+}
+
+record(longin, "$(P)$(R)IntlkEvtOut-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "interlock output event code RBV")
+}
+
+########################################################################
+# Interlock Control and Status [57]
+
+record(longout, "$(P)$(R)cmd_evg_ilockcontrol_set") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to write Interlock Control")
+  field(VAL, "0x79")
+}
+
+record(longout, "$(P)$(R)cmd_evg_ilockcontrol_get") {
+  field(ASG, "Reserved")
+  field(DESC, "Command code to read Interlock Control")
+  field(SCAN, "1 second")
+  field(VAL, "0xB9")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_get($(P),$(R)) $(PORT)")
+}
+
+record(mbboDirect, "$(P)$(R)IntlkLogEnbl-SP") {
+  field(DESC, "Each bit sets interlock map log enable")
+  field(NOBT, "8")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R)) $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)IntlkLogEnbl-RB") {
+  field(ASG, "Reserved")
+  field(DESC, "Interlock map log enable status")
+  field(NOBT, "8")
+  field(DTYP, "stream")
+  field(SCAN, "I/O Intr")
+  field(INP, "@timing.proto evg_ilock_log_intr $(PORT)")
+}
+
+record(bo, "$(P)$(R)IntlkCtrlEnbl-Sel") {
+  field(DESC, "Interlock map enable")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
+  field(PINI, YES)
+}
+
+record(bo, "$(P)$(R)IntlkCtrlRst-Cmd") {
+  field(DESC, "Interlock map reset command")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(HIGH, "1")
+  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
+}
+
+record(bo, "$(P)$(R)IntlkCtrlRepeat-Sel") {
+  field(DESC, "Interlock map enable continuous mode")
+  field(MASK, "1")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)IntlkCtrlCalc")
+}
+
+record(calcout, "$(P)$(R)IntlkCtrlCalc") {
+  field(ASG, "Reserved")
+  field(DESC, "Interlock control. En, reset, cont.")
+  field(INPA, "$(P)$(R)IntlkCtrlEnbl-Sel")
+  field(INPB, "$(P)$(R)IntlkCtrlRst-Cmd")
+  field(INPC, "$(P)$(R)IntlkCtrlRepeat-Sel")
+  field(CALC, "(A<<7)|(B<<6)|(C<<5)")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R)) $(PORT)")
+}
+
+record(longout, "$(P)$(R)IntlkCtrlRepeatTime-SP") {
+  field(DESC, "Interlock event output repeat time")
+  field(DRVH, "4294967295")
+  field(DRVL, "1")
+  field(DTYP, "stream")
+  field(OUT, "@timing.proto evg_ilockcontrol_set($(P),$(R)) $(PORT)")
+}
+
+record(longin, "$(P)$(R)IntlkCtrlRepeatTime-RB") {
+  #field(ASG, "Reserved")
+  field(DESC, "Interlock evtout repeat time RBV")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_ilock_repeat_time_intr $(PORT)")
+}
+
+record(mbbiDirect, "$(P)$(R)IntlkCtrlRaw") {
+  #field(ASG, "Reserved")
+  field(DESC, "Interlock control RBV.")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_ilock_control_intr $(PORT)")
+  field(FLNK, "$(P)$(R)IntlkCtrlEnbl-Sts")
+}
+
+record(bi, "$(P)$(R)IntlkCtrlEnbl-Sts") {
+  field(DESC, "Interlock map enable RBV")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)IntlkCtrlRaw.B7")
+  field(FLNK, "$(P)$(R)IntlkCtrlRepeat-Sts")
+}
+
+record(bi, "$(P)$(R)IntlkCtrlRepeat-Sts") {
+  field(DESC, "Interlock map enable continuous mode RBV")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(INP, "$(P)$(R)IntlkCtrlRaw.B5")
+}
+
+record(mbbiDirect, "$(P)$(R)IntlkEvtStatus-Mon") {
+  #field(ASG, "Reserved")
+  field(DESC, "Interlock event status")
+  field(NOBT, "8")
+  field(SCAN, "I/O Intr")
+  field(DTYP, "stream")
+  field(INP, "@timing.proto evg_ilock_status_intr $(PORT)")
+}
