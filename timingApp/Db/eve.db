@@ -254,6 +254,7 @@ record(mbbi, "$(P)$(R)DevFun-Sts") {
 
 record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVE fixed configuration")
+  field(ASG, "Reserved")
   field(PINI, "1")
   field(ZRVL, "32")
   field(ZRST, "EVE")
@@ -264,6 +265,7 @@ record(mbbo, "$(P)$(R)DevFun-Sel") {
 
 record(mbbo, "$(P)$(R)ClkMode-SP"){
   field(DESC, "clock mode")
+  field(ASG, "Reserved")
   field(ZRVL, "11")
   field(ZRST, "11")
   field(ONVL, "16")

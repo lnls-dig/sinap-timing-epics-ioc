@@ -524,6 +524,7 @@ record(mbbi, "$(P)$(R)DevFun-Sts") {
 
 record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVO configuration as EVG")
+  field(ASG, "Reserved")
   field(PINI, "1")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
@@ -540,6 +541,7 @@ record(mbbo, "$(P)$(R)DevFun-Sel") {
 
 record(ao, "$(P)$(R)RFDiv-SP"){
   field(DESC, "RF clock divider")
+  field(ASG, "Reserved")
   field(DTYP, "stream")
   field(DRVH, "4")
   field(DRVL, "4")
