@@ -744,35 +744,14 @@ evg_conf_funsel_intr{
 ################################################################################
 # Configutarion register EVR/EVE [63]
 
-evr_conf_get {
+evre_conf_get {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*04r";
 }
 
-evr_conf_funsel_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-RB.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
-    evr_conf_get;
-}
-
-evr_conf_clk_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sts.RVAL).1r";
-    evr_conf_get;
-}
-
-evr_conf_set{
+evre_conf_set{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
-    evr_conf_get;
-}
-
-
-eve_conf_get {
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
-    in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*04r";
-}
-
-eve_conf_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00\x00\x00%(\$1\$2ClkMode-SP.RVAL).1r\x00\x00\x00\x20";
-    eve_conf_get;
+    evre_conf_get;
 }
 
 # Interrupts

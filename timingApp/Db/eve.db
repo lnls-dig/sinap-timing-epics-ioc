@@ -254,11 +254,12 @@ record(mbbi, "$(P)$(R)DevFun-Sts") {
 
 record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVE fixed configuration")
+  field(PINI, "1")
   field(ZRVL, "32")
   field(ZRST, "EVE")
   field(DTYP, "stream")
   field(VAL, "0")
-  field(OUT, "@timing.proto evr_conf_funsel_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evre_conf_set($(P),$(R)) $(PORT)")
 }
 
 record(mbbo, "$(P)$(R)ClkMode-SP"){
@@ -275,7 +276,7 @@ record(mbbo, "$(P)$(R)ClkMode-SP"){
   field(FRST, "19")
   field(VAL, "1")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto eve_conf_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evre_conf_set($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_conf_get"){
@@ -284,7 +285,7 @@ record(longout, "$(P)$(R)cmd_conf_get"){
   field(VAL, "0xBF")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(OUT, "@timing.proto eve_conf_get($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evre_conf_get($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_conf_set") {
