@@ -501,16 +501,6 @@ evg_mux_get {
     in "\x02%*04r\x00\x0D%*r%*03r%(\$1\$2Clk\$3MuxEnbl-Sts)r%*04r%*04r";
 }
 
-evg_mux_en_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDivRaw).4r";
-    evg_mux_get;
-}
-
-evg_mux_div_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sts).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDiv-SP.RVAL).4r";
-    evg_mux_get;
-}
-
 evg_mux_set{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_mux_set\$3).1r\x00\x00\x00%(\$1\$2Clk\$3MuxEnbl-Sel.RVAL).1r\x00\x00\x00\x00%(\$1\$2Clk\$3MuxDiv-SP.RVAL).4r";
     evg_mux_get;
