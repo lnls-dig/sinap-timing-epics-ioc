@@ -135,9 +135,6 @@ seq sncSeqRAM, "P=${P}, R=${R}, ev_num=${EVT_NUM}"
 # Create monitor for Autosave
 create_monitor_set("autosave_evg.req", 60, "P=${P}, R=${R}")
 
-# Create manual trigger for Autosave
-create_triggered_set("autosave_evg.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
-
 set_savefile_name("autosave_evg.req", "auto_settings_${P}${R}.sav")
 
 caPutLogInit
