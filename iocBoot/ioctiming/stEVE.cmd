@@ -4,7 +4,8 @@
 
 epicsEnvSet("TOP", "../..")
 
-< EVE.config
+# Asyn port name
+epicsEnvSet("PORT", "TIPORT")
 
 # ################################
 

@@ -4,7 +4,8 @@
 
 epicsEnvSet("TOP", "../..")
 
-< FOUT.config
+# Asyn port name
+epicsEnvSet("PORT", "TIPORT")
 
 # ################################
 

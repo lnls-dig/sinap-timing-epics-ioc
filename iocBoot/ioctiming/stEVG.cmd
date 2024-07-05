@@ -4,7 +4,13 @@
 
 epicsEnvSet("TOP", "../..")
 
-< EVG.config
+## Number of events recognized by the state machine
+# Must NOT be modified
+epicsEnvSet("EVT_NUM", "63")
+epicsEnvSet("EVT_DELAY", "100")
+
+# Asyn port name
+epicsEnvSet("PORT", "TIPORT")
 
 # ################################
 

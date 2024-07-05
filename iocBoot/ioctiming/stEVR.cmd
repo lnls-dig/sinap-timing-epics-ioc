@@ -4,7 +4,8 @@
 
 epicsEnvSet("TOP", "../..")
 
-< EVR.config
+# Asyn port name
+epicsEnvSet("PORT", "TIPORT")
 
 # ################################
 
