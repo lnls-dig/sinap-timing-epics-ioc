@@ -319,10 +319,3 @@ record(bi, "$(P)$(R)Network-Mon") {
   field(ONAM, "Connected")
   field(FLNK, "$(P)$(R)FrmVersionA-Cte")
 }
-
-record(bo, "$(P)$(R)Save-Cmd"){
-  field(DESC, "manual Save settings command")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-}
