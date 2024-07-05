@@ -294,32 +294,7 @@ record(longout, "$(P)$(R)cmd_conf_set") {
 }
 
 ########################################################################
-# Write all configuration registers
-record(bo, "$(P)$(R)Download-Cmd") {
-  field(DESC, "download config to hardware")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-}
-
-record(bo, "$(P)$(R)Download-Trig") {
-  field(DESC, "download trigger")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto eve_download($(P),$(R)) $(PORT)")
-}
-
-record(bo, "$(P)$(R)GetRBV") {
-  field(DESC, "upload trigger")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  #field(HIGH, "0.5")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evr_get_rbv($(P),$(R)) $(PORT)")
-}
+# Device Status and Network monitoring
 
 record(calc, "$(P)$(R)DevStatusCalc") {
   field(ASG, "Reserved")

@@ -154,23 +154,7 @@ record(longout, "$(P)$(R)cmd_conf_set") {
 }
 
 ########################################################################
-# Write all configuration registers
-
-record(bo, "$(P)$(R)Download-Cmd") {
-  field(DESC, "FOUT download")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-}
-
-record(bo, "$(P)$(R)Download-Trig") {
-  field(DESC, "FOUT download trigger")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto fout_download($(P),$(R)) $(PORT)")
-}
+# Device Status and Network monitoring
 
 record(calc, "$(P)$(R)DevStatusCalc") {
   field(ASG, "Reserved")
