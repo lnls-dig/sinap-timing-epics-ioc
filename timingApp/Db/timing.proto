@@ -722,16 +722,6 @@ evg_conf_get {
     in "\x02%*04r\x00\x0D\xFF%*04r%*04r%*04r";
 }
 
-evg_conf_funsel_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDivRaw).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
-    evg_conf_get;
-}
-
-evg_conf_rfdiv_set{
-    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDiv-SP.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sts.RVAL).1r";
-    evg_conf_get;
-}
-
 evg_conf_set{
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_conf_set).1r\x00\x00\x00\x00\x00%(\$1\$2RFDiv-SP.RVAL).1r\x00\x00\x00\x00\x00%(\$1\$2DevFun-Sel.RVAL).1r";
     evg_conf_get;

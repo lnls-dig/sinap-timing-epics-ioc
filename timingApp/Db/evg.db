@@ -524,6 +524,7 @@ record(mbbi, "$(P)$(R)DevFun-Sts") {
 
 record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVO configuration as EVG")
+  field(PINI, "1")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
   field(ONVL, "17")
@@ -534,7 +535,7 @@ record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(THST, "EVE")
   field(VAL, "2")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_conf_funsel_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_conf_set($(P),$(R)) $(PORT)")
 }
 
 record(ao, "$(P)$(R)RFDiv-SP"){
@@ -547,7 +548,7 @@ record(ao, "$(P)$(R)RFDiv-SP"){
   field(VAL, "4")
   field(AOFF, "1")
   field(PREC, "0")
-  field(OUT, "@timing.proto evg_conf_rfdiv_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_conf_set($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_conf_get") {
