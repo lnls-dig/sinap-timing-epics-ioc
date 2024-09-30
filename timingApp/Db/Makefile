@@ -13,7 +13,7 @@ include $(TOP)/configure/CONFIG
 DB += evre_otp.db
 DB += evre_otp_scan.db
 DB += evre_out.db
-DB += evgfout_out.db evgfout_rxenbl.db
+DB += evgfout_out.db
 DB += evg_clk.db
 DB += eve.db
 DB += evg.db
