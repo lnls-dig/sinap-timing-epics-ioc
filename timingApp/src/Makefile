@@ -115,6 +115,11 @@ timing_LIBS += stream
 timing_LIBS += autosave
 timing_LIBS += caPutLog
 
+ifneq ($(PVXS),)
+    timing_DBD += pvxsIoc.dbd
+    timing_LIBS += pvxsIoc pvxs
+endif
+
 # Finally link to the EPICS Base libraries
 timing_LIBS += $(EPICS_BASE_IOC_LIBS)
 
