@@ -260,30 +260,27 @@ record(calcout, "$(P)$(R)rstSoftBuffCalc"){
   field(OUT, "$(P)$(R)rstSoftBuffSeq.PROC")
 }
 
-record(sseq, "$(P)$(R)rstSoftBuffSeq"){
+record(seq, "$(P)$(R)rstSoftBuffSeq"){
   field(ASG, "Reserved")
   field(DESC, "Reset software buffers sequence")
   field(SELM, "All")
+  # We reset and process the buffers. This causes them to pull the latest value from hardware (possibly -1).
+  # Then we reset them again, so they are emptied before the monitor is posted.
   field(DO1, "1")
   field(DO2, "1")
   field(DO3, "1")
-  field(DO4, "0")
+  field(DO4, "1")
   field(DO5, "1")
   field(DO6, "1")
-  field(DO7, "1")
-  field(LNK1, "$(P)$(R)UTCbuffer.RES PP")	# Reset and process UTC buffer. It will pull a -1 when processed.
-  field(LNK2, "$(P)$(R)SUBSECbuffer.RES PP")	# Reset and process SUBSEC buffer. It will pull a -1 when processed.
-  field(LNK3, "$(P)$(R)EVENTbuffer.RES PP")	# Reset and process EVENT buffer. It will pull a -1 when processed.
-  field(LNK4, "$(P)$(R)LOGSOFTCNT")		# Zero soft log count
-  field(LNK5, "$(P)$(R)UTCbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
-  field(LNK6, "$(P)$(R)SUBSECbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
-  field(LNK7, "$(P)$(R)EVENTbuffer.RES")	# Reset buffer again, and do not process, to remove -1.
-  field(WAIT1, "Wait")
-  field(WAIT2, "Wait")
-  field(WAIT3, "Wait")
-  field(WAIT4, "Wait")
-  field(WAIT5, "Wait")
-  field(WAIT6, "Wait")
+  field(LNK1, "$(P)$(R)UTCbuffer.RES PP")
+  field(LNK2, "$(P)$(R)SUBSECbuffer.RES PP")
+  field(LNK3, "$(P)$(R)EVENTbuffer.RES PP")
+  field(LNK4, "$(P)$(R)UTCbuffer.RES")
+  field(LNK5, "$(P)$(R)SUBSECbuffer.RES")
+  field(LNK6, "$(P)$(R)EVENTbuffer.RES")
+  # Zero soft log count
+  field(DO7, "-1")
+  field(LNK7, "$(P)$(R)LOGSOFTCNT PP")
 }
 
 record(longout, "$(P)$(R)cmd_log_get"){
