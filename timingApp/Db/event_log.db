@@ -171,7 +171,18 @@ record(longout, "$(P)$(R)readAndUpdate"){
   field(DTYP, "stream")
   field(OUT, "@timing.proto evgre_log_get($(P),$(R)) $(PORT)")
   field(PRIO, "HIGH")
+  field(FLNK, "$(P)$(R)LOGTS")
+}
+
+record(calc, "$(P)$(R)LOGTS"){
+  field(DESC, "timestamp calculated from log")
+  field(INPA, "$(P)$(R)LOGUTC")
+  field(INPB, "$(P)$(R)LOGSUBSEC")
+  field(INPC, "$(P)$(R)FPGAClk-Cte")
+  field(CALC, "A + B / C")
+  field(EGU, "seconds")
   field(FLNK, "$(P)$(R)UTCbuffer")
+  field(PREC, 6)
 }
 
 record(compress, "$(P)$(R)UTCbuffer"){
@@ -191,7 +202,18 @@ record(compress, "$(P)$(R)SUBSECbuffer"){
   field(ALG, "Circular Buffer")
   field(NSAM, "1000")
   field(INP, "$(P)$(R)LOGSUBSEC")
+  field(FLNK, "$(P)$(R)TSbuffer")
+}
+
+record(compress, "$(P)$(R)TSbuffer"){
+  field(ASG, "Reserved")
+  field(DESC, "TS circular buffer (us precision)")
+  field(EGU, "second")
+  field(ALG, "Circular Buffer")
+  field(NSAM, "1000")
+  field(INP, "$(P)$(R)LOGTS")
   field(FLNK, "$(P)$(R)EVENTbuffer")
+  field(PREC, 6)
 }
 
 record(compress, "$(P)$(R)EVENTbuffer"){
@@ -272,15 +294,19 @@ record(seq, "$(P)$(R)rstSoftBuffSeq"){
   field(DO4, "1")
   field(DO5, "1")
   field(DO6, "1")
+  field(DO7, "1")
+  field(DO8, "1")
   field(LNK1, "$(P)$(R)UTCbuffer.RES PP")
   field(LNK2, "$(P)$(R)SUBSECbuffer.RES PP")
-  field(LNK3, "$(P)$(R)EVENTbuffer.RES PP")
-  field(LNK4, "$(P)$(R)UTCbuffer.RES")
-  field(LNK5, "$(P)$(R)SUBSECbuffer.RES")
-  field(LNK6, "$(P)$(R)EVENTbuffer.RES")
+  field(LNK3, "$(P)$(R)TSbuffer.RES PP")
+  field(LNK4, "$(P)$(R)EVENTbuffer.RES PP")
+  field(LNK5, "$(P)$(R)UTCbuffer.RES")
+  field(LNK6, "$(P)$(R)SUBSECbuffer.RES")
+  field(LNK7, "$(P)$(R)TSbuffer.RES")
+  field(LNK8, "$(P)$(R)EVENTbuffer.RES")
   # Zero soft log count
-  field(DO7, "-1")
-  field(LNK7, "$(P)$(R)LOGSOFTCNT PP")
+  field(DO9, "-1")
+  field(LNK9, "$(P)$(R)LOGSOFTCNT PP")
 }
 
 record(longout, "$(P)$(R)cmd_log_get"){
