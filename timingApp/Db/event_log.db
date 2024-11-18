@@ -205,6 +205,20 @@ record(compress, "$(P)$(R)SUBSECbuffer"){
   field(FLNK, "$(P)$(R)TSbuffer")
 }
 
+record(aai, "$(P)$(R)bufferLABELS"){
+  field(ASG, "Reserved")
+  field(NELM, 2)
+  field(FTVL, "STRING")
+  field(INP, {const:["Timestamp", "Event"]})
+  info(Q:group, {
+    "$(P)$(R)EventTable-Mon": {
+      +id: "epics:nt/NTTable:1.0",
+      labels: {+type: "plain", +channel: "VAL"},
+      descriptor: {+type: "const", +const: "timestamp and event table (us precision)"}
+    }
+  })
+}
+
 record(compress, "$(P)$(R)TSbuffer"){
   field(ASG, "Reserved")
   field(DESC, "TS circular buffer (us precision)")
@@ -213,6 +227,11 @@ record(compress, "$(P)$(R)TSbuffer"){
   field(NSAM, "1000")
   field(INP, "$(P)$(R)LOGTS")
   field(FLNK, "$(P)$(R)EVENTbuffer")
+  info(Q:group, {
+    "$(P)$(R)EventTable-Mon": {
+      "value.A": {+type: "plain", +channel: "VAL"}
+    }
+  })
   field(PREC, 6)
 }
 
@@ -223,6 +242,11 @@ record(compress, "$(P)$(R)EVENTbuffer"){
   field(NSAM, "1000")
   field(INP, "$(P)$(R)LOGEVENT")
   field(FLNK, "$(P)$(R)LOGSOFTCNT")
+  info(Q:group, {
+    "$(P)$(R)EventTable-Mon": {
+      "value.B": {+type: "plain", +channel: "VAL", +trigger: "*"}
+    }
+  })
 }
 
 record(calc, "$(P)$(R)LOGSOFTCNT"){
@@ -307,6 +331,11 @@ record(seq, "$(P)$(R)rstSoftBuffSeq"){
   # Zero soft log count
   field(DO9, "-1")
   field(LNK9, "$(P)$(R)LOGSOFTCNT PP")
+  info(Q:group, {
+    "$(P)$(R)EventTable-Mon": {
+      "": {+type: "meta", +channel: "VAL", +trigger: "*"}
+    }
+  })
 }
 
 record(longout, "$(P)$(R)cmd_log_get"){
