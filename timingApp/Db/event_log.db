@@ -190,7 +190,7 @@ record(compress, "$(P)$(R)UTCbuffer"){
   field(DESC, "UTC circular buffer")
   field(EGU, "seconds")
   field(ALG, "Circular Buffer")
-  field(NSAM, "1000")
+  field(NSAM, "20000")
   field(INP, "$(P)$(R)LOGUTC")
   field(FLNK, "$(P)$(R)SUBSECbuffer")
 }
@@ -200,7 +200,7 @@ record(compress, "$(P)$(R)SUBSECbuffer"){
   field(DESC, "SUBSEC circular buffer")
   field(EGU, "evt_T")
   field(ALG, "Circular Buffer")
-  field(NSAM, "1000")
+  field(NSAM, "20000")
   field(INP, "$(P)$(R)LOGSUBSEC")
   field(FLNK, "$(P)$(R)TSbuffer")
 }
@@ -224,7 +224,7 @@ record(compress, "$(P)$(R)TSbuffer"){
   field(DESC, "TS circular buffer (us precision)")
   field(EGU, "second")
   field(ALG, "Circular Buffer")
-  field(NSAM, "1000")
+  field(NSAM, "20000")
   field(INP, "$(P)$(R)LOGTS")
   field(FLNK, "$(P)$(R)EVENTbuffer")
   info(Q:group, {
@@ -239,7 +239,7 @@ record(compress, "$(P)$(R)EVENTbuffer"){
   field(ASG, "Reserved")
   field(DESC, "Event circular buffer")
   field(ALG, "Circular Buffer")
-  field(NSAM, "1000")
+  field(NSAM, "20000")
   field(INP, "$(P)$(R)LOGEVENT")
   field(FLNK, "$(P)$(R)LOGSOFTCNT")
   info(Q:group, {
