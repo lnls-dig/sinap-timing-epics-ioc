@@ -267,13 +267,26 @@ record(calcout, "$(P)$(R)pullAgain"){
   field(FLNK, "$(P)$(R)LOGCTRL")
 }
 
+record(bo, "$(P)$(R)StopSoftLog-Sel"){
+  field(DESC, "stop soft logging")
+  field(ONAM, "Running")
+  field(ZNAM, "Stopped")
+  field(OUT, "$(P)$(R)StopSoftLog-Sts PP")
+}
+record(bi, "$(P)$(R)StopSoftLog-Sts"){
+  field(DESC, "stop soft logging")
+  field(ONAM, "Running")
+  field(ZNAM, "Stopped")
+}
+
 record(calcout, "$(P)$(R)PeriodicPull"){
   field(ASG, "Reserved")
   field(DESC, "Periodic pull of timestamps")
   field(SCAN, "2 second")
   field(INPA, "$(P)$(R)whileNotEmpty.VAL")
   field(INPB, "$(P)$(R)EMPTY")
-  field(CALC, "(A = 0) && (B = 0)")
+  field(INPC, "$(P)$(R)StopSoftLog-Sts")
+  field(CALC, "(A = 0) && (B = 0) && (C = 0)")
   field(VAL, "0")
   field(OOPT, "When Non-zero")
   field(OUT, "$(P)$(R)whileNotEmpty.PROC")
