@@ -4,10 +4,9 @@
 record(ai, "$(P)$(R)FPGAClk-Cte") {
   field(DESC, "FPGA Clock from EVG")
   field(EGU, "Hz")
-  field(SCAN, "1 second")
   field(PINI, "1")
   field(VAL, "124914500")
-  field(INP, "AS-RaMO:TI-EVG:FPGAClk-Cte")
+  field(INP, "AS-RaMO:TI-EVG:FPGAClk-Cte CPP NMS")
 }
 
 record(stringout, "$(P)$(R)IPAddr-Mon"){
@@ -255,15 +254,18 @@ record(mbbi, "$(P)$(R)DevFun-Sts") {
 
 record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVE fixed configuration")
+  field(ASG, "Reserved")
+  field(PINI, "1")
   field(ZRVL, "32")
   field(ZRST, "EVE")
   field(DTYP, "stream")
   field(VAL, "0")
-  field(OUT, "@timing.proto evr_conf_funsel_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evre_conf_set($(P),$(R)) $(PORT)")
 }
 
 record(mbbo, "$(P)$(R)ClkMode-SP"){
   field(DESC, "clock mode")
+  field(ASG, "Reserved")
   field(ZRVL, "11")
   field(ZRST, "11")
   field(ONVL, "16")
@@ -276,7 +278,7 @@ record(mbbo, "$(P)$(R)ClkMode-SP"){
   field(FRST, "19")
   field(VAL, "1")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto eve_conf_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evre_conf_set($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_conf_get"){
@@ -285,7 +287,7 @@ record(longout, "$(P)$(R)cmd_conf_get"){
   field(VAL, "0xBF")
   field(DTYP, "stream")
   field(SCAN, "1 second")
-  field(OUT, "@timing.proto eve_conf_get($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evre_conf_get($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_conf_set") {
@@ -295,32 +297,7 @@ record(longout, "$(P)$(R)cmd_conf_set") {
 }
 
 ########################################################################
-# Write all configuration registers
-record(bo, "$(P)$(R)Download-Cmd") {
-  field(DESC, "download config to hardware")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-}
-
-record(bo, "$(P)$(R)Download-Trig") {
-  field(DESC, "download trigger")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto eve_download($(P),$(R)) $(PORT)")
-}
-
-record(bo, "$(P)$(R)GetRBV") {
-  field(DESC, "upload trigger")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  #field(HIGH, "0.5")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evr_get_rbv($(P),$(R)) $(PORT)")
-}
+# Device Status and Network monitoring
 
 record(calc, "$(P)$(R)DevStatusCalc") {
   field(ASG, "Reserved")
@@ -344,11 +321,4 @@ record(bi, "$(P)$(R)Network-Mon") {
   field(ZNAM, "Disconnected")
   field(ONAM, "Connected")
   field(FLNK, "$(P)$(R)FrmVersionA-Cte")
-}
-
-record(bo, "$(P)$(R)Save-Cmd"){
-  field(DESC, "manual Save settings command")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
 }

@@ -4,7 +4,8 @@
 
 epicsEnvSet("TOP", "../..")
 
-< FOUT.config
+# Asyn port name
+epicsEnvSet("PORT", "TIPORT")
 
 # ################################
 
@@ -51,8 +52,5 @@ seq sncFOUTSetup, "P=${P}, R=${R}"
 
 # Create monitor for Autosave
 create_monitor_set("autosave_fout.req", 60, "P=${P}, R=${R}")
-
-# Create manual trigger for Autosave
-create_triggered_set("autosave_fout.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
 
 set_savefile_name("autosave_fout.req", "auto_settings_${P}${R}.sav")

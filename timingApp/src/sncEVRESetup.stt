@@ -1,37 +1,14 @@
 program sncEVRESetup
 
 %%//----------------------------------------
-%%// 	        Variables
-%%//----------------------------------------
-
-char str[40];
-
-%%//----------------------------------------
 %%// 	      Monitored PVs
 %%//----------------------------------------
-
-int uploadtrig;
-assign uploadtrig to "{P}{R}GetRBV.VAL";
-
-int downloadproc;
-assign downloadproc to "{P}{R}Download-Trig.PROC";
-
-int download;
-assign download to "{P}{R}Download-Cmd.VAL";
-monitor download;
-
-int statdev;
-assign statdev to "{P}{R}DevStatus-Mon";
-monitor statdev;
 
 int cmd_conf_get;
 assign cmd_conf_get to "{P}{R}cmd_conf_get";
 monitor cmd_conf_get;
 evflag cmd_conf_get_event;
 sync cmd_conf_get cmd_conf_get_event;
-
-int funsel;
-assign funsel to "";
 
 int funselRBV;
 assign funselRBV to "{P}{R}DevFun-Sts.RVAL";
@@ -44,108 +21,6 @@ monitor network;
 %%//----------------------------------------
 %%// 	    State Notation Language
 %%//----------------------------------------
-
-ss configuration {
-
-    state init {
-
-	when (delay(1.0)){
-
-		%{/* Wait 1 sec while module starts up */}%
-
-		%%// Init message
-		printf("\n%s%s state machine initiated\n", macValueGet("P"), macValueGet("R"));
-
-	} state upload
-    }
-
-    state upload {
-
-	when (statdev == 0 || (funselRBV != 17 && funselRBV != 32)){
-
-		%{/* If module is not configured, do not upload parameters */}%
-
-	} state waiting
-
-	when (network == 1){
-
-		%{/* If network is ON, upload parameters! */}%
-
-		%%// trigger upload
-		uploadtrig = 1;
-		pvPut(uploadtrig,SYNC);
-		uploadtrig = 0;
-		pvPut(uploadtrig,SYNC);
-
-		%%// upload message
-		printf("\nConfiguration uploaded from %s%s.\n", macValueGet("P"), macValueGet("R"));
-
-	} state waiting
-    }
-
-    state waiting {
-
-	entry{
-
-		%{/* If the device is a STD-EVO, assign the 'funsel' PV to it */}%
-
-		if(funselRBV != 32){
-			
-			%%// get 'funsel' PV name
-			sprintf (str, "%s%sfunsel.VAL", macValueGet("P"), macValueGet("R"));
-
-			%%// assign 'funsel'
-			pvAssign (funsel, str);
-		}
-
-	}
-
-	when ((statdev == 0 || (funselRBV != 17 && funselRBV != 32)) && (network == 1)) {
-
-		%{/* If STD-EVO is not correctly configured, download! */}%
-
-		download = 1;
-
-	} state download
-
-	when ((download == 1) && (network == 1)) {
-
-		%{/* If download requested, download! */}%
-
-		download = 1;
-
-	} state download
-    }
-	
-    state download {
-
-	entry {
-
-		%%// set device function to EVR (option 1) if module is a STD-EVO
-		if(funselRBV != 32){
-			funsel = 1;
-			pvPut(funsel, SYNC);
-		}
-
-		%%// trigger download
-		downloadproc = 1;
-		pvPut(downloadproc,SYNC);
-
-		%%// download message
-		printf("\nConfiguration downloaded to %s%s.\n", macValueGet("P"), macValueGet("R"));
-
-		%%// clear download PV
-		download = 0;
-		pvPut(download,SYNC);
-	}
-
-	when (delay(1)){
-
-		%{/* Wait until the download is completed */}%
-
-	}state waiting
-    }
-}
 
 ss networkStatus {
 
