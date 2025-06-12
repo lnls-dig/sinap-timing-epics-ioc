@@ -310,3 +310,4 @@ $(P)$(R)BucketList-SP
 $(P)$(R)FPGAClk-Cte
 $(P)$(R)RFRef-Mon
 $(P)$(R)RFRef-Mon.INP
+$(P)$(R)StopSoftLog-Sel
