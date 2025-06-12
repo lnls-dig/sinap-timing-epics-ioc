@@ -240,3 +240,4 @@ $(P)$(R)OTP22RegAByte3
 $(P)$(R)OTP23RegAByte3
 $(P)$(R)FPGAClk-Cte
 $(P)$(R)FPGAClk-Cte.INP
+$(P)$(R)StopSoftLog-Sel
