@@ -269,14 +269,14 @@ record(calcout, "$(P)$(R)pullAgain"){
 
 record(bo, "$(P)$(R)StopSoftLog-Sel"){
   field(DESC, "stop soft logging")
-  field(ONAM, "Running")
-  field(ZNAM, "Stopped")
+  field(ZNAM, "Running")
+  field(ONAM, "Stopped")
   field(OUT, "$(P)$(R)StopSoftLog-Sts PP")
 }
 record(bi, "$(P)$(R)StopSoftLog-Sts"){
   field(DESC, "stop soft logging")
-  field(ONAM, "Running")
-  field(ZNAM, "Stopped")
+  field(ZNAM, "Running")
+  field(ONAM, "Stopped")
 }
 
 record(calcout, "$(P)$(R)PeriodicPull"){
