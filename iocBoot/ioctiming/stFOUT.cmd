@@ -24,6 +24,33 @@ dbLoadRecords("${TOP}/db/asynRecord.db", "P=$(P)$(R), R=asyn, PORT=$(PORT), ADDR
 ## Load record instances
 dbLoadRecords("${TOP}/db/fout.db", "P=${P}, R=${R}, IPADDR=${IPADDR}, IPPORT=${IPPORT}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=00, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=01, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=02, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=03, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=04, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=05, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=06, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=07, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=08, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=09, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=10, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=11, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=12, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=13, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=14, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=15, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=16, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=17, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=18, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=19, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=20, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=21, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=22, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=23, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+
+dbLoadRecords("${TOP}/db/evre_otp_scan.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+
 dbLoadRecords("${TOP}/db/fw_version.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
 dbLoadRecords("${TOP}/db/rx_locked.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2, DEVICE=fout")
