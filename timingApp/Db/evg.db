@@ -22,7 +22,7 @@ record(ai, "$(P)$(R)RFRef-Mon"){
   field(PINI, "1")
   field(PREC, "3")
   field(EGU, "Hz")
-  field(INP, "RF-Gen:GeneralFreq-RB CPP")
+  field(INP, "RF-Gen:GeneralFreq-RB CPP NMS")
   field(VAL, "499658000.000")
   field(FLNK,"$(P)$(R)FPGAClkCalc")
 }
@@ -151,31 +151,11 @@ record(calcout, "$(P)$(R)SeqEnblDevEnblCalc") {
   field(ASG, "Reserved")
   field(DESC, "download SEQEN and ENABLE")
   field(PINI, "1")
+  field(DTYP, "stream")
   field(INPA, "$(P)$(R)SeqEnbl-Sel")
   field(INPB, "$(P)$(R)DevEnbl-Sel")
   field(CALC, "(A<<1)|B")
-}
-
-record(calcout, "$(P)$(R)SEQEN") {
-  field(ASG, "Reserved")
-  field(DESC, "SEQRAM set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)SeqEnbl-Sel.RVAL")
-  field(INPB, "$(P)$(R)DevEnbl-Sts")
-  field(CALC, "(A<<1)|B")
-  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(P),$(R),SEQEN) $(PORT)")
-  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
-}
-
-record(calcout, "$(P)$(R)EVGEN") {
-  field(ASG, "Reserved")
-  field(DESC, "set enable calc")
-  field(DTYP, "stream")
-  field(INPA, "$(P)$(R)SeqEnbl-Sts")
-  field(INPB, "$(P)$(R)DevEnbl-Sel.RVAL")
-  field(CALC, "(A<<1)|B")
-  field(OUT, "@timing.proto evg_ctrl_seq_en_set($(P),$(R),EVGEN) $(PORT)")
-  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
+  field(OUT, "@timing.proto evg_ctrl_set($(P),$(R)) $(PORT)")
 }
 
 record(bo, "$(P)$(R)SeqEnbl-Sel"){
@@ -183,7 +163,7 @@ record(bo, "$(P)$(R)SeqEnbl-Sel"){
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)SEQEN")
+  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
 }
 
 record(bo, "$(P)$(R)DevEnbl-Sel"){
@@ -191,7 +171,7 @@ record(bo, "$(P)$(R)DevEnbl-Sel"){
   field(MASK, "1")
   field(ZNAM, "Dsbl")
   field(ONAM, "Enbl")
-  field(FLNK, "$(P)$(R)EVGEN")
+  field(FLNK, "$(P)$(R)SeqEnblDevEnblCalc")
   field(PINI, YES)
 }
 
@@ -544,6 +524,8 @@ record(mbbi, "$(P)$(R)DevFun-Sts") {
 
 record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(DESC, "STD-EVO configuration as EVG")
+  field(ASG, "Reserved")
+  field(PINI, "1")
   field(ZRVL, "16")
   field(ZRST, "FOUT")
   field(ONVL, "17")
@@ -554,11 +536,12 @@ record(mbbo, "$(P)$(R)DevFun-Sel") {
   field(THST, "EVE")
   field(VAL, "2")
   field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_conf_funsel_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_conf_set($(P),$(R)) $(PORT)")
 }
 
 record(ao, "$(P)$(R)RFDiv-SP"){
   field(DESC, "RF clock divider")
+  field(ASG, "Reserved")
   field(DTYP, "stream")
   field(DRVH, "4")
   field(DRVL, "4")
@@ -567,7 +550,7 @@ record(ao, "$(P)$(R)RFDiv-SP"){
   field(VAL, "4")
   field(AOFF, "1")
   field(PREC, "0")
-  field(OUT, "@timing.proto evg_conf_rfdiv_set($(P),$(R)) $(PORT)")
+  field(OUT, "@timing.proto evg_conf_set($(P),$(R)) $(PORT)")
 }
 
 record(longout, "$(P)$(R)cmd_conf_get") {
@@ -665,32 +648,7 @@ record(longin, "$(P)$(R)RepeatBucketList-RB"){
 }
 
 ########################################################################
-# Write all configuration registers
-record(bo, "$(P)$(R)Download-Cmd") {
-  field(DESC, "download")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-}
-
-record(bo, "$(P)$(R)Download-Trig") {
-  field(DESC, "download trigger")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_download($(P),$(R)) $(PORT)")
-}
-
-record(bo, "$(P)$(R)GetRBV") {
-  field(DESC, "upload trigger")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
-  #field(HIGH, "0.5")
-  field(DTYP, "stream")
-  field(OUT, "@timing.proto evg_get_rbv($(P),$(R)) $(PORT)")
-}
+# Device Status and Network monitoring
 
 record(calc, "$(P)$(R)DevStatusCalc") {
   field(ASG, "Reserved")
@@ -715,11 +673,4 @@ record(bi, "$(P)$(R)Network-Mon") {
   field(ZNAM, "Disconnected")
   field(ONAM, "Connected")
   field(FLNK, "$(P)$(R)FrmVersionA-Cte")
-}
-
-record(bo, "$(P)$(R)Save-Cmd"){
-  field(DESC, "manual Save settings command")
-  field(MASK, "1")
-  field(ZNAM, "Dsbl")
-  field(ONAM, "Enbl")
 }

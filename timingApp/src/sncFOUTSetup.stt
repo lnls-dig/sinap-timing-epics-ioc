@@ -4,17 +4,6 @@ program sncFOUTSetup
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
-int downloadproc;
-assign downloadproc to "{P}{R}Download-Trig.PROC";
-
-int download;
-assign download to "{P}{R}Download-Cmd.VAL";
-monitor download;
-
-int statdev;
-assign statdev to "{P}{R}DevStatus-Mon";
-monitor statdev;
-
 int cmd_conf_get;
 assign cmd_conf_get to "{P}{R}cmd_conf_get";
 monitor cmd_conf_get;
@@ -32,75 +21,6 @@ monitor network;
 %%//----------------------------------------
 %%// 	    State Notation Language
 %%//----------------------------------------
-
-ss configuration {
-    state init {
-
-	when (delay(1.0)){
-
-		%{/* Wait 1 sec while module starts up */}%
-
-		%%// Init message
-		printf("\n%s%s state machine initiated\n", macValueGet("P"), macValueGet("R"));
-
-		%%// If the module is configured, print message
-		if(statdev != 0 && funselRBV == 16){
-		
-			printf("%s%s is already configured.\n", macValueGet("P"), macValueGet("R"));
-		}
-
-	} state monitoring
-    }
-
-    state monitoring {
-
-	when ((statdev == 0 || funselRBV != 16) && (network == 1)) {
-			
-		%{/* If STD-EVO is not correctly configured, download! */}%
-
-		download = 1;
-
-	} state download
-
-	when ((download == 1) && (network == 1)) {
-
-		%{/* If download requested, download! */}%
-
-		download = 1;
-
-	} state download
-
-    }
-	
-    state download {
-
-	entry {
-
-		%{/* -Trigger the download operation
-		     -Print download message
-		     -Clear download PV 
-		 */}%
-
-		%%// Download!
-		downloadproc = 1;
-		pvPut(downloadproc,SYNC);
-
-		%%// Print message
-		printf("\nConfiguration downloaded to %s%s.\n", macValueGet("P"), macValueGet("R"));
-
-		%%// Clear PV
-		download = 0;
-		pvPut(download,SYNC);
-	}
-
-	when (delay(1)) {
-
-		%{/* Wait until download is completed */}%
-
-	}state monitoring
-
-    }
-}
 
 ss networkStatus {
 

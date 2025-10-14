@@ -4,7 +4,8 @@
 
 epicsEnvSet("TOP", "../..")
 
-< EVE.config
+# Asyn port name
+epicsEnvSet("PORT", "TIPORT")
 
 # ################################
 
@@ -81,9 +82,6 @@ seq sncEVRESetup, "P=${P}, R=${R}"
 
 # Create monitor for Autosave
 create_monitor_set("autosave_eve.req", 60, "P=${P}, R=${R}")
-
-# Create manual trigger for Autosave
-create_triggered_set("autosave_eve.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
 
 set_savefile_name("autosave_eve.req", "auto_settings_${P}${R}.sav")
 
