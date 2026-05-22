@@ -87,3 +87,5 @@ create_triggered_set("autosave_eve.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
 
 set_savefile_name("autosave_eve.req", "auto_settings_${P}${R}.sav")
 
+iocLogPrefix "${IOC_LOG_PREFIX}"
+caPutLogInit

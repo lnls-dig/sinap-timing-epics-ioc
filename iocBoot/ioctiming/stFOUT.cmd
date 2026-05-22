@@ -83,3 +83,6 @@ create_monitor_set("autosave_fout.req", 60, "P=${P}, R=${R}")
 create_triggered_set("autosave_fout.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
 
 set_savefile_name("autosave_fout.req", "auto_settings_${P}${R}.sav")
+
+iocLogPrefix "${IOC_LOG_PREFIX}"
+caPutLogInit

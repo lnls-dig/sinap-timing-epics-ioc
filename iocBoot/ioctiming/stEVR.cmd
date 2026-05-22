@@ -86,3 +86,6 @@ create_monitor_set("autosave_evr.req", 60, "P=${P}, R=${R}")
 create_triggered_set("autosave_evr.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
 
 set_savefile_name("autosave_evr.req", "auto_settings_${P}${R}.sav")
+
+iocLogPrefix "${IOC_LOG_PREFIX}"
+caPutLogInit
