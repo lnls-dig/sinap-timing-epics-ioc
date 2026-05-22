@@ -19,6 +19,15 @@ E.g.:
 
 `docker run -d --name EVE01 -it -v /ioc-autosave/EVE01:/opt/epics/startup/ioc/sinap-timing-epics-ioc/iocBoot/ioctiming/autosave --net host ghcr.io/lnls-dig/sinap-timing-epics-ioc -i 192.168.0.1 -t 1000 -p 1001 -d EVE01 -P TEST: -R EVE01:`
 
+### Environment variables
+
+The behavior of this IOC can be further controlled through some environment variables. They are:
+
+- `IOC_LOG_PREFIX`: this is passed to the iocsh command `iocLogPrefix`
+- `EPICS_CA_PUT_LOG_ADDR`: this is used by the iocsh command `caPutLogInit`
+
+These variables can be omitted. The caPutLog will only be initialized if the server address is specified.
+
 ### How to build docker image
 
 Make sure the `docker/` git submodule has been initialized or that this repository was cloned recursively.
