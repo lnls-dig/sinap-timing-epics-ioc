@@ -24,7 +24,7 @@ E.g.:
 The behavior of this IOC can be further controlled through some environment variables. They are:
 
 - `IOC_LOG_PREFIX`: this is passed to the iocsh command `iocLogPrefix`
-- `EPICS_CA_PUT_LOG_ADDR`: this is used by the iocsh command `caPutLogInit`
+- `EPICS_CA_JSON_PUT_LOG_ADDR`: this is used by the iocsh command `caPutJsonLogInit`
 
 These variables can be omitted. The caPutLog will only be initialized if the server address is specified.
 

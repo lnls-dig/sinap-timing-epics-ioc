@@ -88,4 +88,4 @@ create_triggered_set("autosave_evr.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
 set_savefile_name("autosave_evr.req", "auto_settings_${P}${R}.sav")
 
 iocLogPrefix "${IOC_LOG_PREFIX}"
-caPutLogInit
+caPutJsonLogInit

@@ -168,4 +168,4 @@ create_triggered_set("autosave_evg.req", "${P}${R}Save-Cmd", "P=${P}, R=${R}")
 set_savefile_name("autosave_evg.req", "auto_settings_${P}${R}.sav")
 
 iocLogPrefix "${IOC_LOG_PREFIX}"
-caPutLogInit
+caPutJsonLogInit
