@@ -95,7 +95,7 @@ record(calc, "$(P)$(R)OTPCntReadSELNCalc") {
 record(fanout, "$(P)$(R)OTPCntReadFanout") {
 #  field(ASG, "Reserved")
   field(DESC, "Read count register fanout")
-  field(SCAN, ".1 second")
+  field(SCAN, "$(SCAN=.1 second)")
   field(SELL, "$(P)$(R)OTPCntReadSELNCalc")
   field(SELM, "Mask")
   field(LNK1, "$(P)$(R)cmd_evre_otp00to05_count_get")
