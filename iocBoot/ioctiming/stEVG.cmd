@@ -140,7 +140,7 @@ dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=21, PORT=${PORT}, AD
 dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=22, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evre_otp.db", "P=${P}, R=${R}, num=23, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
-dbLoadRecords("${TOP}/db/evre_otp_scan.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_otp_scan.db", "P=${P}, R=${R}, PORT=${PORT}, ADDR=0, TIMEOUT=2, SCAN=Passive")
 
 < event_alias.cmd
 
