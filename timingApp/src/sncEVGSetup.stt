@@ -6,31 +6,17 @@ program sncEVGSetup
 
 int currTime;
 int prevTime;
-int wrongUTCflg;
 int utcSrcCopy;
 
 %%//----------------------------------------
 %%// 	      Monitored PVs
 %%//----------------------------------------
 
-int uploadtrig;
-assign uploadtrig to "{P}{R}GetRBV.VAL";
-
-int downloadproc;
-assign downloadproc to "{P}{R}Download-Trig.PROC";
-
-int download;
-assign download to "{P}{R}Download-Cmd.VAL";
-monitor download;
-
 int cmd_conf_get;
 assign cmd_conf_get to "{P}{R}cmd_conf_get";
 monitor cmd_conf_get;
 evflag cmd_conf_get_event;
 sync cmd_conf_get cmd_conf_get_event;
-
-int funsel;
-assign funsel to "{P}{R}DevFun-Sel.VAL";
 
 int funselRBV;
 assign funselRBV to "{P}{R}DevFun-Sts.RVAL";
@@ -78,188 +64,107 @@ monitor getutc;
 
 ss configuration {
 
-    state init {
+  state waiting {
 
-	when (delay(1.0)){
+		entry{
 
-		%{/* Wait 1 sec while module starts up */}%
-
-		%%// Init message
-		printf("\n%s%s state machine initiated\n", macValueGet("P"), macValueGet("R"));
-
-	} state upload
-    }
-
-    state upload {
-	
-	when (funselRBV != 18){
-
-		%{/* If module is not configured, do not upload parameters */}%
-
-	} state waiting
-
-	when (network == 1){
-
-		%{/* If network is ON, upload parameters! */}%
-
-		%%// trigger upload
-		uploadtrig = 1;
-		pvPut(uploadtrig,SYNC);
-
-		%%// upload message
-		printf("\nConfiguration uploaded from %s%s.\n", macValueGet("P"), macValueGet("R"));
-
-	} state waiting
-
-    }
-
-    state waiting {
-
-	entry{
-
-		%%// Clear wrong UTC flag
-		wrongUTCflg = 0;
-	
-		%%// Clear control room flag
-		efClear(utcRBVFlag);
-	}
-
-	when ((funselRBV != 18) && (network == 1)) {
-
-		%{/* If STD-EVO is not correctly configured, download! */}%
-
-		download = 1;
-
-	} state download
-
-	when ((download == 1) && (network == 1)) {
-
-		%{/* If download requested, download! */}%
-
-		download = 1;
-
-	} state download
-
-	when (efTestAndClear(utcRBVFlag)) {
-
-		%{/* On Timing UTCRBV change, compare it to the reference */}%
-
-		utcSrcCopy = utcsrc; %%// Copy UTC source to protect it against change
-
-		if(utcSrcCopy == 0){ %%// UTC source comes from PC
-
-			if(utcRBV == time(NULL)){
-
-				%%// clear UTC mismatch PV
-				utcMismatch = 0;
-			}
-			else{
-				%%// set UTC mismatch PV
-				utcMismatch = 1;
-			}
+			%%// Clear control room flag
+			efClear(utcRBVFlag);
 		}
-		else { %%// UTC source comes from Control Room PV
-		
-			if(utcRBV == utcCtrlRoom){
 
-				%%// clear UTC mismatch PV
-				utcMismatch = 0;
+		when (efTestAndClear(utcRBVFlag)) {
+
+			%{/* On Timing UTCRBV change, compare it to the reference */}%
+
+			utcSrcCopy = utcsrc; %%// Copy UTC source to protect it against change
+
+			if(utcSrcCopy == 0){ %%// UTC source comes from PC
+
+				if(utcRBV == time(NULL)){
+
+					%%// clear UTC mismatch PV
+					utcMismatch = 0;
+				}
+				else{
+					%%// set UTC mismatch PV
+					utcMismatch = 1;
+				}
+			}
+			else { %%// UTC source comes from Control Room PV
+
+				if(utcRBV == utcCtrlRoom){
+
+					%%// clear UTC mismatch PV
+					utcMismatch = 0;
+				}
+				else{
+					%%// set UTC mismatch PV
+					utcMismatch = 1;
+				}
+			}
+
+			%%// put result	in PV
+			pvPut(utcMismatch, SYNC);
+
+		} state waiting
+
+		when (getutc) {
+
+			%{/* UTC update requested, update it! */}%
+
+			%%// Clear update UTC PV
+			getutc = 0;
+			pvPut(getutc, SYNC);
+
+		} state updateUTC
+  }
+	
+  state updateUTC {
+
+		entry{
+
+			%%// Copy UTC source to protect it against change
+			utcSrcCopy = utcsrc;
+
+			if(utcSrcCopy == 0){
+
+				%%// Get computer time
+				currTime = time(NULL);
+				prevTime = currTime;
 			}
 			else{
-				%%// set UTC mismatch PV
-				utcMismatch = 1;
+
+				%%// Clear Control Room UTC flag
+				efClear(utcCtrlRoomFlag);
 			}
 		}
 
-		%%// put result	in PV		
-		pvPut(utcMismatch, SYNC);
+		when(utcSrcCopy == 0 && delay(0.01)){
 
-	} state waiting
+			%{/* Read UTC value from computer */}%
 
-	when (getutc) {
-
-		%{/* UTC update requested, update it! */}%
-
-		%%// Clear update UTC PV
-		getutc = 0;
-		pvPut(getutc, SYNC);
-	
-	} state updateUTC
-    }
-	
-    state download {
-
-	entry {
-
-		%%// set device function to EVG (option 2)
-		funsel = 2;
-		pvPut(funsel, SYNC);
-
-		%%// trigger download
-		downloadproc = 1;
-		pvPut(downloadproc,SYNC);
-
-		%%// download message
-		printf("\nConfiguration downloaded to %s%s.\n", macValueGet("P"), macValueGet("R"));
-
-		%%// clear download PV
-		download = 0;
-		pvPut(download,SYNC);
-	} 
-
-	when (delay(1)) {
-
-		%{/* Wait until download is completed */}%
-
-	}state updateUTC
-    }
-
-    state updateUTC {
-
-	entry{
-
-		%%// Copy UTC source to protect it against change
-		utcSrcCopy = utcsrc;
-
-		if(utcSrcCopy == 0){
-
-			%%// Get computer time				
 			currTime = time(NULL);
-			prevTime = currTime;
-		}
-		else{
 
-			%%// Clear Control Room UTC flag
-			efClear(utcCtrlRoomFlag);
-		}
-	}
+		} state updateUTC
 
-	when(utcSrcCopy == 0 && delay(0.01)){
+		when(utcSrcCopy == 0 && prevTime != currTime){
 
-		%{/* Read UTC value from computer */}%
+			%{/* Update UTC as soon as PC time changes value */}%
 
-		currTime = time(NULL);
+			utc = currTime;
+			pvPut(utc, SYNC);
 
-	} state updateUTC
+		} state waiting
 
-	when(utcSrcCopy == 0 && prevTime != currTime){
+		when (utcSrcCopy == 1 && efTestAndClear(utcCtrlRoomFlag)) {
 
-		%{/* Update UTC as soon as PC time changes value */}%
+			%{/* Update UTC as soon as reference changes value */}%
 
-		utc = currTime;
-		pvPut(utc, SYNC);
+			utc = utcCtrlRoom;
+			pvPut(utc, SYNC);
 
-	} state waiting
-
-	when (utcSrcCopy == 1 && efTestAndClear(utcCtrlRoomFlag)) {
-
-		%{/* Update UTC as soon as reference changes value */}%
-
-		utc = utcCtrlRoom;
-		pvPut(utc, SYNC);
-
-	}state waiting
-    }
+		}state waiting
+  }
 }
 
 ss networkStatus {
