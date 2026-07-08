@@ -4,17 +4,11 @@
 #
 #####################################################
 
-record(stringout, "$(P)$(R)Evt$(code)Desc-SP"){
-  field(PINI, "1")
-  field(VAL, "$(desc)")
+record(stringin, "$(P)$(R)Evt$(code)Desc-Cte"){
+  field(PINI, 1)
+  field(VAL, "Undefined")
   field(DESC, "Description of the Event $(code)")
-  field(FLNK, "$(P)$(R)Evt$(code)Desc-RB")
-}
-
-record(stringin, "$(P)$(R)Evt$(code)Desc-RB"){
-  field(VAL, "$(desc)")
-  field(DESC, "Description of the Event $(code)")
-  field(INP, "$(P)$(R)Evt$(code)Desc-SP")
+  field(ASG, "Reserved")
 }
 
 # this record needs to be "ao" to receive VAL with 2 digits.
