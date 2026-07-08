@@ -24,6 +24,8 @@ alias("$(P)$(R)Evt$(code)Mode-Sts", "$(P)$(R)$(alias)Mode-Sts")
 
 alias("$(P)$(R)Evt$(code)ExtTrig-Cmd", "$(P)$(R)$(alias)ExtTrig-Cmd")
 
+alias("$(P)$(R)Evt$(code)Desc-Cte", "$(P)$(R)$(alias)Desc-Cte")
+
 record("*", "$(P)$(R)Evt$(code)Desc-Cte"){
   field(VAL, "$(alias)")
 }
