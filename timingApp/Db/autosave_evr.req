@@ -240,4 +240,4 @@ $(P)$(R)OTP22RegAByte3
 $(P)$(R)OTP23RegAByte3
 $(P)$(R)FPGAClk-Mon
 $(P)$(R)FPGAClk-Mon.INP
-$(P)$(R)StopSoftLog-Sel
+$(P)$(R)EnableLogBuff-Sel

@@ -1,6 +1,33 @@
 ########################################################################
 # Timestamp log register [52]
 
+record(bo, "$(P)$(R)EnableLog-Sel"){
+  field(DESC, "enable hw log")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(FLNK, "$(P)$(R)EnableLog2Stop")
+  field(VAL, 1)
+  field(PINI, YES)
+}
+
+record(calcout, "$(P)$(R)EnableLog2Stop"){
+  field(INPA, "$(P)$(R)EnableLog-Sel")
+  field(CALC, "!A")
+  field(OUT, "$(P)$(R)stoplog PP")
+}
+
+record(calcout, "$(P)$(R)StopLog2Enable"){
+  field(INPA, "$(P)$(R)STOPLOGRBV CP")
+  field(CALC, "!A")
+  field(OUT, "$(P)$(R)EnableLog-Sts PP")
+}
+
+record(bi, "$(P)$(R)EnableLog-Sts"){
+  field(DESC, "enable hw log")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+}
+
 record(bo, "$(P)$(R)stoplog"){
   field(DESC, "stop log command")
   field(MASK, "1")
@@ -267,16 +294,18 @@ record(calcout, "$(P)$(R)pullAgain"){
   field(FLNK, "$(P)$(R)LOGCTRL")
 }
 
-record(bo, "$(P)$(R)StopSoftLog-Sel"){
-  field(DESC, "stop soft logging")
-  field(ZNAM, "Running")
-  field(ONAM, "Stopped")
-  field(OUT, "$(P)$(R)StopSoftLog-Sts PP")
+record(bo, "$(P)$(R)EnableLogBuff-Sel"){
+  field(DESC, "enable log buffer")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
+  field(OUT, "$(P)$(R)EnableLogBuff-Sts PP")
+  field(VAL, 1)
+  field(PINI, 1)
 }
-record(bi, "$(P)$(R)StopSoftLog-Sts"){
-  field(DESC, "stop soft logging")
-  field(ZNAM, "Running")
-  field(ONAM, "Stopped")
+record(bi, "$(P)$(R)EnableLogBuff-Sts"){
+  field(DESC, "enable log buffer")
+  field(ZNAM, "Dsbl")
+  field(ONAM, "Enbl")
 }
 
 record(calcout, "$(P)$(R)PeriodicPull"){
@@ -285,8 +314,8 @@ record(calcout, "$(P)$(R)PeriodicPull"){
   field(SCAN, "2 second")
   field(INPA, "$(P)$(R)whileNotEmpty.VAL")
   field(INPB, "$(P)$(R)EMPTY")
-  field(INPC, "$(P)$(R)StopSoftLog-Sts")
-  field(CALC, "(A = 0) && (B = 0) && (C = 0)")
+  field(INPC, "$(P)$(R)EnableLogBuff-Sts")
+  field(CALC, "(A = 0) && (B = 0) && (C = 1)")
   field(VAL, "0")
   field(OOPT, "When Non-zero")
   field(OUT, "$(P)$(R)whileNotEmpty.PROC")
