@@ -307,7 +307,7 @@ $(P)$(R)Evt61Desc-SP
 $(P)$(R)Evt62Desc-SP
 $(P)$(R)Evt63Desc-SP
 $(P)$(R)BucketList-SP
-$(P)$(R)FPGAClk-Cte
+$(P)$(R)FPGAClk-Mon
 $(P)$(R)RFRef-Mon
 $(P)$(R)RFRef-Mon.INP
 $(P)$(R)StopSoftLog-Sel

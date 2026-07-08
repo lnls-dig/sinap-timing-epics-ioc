@@ -178,7 +178,7 @@ record(calc, "$(P)$(R)LOGTS"){
   field(DESC, "timestamp calculated from log")
   field(INPA, "$(P)$(R)LOGUTC")
   field(INPB, "$(P)$(R)LOGSUBSEC")
-  field(INPC, "$(P)$(R)FPGAClk-Cte")
+  field(INPC, "$(P)$(R)FPGAClk-Mon")
   field(CALC, "A + B / C")
   field(EGU, "seconds")
   field(FLNK, "$(P)$(R)UTCbuffer")

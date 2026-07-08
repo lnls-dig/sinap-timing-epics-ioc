@@ -71,7 +71,7 @@ record(bi, "$(P)$(R)OUT$(num)RFDelayType-Sts"){
 record(calc, "$(P)$(R)OUT$(num)RFDelayStep-Mon") {
   field(ASG, "Reserved")
   field(DESC, "OUT$(num) RF delay step in ns")
-  field(INPA, "$(P)$(R)FPGAClk-Cte CPP")
+  field(INPA, "$(P)$(R)FPGAClk-Mon CPP")
   field(CALC, "10**9/(A*20)")
   field(PREC, "3")
   field(EGU, "ns")

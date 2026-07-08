@@ -37,7 +37,7 @@ record(ao, "$(P)$(R)Evt$(code)Code-Mon"){
 record(calcout, "$(P)$(R)Evt$(code)DelayUpdate") {
   field(DESC, "Event $(code) delay update")
   field(INPA, "$(P)$(R)Evt$(code)DelayRaw-SP")
-  field(INPB, "$(P)$(R)FPGAClk-Cte CPP")
+  field(INPB, "$(P)$(R)FPGAClk-Mon CPP")
   field(CALC, "A/B*1000000")
   field(OUT, "$(P)$(R)Evt$(code)Delay-SP PP")
 }
@@ -54,7 +54,7 @@ record(ao, "$(P)$(R)Evt$(code)Delay-SP") {
 record(calcout, "$(P)$(R)Evt$(code)DelayCalc") {
   field(DESC, "Event $(code) timestamp calc")
   field(INPA, "$(P)$(R)Evt$(code)Delay-SP")
-  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(INPB, "$(P)$(R)FPGAClk-Mon")
   field(CALC, "CEIL(A*(B/1000000))-A*(B/1000000)<0.5?CEIL(A*(B/1000000)):FLOOR(A*(B/1000000))")
   field(OUT, "$(P)$(R)Evt$(code)DelayRaw-SP PP")
 }
@@ -96,7 +96,7 @@ record(ai, "$(P)$(R)Evt$(code)DelayRaw-RB"){
 
 record(calc, "$(P)$(R)Evt$(code)Delay-RB") {
   field(INPA, "$(P)$(R)Evt$(code)DelayRaw-RB")
-  field(INPB, "$(P)$(R)FPGAClk-Cte")
+  field(INPB, "$(P)$(R)FPGAClk-Mon")
   field(PREC, "3")
   field(DESC, "Event $(code) timestamp time unit")
   field(EGU, "us")
