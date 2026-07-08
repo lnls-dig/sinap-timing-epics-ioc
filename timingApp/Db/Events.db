@@ -57,6 +57,7 @@ record(calcout, "$(P)$(R)Evt$(code)DelayCalc") {
   field(INPB, "$(P)$(R)FPGAClk-Mon")
   field(CALC, "CEIL(A*(B/1000000))-A*(B/1000000)<0.5?CEIL(A*(B/1000000)):FLOOR(A*(B/1000000))")
   field(OUT, "$(P)$(R)Evt$(code)DelayRaw-SP PP")
+  field(SDIS, "$(P)$(R)Evt$(code)DelayUpdate.PACT")
 }
 
 record(ao, "$(P)$(R)Evt$(code)DelayRaw-SP"){
