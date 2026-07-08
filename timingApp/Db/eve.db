@@ -4,10 +4,9 @@
 record(ai, "$(P)$(R)FPGAClk-Mon") {
   field(DESC, "FPGA Clock from EVG")
   field(EGU, "Hz")
-  field(SCAN, "1 second")
   field(PINI, "1")
   field(VAL, "124914500")
-  field(INP, "AS-RaMO:TI-EVG:FPGAClk-Mon")
+  field(INP, "AS-RaMO:TI-EVG:FPGAClk-Mon CP")
 }
 alias("$(P)$(R)FPGAClk-Mon", "$(P)$(R)FPGAClk-Cte")
 
