@@ -41,66 +41,28 @@ timing_SRCS_vxWorks += -nil-
 # Link in the code from the support library
 timing_LIBS += timingSupport
 
-# NOTE: To build SNL programs, SNCSEQ must be defined
-# in the <top>/configure/RELEASE file
+# Build sncEVRESetup into timingSupport
+sncEVRESetup_SNCFLAGS += +r
+timing_DBD += sncEVRESetup.dbd
+timingSupport_SRCS += sncEVRESetup.stt
 
-ifneq ($(SNCSEQ),)
-    # Build sncEVRESetup into timingSupport
-    sncEVRESetup_SNCFLAGS += +r
-    timing_DBD += sncEVRESetup.dbd
-    timingSupport_SRCS += sncEVRESetup.stt
-    timingSupport_LIBS += seq pv
-    timing_LIBS += seq pv
+# Build sncSeqRAM into timingSupport
+sncSeqRAM_SNCFLAGS += +r
+timing_DBD += sncSeqRAM.dbd
+timingSupport_SRCS += sncSeqRAM.stt
 
-    # Build sncEVRESetupProgram as a standalone program
-    PROD_HOST += sncEVRESetupProgram
-    sncEVRESetupProgram_SNCFLAGS += +m
-    sncEVRESetupProgram_SRCS += sncEVRESetupProgram.st
-    sncEVRESetupProgram_LIBS += seq pv
-    sncEVRESetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
+# Build sncEVGSetup into timingSupport
+sncEVGSetup_SNCFLAGS += +r
+timing_DBD += sncEVGSetup.dbd
+timingSupport_SRCS += sncEVGSetup.stt
 
-    # Build sncSeqRAM into timingSupport
-    sncSeqRAM_SNCFLAGS += +r
-    timing_DBD += sncSeqRAM.dbd
-    timingSupport_SRCS += sncSeqRAM.stt
-    timingSupport_LIBS += seq pv
-    timing_LIBS += seq pv
+# Build sncFOUTSetup into timingSupport
+sncFOUTSetup_SNCFLAGS += +r
+timing_DBD += sncFOUTSetup.dbd
+timingSupport_SRCS += sncFOUTSetup.stt
 
-    # Build sncSeqRAMProgram as a standalone program
-    PROD_HOST += sncSeqRAMProgram
-    sncSeqRAMProgram_SNCFLAGS += +m
-    sncSeqRAMProgram_SRCS += sncSeqRAMProgram.st
-    sncSeqRAMProgram_LIBS += seq pv
-    sncSeqRAMProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
-
-    # Build sncEVGSetup into timingSupport
-    sncEVGSetup_SNCFLAGS += +r
-    timing_DBD += sncEVGSetup.dbd
-    timingSupport_SRCS += sncEVGSetup.stt
-    timingSupport_LIBS += seq pv
-    timing_LIBS += seq pv
-
-    # Build sncEVGSetupProgram as a standalone program
-    PROD_HOST += sncEVGSetupProgram
-    sncEVGSetupProgram_SNCFLAGS += +m
-    sncEVGSetupProgram_SRCS += sncEVGSetupProgram.st
-    sncEVGSetupProgram_LIBS += seq pv
-    sncEVGSetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
-
-    # Build sncFOUTSetup into timingSupport
-    sncFOUTSetup_SNCFLAGS += +r
-    timing_DBD += sncFOUTSetup.dbd
-    timingSupport_SRCS += sncFOUTSetup.stt
-    timingSupport_LIBS += seq pv
-    timing_LIBS += seq pv
-
-    # Build sncFOUTSetupProgram as a standalone program
-    PROD_HOST += sncFOUTSetupProgram
-    sncFOUTSetupProgram_SNCFLAGS += +m
-    sncFOUTSetupProgram_SRCS += sncFOUTSetupProgram.st
-    sncFOUTSetupProgram_LIBS += seq pv
-    sncFOUTSetupProgram_LIBS += $(EPICS_BASE_HOST_LIBS)
-endif
+timingSupport_LIBS += seq pv
+timing_LIBS += seq pv
 
 timing_DBD += asyn.dbd
 timing_DBD += drvAsynIPPort.dbd
