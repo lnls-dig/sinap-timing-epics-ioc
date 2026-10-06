@@ -110,6 +110,50 @@ evg_ctrl_seqen_enable_intr{
 }
 
 ################################################################################
+# CLK Registers [ - ]
+evre_clk_get {
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_clk_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*r%(\$1\$2CLK\$3Div-RB)02r%(\$1\$2CLK\$3Channel-RB)0r%(\$1\$2CLK\$3DelayRaw-RB)04r%(\$1\$2CLK\$3WidthRaw-RB)04r";
+}
+
+evre_clk_set {
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_clk_set\$3)r%(\$1\$2CLK\$3RegAByte3)r%(\$1\$2CLK\$3Div-SP).2r%(\$1\$2CLK\$3Channel-SP)r%(\$1\$2CLK\$3DelayRaw-SP).4r%(\$1\$2CLK\$3WidthRaw-SP).4r";
+    evre_clk_get;
+}
+
+# Interrupts
+
+evre_clk_enpoltime00RBV_intr{
+    in "\x02%*04r\x00\x0D\xE5%r%*03r%*04r%*04r";
+}
+evre_clk_enpoltime01RBV_intr{
+    in "\x02%*04r\x00\x0D\xE6%r%*03r%*04r%*04r";
+}
+evre_clk_enpoltime02RBV_intr{
+    in "\x02%*04r\x00\x0D\xE7%r%*03r%*04r%*04r";
+}
+
+################################################################################
+# CLK Event Count Registers [ - ]
+evre_clk00to05_count_get {
+    out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_evre_clk00to05_count_get)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+    in "\x02%*04r\x00\x0D%*r%*04r%*04r%*04r";
+}
+
+evre_clk_count00_intr{
+    in "\x02%*04r\x00\x0D\xFA%*02r%02r%*02r%*02r%*02r%*02r";
+}
+
+evre_clk_count01_intr{
+    in "\x02%*04r\x00\x0D\xFA%02r%*02r%*02r%*02r%*02r%*02r";
+}
+
+evre_clk_count02_intr{
+    in "\x02%*04r\x00\x0D\xFA%*02r%*02r%*02r%02r%*02r%*02r";
+}
+
+
+################################################################################
 # OTP Registers [1 - 16 & 25 - 32]
 evre_otp_get {
     out "\x02\x00\x00\x00\x00\x00\x0D%(\$1\$2cmd_otp_get\$3)r\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";

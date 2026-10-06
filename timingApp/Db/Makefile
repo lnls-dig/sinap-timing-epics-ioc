@@ -27,6 +27,7 @@ DB += event_log.db
 DB += rx_locked.db
 DB += digital_input.db
 DB += evg_interlock.db
+DB += evre_flx_clk.db
 
 DB += $(AUTOSAVE)/asApp/Db/save_restoreStatus.db
 
