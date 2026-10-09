@@ -67,6 +67,10 @@ dbLoadRecords("${TOP}/db/evre_out.db", "P=${P}, R=${R}, num=5, PORT=${PORT}, ADD
 dbLoadRecords("${TOP}/db/evre_out.db", "P=${P}, R=${R}, num=6, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 dbLoadRecords("${TOP}/db/evre_out.db", "P=${P}, R=${R}, num=7, PORT=${PORT}, ADDR=0, TIMEOUT=2")
 
+dbLoadRecords("${TOP}/db/evre_flx_clk.db", "P=${P}, R=${R}, num=00, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_flx_clk.db", "P=${P}, R=${R}, num=01, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+dbLoadRecords("${TOP}/db/evre_flx_clk.db", "P=${P}, R=${R}, num=02, PORT=${PORT}, ADDR=0, TIMEOUT=2")
+
 < save_restore.cmd
 
 ## Run this to trace the stages of iocInit
